@@ -1,0 +1,14 @@
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.deps.json
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.runtimeconfig.json
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.dll
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.pdb
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.csproj.AssemblyReference.cache
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.GeneratedMSBuildEditorConfig.editorconfig
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.AssemblyInfoInputs.cache
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.AssemblyInfo.cs
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.csproj.CoreCompileInputs.cache
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.dll
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\refint\GProject.Data.dll
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.pdb
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.genruntimeconfig.cache
+E:\GProject\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\ref\GProject.Data.dll
