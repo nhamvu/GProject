@@ -13,5 +13,6 @@ namespace GProject.Data.DomainClass
         public string Name { get; set; }
         public string Code { get; set; }
         public int Status { get; set; } = 1; // 0: không sử dụng || 1: sử dụng
+        public List<ProductVariation>? Variations { get; set; }
     }
 }

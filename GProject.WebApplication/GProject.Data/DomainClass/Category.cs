@@ -9,10 +9,11 @@ namespace GProject.Data.DomainClass
 {
     public class Category
     {
-        public int? Id { get; set; }
+        public Guid? Id { get; set; }
         public string Name { get; set; }
         public string SearchCount { get; set; }
         public int Status { get; set; } = 1; // 0: sử dụng || 1: không sử dụng
         public string? Description { get; set; }
+        public List<CategoryProduct>? CategoryProducts { get; set; }
     }
 }

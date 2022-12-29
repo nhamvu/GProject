@@ -11,11 +11,10 @@ namespace GProject.Data.DomainClass
 {
     public class Product
     {
-        public int? Id { get; set; }
-        public int? BrandId { get; set; }
+        public Guid? Id { get; set; }
+        public int BrandId { get; set; }
         public string Name { get; set; }
         public DateTime CreateDate { get; set; }
-        public string SearchCount { get; set; }
         public int ViewCount { get; set; }
         public int LikeCount { get; set; }
         [Column(TypeName = "decimal(20, 0)")]

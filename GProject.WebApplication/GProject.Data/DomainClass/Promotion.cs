@@ -14,7 +14,7 @@ namespace GProject.Data.DomainClass
         public Guid? Id { get; set; }
         public string PromotionId { get; set; }
         public string PromotionName { get; set; }
-        public int DiscountPercent { get; set; }
+        public int DiscountPercent { get; set; } // 0: theo Vnd || 1: theo %
         [Column(TypeName = "decimal(20, 0)")]
         public decimal DiscountRate { get; set; }
         public DateTime CreateDate { get; set; }

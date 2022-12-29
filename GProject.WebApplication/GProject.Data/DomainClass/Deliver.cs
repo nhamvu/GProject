@@ -1,4 +1,5 @@
 ﻿using GProject.Data.Enums;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GProject.Data.DomainClass
 {
-    public class Deliver
+    public class Deliver : IdentityRole<Guid>
     {
         public Guid? Id { get; set; }
         public string DeliverId { get; set; }
@@ -29,8 +30,9 @@ namespace GProject.Data.DomainClass
         public string BrandCar { get; set; }
         public string DrivingNumber { get; set; }
         public string DrivingLicense { get; set; }
-        public int Status { get; set; } = 1; // 0: đang sẵn sàng || 1:Không sẵn sàng
+        public int Status { get; set; } // 1: đang sẵn sàng nhận đơn || 0:Không sẵn sàng nhận đơn
         public string? Description { get; set; }
-        //public List<Order>? Orders { get; set; }
+        public string Image { get; set; }
+        public List<Order>? Orders { get; set; }
     }
 }
