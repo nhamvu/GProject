@@ -8,40 +8,40 @@ using System.Text;
 
 namespace GProject.Data.MyRepositories.IRepositories
 {
-    public class OrderRepository:IOrderRepository
+    public class SizeRepository:ISizeRepository
     {
         private GProjectContext _context;
-        public OrderRepository()
+        public SizeRepository()
         {
             _context = new GProjectContext();
         }
-        public bool Add(Order obj)
+        public bool Add(Size obj)
         {
             if (obj == null) return false;
-            _context.Orders.Add(obj);
+            _context.Sizes.Add(obj);
             _context.SaveChanges();
             return true;
         }
 
-        public bool Delete(Order obj)
+        public bool Delete(Size obj)
         {
             if (obj == null) return false;
-            _context.Orders.Remove(obj);
+            _context.Sizes.Remove(obj);
             _context.SaveChanges();
             return true;
         }
 
-        public bool Update(Order obj)
+        public bool Update(Size obj)
         {
             if (obj == null) return false;
-            _context.Orders.Update(obj);
+            _context.Sizes.Update(obj);
             _context.SaveChanges();
             return true;
         }
 
-        public List<Order> GetAll()
+        public List<Size> GetAll()
         {
-            return _context.Orders.ToList();
+            return _context.Sizes.ToList();
         }
     }
 }
