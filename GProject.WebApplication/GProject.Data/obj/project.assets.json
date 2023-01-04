@@ -2188,24 +2188,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\Documents\\My Projects\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+      "projectUniqueName": "E:\\GProject\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
       "projectName": "GProject.Data",
-      "projectPath": "C:\\Users\\Admin\\Documents\\My Projects\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+      "projectPath": "E:\\GProject\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\Documents\\My Projects\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
+      "outputPath": "E:\\GProject\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
