@@ -20,7 +20,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Login/index";
         options.LogoutPath= "/Login/logout";
-        options.AccessDeniedPath = "/Login/AccessDanied";
+        options.AccessDeniedPath = "/Login/AccessDenied";
         //options.Events = new CookieAuthenticationEvents()
         //{
         //    OnSigningIn = async context =>

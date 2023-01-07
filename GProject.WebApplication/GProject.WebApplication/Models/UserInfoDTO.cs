@@ -27,6 +27,7 @@ namespace GProject.WebApplication.Models
         //[Required(ErrorMessage = "Mật khẩu không được bỏ trống")]
         [StringLength(50, ErrorMessage = "Mật khẩu không được vượt quá 50 kí tự")]
         public string? confirm_password { get; set; }
+        public string? Image { get; set; }
     }
 
 }

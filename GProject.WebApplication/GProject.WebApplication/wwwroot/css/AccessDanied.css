@@ -10,18 +10,19 @@ html {
 
 body {
     font-family: 'Raleway', sans-serif;
-    background-color: #342643;
+    background-color: white;
     height: 100%;
     padding: 10px;
+    margin: auto;
 }
 
 a {
-    color: #EE4B5E !important;
+    color: black !important;
     text-decoration: none;
 }
 
     a:hover {
-        color: #FFFFFF !important;
+        color: black !important;
         text-decoration: none;
     }
 
@@ -34,7 +35,7 @@ a {
 }
 
 .title {
-    font-size: 5em;
+    font-size: 3em;
     font-weight: 700;
     color: #EE4B5E;
 }
@@ -42,7 +43,7 @@ a {
 .subtitle {
     font-size: 40px;
     font-weight: 700;
-    color: #1FA9D6;
+    color: black;
 }
 
 .isi {
@@ -50,7 +51,7 @@ a {
     text-align: center;
     margin: 30px;
     padding: 20px;
-    color: white;
+    color: black;
 }
 
 .buttons {

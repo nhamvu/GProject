@@ -16,7 +16,7 @@ namespace GProject.Data.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=LAPTOP-2GTIBL55\SQLEXPRESS;Initial Catalog=DBTEST001;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATN001;Integrated Security=True");
         }
         public DbSet<AppUsers> AppUsers { get; set; }
         public DbSet<AppRoles> AppRoles { get; set; }

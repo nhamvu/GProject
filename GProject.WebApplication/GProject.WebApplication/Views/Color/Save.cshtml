@@ -10,6 +10,10 @@
     label {
         color: black;
     }
+
+    h1 {
+        color: black;
+    }
 </style>
 <h1>QUẢN LÍ MÀU SẮC</h1>
 @if (ViewBag.Error != null)
@@ -17,10 +21,10 @@
     <p style="visibility: hidden;" id="error">@ViewBag.Error</p>
 }
 <form id="from1" asp-action="Save" class="form">
-    <input asp-for="Id" style="width:0px;height:0px;" />
+    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <div class="row mt-5">
         <div class="col-md-5">
-            <label class="col-md-5"><strong>Mã Màu:</strong></label><span style="color: red">(*)</span>
+            <label class="col-md-5"><strong>Mã Màu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
                 <span class="icon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
                 <input asp-for="HEXCode" placeholder="Hex code (#)" required />
@@ -28,7 +32,7 @@
             </div>
         </div>
         <div class="col-md-5">
-            <label class="col-md-5"><strong>Tên Màu:</strong></label><span style="color: red">(*)</span>
+            <label class="col-md-5"><strong>Tên Màu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
                 <span class="icon"><i class="fa-solid fa-signature" aria-hidden="true"></i></span>
                 <input asp-for="Name" placeholder="Color name" required />
@@ -36,7 +40,7 @@
             </div>
         </div>
         <div class="col-md-5">
-            <strong><label>Trạng thái</label></strong><span style="color: red">(*)</span>
+            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
             <div>
                 @Html.DropDownList("Status", new[]
                 {
@@ -53,10 +57,10 @@
         </div>
     </div>
 </form>
-<table class="table table-striped table-bordered justify-content-center">
+<table class="table table-bordered table-hover">
     <thead>
-        <tr><th colspan="5" class="text-center" style="background-color:red; color:white;">DANH SÁCH MÀU SẮC</th></tr>
-        <tr style="background-color:red; color:white;">
+        <tr><th colspan="5" class="text-center">DANH SÁCH MÀU SẮC</th></tr>
+        <tr>
             <th>Mã Màu</th>
             <th>Tên Màu</th>
             <th>Trạng thái</th>
@@ -64,7 +68,7 @@
             <th>Xóa</th>
         </tr>
     </thead>
-    <tbody style="background-color:white;">
+    <tbody>
         @foreach (var item in Model.ColorList)
         {
             <tr>
@@ -75,35 +79,48 @@
                     @item.Name
                 </td>
                 <td>
-                    @(item.Status == 0 ? "Không sử dụng" : "Đang sử dung")
+                    @item.Status
                 </td>
                 <td>
-                    <button class="btn btn-info" onclick="location.href='@Url.Action("Detail", "Color",new { id = item.Id})'" />
+                    <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
                     <i class="fa fa-eye" aria-hidden="true"></i>
                 </td>
                 <td>
-                    <button class="btn btn-danger" onclick="location.href='@Url.Action("Detail", "Color",new { id = item.Id})'" />
+                    <button class="btn btn-danger" onclick="ViewDetailData(@item.Id)" />
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<div id="ViewDetail" class="modal modal-default in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 5px 15px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <h3 class="modal-title">Thông tin màu sắc</h3>
+            </div>
+            <div class="modal-body">
+                <h5>Tên màu:<strong id="namee"></strong></h5>
+                <h5>Mã màu:<strong id="code"></strong></h5>
+                <h5>Trạng thái:<strong id="status"></strong></h5>
+            </div>
+            <div class="modal-footer" style="position:relative;clear:both;z-index:1000000" id="transport-footer">
+                <button type="button" class="btn btn-default pull-left btn-sm" data-dismiss="modal" onclick="btnClose()"><i class="fa fa-times"></i>Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     document.querySelector('#from1').addEventListener('submit', function (e) {
         var form = this;
 
         e.preventDefault();
 
-        swal({
-            title: "Xác nhận ?",
-            text: "Bạn muốn lưu những thay đổi này?",
-            icon: "warning",
-            buttons: [
-                'Không, tôi cần xem lại!!',
-                'Có, tôi đồng ý!'
-            ],
-            dangerMode: true,
+        swal("Bạn chắc chắn lưu những thay đổi này?", {
+            title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+            icon: 'information',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
         }).then(function (isConfirm) {
             if (isConfirm) {
                 swal({
@@ -118,4 +135,18 @@
             }
         });
     });
+    function ViewDetailData(id) {
+        $.getJSON("/Color/Detail?id=" + id, function (data) {
+            $("#Name").val(data.name);
+            $("#HEXCode").val(data.hexCode);
+            $("#Status").val(data.status);
+            document.getElementById('namee').innerText = data.name;
+            document.getElementById('code').innerText = data.hexCode;
+            document.getElementById('status').innerText = data.status;
+            $('#ViewDetail').modal('show');
+        });
+    }
+    function btnClose() {
+        $('#ViewDetail').modal('hide');
+    }
 </script>

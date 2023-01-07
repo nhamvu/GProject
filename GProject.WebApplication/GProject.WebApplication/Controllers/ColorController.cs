@@ -17,7 +17,7 @@ namespace GProject.WebApplication.Controllers
             iColorService = new ColorService();
         }
 
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles ="manager, employee")]
         [HttpGet]
         public async Task<ActionResult> Index()
         {
@@ -35,7 +35,7 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "manager, employee")]
         public async Task<ActionResult> Save(ColorDTO Color)
         {
             try
@@ -65,6 +65,13 @@ namespace GProject.WebApplication.Controllers
                 throw;
             }
 
+        }
+
+        public async Task<JsonResult> Detail(int id)
+        {
+            var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
+            var data2 = lstObjs.FirstOrDefault(c => c.Id == id);
+            return Json(data2);
         }
     }
 }
