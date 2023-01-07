@@ -8,50 +8,12 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Motorcycle_Shop_Project.styles.css" asp-append-version="true" />
-
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-K9TS39L');
-    </script>
-    <!-- End Google Tag Manager -->
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-W5SSLWP');
-    </script>
-    <!-- End Google Tag Manager all-->
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) { w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' }); var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f); })(window, document, 'script', 'dataLayer', 'GTM-MDJHJL7');
-    </script>
-    <!-- End Google Tag Manager -->
-    <!-- Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-KZDW8DN');
-    </script>
     <!-- End Google Tag Manager -->
     <title>Honda | Xe máy | Danh sách sản phẩm</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Honda Home page" />
-    <meta name="keywords" content="honda, xe may, xe máy, oto, ô tô" />
     <meta name="csrf-token" content="2qsuJcsnvDgnRtsOmsuTzOLHRskqRlW6g1Eifk6Z">
     <link rel="stylesheet" type="text/css" href="https://www.honda.com.vn/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="https://www.honda.com.vn/css/common.css?v=1.0" />
@@ -91,26 +53,21 @@
                         <li><a href="#">Ô tô</a></li>
                     </ul>
                 </li>
-                <li>|</li>
                 <li>
                     <a href="#">Câu hỏi thường gặp</a>
                 </li>
-                <li>|</li>
                 <li>
                     <a href="#">Liên hệ</a>
                 </li>
-                <li>|</li>
                 <li>
                     <a href="#">Tuyển dụng</a>
                     <ul>
-                        <li><a href="#">Môi trường làm việc</a></li>
                         <li>
                             <a href="#">
                                 Tin
                                 tức sự kiện
                             </a>
                         </li>
-                        <li><a href="#">Cơ hội việc làm</a></li>
                         <li>
                             <a href="#">Quy trình ứng tuyển</a>
                         </li>
@@ -274,18 +231,6 @@
                 }
                 @if (User.IsInRole("manager"))
                 {
-                    <li class="arrow">
-                        <a href="#" style="color:white;">Thống kê</a>
-                        <ul>
-                            <li>
-                                <a href="/statical/staticalpage">Thống kê chung</a>
-                            </li>
-                            <li>
-                                <a href="/statical/rank_employee">Xếp hạng doanh số nhân viên</a>
-                            </li>
-                        </ul>
-                    </li>
-                }
                 <li class="arrow ">
                     <a href="#" style="color:white;">Đơn đặt hàng</a>
                     <ul>
@@ -365,28 +310,6 @@
                         </li>
                     </ul>
                 </li>
-
-                <li class="arrow ">
-                    <a href="#">Tài khoản</a>
-                    <ul>
-                        <li>
-                            <a href="#">Đăng nhập</a>
-                        </li>
-                        <li>
-                            <a href="#">Đăng kí</a>
-                        </li>
-                        <li>
-                            <a href="#">Đổi thông tin cá nhân</a>
-                        </li>
-                        <li>
-                            <a href="#">Quên mật khẩu</a>
-                        </li>
-                        <li>
-                            <a href="#">Đăng xuất</a>
-                        </li>
-                    </ul>
-                </li>
-
             </ul>
         </nav>
     </header>
