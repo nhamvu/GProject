@@ -21,21 +21,21 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         options.LoginPath = "/Login/index";
         options.LogoutPath= "/Login/logout";
         options.AccessDeniedPath = "/Login/AccessDanied";
-        options.Events = new CookieAuthenticationEvents()
-        {
-            OnSigningIn = async context =>
-            {
-                await Task.CompletedTask;
-            },
-            OnSignedIn = async context =>
-            {
-                await Task.CompletedTask;
-            },
-            OnValidatePrincipal = async context =>
-            {
-                await Task.CompletedTask;
-            }
-        };
+        //options.Events = new CookieAuthenticationEvents()
+        //{
+        //    OnSigningIn = async context =>
+        //    {
+        //        await Task.CompletedTask;
+        //    },
+        //    OnSignedIn = async context =>
+        //    {
+        //        await Task.CompletedTask;
+        //    },
+        //    OnValidatePrincipal = async context =>
+        //    {
+        //        await Task.CompletedTask;
+        //    }
+        //};
     });
 builder.Services.AddAuthorization();
 var app = builder.Build();
