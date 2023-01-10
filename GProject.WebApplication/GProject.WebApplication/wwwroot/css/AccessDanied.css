@@ -16,11 +16,6 @@ body {
     margin: auto;
 }
 
-a {
-    color: black !important;
-    text-decoration: none;
-}
-
     a:hover {
         color: black !important;
         text-decoration: none;

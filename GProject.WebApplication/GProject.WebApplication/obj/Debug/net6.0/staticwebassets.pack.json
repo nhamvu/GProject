@@ -45,6 +45,14 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\slick-theme.css",
+      "PackagePath": "staticwebassets\\css\\slick-theme.css"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\slick.css",
+      "PackagePath": "staticwebassets\\css\\slick.css"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },
@@ -107,6 +115,14 @@
     {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slick.js",
+      "PackagePath": "staticwebassets\\js\\slick.js"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slick.min.js",
+      "PackagePath": "staticwebassets\\js\\slick.min.js"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slider.js",

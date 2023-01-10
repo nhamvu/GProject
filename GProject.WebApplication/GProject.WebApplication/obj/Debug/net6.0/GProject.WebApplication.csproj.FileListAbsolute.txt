@@ -153,11 +153,11 @@ E:\GProject\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\n
 E:\GProject\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutCustomer.cshtml.rz.scp.css
 E:\GProject\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Newtonsoft.Json.dll
 E:\GProject\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\RestSharp.dll
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.json
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.deps.json
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.runtimeconfig.json
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.exe
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.json
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.staticwebassets.runtime.json
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.exe
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.deps.json

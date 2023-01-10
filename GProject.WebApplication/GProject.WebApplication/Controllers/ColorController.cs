@@ -67,6 +67,7 @@ namespace GProject.WebApplication.Controllers
 
         }
 
+        [Authorize(Roles = "manager, employee")]
         public async Task<JsonResult> Detail(int id)
         {
             var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));

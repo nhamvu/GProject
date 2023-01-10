@@ -15,6 +15,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="Honda Home page" />
     <meta name="csrf-token" content="2qsuJcsnvDgnRtsOmsuTzOLHRskqRlW6g1Eifk6Z">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCKjLTXdq6Db3Xit_pW_GK4EXuPRtnod4o"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://www.honda.com.vn/css/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="https://www.honda.com.vn/css/common.css?v=1.0" />
     <link rel="stylesheet" type="text/css" href=https://www.honda.com.vn/css/xe-may/san-pham.css>
@@ -35,21 +42,20 @@
     <script src="~/bundles/jquery"></script>
     <script src="~/js/01-custom-places-example.js"></script>
     <script src="~/js/modernizer.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCKjLTXdq6Db3Xit_pW_GK4EXuPRtnod4o"></script>
+    <link href="~/css/slick-theme.css" rel="stylesheet" />
+    <link href="~/css/slick.css" rel="stylesheet" />
+    <script src="~/js/slick.js"></script>
+    <script src="~/js/slider.js"></script>
+    <script src="~/js/slick.min.js"></script>
 </head>
 <body>
-    <header>
-        <div style="font-size:16px; color:red;">
+    <header style ="font-size:14px; color:white; background-color:#c00">
+        <div style="font-size:14px; color:white; background-color:#c00">
             <ul>
                 @if (!User.IsInRole("manager") && !User.IsInRole("employee"))
                 {
                     <li class="arrow">
-                        <a href="#" style="font-size:16px;">Sản phẩm</a>
+                        <a href="#" style="font-size:14px; color:white;"><i class="fa fa-cubes" aria-hidden="true" style="margin-right:4px;"></i>Sản phẩm</a>
                         <ul>
                             <li>
                                 <a href="/statical/staticalpage">Tất cả sản phẩm</a>
@@ -69,7 +75,7 @@
                     </li>
                     <li>|</li>
                     <li class="arrow">
-                        <a href="#" style="font-size:16px;">Giảm giá</a>
+                        <a href="#" style="font-size:14px; color:white;"><i class="fa fa-calendar-plus-o" aria-hidden="true" style="margin-right:4px;"></i>Giảm giá</a>
                         <ul>
                             <li>
                                 <a href="/statical/staticalpage">Xắp diễn ra</a>
@@ -84,21 +90,21 @@
                     </li>
                     <li>|</li>
                     <li class="arrow">
-                        <a href="/customer/customerpage" style="font-size:16px;">Tin tức</a>
+                        <a href="/customer/customerpage" style="font-size:14px; color:white;"><i class="fa fa-newspaper-o" aria-hidden="true" style="margin-right:4px;"></i>Tin tức</a>
                     </li>
                     <li>|</li>
                     <li class="arrow">
-                        <a href="/customer/customerpage" style="font-size:16px;">Chính sách chăm sóc khách hàng</a>
+                        <a href="/customer/customerpage" style="font-size:14px; color:white;"><i class="fa fa-users" aria-hidden="true" style="margin-right:4px;"></i>Chăm sóc khách hàng</a>
                     </li>
                     <li class="arrow">|</li>
                     <li class="arrow">
-                        <a href="/customer/customerpage" style="font-size:16px;">Trạng thái đơn hàng</a>
+                        <a href="/customer/customerpage" style="font-size:14px; color:white;"><i class="fa fa-shopping-bag" aria-hidden="true" style="margin-right:4px;"></i>Trạng thái đơn hàng</a>
                     </li>
                 }
                 @if (User.IsInRole("manager"))
                 {
                     <li class="arrow">
-                        <a href="#" style="font-size:16px;">Thống kê</a>
+                        <a href="#" style="font-size:14px; color:white;"><i class="fa fa-bar-chart" aria-hidden="true" style="margin-right:4px;"></i>Thống kê</a>
                         <ul>
                             <li>
                                 <a href="/statical/staticalpage">Thống kê chung</a>
@@ -114,7 +120,7 @@
                 @if (User.IsInRole("employee"))
                 {
                     <li class="arrow">
-                        <a href="#" style="font-size:16px;">Thống kê</a>
+                        <a href="#" style="font-size:14px; color:white;"><i class="fa fa-bar-chart" aria-hidden="true" style="margin-right:4px;"></i>Thống kê</a>
                         <ul>
                             <li>
                                 <a href="/statical/staticalpage">Doanh số bản thân</a>
@@ -126,7 +132,7 @@
                 @if (User.IsInRole("manager") || User.IsInRole("employee"))
                 {
                     <li class="arrow ">
-                        <a href="#" style="font-size:16px;">Đơn đặt hàng</a>
+                        <a href="#" style="font-size:14px; color:white;"><i class="fa fa-shopping-bag" aria-hidden="true" style="margin-right:4px;"></i>Đơn đặt hàng</a>
                         <ul>
                             <li>
                                 <a href="/invoice/load-product">Tạo Hóa đơn</a>
@@ -138,7 +144,7 @@
                     </li>
                     <li class="arrow">|</li>
                     <li class="arrow">
-                        <a href="#" style="font-size:16px;">Sản phẩm</a>
+                        <a href="#" style="font-size:14px; color:white;"><i class="fa fa-cubes" aria-hidden="true" style="margin-right:4px;"></i>Sản phẩm</a>
                         <ul>
                             <li>
                                 <a href="/productmgr/getallproduct">Danh mục sản phẩm</a>
@@ -159,17 +165,18 @@
                     </li>
                     <li class="arrow">|</li>
                     <li class="arrow ">
-                        <a href="/customer/customerpage" style="font-size:16px;">Khách hàng</a>
+                        <a href="/customer/customerpage" style="font-size:14px; color:white;"><i class="fa fa-users" aria-hidden="true" style="margin-right:4px;"></i>Khách hàng</a>
                     </li>
                     <li class="arrow">|</li>
                     <li class="arrow ">
-                        <a href="/customer/customerpage" style="font-size:16px;">Hóa đơn</a>
+                        <a href="/customer/customerpage" style="font-size:14px; color:white;"><i class="fa fa-building" aria-hidden="true"></i>Hóa đơn</a>
                     </li>
                 }
                 @if (User.IsInRole("manager"))
-                {
+                { 
+                    <li class="arrow">|</li>
                     <li class="arrow ">
-                        <a href="#" style="font-size:16px;">Cửa hàng</a>
+                        <a href="#" style="font-size:14px; color:white;"><i class="fa fa-hdd-o" aria-hidden="true" style="margin-right:4px;"></i>Cửa hàng</a>
                         <ul>
                             <li>
                                 <a href="/store/storepage">Cửa hàng</a>
@@ -182,9 +189,9 @@
                             </li>
                         </ul>
                     </li>
-
+                    <li class="arrow">|</li>
                     <li class="arrow">
-                        <a href="#" style="font-size:16px;">Sự kiện</a>
+                        <a href="#" style="font-size:14px; color:white;"><i class="fa fa-calendar-plus-o" aria-hidden="true" style="margin-right:4px;"></i>Giảm giá</a>
                         <ul>
                             <li>
                                 <a href="/event/ShowAllEventActive">Đang diễn ra</a>
@@ -204,7 +211,7 @@
                         var name = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Country)
                         .Select(c => c.Value).FirstOrDefault();
                     }
-                    <a href="#" style="font-size:16px;">
+                    <a href="#" style="font-size:14px; color:white;">
                         @{
                             if (string.IsNullOrEmpty(name))
                             {
@@ -241,10 +248,12 @@
         </div>
         <nav style="height:60px">
             <div>
-                <form class="d-flex justify-content-center">
-                    <input class="form-control col-md-4" type="search" placeholder="Tìm kiếm trên Dream Fashion" aria-label="Search" style="height:40px; margin:10px 10px 10px 180px;">
-                    <button class="btn btn-outline-light" type="submit" style="height:40px;margin:10px 10px 10px 10px;"><i class="fa fa-search" aria-hidden="true"></i>Tìm kiếm</button>
-                    <button class="btn btn-outline-light" type="submit" style="height:40px;margin:10px 10px 10px 10px;"><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-right:5px;"></i>Giỏ hàng</button>
+                <form action="/" class="d-flex justify-content-center" method="post">
+                    <div class="col-md-5" style="height:40px; margin:10px 10px 20px 200px;">
+                        <input type="text" name="Keyword" id="Keyword" placeholder="Tìm kiếm trên Dream Fashion" class="form-control" style="height:40px;margin-left:30px;" />
+                    </div>
+                    <button class="btn btn-outline-light" type="submit" style="height:40px;margin:10px 2px 10px 10px; width:110px;"><i class="fa fa-search" aria-hidden="true" style="margin-right:4px;"></i>Tìm kiếm</button>
+                    <button class="btn btn-outline-light" type="submit" style="height:40px;margin:10px 2px 10px 10px; width:110px;"><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-right:4px;"></i>Giỏ hàng</button>
                 </form>
             </div>
         </nav>
