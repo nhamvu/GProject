@@ -36,7 +36,7 @@ namespace GProject.WebApplication.Controllers
 
         [HttpPost]
         [Authorize(Roles = "manager, employee")]
-        public async Task<ActionResult> Save(ColorDTO Color)
+        public async Task<JsonResult> Save(ColorDTO Color)
         {
             try
             {
@@ -49,14 +49,16 @@ namespace GProject.WebApplication.Controllers
                     ViewBag.Error = "Successfully !";
                     //-- GTuwir Request cho thằng kia sử lí
                     await Commons.Add_or_UpdateAsync(prd, url);
-                    return RedirectToAction("Index");
+                    return Json(Color);
+                    //return RedirectToAction("Index");
                 }
                 else
                 {
                     var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
                     var data = new ColorDTO() { ColorList = lstObjs };
                     ViewBag.Error = "Failed !";
-                    return View(data);
+                    return Json(Color);
+                    //return View(data);
                 }
             }
             catch (Exception)

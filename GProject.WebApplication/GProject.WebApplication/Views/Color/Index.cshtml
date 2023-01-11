@@ -20,7 +20,7 @@
 {
     <p style="visibility: hidden;" id="error">@ViewBag.Error</p>
 }
-<form id="from1" asp-action="Save" class="form">
+<form id="from1" class="form">
     <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <div class="row mt-5">
         <div class="col-md-6">
@@ -58,7 +58,7 @@
         <div class="col-md-2">
             <strong><label></label></strong>
             <div class="form-input">
-                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+                <button class="btn btn-success" onclick="btnSubmit()" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
             </div>
         </div>
     </div>
@@ -155,5 +155,23 @@
         $("#Name").val('');
         $("#HEXCode").val('');
         $("#Status").val(0);
+    }
+    function btnSubmit() {
+        $.ajax({
+            url: "/Color/Save",
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify({ Color: { id: $("#Id").val(), name: $("#Name").val(), hexCode = $("#HEXCode").val(), status = $("#Status").val() } }),
+            async: true,
+            processData: false,
+            cache: false,
+            success: function (data) {
+                alert(data);
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        })
     }
 </script>
