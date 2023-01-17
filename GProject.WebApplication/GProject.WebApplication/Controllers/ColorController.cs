@@ -5,6 +5,7 @@ using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -36,23 +37,21 @@ namespace GProject.WebApplication.Controllers
 
         [HttpPost]
         [Authorize(Roles = "manager, employee")]
-        public async Task<JsonResult> Save(ColorDTO Color)
+        public async Task<ActionResult> Save( ColorDTO Color)
         {
             try
             {
-                    string url = "";
-                    var prd = new Color(){ Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name,Status = Color.Status};
-                    if (Color.Id == null) { url = string.Concat(Commons.mylocalhost, "Color/add-Color"); }
-                    else { url = string.Concat(Commons.mylocalhost, "Color/update-Color"); }
-                    //-- GTuwir Request cho thằng kia sử lí
-                    await Commons.Add_or_UpdateAsync(prd, url);
-                    return Json(Color);
-                    //return RedirectToAction("Index");
-                }
+                string url = "";
+                var prd = new Color() { Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name, Status = Color.Status };
+                if (Color.Id == null) { url = string.Concat(Commons.mylocalhost, "Color/add-Color"); }
+                else { url = string.Concat(Commons.mylocalhost, "Color/update-Color"); }
+                //-- GTuwir Request cho thằng kia sử lí
+                await Commons.Add_or_UpdateAsync(prd, url);
+                return RedirectToAction("Index");
+            }
             catch (Exception)
             {
-
-                throw;
+                return BadRequest();
             }
 
         }
