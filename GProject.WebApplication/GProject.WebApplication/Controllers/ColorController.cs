@@ -40,27 +40,15 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
-                if (ModelState.IsValid == true)
-                {
                     string url = "";
                     var prd = new Color(){ Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name,Status = Color.Status};
                     if (Color.Id == null) { url = string.Concat(Commons.mylocalhost, "Color/add-Color"); }
                     else { url = string.Concat(Commons.mylocalhost, "Color/update-Color"); }
-                    ViewBag.Error = "Successfully !";
                     //-- GTuwir Request cho thằng kia sử lí
                     await Commons.Add_or_UpdateAsync(prd, url);
                     return Json(Color);
                     //return RedirectToAction("Index");
                 }
-                else
-                {
-                    var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
-                    var data = new ColorDTO() { ColorList = lstObjs };
-                    ViewBag.Error = "Failed !";
-                    return Json(Color);
-                    //return View(data);
-                }
-            }
             catch (Exception)
             {
 

@@ -28,7 +28,6 @@
             <div class="form-input">
                 <span class="icon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
                 <input asp-for="HEXCode" placeholder="Hex code (#)" required />
-                <span asp-validation-for="HEXCode" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-6">
@@ -36,7 +35,6 @@
             <div class="form-input">
                 <span class="icon"><i class="fa-solid fa-signature" aria-hidden="true"></i></span>
                 <input asp-for="Name" placeholder="Color name" required />
-                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-6">
@@ -47,12 +45,6 @@
                 new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
                 new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
                 }, new { @class = "form-control iscompany" })
-            </div>
-        </div>
-        <div class="col-md-2">
-            <strong><label></label></strong>
-            <div class="form-input">
-                <button class="btn btn-primary" onclick="btnClear()" type="button" style="height:40px;width:110px;"><i class="fa fa-refresh" aria-hidden="true" style="margin-right:4px;"></i>Làm mới</button>
             </div>
         </div>
         <div class="col-md-2">
@@ -116,7 +108,6 @@
 <script>
     document.querySelector('#from1').addEventListener('submit', function (e) {
         var form = this;
-
         e.preventDefault();
 
         swal("Bạn chắc chắn lưu những thay đổi này?", {
@@ -125,13 +116,7 @@
             buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
         }).then(function (isConfirm) {
             if (isConfirm) {
-                swal({
-                    title: 'Thành công!',
-                    text: 'Bạn đã lưu thành công những thay đổi này!',
-                    icon: 'success'
-                }).then(function () {
                     form.submit();
-                });
             } else {
                 swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
             }
@@ -150,28 +135,5 @@
     }
     function btnClose() {
         $('#ViewDetail').modal('hide');
-    }
-    function btnClear() {
-        $("#Name").val('');
-        $("#HEXCode").val('');
-        $("#Status").val(0);
-    }
-    function btnSubmit() {
-        $.ajax({
-            url: "/Color/Save",
-            dataType: "json",
-            type: "POST",
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ Color: { id: $("#Id").val(), name: $("#Name").val(), hexCode = $("#HEXCode").val(), status = $("#Status").val() } }),
-            async: true,
-            processData: false,
-            cache: false,
-            success: function (data) {
-                alert(data);
-            },
-            error: function (xhr) {
-                alert('error');
-            }
-        })
     }
 </script>
