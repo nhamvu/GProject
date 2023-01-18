@@ -26,4 +26,10 @@
     <ProjectReference Include="..\GProject.Data\GProject.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="FX.Utils">
+      <HintPath>..\..\..\Project Softdreams\easyinvoice-admin\LIB\FX.Utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

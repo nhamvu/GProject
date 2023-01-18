@@ -13,6 +13,7 @@ namespace GProject.WebApplication.Helpers
         /// <summary>
         /// Tghoong tin người dùng khi đăng nhập vào,nếu chưa đăng nhập thì mặc định là ""
         /// </summary>
+        public static string mylocalhost = string.Empty;
         public static Guid id = Guid.Empty;
 
         public static T? ConverObject<T>(object obj)
@@ -142,17 +143,17 @@ namespace GProject.WebApplication.Helpers
                 throw;
             }
         }
-        public static async Task Add_or_UpdateAsync<T>(this T obj, string url)
+        public static async Task<bool> Add_or_UpdateAsync<T>(this T obj, string url)
         {
             try
             {
                 var Rest = new RestSharpHelper(url);
                 var Response = await Rest.RequestBaseAsync(url, RestSharp.Method.Post, null, null, obj);
-                Console.WriteLine(Response);
+                return Response.IsSuccessful;
             }
             catch (Exception)
             {
-                throw;
+                return false;
             }
         }
 

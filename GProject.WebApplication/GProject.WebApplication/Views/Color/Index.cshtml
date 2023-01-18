@@ -27,9 +27,10 @@
     }
 </style>
 <h1>QUẢN LÍ MÀU SẮC</h1>
-@if (ViewBag.Error != null)
+
+@if (@ViewData["Mess"] != null)
 {
-    <p style="visibility: hidden;" id="error">@ViewBag.Error</p>
+    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
 <button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
 <form id="formdata" asp-action="Save" class="form">
@@ -39,14 +40,14 @@
             <label class="col-md-5"><strong>Mã Màu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
                 <span class="icon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-                <input asp-for="HEXCode" placeholder="Hex code (#)" />
+                <input asp-for="HEXCode" placeholder="Hex code (#)" maxlength="15"/>
             </div>
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Tên Màu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
                 <span class="icon"><i class="fa-solid fa-signature" aria-hidden="true"></i></span>
-                <input asp-for="Name" placeholder="Color name" />
+                <input asp-for="Name" placeholder="Color name" maxlength="200"/>
             </div>
         </div>
         <div class="col-md-4">
@@ -85,23 +86,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.ColorList)
+                        @if (Model.ColorList != null)
                         {
-                            <tr>
-                                <td>
-                                    @item.HEXCode
-                                </td>
-                                <td>
-                                    @item.Name
-                                </td>
-                                <td>
-                                    @item.Status
-                                </td>
-                                <td>
-                                    <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </td>
-                            </tr>
+                            @foreach (var item in Model.ColorList)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.HEXCode
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </td>
+                                </tr>
+                            }
                         }
                     </tbody>
                 </table>
@@ -127,8 +131,18 @@
         </div>
     </div>
 </div>
-<script>
-    $('#formdata').hide();
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#formdata').hide();
+        var er = document.getElementById('error')
+        if (er != null){
+            if($('#error').text() == 'Failed')
+                swal("Không thành công", "Vui lòng xem lại thông tin đã nhập", "error");
+            else
+                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+        }
+    });
+    
     function ChangePanel() {
         if ($("#changeform").text() == "Thêm mới") {
             $('#formdata').show();
@@ -140,6 +154,10 @@
             $('#formdata').hide();
             $("#changeform").text("Thêm mới");
         }
+    }
+    function validateHEXCode(code) {
+        var regex = /^#[a-zA-Z0-9]+$/;
+        return regex.test(code);
     }
     document.querySelector('#formdata').addEventListener('submit', function (e) {
         var form = this;
@@ -164,9 +182,10 @@
             $("#Name").val(data.name);
             $("#HEXCode").val(data.hexCode);
             $("#Status").val(data.status);
+            $("#Id").val(data.id);
             document.getElementById('namee').innerText = data.name;
             document.getElementById('code').innerText = data.hexCode;
-            document.getElementById('status').innerText = data.status;
+            document.getElementById('status').innerText = data.status == 1 ? "Đang sử dụng" : "Không sử dụng";
             $("#changeform").text("Thêm mới");
             ChangePanel()
             $('#ViewDetail').modal('show');
@@ -179,6 +198,10 @@
     function checkValidateData() {
         if ($('#HEXCode').val() == '') {
             sweetAlert("Thông báo", "Thông tin mã màu không được để trống", "error");
+            return false;
+        }
+        if (!validateHEXCode($('#HEXCode').val())) {
+            sweetAlert("Thông báo", "Thông tin mã màu không đúng định dạng", "error");
             return false;
         }
         if ($('#Name').val() == '') {

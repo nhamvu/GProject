@@ -9,6 +9,7 @@ using System.Reflection.Metadata;
 
 namespace GProject.WebApplication.Controllers
 {
+    [Authorize(Roles = "manager, employee")]
     public class ColorController : Controller
     {
         private IColorService iColorService;
@@ -22,8 +23,14 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
                 var data = new ColorDTO() { ColorList = lstObjs };
+
+                //-- truyền vào message nếu có thông báo
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
+                    ViewData["Mess"] = HttpContext.Session.GetString("mess");
+                HttpContext.Session.Remove("mess");
                 return View(data);
             }
             catch (Exception)
@@ -38,11 +45,20 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                string url = Commons.mylocalhost;
+                //-- Parse lại dữ liệu từ ViewModel
                 var prd = new Color() { Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name, Status = Color.Status };
-                if (Color.Id == null) { url = string.Concat(Commons.mylocalhost, "Color/add-Color"); }
-                else { url = string.Concat(Commons.mylocalhost, "Color/update-Color"); }
-                //-- GTuwir Request cho thằng kia sử lí
-                await Commons.Add_or_UpdateAsync(prd, url);
+
+                //-- Check hành động là Create hay update
+                if (Color.Id == null) url += "Color/add-Color";
+                else url += "Color/update-Color";
+
+                //-- Gửi request cho api sử lí
+                bool result = await Commons.Add_or_UpdateAsync(prd, url);
+                if (!result) 
+                    HttpContext.Session.SetString("mess", "Failed");
+                else 
+                    HttpContext.Session.SetString("mess", "Success");
                 return RedirectToAction("Index");
             }
             catch (Exception)

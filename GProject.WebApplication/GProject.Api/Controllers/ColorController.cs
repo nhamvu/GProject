@@ -64,7 +64,7 @@ namespace GProject.Api.Controllers
         /// </summary>
         /// <param name="Color"></param>
         /// <returns></returns>
-        [HttpPut]
+        [HttpPost]
         [Route("update-Color")]
         public bool UpdateColor([FromBody] GProject.Data.DomainClass.Color Color)
         {

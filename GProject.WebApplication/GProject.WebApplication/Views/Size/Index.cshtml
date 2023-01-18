@@ -1,0 +1,213 @@
+﻿@model GProject.WebApplication.Models.SizeDTO
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GProject.WebApplication.Models
+@using GProject.Api.MyServices.Services;
+@{
+    ViewBag.Title = "Size";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    label {
+        color: black;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    .sticky-header th {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background-color: #E5E5E5;
+    }
+
+    .sticky-table {
+        border-collapse: separate !important;
+    }
+</style>
+<h1>QUẢN LÍ KÍCH CỠ</h1>
+
+@if (@ViewData["Mess"] != null)
+{
+    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+}
+<button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
+<form id="formdata" asp-action="Save" class="form">
+    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Mã:<span style="color: red">(*)</span></strong></label>
+            <div class="form-input">
+                <span class="icon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
+                <input asp-for="Code" placeholder="Size code (XL)" maxlength="15" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Tên:<span style="color: red">(*)</span></strong></label>
+            <div class="form-input">
+                <span class="icon"><i class="fa-solid fa-signature" aria-hidden="true"></i></span>
+                <input asp-for="Name" placeholder="Size name" maxlength="200" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
+            <div style="margin-top:10px;">
+                @Html.DropDownList("Status", new[]
+                {
+                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
+                }, new { @class = "form-control iscompany" })
+            </div>
+        </div>
+        <div class="col-md-2">
+            <strong><label></label></strong>
+            <div class="form-input">
+                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+            </div>
+        </div>
+    </div>
+</form>
+<hr style="color:red;" />
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH KÍCH THƯỚC</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                <table class="table table-bordered table-hover sticky-table">
+                    <thead class="sticky-header">
+                        <tr>
+                            <th>Mã Size</th>
+                            <th>Tên Size</th>
+                            <th>Trạng thái</th>
+                            <th>Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.SizeList != null)
+                        {
+                            @foreach (var item in Model.SizeList)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Code
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="ViewDetail" class="modal modal-default in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 5px 15px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <h3 class="modal-title text-left">Thông tin Size</h3>
+            </div>
+            <div class="modal-body">
+                <h5>Tên:<strong id="namee"></strong></h5>
+                <h5>Mã:<strong id="code"></strong></h5>
+                <h5>Trạng thái:<strong id="status"></strong></h5>
+            </div>
+            <div class="modal-footer" style="position:relative;clear:both;z-index:1000000" id="transport-footer">
+                <button type="button" class="btn btn-default pull-left btn-sm" data-dismiss="modal" onclick="btnClose()"><i class="fa fa-times"></i>Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#formdata').hide();
+        var er = document.getElementById('error')
+        if (er != null) {
+            if ($('#error').text() == 'Failed')
+                swal("Không thành công", "Vui lòng xem lại thông tin đã nhập", "error");
+            else
+                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+        }
+    });
+
+    function ChangePanel() {
+        if ($("#changeform").text() == "Thêm mới") {
+            $('#formdata').show();
+            $("#changeform").text("Hủy thay đổi");
+        } else if ($("#changeform").text() == "Hủy thay đổi") {
+            $("#Name").val('');
+            $("#Code").val('');
+            $("#Status").val(0);
+            $('#formdata').hide();
+            $("#changeform").text("Thêm mới");
+        }
+    }
+    function validateCode(code) {
+        var regex = /^[a-zA-Z0-9]+$/;
+        return regex.test(code);
+    }
+    document.querySelector('#formdata').addEventListener('submit', function (e) {
+        var form = this;
+
+        e.preventDefault();
+        if (checkValidateData()) {
+            swal("Bạn chắc chắn lưu những thay đổi này?", {
+                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                icon: 'info',
+                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    form.submit();
+                } else {
+                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                }
+            });
+        }
+    });
+    function ViewDetailData(id) {
+        $.getJSON("/Color/Detail?id=" + id, function (data) {
+            $("#Name").val(data.name);
+            $("#Code").val(data.Code);
+            $("#Status").val(data.status);
+            $("#Id").val(data.id);
+            document.getElementById('namee').innerText = data.name;
+            document.getElementById('code').innerText = data.code;
+            document.getElementById('status').innerText = data.status ? "Đang sử dụng" : "Không sử dụng";
+            $("#changeform").text("Thêm mới");
+            ChangePanel()
+            $('#ViewDetail').modal('show');
+        });
+    }
+    function btnClose() {
+        $('#ViewDetail').modal('hide');
+    }
+
+    function checkValidateData() {
+        if ($('#Code').val() == '') {
+            sweetAlert("Thông báo", "Thông tin mã màu không được để trống", "error");
+            return false;
+        }
+        if (!validateCode($('#Code').val())) {
+            sweetAlert("Thông báo", "Thông tin mã màu không đúng định dạng", "error");
+            return false;
+        }
+        if ($('#Name').val() == '') {
+            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+            return false;
+        }
+        return true;
+    }
+</script>

@@ -88,6 +88,15 @@
             swal("Không thành công", "Đăng nhập không thành công,vui lòng nhập lại thông tin", "error");
 
         }
+        $.ajax({
+            data: {
+                str: window.location.protocol + '//' + window.location.host
+            },
+            contentType: 'application/json',
+            dataType: 'json',
+            url: '/Login/GetLocalhost',
+            type: 'GET'
+        });
     });
     document.querySelector('.img__btn').addEventListener('click', function () {
         document.querySelector('.cont').classList.toggle('s--signup');

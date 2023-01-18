@@ -14,8 +14,8 @@ namespace GProject.WebApplication.Controllers
     {
         public IActionResult Index()
         {
-                return View();
-            }
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Login(UserInfoDTO user)
@@ -129,16 +129,20 @@ namespace GProject.WebApplication.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-                await HttpContext.SignOutAsync();
-                return Redirect("/");
-            }
-
-                throw;
-            }
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
+        }
 
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetLocalhost(string str)
+        {
+            Commons.mylocalhost = str + "/api/";
+            return Ok();
         }
     }
 }
