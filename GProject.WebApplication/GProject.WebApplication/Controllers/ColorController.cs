@@ -12,13 +12,11 @@ namespace GProject.WebApplication.Controllers
     public class ColorController : Controller
     {
         private IColorService iColorService;
-
         public ColorController()
         {
             iColorService = new ColorService();
         }
 
-        [Authorize(Roles ="manager, employee")]
         [HttpGet]
         public async Task<ActionResult> Index()
         {
@@ -36,12 +34,10 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "manager, employee")]
         public async Task<ActionResult> Save( ColorDTO Color)
         {
             try
             {
-                string url = "";
                 var prd = new Color() { Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name, Status = Color.Status };
                 if (Color.Id == null) { url = string.Concat(Commons.mylocalhost, "Color/add-Color"); }
                 else { url = string.Concat(Commons.mylocalhost, "Color/update-Color"); }
@@ -56,7 +52,6 @@ namespace GProject.WebApplication.Controllers
 
         }
 
-        [Authorize(Roles = "manager, employee")]
         public async Task<JsonResult> Detail(int id)
         {
             var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));

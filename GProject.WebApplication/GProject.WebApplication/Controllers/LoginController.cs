@@ -14,16 +14,8 @@ namespace GProject.WebApplication.Controllers
     {
         public IActionResult Index()
         {
-            try
-            {
                 return View();
             }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
 
         [HttpPost]
         public async Task<IActionResult> Login(UserInfoDTO user)
@@ -31,9 +23,7 @@ namespace GProject.WebApplication.Controllers
             try
             {
                 #region Đăng nhập tạm khi chưa tạo đc user
-                //ViewData["ReturnUrl"] = returnUrl;
                 ViewBag.Error = "Đăng nhập không thành công! Vui lòng nhập lại thông tin đăng nhập!";
-                //-- Kiểm tra dữ liệu đầu vào
                 if (ModelState.IsValid == true)
                 {
                     if ((user.Email == "manager@gmail.com" || user.Email == "employee@gmail.com") && user.password == "123")
@@ -139,17 +129,12 @@ namespace GProject.WebApplication.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            try
-            {
                 await HttpContext.SignOutAsync();
                 return Redirect("/");
             }
-            catch (Exception)
-            {
 
                 throw;
             }
-        }
 
         public IActionResult AccessDenied()
         {

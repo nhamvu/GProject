@@ -153,11 +153,6 @@
             }).then(function (isConfirm) {
                 if (isConfirm) {
                     form.submit();
-                    swal({
-                        title: 'Thành công!',
-                        text: 'Bạn đã lưu thành công những thay đổi này!',
-                        icon: 'success'
-                    });
                 } else {
                     swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
                 }

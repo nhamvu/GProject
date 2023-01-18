@@ -13,7 +13,6 @@ namespace GProject.WebApplication.Helpers
         /// <summary>
         /// Tghoong tin người dùng khi đăng nhập vào,nếu chưa đăng nhập thì mặc định là ""
         /// </summary>
-        public static string mylocalhost = "https://localhost:7009/api/";
         public static Guid id = Guid.Empty;
 
         public static T? ConverObject<T>(object obj)
