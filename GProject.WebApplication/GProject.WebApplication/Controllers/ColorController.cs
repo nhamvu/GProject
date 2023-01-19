@@ -6,6 +6,7 @@ using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -46,8 +47,18 @@ namespace GProject.WebApplication.Controllers
             try
             {
                 string url = Commons.mylocalhost;
+                string image = "";
+                if (Color.Image_Upload != null)
+                {
+                    string full_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", Color.Image_Upload.FileName);
+                    using (var file = new FileStream(full_path, FileMode.Create))
+                    {
+                        Color.Image_Upload.CopyTo(file);
+                    }
+                    image = Color.Image_Upload.FileName;
+                }
                 //-- Parse lại dữ liệu từ ViewModel
-                var prd = new Color() { Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name, Status = Color.Status };
+                var prd = new Color() { Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name, Status = Color.Status, Image = image };
 
                 //-- Check hành động là Create hay update
                 if (Color.Id == null) url += "Color/add-Color";

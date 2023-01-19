@@ -94,7 +94,6 @@ namespace GProject.Data.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("SearchCount")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(max)")
                         .HasDefaultValueSql("((0))");
@@ -234,6 +233,10 @@ namespace GProject.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

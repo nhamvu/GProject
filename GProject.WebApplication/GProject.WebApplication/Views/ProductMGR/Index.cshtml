@@ -2,6 +2,8 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
+@using GProject.Data.DomainClass;
+@using GProject.WebApplication.Helpers;
 @{
     ViewBag.Title = "Color";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,6 +15,30 @@
     {
         pager = ViewBag.Pager;
         pageNo = pager.CurrentPage;
+    }
+
+    var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+    //-- Lấy danh sách từ api
+    var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "Product/get-all-Product"));
+    IList<SelectListItem> StoreItems = new List<SelectListItem>();
+    if (lstBrand.Count > 0)
+    {
+        StoreItems.Add(new SelectListItem()
+                {
+                    Value = "-1",
+                    Text = "--Nhãn hiệu--",
+                    Selected = "-1" == Model.BrandId.ToString(),
+                });
+
+        foreach (var store in lstBrand)
+        {
+            StoreItems.Add(new SelectListItem()
+                    {
+                        Value = store.Id.ToString(),
+                        Text = store.Name,
+                        Selected = store.Id == Model.BrandId,
+                    });
+        }
     }
 }
 <style>
@@ -84,15 +110,14 @@
             <form id="formdata" asp-action="Save" class="form-horizontal d-block">
                 <div class="modal-content justify-content-center" style="border-width:1px;">
                     <div class="modal-header" style="width:800px;">
-                        <button type="button" class="close" data-dismiss="modal" onClick="closeCopyDialog()">&times;</button>
-                        <h2 class="modal-title"><strong>Thông tin sản phẩm</strong></h2>
+                        <h2 class="modal-title text-center"><strong><i class="fa fa-cubes" aria-hidden="true" style="margin-right:5px;"></i>THÔNG TIN SẢN PHẨM</strong></h2>
                     </div>
                     <div class="modal-body">
                         <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3"><strong>Tên sản phầm:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5"><strong>Tên sản phầm:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-9">
                                         <input asp-for="Name" class="form-control" placeholder="Product name" maxlength="200" />
                                     </div>
@@ -100,9 +125,9 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3"><<strong>Tên nhãn hiệu:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5"><strong>Tên nhãn hiệu:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-9">
-                                        <input asp-for="BrandId" class="form-control" placeholder="Brand name" maxlength="200" />
+                                        @Html.DropDownList("BrandId", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
                                     </div>
                                 </div>
                             </div>
@@ -112,15 +137,15 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-3"><strong>Giá nhập:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-9">
-                                        <input asp-for="ImportPrice" class="form-control" placeholder="Import price" maxlength="200" />
+                                        @Html.TextBox("ImportPrice", decimal.Parse(Model.ImportPrice.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-3"><<strong>Giá bán:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-3"><strong>Giá bán:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-9">
-                                        <input asp-for="Price" class="form-control" placeholder="Price" maxlength="200" />
+                                        @Html.TextBox("Price", decimal.Parse(Model.Price.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
                                     </div>
                                 </div>
                             </div>
@@ -141,10 +166,46 @@
                                 @Html.TextAreaFor(c => c.Description, new { @class= "form-control", @maxlength="256"})
                             </div>
                         </div>
+                        <h1>Màu sắc</h1>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="form-check">
+                                        <input type="checkbox" id="ckbAll" class="form-check-input" />
+                                        <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="row" style="height: 500px; overflow-y: scroll;border-style: dotted dashed solid double;">
+                                    @for (int i = 0; i < Model.ColorList.Count; i++)
+                                    {
+                                        <div class="form-check col-md-12">
+                                                @Html.CheckBoxFor(c => c.ColorList[i].IsChecked, new {@class = "form-check-input"})
+                                                <label class="form-check-label">
+                                                <strong>(@Model.ColorList[i].HEXCode) - @Model.ColorList[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;" src="~/images/@Model.ColorList[i].Image" />
+                                                </label>
+                                            </div>
+                                        @for (int j = 0; j < Model.SizeList.Count; j++)
+                                        {
+                                            <div class="form-check col-md-3 m-1">
+                                                <label class="form-check-label">
+                                                    <strong>(@Model.SizeList[j].Code)</strong>
+                                                </label>
+                                                <label>Số lượng</label>
+                                                @Html.TextBoxFor(c => c.SizeList[j].QuantityInstock, new {@class = "form-control"})
+                                            </div>
+                                        }
+                                        
+                                    }
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"> Tạo bản sao</button>
-                        <button type="button" class="btn btn-sm btn-default btn-dimiss-modal" onClick="closeCopyDialog()">
+                        <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"><i class="fa fa-check" aria-hidden="true"></i> Lưu thông tin</button>
+                        <button type="button" class="btn btn-sm btn-default btn-dimiss-modal" onclick="closeModalDialog()">
                             <i class="fa fa-times"></i> Đóng
                         </button>
                     </div>
@@ -266,6 +327,20 @@
             else
                 swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
         }
+
+        $('#ImportPrice, #Price').keyup(function () {
+            let regex = /^[0-9]+$/;
+            if (!regex.test($(this).val()))
+                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
+        });
+
+        $('#ckbAll').change(function () {
+            if ($(this).is(':checked')) {
+                $('.form-check-input').prop('checked', true);
+            } else {
+                $('.form-check-input').prop('checked', false);
+            }
+        });
     });
 
     function ChangePanel() {
@@ -326,6 +401,9 @@
 
     $('#changeform').on('click', function () {
         $('#formDataModal').modal('show');
-
     })
+
+    function closeModalDialog(){
+        $('#formDataModal').modal('hide');
+    }
 </script>

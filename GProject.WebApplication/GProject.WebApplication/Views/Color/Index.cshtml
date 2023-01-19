@@ -33,7 +33,7 @@
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
 <button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-<form id="formdata" asp-action="Save" class="form">
+<form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
     <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <div class="row mt-5">
         <div class="col-md-4">
@@ -60,6 +60,13 @@
                 }, new { @class = "form-control iscompany" })
             </div>
         </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Hình ảnh:<span style="color: red">(*)</span></strong></label>
+            <div class="form-input">
+                <span class="icon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
+                <input asp-for="Image_Upload" type="file" multiple />
+            </div>
+        </div>
         <div class="col-md-2">
             <strong><label></label></strong>
             <div class="form-input">
@@ -81,6 +88,7 @@
                         <tr>
                             <th>Mã Màu</th>
                             <th>Tên Màu</th>
+                            <th>Hình ảnh</th>
                             <th>Trạng thái</th>
                             <th>Chi tiết</th>
                         </tr>
@@ -96,6 +104,9 @@
                                     </td>
                                     <td>
                                         @item.Name
+                                    </td>
+                                    <td>
+                                        <img style="width:120px;height:50px; border;1px solid;" src="~/images/@item.Image" />
                                     </td>
                                     <td>
                                         @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")

@@ -65,6 +65,54 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\BlackColor.PNG",
+      "PackagePath": "staticwebassets\\images\\BlackColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\BlueColor.PNG",
+      "PackagePath": "staticwebassets\\images\\BlueColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\CyanColo.PNG",
+      "PackagePath": "staticwebassets\\images\\CyanColo.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\GrayColor.PNG",
+      "PackagePath": "staticwebassets\\images\\GrayColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\GreenColor.PNG",
+      "PackagePath": "staticwebassets\\images\\GreenColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\LimeColor.PNG",
+      "PackagePath": "staticwebassets\\images\\LimeColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Olive.PNG",
+      "PackagePath": "staticwebassets\\images\\Olive.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\OrangeColor.PNG",
+      "PackagePath": "staticwebassets\\images\\OrangeColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\PurplerColor.PNG",
+      "PackagePath": "staticwebassets\\images\\PurplerColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\RedColor.PNG",
+      "PackagePath": "staticwebassets\\images\\RedColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\SilverColor.PNG",
+      "PackagePath": "staticwebassets\\images\\SilverColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\WhiteColor.PNG",
+      "PackagePath": "staticwebassets\\images\\WhiteColor.PNG"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\access-denied.PNG",
       "PackagePath": "staticwebassets\\images\\access-denied.PNG"
     },
@@ -77,8 +125,20 @@
       "PackagePath": "staticwebassets\\images\\imageLogo.PNG"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\magentaColor.PNG",
+      "PackagePath": "staticwebassets\\images\\magentaColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\maroonColor.PNG",
+      "PackagePath": "staticwebassets\\images\\maroonColor.PNG"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\shopping-cart.png",
       "PackagePath": "staticwebassets\\images\\shopping-cart.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\yellowColor.PNG",
+      "PackagePath": "staticwebassets\\images\\yellowColor.PNG"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\01-custom-places-example.js",

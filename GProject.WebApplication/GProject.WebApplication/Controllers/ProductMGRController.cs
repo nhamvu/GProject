@@ -5,6 +5,7 @@ using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection.Metadata;
 
 namespace GProject.WebApplication.Controllers
@@ -23,6 +24,9 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+                var lstColor = await Commons.GetAll<ProductColorVariation>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
+                var lstSize = await Commons.GetAll<ProductSizeVariation>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "Product/get-all-Product"));
                 
@@ -35,7 +39,7 @@ namespace GProject.WebApplication.Controllers
                 int recSkip = (pg - 1) * pageSize;
                 var data = lstObjs.Skip(recSkip).Take(pageSize).ToList();
 
-                var result = new ProductMGRDTO() { ProductList = data };
+                var result = new ProductMGRDTO() { ProductList = data, ColorList = lstColor.Where(c => c.Status == 1).ToList(), SizeList = lstSize };
                 this.ViewBag.Pager = pager;
                 //this.ViewBag.Data = data;
                 //-- truyền vào message nếu có thông báo
@@ -62,19 +66,19 @@ namespace GProject.WebApplication.Controllers
             try
             {
                 string url = Commons.mylocalhost;
-                //-- Parse lại dữ liệu từ ViewModel
-                var prd = new Product() { Id = Product.Id, Name = Product.Name, Status = Product.Status, Description =Product.Description };
+                ////-- Parse lại dữ liệu từ ViewModel
+                //var prd = new Product() { Id = Product.Id, Name = Product.Name, Status = Product.Status, Description =Product.Description };
 
-                //-- Check hành động là Create hay update
-                if (Product.Id == null) url += "Product/add-Product";
-                else url += "Product/update-Product";
+                ////-- Check hành động là Create hay update
+                //if (Product.Id == null) url += "Product/add-Product";
+                //else url += "Product/update-Product";
 
-                //-- Gửi request cho api sử lí
-                bool result = await Commons.Add_or_UpdateAsync(prd, url);
-                if (!result) 
-                    HttpContext.Session.SetString("mess", "Failed");
-                else 
-                    HttpContext.Session.SetString("mess", "Success");
+                ////-- Gửi request cho api sử lí
+                //bool result = await Commons.Add_or_UpdateAsync(prd, url);
+                //if (!result) 
+                //    HttpContext.Session.SetString("mess", "Failed");
+                //else 
+                //    HttpContext.Session.SetString("mess", "Success");
                 return RedirectToAction("Index");
             }
             catch (Exception)
@@ -84,6 +88,11 @@ namespace GProject.WebApplication.Controllers
 
         }
 
+        public async Task SetViewBag(int? selected_id = null)
+        {
+            var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+            ViewBag.BrandId = new SelectList(lstBrand, "Id", "Name", selected_id);
+        }
         //public async Task<JsonResult> Detail(int id)
         //{
         //    var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "Product/get-all-Product"));

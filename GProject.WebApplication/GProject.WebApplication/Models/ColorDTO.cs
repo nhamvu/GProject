@@ -12,6 +12,7 @@ namespace GProject.WebApplication.Models
         public string Name { get; set; }
         public string HEXCode { get; set; }
         public int Status { get; set; } = 1; // 0: không sử dụng || 1: sử dụng
+        public IFormFile? Image_Upload { get; set; }
         public List<Color>? ColorList { get; set; }
     }
 }
