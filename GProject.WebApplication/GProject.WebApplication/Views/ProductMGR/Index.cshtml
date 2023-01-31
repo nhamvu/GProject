@@ -5,7 +5,7 @@
 @using GProject.Data.DomainClass;
 @using GProject.WebApplication.Helpers;
 @{
-    ViewBag.Title = "Color";
+    ViewBag.Title = "Product Managerment";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     Pager pager = new Pager();
@@ -28,13 +28,13 @@
                     Selected = "-1" == Model.BrandId.ToString(),
                 });
 
-        foreach (var store in lstBrand)
+        foreach (var br in lstBrand)
         {
             StoreItems.Add(new SelectListItem()
                     {
-                        Value = store.Id.ToString(),
-                        Text = store.Name,
-                        Selected = store.Id == Model.BrandId,
+                        Value = br.Id.ToString(),
+                        Text = br.Name,
+                        Selected = br.Id == Model.BrandId,
                     });
         }
     }
@@ -58,8 +58,46 @@
     .sticky-table {
         border-collapse: separate !important;
     }
+
+    .campic i {
+        font-size: 35px;
+        color: #000;
+        margin: 5px 0;
+        cursor: pointer;
+    }
+
+    .campic input[type="file"] {
+        display: block;
+    }
+
+    .pip-file {
+        position: relative;
+    }
+
+    .picThumb {
+        max-height: 200px;
+        border: 1px solid;
+        padding: 1px;
+        cursor: pointer;
+    }
+
+    .remove-img {
+        position: absolute;
+        bottom: 25px;
+        right: -5px;
+    }
+
+    .campic .remove-img i {
+        font-size: 20px;
+        color: #fff;
+        cursor: pointer;
+        background: red;
+        margin: 0;
+        padding: 1px 4px 4px;
+        border-radius: 20px;
+    }
 </style>
-<h1>QUẢN LÍ NHÃN HIỆU</h1>
+<h1>QUẢN LÍ THÔNG TIN SẢN PHẨM</h1>
 
 @if (@ViewData["Mess"] != null)
 {
@@ -71,13 +109,15 @@
 <div class="modal" id="formDataModal" role="dialog">
     <div class="modal-dialog modal-md" style="text-align:left; background-color:white; max-width:900px">
         <div style="width:900px;">
-            <form id="formdata" asp-action="Save" class="form-horizontal d-block">
+            <form id="formdata" asp-action="Save" class="form-horizontal d-block" enctype="multipart/form-data">
                 <div class="modal-content justify-content-center" style="border-width:1px;">
                     <div class="modal-header" style="width:800px;">
                         <h2 class="modal-title text-center"><strong><i class="fa fa-cubes" aria-hidden="true" style="margin-right:5px;"></i>THÔNG TIN SẢN PHẨM</strong></h2>
                     </div>
                     <div class="modal-body">
                         <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+                        <input asp-for="ViewCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+                        <input asp-for="LikeCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -116,21 +156,21 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"><strong>Trạng thái:<span style="color: red">(*)</span></strong></label>
-                            <div class="col-sm-9">
+                            <div class="col-md-6">
                                 @Html.DropDownList("Status", new[]
                                 {
-                                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
+                                    new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                                    new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
                                 }, new { @class = "form-control iscompany" })
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-sm-3"><strong>Mô tả:</strong></label>
-                            <div class="col-sm-9">
-                                @Html.TextAreaFor(c => c.Description, new { @class= "form-control", @maxlength="256"})
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(c => c.Description, new { @class= "form-control"})
                             </div>
                         </div>
-                        <h1>Màu sắc</h1>
+                        <h1>THÔNG TIN CHI TIẾT SẢN PHẨM</h1>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <div class="row">
@@ -140,28 +180,44 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="form-group">
                                 <div class="row" style="height: 500px; overflow-y: scroll;border-style: dotted dashed solid double;">
-                                    @for (int i = 0; i < Model.ColorList.Count; i++)
+                                    @if (Model != null && Model.ColorList.Count >= 0 && Model.ColorList != null && Model.SizeList.Count >= 0 && Model.SizeList != null)
                                     {
-                                        <div class="form-check col-md-12">
+                                        @for (int i = 0; i < Model.ColorList.Count; i++)
+                                        {
+                                            @Html.HiddenFor(m => m.ColorList[i].Id)
+                                            @Html.HiddenFor(m => m.ColorList[i].VariationId)
+                                            @Html.HiddenFor(m => m.ColorList[i].ProductId)
+                                            <div class="form-check col-md-12 m-2">
                                                 @Html.CheckBoxFor(c => c.ColorList[i].IsChecked, new {@class = "form-check-input"})
                                                 <label class="form-check-label">
-                                                <strong>(@Model.ColorList[i].HEXCode) - @Model.ColorList[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;" src="~/images/@Model.ColorList[i].Image" />
+                                                    <strong>(@Model.ColorList[i].HEXCode) - @Model.ColorList[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ColorList[i].Image" />
                                                 </label>
                                             </div>
-                                        @for (int j = 0; j < Model.SizeList.Count; j++)
-                                        {
-                                            <div class="form-check col-md-3 m-1">
-                                                <label class="form-check-label">
-                                                    <strong>(@Model.SizeList[j].Code)</strong>
-                                                </label>
-                                                <label>Số lượng</label>
-                                                @Html.TextBoxFor(c => c.SizeList[j].QuantityInstock, new {@class = "form-control"})
+                                            <div class="campic col-md-3">
+                                                <img id="@("upimg" + i)" src="https://cdn3.iconfinder.com/data/icons/web-document-icons/512/Upload_Document-512.png" onclick="uploadImage(@i)" width="50">
+                                                <input type="file" asp-for="ColorList[i].Image_Upload" class="@("picImg" + i)" style="display: none;" />
+                                            </div>
+                                            <div class="col-md-9 row">
+                                                @{
+                                                    Model.ColorList[i].SizeAndStock = @Model.SizeList;
+                                                }
+                                                @for (int j = 0; j < Model.SizeList.Count; j++)
+                                                {
+                                                    <div class="form-group col-md-3">
+                                                        <label class="col-sm-4" style="text-align: left;">
+                                                            (@Model.SizeList[j].Code)
+                                                        </label>
+                                                        <div class="col-sm-12">
+                                                            @Html.TextBoxFor(c => c.ColorList[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock"})
+                                                            @Html.HiddenFor(m => m.ColorList[i].SizeAndStock[j].Id)
+                                                        </div>
+                                                    </div>
+                                                }
                                             </div>
                                         }
-                                        
                                     }
                                 </div>
                             </div>
@@ -182,45 +238,66 @@
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH NHÃN HIỆU</h3>
+            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-cubes" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH SẢN PHẨM</h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
                 <table class="table table-bordered table-hover sticky-table">
                     <thead class="sticky-header">
                         <tr>
-                            <th>Tên nhãn hiệu</th>
-                            <th>Lượt tìm kiếm</th>
-                            <th>Trạng thái</th>
+                            <th style ="width:100px;">Hình ảnh</th>
+                            <th style="width:220px;">Tên sản phẩm</th>
+                            <th>Nhãn hiệu</th>
+                            <th>Giá nhập</th>
+                            <th>Giá bán</th>
+                            <th style="width:120px;">Lượt tim <i class="fa fa-heart" aria-hidden="true"></i></th>
+                            <th style="width:120px;">Lượt thích <i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
+                            <th style="width:120px;">Trạng thái</th>
                             <th>Mô tả</th>
                             <th>Chi tiết</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @*@if (Model.ProductList != null)
+                        @if (Model.ProductList != null)
                         {
-                        @foreach (var item in Model.ProductList)
-                        {
-                        <tr>
-                        <td>
-                        @item.Name
-                        </td>
-                        <td>
-                        @item.SearchCount
-                        </td>
-                        <td>
-                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
-                        </td>
-                        <td>
-                        @item.Description
-                        </td>
-                        <td>
-                        <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                        </td>
-                        </tr>
+                            @foreach (var item in Model.ProductList)
+                            {
+                                string img = Model.ProductVariationList.Where(c => c.ProductId == item.Id).Select(c => c.Image).FirstOrDefault().NullToString();
+                                <tr>
+                                    <td>
+                                        <img style="width:120px;height:50px;" src="~/images/@img" />
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @(lstBrand.Where(c => c.Id == item.BrandId).Select(c => c.Name).FirstOrDefault())
+                                    </td>
+                                    <td>
+                                        @(item.ImportPrice.ToString("0.##"))
+                                    </td>
+                                    <td>
+                                        @(item.Price.ToString("0.##"))
+                                    </td>
+                                    <td>
+                                        @(item.ViewCount) <i class="fa fa-heart" aria-hidden="true"></i>
+                                    </td>
+                                    <td>
+                                        @(item.LikeCount) <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    </td>
+                                    <td>
+                                        @(item.Status == 0 ? "Đang bán" : "Ngừng bán")
+                                    </td>
+                                    <td>
+                                        @item.Description
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info" onclick="location.href='@Url.Action("Detail", "ProductMGR",new { id = item.Id})'" />
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </td>
+                                </tr>
+                            }
                         }
-                        }*@
                     </tbody>
                 </table>
             </div>
@@ -231,12 +308,12 @@
     @if (pager.TotalPages > 0)
     {
         <ul class="pagination justify-content-end">
-                <li class="page-item">
-                    <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="1">First</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
-                </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="1">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+            </li>
 
             @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
             {
@@ -245,15 +322,16 @@
                 </li>
             }
 
-                <li class="page-item">
-                    <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Next</a>
-                </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+            </li>
         </ul>
     }
 </div>
+
 <div id="ViewDetail" class="modal modal-default in">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -274,6 +352,45 @@
     </div>
 </div>
 <script type="text/javascript">
+    function uploadImage(id){
+        let picImgdata = ".picImg" + id;
+        let upimg = "#upimg" + id;
+        $(picImgdata).click();
+        let flag = 0;
+        if (window.File && window.FileList && window.FileReader) {
+            $(picImgdata).on("change", function (e) {
+                flag++;
+                if(flag <= 1){
+                    var files = e.target.files,
+                        filesLength = files.length;
+                    for (var i = 0; i < filesLength; i++) {
+                        var f = files[0];
+                        var fileReader = new FileReader();
+                        fileReader.onload = (function (e) {
+                            var file = e.target;
+                            $("<span class=\"pip-file\">" +
+                                "<img style=\"width: 180px;height: 150px;\" class=\"picThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                                "<span class=\"remove-img\"><img src ='http://www.elahmad.com/images/icon_close_16px.gif'></span>" +
+                                "</span>").insertAfter(picImgdata);
+                            $(".remove-img").click(function () {
+                                $(this).parent(".pip-file").remove();
+                                $(picImgdata).val('');
+                            });
+                            $(upimg).hide();
+                            $('.remove-img').click(function () {
+                                $(upimg).show();
+                            });
+                        });
+                        fileReader.readAsDataURL(f);
+                    }
+                }  
+                
+            });
+        } else {
+            alert("Your browser doesn't support to File API")
+        }
+    }
+
     $(document).ready(function () {
         $('#formdata').hide();
         var er = document.getElementById('error')
@@ -284,7 +401,7 @@
                 swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
         }
 
-        $('#ImportPrice, #Price').keyup(function () {
+        $('#ImportPrice, #Price, .quantityInstock').keyup(function () {
             let regex = /^[0-9]+$/;
             if (!regex.test($(this).val()))
                 $(this).val($(this).val().replace(/[^0-9.]/g, ""));
@@ -337,7 +454,35 @@
 
     function checkValidateData() {
         if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+            sweetAlert("Thông báo", "Thông tin tên sản phẩm không được để trống", "error");
+            return false;
+        }
+        if (parseFloat($('#BrandId').val()) == -1) {
+            sweetAlert("Thông báo", "Thông tin tên sản phẩm không được để trống", "error");
+            return false;
+        }
+        if ($('#ImportPrice').val() == '') {
+            sweetAlert("", "Thông tin giá nhập không được để trống", "error");
+            return false;
+        }
+        if (isNaN($('#ImportPrice').val())) {
+            sweetAlert("", "Thông tin giá nhập chỉ bao gồm kí tự số", "error");
+            return false;
+        }
+        if (parseFloat($('#ImportPrice').val() || 0) < 0 || parseFloat($('#ImportPrice').val() || 0) === 0) {
+            sweetAlert("", "Thông tin giá nhập phải có giá trị lớn hơn 0", "error");
+            return false;
+        }
+        if ($('#Price').val() == '') {
+            sweetAlert("", "Thông tin giá bán không được để trống", "error");
+            return false;
+        }
+        if (isNaN($('#Price').val())) {
+            sweetAlert("", "Thông tin giá bán chỉ bao gồm kí tự số", "error");
+            return false;
+        }
+        if (parseFloat($('#Price').val() || 0) < 0 || parseFloat($('#ImportPrice').val() || 0) === 0) {
+            sweetAlert("", "Thông tin giá bán phải có giá trị lớn hơn 0", "error");
             return false;
         }
         return true;
@@ -347,7 +492,7 @@
         $('#formDataModal').modal('show');
     })
 
-    function closeModalDialog(){
+    function closeModalDialog() {
         $('#formDataModal').modal('hide');
     }
 </script>

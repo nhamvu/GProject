@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nS4XJx/yMo8DIkzTv9fjDE7dQ4rbYBY8JQycPE90aNA=",
+  "Hash": "WkC3GLg9JRx8AxlWWA/Er2ldJHBNHH9OHK8Mq+bgChQ=",
   "Source": "GProject.WebApplication",
   "BasePath": "_content/GProject.WebApplication",
   "Mode": "Default",
@@ -335,6 +335,23 @@
       "OriginalItemSpec": "wwwroot\\images\\access-denied.PNG"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Akali_SilverfangSkin.jpg",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "images/Akali_SilverfangSkin.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Akali_SilverfangSkin.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\avatar.jpg",
       "SourceId": "GProject.WebApplication",
       "SourceType": "Discovered",
@@ -437,6 +454,23 @@
       "OriginalItemSpec": "wwwroot\\images\\GreenColor.PNG"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\hinh-nen-rong-dep-chat.jpg",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "images/hinh-nen-rong-dep-chat.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hinh-nen-rong-dep-chat.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\imageLogo.PNG",
       "SourceId": "GProject.WebApplication",
       "SourceType": "Discovered",
@@ -537,6 +571,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\OrangeColor.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "images/phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\PurplerColor.PNG",

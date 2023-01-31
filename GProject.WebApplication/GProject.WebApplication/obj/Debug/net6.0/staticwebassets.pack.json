@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Akali_SilverfangSkin.jpg",
+      "PackagePath": "staticwebassets\\images\\Akali_SilverfangSkin.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\BlackColor.PNG",
       "PackagePath": "staticwebassets\\images\\BlackColor.PNG"
     },
@@ -121,6 +125,10 @@
       "PackagePath": "staticwebassets\\images\\avatar.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\hinh-nen-rong-dep-chat.jpg",
+      "PackagePath": "staticwebassets\\images\\hinh-nen-rong-dep-chat.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\imageLogo.PNG",
       "PackagePath": "staticwebassets\\images\\imageLogo.PNG"
     },
@@ -131,6 +139,10 @@
     {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\maroonColor.PNG",
       "PackagePath": "staticwebassets\\images\\maroonColor.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg",
+      "PackagePath": "staticwebassets\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\shopping-cart.png",
