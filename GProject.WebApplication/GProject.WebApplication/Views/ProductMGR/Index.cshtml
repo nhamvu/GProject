@@ -18,8 +18,6 @@
     }
 
     var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
-    //-- Lấy danh sách từ api
-    var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "Product/get-all-Product"));
     IList<SelectListItem> StoreItems = new List<SelectListItem>();
     if (lstBrand.Count > 0)
     {
@@ -68,40 +66,6 @@
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
 <button class="btn btn-primary" id="changeform" type="button">Thêm mới</button>
-@*<form id="formdata" asp-action="Save" class="form">
-    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Tên nhãn hiệu:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <span class="icon"><i class="fa-solid fa-signature" aria-hidden="true"></i></span>
-                <input asp-for="Name" placeholder="Brand name" maxlength="200" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
-            <div style="margin-top:10px;">
-                @Html.DropDownList("Status", new[]
-                {
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
-                }, new { @class = "form-control iscompany" })
-            </div>
-        </div>
-        <div class="col-md-9">
-            <label class="col-md-5"><strong>Mô tả:</strong></label>
-            <div class="form-input">
-                @Html.TextAreaFor(c => c.Description, new { @class= "form-control", @maxlength="256"})
-            </div>
-        </div>
-        <div class="col-md-2">
-            <strong><label></label></strong>
-            <div class="form-input">
-                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
-            </div>
-        </div>
-    </div>
-</form>*@
 <hr style="color:red;" />
 
 <div class="modal" id="formDataModal" role="dialog">
@@ -213,8 +177,6 @@
 
             </form>
         </div>
-
-
     </div>
 </div>
 <div class="row">
@@ -269,15 +231,12 @@
     @if (pager.TotalPages > 0)
     {
         <ul class="pagination justify-content-end">
-            @if (pager.CurrentPage > 1)
-            {
                 <li class="page-item">
                     <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="1">First</a>
                 </li>
                 <li class="page-item">
                     <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
                 </li>
-            }
 
             @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
             {
@@ -286,15 +245,12 @@
                 </li>
             }
 
-            @if (pager.CurrentPage < pager.TotalPages)
-            {
                 <li class="page-item">
                     <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
                 </li>
                 <li class="page-item">
                     <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Next</a>
                 </li>
-            }
         </ul>
     }
 </div>
@@ -343,17 +299,6 @@
         });
     });
 
-    function ChangePanel() {
-        if ($("#changeform").text() == "Thêm mới") {
-            $('#formdata').show();
-            $("#changeform").text("Hủy thay đổi");
-        } else if ($("#changeform").text() == "Hủy thay đổi") {
-            $("#Name").val('');
-            $("#Status").val(0);
-            $('#formdata').hide();
-            $("#changeform").text("Thêm mới");
-        }
-    }
     document.querySelector('#formdata').addEventListener('submit', function (e) {
         var form = this;
 
@@ -383,7 +328,6 @@
             document.getElementById('status').innerText = data.status ? "Đang sử dụng" : "Không sử dụng";
             document.getElementById('description').innerText = data.description;
             $("#changeform").text("Thêm mới");
-            ChangePanel()
             $('#ViewDetail').modal('show');
         });
     }

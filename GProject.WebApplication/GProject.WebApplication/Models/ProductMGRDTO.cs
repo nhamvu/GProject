@@ -24,7 +24,6 @@ namespace GProject.WebApplication.Models
         public List<Product>? ProductList { get; set; }
         public List<ProductColorVariation>? ColorList { get; set; }
         public List<ProductSizeVariation>? SizeList { get; set; }
-        public List<ProductVariationDTO>? ProductVariations { get; set; }
     }
 
     public class ProductColorVariation

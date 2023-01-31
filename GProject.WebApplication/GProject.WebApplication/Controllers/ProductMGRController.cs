@@ -55,11 +55,6 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-        public IActionResult Create()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<ActionResult> Save( ProductMGRDTO Product)
         {
@@ -69,9 +64,6 @@ namespace GProject.WebApplication.Controllers
                 ////-- Parse lại dữ liệu từ ViewModel
                 //var prd = new Product() { Id = Product.Id, Name = Product.Name, Status = Product.Status, Description =Product.Description };
 
-                ////-- Check hành động là Create hay update
-                //if (Product.Id == null) url += "Product/add-Product";
-                //else url += "Product/update-Product";
 
                 ////-- Gửi request cho api sử lí
                 //bool result = await Commons.Add_or_UpdateAsync(prd, url);
@@ -87,17 +79,5 @@ namespace GProject.WebApplication.Controllers
             }
 
         }
-
-        public async Task SetViewBag(int? selected_id = null)
-        {
-            var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
-            ViewBag.BrandId = new SelectList(lstBrand, "Id", "Name", selected_id);
-        }
-        //public async Task<JsonResult> Detail(int id)
-        //{
-        //    var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "Product/get-all-Product"));
-        //    var data2 = lstObjs.FirstOrDefault(c => c.Id == id);
-        //    return Json(data2);
-        //}
     }
 }
