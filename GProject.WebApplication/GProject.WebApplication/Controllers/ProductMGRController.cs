@@ -61,9 +61,7 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
-                string url = Commons.mylocalhost; string url2 = url;
                 Guid uuid = Guid.NewGuid();
-
                 //-- Gán Product
                 var productInfo = new Product()
                 {
@@ -80,9 +78,6 @@ namespace GProject.WebApplication.Controllers
                     Description = Product.Description
                 };
 
-                if (Product.Id == Guid.Empty || Product.Id == null) url += "ProductMGR/add-Product-mgr";
-                else url += "Product/update-Product-mgr";
-                bool resultSaveProduct = await Commons.Add_or_UpdateAsync(productInfo, url);
 
                 if (resultSaveProduct)
                 {
@@ -187,7 +182,6 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
