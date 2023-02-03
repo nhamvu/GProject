@@ -24,17 +24,9 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
-                var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
-                var lstColor = await Commons.GetAll<ProductVariationDTO>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
-                var lstSize = await Commons.GetAll<ProductSizeVariation>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
-                var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
-                //-- Lấy danh sách từ api
-                var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
-
                 const int pageSize = 5;
                 if (pg < 1)
                     pg = 1;
-
                 int recsCount = lstObjs.Count();
                 var pager = new Pager(recsCount, pg, pageSize);
                 int recSkip = (pg - 1) * pageSize;

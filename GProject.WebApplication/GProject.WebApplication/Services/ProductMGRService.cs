@@ -7,7 +7,6 @@ namespace GProject.WebApplication.Services
 {
     public class ProductMGRService
     {
-
         /// <summary>
         /// Lấy chi tiết sản phẩm được chọn
         /// </summary>
@@ -157,9 +156,7 @@ namespace GProject.WebApplication.Services
             catch (Exception)
             {
                 return false;
-                throw;
             }
-
         }
     }
 }
