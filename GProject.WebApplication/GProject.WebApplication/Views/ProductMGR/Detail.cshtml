@@ -199,9 +199,6 @@
                                         <input type="file" asp-for="ColorList[i].Image_Upload" class="@("picImg" + i)" style="display: none;" />
                                     </div>
                                     <div class="col-md-9 row">
-                                        @{
-                                            Model.ColorList[i].SizeAndStock = @Model.SizeList;
-                                        }
                                         @for (int j = 0; j < Model.SizeList.Count; j++)
                                         {
                                             <div class="form-group col-md-3">

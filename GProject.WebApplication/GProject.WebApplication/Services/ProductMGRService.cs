@@ -30,13 +30,14 @@ namespace GProject.WebApplication.Services
                 List<ProductVariationDTO> ColorVariations = new List<ProductVariationDTO>();
                 var Colors = (from x in lstColor
                               join y in lstProductvariation on x.Id equals y.ColorId
-                              select new { Colorss = x, ProdVariations = y }).ToList();
+                              where y.ProductId == product.Id
+                              select new { Colorss = x, ProdVariations = y }).DistinctBy(c => c.Colorss.Id).ToList();
 
                 //-- lấy dữ liệu productvariation
                 foreach (var itemColor in Colors)
                 {
                     List<ProductSizeVariation> SizeVariations = new List<ProductSizeVariation>();
-                    var productVariations = lstProductvariation.Where(c => c.Id == itemColor.ProdVariations.Id).ToList();
+                    var productVariations = lstProductvariation.Where(c => c.ProductId == itemColor.ProdVariations.ProductId && c.ColorId == itemColor.Colorss.Id).ToList();
                     foreach (var itemSize in productVariations)
                     {
                         ProductSizeVariation valItem = new ProductSizeVariation() { Id = itemSize.SizeId, Code = lstSize.Where(c => c.Id == itemSize.SizeId).Select(c => c.Code).FirstOrDefault(), QuantityInstock = itemSize.QuantityInStock };
