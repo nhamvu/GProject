@@ -36,7 +36,6 @@
         border-collapse: separate !important;
     }
 </style>
-<h1 style="margin-top:15px;">QUẢN LÍ NHÂN VIÊN</h1>
 
 @if (@ViewData["Mess"] != null)
 {
@@ -48,21 +47,6 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-6">
-                            @*<div class="form-group">
-                            <label class="col-md-3 control-label">Trạng thái</label>
-                            <div class="col-md-9">
-                            @Html.DropDownList("Status",new[]
-                            {
-                            new SelectListItem{Text="--Trạng thái--", Value="-1", Selected= (Model.Status== -1)},
-                            new SelectListItem{Text="", Value="0", Selected= (Model.Status== 0)},
-                            new SelectListItem{Text="", Value="1", Selected=  (Model.Status == 1)},
-                            new SelectListItem{Text="", Value="3", Selected=  (Model.Status == 3)},
-                            new SelectListItem{Text="", Value="4", Selected=  (Model.Status == 4)},
-                            new SelectListItem{Text="Hóa đơn hủy", Value="5", Selected=  (Model.Status == 5)},
-                            }, new { style = "", onchange="sel()", @class="searchText form-control select"})
-                            </div>
-                            </div>
-                            *@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Mã Nhân Viên</label>
                                 <div class="col-md-9 col-xs-12">
@@ -100,7 +84,6 @@
                             }, new { @class = "form-control iscompany" })
                             </div>
                             </div>
-                            </div>*@
                         </div>
                     </div>
                 </div>

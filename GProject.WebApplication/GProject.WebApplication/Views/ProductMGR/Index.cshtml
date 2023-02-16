@@ -97,7 +97,6 @@
         border-radius: 20px;
     }
 </style>
-<h1>QUẢN LÍ THÔNG TIN SẢN PHẨM</h1>
 
 @if (@ViewData["Mess"] != null)
 {
@@ -350,7 +349,6 @@
 
     function ViewDetailData(id) {
         $.getJSON("/ProductMGR/ViewDetail?id=" + id, function (data) {
-            @Model.ProductVariationViewModel = data.productVariationViewModel;
             console.log(data);
             $('#ViewDetailModal').modal('show');
         });
@@ -394,12 +392,4 @@
         }
         return true;
     }
-
-    //$('#changeform').on('click', function () {
-    //    $('#formDataModal').modal('show');
-    //})
-
-    //function closeModalDialog() {
-    //    $('#formDataModal').modal('hide');
-    //}
 </script>
