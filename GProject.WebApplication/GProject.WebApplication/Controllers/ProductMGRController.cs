@@ -142,5 +142,16 @@ namespace GProject.WebApplication.Controllers
             prd = await pService.GetProduct(id);
             return Json(prd);
         }
+
+        public async Task<ActionResult> ChangeStatus(Guid id)
+        {
+            GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
+            bool result = await pService.ChangeStatus(id);
+            if (!result)
+                HttpContext.Session.SetString("mess", "Failed");
+            else
+                HttpContext.Session.SetString("mess", "Success");
+            return Json(result);
+        }
     }
 }

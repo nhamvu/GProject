@@ -3,8 +3,8 @@
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
 @{
-    ViewBag.Title = "Customer";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Quản lý khách hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 
     Pager pager = new Pager();
     int pageNo = 0;
@@ -48,21 +48,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-6">
-                                @*<div class="form-group">
-                                    <label class="col-md-3 control-label">Trạng thái</label>
-                                    <div class="col-md-9">
-                                        @Html.DropDownList("Status",new[] 
-                                          {
-                                              new SelectListItem{Text="--Trạng thái--", Value="-1", Selected= (Model.Status== -1)},
-                                              new SelectListItem{Text="", Value="0", Selected= (Model.Status== 0)},
-                                              new SelectListItem{Text="", Value="1", Selected=  (Model.Status == 1)},                  
-                                              new SelectListItem{Text="", Value="3", Selected=  (Model.Status == 3)},
-                                              new SelectListItem{Text="", Value="4", Selected=  (Model.Status == 4)},
-                                              new SelectListItem{Text="Hóa đơn hủy", Value="5", Selected=  (Model.Status == 5)},
-                                          }, new { style = "", onchange="sel()", @class="searchText form-control select"})
-                                    </div>
-                                </div>
-*@
+
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Tên khách hàng</label>
                                     <div class="col-md-9 col-xs-12">
@@ -75,6 +61,20 @@
                                     <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]" class="form-control" />
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        @{
+                                            int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                        }
+                                        @Html.DropDownList("sStatus",new[]
+                                        {
+                                        new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                        new SelectListItem{Text="Bình thường", Value="0", Selected= (status== 0)},
+                                        new SelectListItem{Text="Đáng chú ý", Value="1", Selected=  (status == 1)}
+                                        }, new { @name = "sStatus", @class="searchText form-control select"})
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -83,17 +83,20 @@
                                     <input type="text" id="sPhone" maxlength="10" name="sPhone" value="@ViewData["sPhone"]" class="form-control" />
                                     </div>
                                 </div>
-@*                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label>Giới tính:</label></span>
-                                        <div style="margin-top:10px;">
-                                            @Html.DropDownList("Sex", new[]
-                                            {
-                                            new SelectListItem{Text="Nam", Value="0", Selected = (Model.Sex != null ? (Model.Sex == 0) : true)},
-                                            new SelectListItem{Text="Nữ", Value="1",  Selected = (Model.Sex != null ? (Model.Sex == 1) : false)}
-                                            }, new { @class = "form-control iscompany" })
-                                        </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Giới tính</label>
+                                    <div class="col-md-9">
+                                        @{
+                                        int gender = int.Parse(Html.Encode(ViewData["sGender"]));
+                                        }
+                                        @Html.DropDownList("sGender",new[]
+                                        {
+                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (gender== -1)},
+                                    new SelectListItem{Text="Nam", Value="0", Selected= (gender== 0)},
+                                    new SelectListItem{Text="Nữ", Value="1", Selected=  (gender == 1)}
+                                    }, new { @name = "sGender", @class="searchText form-control select"})
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>

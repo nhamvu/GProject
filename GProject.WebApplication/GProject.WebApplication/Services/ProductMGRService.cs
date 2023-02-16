@@ -175,5 +175,30 @@ namespace GProject.WebApplication.Services
                 throw;
             }
         }
+
+        public async Task<bool> ChangeStatus(Guid? id)
+        {
+            try
+            {
+                List<Product>? lstProduct = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
+                var product = lstProduct.FirstOrDefault(c => c.Id == id);
+                if (product != null)
+                {
+                    if (product.Status == 0)
+                        product.Status = 1;
+                    else
+                        product.Status = 0;
+                    bool result = await Commons.Add_or_UpdateAsync(product, Commons.mylocalhost + "ProductMGR/update-Product-mgr");
+                    return result;
+                }
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
     }
 }

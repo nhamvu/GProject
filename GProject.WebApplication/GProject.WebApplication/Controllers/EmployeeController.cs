@@ -18,12 +18,16 @@ namespace GProject.WebApplication.Controllers
             iEmployeeService = new EmployeeService();
         }
 
-        public async Task<ActionResult> Index(string sId, string sName, string sEmail, string sPhone, int pg = 1)
+        public async Task<ActionResult> Index(string sId, string sName, string sEmail, string sPhone, int? sGender, int? sStatus, int pg = 1)
         {
             try
             {
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+
+                int valsGender = sGender.HasValue ? sGender.Value : -1;
+                int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
+
                 if (!string.IsNullOrEmpty(sId))
                     lstObjs = lstObjs.Where(c => c.EmployeeId.ToLower().Contains(sId.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sName))
@@ -32,6 +36,11 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => c.Email.ToLower().Contains(sEmail.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sPhone))
                     lstObjs = lstObjs.Where(c => c.PhoneNumber.ToLower().Contains(sPhone.ToLower())).ToList();
+                
+                if (valsGender != -1)
+                    lstObjs = lstObjs.Where(c => c.Sex == valsGender).ToList();
+                if (valsStatus != -1)
+                    lstObjs = lstObjs.Where(c => c.Status == valsStatus).ToList();
                 const int pageSize = 5;
                 if (pg < 1)
                     pg = 1;
@@ -42,6 +51,8 @@ namespace GProject.WebApplication.Controllers
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
                 this.ViewData[nameof(sId)] = (object)sId;
+                this.ViewData[nameof(sGender)] = (object)valsGender;
+                this.ViewData[nameof(sStatus)] = (object)valsStatus;
                 var data = new EmployeeDTO() { EmployeeList = lstData };
 
                 //-- truyền vào message nếu có thông báo

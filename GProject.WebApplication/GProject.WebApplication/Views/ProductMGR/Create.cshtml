@@ -6,7 +6,7 @@
 @using GProject.WebApplication.Helpers;
 @{
     ViewBag.Title = "Tạo mới thông tin sản phẩm";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 @{
     var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
@@ -89,6 +89,7 @@
         border-radius: 20px;
     }
 </style>
+
 
 @if (@ViewData["Mess"] != null)
 {
@@ -193,7 +194,7 @@
                                         (@Model.SizeList[j].Code)
                                     </label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(c => c.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock"})
+                                        @Html.TextBoxFor(c => c.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock", placeholder="0"})
                                         @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
                                     </div>
                                 </div>
@@ -205,8 +206,8 @@
         </div>
     </div>
     <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"><i class="fa fa-check" aria-hidden="true"></i> Lưu thông tin</button>
-    <button type="button" class="btn btn-sm btn-default btn-dimiss-modal" onclick="closeModalDialog()">
-        <i class="fa fa-times"></i> Đóng
+    <button type="button" class="btn btn-sm btn-dark btn-dimiss-modal" onclick="document.location = '/ProductMGR/index'">
+        <i class="fa fa-times"></i> Quay lại
     </button>
 </form>
 <script type="text/javascript">

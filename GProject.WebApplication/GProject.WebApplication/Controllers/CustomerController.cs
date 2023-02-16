@@ -5,6 +5,7 @@ using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Reflection.Metadata;
 
 namespace GProject.WebApplication.Controllers
@@ -18,18 +19,24 @@ namespace GProject.WebApplication.Controllers
             iCustomerService = new CustomerService();
         }
 
-        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int pg = 1)
+        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sGender, int? sStatus, int pg = 1)
         {
             try
             {
-                //-- Lấy danh sách từ api
+                int valsGender = sGender.HasValue ? sGender.Value : -1;
+                int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sEmail))
                     lstObjs = lstObjs.Where(c => c.Email.ToLower().Contains(sEmail.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sPhone))
                     lstObjs = lstObjs.Where(c => c.PhoneNumber.ToLower().Contains(sPhone.ToLower())).ToList();
+                if (valsGender != -1)
+                    lstObjs = lstObjs.Where(c => c.Sex == valsGender).ToList();
+                if (valsStatus != -1)
+                    lstObjs = lstObjs.Where(c => c.Status == valsStatus).ToList();
 
                 const int pageSize = 5;
                 if (pg < 1)
@@ -37,19 +44,22 @@ namespace GProject.WebApplication.Controllers
                 var pager = new Pager(lstObjs.Count(), pg, pageSize);
                 var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
                 var data = new CustomerDTO() { CustomerList = lstData };
+
                 this.ViewBag.Pager = pager;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
+                this.ViewData[nameof(sGender)] = (object)valsGender;
+                this.ViewData[nameof(sStatus)] = (object)valsStatus;
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
                 return View(data);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Console.WriteLine(ex);
                 throw;
             }
         }
