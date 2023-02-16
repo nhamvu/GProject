@@ -27,24 +27,28 @@ namespace GProject.Api.Controllers
         }
 
         [HttpPost]
-        [Route("userlogin")]
-        public async Task<(Employee? emp, Customer? cus)> UserLogin(string email, string password)
+        [Route("employee-login")]
+        public async Task<Employee> EmployeeLogin(string email, string password)
         {
             try
             {
                 var empData = employeeService.Login(email, password);
-                var cusData = customerService.Login(email, password);
+                return empData;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
-                //-- Kiểm tra thông tin và phân quyền
-                if (empData != null)
-                {
-                    return (empData, null);
-                }
-                else if (cusData != null)
-                {
-                    return (null, cusData);
-                }
-                return (null, null);
+        [HttpPost]
+        [Route("Customer-login")]
+        public async Task<Customer> CustomerLogin(string email, string password)
+        {
+            try
+            {
+                var cusData = customerService.Login(email, password);
+                return cusData;
             }
             catch (Exception)
             {

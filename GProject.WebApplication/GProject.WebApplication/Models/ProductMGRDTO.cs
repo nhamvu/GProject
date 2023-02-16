@@ -23,7 +23,7 @@ namespace GProject.WebApplication.Models
         public string? Description { get; set; }
         public List<Product>? ProductList { get; set; }
         public List<ProductVariation>? ProductVariationList { get; set; }
-        public List<ProductVariationDTO>? ColorList { get; set; }
+        public List<ProductVariationDTO>? ProductVariationViewModel { get; set; }
         public List<ProductSizeVariation>? SizeList { get; set; }
     }
 

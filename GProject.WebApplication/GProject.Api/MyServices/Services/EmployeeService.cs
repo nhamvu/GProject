@@ -22,11 +22,11 @@ namespace GProject.Api.MyServices.Services
             var temp = _iEmployeeRepository.GetAll().FirstOrDefault(c => c.Email == email && c.Password == pass);
             if (temp != null)
             {
-                return data = temp;
+                return temp;
             }
             else
             {
-                return data;
+                return null;
             }
         }
         public bool Create(Employee cv)

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3b7AFUU0YQ0exeLmUZg4dYc5KO4xNiAasMjI4dIaRTEjwMpxXE0EXFCHYUl6gOCAlAOvi4xN1apNQHg7CHu1Yg==",
+  "dgSpecHash": "K8hef8aadJMNrk8AFgk5cp60IrFoPO2MbY9tsX4U10gwqU5qZiyl8jjaQrRXe5IDf0SFqyKfSOizMFJNDMp1Iw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+  "projectFilePath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.12\\microsoft.aspnetcore.authentication.jwtbearer.6.0.12.nupkg.sha512",

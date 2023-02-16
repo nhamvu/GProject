@@ -1,435 +1,475 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GProject.WebApplication.bundle.scp.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\GProject.WebApplication.bundle.scp.css",
       "PackagePath": "staticwebassets\\GProject.WebApplication.bundle.scp.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\AccessDanied.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\AccessDanied.css",
       "PackagePath": "staticwebassets\\css\\AccessDanied.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\Sidebar_icons_animated.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\Sidebar_icons_animated.css",
       "PackagePath": "staticwebassets\\css\\Sidebar_icons_animated.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\app.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\app.css",
       "PackagePath": "staticwebassets\\css\\app.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\bootstrap.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\custom.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\custom.css",
       "PackagePath": "staticwebassets\\css\\custom.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\deSignLogin.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\deSignLogin.css",
       "PackagePath": "staticwebassets\\css\\deSignLogin.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\designTextBox.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\designTextBox.css",
       "PackagePath": "staticwebassets\\css\\designTextBox.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\reset.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\reset.css",
       "PackagePath": "staticwebassets\\css\\reset.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\responsive.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\responsive.css",
       "PackagePath": "staticwebassets\\css\\responsive.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\site.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\slick-theme.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\slick-theme.css",
       "PackagePath": "staticwebassets\\css\\slick-theme.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\slick.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\slick.css",
       "PackagePath": "staticwebassets\\css\\slick.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\style.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\versions.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\css\\versions.css",
       "PackagePath": "staticwebassets\\css\\versions.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\favicon.ico",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Akali_SilverfangSkin.jpg",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Akali_SilverfangSkin.jpg",
       "PackagePath": "staticwebassets\\images\\Akali_SilverfangSkin.jpg"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\BlackColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\BlackColor.PNG",
       "PackagePath": "staticwebassets\\images\\BlackColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\BlueColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\BlueColor.PNG",
       "PackagePath": "staticwebassets\\images\\BlueColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\CyanColo.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\CyanColo.PNG",
       "PackagePath": "staticwebassets\\images\\CyanColo.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\GrayColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\GrayColor.PNG",
       "PackagePath": "staticwebassets\\images\\GrayColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\GreenColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\GreenColor.PNG",
       "PackagePath": "staticwebassets\\images\\GreenColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\LimeColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Hinh-anh-hoa-Anh-Dao-dep-nhat.jpg",
+      "PackagePath": "staticwebassets\\images\\Hinh-anh-hoa-Anh-Dao-dep-nhat.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\LimeColor.PNG",
       "PackagePath": "staticwebassets\\images\\LimeColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Olive.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Olive.PNG",
       "PackagePath": "staticwebassets\\images\\Olive.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\OrangeColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\OrangeColor.PNG",
       "PackagePath": "staticwebassets\\images\\OrangeColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\PurplerColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\PurplerColor.PNG",
       "PackagePath": "staticwebassets\\images\\PurplerColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\RedColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\RedColor.PNG",
       "PackagePath": "staticwebassets\\images\\RedColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\SilverColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\SilverColor.PNG",
       "PackagePath": "staticwebassets\\images\\SilverColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\WhiteColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\WhiteColor.PNG",
       "PackagePath": "staticwebassets\\images\\WhiteColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\access-denied.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\access-denied.PNG",
       "PackagePath": "staticwebassets\\images\\access-denied.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\avatar.jpg",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\anh-bong-hoa-dam-but-dep_091320516.jpg",
+      "PackagePath": "staticwebassets\\images\\anh-bong-hoa-dam-but-dep_091320516.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\anh_GaiXinh3.jpg",
+      "PackagePath": "staticwebassets\\images\\anh_GaiXinh3.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\anh_TraiDep2.jpg",
+      "PackagePath": "staticwebassets\\images\\anh_TraiDep2.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\avatar.jpg",
       "PackagePath": "staticwebassets\\images\\avatar.jpg"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\hinh-nen-rong-dep-chat.jpg",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\cach-cam-hoa-hong-de-ban-tho-1.jpg",
+      "PackagePath": "staticwebassets\\images\\cach-cam-hoa-hong-de-ban-tho-1.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\d8b90c1f44e166e694321e751ca64a72.jpg",
+      "PackagePath": "staticwebassets\\images\\d8b90c1f44e166e694321e751ca64a72.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\hinh-anh-gai-xinh-6.jpg",
+      "PackagePath": "staticwebassets\\images\\hinh-anh-gai-xinh-6.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\hinh-anh-hoa-hong-dep-lang-man-1.jpeg",
+      "PackagePath": "staticwebassets\\images\\hinh-anh-hoa-hong-dep-lang-man-1.jpeg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\hinh-nen-rong-dep-chat.jpg",
       "PackagePath": "staticwebassets\\images\\hinh-nen-rong-dep-chat.jpg"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\imageLogo.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\hinh-nen-tuong-Ziggs-trong-lien-minh-huyen-thoai-5.jpg",
+      "PackagePath": "staticwebassets\\images\\hinh-nen-tuong-Ziggs-trong-lien-minh-huyen-thoai-5.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\imageLogo.PNG",
       "PackagePath": "staticwebassets\\images\\imageLogo.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\magentaColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\images.jpg",
+      "PackagePath": "staticwebassets\\images\\images.jpg"
+    },
+    {
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\magentaColor.PNG",
       "PackagePath": "staticwebassets\\images\\magentaColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\maroonColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\maroonColor.PNG",
       "PackagePath": "staticwebassets\\images\\maroonColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg",
       "PackagePath": "staticwebassets\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\shopping-cart.png",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\shopping-cart.png",
       "PackagePath": "staticwebassets\\images\\shopping-cart.png"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\yellowColor.PNG",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\yellowColor.PNG",
       "PackagePath": "staticwebassets\\images\\yellowColor.PNG"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\01-custom-places-example.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\01-custom-places-example.js",
       "PackagePath": "staticwebassets\\js\\01-custom-places-example.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\Sidebar_icons_animated.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\Sidebar_icons_animated.js",
       "PackagePath": "staticwebassets\\js\\Sidebar_icons_animated.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\all.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\all.js",
       "PackagePath": "staticwebassets\\js\\all.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\app.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\app.js",
       "PackagePath": "staticwebassets\\js\\app.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\custom.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\custom.js",
       "PackagePath": "staticwebassets\\js\\custom.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\easyAutoComplete.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\easyAutoComplete.js",
       "PackagePath": "staticwebassets\\js\\easyAutoComplete.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\makeinput.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\makeinput.js",
       "PackagePath": "staticwebassets\\js\\makeinput.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\mapsed.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\mapsed.js",
       "PackagePath": "staticwebassets\\js\\mapsed.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\site.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slick.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slick.js",
       "PackagePath": "staticwebassets\\js\\slick.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slick.min.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slick.min.js",
       "PackagePath": "staticwebassets\\js\\slick.min.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slider.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\slider.js",
       "PackagePath": "staticwebassets\\js\\slider.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\tagging.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\tagging.js",
       "PackagePath": "staticwebassets\\js\\tagging.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\LICENSE",
       "PackagePath": "staticwebassets\\lib\\bootstrap"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
       "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery\\LICENSE.txt",
       "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery\\dist\\jquery.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
     },
     {
-      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "Id": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {

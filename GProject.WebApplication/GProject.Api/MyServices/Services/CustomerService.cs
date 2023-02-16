@@ -21,11 +21,11 @@ namespace GProject.Api.MyServices.Services
             var temp = _iCustomerRepository.GetAll().FirstOrDefault(c => c.Email == email && c.Password == pass);
             if (temp != null)
             {
-                return data = temp;
+                return temp;
             }
             else
             {
-                return data;
+                return null;
             }
         }
         public bool Create(Customer cv)

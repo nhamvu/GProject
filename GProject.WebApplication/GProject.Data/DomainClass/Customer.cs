@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GProject.Data.DomainClass
 {
-    public class Customer : IdentityRole<Guid>
+    public class Customer
     {
         public Guid? Id { get; set; }
         public string CustomerId { get; set; }
@@ -28,6 +28,6 @@ namespace GProject.Data.DomainClass
         public string Image { get; set; }
         public List<Cart>? Carts { get; set; }
         public List<Order>? Orders { get; set; }
-        public List<Contact> Contacts { get; set; }
+        public List<Contact>? Contacts { get; set; }
     }
 }

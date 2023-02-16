@@ -40,7 +40,7 @@ namespace GProject.WebApplication.Controllers
                 int recSkip = (pg - 1) * pageSize;
                 var data = lstObjs.Skip(recSkip).Take(pageSize).ToList();
 
-                var result = new ProductMGRDTO() { ProductVariationList = lstProductvariation, ProductList = data, ColorList = lstColor.Where(c => c.Status == 1).ToList(), SizeList = lstSize };
+                var result = new ProductMGRDTO() { ProductVariationList = lstProductvariation, ProductList = data, ProductVariationViewModel = lstColor.Where(c => c.Status == 1).ToList(), SizeList = lstSize };
                 this.ViewBag.Pager = pager;
                 //this.ViewBag.Data = data;
                 //-- truyền vào message nếu có thông báo
@@ -53,6 +53,65 @@ namespace GProject.WebApplication.Controllers
             {
 
                 throw;
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Create()
+        {
+            GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
+            ProductMGRDTO product = await pService.GetProductViewModel();
+            return View(product);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(ProductMGRDTO Product)
+        {
+            try
+            {
+                GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
+                bool result = await pService.Save(Product, User.Identity.Name != null ? User.Identity.Name : "");
+
+                if (!result)
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Update(Guid? id)
+        {
+            GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
+            ProductMGRDTO prd = new ProductMGRDTO();
+            prd = await pService.GetProduct(id);
+            return View(prd);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Update(ProductMGRDTO Product)
+        {
+            try
+            {
+                GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
+                bool result = await pService.Save(Product, User.Identity.Name != null ? User.Identity.Name : "");
+
+                if (!result)
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest();
             }
         }
 
@@ -76,19 +135,12 @@ namespace GProject.WebApplication.Controllers
             }
 
         }
-        public async Task<ActionResult> Detail(Guid? id)
+        public async Task<JsonResult> ViewDetail(Guid? id)
         {
-            try
-            {
-                GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
-                ProductMGRDTO prd = new ProductMGRDTO();
-                prd = await pService.GetDetailProduct(id);
-                return View(prd);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
+            ProductMGRDTO prd = new ProductMGRDTO();
+            prd = await pService.GetProduct(id);
+            return Json(prd);
         }
     }
 }

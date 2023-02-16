@@ -1,0 +1,396 @@
+﻿@model GProject.WebApplication.Models.CustomerDTO
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GProject.WebApplication.Models
+@using GProject.Api.MyServices.Services;
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Pager pager = new Pager();
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+
+}
+<style>
+    label {
+        color: black;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    .sticky-header th {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background-color: #E5E5E5;
+    }
+
+    .sticky-table {
+        border-collapse: separate !important;
+    }
+</style>
+<h1 style="margin-top:15px;">QUẢN LÍ KHÁCH HÀNG</h1>
+
+@if (@ViewData["Mess"] != null)
+{
+    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+}
+<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Customer/Index">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                @*<div class="form-group">
+                                    <label class="col-md-3 control-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        @Html.DropDownList("Status",new[] 
+                                          {
+                                              new SelectListItem{Text="--Trạng thái--", Value="-1", Selected= (Model.Status== -1)},
+                                              new SelectListItem{Text="", Value="0", Selected= (Model.Status== 0)},
+                                              new SelectListItem{Text="", Value="1", Selected=  (Model.Status == 1)},                  
+                                              new SelectListItem{Text="", Value="3", Selected=  (Model.Status == 3)},
+                                              new SelectListItem{Text="", Value="4", Selected=  (Model.Status == 4)},
+                                              new SelectListItem{Text="Hóa đơn hủy", Value="5", Selected=  (Model.Status == 5)},
+                                          }, new { style = "", onchange="sel()", @class="searchText form-control select"})
+                                    </div>
+                                </div>
+*@
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Tên khách hàng</label>
+                                    <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9 col-xs-12">
+                                    <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Số điện thoại</label>
+                                    <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sPhone" maxlength="10" name="sPhone" value="@ViewData["sPhone"]" class="form-control" />
+                                    </div>
+                                </div>
+@*                                <div class="form-group">
+                                    <div class="col-md-4">
+                                        <label>Giới tính:</label></span>
+                                        <div style="margin-top:10px;">
+                                            @Html.DropDownList("Sex", new[]
+                                            {
+                                            new SelectListItem{Text="Nam", Value="0", Selected = (Model.Sex != null ? (Model.Sex == 0) : true)},
+                                            new SelectListItem{Text="Nữ", Value="1",  Selected = (Model.Sex != null ? (Model.Sex == 1) : false)}
+                                            }, new { @class = "form-control iscompany" })
+                                        </div>
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer text-center">
+                        <button class="btn btn-success"  onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+<button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
+<form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
+    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Tên khách hàng:<span style="color: red">(*)</span></strong></label>
+            <input asp-for="Name" placeholder="Name" maxlength="200" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Email:<span style="color: red">(*)</span></strong></label>
+            <input asp-for="Email" type="email" placeholder="name@example.com" maxlength="200" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Mật khẩu:<span style="color: red">(*)</span></strong></label>
+            <input asp-for="Password" type="password" placeholder="password" maxlength="200" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Ngày sinh:<span style="color: red">(*)</span></strong></label>
+            <input asp-for="DateOfBirth" type="date" placeholder="__/ __/ ____" maxlength="200" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
+            <input asp-for="PhoneNumber" type="text" placeholder="(+84) ..." maxlength="200" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <strong><label>Giới tính:</label><span style="color: red">(*)</span></strong>
+            <div style="margin-top:10px;">
+                @Html.DropDownList("Sex", new[]
+                {
+                new SelectListItem{Text="Nam", Value="0", Selected = (Model.Sex != null ? (Model.Sex == 0) : true)},
+                new SelectListItem{Text="Nữ", Value="1",  Selected = (Model.Sex != null ? (Model.Sex == 1) : false)}
+                }, new { @class = "form-control iscompany" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Địa chỉ:<span style="color: red">(*)</span></strong></label>
+            <input asp-for="Address" type="text" placeholder="Address" maxlength="200" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Mô tả:</strong></label>
+            <input asp-for="Description" type="text" placeholder="Description" maxlength="200" class="form-control" />
+        </div>
+        <div class="col-md-4">
+            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
+            <div style="margin-top:10px;">
+                @Html.DropDownList("Status", new[]
+                {
+                new SelectListItem{Text="Bình thường", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                new SelectListItem{Text="Đáng chú ý", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
+                }, new { @class = "form-control iscompany" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Hình ảnh:<span style="color: red">(*)</span></strong></label>
+            <input asp-for="Image_Upload" type="file" class="form-control" />
+        </div>
+        <div class="col-md-2">
+            <strong><label></label></strong>
+            <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+        </div>
+    </div>
+</form>
+<hr style="color:red;" />
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-users" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH KHÁCH HÀNG</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                <table class="table table-bordered table-hover sticky-table">
+                    <thead class="sticky-header">
+                        <tr>
+                            <th>Hình ảnh</th>
+                            <th>Tên khách hàng</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Giới tính</th>
+                            <th>Trạng thái</th>
+                            <th>Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.CustomerList != null)
+                        {
+                            @foreach (var item in Model.CustomerList)
+                            {
+                                <tr>
+                                    <td>
+                                        <img style="width:120px;height:50px; border;1px solid;" src="~/images/@item.Image" />
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @item.Email
+                                    </td>
+                                    <td>
+                                        @item.PhoneNumber
+                                    </td>
+                                    <td>
+                                        @(item.Sex == 0 ? "Nam" : "Nữ")
+                                    </td>
+                                    <td>
+                                        @(item.Status == 1 ? "Bình thường" : "Đáng chú ý")
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info" onclick="ViewCustomerDetail('@item.Id')" />
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link" asp-controller="Customer" asp-action="Index" asp-route-pg="1">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="Customer" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+            </li>
+
+            @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@pge"> @pge</a>
+                </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link" asp-controller="Customer" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="Customer" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+            </li>
+        </ul>
+    }
+</div>
+<div id="ViewDetail" class="modal modal-default in">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 5px 15px;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                <h3 class="modal-title text-left">Thông tin khách hàng</h3>
+            </div>
+            <div class="modal-body">
+                <h5>Tên khách hàng:<strong id="pName"></strong></h5>
+                <h5>Email:<strong id="pEmail"></strong></h5>
+                <h5>Ngày sinh:<strong id="pDOB"></strong></h5>
+                <h5>Số điện thoại:<strong id="pPhoneNumber"></strong></h5>
+                <h5>Giới tính:<strong id="pSex"></strong></h5>
+                <h5>Địa chỉ:<strong id="pAddress"></strong></h5>
+                <h5>Trạng thái:<strong id="pStatus"></strong></h5>
+                <h5>Mô tả:<strong id="pDescription"></strong></h5>
+                <h5>Hình ảnh</h5>
+                <img style="width:120px;height:50px; border;1px solid;" id="pImg" src="" />
+            </div>
+            <div class="modal-footer" style="position:relative;clear:both;z-index:1000000" id="transport-footer">
+                <button type="button" class="btn btn-default pull-left btn-sm" data-dismiss="modal" onclick="btnClose()"><i class="fa fa-times"></i>Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#formdata').hide();
+        var er = document.getElementById('error')
+        if (er != null) {
+            if ($('#error').text() == 'Failed')
+                swal("Không thành công", "Vui lòng xem lại thông tin đã nhập", "error");
+            else
+                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+        }
+
+        $('#sPhone').keyup(function () {
+            let regex = /^[0-9]+$/;
+            if (!regex.test($(this).val()))
+                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
+        });
+    });
+
+    function ChangePanel() {
+        if ($("#changeform").text() == "Thêm mới") {
+            $('#formdata').show();
+            $("#changeform").text("Hủy thay đổi");
+        } else if ($("#changeform").text() == "Hủy thay đổi") {
+            $("#Name").val('');
+            $("#Email").val('');
+            $("#Password").val('');
+            $("#DateOfBirth").val('');
+            $("#PhoneNumber").val('');
+            $("#Sex").val(0);
+            $("#Address").val('');
+            $("#Description").val('');
+            $("#Status").val(0);
+            $('#formdata').hide();
+            $("#changeform").text("Thêm mới");
+        }
+    }
+    function validatePhoneNumber(code) {
+        var regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+        return regex.test(code);
+    }
+    document.querySelector('#formdata').addEventListener('submit', function (e) {
+        var form = this;
+
+        e.preventDefault();
+        if (checkValidateData()) {
+            swal("Bạn chắc chắn lưu những thay đổi này?", {
+                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                icon: 'info',
+                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    form.submit();
+                } else {
+                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                }
+            });
+        }
+    });
+    function ViewCustomerDetail(id) {
+        $.getJSON("/Customer/Detail?id=" + id, function (data) {
+            $("#Name").val(data.name);
+            $("#Email").val(data.email);
+            $("#Status").val(data.status);
+            $("#Id").val(data.id);
+            $("#DateOfBirth").val(new Date(data.dateOfBirth));
+            $("#PhoneNumber").val(data.phoneNumber);
+            $("#Sex").val(data.sex);
+            $("#Address").val(data.address);
+            $("#Description").val(data.description);
+            $('#formdata').hide();
+
+            $("#pName").text(data.name);
+            $("#pEmail").text(data.email);
+            $("#pStatus").text(data.status == 1 ? "Đáng chú ý" : "Bình thường");
+            $("#pDOB").text(data.dateOfBirth);
+            $("#pPhoneNumber").text(data.phoneNumber);
+            $("#pSex").text(data.sex == 1 ? "Nữ" : "Nam");
+            $("#pAddress").text(data.address);
+            $("#pDescription").text(data.description);
+            $("#pImg").attr('src', "/images/" + data.image);
+            $("#changeform").text("Thêm mới");
+            ChangePanel()
+            $('#ViewDetail').modal('show');
+        });
+    }
+    function btnClose() {
+        $('#ViewDetail').modal('hide');
+    }
+
+    function checkValidateData() {
+        if ($('#PhoneNumber').val() == '') {
+            sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
+            return false;
+        }
+        if (!validatePhoneNumber($('#PhoneNumber').val())) {
+            sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
+            return false;
+        }
+        if ($('#Name').val() == '') {
+            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+            return false;
+        }
+        if ($('#Email').val() == '') {
+            sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
+            return false;
+        }
+        //if (!validatePhoneNumber($('#PhoneNumber').val())) {
+        //    sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+        //    return false;
+        //}
+        if ($('#Address').val() == '') {
+            sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
+            return false;
+        }
+        return true;
+    }
+</script>

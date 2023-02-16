@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "x9lyl6YOwccgCtJPNRxZcYeFEG4atkeC/h3EJ+v+K+OpDQgP+hNquroBptgJA9zHz1nXCTqAL1G1pO/gRZnzhQ==",
+  "dgSpecHash": "NfeBtyLFGDu9Voc6z+zMY8JjshFjpRaJ+OcWPCSCx1OovXnLCZTgGrEPbz1jjbZ92MkJu0D96Fydk6vuqfAsDg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+  "projectFilePath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.12\\microsoft.aspnetcore.cryptography.internal.6.0.12.nupkg.sha512",
