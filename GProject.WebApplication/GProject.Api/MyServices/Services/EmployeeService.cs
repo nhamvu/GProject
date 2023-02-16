@@ -19,7 +19,6 @@ namespace GProject.Api.MyServices.Services
 
         public Employee Login(string email, string pass)
         {
-            var data = new Employee();
             var temp = _iEmployeeRepository.GetAll().FirstOrDefault(c => c.Email == email && c.Password == pass);
             if (temp != null)
             {

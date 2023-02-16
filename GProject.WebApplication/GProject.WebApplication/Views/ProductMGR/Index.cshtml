@@ -416,24 +416,6 @@
         });
     });
 
-    document.querySelector('#formdata').addEventListener('submit', function (e) {
-        var form = this;
-
-        e.preventDefault();
-        if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
-        }
-    });
     function ViewDetailData(id) {
         $.getJSON("/Brand/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);
