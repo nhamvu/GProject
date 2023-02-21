@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using GProject.WebApplication.Models;
 using GProject.WebApplication.Helpers;
 using GProject.Data.DomainClass;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -14,9 +15,63 @@ namespace GProject.WebApplication.Controllers
     {
         public IActionResult Index()
         {
+            return View();
+        }
+        public void SetViewBagInt(int? selected_id = null)
+        {
+            List<SexDTO> SexSTO = new List<SexDTO>()
+                {
+                    new SexDTO { ID = 0, Sex = "Nam"},
+                    new SexDTO { ID = 1, Sex = "Nữ"},
+                };
+            ViewBag.Sex = new SelectList(SexSTO, "ID", "Sex", selected_id);
+        }
+        public IActionResult Register()
+        {
+            SetViewBagInt();
+            return View();
+        }
+
+        public async Task<ActionResult> SaveRegister(CustomerDTO Customer)
+        {
             try
             {
-                return View();
+                string image = "";
+                if (Customer.Image_Upload != null)
+                {
+                    string full_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", Customer.Image_Upload.FileName);
+                    using (var file = new FileStream(full_path, FileMode.Create))
+                    {
+                        Customer.Image_Upload.CopyTo(file);
+                    }
+                    image = Customer.Image_Upload.FileName;
+                }
+                SetViewBagInt(Customer.Sex);
+                //-- Parse lại dữ liệu từ ViewModel
+                var cus = new Customer()
+                {
+                    Id = Customer.Id,
+                    Name = Customer.Name,
+                    Email = Customer.Email,
+                    CustomerId = Commons.RandomString(10),
+                    Password = Customer.Password,
+                    CreateDate = DateTime.Now,
+                    DateOfBirth = Customer.DateOfBirth,
+                    PhoneNumber = Customer.PhoneNumber,
+                    Sex = Customer.Sex,
+                    Address = Customer.Address,
+                    Status = 0,
+                    Description = Customer.Description,
+                    Image = image
+                };
+
+                //-- Gửi request cho api sử lí
+                bool result = await Commons.Add_or_UpdateAsync(cus, Commons.mylocalhost + "Customer/add-Customer");
+                if (!result)
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {
@@ -24,16 +79,13 @@ namespace GProject.WebApplication.Controllers
                 throw;
             }
         }
-
         [HttpPost]
         public async Task<IActionResult> Login(UserInfoDTO user)
         {
             try
             {
                 #region Đăng nhập tạm khi chưa tạo đc user
-                //ViewData["ReturnUrl"] = returnUrl;
                 ViewBag.Error = "Đăng nhập không thành công! Vui lòng nhập lại thông tin đăng nhập!";
-                //-- Kiểm tra dữ liệu đầu vào
                 if (ModelState.IsValid == true)
                 {
                     if ((user.Email == "manager@gmail.com" || user.Email == "employee@gmail.com") && user.password == "123")
@@ -55,7 +107,7 @@ namespace GProject.WebApplication.Controllers
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                         await HttpContext.SignInAsync(claimsPrincipal);
-                        return RedirectToAction("Index", "Color");
+                        return RedirectToAction("Index", "ProductMGR");
                     }
                     else if (user.Email == "customer@gmail.com" && user.password == "123")
                     {
@@ -75,22 +127,16 @@ namespace GProject.WebApplication.Controllers
                 }
                 return BadRequest();
                 #endregion
-                #region Đăng nhập khi đã tạo đc user
-                //var UserInfo = (new Employee(), new Customer());
-                //string url = String.Concat(Commons.mylocalhost, $"User/Userlogin?email={user.Email}&password={user.password}");
-                //var Rest = new RestSharpHelper(url);
-                //var Response = await Rest.RequestBaseAsync(url, RestSharp.Method.Post);
-                //if (Response.StatusCode == System.Net.HttpStatusCode.OK && !string.IsNullOrWhiteSpace(Response.Content))
-                //{
-                //    Response.Content.TryParseJson(out (Employee, Customer) result);
-                //    UserInfo = result;
-                //}
+                //#region Đăng nhập khi đã tạo đc user
                 //ViewBag.Error = "Đăng nhập không thành công! Vui lòng nhập lại thông tin đăng nhập!";
-                ////-- Kiểm tra dữ liệu đầu vào
+                ////--Kiểm tra dữ liệu đầu vào
                 //if (ModelState.IsValid == true)
                 //{
-                //    var Emp = UserInfo.Item1;
-                //    var Cus = UserInfo.Item2;
+                //    var Employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                //    Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
+
+                //    var Customers = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                //    Customer Cus = Customers.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
                 //    if (Emp != null)
                 //    {
                 //        var claims = new List<Claim>();
@@ -98,6 +144,7 @@ namespace GProject.WebApplication.Controllers
                 //        claims.Add(new Claim(ClaimTypes.NameIdentifier, Emp.EmployeeId));
                 //        claims.Add(new Claim(ClaimTypes.Email, Emp.EmployeeId));
                 //        claims.Add(new Claim(ClaimTypes.Name, Emp.Name));
+                //        claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
                 //        if (Emp.Position == Data.Enums.EmployeePosition.Manager)
                 //        {
                 //            claims.Add(new Claim(ClaimTypes.Role, "manager"));
@@ -119,15 +166,16 @@ namespace GProject.WebApplication.Controllers
                 //        claims.Add(new Claim(ClaimTypes.Email, Cus.Email));
                 //        claims.Add(new Claim(ClaimTypes.Name, Cus.Name));
                 //        claims.Add(new Claim(ClaimTypes.Role, "customer"));
+                //        claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
                 //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 //        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                 //        await HttpContext.SignInAsync(claimsPrincipal);
-                //        return RedirectToAction("Index", "Color");
+                //        return RedirectToAction("Index", "Home");
                 //    }
                 //    else { return View(); }
                 //}
                 //return BadRequest();
-                #endregion
+                //#endregion
             }
             catch (Exception)
             {
@@ -139,21 +187,20 @@ namespace GProject.WebApplication.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            try
-            {
-                await HttpContext.SignOutAsync();
-                return Redirect("/");
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            await HttpContext.SignOutAsync();
+            return Redirect("/");
         }
 
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult GetLocalhost(string str)
+        {
+            Commons.mylocalhost = str + "/api/";
+            return Ok();
         }
     }
 }

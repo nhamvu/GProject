@@ -18,15 +18,14 @@ namespace GProject.Api.MyServices.Services
         }
         public Customer Login(string email, string pass)
         {
-            var data = new Customer();
             var temp = _iCustomerRepository.GetAll().FirstOrDefault(c => c.Email == email && c.Password == pass);
             if (temp != null)
             {
-                return data = temp;
+                return temp;
             }
             else
             {
-                return data;
+                return null;
             }
         }
         public bool Create(Customer cv)
