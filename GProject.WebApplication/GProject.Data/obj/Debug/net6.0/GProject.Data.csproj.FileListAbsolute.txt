@@ -40,17 +40,3 @@ E:\Dự án tốt nghiệp\GProject\GProject.WebApplication\GProject.Data\obj\De
 E:\Dự án tốt nghiệp\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.pdb
 E:\Dự án tốt nghiệp\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.genruntimeconfig.cache
 E:\Dự án tốt nghiệp\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\ref\GProject.Data.dll
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.deps.json
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.runtimeconfig.json
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.dll
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.pdb
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.csproj.AssemblyReference.cache
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.AssemblyInfoInputs.cache
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.AssemblyInfo.cs
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.csproj.CoreCompileInputs.cache
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.dll
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\refint\GProject.Data.dll
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.pdb
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.genruntimeconfig.cache
-C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\ref\GProject.Data.dll
