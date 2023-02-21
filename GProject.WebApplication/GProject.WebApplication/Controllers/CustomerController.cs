@@ -6,7 +6,9 @@ using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Net;
 using System.Reflection.Metadata;
+using System.Xml.Linq;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -69,7 +71,23 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
-                string image = "";
+                //-- Parse lại dữ liệu từ ViewModel
+                var cusdata = new Customer();
+                cusdata.Id = Customer.Id;
+                cusdata.Name = Customer.Name;
+                cusdata.Email = Customer.Email;
+                cusdata.CustomerId = Commons.RandomString(10);
+
+                if (!string.IsNullOrEmpty(Customer.Password)) cusdata.Password = Customer.Password;
+
+                cusdata.CreateDate = DateTime.Now;
+                cusdata.UpdateDate = DateTime.Now;
+                cusdata.DateOfBirth = Customer.DateOfBirth;
+                cusdata.PhoneNumber = Customer.PhoneNumber;
+                cusdata.Sex = Customer.Sex;
+                cusdata.Address = Customer.Address;
+                cusdata.Status = Customer.Status;
+                if (!string.IsNullOrEmpty(Customer.Description)) cusdata.Description = Customer.Description;
                 if (Customer.Image_Upload != null)
                 {
                     string full_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", Customer.Image_Upload.FileName);
@@ -77,33 +95,17 @@ namespace GProject.WebApplication.Controllers
                     {
                         Customer.Image_Upload.CopyTo(file);
                     }
-                    image = Customer.Image_Upload.FileName;
+                    cusdata.Image = Customer.Image_Upload.FileName;
                 }
                 string url = Commons.mylocalhost;
-                //-- Parse lại dữ liệu từ ViewModel
-                var cus = new Customer()
-                {
-                    Id = Customer.Id,
-                    Name = Customer.Name,
-                    Email = Customer.Email,
-                    CustomerId = Commons.RandomString(10),
-                    Password = Customer.Password,
-                    CreateDate = DateTime.Now,
-                    DateOfBirth = Customer.DateOfBirth,
-                    PhoneNumber = Customer.PhoneNumber,
-                    Sex = Customer.Sex,
-                    Address = Customer.Address,
-                    Status = Customer.Status,
-                    Description = Customer.Description,
-                    Image = image
-                };
+
 
                 //-- Check hành động là Create hay update
                 if (Customer.Id == null) url += "Customer/add-Customer";
                 else url += "Customer/update-Customer";
 
                 //-- Gửi request cho api sử lí
-                bool result = await Commons.Add_or_UpdateAsync(cus, url);
+                bool result = await Commons.Add_or_UpdateAsync(cusdata, url);
                 if (!result) 
                     HttpContext.Session.SetString("mess", "Failed");
                 else 

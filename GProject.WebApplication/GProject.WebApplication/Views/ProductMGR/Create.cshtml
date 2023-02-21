@@ -98,6 +98,7 @@
 
 <form id="formdata" asp-action="Create" class="form-horizontal d-block" enctype="multipart/form-data">
     <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+    <input asp-for="ProductType" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <input asp-for="ViewCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <input asp-for="LikeCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <div class="row">
@@ -137,13 +138,60 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-3"><strong>Trạng thái:<span style="color: red">(*)</span></strong></label>
         <div class="col-md-6">
-            @Html.DropDownList("Status", new[]
-            {
-            new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-            new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
-            }, new { @class = "form-control iscompany" })
+            <div class="form-group">
+                <label class="control-label col-sm-3"><strong>Trạng thái:<span style="color: red">(*)</span></strong></label>
+                <div class="col-md-6">
+                    @Html.DropDownList("Status", new[]
+                    {
+                    new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                    new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
+                    }, new { @class = "form-control iscompany" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-sm-3"><strong>Giá bán:<span style="color: red">(*)</span></strong></label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="form-check">
+                                    <input type="checkbox" id="ckbAllProductType" class="form-check-input-productType" />
+                                    <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input-productType" type="checkbox" value="0" id="ckbNormally">
+                                <label class="form-check-label">Sản phẩm thông thường</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input-productType" type="checkbox" value="1" id="ckbNew">
+                                <label class="form-check-label">Sản phẩm mới</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input-productType" type="checkbox" value="2" id="ckbFeatured">
+                                <label class="form-check-label">Sản phẩm nổi bật</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input-productType" type="checkbox" value="3" id="ckbFavorited">
+                                <label class="form-check-label">Sản phẩm được yêu thích</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-check">
+                                <input class="form-check-input-productType" type="checkbox" value="4" id="ckbPromotional">
+                                <label class="form-check-label">Sản phẩm khuyến mại</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -154,57 +202,60 @@
     </div>
 
     <h1>THÔNG TIN CHI TIẾT SẢN PHẨM</h1>
-    <div class="col-md-12">
-        <div class="form-group">
-            <div class="row">
-                <div class="form-check">
-                    <input type="checkbox" id="ckbAll" class="form-check-input" />
-                    <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4>
+    <div class="productDetail">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="row">
+                    <div class="form-check">
+                        <input type="checkbox" id="ckbAll" class="form-check-input" />
+                        <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row" style="height: 500px; overflow-y: scroll;border-style: dotted dashed solid double;">
+                    @if (Model != null && Model.ProductVariationViewModel.Count >= 0 && Model.ProductVariationViewModel != null && Model.SizeList.Count >= 0 && Model.SizeList != null)
+                    {
+                        @for (int i = 0; i < Model.ProductVariationViewModel.Count; i++)
+                        {
+                            @Html.HiddenFor(m => m.ProductVariationViewModel[i].Id)
+                            @Html.HiddenFor(m => m.ProductVariationViewModel[i].VariationId)
+                            @Html.HiddenFor(m => m.ProductVariationViewModel[i].ProductId)
+                            <div class="form-check col-md-12 m-2">
+                                @Html.CheckBoxFor(c => c.ProductVariationViewModel[i].IsChecked, new {@class = "form-check-input", @name = "ckbcheck"})
+                                <label class="form-check-label">
+                                    <strong>(@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
+                                </label>
+                            </div>
+                            <div class="campic col-md-3">
+                                <img id="@("upimg" + i)" src="https://cdn3.iconfinder.com/data/icons/web-document-icons/512/Upload_Document-512.png" onclick="uploadImage(@i)" width="50">
+                                <input type="file" asp-for="ProductVariationViewModel[i].Image_Upload" class="@("picImg" + i)" style="display: none;" />
+                            </div>
+                            <div class="col-md-9 row">
+                                @{
+                                    Model.ProductVariationViewModel[i].SizeAndStock = @Model.SizeList;
+                                }
+                                @for (int j = 0; j < Model.SizeList.Count; j++)
+                                {
+                                    <div class="form-group col-md-3">
+                                        <label class="col-sm-4" style="text-align: left;">
+                                            (@Model.SizeList[j].Code)
+                                        </label>
+                                        <div class="col-sm-12">
+                                            @Html.TextBoxFor(c => c.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock", placeholder="0", @disabled = "disabled"})
+                                            @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        }
+                    }
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="row" style="height: 500px; overflow-y: scroll;border-style: dotted dashed solid double;">
-                @if (Model != null && Model.ProductVariationViewModel.Count >= 0 && Model.ProductVariationViewModel != null && Model.SizeList.Count >= 0 && Model.SizeList != null)
-                {
-                    @for (int i = 0; i < Model.ProductVariationViewModel.Count; i++)
-                    {
-                        @Html.HiddenFor(m => m.ProductVariationViewModel[i].Id)
-                        @Html.HiddenFor(m => m.ProductVariationViewModel[i].VariationId)
-                        @Html.HiddenFor(m => m.ProductVariationViewModel[i].ProductId)
-                        <div class="form-check col-md-12 m-2">
-                            @Html.CheckBoxFor(c => c.ProductVariationViewModel[i].IsChecked, new {@class = "form-check-input"})
-                            <label class="form-check-label">
-                                <strong>(@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
-                            </label>
-                        </div>
-                        <div class="campic col-md-3">
-                            <img id="@("upimg" + i)" src="https://cdn3.iconfinder.com/data/icons/web-document-icons/512/Upload_Document-512.png" onclick="uploadImage(@i)" width="50">
-                            <input type="file" asp-for="ProductVariationViewModel[i].Image_Upload" class="@("picImg" + i)" style="display: none;" />
-                        </div>
-                        <div class="col-md-9 row">
-                            @{
-                                Model.ProductVariationViewModel[i].SizeAndStock = @Model.SizeList;
-                            }
-                            @for (int j = 0; j < Model.SizeList.Count; j++)
-                            {
-                                <div class="form-group col-md-3">
-                                    <label class="col-sm-4" style="text-align: left;">
-                                        (@Model.SizeList[j].Code)
-                                    </label>
-                                    <div class="col-sm-12">
-                                        @Html.TextBoxFor(c => c.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock", placeholder="0"})
-                                        @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                }
-            </div>
-        </div>
     </div>
+    
     <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"><i class="fa fa-check" aria-hidden="true"></i> Lưu thông tin</button>
     <button type="button" class="btn btn-sm btn-dark btn-dimiss-modal" onclick="document.location = '/ProductMGR/index'">
         <i class="fa fa-times"></i> Quay lại
@@ -250,7 +301,25 @@
         }
     }
 
+    function SetProductType(){
+        var type = '';
+        if ($('#ckbNormally').prop("checked") == true) type += "0,";
+        if ($('#ckbNew').prop("checked") == true) type += "1,";
+        if ($('#ckbFeatured').prop("checked") == true) type += "2,";
+        if ($('#ckbFavorited').prop("checked") == true) type += "3,";
+        if ($('#ckbPromotional').prop("checked") == true) type += "4";
+        if(type == '') type = '0';
+        $('#ProductType').val(type);
+    }
     $(document).ready(function () {
+        $('.form-check-input').change(function(){
+            if ($(this).is(':checked')) {
+                $('.quantityInstock').prop('disable', false);
+            } else {
+                $('.quantityInstock').prop('disable', true);
+            }
+        })
+
         var er = document.getElementById('error')
         if (er != null) {
             if ($('#error').text() == 'Failed')
@@ -272,6 +341,14 @@
                 $('.form-check-input').prop('checked', false);
             }
         });
+
+        $('#ckbAllProductType').change(function () {
+            if ($(this).is(':checked')) {
+                $('.form-check-input-productType').prop('checked', true);
+            } else {
+                $('.form-check-input-productType').prop('checked', false);
+            }
+        });
     });
 
     document.querySelector('#formdata').addEventListener('submit', function (e) {
@@ -279,6 +356,7 @@
 
         e.preventDefault();
         if (checkValidateData()) {
+            SetProductType();
             swal("Bạn chắc chắn lưu những thay đổi này?", {
                 title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
                 icon: 'info',

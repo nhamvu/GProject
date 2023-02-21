@@ -18,6 +18,7 @@ namespace GProject.Data.DomainClass
         public string? FileName { get; set; }
         public Byte? FileAttact { get; set; }
         public string CreateBy { get; set; }
+        public DateTime CreateDate { get; set; }
         public int SortOrder { get; set; }
         public SendMailStatus Status { get; set; }
         public string? Description { get; set; }

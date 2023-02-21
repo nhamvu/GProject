@@ -18,6 +18,7 @@ namespace GProject.Data.DomainClass
         public string Email { get; set; }
         public string Password { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         [Column(TypeName = "date")]
         public DateTime DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
@@ -29,5 +30,7 @@ namespace GProject.Data.DomainClass
         public List<Cart>? Carts { get; set; }
         public List<Order>? Orders { get; set; }
         public List<Contact>? Contacts { get; set; }
+        public List<ViewHistory>? ViewHistories { get; set; }
+        public List<FavoriteProduct>? FavoriteProducts { get; set; }
     }
 }

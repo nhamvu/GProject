@@ -2,7 +2,9 @@
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Newtonsoft.Json;
+using System.Xml.Linq;
 
 namespace GProject.WebApplication.Services
 {
@@ -22,20 +24,20 @@ namespace GProject.WebApplication.Services
                 Guid uuid = Guid.NewGuid();
 
                 //-- Set Product
-                var productInfo = new Product()
-                {
-                    Id = (Product.Id == Guid.Empty || Product.Id == null) ? uuid : Product.Id,
-                    BrandId = Product.BrandId,
-                    Name = Product.Name,
-                    CreateDate = DateTime.Now,
-                    CreateBy = CreateBy,
-                    ViewCount = Product.ViewCount,
-                    LikeCount = Product.LikeCount,
-                    Price = Product.Price,
-                    ImportPrice = Product.ImportPrice,
-                    Status = Product.Status,
-                    Description = Product.Description
-                };
+                var productInfo = new Product();
+                productInfo.Id = (Product.Id == Guid.Empty || Product.Id == null) ? uuid : Product.Id;
+                productInfo.BrandId = Product.BrandId;
+                productInfo.Name = Product.Name;
+                productInfo.CreateDate = DateTime.Now;
+                productInfo.UpdateDate = DateTime.Now;
+                productInfo.CreateBy = CreateBy;
+                productInfo.ViewCount = Product.ViewCount;
+                productInfo.LikeCount = Product.LikeCount;
+                productInfo.Price = Product.Price;
+                productInfo.ImportPrice = Product.ImportPrice;
+                productInfo.Status = Product.Status;
+                productInfo.ProductType = Product.ProductType;
+                if (!string.IsNullOrEmpty(Product.Description)) productInfo.Description = Product.Description;
 
                 //-- Save Product Info
                 string url = (Product.Id == Guid.Empty || Product.Id == null) ? Commons.mylocalhost + "ProductMGR/add-Product-mgr" : Commons.mylocalhost + "ProductMGR/update-Product-mgr";

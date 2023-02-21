@@ -17,6 +17,7 @@ namespace GProject.Data.DomainClass
         public Guid? DeliverId { get; set; }
         public string OrderId { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public DateTime PaymentDate { get; set; }
         public PaymentType PaymentType { get; set; }
         public string ShippingFullName { get; set; }

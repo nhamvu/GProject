@@ -18,6 +18,7 @@ namespace GProject.Data.DomainClass
         [Column(TypeName = "decimal(20, 0)")]
         public decimal DiscountRate { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string Image { get; set; }

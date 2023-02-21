@@ -5,7 +5,10 @@ using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Reflection.Metadata;
+using static System.Net.Mime.MediaTypeNames;
+using System.Xml.Linq;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -73,7 +76,23 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
-                string image = "";
+                //-- Parse lại dữ liệu từ ViewModel
+                var emp = new Employee();
+                emp.Id = Employee.Id;
+                emp.Name = Employee.Name;
+                emp.Email = Employee.Email;
+                emp.Position = Employee.Position;
+                emp.PersonalId = Employee.PersonalId;
+                emp.EmployeeId = Employee.EmployeeId;
+                if (!string.IsNullOrEmpty(Employee.Password)) emp.Password = Employee.Password;
+                emp.CreateDate = DateTime.Now;
+                emp.UpdateDate = DateTime.Now;
+                emp.DateOfBirth = Employee.DateOfBirth;
+                emp.PhoneNumber = Employee.PhoneNumber;
+                emp.Sex = Employee.Sex;
+                emp.Address = Employee.Address;
+                emp.Status = Employee.Status;
+                if (!string.IsNullOrEmpty(Employee.Description)) emp.Description = Employee.Description;
                 if (Employee.Image_Upload != null)
                 {
                     string full_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", Employee.Image_Upload.FileName);
@@ -81,35 +100,17 @@ namespace GProject.WebApplication.Controllers
                     {
                         Employee.Image_Upload.CopyTo(file);
                     }
-                    image = Employee.Image_Upload.FileName;
+                    emp.Image = Employee.Image_Upload.FileName;
                 }
                 string url = Commons.mylocalhost;
-                //-- Parse lại dữ liệu từ ViewModel
-                var cus = new Employee()
-                {
-                    Id = Employee.Id,
-                    Name = Employee.Name,
-                    Email = Employee.Email,
-                    Position = Employee.Position,
-                    PersonalId = Employee.PersonalId,
-                    EmployeeId = Employee.EmployeeId,
-                    Password = Employee.Password,
-                    CreateDate = DateTime.Now,
-                    DateOfBirth = Employee.DateOfBirth,
-                    PhoneNumber = Employee.PhoneNumber,
-                    Sex = Employee.Sex,
-                    Address = Employee.Address,
-                    Status = Employee.Status,
-                    Description = Employee.Description,
-                    Image = image
-                };
+
 
                 //-- Check hành động là Create hay update
                 if (Employee.Id == null) url += "Employee/add-Employee";
                 else url += "Employee/update-Employee";
 
                 //-- Gửi request cho api sử lí
-                bool result = await Commons.Add_or_UpdateAsync(cus, url);
+                bool result = await Commons.Add_or_UpdateAsync(emp, url);
                 if (!result) 
                     HttpContext.Session.SetString("mess", "Failed");
                 else 

@@ -21,10 +21,12 @@ namespace GProject.WebApplication.Models
         public string CreateBy { get; set; }
         public int Status { get; set; } = 1; // 0: đang bán || 1: ngừng bán
         public string? Description { get; set; }
+        public string ProductType { get; set; }
         public List<Product>? ProductList { get; set; }
         public List<ProductVariation>? ProductVariationList { get; set; }
         public List<ProductVariationDTO>? ProductVariationViewModel { get; set; }
         public List<ProductSizeVariation>? SizeList { get; set; }
+        public List<ProductType>? ProductTypes { get; set; }
     }
 
     public class ProductVariationDTO
@@ -47,6 +49,13 @@ namespace GProject.WebApplication.Models
         public string Name { get; set; }
         public string Code { get; set; }
         public int QuantityInstock { get; set; }
+        public bool IsChecked { get; set; }
+    }
+
+    public class ProductType
+    {
+        public int? Id { get; set; }
+        public string TypeName { get; set; }
         public bool IsChecked { get; set; }
     }
 }
