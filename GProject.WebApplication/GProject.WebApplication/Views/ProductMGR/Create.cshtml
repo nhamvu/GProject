@@ -312,13 +312,7 @@
         $('#ProductType').val(type);
     }
     $(document).ready(function () {
-        $('.form-check-input').change(function(){
-            if ($(this).is(':checked')) {
-                $('.quantityInstock').prop('disable', false);
-            } else {
-                $('.quantityInstock').prop('disable', true);
-            }
-        })
+
 
         var er = document.getElementById('error')
         if (er != null) {
