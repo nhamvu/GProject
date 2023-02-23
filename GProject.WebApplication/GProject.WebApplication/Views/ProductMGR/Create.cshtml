@@ -223,7 +223,7 @@
                             @Html.HiddenFor(m => m.ProductVariationViewModel[i].VariationId)
                             @Html.HiddenFor(m => m.ProductVariationViewModel[i].ProductId)
                             <div class="form-check col-md-12 m-2">
-                                @Html.CheckBoxFor(c => c.ProductVariationViewModel[i].IsChecked, new {@class = "form-check-input", @name = "ckbcheck"})
+                                <input type="checkbox" asp-for="ProductVariationViewModel[i].IsChecked" onclick="@("ClickCkb(" + i + ")")">
                                 <label class="form-check-label">
                                     <strong>(@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
                                 </label>
@@ -243,7 +243,7 @@
                                             (@Model.SizeList[j].Code)
                                         </label>
                                         <div class="col-sm-12">
-                                            @Html.TextBoxFor(c => c.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock", placeholder="0", @disabled = "disabled"})
+                                            @Html.TextBoxFor(c => c.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock", placeholder="0"})
                                             @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
                                         </div>
                                     </div>
@@ -327,7 +327,14 @@
             if (!regex.test($(this).val()))
                 $(this).val($(this).val().replace(/[^0-9.]/g, ""));
         });
-
+        $('.form-check-input-item').change(function () {
+            if ($(this).is(':checked')) {
+                $('.quantityInstock').prop('hidden', true);
+                //alert($(this).find('.quantityInstock').val());
+            } else {
+                alert('y');
+            }
+        });
         $('#ckbAll').change(function () {
             if ($(this).is(':checked')) {
                 $('.form-check-input').prop('checked', true);
