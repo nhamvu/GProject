@@ -126,6 +126,7 @@ namespace GProject.WebApplication.Services
                 productData.CreateDate = product.CreateDate;
                 productData.Status = product.Status;
                 productData.Description = product.Description;
+                productData.ProductType = product.ProductType;
 
                 List<ProductVariationDTO> lstPrdVariation = await Commons.GetAll<ProductVariationDTO>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
                 //-- Lấy danh sách color và Pariation 

@@ -333,3 +333,4 @@ C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplicatio
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.pdb
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.genruntimeconfig.cache
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\ref\GProject.WebApplication.dll
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutUser.cshtml.rz.scp.css

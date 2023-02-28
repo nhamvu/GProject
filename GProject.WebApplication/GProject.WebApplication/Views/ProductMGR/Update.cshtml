@@ -192,7 +192,7 @@
     <div class="form-group">
         <label class="control-label col-sm-3"><strong>Mô tả:</strong></label>
         <div class="col-sm-12">
-            @Html.TextAreaFor(c => c.Description, new { @class= "form-control"})
+            <textarea class="form-control" asp-for="Description" cols="50" rows="5" style="border:double 4px orange;"></textarea>
         </div>
     </div>
 
@@ -202,7 +202,7 @@
             <div class="row">
                 <div class="form-check">
                     <input type="checkbox" id="ckbAll" class="form-check-input" />
-                    <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4>
+                    <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4><span style="color: red">Lưu ý(*): Chỉ lưu thông tin những sản phẩm có đánh dấu</span>
                 </div>
             </div>
         </div>
@@ -217,7 +217,7 @@
                         @Html.HiddenFor(m => m.ProductVariationViewModel[i].VariationId)
                         @Html.HiddenFor(m => m.ProductVariationViewModel[i].ProductId)
                         <div class="form-check col-md-12 m-2">
-                            @Html.CheckBoxFor(c => c.ProductVariationViewModel[i].IsChecked, new {@class = "form-check-input"})
+                            <input type="checkbox" asp-for="ProductVariationViewModel[i].IsChecked" class="form-check-input-variation-item">
                             <label class="form-check-label">
                                 <strong>(@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
                             </label>
@@ -234,7 +234,7 @@
                                         (@Model.SizeList[j].Code)
                                     </label>
                                     <div class="col-sm-12">
-                                        @Html.TextBoxFor(c => c.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock"})
+                                        <input type="text" asp-for="ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock" class="form-control quantityInstock">
                                         @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
                                     </div>
                                 </div>
@@ -317,9 +317,9 @@
 
         $('#ckbAll').change(function () {
             if ($(this).is(':checked')) {
-                $('.form-check-input').prop('checked', true);
+                $('.form-check-input-variation-item').prop('checked', true);
             } else {
-                $('.form-check-input').prop('checked', false);
+                $('.form-check-input-variation-item').prop('checked', false);
             }
         });
 
@@ -330,6 +330,14 @@
                 $('.form-check-input-productType').prop('checked', false);
             }
         });
+
+        //Load ProductType vào checkbox
+        var producttype = $('#ProductType').val().split(',');
+        if (producttype.some(p => '0' === p)) $('#ckbNormally').prop('checked', true);
+        if (producttype.some(p => '1' === p)) $('#ckbNew').prop('checked', true);
+        if (producttype.some(p => '2' === p)) $('#ckbFeatured').prop('checked', true);
+        if (producttype.some(p => '3' === p)) $('#ckbFavorited').prop('checked', true);
+        if (producttype.some(p => '4' === p)) $('#ckbPromotional').prop('checked', true);
     });
 
     document.querySelector('#formdata').addEventListener('submit', function (e) {

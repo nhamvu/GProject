@@ -196,7 +196,7 @@
     <div class="form-group">
         <label class="control-label col-sm-3"><strong>Mô tả:</strong></label>
         <div class="col-sm-12">
-            @Html.TextAreaFor(c => c.Description, new { @class= "form-control"})
+            <textarea class="form-control" asp-for="Description" cols="50" rows="5" style="border:double 4px orange;"></textarea>
         </div>
     </div>
 
@@ -207,7 +207,7 @@
                 <div class="row">
                     <div class="form-check">
                         <input type="checkbox" id="ckbAll" class="form-check-input" />
-                        <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4>
+                        <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4> <span style="color: red">Lưu ý(*): Chỉ lưu thông tin những sản phẩm có đánh dấu</span>
                     </div>
                 </div>
             </div>
@@ -222,7 +222,7 @@
                             @Html.HiddenFor(m => m.ProductVariationViewModel[i].VariationId)
                             @Html.HiddenFor(m => m.ProductVariationViewModel[i].ProductId)
                             <div class="form-check col-md-12 m-2">
-                                <input type="checkbox" asp-for="ProductVariationViewModel[i].IsChecked" onclick="@("ClickCkb(" + i + ")")">
+                                <input type="checkbox" asp-for="ProductVariationViewModel[i].IsChecked" class="form-check-input-variation-item">
                                 <label class="form-check-label">
                                     <strong>(@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
                                 </label>
@@ -242,7 +242,7 @@
                                             (@Model.SizeList[j].Code)
                                         </label>
                                         <div class="col-sm-12">
-                                            @Html.TextBoxFor(c => c.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock, new {@class = "form-control quantityInstock", placeholder="0"})
+                                            <input type="text" asp-for="ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock" class="form-control quantityInstock" placeholder="0">
                                             @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
                                         </div>
                                     </div>
@@ -326,19 +326,12 @@
             if (!regex.test($(this).val()))
                 $(this).val($(this).val().replace(/[^0-9.]/g, ""));
         });
-        $('.form-check-input-item').change(function () {
-            if ($(this).is(':checked')) {
-                $('.quantityInstock').prop('hidden', true);
-                //alert($(this).find('.quantityInstock').val());
-            } else {
-                alert('y');
-            }
-        });
+
         $('#ckbAll').change(function () {
             if ($(this).is(':checked')) {
-                $('.form-check-input').prop('checked', true);
+                $('.form-check-input-variation-item').prop('checked', true);
             } else {
-                $('.form-check-input').prop('checked', false);
+                $('.form-check-input-variation-item').prop('checked', false);
             }
         });
 
