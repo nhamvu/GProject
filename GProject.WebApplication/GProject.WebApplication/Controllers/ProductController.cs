@@ -13,33 +13,27 @@ namespace GProject.WebApplication.Controllers
     [Authorize(Roles = "customer")]
     public class ProductController : Controller
     {
-        //private IProductService iProductService;
+
         public ProductController()
         {
-            //iProductService = new ProductService();
+
         }
 
-        //[HttpGet]
-        //public async Task<ActionResult> Index()
-        //{
-        //    try
-        //    {
-        //        //-- Lấy danh sách từ api
-        //        var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "Product/get-all-Product"));
-        //        var data = new ProductDTO() { ProductList = lstObjs };
+        [HttpGet]
+        public async Task<ActionResult> Index()
+        {
+            try
+            {
+                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                var products = await pService.GetProductViewModel();
+                return View(new Tuple<List<ProductDTO>?>(products));
+            }
+            catch (Exception)
+            {
 
-        //        //-- truyền vào message nếu có thông báo
-        //        if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
-        //            ViewData["Mess"] = HttpContext.Session.GetString("mess");
-        //        HttpContext.Session.Remove("mess");
-        //        return View(data);
-        //    }
-        //    catch (Exception)
-        //    {
-
-        //        throw;
-        //    }
-        //}
+                throw;
+            }
+        }
 
         //[HttpPost]
         //public async Task<ActionResult> Save( ProductDTO Product)

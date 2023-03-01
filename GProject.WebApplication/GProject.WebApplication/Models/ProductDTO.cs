@@ -20,7 +20,7 @@ namespace GProject.WebApplication.Models
         public Size Size { get; set; }
         public Brand Brand { get; set; }
 
-        public ProductVariation ProductVariation { get; set; }
+        public List<ProductVariation> ProductVariations { get; set; }
         public Promotion Promotion { get; set; }
 
         public PromotionDetail PromotionDetail { get; set; }

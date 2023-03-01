@@ -121,7 +121,7 @@ namespace GProject.WebApplication.Controllers
                         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                         var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                         await HttpContext.SignInAsync(claimsPrincipal);
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Product");
                     }
                     else { return View(); }
                 }
