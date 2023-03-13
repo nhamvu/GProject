@@ -1,27 +1,21 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {}
+    "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
+    "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+        "projectUniqueName": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
         "projectName": "GProject.Api",
-        "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+        "projectPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\obj\\",
+        "outputPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -34,8 +28,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+              "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+                "projectPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
               }
             }
           }
@@ -102,24 +96,18 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+    "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "projectUniqueName": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
         "projectName": "GProject.Data",
-        "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "projectPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
+        "outputPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -189,24 +177,18 @@
         }
       }
     },
-    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {
+    "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+        "projectUniqueName": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
         "projectName": "GProject.WebApplication",
-        "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+        "projectPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\",
+        "outputPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-        ],
         "configFilePaths": [
           "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -219,11 +201,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj"
+              "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
+                "projectPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj"
               },
-              "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
-                "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+              "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+                "projectPath": "E:\\Dự án tốt nghiệp\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
               }
             }
           }

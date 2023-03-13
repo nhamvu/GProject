@@ -69,10 +69,32 @@
                             </form>
                         </li>
                         <li>
-                            <a class="profile-pic" href="#">
-                                <img src="/AdminContent/plugins/images/users/varun.jpg" alt="user-img" width="36"
-                                     class="img-circle"><span class="text-white font-medium">Steave</span>
-                            </a>
+                            @{
+                                var imgAvata = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Country)
+                                .Select(c => c.Value).FirstOrDefault();
+                            }
+                            <div class="dropdown">
+                                <a class="profile-pic dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                                    @{
+                                        if (string.IsNullOrEmpty(imgAvata))
+                                        {
+                                            <img src="~/images/avatar.jpg" alt="user-img" width="36" class="img-circle">
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/@imgAvata" alt="user-img" width="36" class="img-circle">
+                                        }
+                                    }
+                                    <span class="text-white font-medium">@(string.IsNullOrEmpty(User.Identity.Name) == true ? "Tài khoản" : User.Identity.Name)</span>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li><a class="dropdown-item" href="/user/change-password">Đổi mật khẩu</a></li>
+                                    <li><a class="dropdown-item" href="/user/change-personal-infomation-employee-page">Đổi thông tin cá nhân</a></li>
+                                    <li><a class="dropdown-item" href="/Login/logout">Đăng xuất</a></li>
+                                </ul>
+                            </div>
+                            
                         </li>
                     </ul>
                 </div>
