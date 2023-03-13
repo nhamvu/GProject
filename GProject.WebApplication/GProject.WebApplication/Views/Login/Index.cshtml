@@ -31,7 +31,7 @@
                             <img src="/images/imageLogo.PNG" style="width:80%;height:80%;" />
                         </div>
 
-                        <div class="divider d-flex align-items-center my-4">
+                        <div class="divider align-items-center my-4">
                             <h3 class="text-center fw-bold mx-3 mb-0">ĐĂNG NHẬP</h3>
                         </div>
 
@@ -70,7 +70,7 @@
                     <div class="text-center text-lg-start mt-4 pt-2">
                         <p class="small fw-bold mt-2 pt-1 mb-0">
                             <strong>
-                                Bạn chưa có chưa khoản? <a href="#!"
+                                Bạn chưa có chưa khoản? <a href="/Login/Register"
                                                            class="link-danger">Đăng kí ngay</a>
                             </strong>
                         </p>
@@ -88,6 +88,15 @@
             swal("Không thành công", "Đăng nhập không thành công,vui lòng nhập lại thông tin", "error");
 
         }
+        $.ajax({
+            data: {
+                str: window.location.protocol + '//' + window.location.host
+            },
+            contentType: 'application/json',
+            dataType: 'json',
+            url: '/Login/GetLocalhost',
+            type: 'GET'
+        });
     });
     document.querySelector('.img__btn').addEventListener('click', function () {
         document.querySelector('.cont').classList.toggle('s--signup');

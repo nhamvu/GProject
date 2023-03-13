@@ -16,6 +16,8 @@ namespace GProject.Data.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATN001;Integrated Security=True"
+            //@"Data Source=LAPTOP-2GTIBL55\SQLEXPRESS;Initial Catalog=GProject_Database;Integrated Security=True"
             optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATN001;Integrated Security=True");
         }
         public DbSet<AppUsers> AppUsers { get; set; }
@@ -42,6 +44,8 @@ namespace GProject.Data.Context
         public DbSet<SendMail> SendMails { get; set; }
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Slide> Slides { get; set; }
+        public DbSet<ViewHistory> ViewHistories { get; set; }
+        public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure using Fluent API
@@ -68,6 +72,8 @@ namespace GProject.Data.Context
             modelBuilder.ApplyConfiguration(new SendMail_Configuration());
             modelBuilder.ApplyConfiguration(new Size_Configuration());
             modelBuilder.ApplyConfiguration(new Slide_Configuration());
+            modelBuilder.ApplyConfiguration(new ViewHistory_Configuration());
+            modelBuilder.ApplyConfiguration(new FavoriteProduct_Configuration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });

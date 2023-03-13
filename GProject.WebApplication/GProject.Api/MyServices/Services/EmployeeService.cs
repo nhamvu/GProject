@@ -19,15 +19,14 @@ namespace GProject.Api.MyServices.Services
 
         public Employee Login(string email, string pass)
         {
-            var data = new Employee();
             var temp = _iEmployeeRepository.GetAll().FirstOrDefault(c => c.Email == email && c.Password == pass);
             if (temp != null)
             {
-                return data = temp;
+                return temp;
             }
             else
             {
-                return data;
+                return null;
             }
         }
         public bool Create(Employee cv)

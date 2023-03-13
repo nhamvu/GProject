@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GProject.Data.DomainClass
 {
-    public class Employee : IdentityRole<Guid>
+    public class Employee
     {
         public Guid? Id { get; set; }
         public string EmployeeId { get; set; }
@@ -19,6 +19,7 @@ namespace GProject.Data.DomainClass
         public string Password { get; set; }
         public string PersonalId { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         [Column(TypeName = "date")]
         public DateTime DateOfBirth { get; set; }
         [Column(TypeName = "date")]

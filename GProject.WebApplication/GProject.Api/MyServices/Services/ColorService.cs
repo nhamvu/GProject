@@ -48,6 +48,8 @@ namespace GProject.Api.MyServices.Services
             var temp = _iColorRepository.GetAll().FirstOrDefault(c => c.Id == cv.Id);
                         temp.HEXCode = cv.HEXCode;
                         temp.Name = cv.Name;
+            temp.Image = cv.Image;
+            temp.Status = cv.Status;
             if (_iColorRepository.Update(temp))
             {
                 return true;

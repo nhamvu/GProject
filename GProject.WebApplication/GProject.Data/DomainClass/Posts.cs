@@ -14,6 +14,7 @@ namespace GProject.Data.DomainClass
         public string Message { get; set; }
         public PostType PostType { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public string CreateBy { get; set; }
         public string Image { get; set; }
         public int Status { get; set; } // 0: không sử dụng || 1: sử dụng

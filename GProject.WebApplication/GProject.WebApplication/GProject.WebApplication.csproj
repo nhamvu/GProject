@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\AdminContent\css\icon\**" />
+    <Content Remove="wwwroot\AdminContent\css\icon\**" />
+    <EmbeddedResource Remove="wwwroot\AdminContent\css\icon\**" />
+    <None Remove="wwwroot\AdminContent\css\icon\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -24,6 +31,16 @@
   <ItemGroup>
     <ProjectReference Include="..\GProject.Api\GProject.Api.csproj" />
     <ProjectReference Include="..\GProject.Data\GProject.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FX.Utils">
+      <HintPath>..\..\..\Project Softdreams\easyinvoice-admin\LIB\FX.Utils.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\UserContent\" />
   </ItemGroup>
 
 </Project>

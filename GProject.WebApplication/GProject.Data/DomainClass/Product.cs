@@ -15,6 +15,7 @@ namespace GProject.Data.DomainClass
         public int BrandId { get; set; }
         public string Name { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public int ViewCount { get; set; }
         public int LikeCount { get; set; }
         [Column(TypeName = "decimal(20, 0)")]
@@ -24,10 +25,13 @@ namespace GProject.Data.DomainClass
         public string CreateBy { get; set; }
         public int Status { get; set; } = 1; // 0: đang bán || 1: ngừng bán
         public string? Description { get; set; }
+        public string ProductType { get; set; } //0: sản phẩm bình thường |1 sản phẩm mới |2 sản phẩm nổi bật |3 sản phẩm được yêu thích |4 sản phẩm khuyến mại, nhận vào là 1 chuỗi json giá trị
         public Brand? BrandId_Navigation { get; set; }
         public List<ProductVariation>? ProductVariations { get; set; }
         public List<Evaluate>? Evaluates { get; set; }
         public List<PromotionDetail>? PromotionDetails { get; set; }
         public List<CategoryProduct>? CategoryProducts { get; set; }
+        public List<ViewHistory>? ViewHistories { get; set; }
+        public List<FavoriteProduct>? FavoriteProducts { get; set; }
     }
 }

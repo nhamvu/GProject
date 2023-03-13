@@ -5,26 +5,33 @@ using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GProject.WebApplication.Controllers
 {
+    [Authorize(Roles = "manager, employee")]
     public class ColorController : Controller
     {
         private IColorService iColorService;
-
         public ColorController()
         {
             iColorService = new ColorService();
         }
 
-        [Authorize(Roles ="manager, employee")]
         [HttpGet]
         public async Task<ActionResult> Index()
         {
             try
             {
+                //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
                 var data = new ColorDTO() { ColorList = lstObjs };
+
+                //-- truyền vào message nếu có thông báo
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
+                    ViewData["Mess"] = HttpContext.Session.GetString("mess");
+                HttpContext.Session.Remove("mess");
                 return View(data);
             }
             catch (Exception)
@@ -35,39 +42,43 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "manager, employee")]
-        public async Task<ActionResult> Save(ColorDTO Color)
+        public async Task<ActionResult> Save( ColorDTO Color)
         {
             try
             {
-                if (ModelState.IsValid == true)
+                string url = Commons.mylocalhost;
+                string image = "";
+                if (Color.Image_Upload != null)
                 {
-                    string url = "";
-                    var prd = new Color(){ Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name,Status = Color.Status};
-                    if (Color.Id == null) { url = string.Concat(Commons.mylocalhost, "Color/add-Color"); }
-                    else { url = string.Concat(Commons.mylocalhost, "Color/update-Color"); }
-                    ViewBag.Error = "Successfully !";
-                    //-- GTuwir Request cho thằng kia sử lí
-                    await Commons.Add_or_UpdateAsync(prd, url);
-                    return RedirectToAction("Index");
+                    string full_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", Color.Image_Upload.FileName);
+                    using (var file = new FileStream(full_path, FileMode.Create))
+                    {
+                        Color.Image_Upload.CopyTo(file);
+                    }
+                    image = Color.Image_Upload.FileName;
                 }
-                else
-                {
-                    var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
-                    var data = new ColorDTO() { ColorList = lstObjs };
-                    ViewBag.Error = "Failed !";
-                    return View(data);
-                }
+                //-- Parse lại dữ liệu từ ViewModel
+                var prd = new Color() { Id = Color.Id, HEXCode = Color.HEXCode, Name = Color.Name, Status = Color.Status, Image = image };
+
+                //-- Check hành động là Create hay update
+                if (Color.Id == null) url += "Color/add-Color";
+                else url += "Color/update-Color";
+
+                //-- Gửi request cho api sử lí
+                bool result = await Commons.Add_or_UpdateAsync(prd, url);
+                if (!result) 
+                    HttpContext.Session.SetString("mess", "Failed");
+                else 
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {
-
-                throw;
+                return BadRequest();
             }
 
         }
 
-        [Authorize(Roles = "manager, employee")]
         public async Task<JsonResult> Detail(int id)
         {
             var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));

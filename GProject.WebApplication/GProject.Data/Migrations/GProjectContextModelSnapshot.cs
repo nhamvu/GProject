@@ -94,7 +94,6 @@ namespace GProject.Data.Migrations
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("SearchCount")
-                        .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(max)")
                         .HasDefaultValueSql("((0))");
@@ -136,6 +135,9 @@ namespace GProject.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
@@ -150,6 +152,9 @@ namespace GProject.Data.Migrations
 
                     b.Property<Guid?>("ProductVariationId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Price")
                         .ValueGeneratedOnAdd()
@@ -235,6 +240,10 @@ namespace GProject.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -300,9 +309,6 @@ namespace GProject.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
@@ -332,9 +338,6 @@ namespace GProject.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -351,6 +354,9 @@ namespace GProject.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -449,6 +455,9 @@ namespace GProject.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Deliver", (string)null);
@@ -463,9 +472,6 @@ namespace GProject.Data.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ConcurrencyStamp")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreateDate")
@@ -500,9 +506,6 @@ namespace GProject.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -531,6 +534,9 @@ namespace GProject.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Employee", (string)null);
@@ -555,11 +561,32 @@ namespace GProject.Data.Migrations
                     b.Property<int?>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProductId");
 
                     b.ToTable("Evaluate", (string)null);
+                });
+
+            modelBuilder.Entity("GProject.Data.DomainClass.FavoriteProduct", b =>
+                {
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CustomerId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("FavoriteProduct", (string)null);
                 });
 
             modelBuilder.Entity("GProject.Data.DomainClass.Order", b =>
@@ -648,6 +675,9 @@ namespace GProject.Data.Migrations
                     b.Property<decimal>("TotalMoney")
                         .HasColumnType("decimal(20,0)");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
@@ -728,6 +758,9 @@ namespace GProject.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Posts", (string)null);
@@ -774,10 +807,17 @@ namespace GProject.Data.Migrations
                         .HasColumnType("decimal(20,0)")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<string>("ProductType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("ViewCount")
                         .ValueGeneratedOnAdd()
@@ -801,11 +841,14 @@ namespace GProject.Data.Migrations
                     b.Property<int?>("ColorId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ProductId")
+                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("QuantityInStock")
@@ -815,6 +858,9 @@ namespace GProject.Data.Migrations
 
                     b.Property<int?>("SizeId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -885,6 +931,9 @@ namespace GProject.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Promotion", (string)null);
@@ -934,6 +983,9 @@ namespace GProject.Data.Migrations
                     b.Property<string>("CreateBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -1013,6 +1065,9 @@ namespace GProject.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -1030,6 +1085,9 @@ namespace GProject.Data.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1037,6 +1095,24 @@ namespace GProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Slide", (string)null);
+                });
+
+            modelBuilder.Entity("GProject.Data.DomainClass.ViewHistory", b =>
+                {
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateView")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("CustomerId", "ProductId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ViewHistory", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -1207,6 +1283,25 @@ namespace GProject.Data.Migrations
                     b.Navigation("ProductId_Navigation");
                 });
 
+            modelBuilder.Entity("GProject.Data.DomainClass.FavoriteProduct", b =>
+                {
+                    b.HasOne("GProject.Data.DomainClass.Customer", "CustomerId_Navigation")
+                        .WithMany("FavoriteProducts")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GProject.Data.DomainClass.Product", "ProductId_Navigation")
+                        .WithMany("FavoriteProducts")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerId_Navigation");
+
+                    b.Navigation("ProductId_Navigation");
+                });
+
             modelBuilder.Entity("GProject.Data.DomainClass.Order", b =>
                 {
                     b.HasOne("GProject.Data.DomainClass.Customer", "CustomerId_Nagavition")
@@ -1270,9 +1365,7 @@ namespace GProject.Data.Migrations
 
                     b.HasOne("GProject.Data.DomainClass.Product", "ProductId_Navigation")
                         .WithMany("ProductVariations")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("ColorId_Navigation");
 
@@ -1298,6 +1391,25 @@ namespace GProject.Data.Migrations
                     b.Navigation("ProductId_Navigation");
 
                     b.Navigation("PromotionId_Navidation");
+                });
+
+            modelBuilder.Entity("GProject.Data.DomainClass.ViewHistory", b =>
+                {
+                    b.HasOne("GProject.Data.DomainClass.Customer", "CustomerId_Navigation")
+                        .WithMany("ViewHistories")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GProject.Data.DomainClass.Product", "ProductId_Navigation")
+                        .WithMany("ViewHistories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CustomerId_Navigation");
+
+                    b.Navigation("ProductId_Navigation");
                 });
 
             modelBuilder.Entity("GProject.Data.DomainClass.Brand", b =>
@@ -1326,7 +1438,11 @@ namespace GProject.Data.Migrations
 
                     b.Navigation("Contacts");
 
+                    b.Navigation("FavoriteProducts");
+
                     b.Navigation("Orders");
+
+                    b.Navigation("ViewHistories");
                 });
 
             modelBuilder.Entity("GProject.Data.DomainClass.Deliver", b =>
@@ -1352,9 +1468,13 @@ namespace GProject.Data.Migrations
 
                     b.Navigation("Evaluates");
 
+                    b.Navigation("FavoriteProducts");
+
                     b.Navigation("ProductVariations");
 
                     b.Navigation("PromotionDetails");
+
+                    b.Navigation("ViewHistories");
                 });
 
             modelBuilder.Entity("GProject.Data.DomainClass.ProductVariation", b =>

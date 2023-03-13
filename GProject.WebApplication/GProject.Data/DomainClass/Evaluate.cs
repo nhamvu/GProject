@@ -14,6 +14,7 @@ namespace GProject.Data.DomainClass
         public string? Comment { get; set; }
         public int? Rating { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public Product? ProductId_Navigation { get; set; }
     }
 }

@@ -19,6 +19,7 @@ namespace GProject.Data.DomainClass
         public string Password { get; set; }
         public string PersonalId { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         [Column(TypeName = "date")]
         public DateTime DateOfBirth { get; set; }
         [Column(TypeName = "date")]

@@ -15,6 +15,7 @@ namespace GProject.Data.DomainClass
         public Guid? CustomerId { get; set; }
         public string CartId { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
         public int Status { get; set; } = 0;
         public string? Description { get; set; }
         public Customer? CustomerId_Navigation { get; set; }

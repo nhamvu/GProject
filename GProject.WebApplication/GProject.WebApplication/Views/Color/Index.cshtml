@@ -3,8 +3,8 @@
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
 @{
-    ViewBag.Title = "Color";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "QUẢN LÝ MÀU SẮC";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <style>
     label {
@@ -14,34 +14,42 @@
     h1 {
         color: black;
     }
+
+    .sticky-header th {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background-color: #E5E5E5;
+    }
+
+    .sticky-table {
+        border-collapse: separate !important;
+    }
 </style>
-<h1>QUẢN LÍ MÀU SẮC</h1>
-@if (ViewBag.Error != null)
+
+@if (@ViewData["Mess"] != null)
 {
-    <p style="visibility: hidden;" id="error">@ViewBag.Error</p>
+    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
-<form id="from1" asp-action="Save" class="form">
+<button class="btn btn-primary col-md-3" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
+<form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
     <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <div class="row mt-5">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="col-md-5"><strong>Mã Màu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <span class="icon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-                <input asp-for="HEXCode" placeholder="Hex code (#)" required />
-                <span asp-validation-for="HEXCode" class="text-danger"></span>
+                <input asp-for="HEXCode" placeholder="Hex code (#)" maxlength="15" class="form-control"/>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <label class="col-md-5"><strong>Tên Màu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <span class="icon"><i class="fa-solid fa-signature" aria-hidden="true"></i></span>
-                <input asp-for="Name" placeholder="Color name" required />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <input asp-for="Name" placeholder="Color name" maxlength="200" class="form-control" />
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
-            <div>
+            <div style="margin-top:10px;">
                 @Html.DropDownList("Status", new[]
                 {
                 new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
@@ -49,10 +57,10 @@
                 }, new { @class = "form-control iscompany" })
             </div>
         </div>
-        <div class="col-md-2">
-            <strong><label></label></strong>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Hình ảnh:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <button class="btn btn-primary" onclick="btnClear()" type="button" style="height:40px;width:110px;"><i class="fa fa-refresh" aria-hidden="true" style="margin-right:4px;"></i>Làm mới</button>
+                <input asp-for="Image_Upload" type="file" multiple class="form-control" />
             </div>
         </div>
         <div class="col-md-2">
@@ -63,38 +71,55 @@
         </div>
     </div>
 </form>
-<hr style="color:red;"/>
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr><th colspan="4" class="text-left" style="background-color:#E5E5E5;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH MÀU SẮC</th></tr>
-        <tr>
-            <th>Mã Màu</th>
-            <th>Tên Màu</th>
-            <th>Trạng thái</th>
-            <th>Chi tiết</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.ColorList)
-        {
-            <tr>
-                <td>
-                    @item.HEXCode
-                </td>
-                <td>
-                    @item.Name
-                </td>
-                <td>
-                    @item.Status
-                </td>
-                <td>
-                    <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+<hr style="color:red;" />
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH MÀU SẮC</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                <table class="table table-bordered table-hover sticky-table">
+                    <thead class="sticky-header">
+                        <tr>
+                            <th>Mã Màu</th>
+                            <th>Tên Màu</th>
+                            <th>Hình ảnh</th>
+                            <th>Trạng thái</th>
+                            <th>Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.ColorList != null)
+                        {
+                            @foreach (var item in Model.ColorList)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.HEXCode
+                                    </td>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        <img style="width:120px;height:50px; border;1px solid;" src="~/images/@item.Image" />
+                                    </td>
+                                    <td>
+                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
+                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 <div id="ViewDetail" class="modal modal-default in">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -113,47 +138,83 @@
         </div>
     </div>
 </div>
-<script>
-    document.querySelector('#from1').addEventListener('submit', function (e) {
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#formdata').hide();
+        var er = document.getElementById('error')
+        if (er != null){
+            if($('#error').text() == 'Failed')
+                swal("Không thành công", "Vui lòng xem lại thông tin đã nhập", "error");
+            else
+                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+        }
+    });
+    
+    function ChangePanel() {
+        if ($("#changeform").text() == "Thêm mới") {
+            $('#formdata').show();
+            $("#changeform").text("Hủy thay đổi");
+        } else if ($("#changeform").text() == "Hủy thay đổi") {
+            $("#Name").val('');
+            $("#HEXCode").val('');
+            $("#Status").val(0);
+            $('#formdata').hide();
+            $("#changeform").text("Thêm mới");
+        }
+    }
+    function validateHEXCode(code) {
+        var regex = /^#[a-zA-Z0-9]+$/;
+        return regex.test(code);
+    }
+    document.querySelector('#formdata').addEventListener('submit', function (e) {
         var form = this;
 
         e.preventDefault();
-
-        swal("Bạn chắc chắn lưu những thay đổi này?", {
-            title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-            icon: 'information',
-            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-        }).then(function (isConfirm) {
-            if (isConfirm) {
-                swal({
-                    title: 'Thành công!',
-                    text: 'Bạn đã lưu thành công những thay đổi này!',
-                    icon: 'success'
-                }).then(function () {
+        if (checkValidateData()) {
+            swal("Bạn chắc chắn lưu những thay đổi này?", {
+                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                icon: 'info',
+                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            }).then(function (isConfirm) {
+                if (isConfirm) {
                     form.submit();
-                });
-            } else {
-                swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-            }
-        });
+                } else {
+                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                }
+            });
+        }
     });
     function ViewDetailData(id) {
         $.getJSON("/Color/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);
             $("#HEXCode").val(data.hexCode);
             $("#Status").val(data.status);
+            $("#Id").val(data.id);
             document.getElementById('namee').innerText = data.name;
             document.getElementById('code').innerText = data.hexCode;
-            document.getElementById('status').innerText = data.status;
+            document.getElementById('status').innerText = data.status == 1 ? "Đang sử dụng" : "Không sử dụng";
+            $("#changeform").text("Thêm mới");
+            ChangePanel()
             $('#ViewDetail').modal('show');
         });
     }
     function btnClose() {
         $('#ViewDetail').modal('hide');
     }
-    function btnClear() {
-        $("#Name").val('');
-        $("#HEXCode").val('');
-        $("#Status").val(0);
+
+    function checkValidateData() {
+        if ($('#HEXCode').val() == '') {
+            sweetAlert("Thông báo", "Thông tin mã màu không được để trống", "error");
+            return false;
+        }
+        if (!validateHEXCode($('#HEXCode').val())) {
+            sweetAlert("Thông báo", "Thông tin mã màu không đúng định dạng", "error");
+            return false;
+        }
+        if ($('#Name').val() == '') {
+            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+            return false;
+        }
+        return true;
     }
 </script>

@@ -17,5 +17,7 @@ namespace GProject.Data.DomainClass
         public int SortOrder { get; set; }
         public int Status { get; set; } // 0: không sử dụng || 1:sử dụng
         public string? Description { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime UpdateDate { get; set; }
     }
 }
