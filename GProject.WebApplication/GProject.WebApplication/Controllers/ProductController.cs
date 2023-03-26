@@ -6,7 +6,14 @@ using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
+using System.Security.Claims;
+using FX.Utils.MvcPaging;
+using FX.Utils.MVCMessage;
 using static System.Net.Mime.MediaTypeNames;
+using System.Net.NetworkInformation;
+using Newtonsoft.Json;
+using System.Drawing;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -19,51 +26,160 @@ namespace GProject.WebApplication.Controllers
 
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Index()
+        //[HttpGet]
+        public async Task<ActionResult> Index(int? type, int pg = 1, int pageSize = 8)
         {
             try
             {
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
-                var products = await pService.GetProductViewModel();
-                return View(new Tuple<List<ProductDTO>?>(products));
+                var data = await pService.GetDataForIndex(type.NullToString(), pg, pageSize);
+				this.ViewBag.Pager = data.pager;
+				return View(data.tuple);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Login");
             }
         }
 
-        //[HttpPost]
-        //public async Task<ActionResult> Save( ProductDTO Product)
-        //{
-        //    try
-        //    {
-        //        string url = Commons.mylocalhost;
-        //        string image = "";
-        //        if (Product.Image_Upload != null)
-        //        {
-        //            string full_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", Product.Image_Upload.FileName);
-        //            using (var file = new FileStream(full_path, FileMode.Create))
-        //            {
-        //                Product.Image_Upload.CopyTo(file);
-        //            }
-        //            image = Product.Image_Upload.FileName;
-        //        }
-        //        //-- Parse lại dữ liệu từ ViewModel
-        //        var prd = new Product() { Id = Product.Id, HEXCode = Product.HEXCode, Name = Product.Name, Status = Product.Status, Image = image };
+        [Route("/productdetail/{color_id}/{product_id}")]
+		public async Task<ActionResult> ProductDetail(string color_id, Guid product_id)
+		{
+			try
+			{
+                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
+                    ViewData["Mess"] = HttpContext.Session.GetString("mess");
+                HttpContext.Session.Remove("mess");
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                return View(await pService.GetProductDetail(color_id, product_id, customer));
+			}
+			catch (Exception ex)
+			{
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Login");
+            }
+		}
 
-        //        //-- Check hành động là Create hay update
-        //        if (Product.Id == null) url += "Product/add-Product";
-        //        else url += "Product/update-Product";
+        public async Task<ActionResult> AddToCart(string cTotalMoney, string cColor, string cSize, string cQuantity, string cPrice, string cProductId, string cDescription)
+        {
+            try
+            {
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                if (customer == null) return RedirectToAction("Index", "Login");
 
+                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                bool result = await pService.AddToCart(cTotalMoney, cColor, cSize, cQuantity, cPrice, cProductId, cDescription, customer.Id);
+                if (!result)
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("ProductDetail", "Product", new { color_id = cColor, product_id = new Guid(cProductId) });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Login");
+            }
+        }
 
-        //public async Task<JsonResult> Detail(int id)
-        //{
-        //    var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "Product/get-all-Product"));
-        //    var data2 = lstObjs.FirstOrDefault(c => c.Id == id);
-        //    return Json(data2);
-        //}
+        [HttpGet]
+        public ActionResult Order(string products)
+        {
+            List<ProdOrder> lstProdOrders = JsonConvert.DeserializeObject<List<ProdOrder>>(products);
+            Commons.setObjectAsJson(HttpContext.Session, "productOrders", lstProdOrders);
+            // Xử lý danh sách đối tượng ở đây
+            return Ok();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> RemoveToCart(string products)
+        {
+            List<ProdOrder> lstProdOrders = JsonConvert.DeserializeObject<List<ProdOrder>>(products);
+            var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+            foreach (var item in lstProdOrders)
+            {
+                string urlRemoveCartDetail = string.Concat(Commons.mylocalhost, "Cart/delete-cart-detail?id=", new Guid(item.cartId), "&productVariation_id=", new Guid(item.prodVariationId));
+                var RestRemoveCartDetail = new RestSharpHelper(urlRemoveCartDetail);
+                var resRemoveCartDetail = await RestRemoveCartDetail.RequestBaseAsync(urlRemoveCartDetail, RestSharp.Method.Delete);
+                if (!resRemoveCartDetail.IsSuccessful)
+                    HttpContext.Session.SetString("mess", "Failed");
+            }
+            HttpContext.Session.SetString("mess", "Success");
+            var productId = lstProductvariation.Where(c => c.Id == new Guid(lstProdOrders.Select(c => c.prodVariationId).FirstOrDefault())).Select(c => c.ProductId).FirstOrDefault();
+            // Xử lý danh sách đối tượng ở đây
+            return RedirectToAction("ProductDetail", "Product", new { product_id = productId });
+        }
+        [HttpGet]
+        public ActionResult GetCustomerInfo()
+        {
+            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+            return Ok(customer);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> ReleaseHeart(string cProductId)
+        {
+            try
+            {
+                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                await pService.ReleaseHeart(cProductId);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Login");
+            }
+        }
+        public async Task<ActionResult> ShowDetailMyCart(string prodName, int? brand, decimal? fPrice, decimal? tPrice)
+		{
+			try
+			{
+				var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+				if (customer == null) return RedirectToAction("Index", "Login");
+				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
+				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
+				int valBrand = brand.HasValue ? brand.Value : -1;
+
+				this.ViewData[nameof(prodName)] = (object)prodName;
+				this.ViewData[nameof(fPrice)] = (object)valFromPrice;
+				this.ViewData[nameof(tPrice)] = (object)valFromPrice;
+				this.ViewData[nameof(brand)] = (object)valBrand;
+				GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
+                    ViewData["Mess"] = HttpContext.Session.GetString("mess");
+                HttpContext.Session.Remove("mess");
+                return View(await pService.ShowMyCart(customer.Id, prodName, valFromPrice, valToPrice, valBrand));
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex);
+				return RedirectToAction("AccessDenied", "Login");
+			}
+		}
+
+        public ActionResult ProdNomal()
+        {
+            return RedirectToAction("Index", "Product", new { type = 0 });
+        }
+        public ActionResult ProdNew()
+        {
+            return RedirectToAction("Index", "Product", new { type = 1 });
+        }
+        public ActionResult ProdFeatured()
+        {
+            return RedirectToAction("Index", "Product", new { type = 2 });
+        }
+        public ActionResult ProdFavorited()
+        {
+            return RedirectToAction("Index", "Product", new { type = 3 });
+        }
+        public ActionResult ProdPromotional()
+        {
+            return RedirectToAction("Index", "Product", new { type = 4 });
+        }
     }
 }

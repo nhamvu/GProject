@@ -53,7 +53,8 @@ namespace GProject.Api.MyServices.Services
             temp.Description = cv.Description;
             temp.Name = cv.Name;
             temp.Price = cv.Price;
-            temp.ImportPrice = cv.ImportPrice;
+			temp.ProductType = cv.ProductType;
+			temp.ImportPrice = cv.ImportPrice;
             if (_iProductRepository.Update(temp))
             {
                 return true;

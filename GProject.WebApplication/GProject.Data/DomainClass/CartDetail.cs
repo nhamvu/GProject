@@ -20,6 +20,7 @@ namespace GProject.Data.DomainClass
         public decimal ToatlMoney { get; set; }
         public DateTime CreateDate { get; set; }
         public CartDetailStatus Status { get; set; }
+        public string Description { get; set; }
         public Cart? CartId_Navigation { get; set; }
         public ProductVariation? ProductVariationId_Navigation { get; set; }
     }

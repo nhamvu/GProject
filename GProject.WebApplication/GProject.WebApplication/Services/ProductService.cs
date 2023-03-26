@@ -4,6 +4,7 @@ using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Newtonsoft.Json;
+using System.Security.Claims;
 using System.Xml.Linq;
 
 namespace GProject.WebApplication.Services
@@ -12,6 +13,7 @@ namespace GProject.WebApplication.Services
     {
         public async Task<List<ProductDTO>> GetProductViewModel()
         {
+            //var result = _product_DetailRepository.GetAll().Join(_productRepository.GetAll(), a => a.Product_Id, b => b.Id, (a, b) => new { a, b }).Join(_colorRepository.GetAll(), c => c.a.Color_Id, d => d.Id, (c, d) => new { c, d }).Join(_categoryRepository.GetAll(), e => e.c.a.Category_Id, f => f.Id, (e, f) => new { e, f }).Join(_producerRepository.GetAll(), g => g.e.c.a.Producer_Id, h => h.Id, (g, h) => new { g, h }).Select(i => new { Producer = i.h, Category = i.g.f, Color = i.g.e.d, Product = i.g.e.c.b, Product_Detail = i.g.e.c.a });
             var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
@@ -19,6 +21,191 @@ namespace GProject.WebApplication.Services
                .Join(lstBrand, a => a.BrandId, b => b.Id, (a, b) => new { a, b })
                .Select(i => new { Product = i.a, Brand = i.b, ProductVariations = lstProductvariation.Where(c => c.ProductId == i.a.Id).ToList() });
             return Commons.ConverObject<List<ProductDTO>>(data);
+        }
+
+        public async Task<(Pager pager, Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?> tuple)> GetDataForIndex(string type, int pg, int pageSize)
+        {
+            var products = await GetProductViewModel();
+            if (!string.IsNullOrEmpty(type))
+            {
+                products = products.Where(c => c.Product.ProductType.Contains(type)).ToList();
+            }
+			if (pg < 1)
+				pg = 1;
+
+			int recsCount = products.Count();
+			var pager = new Pager(recsCount, pg, pageSize);
+			int recSkip = (pg - 1) * pageSize;
+			products = products.Skip(recSkip).Take(pageSize).ToList();
+			var lstColor = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
+            var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
+            var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+            return (pager, new Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?>(products, lstColor, lstSize, lstBrand));
+        }
+
+        public async Task<Tuple<Product?, List<ProductVariation>?, Brand?, string?>> GetProductDetail(string color_id, Guid product_id, Customer customer)
+        {
+            //-- Lấy danh sách sản phẩm
+            var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
+            var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+            var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+
+            var product = lstProducts.FirstOrDefault(c => c.Id == product_id);
+            if (product != null)
+            {
+                product.ViewCount = product.ViewCount + 1;
+                await Commons.Add_or_UpdateAsync(product, String.Concat(Commons.mylocalhost, "ProductMGR/update-Product-mgr"));
+            }
+
+            var productVariation = lstProductvariation.Where(c => c.ProductId == product_id).ToList();
+            string image = "";
+            if (!string.IsNullOrEmpty(color_id) && color_id != "none")
+            {
+                image = productVariation.Where(c => c.ColorId == int.Parse(color_id)).Select(c => c.Image).FirstOrDefault().NullToString();
+            }
+            return new Tuple<Product?, List<ProductVariation>?, Brand?, string?>(product,
+                    productVariation,
+                    lstBrand.FirstOrDefault(c => c.Id == product.BrandId), image);
+        }
+
+        public async Task<bool> AddToCart(string cTotalMoney, string cColor, string cSize, string cQuantity, string cPrice, string cProductId, string cDescription, Guid? customer_id)
+        {
+            //-- Lấy danh sách dữ liệu
+            var lstCart = await Commons.GetAll<Cart>(String.Concat(Commons.mylocalhost, "Cart/get-all-Cart"));
+            var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
+            var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+            string strUrl = "";
+            Guid cart_id = Guid.NewGuid();
+
+            //-- Kiểm tra xem khách hàng này đã tạo giỏ hàng hay chưa, nếu chưa => tạo giỏ hàng
+            Cart cart_data = lstCart.FirstOrDefault(c => c.CustomerId == customer_id);
+            if (cart_data == null)
+            {
+                cart_data = new Cart();
+                cart_data.Id = cart_id;
+                cart_data.CustomerId = customer_id;
+                cart_data.CartId = string.Concat(DateTime.Now.ToString("ddMMyy"), Commons.RandomString(9));
+                cart_data.CreateDate = DateTime.Now;
+                cart_data.UpdateDate = DateTime.Now;
+                cart_data.Status = 0;
+                cart_data.Description = cDescription;
+
+                strUrl = String.Concat(Commons.mylocalhost, "Cart/add-Cart");
+            }
+            else
+            {
+                cart_data.UpdateDate = DateTime.Now;
+                strUrl = String.Concat(Commons.mylocalhost, "Cart/update-Cart");
+            }
+
+            if (!await Commons.Add_or_UpdateAsync(cart_data, strUrl))
+                return false;
+
+            ProductVariation productVariation = lstProductvariation.FirstOrDefault(c => c.ProductId == new Guid(cProductId) && c.ColorId == int.Parse(cColor) && c.SizeId == int.Parse(cSize));
+            if (productVariation == null) return false;
+
+            //-- Kiểm tra xem sản phẩm này || variation này đã tồn tại trong giỏ hàng của người này hay chưa
+            CartDetail? cartdetail_data = lstCartDetail.FirstOrDefault(c => c.CartId == cart_data.Id
+                                        && c.ProductVariationId == productVariation.Id
+                                        && c.Price == decimal.Parse(cPrice));
+
+            if (cartdetail_data == null)
+            {
+                cartdetail_data = new CartDetail();
+                cartdetail_data.CartId = cart_data.Id;
+                cartdetail_data.ProductVariationId = productVariation.Id;
+                cartdetail_data.Price = decimal.Parse(cPrice);
+                cartdetail_data.Quantity = int.Parse(cQuantity);
+                cartdetail_data.CreateDate = DateTime.Now;
+                cartdetail_data.ToatlMoney = decimal.Parse(cTotalMoney);
+                cartdetail_data.Status = Data.Enums.CartDetailStatus.Ready;
+                cartdetail_data.Description = cDescription.NullToString();
+                strUrl = String.Concat(Commons.mylocalhost, "Cart/add-cart-detail");
+            }
+            else
+            {
+                cartdetail_data.Quantity += int.Parse(cQuantity);
+                cartdetail_data.ToatlMoney += decimal.Parse(cTotalMoney);
+                cartdetail_data.Description = cDescription;
+                strUrl = String.Concat(Commons.mylocalhost, "Cart/update-cart-detail");
+            }
+
+            if (!await Commons.Add_or_UpdateAsync(cartdetail_data, strUrl))
+                return false;
+
+            return true;
+        }
+
+        public async Task<bool> ReleaseHeart(string cProductId)
+        {
+            var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
+            var product = lstProducts.FirstOrDefault(c => c.Id == new Guid(cProductId));
+            bool result = true;
+            if (product != null)
+            {
+                product.LikeCount = product.LikeCount + 1;
+                result = await Commons.Add_or_UpdateAsync(product, String.Concat(Commons.mylocalhost, "ProductMGR/update-Product-mgr"));
+
+            }
+            return result;
+        }
+
+        public async Task<List<CartDTO>> ShowMyCart(Guid? customer_id, string prodName, decimal? fPrice, decimal? tPrice, int? brand)
+        {
+			var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
+			var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+			var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+			var lstCart = await Commons.GetAll<Cart>(String.Concat(Commons.mylocalhost, "Cart/get-all-Cart"));
+			var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
+			var lstColor = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
+			var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
+
+			var result = lstProducts
+						.Join(lstProductvariation,
+							  t1 => t1.Id,
+							  t2 => t2.ProductId,
+							  (t1, t2) => new { t1, t2 })
+						.Join(lstBrand,
+							  t12 => t12.t1.BrandId,
+							  t3 => t3.Id,
+							  (t12, t3) => new { t12.t1, t12.t2, t3 })
+						.Join(lstCartDetail,
+							  t123 => t123.t2.Id,
+							  t4 => t4.ProductVariationId,
+							  (t123, t4) => new { t123.t1, t123.t2, t123.t3, t4 })
+						.Join(lstCart,
+							  t1234 => t1234.t4.CartId,
+							  t5 => t5.Id,
+							  (t1234, t5) => new { t1234.t1, t1234.t2, t1234.t3, t1234.t4, t5 })
+						.Join(lstColor,
+							  t12345 => t12345.t2.ColorId,
+							  t6 => t6.Id,
+							  (t12345, t6) => new { t12345.t1, t12345.t2, t12345.t3, t12345.t4, t12345.t5, t6 })
+						.Join(lstSize,
+							  t123456 => t123456.t2.SizeId,
+							  t7 => t7.Id,
+							  (t123456, t7) => new { t123456.t1, t123456.t2, t123456.t3, t123456.t4, t123456.t5, t123456.t6, t7 })
+                        .Where(c => c.t5.CustomerId == customer_id)
+						.Select(result => new {
+							Product = result.t1,
+							ProductVariation = result.t2,
+							Brand = result.t3,
+							CartDetail = result.t4,
+							Cart = result.t5,
+							Color = result.t6,
+							Size = result.t7
+						}).ToList();
+			List<CartDTO> carts = Commons.ConverObject<List<CartDTO>>(result);
+			if (!string.IsNullOrEmpty(prodName))
+				carts = carts.Where(c => c.Product.Name.ToLower().Contains(prodName.ToLower())).ToList();
+			if (brand != -1)
+				carts = carts.Where(c => c.Brand.Id == brand).ToList();
+			if (fPrice != -1)
+				carts = carts.Where(c => c.Product.Price >= fPrice).ToList();
+			if (tPrice != -1)
+				carts = carts.Where(c => c.Product.Price <= tPrice).ToList();
+
+			return carts;
         }
     }
 }
