@@ -58,20 +58,6 @@ namespace GProject.WebApplication.Controllers
         //        if (Product.Id == null) url += "Product/add-Product";
         //        else url += "Product/update-Product";
 
-        //        //-- Gửi request cho api sử lí
-        //        bool result = await Commons.Add_or_UpdateAsync(prd, url);
-        //        if (!result) 
-        //            HttpContext.Session.SetString("mess", "Failed");
-        //        else 
-        //            HttpContext.Session.SetString("mess", "Success");
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //}
 
         //public async Task<JsonResult> Detail(int id)
         //{

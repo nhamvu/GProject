@@ -127,55 +127,6 @@ namespace GProject.WebApplication.Controllers
                 }
                 return BadRequest();
                 #endregion
-                //#region Đăng nhập khi đã tạo đc user
-                //ViewBag.Error = "Đăng nhập không thành công! Vui lòng nhập lại thông tin đăng nhập!";
-                ////--Kiểm tra dữ liệu đầu vào
-                //if (ModelState.IsValid == true)
-                //{
-                //    var Employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
-                //    Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
-
-                //    var Customers = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
-                //    Customer Cus = Customers.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
-                //    if (Emp != null)
-                //    {
-                //        var claims = new List<Claim>();
-                //        claims.Add(new Claim("username", Emp.Name));
-                //        claims.Add(new Claim(ClaimTypes.NameIdentifier, Emp.EmployeeId));
-                //        claims.Add(new Claim(ClaimTypes.Email, Emp.EmployeeId));
-                //        claims.Add(new Claim(ClaimTypes.Name, Emp.Name));
-                //        claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
-                //        if (Emp.Position == Data.Enums.EmployeePosition.Manager)
-                //        {
-                //            claims.Add(new Claim(ClaimTypes.Role, "manager"));
-                //        }
-                //        else
-                //        {
-                //            claims.Add(new Claim(ClaimTypes.Role, "employee"));
-                //        }
-                //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                //        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                //        await HttpContext.SignInAsync(claimsPrincipal);
-                //        return RedirectToAction("Index", "Color");
-                //    }
-                //    else if (Cus != null)
-                //    {
-                //        var claims = new List<Claim>();
-                //        claims.Add(new Claim("username", Cus.Name));
-                //        claims.Add(new Claim(ClaimTypes.NameIdentifier, Cus.CustomerId));
-                //        claims.Add(new Claim(ClaimTypes.Email, Cus.Email));
-                //        claims.Add(new Claim(ClaimTypes.Name, Cus.Name));
-                //        claims.Add(new Claim(ClaimTypes.Role, "customer"));
-                //        claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
-                //        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                //        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                //        await HttpContext.SignInAsync(claimsPrincipal);
-                //        return RedirectToAction("Index", "Home");
-                //    }
-                //    else { return View(); }
-                //}
-                //return BadRequest();
-                //#endregion
             }
             catch (Exception)
             {
