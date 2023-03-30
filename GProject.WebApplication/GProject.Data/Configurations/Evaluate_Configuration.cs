@@ -17,6 +17,7 @@ namespace GProject.Data.Configurations
             builder.HasKey(c => c.Id);
             builder.Property(e => e.Id).HasDefaultValueSql("(newid())");
             builder.HasOne(d => d.ProductId_Navigation).WithMany(p => p.Evaluates).HasForeignKey(d => d.ProductId);
+            builder.HasOne(d => d.CustomerId_Navigation).WithMany(p => p.Evaluates).HasForeignKey(d => d.CustomerId);
         }
     }
 }

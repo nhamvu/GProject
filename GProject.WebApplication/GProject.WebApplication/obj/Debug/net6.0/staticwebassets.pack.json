@@ -2017,6 +2017,14 @@
       "PackagePath": "staticwebassets\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\sao_trang.png",
+      "PackagePath": "staticwebassets\\images\\sao_trang.png"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\sao_vang.jpg",
+      "PackagePath": "staticwebassets\\images\\sao_vang.jpg"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\shopping-cart.png",
       "PackagePath": "staticwebassets\\images\\shopping-cart.png"
     },

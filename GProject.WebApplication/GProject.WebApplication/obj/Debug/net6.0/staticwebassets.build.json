@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ggygoRUkMlopFG5ZTwSZEX983/owO6xECMOIuuG8+3E=",
+  "Hash": "FZSjFpfryTH3vXeldhagUTYAw/seubtgMWcJiWWItRM=",
   "Source": "GProject.WebApplication",
   "BasePath": "_content/GProject.WebApplication",
   "Mode": "Default",
@@ -7167,6 +7167,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\RedColor.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\sao_trang.png",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "images/sao_trang.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\sao_trang.png"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\sao_vang.jpg",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "images/sao_vang.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\sao_vang.jpg"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\shopping-cart.png",

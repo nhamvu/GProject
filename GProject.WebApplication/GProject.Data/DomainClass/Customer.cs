@@ -32,5 +32,6 @@ namespace GProject.Data.DomainClass
         public List<Contact>? Contacts { get; set; }
         public List<ViewHistory>? ViewHistories { get; set; }
         public List<FavoriteProduct>? FavoriteProducts { get; set; }
+        public List<Evaluate>? Evaluates { get; set; }
     }
 }

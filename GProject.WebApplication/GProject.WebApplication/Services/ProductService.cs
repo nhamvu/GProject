@@ -43,12 +43,16 @@ namespace GProject.WebApplication.Services
             return (pager, new Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?>(products, lstColor, lstSize, lstBrand));
         }
 
-        public async Task<Tuple<Product?, List<ProductVariation>?, Brand?, string?>> GetProductDetail(string color_id, Guid product_id, Customer customer)
+        public async Task<Tuple<Product?, List<ProductVariation>?, Brand?, EvaluateCommentDTO, decimal, int, Customer>> GetProductDetail(Guid product_id, Customer customer)
         {
+            decimal ratingSum = 0;
+            int ratingCount = 0;
+
             //-- Lấy danh sách sản phẩm
             var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+            var lstEvaluate = await Commons.GetAll<Evaluate>(String.Concat(Commons.mylocalhost, "Evaluate/get-all-Evaluate"));
 
             var product = lstProducts.FirstOrDefault(c => c.Id == product_id);
             if (product != null)
@@ -58,14 +62,34 @@ namespace GProject.WebApplication.Services
             }
 
             var productVariation = lstProductvariation.Where(c => c.ProductId == product_id).ToList();
-            string image = "";
-            if (!string.IsNullOrEmpty(color_id) && color_id != "none")
+
+            //-- Đánh giá
+            EvaluateCommentDTO evaDTO= new EvaluateCommentDTO();
+            evaDTO.Title = product.Name;
+            evaDTO.ProductId = product_id;
+            List<Evaluate> evaluates = new List<Evaluate>();
+            var Evalutes = lstEvaluate.Where(c => c.ProductId == product_id).ToList();
+            if (Evalutes != null)
             {
-                image = productVariation.Where(c => c.ColorId == int.Parse(color_id)).Select(c => c.Image).FirstOrDefault().NullToString();
+                evaluates = Evalutes;
             }
-            return new Tuple<Product?, List<ProductVariation>?, Brand?, string?>(product,
+            evaDTO.Evaluates = evaluates;
+
+            var ratings = lstEvaluate.Where(c => c.ProductId == product_id).ToList();
+            if (ratings.Count() > 0)
+            {
+                ratingSum = ratings.Sum(c => c.Rating).NullToDecimal();
+                ratingCount = ratings.Count();
+            }
+            else
+            {
+                ratingSum = 0;
+                ratingCount = 0;
+            }
+
+            return new Tuple<Product?, List<ProductVariation>?, Brand?, EvaluateCommentDTO, decimal, int, Customer>(product,
                     productVariation,
-                    lstBrand.FirstOrDefault(c => c.Id == product.BrandId), image);
+                    lstBrand.FirstOrDefault(c => c.Id == product.BrandId), evaDTO, ratingSum, ratingCount, customer);
         }
 
         public async Task<bool> AddToCart(string cTotalMoney, string cColor, string cSize, string cQuantity, string cPrice, string cProductId, string cDescription, Guid? customer_id)

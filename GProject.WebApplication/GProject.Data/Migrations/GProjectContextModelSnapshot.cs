@@ -559,6 +559,9 @@ namespace GProject.Data.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
@@ -569,6 +572,8 @@ namespace GProject.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("ProductId");
 
@@ -1280,9 +1285,15 @@ namespace GProject.Data.Migrations
 
             modelBuilder.Entity("GProject.Data.DomainClass.Evaluate", b =>
                 {
+                    b.HasOne("GProject.Data.DomainClass.Customer", "CustomerId_Navigation")
+                        .WithMany("Evaluates")
+                        .HasForeignKey("CustomerId");
+
                     b.HasOne("GProject.Data.DomainClass.Product", "ProductId_Navigation")
                         .WithMany("Evaluates")
                         .HasForeignKey("ProductId");
+
+                    b.Navigation("CustomerId_Navigation");
 
                     b.Navigation("ProductId_Navigation");
                 });
@@ -1441,6 +1452,8 @@ namespace GProject.Data.Migrations
                     b.Navigation("Carts");
 
                     b.Navigation("Contacts");
+
+                    b.Navigation("Evaluates");
 
                     b.Navigation("FavoriteProducts");
 

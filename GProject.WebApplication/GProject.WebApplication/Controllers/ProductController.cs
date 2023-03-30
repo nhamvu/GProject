@@ -43,8 +43,8 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-        [Route("/productdetail/{color_id}/{product_id}")]
-		public async Task<ActionResult> ProductDetail(string color_id, Guid product_id)
+        [Route("/productdetail/{product_id}")]
+		public async Task<ActionResult> ProductDetail(Guid product_id)
 		{
 			try
 			{
@@ -53,7 +53,7 @@ namespace GProject.WebApplication.Controllers
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                return View(await pService.GetProductDetail(color_id, product_id, customer));
+                return View(await pService.GetProductDetail(product_id, customer));
 			}
 			catch (Exception ex)
 			{
@@ -75,7 +75,7 @@ namespace GProject.WebApplication.Controllers
                     HttpContext.Session.SetString("mess", "Failed");
                 else
                     HttpContext.Session.SetString("mess", "Success");
-                return RedirectToAction("ProductDetail", "Product", new { color_id = cColor, product_id = new Guid(cProductId) });
+                return RedirectToAction("ProductDetail", "Product", new { product_id = new Guid(cProductId) });
             }
             catch (Exception ex)
             {

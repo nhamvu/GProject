@@ -1,4 +1,4 @@
-﻿@model Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>, GProject.Data.DomainClass.Brand, string>
+﻿@model Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>, GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
@@ -7,8 +7,19 @@
 @{
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var ratingSum = Model.Item5;
+    var ratingCount = Model.Item6;
+    decimal rating = 0;
+    if (ratingCount > 0)
+    {
+        rating = (ratingSum / ratingCount);
+    }
+    var totalRating = decimal.Parse(rating.ToString());
+
     var lstColor = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
     var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
+    var lstCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
 }
 <style>
 
@@ -85,7 +96,7 @@
             <div class="col-12 col-lg-7 overview-left container-fliud">
                 <div class="characteristics-image">
                     @{
-                        string img = !string.IsNullOrEmpty(Model.Item4) ? Model.Item4 : Model.Item2.Where(c => c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault();
+                        string img = Model.Item2.Where(c => c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault();
                     }
                     <img id="imgProd" style="width:650px;height:500px;" src="~/images/@img" alt="">
                 </div>
@@ -216,7 +227,59 @@
         </div>
         <h2><strong>Mô tả chi tiết:</strong> </h2>
         <br>
-        <p>@Model.Item1.Description</p>
+        <p>@Model.Item1.Description.NullToString()</p>
+
+        <!-- Bình luận, đánh giá-->
+        <h2> @Model.Item4.Title.NullToString()</h2>
+        <div>
+            <span class="starFadeN" id="sRate1"></span>
+            <span class="starFadeN" id="sRate2"></span>
+            <span class="starFadeN" id="sRate3"></span>
+            <span class="starFadeN" id="sRate4"></span>
+            <span class="starFadeN" id="sRate5"></span>
+        </div>
+        @if (Model.Item4.Evaluates.Count() > 0)
+        {
+            @foreach (var item in Model.Item4.Evaluates)
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-md-1 d-flex justify-content-between">
+                        @{
+                            string imgCusAvata = lstCustomer.Where(c => c.Id == item.ProductId).Select(c => c.Image).FirstOrDefault().NullToString();
+                            if (string.IsNullOrEmpty(imgCusAvata))
+                            {
+                                <img src="~/images/avatar.jpg" style="border-radius:50%; width:35px; border:2px solid black;">
+                            }
+                            else
+                            {
+                                <img src="~/images/@imgCusAvata" style="border-radius:50%; width:35px; border:2px solid black;">
+                            }
+                        }
+                    </div>
+                    <div class="col-md-11">
+                        <i style="margin-right: 30px; vertical-align: top;"><strong>@Model.Item7.Name</strong></i>
+                        <i style="margin-right: 30px; vertical-align: top;">@item.CreateDate</i>
+                        @for (int i = 0; i < item.Rating; i++)
+                        {
+                            <span class="starGlowN"></span>
+                        }
+                        @for (int i = item.Rating.NullToInt(); i < 5; i++)
+                        {
+                            <span class="starFadeN"></span>
+                        }
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-11">
+                        @Html.Raw(item.Comment.Replace("\n", "<br />"))
+                    </div>
+                </div>
+            }
+        }
+        <hr />
+        <partial name="_CommentBox">
     </div>
 }
 
@@ -517,5 +580,15 @@
 
     $('#btnCloseModal').click(function () {
         $('#OrderModal').modal('hide');
+    });
+
+    function SCRate(){
+        for(var i = 1; i<= @totalRating; i++){
+            $("#sRate" + i).attr('class', 'starGlowN');
+        }
+    }
+
+    $(function(){
+        SCRate();
     });
 </script>

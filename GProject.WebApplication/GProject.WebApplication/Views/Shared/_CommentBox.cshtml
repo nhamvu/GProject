@@ -1,0 +1,135 @@
+﻿@model Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>, GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, GProject.Data.DomainClass.Customer>
+<div class="dl-horizontal">
+    <dt>
+        Comment
+    </dt>
+    <dd>
+        <div class="commentBox">
+            @using (Html.BeginForm("Save", "Evaluate", FormMethod.Post, new { onsubmit = "return SubmitComment()" }))
+            {
+                @Html.AntiForgeryToken();
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">
+                            Your rating <span style="font-weight:normal;">(1 Star is Bad, 5 Star is Good)</span>
+                        </label>
+                        <div class="col-md-7">
+                            <div onmouseout="CRateSelected()">
+                                <span class="starFade" id="Rate1" onclick="CRate(1)" onmouseover="CRateOver(1)"></span>
+                                <span class="starFade" id="Rate2" onclick="CRate(2)" onmouseover="CRateOver(2)"></span>
+                                <span class="starFade" id="Rate3" onclick="CRate(3)" onmouseover="CRateOver(3)"></span>
+                                <span class="starFade" id="Rate4" onclick="CRate(4)" onmouseover="CRateOver(4)"></span>
+                                <span class="starFade" id="Rate5" onclick="CRate(5)" onmouseover="CRateOver(5)"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <textarea id="Comment" name="Comment" rows="5" required style="width:100%; border:double 4px orange;" class="form-control" value="@Model.Item4.Comment"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="hidden" id="Id" name="Id" value="@Model.Item4.Id"/>
+                            <input type="hidden" id="ProductId" name="ProductId" value="@Model.Item4.ProductId"/>
+                            <input type="hidden" id="Rating" name="Rating" />
+                            <input type="submit" id="btnRegister" name="btnRegister" value="Submit Comment" class="btn btn-primary"/>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </dd>
+</div>
+<script>
+    function SubmitComment(){
+        if($('#Rating').val() == '0'){
+            alert("Please rate this service provider.");
+            return false;
+        }else
+        {
+            return true;
+        }
+    }
+
+    function CRate(r){
+        $('#Rating').val(r);
+        for(var i = 1; i <= r; i++){
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+
+        for (var i = r + 1; i <= 5; i++) {
+            $("#Rate" + i).attr('class', 'starFade');
+        }
+    }
+
+    function CRateOver(r){
+        for(var i = 1; i <= r; i++){
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+    }
+    function CRateOut(r){
+        for(var i = 1; i <= r; i++){
+            $("#Rate" + i).attr('class', 'starFade');
+        }
+    }
+    function CRateSelected() {
+        var setRating = $('#Rating').val();
+        for (var i = 1; i <= setRating; i++) {
+            $("#Rate" + i).attr('class', 'starGlow');
+        }
+    }
+</script>
+<style>
+
+    /* Set padding to keep content from hitting the edges */
+
+    .body-content {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Override the default bootstrap behavior where horizontal description lists
+        will truncate terms that are too long to fit in the left column
+    */
+
+    .dl-horizontal dt {
+        white-space: normal;
+    }
+
+    .commentBox {
+        background-color: #efefef;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .starFade {
+        background-image: url("/images/sao_trang.png");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .starFadeN {
+        background-image: url("/images/sao_trang.png");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+    }
+
+    .starGlow {
+        background-image: url("/images/sao_vang.jpg");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .starGlowN {
+        background-image: url("/images/sao_vang.jpg");
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+    }
+</style>
