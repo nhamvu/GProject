@@ -64,7 +64,7 @@ namespace GProject.WebApplication.Controllers
                     Description = Customer.Description,
                     Image = image
                 };
-
+                 
                 //-- Gửi request cho api sử lí
                 bool result = await Commons.Add_or_UpdateAsync(cus, Commons.mylocalhost + "Customer/add-Customer");
                 if (!result)
@@ -133,10 +133,10 @@ namespace GProject.WebApplication.Controllers
                 if (ModelState.IsValid == true)
                 {
                     var Employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
-                    Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
+                    Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password);
 
                     var Customers = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
-                    Customer Cus = Customers.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
+                    Customer Cus = Customers.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password);
                     if (Emp != null)
                     {
                         Commons.setObjectAsJson(HttpContext.Session, "userLogin", Emp);

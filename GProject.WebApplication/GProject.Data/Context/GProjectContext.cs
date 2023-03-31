@@ -18,7 +18,7 @@ namespace GProject.Data.Context
         {
             //@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATNChuan;Integrated Security=True"
             //@"Data Source=LAPTOP-2GTIBL55\SQLEXPRESS;Initial Catalog=GProject_Database;Integrated Security=True"
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATNChuan;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=D-SDC6-HUYLQ;Initial Catalog=ABC;Integrated Security=True");
         }
         public DbSet<AppUsers> AppUsers { get; set; }
         public DbSet<AppRoles> AppRoles { get; set; }

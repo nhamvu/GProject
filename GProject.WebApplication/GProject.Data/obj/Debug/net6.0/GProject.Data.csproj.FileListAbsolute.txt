@@ -54,3 +54,17 @@ C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debu
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.pdb
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.genruntimeconfig.cache
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\ref\GProject.Data.dll
+D:\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.deps.json
+D:\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.runtimeconfig.json
+D:\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.dll
+D:\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.pdb
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.csproj.AssemblyReference.cache
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.AssemblyInfoInputs.cache
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.AssemblyInfo.cs
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.csproj.CoreCompileInputs.cache
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.dll
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\refint\GProject.Data.dll
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.pdb
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.genruntimeconfig.cache
+D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\ref\GProject.Data.dll
