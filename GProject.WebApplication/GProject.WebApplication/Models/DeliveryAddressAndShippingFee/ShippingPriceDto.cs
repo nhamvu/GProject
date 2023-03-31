@@ -1,6 +1,7 @@
 ﻿namespace GProject.WebApplication.Models.DeliveryAddressAndShippingFee
 {
-    public class ShippingPrice
+    public class ShippingPriceDto
     {
+        public float total { get; set; }
     }
 }
