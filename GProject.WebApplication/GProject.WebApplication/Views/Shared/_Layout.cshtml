@@ -198,10 +198,6 @@
                 }
                 <li class="arrow">|</li>
                 <li class="arrow ">
-                    @{
-                        var name = User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Country)
-                        .Select(c => c.Value).FirstOrDefault();
-                    }
                     <a href="#" style="font-size:14px; color:white;">
                         @{
                             if (string.IsNullOrEmpty(name))
