@@ -48,6 +48,7 @@ namespace GProject.WebApplication.Services
 
         public async Task<List<DistrictDto>> GetDataDistrictsAsync(int id)
         {
+            if(id == 0) return new List<DistrictDto>();
             List<DistrictDto> DataDistrictsList = new List<DistrictDto>();
 
             var client = new HttpClient();
@@ -90,6 +91,7 @@ namespace GProject.WebApplication.Services
 
         public async Task<List<WardDto>> GetDataWardAsync(int id)
         {
+            if(id == 0) return new List<WardDto> { };
             List<WardDto> DataWardList = new List<WardDto>();
 
             var client = new HttpClient();

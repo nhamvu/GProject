@@ -12,16 +12,18 @@ using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 using System.Drawing;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using GProject.WebApplication.Services;
+using GProject.WebApplication.Models.DeliveryAddressAndShippingFee;
 
 namespace GProject.WebApplication.Controllers
 {
     [Authorize(Roles = "customer")]
     public class ProductController : Controller
     {
-
+        private readonly DeliveryAddressAndShippingFeeService _deliveryAddressAndShippingFeeService;
         public ProductController()
         {
-
+            _deliveryAddressAndShippingFeeService = new DeliveryAddressAndShippingFeeService();
         }
 
         //[HttpGet]
@@ -82,6 +84,8 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
+
+
         [HttpGet]
         public ActionResult Order(string products)
         {
@@ -131,11 +135,19 @@ namespace GProject.WebApplication.Controllers
                 return RedirectToAction("AccessDenied", "Login");
             }
         }
-        public async Task<ActionResult> ShowDetailMyCart(string prodName, int? brand, decimal? fPrice, decimal? tPrice)
+        public async Task<ActionResult> ShowDetailMyCart(string prodName, int? brand, decimal? fPrice, decimal? tPrice, int idProvince)
 		{
 			try
 			{
-				var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                //get data delivery address 
+
+                ViewBag.Province = (await _deliveryAddressAndShippingFeeService.GetDataProvincesAsync()).OrderBy(x => x.ProvinceID);
+
+                ViewData["Districts"] = (await _deliveryAddressAndShippingFeeService.GetDataDistrictsAsync(idProvince));
+
+                //
+
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
 				if (customer == null) return RedirectToAction("Index", "Login");
 				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
 				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
@@ -178,6 +190,20 @@ namespace GProject.WebApplication.Controllers
         public ActionResult ProdPromotional()
         {
             return RedirectToAction("Index", "Product", new { type = 4 });
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetDistricts(int id)
+        {
+            var districts = await _deliveryAddressAndShippingFeeService.GetDataDistrictsAsync(id);
+            return Json(districts);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetWards(int id)
+        {
+            var wards = await _deliveryAddressAndShippingFeeService.GetDataWardAsync(id);
+            return Json(wards);
         }
     }
 }

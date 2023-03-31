@@ -1969,6 +1969,10 @@
       "PackagePath": "staticwebassets\\images\\cach-cam-hoa-hong-de-ban-tho-1.jpg"
     },
     {
+      "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\cam.jpg",
+      "PackagePath": "staticwebassets\\images\\cam.jpg"
+    },
+    {
       "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\chaumaivang.jpg",
       "PackagePath": "staticwebassets\\images\\chaumaivang.jpg"
     },
@@ -1979,6 +1983,18 @@
     {
       "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\daquy2.jpg",
       "PackagePath": "staticwebassets\\images\\daquy2.jpg"
+    },
+    {
+      "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\den.webp",
+      "PackagePath": "staticwebassets\\images\\den.webp"
+    },
+    {
+      "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\do.jpg",
+      "PackagePath": "staticwebassets\\images\\do.jpg"
+    },
+    {
+      "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\download.jpg",
+      "PackagePath": "staticwebassets\\images\\download.jpg"
     },
     {
       "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\hinh-anh-gai-xinh-6.jpg",
@@ -2027,6 +2043,10 @@
     {
       "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\shopping-cart.png",
       "PackagePath": "staticwebassets\\images\\shopping-cart.png"
+    },
+    {
+      "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\trang.png",
+      "PackagePath": "staticwebassets\\images\\trang.png"
     },
     {
       "Id": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\tymImg.jpg",

@@ -4,9 +4,12 @@
 @using GProject.Api.MyServices.Services;
 @using GProject.Data.DomainClass;
 @using GProject.WebApplication.Helpers;
+@using GProject.WebApplication.Models.DeliveryAddressAndShippingFee;
+@using GProject.WebApplication.Services;
 @{
     ViewBag.Title = "Giỏ Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 
     IList<SelectListItem> StoreItems = new List<SelectListItem>();
     int brand = int.Parse(Html.Encode(ViewData["brand"]));
@@ -306,7 +309,7 @@
                         <h2 class="modal-title text-center"><strong><i class="fa fa-cubes" aria-hidden="true" style="margin-right:5px;"></i>THÔNG TIN ĐƠN HÀNG</strong></h2>
                     </div>
                     <div class="modal-body">
-                        <input type="text" id="cTotalMoney" name="cTotalMoney" hidden="hidden"/>
+                        <input type="text" id="cTotalMoney" name="cTotalMoney" hidden="hidden" />
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -330,7 +333,15 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingCity" name="ShippingCity" value="" placeholder="" class="form-control" />
+                                        <select id="selectProvince" class="form-select">
+                                            <option></option>
+                                            @foreach (var item in @ViewBag.Province)
+                                            {
+                                                <option value="@item.ProvinceID">
+                                                    @item.ProvinceName
+                                                </option>
+                                            }
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -338,7 +349,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingDistrict" name="ShippingDistrict" value="" placeholder="" class="form-control" />
+                                        <select id="selectDistrict"  class="form-select">
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +360,8 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingTown" name="ShippingTown" value="" placeholder="" class="form-control" />
+                                        <select id="selectWards" class="form-select">
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -435,6 +448,42 @@
                     }
                 });
             }
+        });
+
+        $("#selectProvince").change(function () {
+            let _id = $("#selectProvince").val();
+            
+            $.ajax({
+                url: "/Product/GetDistricts?id=" + _id,
+                type: "GET",
+                success: function(result){
+                    
+                    var renderData = "<option></option>";
+                    
+                    $.each(result, function (value) {
+                        renderData += '<option value="' + result[value].districtID + '">' + result[value].districtName + '</option>';
+                    });
+                    $("#selectDistrict").html(renderData)
+                }
+            })
+        });
+
+        $("#selectDistrict").change(function () {
+            let _id = $("#selectDistrict").val();
+            
+            $.ajax({
+                url: "/Product/GetWards?id=" + _id,
+                type: "GET",
+                success: function(result){
+                    debugger
+                    var renderData = "<option></option>";
+                    
+                    $.each(result, function (value) {
+                        renderData += '<option value="' + result[value].wardCode + '">' + result[value].wardName + '</option>';
+                    });
+                    $("#selectWards").html(renderData)
+                }
+            })
         });
 
         $('input.quantity').each(function () {
@@ -551,6 +600,8 @@
         $('#textTotalMoney').text(commasThousands(_totalPaymentMoney));
     }
 
+
+
     function changeSelectedProd(param) {
         var totalItem = parseFloat($(param).parents("tr").find("input[type=text].totalMoneyItem").val()) || 0;
         var _totalPayment = parseFloat($('#totalPayment').val()) || 0;
@@ -565,18 +616,18 @@
         loadMoney();
     }
 
-        function commasThousands(nStr) {
-            nStr += '';
-            nStr = nStr.replace(/,/g, '');
-            x = nStr.split('.');
-            x1 = x[0];
-            x2 = x.length > 1 ? '.' + x[1] : '';
-            var rgx = /(\d+)(\d{3})/;
-            while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, '$1' + ',' + '$2');
-            }
-            return x1 + x2;
+    function commasThousands(nStr) {
+        nStr += '';
+        nStr = nStr.replace(/,/g, '');
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
         }
+        return x1 + x2;
+    }
 
     function checkValidateData() {
         if ($('#ShippingFullName').val() == '') {
@@ -611,7 +662,7 @@
         return regex.test(code);
     }
 
-    function RemoveToCart(){
+    function RemoveToCart() {
         var products = [];
         $('input[name=cbid]:checked').each(function () {
             var _product = {};
