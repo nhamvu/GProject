@@ -310,6 +310,7 @@
                     </div>
                     <div class="modal-body">
                         <input type="text" id="cTotalMoney" name="cTotalMoney" hidden="hidden" />
+                        <input type="text" id="cShippingFee" name="cShippingFee" hidden="hidden" />
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -405,6 +406,22 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label col-md-12"><strong>Phí ship:</strong></label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p><strong id="txtPhiShip"></strong><strong style="margin-left: 5px;">đ</strong></p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label col-md-12"><strong>Tổng tiền sản phẩm:</strong></label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p><strong id="txtTotalProduct"></strong><strong style="margin-left: 5px;">đ</strong></p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-sm-7">
                                     <h2><label class="control-label col-md-12"><strong>Tổng tiền thanh toán:</strong></label></h2>
                                 </div>
@@ -451,15 +468,12 @@
         });
 
         $("#selectProvince").change(function () {
-            let _id = $("#selectProvince").val();
-            
+            let _id = $("#selectProvince").val();            
             $.ajax({
                 url: "/Product/GetDistricts?id=" + _id,
                 type: "GET",
-                success: function(result){
-                    
-                    var renderData = "<option></option>";
-                    
+                success: function(result){ 
+                    var renderData = "<option></option>"; 
                     $.each(result, function (value) {
                         renderData += '<option value="' + result[value].districtID + '">' + result[value].districtName + '</option>';
                     });
@@ -470,14 +484,11 @@
 
         $("#selectDistrict").change(function () {
             let _id = $("#selectDistrict").val();
-            
             $.ajax({
                 url: "/Product/GetWards?id=" + _id,
                 type: "GET",
                 success: function(result){
-                    debugger
                     var renderData = "<option></option>";
-                    
                     $.each(result, function (value) {
                         renderData += '<option value="' + result[value].wardCode + '">' + result[value].wardName + '</option>';
                     });
@@ -485,6 +496,23 @@
                 }
             })
         });
+
+        $("#selectWards").change(function () {
+            let district_id = $("#selectDistrict").val();
+            let ward_code = $("#selectWards").val()
+            $.ajax({
+                url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
+                type: "GET",
+                success: function(result){
+                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result;
+                    $("#txtPhiShip").text(commasThousands(result))
+                    $('#textTotalMoney').text(commasThousands(total));
+                    $('#cTotalMoney').val(total);
+                    $('#cShippingFee').val(result);
+                }
+            })
+        });
+
 
         $('input.quantity').each(function () {
             var $this = $(this),
@@ -596,8 +624,8 @@
             _totalPaymentMoney += parseFloat($(item).val());
         });
         $('#totalPayment').val(_totalPaymentMoney);
-        $('#cTotalMoney').val(_totalPaymentMoney);
-        $('#textTotalMoney').text(commasThousands(_totalPaymentMoney));
+        //$('#cTotalMoney').val(_totalPaymentMoney);
+        $('#txtTotalProduct').text(commasThousands(_totalPaymentMoney));
     }
 
 

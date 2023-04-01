@@ -48,6 +48,7 @@ namespace GProject.WebApplication.Controllers
 		{
 			try
 			{
+                ViewBag.Province = (await _deliveryAddressAndShippingFeeService.GetDataProvincesAsync()).OrderBy(x => x.ProvinceID);
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
@@ -143,7 +144,6 @@ namespace GProject.WebApplication.Controllers
 
                 ViewBag.Province = (await _deliveryAddressAndShippingFeeService.GetDataProvincesAsync()).OrderBy(x => x.ProvinceID);
 
-                ViewData["Districts"] = (await _deliveryAddressAndShippingFeeService.GetDataDistrictsAsync(idProvince));
 
                 //
 
@@ -204,6 +204,13 @@ namespace GProject.WebApplication.Controllers
         {
             var wards = await _deliveryAddressAndShippingFeeService.GetDataWardAsync(id);
             return Json(wards);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> ShippingFee(int district_id, string ward_code)
+        {
+            var fee = await _deliveryAddressAndShippingFeeService.ShippingFee(district_id, ward_code);
+            return Json(fee);
         }
     }
 }
