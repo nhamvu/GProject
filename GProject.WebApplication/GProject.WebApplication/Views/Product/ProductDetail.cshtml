@@ -353,7 +353,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" placeholder="+84" class="form-control" />
+                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -529,6 +529,9 @@
         if (checkValidateData()) {
             form.submit();
         }
+        else{
+            sweetAlert("", "Vui lòng nhập địa chỉ nhận hàng", "error");
+        }
     });
 
     function sumTotal() {
@@ -567,7 +570,7 @@
         if ($('#cColor').val() == '') {
             sweetAlert("", "Vui lòng chọn màu sắc", "error");
             return false;
-        }
+        }        
         return true;
     }
 
@@ -644,7 +647,7 @@
             success: function (result) {
                 $("#ShippingFullName").val(result.name);
                 $("#ShippingPhone").val(result.phoneNumber);
-                $("#ShippingAddress").val(result.address);
+@*                $("#ShippingAddress").val(result.address);*@
                 $("#ShippingEmail").val(result.email);
             }
         });

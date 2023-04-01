@@ -12,9 +12,9 @@ namespace GProject.WebApplication.Services
 
         }
 
-        public async Task<List<ProvinceDto>> GetDataProvincesAsync()
+        public async Task<List<DeliveryAddressDto>> GetDataProvincesAsync()
         {
-            List<ProvinceDto> DataprovinceList = new List<ProvinceDto>();
+            List<DeliveryAddressDto> deliveryAddressList = new List<DeliveryAddressDto>();
 
             var client = new HttpClient();
 
@@ -36,20 +36,20 @@ namespace GProject.WebApplication.Services
 
             foreach (var item in province.data)
             {
-                ProvinceDto dataProvince = new ProvinceDto();
-                dataProvince.ProvinceID = item.ProvinceID;
-                dataProvince.ProvinceName = item.ProvinceName;
+                DeliveryAddressDto deliveryAddress = new DeliveryAddressDto();
+                deliveryAddress.ProvinceID = item.ProvinceID;
+                deliveryAddress.ProvinceName = item.ProvinceName;
 
-                DataprovinceList.Add(dataProvince);
+                deliveryAddressList.Add(deliveryAddress);
             }
 
-            return DataprovinceList;
+            return deliveryAddressList;
         }
 
-        public async Task<List<DistrictDto>> GetDataDistrictsAsync(int id)
+        public async Task<List<DeliveryAddressDto>> GetDataDistrictsAsync(int id)
         {
-            if(id == 0) return new List<DistrictDto>();
-            List<DistrictDto> DataDistrictsList = new List<DistrictDto>();
+            if(id == 0) return new List<DeliveryAddressDto>();
+            List<DeliveryAddressDto> deliveryAddressList = new List<DeliveryAddressDto>();
 
             var client = new HttpClient();
 
@@ -78,21 +78,21 @@ namespace GProject.WebApplication.Services
 
             foreach (var item in districts.data)
             {
-                DistrictDto dataDistricts = new DistrictDto();
-                dataDistricts.DistrictID = item.DistrictID;
-                dataDistricts.DistrictName = item.DistrictName;
+                DeliveryAddressDto deliveryAddress = new DeliveryAddressDto();
+                deliveryAddress.DistrictID = item.DistrictID;
+                deliveryAddress.DistrictName = item.DistrictName;
 
-                DataDistrictsList.Add(dataDistricts);
+                deliveryAddressList.Add(deliveryAddress);
             }
 
-            return DataDistrictsList;
+            return deliveryAddressList;
         }
 
 
-        public async Task<List<WardDto>> GetDataWardAsync(int id)
+        public async Task<List<DeliveryAddressDto>> GetDataWardAsync(int id)
         {
-            if(id == 0) return new List<WardDto> { };
-            List<WardDto> DataWardList = new List<WardDto>();
+            if(id == 0) return new List<DeliveryAddressDto> { };
+            List<DeliveryAddressDto> deliveryAddressList = new List<DeliveryAddressDto>();
 
             var client = new HttpClient();
 
@@ -114,14 +114,14 @@ namespace GProject.WebApplication.Services
 
             foreach (var item in ward.data)
             {
-                WardDto dataWard = new WardDto();
-                dataWard.WardCode = item.WardCode;
-                dataWard.WardName = item.WardName;
+                DeliveryAddressDto deliveryAddress = new DeliveryAddressDto();
+                deliveryAddress.WardCode = item.WardCode;
+                deliveryAddress.WardName = item.WardName;
 
-                DataWardList.Add(dataWard);
+                deliveryAddressList.Add(deliveryAddress);
             }
 
-            return DataWardList;
+            return deliveryAddressList;
         }
 
 

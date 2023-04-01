@@ -370,7 +370,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" placeholder="+84" class="form-control" />
+                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -594,7 +594,7 @@
                     success: function (result) {
                         $("#ShippingFullName").val(result.name);
                         $("#ShippingPhone").val(result.phoneNumber);
-                        $("#ShippingAddress").val(result.address);
+                        //$("#ShippingAddress").val(result.address);
                         $("#ShippingEmail").val(result.email);
                     }
                 });
@@ -662,7 +662,7 @@
             sweetAlert("Thông báo", "Thông tin tên người mua không được để trống", "error");
             return false;
         }
-        if ($('#ShippingAddress').val() == '') {
+        if ($('#ShippingAddress').val() == '' ) {
             sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
             return false;
         }
