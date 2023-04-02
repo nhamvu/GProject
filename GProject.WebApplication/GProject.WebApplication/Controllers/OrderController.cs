@@ -24,18 +24,19 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Order(string cShippingFee, string cTotalMoney, string ShippingFullName, string ShippingPhone,
-            string ShippingCity, string ShippingDistrict, string ShippingTown, string ShippingAddress, string ShippingEmail, string cDescription, int PaymentType = 0)
+        public async Task<ActionResult> Order(string idDeliveryAddress, string cShippingFee, string cTotalMoney,  string ShippingEmail, string cDescription, int PaymentType = 0)
         {
             try
             {
                 List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
+                var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+                var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(idDeliveryAddress));
                 var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
                 if (customer == null) return RedirectToAction("Index", "Login");        
 
                 GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
-                bool result = await pService.AddToOrder(cShippingFee, cTotalMoney, ShippingFullName, ShippingPhone, ShippingCity, ShippingDistrict, ShippingTown, ShippingAddress,
+                bool result = await pService.AddToOrder(cShippingFee, cTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
                     ShippingEmail, cDescription, PaymentType, customer.Id, prodOrders);
 
                 if (!result)
@@ -54,18 +55,19 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> BuyNow(string cShippingFee, string pTotalMoney, string ShippingFullName, string ShippingPhone,
-            string ShippingCity, string ShippingDistrict, string ShippingTown, string ShippingAddress, string ShippingEmail, string cDescription, int PaymentType = 0)
+        public async Task<ActionResult> BuyNow(string idDeliveryAddress, string cShippingFee, string pTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
         {
             try
             {
                 List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
                 var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
+                var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+                var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(idDeliveryAddress));
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
                 if (customer == null) return RedirectToAction("Index", "Login");
 
                 GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
-                bool result = await pService.BuyNow( cShippingFee, pTotalMoney, ShippingFullName, ShippingPhone, ShippingCity, ShippingDistrict, ShippingTown, ShippingAddress,
+                bool result = await pService.BuyNow( cShippingFee, pTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
                     ShippingEmail, cDescription, PaymentType, customer.Id, prodOrders);
 
                 if (!result)

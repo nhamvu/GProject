@@ -294,66 +294,22 @@
                     <div class="modal-body">
                         <input type="text" id="pTotalMoney" name="pTotalMoney" hidden="hidden" />
                         <input type="text" id="cShippingFee" name="cShippingFee" hidden="hidden" />
+                        <input type="text" id="idDeliveryAddress" name="idDeliveryAddress" value="" hidden="hidden" />
+
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Họ và tên:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingFullName" name="ShippingFullName" value="" placeholder="" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
-                                    <div class="col-sm-12">
-                                        <select id="selectProvince" class="form-select">
+                                        <select id="selectDeliveryAddress" class="form-select">
                                             <option></option>
-                                            @foreach (var item in @ViewBag.Province)
+                                            @foreach (var item in ViewBag.DataAddress)
                                             {
-                                                <option value="@item.ProvinceID">
-                                                    @item.ProvinceName
+                                                <option value="@item.Id">
+                                                    @item.Name | @item.PhoneNumber, @item.Address, @item.WardName, @item.DistrictName, @item.ProvinceName
                                                 </option>
                                             }
                                         </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
-                                    <div class="col-sm-12">
-                                        <select id="selectDistrict" class="form-select">
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
-                                    <div class="col-sm-12">
-                                        <select id="selectWards" class="form-select">
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -432,51 +388,31 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        $("#selectProvince").change(function () {
-            let _id = $("#selectProvince").val();            
+        $("#selectDeliveryAddress").change(function () {
+            let _id = $("#selectDeliveryAddress").val();
             $.ajax({
-                url: "/Product/GetDistricts?id=" + _id,
+                url: "/Product/GetDataDeliveryAddress?id=" + _id,
                 type: "GET",
-                success: function(result){ 
-                    var renderData = "<option></option>"; 
-                    $.each(result, function (value) {
-                        renderData += '<option value="' + result[value].districtID + '">' + result[value].districtName + '</option>';
-                    });
-                    $("#selectDistrict").html(renderData)
+                success: function (result) {
+                    ShippingFee(result.districtID, result.wardCode)
+                    $("#idDeliveryAddress").val(result.id)
                 }
             })
         });
 
-        $("#selectDistrict").change(function () {
-            let _id = $("#selectDistrict").val();
-            $.ajax({
-                url: "/Product/GetWards?id=" + _id,
-                type: "GET",
-                success: function(result){
-                    var renderData = "<option></option>";
-                    $.each(result, function (value) {
-                        renderData += '<option value="' + result[value].wardCode + '">' + result[value].wardName + '</option>';
-                    });
-                    $("#selectWards").html(renderData)
-                }
-            })
-        });
-
-        $("#selectWards").change(function () {
-            let district_id = $("#selectDistrict").val();
-            let ward_code = $("#selectWards").val()
+        function ShippingFee(district_id, ward_code) {
             $.ajax({
                 url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
                 type: "GET",
-                success: function(result){
+                success: function (result) {
                     var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result;
                     $("#txtPhiShip").text(commasThousands(result))
                     $('#textTotalMoney').text(commasThousands(total));
-                    $('#pTotalMoney').val(total);
+                    $('#cTotalMoney').val(total);
                     $('#cShippingFee').val(result);
                 }
             })
-        });
+        }
 
         $('[data-quantity="plus"]').click(function (e) {
             e.preventDefault();

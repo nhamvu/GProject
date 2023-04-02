@@ -2145,6 +2145,10 @@
       "PackagePath": "staticwebassets\\js\\01-custom-places-example.js"
     },
     {
+      "Id": "D:\\Du_An_Tot_Nghiep\\Shipping Fee\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\Js_DeliveryAddress.js",
+      "PackagePath": "staticwebassets\\js\\Js_DeliveryAddress.js"
+    },
+    {
       "Id": "D:\\Du_An_Tot_Nghiep\\Shipping Fee\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\Sidebar_icons_animated.js",
       "PackagePath": "staticwebassets\\js\\Sidebar_icons_animated.js"
     },

@@ -49,6 +49,7 @@ namespace GProject.Data.Context
         public DbSet<Slide> Slides { get; set; }
         public DbSet<ViewHistory> ViewHistories { get; set; }
         public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
+        public DbSet<DeliveryAddress>  DeliveryAddresses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure using Fluent API
@@ -77,6 +78,7 @@ namespace GProject.Data.Context
             modelBuilder.ApplyConfiguration(new Slide_Configuration());
             modelBuilder.ApplyConfiguration(new ViewHistory_Configuration());
             modelBuilder.ApplyConfiguration(new FavoriteProduct_Configuration());
+            modelBuilder.ApplyConfiguration(new DeliveryAddress_Configuration());
 
             modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
             modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });

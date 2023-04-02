@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "abKN6Qy93CRam0eKzPa6FOoPf964mMc5B561UB9DxRc=",
+  "Hash": "DFWGYArCEa3pdBr2BaANNbjG4bESro2WcwSrfFioJpk=",
   "Source": "GProject.WebApplication",
   "BasePath": "_content/GProject.WebApplication",
   "Mode": "Default",
@@ -7592,6 +7592,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\easyAutoComplete.js"
+    },
+    {
+      "Identity": "D:\\Du_An_Tot_Nghiep\\Shipping Fee\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\Js_DeliveryAddress.js",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Du_An_Tot_Nghiep\\Shipping Fee\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "js/Js_DeliveryAddress.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Js_DeliveryAddress.js"
     },
     {
       "Identity": "D:\\Du_An_Tot_Nghiep\\Shipping Fee\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\js\\makeinput.js",

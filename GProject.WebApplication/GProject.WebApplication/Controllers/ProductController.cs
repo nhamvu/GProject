@@ -47,13 +47,14 @@ namespace GProject.WebApplication.Controllers
 		public async Task<ActionResult> ProductDetail(Guid product_id)
 		{
 			try
-			{
-                ViewBag.Province = (await _deliveryAddressAndShippingFeeService.GetDataProvincesAsync()).OrderBy(x => x.ProvinceID);
+			{                
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+                ViewBag.DataAddress = lstObjs.Where(x => x.CustomerId == customer.Id);
                 return View(await pService.GetProductDetail(product_id, customer));
 			}
 			catch (Exception ex)
@@ -140,14 +141,11 @@ namespace GProject.WebApplication.Controllers
 		{
 			try
 			{
-                //get data delivery address 
-
-                ViewBag.Province = (await _deliveryAddressAndShippingFeeService.GetDataProvincesAsync()).OrderBy(x => x.ProvinceID);
-
-
-                //
-
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+                ViewBag.DataAddress = lstObjs.Where(x => x.CustomerId == customer.Id);
+
+
 				if (customer == null) return RedirectToAction("Index", "Login");
 				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
 				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
@@ -192,25 +190,34 @@ namespace GProject.WebApplication.Controllers
             return RedirectToAction("Index", "Product", new { type = 4 });
         }
 
-        [HttpGet]
-        public async Task<JsonResult> GetDistricts(int id)
-        {
-            var districts = await _deliveryAddressAndShippingFeeService.GetDataDistrictsAsync(id);
-            return Json(districts);
-        }
+        //[HttpGet]
+        //public async Task<JsonResult> GetDistricts(int id)
+        //{
+        //    var districts = await _deliveryAddressAndShippingFeeService.GetDataDistrictsAsync(id);
+        //    return Json(districts);
+        //}
 
-        [HttpGet]
-        public async Task<JsonResult> GetWards(int id)
-        {
-            var wards = await _deliveryAddressAndShippingFeeService.GetDataWardAsync(id);
-            return Json(wards);
-        }
+        //[HttpGet]
+        //public async Task<JsonResult> GetWards(int id)
+        //{
+        //    var wards = await _deliveryAddressAndShippingFeeService.GetDataWardAsync(id);
+        //    return Json(wards);
+        //}
 
         [HttpGet]
         public async Task<JsonResult> ShippingFee(int district_id, string ward_code)
         {
             var fee = await _deliveryAddressAndShippingFeeService.ShippingFee(district_id, ward_code);
             return Json(fee);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetDataDeliveryAddress(int id)
+        {
+            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+            var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+            var data = lstObjs.FirstOrDefault(x => x.CustomerId == customer.Id && x.Id == id);
+            return Json(data);
         }
     }
 }
