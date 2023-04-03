@@ -142,9 +142,8 @@ namespace GProject.WebApplication.Controllers
 			try
 			{
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+                var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));                
                 ViewBag.DataAddress = lstObjs.Where(x => x.CustomerId == customer.Id);
-
 
 				if (customer == null) return RedirectToAction("Index", "Login");
 				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
@@ -189,21 +188,6 @@ namespace GProject.WebApplication.Controllers
         {
             return RedirectToAction("Index", "Product", new { type = 4 });
         }
-
-        //[HttpGet]
-        //public async Task<JsonResult> GetDistricts(int id)
-        //{
-        //    var districts = await _deliveryAddressAndShippingFeeService.GetDataDistrictsAsync(id);
-        //    return Json(districts);
-        //}
-
-        //[HttpGet]
-        //public async Task<JsonResult> GetWards(int id)
-        //{
-        //    var wards = await _deliveryAddressAndShippingFeeService.GetDataWardAsync(id);
-        //    return Json(wards);
-        //}
-
         [HttpGet]
         public async Task<JsonResult> ShippingFee(int district_id, string ward_code)
         {
@@ -218,6 +202,28 @@ namespace GProject.WebApplication.Controllers
             var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
             var data = lstObjs.FirstOrDefault(x => x.CustomerId == customer.Id && x.Id == id);
             return Json(data);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetVoucher(int? totalMoneyOrder, int? id)
+        {
+            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+            var lstVoucher = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
+            if (id == null && totalMoneyOrder != null)
+            {
+                var data = lstVoucher.Where(x => x.Status == 1 && x.ExpirationDate >= DateTime.Now && x.MinimumOrder <= totalMoneyOrder);
+                return Json(data);
+            }
+            else if(id != null && totalMoneyOrder == null)
+            {
+                var data = lstVoucher.FirstOrDefault(x => x.Id == id);
+                return Json(data);
+            }
+            else
+            {
+                return Json(null);
+            }
+            
         }
     }
 }

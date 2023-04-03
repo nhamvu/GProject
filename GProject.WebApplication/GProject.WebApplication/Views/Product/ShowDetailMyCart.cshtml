@@ -312,6 +312,7 @@
                         <input type="text" id="cTotalMoney" name="cTotalMoney" hidden="hidden" />
                         <input type="text" id="cShippingFee" name="cShippingFee" hidden="hidden" />
                         <input type="text" id="idDeliveryAddress" name="idDeliveryAddress" value="" hidden="hidden" />
+                        <input type="text" id="cGiamGia" name="cGiamGia" value="" hidden="hidden" />
 
                         <div class="row">
                             <div class="col-md-12">
@@ -330,7 +331,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>            
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -355,6 +356,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6"><strong>Mã giảm giá:<span style="color: red">(*)</span></strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectVoucher" class="form-select">
+                                            <option value="0"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>                        
                             <div class="form-group">
                                 <label class="control-label col-sm-3"><strong>Mô tả của bạn:</strong></label>
                                 <div class="col-sm-12">
@@ -366,7 +377,15 @@
                                     <label class="control-label col-md-12"><strong>Phí ship:</strong></label>
                                 </div>
                                 <div class="col-sm-2">
-                                    <p><strong id="txtPhiShip"></strong><strong style="margin-left: 5px;">đ</strong></p>
+                                    <p><strong id="txtPhiShip">0</strong><strong style="margin-left: 5px;">đ</strong></p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label col-md-12"><strong>Giảm giá:</strong></label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p><strong>- </strong> <strong id="txtGiamGia">0</strong><strong style="margin-left: 5px;">Vnd</strong></p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -404,7 +423,7 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function () {      
         document.querySelector('#formdata').addEventListener('submit', function (e) {
             var form = this;
             e.preventDefault();
@@ -421,7 +440,7 @@
                     }
                 });
             }
-        });     
+        });
 
         $("#selectDeliveryAddress").change(function () {
             let _id = $("#selectDeliveryAddress").val();
@@ -429,8 +448,18 @@
                 url: "/Product/GetDataDeliveryAddress?id=" + _id,
                 type: "GET",
                 success: function (result) {
-                    ShippingFee(result.districtID, result.wardCode)
-                    $("#idDeliveryAddress").val(result.id)
+                    if(result != null){
+                        ShippingFee(result.districtID, result.wardCode)
+                        $("#idDeliveryAddress").val(result.id)
+                    }
+                    else{
+                        var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''))
+                        swal("Thông báo!", "Bạn không được để trống thông tin địa chỉ!", "error");
+                        $("#txtPhiShip").text(commasThousands(0))
+                        $('#textTotalMoney').text(commasThousands(total));
+                        $('#cTotalMoney').val(total);
+                        $('#cShippingFee').val(0);
+                    }
                 }
             })
         });
@@ -439,8 +468,8 @@
             $.ajax({
                 url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
                 type: "GET",
-                success: function (result) {
-                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result;
+                success: function (result) { 
+                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
                     $("#txtPhiShip").text(commasThousands(result))
                     $('#textTotalMoney').text(commasThousands(total));
                     $('#cTotalMoney').val(total);
@@ -448,6 +477,61 @@
                 }
             })
         }
+
+        function GetDataVoucher(totalMoneyOrder) {
+            $.ajax({
+                url: "/Product/GetVoucher?totalMoneyOrder=" + totalMoneyOrder,
+                type: "GET",
+                success: function (result) {
+                    var renderData = "<option></option>";
+                    $.each(result, function (value) {
+                        renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
+                        renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + result[value].minimumOrder + 'đ)' + '</option>'
+                        renderData += '<option disabled style = "font-style:italic" > (HSD: ' + result[value].expirationDate + ')' + ' </option>'
+                        renderData += '<option disabled style="font-style:italic"></option>'
+                    });
+                    $("#selectVoucher").html(renderData)
+                }
+            })
+        }
+       
+        $("#selectVoucher").change(function () {
+            let _id = $("#selectVoucher").val();
+            $.ajax({
+                url: "/Product/GetVoucher?id=" + _id,
+                type: "GET",
+                success: function (result) {
+                    let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                    let discount = 0;
+                    if(result != null){                        
+                        if (result.discountForm == "%") {
+                            discount = TinhPhanTram(totalProduct, result.discountRate)
+                            $("#txtGiamGia").text(commasThousands(discount))
+                        }
+                        else {
+                            discount = result.discountRate
+                            $("#txtGiamGia").text(commasThousands(result.discountRate))
+                        }
+                        var total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    }
+                    else{
+                        $("#txtGiamGia").text(0)
+                        $("#txtDiscountForm").text("Vnd")
+                        var total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    }
+                    
+                    $('#textTotalMoney').text(commasThousands(total));
+                    $('#cTotalMoney').val(total);
+                    $('#cGiamGia').val(result.discountRate);
+                }
+            })
+        });
+
+        function TinhPhanTram(tongtien, giamgia) {
+            let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
+            return thanhtien
+        }
+
 
         $('input.quantity').each(function () {
             var $this = $(this),
@@ -493,6 +577,9 @@
                 swal('Lỗi', 'Bạn chưa chọn sản phẩm', 'error');
                 return;
             }
+
+            var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''))
+            GetDataVoucher(total);
 
             var products = [];
             $('input[name=cbid]:checked').each(function () {
@@ -592,7 +679,7 @@
         return x1 + x2;
     }
 
-    function checkValidateData() {       
+    function checkValidateData() {
         if ($('#ShippingEmail').val() == '') {
             sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
             return false;

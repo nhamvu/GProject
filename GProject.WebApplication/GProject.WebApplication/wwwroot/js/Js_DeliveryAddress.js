@@ -72,7 +72,6 @@ function LoadDataTable() {
         url: "/DeliveryAddress/GetDataDeliveryAddress",
         type: "GET",
         success: function (result) {
-            debugger
             var renderData = "";
             $.each(result, function (value) {
                 renderData += '<tr>';
