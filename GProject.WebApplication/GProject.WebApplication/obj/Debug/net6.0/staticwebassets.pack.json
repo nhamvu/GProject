@@ -2013,6 +2013,10 @@
       "PackagePath": "staticwebassets\\images\\maroonColor.PNG"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\nuaNgoiSao.PNG",
+      "PackagePath": "staticwebassets\\images\\nuaNgoiSao.PNG"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg",
       "PackagePath": "staticwebassets\\images\\phien-ban-93-nhung-thay-doi-cho-aatrox-akali-irelia-cassiopeia-va-camille.jpg"
     },

@@ -14,13 +14,73 @@ using Microsoft.Extensions.Logging;
 
 namespace GProject.WebApplication.Controllers
 {
-    [Authorize(Roles = "customer")]
+    [Authorize(Roles = "customer, manager, employee")]
     public class OrderController : Controller
     {
 
         public OrderController()
         {
 
+        }
+
+        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, int? sStatus, int pg = 1)
+        {
+            try
+            {
+
+                int valsPaymentType = sPaymentType.HasValue ? sPaymentType.Value : -1;
+                int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
+                var lstObjs = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
+
+                if (!string.IsNullOrEmpty(sName))
+                    lstObjs = lstObjs.Where(c => c.ShippingFullName.ToLower().Contains(sName.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(sEmail))
+                    lstObjs = lstObjs.Where(c => c.ShippingEmail.ToLower().Contains(sEmail.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(sPhone))
+                    lstObjs = lstObjs.Where(c => c.ShippingPhone.ToLower().Contains(sPhone.ToLower())).ToList();
+                if (valsPaymentType != -1)
+                    lstObjs = lstObjs.Where(c => (int)c.PaymentType == sPaymentType).ToList();
+                if (valsStatus != -1)
+                    lstObjs = lstObjs.Where(c => (int)c.Status == valsStatus).ToList();
+
+                const int pageSize = 20;
+                if (pg < 1)
+                    pg = 1;
+                var pager = new Pager(lstObjs.Count(), pg, pageSize);
+                var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
+                var data = new OrderDTO() { Orders = lstData };
+
+                this.ViewBag.Pager = pager;
+                this.ViewData[nameof(sName)] = (object)sName;
+                this.ViewData[nameof(sEmail)] = (object)sEmail;
+                this.ViewData[nameof(sPhone)] = (object)sPhone;
+                this.ViewData[nameof(sPaymentType)] = (object)valsPaymentType;
+                this.ViewData[nameof(sStatus)] = (object)valsStatus;
+                //-- truyền vào message nếu có thông báo
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
+                    ViewData["Mess"] = HttpContext.Session.GetString("mess");
+                HttpContext.Session.Remove("mess");
+                return View(data);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
+        }
+
+        public async Task<ActionResult> Detail(Guid id)
+        {
+            try
+            {
+                GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
+                return View(await pService.ShowMyOrder(id));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
         }
 
         [HttpPost]

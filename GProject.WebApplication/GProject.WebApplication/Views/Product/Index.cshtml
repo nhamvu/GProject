@@ -37,7 +37,7 @@
 		top: 0;
 		left: 0;
 		width: 100%;
-		height: 80%;
+		height: 100%;
 		background: rgba(0, 0, 0, 0.6);
 		color: #ffffff;
 		font-family: 'Quicksand', sans-serif;
@@ -75,6 +75,7 @@
 		font-size: 1.25em;
 		margin-top: 0.25em;
 	}
+
 </style>
 <div class="super_container">
 	<div class="col product_section clearfix">
@@ -208,11 +209,11 @@
 						@if (listProductNew.Count() > 0)
 						{
 							<h2><strong>SẢN PHẨM MỚI</strong></h2>
-							<div class="product-grid row">
+							<div class="product-grid" style="height:450px;">
 								@foreach (var x in listProductNew)
 								{
-									<div class="col-sm-3">
-										<div class="card poly-card mt-5">
+									<div class="product-item men">
+										<div class="product discount product_filter">
 											<div class="image">
 
 												@{
@@ -225,15 +226,41 @@
 												}
 												<img class="image__img" src="~/images/@image" alt="Bricks">
 												<div class="image__overlay image__overlay--primary">
-													<p class="image__description">Click để bắt đầu</p>
-													<button class="btn btn-primary" ng-click="fncStart_SelectSubject($index)">Bắt đầu</button>
+													<p class="image__description">Mua ngay</p>
+													<a class="btn btn-primary" href="/productdetail/@x.Product.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
 												</div>
 											</div>
 											<div class="card-body">
-												<h4 class="card-title text-center">Xem chi tiết</h4>
+												<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(x.Product.Price.ToString()))</strong></h4>
+												<div>
+													<h4 class="card-title text-center"><strong>@x.Product.Name</strong></h4>
+												</div>
 											</div>
 										</div>
 									</div>
+
+									@*<div class="product-item men">
+										<div class="product discount product_filter">
+											<div class="product_image">
+												@{
+													string image = "";
+													if (x.ProductVariations != null && x.ProductVariations.Count > 0)
+													{
+														var imgItem = x.ProductVariations.Select(c => c.Image).FirstOrDefault();
+														image = imgItem != null ? imgItem : "";
+													}
+												}
+												<img src="~/images/@image" alt="" style="height:250px;">
+											</div>
+											<div class="favorite favorite_left"></div>
+											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+											<div class="product_info">
+												<h6 class="product_name"><a href="single.html">@x.Product.Name</a></h6>
+												<div class="product_price">@x.Product.Price</div>
+											</div>
+										</div>
+										<div class="red_button add_to_cart_button"><a href="/productdetail/@x.Product.Id" style="color:black;">Xem chi tiết</a></div>
+									</div>*@
 								}
 							</div>
 						}
@@ -244,11 +271,11 @@
 						@if (listProductFeatured.Count() > 0)
 						{
 							<h2><strong>SẢN PHẨM NỔI BẬT</strong></h2>
-							<div class="product-grid row">
+							<div class="product-grid" style="height:450px;">
 								@foreach (var x in listProductFeatured)
 								{
-									<div class="col-sm-3">
-										<div class="card poly-card mt-5">
+									<div class="product-item men">
+										<div class="product discount product_filter">
 											<div class="image">
 
 												@{
@@ -261,18 +288,21 @@
 												}
 												<img class="image__img" src="~/images/@image" alt="Bricks">
 												<div class="image__overlay image__overlay--primary">
-													<p class="image__description">Click để bắt đầu</p>
-													<button class="btn btn-primary" ng-click="fncStart_SelectSubject($index)">Bắt đầu</button>
+													<p class="image__description">Mua ngay</p>
+													<a class="btn btn-primary" href="/productdetail/@x.Product.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
 												</div>
 											</div>
 											<div class="card-body">
-												<h4 class="card-title text-center">Xem chi tiết</h4>
+												<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(x.Product.Price.ToString()))</strong></h4>
+												<div>
+													<h4 class="card-title text-center"><strong>@x.Product.Name</strong></h4>
+												</div>
 											</div>
 										</div>
 									</div>
-												}
-										</div>
 								}
+							</div>
+						}
 
 						@{
 							var listProductFavorite = Model.Item1.Where(c => c.Product.ProductType.Contains("3")).ToList();
@@ -280,11 +310,11 @@
 						@if (listProductFavorite.Count() > 0)
 						{
 							<h2><strong>SẢN PHẨM ĐƯỢC YÊU THÍCH</strong></h2>
-							<div class="product-grid row">
+							<div class="product-grid" style="height:450px;">
 								@foreach (var x in listProductFavorite)
 								{
-									<div class="col-sm-3">
-										<div class="card poly-card mt-5">
+									<div class="product-item men">
+										<div class="product discount product_filter">
 											<div class="image">
 
 												@{
@@ -297,12 +327,15 @@
 												}
 												<img class="image__img" src="~/images/@image" alt="Bricks">
 												<div class="image__overlay image__overlay--primary">
-													<p class="image__description">Click để bắt đầu</p>
-													<button class="btn btn-primary" ng-click="fncStart_SelectSubject($index)">Bắt đầu</button>
+													<p class="image__description">Mua ngay</p>
+													<a class="btn btn-primary" href="/productdetail/@x.Product.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
 												</div>
 											</div>
 											<div class="card-body">
-												<h4 class="card-title text-center">Xem chi tiết</h4>
+												<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(x.Product.Price.ToString()))</strong></h4>
+												<div>
+													<h4 class="card-title text-center"><strong>@x.Product.Name</strong></h4>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -316,11 +349,11 @@
 						@if (listProductPromotional.Count() > 0)
 						{
 							<h2><strong>SẢN PHẨM ĐƯỢC GIẢM GIÁ</strong></h2>
-							<div class="product-grid row">
+							<div class="product-grid" style="height:450px;">
 								@foreach (var x in listProductPromotional)
 								{
-									<div class="col-sm-3">
-										<div class="card poly-card mt-5">
+									<div class="product-item men">
+										<div class="product discount product_filter">
 											<div class="image">
 
 												@{
@@ -333,12 +366,15 @@
 												}
 												<img class="image__img" src="~/images/@image" alt="Bricks">
 												<div class="image__overlay image__overlay--primary">
-													<p class="image__description">Click để bắt đầu</p>
-													<button class="btn btn-primary" ng-click="fncStart_SelectSubject($index)">Bắt đầu</button>
+													<p class="image__description">Mua ngay</p>
+													<a class="btn btn-primary" href="/productdetail/@x.Product.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
 												</div>
 											</div>
 											<div class="card-body">
-												<h4 class="card-title text-center">Xem chi tiết</h4>
+												<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(x.Product.Price.ToString()))</strong></h4>
+												<div>
+													<h4 class="card-title text-center"><strong>@x.Product.Name</strong></h4>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -352,12 +388,11 @@
 						@if (listProductNomal.Count() > 0)
 						{
 							<h2><strong>SẢN PHẨM BÌNH THƯỜNG</strong></h2>
-							<div class="product-grid row">
+							<div class="product-grid" style="height:450px;">
 								@foreach (var x in listProductNomal)
 								{
-
-									<div class="col-sm-6">
-										<div class="card poly-card mt-5">
+									<div class="product-item men">
+										<div class="product discount product_filter">
 											<div class="image">
 
 												@{
@@ -370,18 +405,18 @@
 												}
 												<img class="image__img" src="~/images/@image" alt="Bricks">
 												<div class="image__overlay image__overlay--primary">
-													<p class="image__description">Click để bắt đầu</p>
-													<button class="btn btn-primary" ng-click="fncStart_SelectSubject($index)">Bắt đầu</button>
+													<p class="image__description">Mua ngay</p>
+													<a class="btn btn-primary" href="/productdetail/@x.Product.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
 												</div>
 											</div>
 											<div class="card-body">
-												<h4 class="card-title text-center">Xem chi tiết</h4>
+												<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(x.Product.Price.ToString()))</strong></h4>
+												<div>
+													<h4 class="card-title text-center"><strong>@x.Product.Name</strong></h4>
+												</div>
 											</div>
 										</div>
 									</div>
-											</div>
-											</div>
-										</div>
 								}
 							</div>
 						}

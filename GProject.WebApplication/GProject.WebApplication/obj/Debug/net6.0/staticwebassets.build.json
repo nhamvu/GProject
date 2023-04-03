@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FZSjFpfryTH3vXeldhagUTYAw/seubtgMWcJiWWItRM=",
+  "Hash": "3VL2OLWSR1Sd79zwG9uZ3YnihTuaGVbbR/cuvtx+bxg=",
   "Source": "GProject.WebApplication",
   "BasePath": "_content/GProject.WebApplication",
   "Mode": "Default",
@@ -7082,6 +7082,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\maroonColor.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\nuaNgoiSao.PNG",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "images/nuaNgoiSao.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\nuaNgoiSao.PNG"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Olive.PNG",

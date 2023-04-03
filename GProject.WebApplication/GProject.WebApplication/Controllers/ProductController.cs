@@ -173,7 +173,7 @@ namespace GProject.WebApplication.Controllers
         {
             return RedirectToAction("Index", "Product", new { type = 2 });
         }
-        public ActionResult ProdFavorited()
+        public ActionResult ProdFavorite()
         {
             return RedirectToAction("Index", "Product", new { type = 3 });
         }

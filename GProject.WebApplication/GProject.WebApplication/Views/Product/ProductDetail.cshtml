@@ -20,6 +20,12 @@
     var lstColor = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
     var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
     var lstCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+    var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
+    var lstOrderDetail = await Commons.GetAll<OrderDetail>(String.Concat(Commons.mylocalhost, "Order/get-all-Order-detail"));
+    var isOrder = lstOrder
+                .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { A = a, B = b })
+                .Join(Model.Item2, ab => ab.B.ProductVariationId, c => c.Id, (ab, c) => new { A = ab.A, B = ab.B, C = c })
+                .Where(k => k.C.ProductId == Model.Item1.Id && k.A.CustomerId == Model.Item7.Id).Select(c => c.A.CustomerId).FirstOrDefault();
 }
 <style>
 
@@ -246,7 +252,7 @@
                 <div class="row">
                     <div class="col-md-1 d-flex justify-content-between">
                         @{
-                            string imgCusAvata = lstCustomer.Where(c => c.Id == item.ProductId).Select(c => c.Image).FirstOrDefault().NullToString();
+                            string imgCusAvata = lstCustomer.Where(c => c.Id == Model.Item7.Id).Select(c => c.Image).FirstOrDefault().NullToString();
                             if (string.IsNullOrEmpty(imgCusAvata))
                             {
                                 <img src="~/images/avatar.jpg" style="border-radius:50%; width:35px; border:2px solid black;">
@@ -279,7 +285,7 @@
             }
         }
         <hr />
-        <partial name="_CommentBox">
+        <partial id="commentBox" name="_CommentBox" hidden="hidden">
     </div>
 }
 
@@ -404,7 +410,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-
+        
         $('[data-quantity="plus"]').click(function (e) {
             e.preventDefault();
             fieldName = $(this).attr('data-field');
@@ -447,6 +453,11 @@
             else
                 swal("Thành công", "Thêm vào giỏ hàng thành công", "success");
         }
+
+        if (@isOrder != null) {
+            $('#commentBox').prop('hidden', false);
+        } else
+            $('#commentBox').prop('hidden', true);
     });
 
     document.querySelector('#formdata').addEventListener('submit', function (e) {

@@ -21,8 +21,8 @@ namespace GProject.Data.Enums
         [Description("Đã hoàn thành")]
         Accomplished = 3,
 
-        [Description("Đã trả hàng")]
-        Returned = 4,
+        [Description("Đã thanh toán")]
+        Paided = 4,
 
         [Description("Đã hủy")]
         Canceled = 5
