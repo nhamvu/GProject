@@ -270,31 +270,9 @@
 											</div>
 										</div>
 									</div>
-									@*<div class="product-item men">
-										<div class="product discount product_filter">
-											<div class="product_image">
-												@{
-													string image = "";
-													if (x.ProductVariations != null && x.ProductVariations.Count > 0)
-													{
-														var imgItem = x.ProductVariations.Select(c => c.Image).FirstOrDefault();
-														image = imgItem != null ? imgItem : "";
-													}
 												}
-												<img src="~/images/@image" alt="" style="height:250px;">
-											</div>
-											<div class="favorite favorite_left"></div>
-											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">@x.Product.Name</a></h6>
-												<div class="product_price">@x.Product.Price</div>
-											</div>
 										</div>
-										<div class="red_button add_to_cart_button"><a href="/productdetail/@x.Product.Id" style="color:black;">Xem chi tiết</a></div>
-									</div>*@
 								}
-							</div>
-						}
 
 						@{
 							var listProductFavorite = Model.Item1.Where(c => c.Product.ProductType.Contains("3")).ToList();
@@ -401,30 +379,9 @@
 											</div>
 										</div>
 									</div>
-
-
-									@*<div class="product-item men">
-										<div class="product discount product_filter">
-											<div class="product_image">
-												@{
-													string image = "";
-													if (x.ProductVariations != null && x.ProductVariations.Count > 0)
-													{
-														var imgItem = x.ProductVariations.Select(c => c.Image).FirstOrDefault();
-														image = imgItem != null ? imgItem : "";
-													}
-												}
-												<img src="~/images/@image" alt="" style="height:250px;">
 											</div>
-											<div class="favorite favorite_left"></div>
-											<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-											<div class="product_info">
-												<h6 class="product_name"><a href="single.html">@x.Product.Name</a></h6>
-												<div class="product_price">@x.Product.Price</div>
 											</div>
 										</div>
-										<div class="red_button add_to_cart_button"><a href="/productdetail/@x.Product.Id" style="color:black;">Xem chi tiết</a></div>
-									</div>*@
 								}
 							</div>
 						}
