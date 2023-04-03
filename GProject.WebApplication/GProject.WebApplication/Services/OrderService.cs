@@ -11,7 +11,7 @@ namespace GProject.WebApplication.Services
 {
     public class OrderService
     {
-        public async Task<bool> AddToOrder(string cShippingFee, string cTotalMoney, string ShippingFullName, string ShippingPhone,
+        public async Task<bool> AddToOrder(int selectVoucher, string cGiamGia, string cShippingFee, string cTotalMoney, string ShippingFullName, string ShippingPhone,
             string ShippingCity, string ShippingDistrict, string ShippingTown, string ShippingAddress, string ShippingEmail, string cDescription, int PaymentType = 0, Guid? customer_id = null, List<ProdOrder>? prodOrders = null)
         {
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
@@ -38,6 +38,8 @@ namespace GProject.WebApplication.Services
             order.ShippingFee = decimal.Parse(cShippingFee);
             order.Description = cDescription;
             order.Status = GProject.Data.Enums.OrderStatus.InProgress;
+            order.VoucherId = selectVoucher;
+            order.DiscountRate = Convert.ToSingle(cGiamGia);
 
             strUrl = String.Concat(Commons.mylocalhost, "Order/add-Order");
             if (!await Commons.Add_or_UpdateAsync(order, strUrl))

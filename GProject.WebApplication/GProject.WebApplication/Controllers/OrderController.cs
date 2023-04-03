@@ -24,7 +24,7 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Order(string idDeliveryAddress, string cShippingFee, string cTotalMoney,  string ShippingEmail, string cDescription, int PaymentType = 0)
+        public async Task<ActionResult> Order(int selectVoucher, string cGiamGia, string idDeliveryAddress, string cShippingFee, string cTotalMoney,  string ShippingEmail, string cDescription, int PaymentType = 0)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace GProject.WebApplication.Controllers
                 if (customer == null) return RedirectToAction("Index", "Login");        
 
                 GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
-                bool result = await pService.AddToOrder(cShippingFee, cTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
+                bool result = await pService.AddToOrder(selectVoucher, cGiamGia, cShippingFee, cTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
                     ShippingEmail, cDescription, PaymentType, customer.Id, prodOrders);
 
                 if (!result)

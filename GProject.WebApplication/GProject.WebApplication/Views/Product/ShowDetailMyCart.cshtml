@@ -360,7 +360,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-6"><strong>Mã giảm giá:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <select id="selectVoucher" class="form-select">
+                                        <select id="selectVoucher" name="selectVoucher" class="form-select">
                                             <option value="0"></option>
                                         </select>
                                     </div>
@@ -385,7 +385,7 @@
                                     <label class="control-label col-md-12"><strong>Giảm giá:</strong></label>
                                 </div>
                                 <div class="col-sm-2">
-                                    <p><strong>- </strong> <strong id="txtGiamGia">0</strong><strong style="margin-left: 5px;">Vnd</strong></p>
+                                    <p><strong>- </strong> <strong id="txtGiamGia">0</strong><strong style="margin-left: 5px;">đ</strong></p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -503,9 +503,10 @@
                 success: function (result) {
                     let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
                     let discount = 0;
+                    debugger
                     if(result != null){                        
                         if (result.discountForm == "%") {
-                            discount = TinhPhanTram(totalProduct, result.discountRate)
+                            discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
                             $("#txtGiamGia").text(commasThousands(discount))
                         }
                         else {
@@ -522,7 +523,7 @@
                     
                     $('#textTotalMoney').text(commasThousands(total));
                     $('#cTotalMoney').val(total);
-                    $('#cGiamGia').val(result.discountRate);
+                    $('#cGiamGia').val(discount);
                 }
             })
         });
@@ -580,6 +581,8 @@
 
             var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''))
             GetDataVoucher(total);
+            $('#textTotalMoney').text(commasThousands(total));
+            $('#cTotalMoney').val(total);
 
             var products = [];
             $('input[name=cbid]:checked').each(function () {
@@ -691,10 +694,10 @@
         return true;
     }
 
-    function validatePhoneNumber(code) {
-        var regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
-        return regex.test(code);
-    }
+    //function validatePhoneNumber(code) {
+    //    var regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+    //    return regex.test(code);
+    //}
 
     function RemoveToCart() {
         var products = [];
