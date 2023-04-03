@@ -293,56 +293,23 @@
                     </div>
                     <div class="modal-body">
                         <input type="text" id="pTotalMoney" name="pTotalMoney" hidden="hidden" />
+                        <input type="text" id="cShippingFee" name="cShippingFee" hidden="hidden" />
+                        <input type="text" id="idDeliveryAddress" name="idDeliveryAddress" value="" hidden="hidden" />
+
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Họ và tên:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingFullName" name="ShippingFullName" value="" placeholder="" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingCity" name="ShippingCity" value="" placeholder="" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingDistrict" name="ShippingDistrict" value="" placeholder="" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingTown" name="ShippingTown" value="" placeholder="" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" placeholder="+84" class="form-control" />
+                                        <select id="selectDeliveryAddress" class="form-select">
+                                            <option></option>
+                                            @foreach (var item in ViewBag.DataAddress)
+                                            {
+                                                <option value="@item.Id">
+                                                    @item.Name | @item.PhoneNumber, @item.Address, @item.WardName, @item.DistrictName, @item.ProvinceName
+                                                </option>
+                                            }
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -378,6 +345,22 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label col-md-12"><strong>Phí ship:</strong></label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p><strong id="txtPhiShip"></strong><strong style="margin-left: 5px;">đ</strong></p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-3">
+                                    <label class="control-label col-md-12"><strong>Tổng tiền sản phẩm:</strong></label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <p><strong id="txtTotalProduct"></strong><strong style="margin-left: 5px;">đ</strong></p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-sm-7">
                                     <h2><label class="control-label col-md-12"><strong>Tổng tiền thanh toán:</strong></label></h2>
                                 </div>
@@ -404,6 +387,32 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        $("#selectDeliveryAddress").change(function () {
+            let _id = $("#selectDeliveryAddress").val();
+            $.ajax({
+                url: "/Product/GetDataDeliveryAddress?id=" + _id,
+                type: "GET",
+                success: function (result) {
+                    ShippingFee(result.districtID, result.wardCode)
+                    $("#idDeliveryAddress").val(result.id)
+                }
+            })
+        });
+
+        function ShippingFee(district_id, ward_code) {
+            $.ajax({
+                url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
+                type: "GET",
+                success: function (result) {
+                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result;
+                    $("#txtPhiShip").text(commasThousands(result))
+                    $('#textTotalMoney').text(commasThousands(total));
+                    $('#cTotalMoney').val(total);
+                    $('#cShippingFee').val(result);
+                }
+            })
+        }
 
         $('[data-quantity="plus"]').click(function (e) {
             e.preventDefault();
@@ -456,6 +465,9 @@
         if (checkValidateData()) {
             form.submit();
         }
+        else{
+            sweetAlert("", "Vui lòng nhập địa chỉ nhận hàng", "error");
+        }
     });
 
     function sumTotal() {
@@ -466,7 +478,7 @@
         $('#cTotalMoney').val(mQuantity * mPrice);
         $('#pTotalMoney').val(mQuantity * mPrice);
         $('#totalMoney').text(commasThousands(mQuantity * mPrice) + ' VND');
-        $('#textTotalMoney').text(commasThousands($('#pTotalMoney').val()));
+        $('#txtTotalProduct').text(commasThousands($('#pTotalMoney').val()));
     }
 
     function commasThousands(nStr) {
@@ -494,7 +506,7 @@
         if ($('#cColor').val() == '') {
             sweetAlert("", "Vui lòng chọn màu sắc", "error");
             return false;
-        }
+        }        
         return true;
     }
 
@@ -571,7 +583,7 @@
             success: function (result) {
                 $("#ShippingFullName").val(result.name);
                 $("#ShippingPhone").val(result.phoneNumber);
-                $("#ShippingAddress").val(result.address);
+@*                $("#ShippingAddress").val(result.address);*@
                 $("#ShippingEmail").val(result.email);
             }
         });

@@ -68,3 +68,17 @@ D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\refint\GProje
 D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.pdb
 D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.genruntimeconfig.cache
 D:\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\ref\GProject.Data.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.deps.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.runtimeconfig.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\bin\Debug\net6.0\GProject.Data.pdb
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.csproj.AssemblyReference.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.AssemblyInfoInputs.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.AssemblyInfo.cs
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.csproj.CoreCompileInputs.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\refint\GProject.Data.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.pdb
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\GProject.Data.genruntimeconfig.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Data\obj\Debug\net6.0\ref\GProject.Data.dll

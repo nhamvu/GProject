@@ -48,6 +48,7 @@
     <script src="~/js/slick.min.js"></script>
 </head>
 <body>
+    <div id="layout"></div>
     <header style ="font-size:14px; color:white; background-color:#c00">
         <div style="font-size:14px; color:white; background-color:#c00">
             <ul>
@@ -223,6 +224,11 @@
                             <a href="/user/change-personal-infomation-employee-page">Đổi thông tin cá nhân</a>
                         </li>
                         <li>
+                            <button class="btn" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
+                                Địa chỉ đặt hàng
+                            </button>
+                        </li>
+                        <li>
                             <a href="/Login/logout">Đăng xuất</a>
                         </li>
                     </ul>
@@ -257,6 +263,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/js_deliveryaddress.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

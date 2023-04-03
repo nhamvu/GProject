@@ -11,7 +11,7 @@ namespace GProject.WebApplication.Services
 {
     public class OrderService
     {
-        public async Task<bool> AddToOrder(string cTotalMoney, string ShippingFullName, string ShippingPhone,
+        public async Task<bool> AddToOrder(string cShippingFee, string cTotalMoney, string ShippingFullName, string ShippingPhone,
             string ShippingCity, string ShippingDistrict, string ShippingTown, string ShippingAddress, string ShippingEmail, string cDescription, int PaymentType = 0, Guid? customer_id = null, List<ProdOrder>? prodOrders = null)
         {
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
@@ -35,6 +35,7 @@ namespace GProject.WebApplication.Services
             order.ShippingPhone = ShippingPhone;
             order.ShippingEmail = ShippingEmail;
             order.TotalMoney = decimal.Parse(cTotalMoney);
+            order.ShippingFee = decimal.Parse(cShippingFee);
             order.Description = cDescription;
             order.Status = GProject.Data.Enums.OrderStatus.InProgress;
 
@@ -82,7 +83,7 @@ namespace GProject.WebApplication.Services
         }
 
 
-        public async Task<bool> BuyNow(string pTotalMoney, string ShippingFullName, string ShippingPhone,
+        public async Task<bool> BuyNow(string cShippingFee,string pTotalMoney, string ShippingFullName, string ShippingPhone,
             string ShippingCity, string ShippingDistrict, string ShippingTown, string ShippingAddress, string ShippingEmail, string cDescription, int PaymentType = 0, Guid? customer_id = null, List<ProdOrder>? prodOrders = null)
         {
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
@@ -106,6 +107,7 @@ namespace GProject.WebApplication.Services
             order.ShippingPhone = ShippingPhone;
             order.ShippingEmail = ShippingEmail;
             order.TotalMoney = decimal.Parse(pTotalMoney);
+            order.ShippingFee = decimal.Parse(cShippingFee);
             order.Description = cDescription;
             order.Status = GProject.Data.Enums.OrderStatus.InProgress;
 
