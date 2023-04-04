@@ -58,6 +58,7 @@ namespace GProject.Api.MyServices.Services
             result.ExpirationDate = obj.ExpirationDate;
             result.UpdateDate = DateTime.Now;
             result.Status= obj.Status;
+            _voucherRepository.Update(result);
             return true;
 
         }

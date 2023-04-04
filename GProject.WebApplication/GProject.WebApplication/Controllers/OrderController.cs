@@ -42,7 +42,15 @@ namespace GProject.WebApplication.Controllers
                 if (!result)
                     HttpContext.Session.SetString("mess", "Failed");
                 else
+                {
+                    var VoucherList = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
+                    var dataVoucher = VoucherList.FirstOrDefault(x => x.Id == selectVoucher);
+                    dataVoucher.NumberOfVouchers -= 1;
+                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update"));
+
                     HttpContext.Session.SetString("mess", "Success");
+                }
+                   
 
                 HttpContext.Session.Remove("productOrders");
                 return RedirectToAction("ShowDetailMyCart", "Product");

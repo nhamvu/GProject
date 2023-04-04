@@ -485,9 +485,11 @@
                 success: function (result) {
                     var renderData = "<option></option>";
                     $.each(result, function (value) {
+                        debugger
+                        var date = (result[value].expirationDate).split('/')
                         renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
                         renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + result[value].minimumOrder + 'đ)' + '</option>'
-                        renderData += '<option disabled style = "font-style:italic" > (HSD: ' + result[value].expirationDate + ')' + ' </option>'
+                        renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
                         renderData += '<option disabled style="font-style:italic"></option>'
                     });
                     $("#selectVoucher").html(renderData)
@@ -533,6 +535,10 @@
             return thanhtien
         }
 
+        function ConvertDate(date){
+            let myDate = new Date(date[2] + "-" + date[1] + "-" + date[0])
+            return myDate
+        }
 
         $('input.quantity').each(function () {
             var $this = $(this),
