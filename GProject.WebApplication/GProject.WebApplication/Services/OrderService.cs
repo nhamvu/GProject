@@ -45,6 +45,9 @@ namespace GProject.WebApplication.Services
             if (!await Commons.Add_or_UpdateAsync(order, strUrl))
                 return false;
 
+            
+
+
             //-- Add vào bảng OrderDetail và xóa nó khỏi giỏ hàng
             foreach (var item in prodOrders)
             {
@@ -143,5 +146,7 @@ namespace GProject.WebApplication.Services
             }
             return true;
         }
+
+
     }
 }
