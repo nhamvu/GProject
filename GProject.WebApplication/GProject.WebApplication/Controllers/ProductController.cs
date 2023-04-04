@@ -211,12 +211,12 @@ namespace GProject.WebApplication.Controllers
             var lstVoucher = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
             if (id == null && totalMoneyOrder != null)
             {
-                var data = lstVoucher.Where(x => x.Status == 1 && x.ExpirationDate >= DateTime.Now && x.MinimumOrder <= totalMoneyOrder);
+                var data = lstVoucher.Where(x => x.Status == 1 && x.ExpirationDate >= DateTime.Now && x.MinimumOrder <= totalMoneyOrder && x.NumberOfVouchers > 0);
                 return Json(data);
             }
             else if(id != null && totalMoneyOrder == null)
             {
-                var data = lstVoucher.FirstOrDefault(x => x.Id == id);
+                var data = lstVoucher.FirstOrDefault(x => x.Id == id && x.NumberOfVouchers > 0 && x.Status == 1);
                 return Json(data);
             }
             else

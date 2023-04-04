@@ -28,6 +28,9 @@ namespace GProject.Data.DomainClass
         public string ShippingAddress { get; set; }
         public string ShippingPhone { get; set; }
         public string ShippingEmail { get; set; }
+        public int? VoucherId { get; set; }
+        public float? DiscountRate { get; set; }
+
         [Column(TypeName = "decimal(20, 0)")]
         public decimal ShippingFee { get; set; }
         [Column(TypeName = "decimal(20, 0)")]

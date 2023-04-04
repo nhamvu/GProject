@@ -164,22 +164,22 @@ function validatePhoneNumber(code) {
     return regex.test(code);
 }
 
-function checkValidateData() {
-    if ($('#ShippingFullName').val() == '') {
-        sweetAlert("Thông báo", "Thông tin tên người mua không được để trống", "error");
-        return false;
-    }
-    if ($('#ShippingAddress').val() == '') {
-        sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
-        return false;
-    }
-    if ($('#ShippingPhone').val() == '') {
-        sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
-        return false;
-    }
-    if (!validatePhoneNumber($('#ShippingPhone').val())) {
-        sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
-        return false;
-    }
-    return true;
-}
+//function checkValidateData() {
+//    if ($('#ShippingFullName').val() == '') {
+//        sweetAlert("Thông báo", "Thông tin tên người mua không được để trống", "error");
+//        return false;
+//    }
+//    if ($('#ShippingAddress').val() == '') {
+//        sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
+//        return false;
+//    }
+//    if ($('#ShippingPhone').val() == '') {
+//        sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
+//        return false;
+//    }
+//    if (!validatePhoneNumber($('#ShippingPhone').val())) {
+//        sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
+//        return false;
+//    }
+//    return true;
+//}
