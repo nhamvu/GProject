@@ -13,6 +13,7 @@ builder.Services.AddSession(c =>
     c.IOTimeout = TimeSpan.FromSeconds(20);
     c.Cookie.HttpOnly = true;
     c.Cookie.IsEssential = true;
+    c.Session.Timeout = 30;
 }
             );
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
