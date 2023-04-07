@@ -320,7 +320,7 @@
                                     <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectDeliveryAddress" class="form-select">
-                                            <option></option>
+                                            <option value=""></option>
                                             @foreach (var item in ViewBag.DataAddress)
                                             {
                                                 <option value="@item.Id">
@@ -688,6 +688,10 @@
     }
 
     function checkValidateData() {
+        if ($('#selectDeliveryAddress').val() == '') {
+            sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
+            return false;
+        }
         if ($('#ShippingEmail').val() == '') {
             sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
             return false;

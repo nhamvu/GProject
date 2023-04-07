@@ -21,7 +21,7 @@ function ChangePanel() {
 }
 
 function SaveDeliveryAddress() {
-    if (!checkValidateData()) {
+    if (!checkValidateVOucher()) {
 
     }
     else {
@@ -52,6 +52,9 @@ function SaveDeliveryAddress() {
                         if (result) {
                             swal("Thành công", "Lưu địa chỉ thành công", "success");
                             LoadDataTable();
+                            ClearData();
+                            $('#formdata').hide();
+                            $("#changeform").text("Thêm mới");
                         }
                         else {
                             swal("Không thành công", "Lưu địa chỉ thất bại, bạn cần kiểm tra lại thông tin", "error");
@@ -64,6 +67,17 @@ function SaveDeliveryAddress() {
         });
     }
 
+}
+
+function ClearData() {
+    $("#txtId").val(0);
+    $("#selectDistrict").val('');
+    $("[id='selectDistrict'] option:selected").text('');
+    $("#selectWards").val('');
+    $("[id='selectWards'] option:selected").text('');
+    $("#ShippingFullName").val('');
+    $("#ShippingAddress").val('');
+    $("#ShippingPhone").val('');
 }
 
 
@@ -164,22 +178,22 @@ function validatePhoneNumber(code) {
     return regex.test(code);
 }
 
-//function checkValidateData() {
-//    if ($('#ShippingFullName').val() == '') {
-//        sweetAlert("Thông báo", "Thông tin tên người mua không được để trống", "error");
-//        return false;
-//    }
-//    if ($('#ShippingAddress').val() == '') {
-//        sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
-//        return false;
-//    }
-//    if ($('#ShippingPhone').val() == '') {
-//        sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
-//        return false;
-//    }
-//    if (!validatePhoneNumber($('#ShippingPhone').val())) {
-//        sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
-//        return false;
-//    }
-//    return true;
-//}
+function checkValidateVOucher() {
+    if ($('#ShippingFullName').val() == '') {
+        sweetAlert("Thông báo", "Thông tin tên người mua không được để trống", "error");
+        return false;
+    }
+    if ($('#ShippingAddress').val() == '') {
+        sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
+        return false;
+    }
+    if ($('#ShippingPhone').val() == '') {
+        sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
+        return false;
+    }
+    if (!validatePhoneNumber($('#ShippingPhone').val())) {
+        sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
+        return false;
+    }
+    return true;
+}

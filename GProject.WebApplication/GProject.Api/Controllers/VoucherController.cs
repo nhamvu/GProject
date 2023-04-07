@@ -1,4 +1,5 @@
-﻿using GProject.Api.MyServices.IServices;
+﻿using GProject.Api.Models;
+using GProject.Api.MyServices.IServices;
 using GProject.Api.MyServices.Services;
 using GProject.Data.DomainClass;
 using Microsoft.AspNetCore.Http;
@@ -65,6 +66,23 @@ namespace GProject.Api.Controllers
             {
                 if (voucherService.Delete(id)) return true;
                 return false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Route("update-number")]
+        public bool UpdateNumber(UpdateNumberVoucherModel obj)
+        {
+            try
+            {
+                if (obj == null) return false;
+                voucherService.UpdateNumber(obj.Id);
+                return true;
             }
             catch (Exception)
             {

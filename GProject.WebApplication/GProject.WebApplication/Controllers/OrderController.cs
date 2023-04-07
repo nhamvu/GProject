@@ -43,10 +43,9 @@ namespace GProject.WebApplication.Controllers
                     HttpContext.Session.SetString("mess", "Failed");
                 else
                 {
-                    var VoucherList = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
-                    var dataVoucher = VoucherList.FirstOrDefault(x => x.Id == selectVoucher);
-                    dataVoucher.NumberOfVouchers -= 1;
-                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update"));
+
+                    var dataVoucher = new UpdateNumberVoucherDto() { Id = selectVoucher };
+                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
 
                     HttpContext.Session.SetString("mess", "Success");
                 }
@@ -82,10 +81,12 @@ namespace GProject.WebApplication.Controllers
                     HttpContext.Session.SetString("mess", "Failed");
                 else
                 {
-                    var VoucherList = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
-                    var dataVoucher = VoucherList.FirstOrDefault(x => x.Id == selectVoucher);
-                    dataVoucher.NumberOfVouchers -= 1;
-                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update"));
+                    //var VoucherList = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
+                    //var dataVoucher = VoucherList.FirstOrDefault(x => x.Id == selectVoucher);
+                    //dataVoucher.NumberOfVouchers -= 1;
+                    //await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update"));
+                    var dataVoucher = new UpdateNumberVoucherDto() { Id = selectVoucher };
+                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
                     HttpContext.Session.SetString("mess", "Success");
                 }
 

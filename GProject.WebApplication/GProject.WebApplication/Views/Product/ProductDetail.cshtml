@@ -303,7 +303,7 @@
                                     <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectDeliveryAddress" class="form-select">
-                                            <option></option>
+                                            <option value=""></option>
                                             @foreach (var item in ViewBag.DataAddress)
                                             {
                                                 <option value="@item.Id">
@@ -404,6 +404,27 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        document.querySelector('#formdata').addEventListener('submit', function (e) {
+            var form = this;
+            e.preventDefault();
+            if ($("#selectDeliveryAddress").val() == "") {
+                sweetAlert("", "Vui lòng nhập địa chỉ nhận hàng", "error");
+            }
+            else if (checkValidateData()) {
+                swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
+                    title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    } else {
+                        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                    }
+                });
+            }
+        });
+
         $("#selectDeliveryAddress").change(function () {
             let _id = $("#selectDeliveryAddress").val();
             $.ajax({
@@ -426,37 +447,7 @@
             })
         });
 
-        function ShippingFee(district_id, ward_code) {
-            $.ajax({
-                url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
-                type: "GET",
-                success: function (result) {
-                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
-                    $("#txtPhiShip").text(commasThousands(result))
-                    $('#textTotalMoney').text(commasThousands(total));
-                    $('#pTotalMoney').val(total);
-                    $('#cShippingFee').val(result);
-                }
-            })
-        }
-
-        function GetDataVoucherById(totalMoneyOrder) {
-            $.ajax({
-                url: "/Product/GetVoucher?totalMoneyOrder=" + totalMoneyOrder,
-                type: "GET",
-                success: function (result) {
-                    var renderData = "<option></option>";
-                    $.each(result, function (value) {
-                        var date = result[value].expirationDate;
-                        renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
-                        renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
-                        renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
-                        renderData += '<option disabled style="font-style:italic"></option>'
-                    });
-                    $("#selectVoucher").html(renderData)
-                }
-            })
-        }
+        
 
         $("#selectVoucher").change(function () {
             let _id = $("#selectVoucher").val();
@@ -466,7 +457,6 @@
                 success: function (result) {
                     let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
                     let discount = 0;
-                    debugger
                     if (result != null) {
                         if (result.discountForm == "%") {
                             discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
@@ -538,6 +528,38 @@
         }
     });
 
+    function ShippingFee(district_id, ward_code) {
+            $.ajax({
+                url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
+                type: "GET",
+                success: function (result) {
+                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
+                    $("#txtPhiShip").text(commasThousands(result))
+                    $('#textTotalMoney').text(commasThousands(total));
+                    $('#pTotalMoney').val(total);
+                    $('#cShippingFee').val(result);
+                }
+            })
+        }
+
+        function GetDataVoucherById(totalMoneyOrder) {
+            $.ajax({
+                url: "/Product/GetVoucher?totalMoneyOrder=" + totalMoneyOrder,
+                type: "GET",
+                success: function (result) {
+                    var renderData = "<option></option>";
+                    $.each(result, function (value) {
+                        var date = result[value].expirationDate;
+                        renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
+                        renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
+                        renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
+                        renderData += '<option disabled style="font-style:italic"></option>'
+                    });
+                    $("#selectVoucher").html(renderData)
+                }
+            })
+        }
+
     function GetDataVoucher(totalMoneyOrder) {
         $.ajax({
             url: "/Product/GetVoucher?totalMoneyOrder=" + totalMoneyOrder,
@@ -568,17 +590,7 @@
         return dateConvert
     }
 
-    document.querySelector('#formdata').addEventListener('submit', function (e) {
-        var form = this;
-
-        e.preventDefault();
-        if (checkValidateData()) {
-            form.submit();
-        }
-        else{
-            sweetAlert("", "Vui lòng nhập địa chỉ nhận hàng", "error");
-        }
-    });
+    
 
     function sumTotal() {
         let mQuantity = parseInt($('#quantity').val().replace(/,/g, '') || 0) || 0;
@@ -616,7 +628,8 @@
         if ($('#cColor').val() == '') {
             sweetAlert("", "Vui lòng chọn màu sắc", "error");
             return false;
-        }        
+        }     
+        
         return true;
     }
 
@@ -664,7 +677,7 @@
     }
 
     function BuyNow(){
-        debugger
+        
         var products = [];
         var _product = {};
         _product.color = parseInt($('#cColor').val());
