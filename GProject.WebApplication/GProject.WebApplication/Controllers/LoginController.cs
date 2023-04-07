@@ -130,8 +130,6 @@ namespace GProject.WebApplication.Controllers
                 #region Đăng nhập khi đã tạo đc user
                 ViewBag.Error = "Đăng nhập không thành công! Vui lòng nhập lại thông tin đăng nhập!";
                 //--Kiểm tra dữ liệu đầu vào
-                if (ModelState.IsValid == true)
-                {
                     var Employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
                     Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
 
@@ -174,7 +172,6 @@ namespace GProject.WebApplication.Controllers
                         await HttpContext.SignInAsync(claimsPrincipal);
                         return RedirectToAction("Index", "Product");
                     }
-                    else { return View(); }
                 }
                 return BadRequest();
                 #endregion

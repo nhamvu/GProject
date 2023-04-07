@@ -207,9 +207,6 @@
                             {
                                 <img src="~/images/avatar.jpg" style="border-radius:50%; width:35px; border:2px solid black;">
                             }
-                            else
-                            {
-                                <img src="~/images/@user.Image" style="border-radius:50%; width:35px; border:2px solid black;">
                             }
                         }
                         @(string.IsNullOrEmpty(User.Identity.Name) == true ? "Tài khoản" : user.Name)

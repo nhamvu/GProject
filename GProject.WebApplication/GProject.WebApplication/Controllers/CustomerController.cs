@@ -12,7 +12,6 @@ using System.Xml.Linq;
 
 namespace GProject.WebApplication.Controllers
 {
-    [Authorize(Roles = "manager, employee")]
     public class CustomerController : Controller
     {
         private ICustomerService iCustomerService;

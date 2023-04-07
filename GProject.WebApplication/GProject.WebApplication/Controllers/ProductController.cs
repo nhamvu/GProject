@@ -20,12 +20,6 @@ namespace GProject.WebApplication.Controllers
     [Authorize(Roles = "customer")]
     public class ProductController : Controller
     {
-
-        public ProductController()
-        {
-
-        }
-
         //[HttpGet]
         public async Task<ActionResult> Index(int? type, int pg = 1, int pageSize = 8)
         {

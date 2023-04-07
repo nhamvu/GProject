@@ -13,7 +13,6 @@ builder.Services.AddSession(c =>
     c.IOTimeout = TimeSpan.FromSeconds(20);
     c.Cookie.HttpOnly = true;
     c.Cookie.IsEssential = true;
-    c.Session.Timeout = 30;
 }
             );
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -48,19 +47,5 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-app.UseAuthentication();
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-
-app.UseRouting();
-
-app.UseSession();
-
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Login}/{action=Index}/{id?}");
 
 app.Run();
