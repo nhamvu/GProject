@@ -17,7 +17,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace GProject.WebApplication.Controllers
 {
-    [Authorize(Roles = "customer")]
     public class ProductController : Controller
     {
         //[HttpGet]
@@ -33,7 +32,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "OAuth");
             }
         }
 

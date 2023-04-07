@@ -27,6 +27,7 @@
                 </div>
                 <div class="col-md-3">
                     <form action="/login/login" method="post">
+                        <input type="text" name="returnUrl" id="returnUrl" hidden value="@ViewBag.returnUrl"/>
                         <div class="divider d-flex align-items-center my-4" style="justify-content:center;">
                             <img src="/images/imageLogo.PNG" style="width:80%;height:80%;" />
                         </div>
@@ -64,7 +65,9 @@
                                 Đăng nhập
                             </button>
                         </div>
-
+                        <button class="btn btn-google" type="button" onclick="location.href='@Url.Action("ExternalLogin", "Account", new { provider = "Google" })'">
+                            <i class="fab fa-google"></i> Log in with Google
+                        </button>
                     </form>
 
                     <div class="text-center text-lg-start mt-4 pt-2">

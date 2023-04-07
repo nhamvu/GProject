@@ -1,4 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Mvc;
+@using GProject.WebApplication.Helpers;
+@{
+    var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Employee>(Context.Session, "userLogin");
+}
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -80,14 +85,17 @@
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     @{
-                                        if (string.IsNullOrEmpty(imgAvata))
+                                        string imgAvata = "avatar.jpg";
+                                        if (user != null)
                                         {
-                                            <img src="~/images/avatar.jpg" alt="user-img" width="36" class="img-circle">
+                                            if (!string.IsNullOrEmpty(user.Image))
+                                            {
+                                                imgAvata = user.Image;
+                                            }
                                         }
-                                            <img src="~/images/@imgAvata" alt="user-img" width="36" class="img-circle">
-                                        }
+                                        <img src="~/images/@imgAvata" alt="user-img" width="36" class="img-circle">
                                     }
-                                    <span class="text-white font-medium">@(string.IsNullOrEmpty(User.Identity.Name) == true ? "Tài khoản" : User.Identity.Name)</span>
+                                    <span class="text-white font-medium">@(user == null ? "Tài khoản" : user.Name.NullToString())</span>
                                 </a>
 
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -96,7 +104,7 @@
                                     <li><a class="dropdown-item" href="/Login/logout">Đăng xuất</a></li>
                                 </ul>
                             </div>
-                            
+
                         </li>
                     </ul>
                 </div>

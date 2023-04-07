@@ -14,7 +14,6 @@ using Microsoft.Extensions.Logging;
 
 namespace GProject.WebApplication.Controllers
 {
-    [Authorize(Roles = "customer, manager, employee")]
     public class OrderController : Controller
     {
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GProject.Data.DomainClass
 {
-    public class Employee
+    public class Employee : IdentityUser<Guid>
     {
         public Guid? Id { get; set; }
         public string EmployeeId { get; set; }

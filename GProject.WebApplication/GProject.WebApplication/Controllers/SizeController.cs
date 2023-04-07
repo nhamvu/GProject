@@ -9,7 +9,6 @@ using System.Reflection.Metadata;
 
 namespace GProject.WebApplication.Controllers
 {
-    [Authorize(Roles = "manager, employee")]
     public class SizeController : Controller
     {
         private ISizeService iSizeService;

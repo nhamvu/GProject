@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Mvc;
+@using GProject.WebApplication.Helpers;
 @{
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
 }
@@ -203,13 +204,17 @@
                 <li class="arrow ">
                     <a href="#" style="font-size:14px; color:white;">
                         @{
-                            if (string.IsNullOrEmpty(user.Image))
+                            string imgAvata = "avatar.jpg";
+                            if (user != null)
                             {
-                                <img src="~/images/avatar.jpg" style="border-radius:50%; width:35px; border:2px solid black;">
+                                if (!string.IsNullOrEmpty(user.Image))
+                                {
+                                    imgAvata = user.Image;
+                                }
                             }
-                            }
+                            <img src="~/images/@imgAvata" style="border-radius:50%; width:35px; border:2px solid black;">
                         }
-                        @(string.IsNullOrEmpty(User.Identity.Name) == true ? "Tài khoản" : user.Name)
+                        @(user == null ? "Tài khoản" : user.Name.NullToString())
                     </a>
                     <ul id="nav-customer">
                         <li>

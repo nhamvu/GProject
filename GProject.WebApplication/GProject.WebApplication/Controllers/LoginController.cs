@@ -9,12 +9,16 @@ using GProject.WebApplication.Helpers;
 using GProject.Data.DomainClass;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Identity;
+
 namespace GProject.WebApplication.Controllers
 {
     public class LoginController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string returnUrl = null)
         {
+            ViewBag.returnUrl = returnUrl;
             return View();
         }
         public void SetViewBagInt(int? selected_id = null)
@@ -36,6 +40,7 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+
                 string image = "";
                 if (Customer.Image_Upload != null)
                 {
@@ -80,7 +85,7 @@ namespace GProject.WebApplication.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> Login(UserInfoDTO user)
+        public async Task<IActionResult> Login(UserInfoDTO user, string returnUrl = null)
         {
             try
             {
@@ -130,50 +135,63 @@ namespace GProject.WebApplication.Controllers
                 #region Đăng nhập khi đã tạo đc user
                 ViewBag.Error = "Đăng nhập không thành công! Vui lòng nhập lại thông tin đăng nhập!";
                 //--Kiểm tra dữ liệu đầu vào
-                    var Employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
-                    Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
+                var Employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
 
-                    var Customers = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
-                    Customer Cus = Customers.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
-                    if (Emp != null)
+                var Customers = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                Customer Cus = Customers.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password.ToLower());
+                if (Emp != null)
+                {
+                    Commons.setObjectAsJson(HttpContext.Session, "userLogin", Emp);
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim("username", Emp.Name));
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, Emp.EmployeeId));
+                    claims.Add(new Claim(ClaimTypes.Email, Emp.EmployeeId));
+                    claims.Add(new Claim(ClaimTypes.Name, Emp.Name));
+                    claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
+                    if (Emp.Position == Data.Enums.EmployeePosition.Manager)
                     {
-                        Commons.setObjectAsJson(HttpContext.Session, "userLogin", Emp);
-                        var claims = new List<Claim>();
-                        claims.Add(new Claim("username", Emp.Name));
-                        claims.Add(new Claim(ClaimTypes.NameIdentifier, Emp.EmployeeId));
-                        claims.Add(new Claim(ClaimTypes.Email, Emp.EmployeeId));
-                        claims.Add(new Claim(ClaimTypes.Name, Emp.Name));
-                        claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
-                        if (Emp.Position == Data.Enums.EmployeePosition.Manager)
-                        {
-                            claims.Add(new Claim(ClaimTypes.Role, "manager"));
-                        }
-                        else
-                        {
-                            claims.Add(new Claim(ClaimTypes.Role, "employee"));
-                        }
-                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                        await HttpContext.SignInAsync(claimsPrincipal);
+                        claims.Add(new Claim(ClaimTypes.Role, "manager"));
+                    }
+                    else
+                    {
+                        claims.Add(new Claim(ClaimTypes.Role, "employee"));
+                    }
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(claimsPrincipal);
+                    if (Url.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
                         return RedirectToAction("Index", "Color");
                     }
-                    else if (Cus != null)
+                }
+                else if (Cus != null)
+                {
+                    Commons.setObjectAsJson(HttpContext.Session, "userLogin", Cus);
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim("username", Cus.Name));
+                    claims.Add(new Claim(ClaimTypes.NameIdentifier, Cus.Id.ToString()));
+                    claims.Add(new Claim(ClaimTypes.Email, Cus.Email));
+                    claims.Add(new Claim(ClaimTypes.Name, Cus.Name));
+                    claims.Add(new Claim(ClaimTypes.Role, "customer"));
+                    claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(claimsPrincipal);
+                    if (Url.IsLocalUrl(returnUrl))
                     {
-                        Commons.setObjectAsJson(HttpContext.Session, "userLogin", Cus);
-                        var claims = new List<Claim>();
-                        claims.Add(new Claim("username", Cus.Name));
-                        claims.Add(new Claim(ClaimTypes.NameIdentifier, Cus.Id.ToString()));
-                        claims.Add(new Claim(ClaimTypes.Email, Cus.Email));
-                        claims.Add(new Claim(ClaimTypes.Name, Cus.Name));
-                        claims.Add(new Claim(ClaimTypes.Role, "customer"));
-                        claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
-                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                        await HttpContext.SignInAsync(claimsPrincipal);
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
                         return RedirectToAction("Index", "Product");
                     }
                 }
-                return BadRequest();
+                return RedirectToAction("Index", "OAuth", new { returnUrl = returnUrl });
                 #endregion
             }
             catch (Exception)
