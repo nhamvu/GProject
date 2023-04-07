@@ -72,5 +72,22 @@ namespace GProject.Api.MyServices.Services
             _voucherRepository.Update(result);
             return true;
         }
+
+        public bool UpdateStatus(int id)
+        {
+            var result = _voucherRepository.GetAll().FirstOrDefault(x => x.Id == id);
+            if (result == null) return false;
+            if(result.Status == 0)
+            {
+                result.Status = 1;
+            }
+            else if(result.Status == 1)
+            {
+                result.Status = 0;
+            }
+            result.UpdateDate = DateTime.Now;
+            _voucherRepository.Update(result);
+            return true;
+        }
     }
 }

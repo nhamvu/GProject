@@ -12,6 +12,8 @@ namespace GProject.Api.MyServices.IServices
 
         public bool UpdateNumber(int id);
 
+        public bool UpdateStatus(int id);
+
         public List<Voucher> GetAll();
     }
 }
