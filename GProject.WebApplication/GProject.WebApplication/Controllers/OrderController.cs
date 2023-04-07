@@ -43,10 +43,9 @@ namespace GProject.WebApplication.Controllers
                     HttpContext.Session.SetString("mess", "Failed");
                 else
                 {
-                    var VoucherList = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
-                    var dataVoucher = VoucherList.FirstOrDefault(x => x.Id == selectVoucher);
-                    dataVoucher.NumberOfVouchers -= 1;
-                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update"));
+
+                    var dataVoucher = new UpdateNumberVoucherDto() { Id = selectVoucher };
+                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
 
                     HttpContext.Session.SetString("mess", "Success");
                 }
@@ -63,7 +62,7 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> BuyNow(string idDeliveryAddress, string cShippingFee, string pTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
+        public async Task<ActionResult> BuyNow(int selectVoucher, string cGiamGia, string idDeliveryAddress, string cShippingFee, string pTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
         {
             try
             {
@@ -75,13 +74,21 @@ namespace GProject.WebApplication.Controllers
                 if (customer == null) return RedirectToAction("Index", "Login");
 
                 GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
-                bool result = await pService.BuyNow( cShippingFee, pTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
+                bool result = await pService.BuyNow(selectVoucher, cGiamGia, cShippingFee, pTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
                     ShippingEmail, cDescription, PaymentType, customer.Id, prodOrders);
 
                 if (!result)
                     HttpContext.Session.SetString("mess", "Failed");
                 else
+                {
+                    //var VoucherList = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
+                    //var dataVoucher = VoucherList.FirstOrDefault(x => x.Id == selectVoucher);
+                    //dataVoucher.NumberOfVouchers -= 1;
+                    //await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update"));
+                    var dataVoucher = new UpdateNumberVoucherDto() { Id = selectVoucher };
+                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
                     HttpContext.Session.SetString("mess", "Success");
+                }
 
                 HttpContext.Session.Remove("productOrders");
                 return RedirectToAction("ShowDetailMyCart", "Product");

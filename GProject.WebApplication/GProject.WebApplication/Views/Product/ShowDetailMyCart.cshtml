@@ -320,7 +320,7 @@
                                     <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectDeliveryAddress" class="form-select">
-                                            <option></option>
+                                            <option value=""></option>
                                             @foreach (var item in ViewBag.DataAddress)
                                             {
                                                 <option value="@item.Id">
@@ -373,38 +373,35 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-9">
                                     <label class="control-label col-md-12"><strong>Phí ship:</strong></label>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <p><strong id="txtPhiShip">0</strong><strong style="margin-left: 5px;">đ</strong></p>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-9">
                                     <label class="control-label col-md-12"><strong>Giảm giá:</strong></label>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <p><strong>- </strong> <strong id="txtGiamGia">0</strong><strong style="margin-left: 5px;">đ</strong></p>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-3">
+                                <div class="col-sm-9">
                                     <label class="control-label col-md-12"><strong>Tổng tiền sản phẩm:</strong></label>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <p><strong id="txtTotalProduct"></strong><strong style="margin-left: 5px;">đ</strong></p>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-7">
+                                <div class="col-sm-9">
                                     <h2><label class="control-label col-md-12"><strong>Tổng tiền thanh toán:</strong></label></h2>
                                 </div>
                                 <div class="col-sm-3">
-                                    <h2><strong style="color:red;" id="textTotalMoney"></strong></h2>
-                                </div>
-                                <div class="col-sm-2">
-                                    <h2><strong>VNĐ</strong></h2>
+                                    <h2><strong style="color:red;" id="textTotalMoney"></strong><strong style="margin-left: 5px;color:red;">đ</strong></h2>
                                 </div>
                             </div>
                         </div>
@@ -486,9 +483,9 @@
                     var renderData = "<option></option>";
                     $.each(result, function (value) {
                         debugger
-                        var date = (result[value].expirationDate).split('/')
+                        var date = result[value].expirationDate;
                         renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
-                        renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + result[value].minimumOrder + 'đ)' + '</option>'
+                        renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
                         renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
                         renderData += '<option disabled style="font-style:italic"></option>'
                     });
@@ -518,6 +515,7 @@
                         var total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
                     }
                     else{
+                        swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
                         $("#txtGiamGia").text(0)
                         $("#txtDiscountForm").text("Vnd")
                         var total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
@@ -535,9 +533,10 @@
             return thanhtien
         }
 
-        function ConvertDate(date){
-            let myDate = new Date(date[2] + "-" + date[1] + "-" + date[0])
-            return myDate
+        function ConvertDate(time){
+            var date = new Date(time);
+            var dateConvert = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/'  + date.getFullYear())
+            return dateConvert
         }
 
         $('input.quantity').each(function () {
@@ -689,6 +688,10 @@
     }
 
     function checkValidateData() {
+        if ($('#selectDeliveryAddress').val() == '') {
+            sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
+            return false;
+        }
         if ($('#ShippingEmail').val() == '') {
             sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
             return false;

@@ -10,6 +10,8 @@ namespace GProject.Api.MyServices.IServices
 
         public bool Delete(int id);
 
+        public bool UpdateNumber(int id);
+
         public List<Voucher> GetAll();
     }
 }
