@@ -53,8 +53,6 @@ namespace GProject.WebApplication.Controllers
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
-                ViewBag.DataAddress = lstObjs.Where(x => x.CustomerId == customer.Id);
                 return View(await pService.GetProductDetail(product_id, customer));
 			}
 			catch (Exception ex)
@@ -142,8 +140,6 @@ namespace GProject.WebApplication.Controllers
 			try
 			{
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));                
-                ViewBag.DataAddress = lstObjs.Where(x => x.CustomerId == customer.Id);
 
 				if (customer == null) return RedirectToAction("Index", "Login");
 				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
@@ -201,6 +197,15 @@ namespace GProject.WebApplication.Controllers
             var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
             var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
             var data = lstObjs.FirstOrDefault(x => x.CustomerId == customer.Id && x.Id == id);
+            return Json(data);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetDataDeliveryAddressByCustomerId()
+        {
+            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+            var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+            var data = lstObjs.Where(x => x.CustomerId == customer.Id);
             return Json(data);
         }
 

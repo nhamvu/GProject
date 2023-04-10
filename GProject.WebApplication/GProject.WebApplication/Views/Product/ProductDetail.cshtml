@@ -303,14 +303,10 @@
                                     <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectDeliveryAddress" class="form-select">
-                                            <option value=""></option>
-                                            @foreach (var item in ViewBag.DataAddress)
-                                            {
-                                                <option value="@item.Id">
-                                                    @item.Name | @item.PhoneNumber, @item.Address, @item.WardName, @item.DistrictName, @item.ProvinceName
-                                                </option>
-                                            }
                                         </select>
+                                        <button style="margin-top: 5px;" class="btn btn-success " onclick="OpenDeliveryAddress(); return false;" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
+                                            Thêm
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -590,7 +586,9 @@
         return dateConvert
     }
 
-    
+    function OpenDeliveryAddress() {
+        $('#OrderModal').modal('hide');
+    }
 
     function sumTotal() {
         let mQuantity = parseInt($('#quantity').val().replace(/,/g, '') || 0) || 0;
@@ -690,7 +688,7 @@
         
         let total = $('#cTotalMoney').val();
 
-        
+        DataAddressCustomer()
         GetDataVoucher(total);
         
         $('#textTotalMoney').text(commasThousands(total));

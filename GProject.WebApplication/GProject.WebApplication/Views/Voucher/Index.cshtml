@@ -31,6 +31,65 @@
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
+<form method="GET" action="/Voucher/Index" class="form" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên mã giảm giá:</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="ten" name="ten" value="@ViewData["Ten"]" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Trạng thái:</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <select name="trangthai" value="@ViewData["trangthai"]" id="trangthai" class="form-select">
+                                        <option value="1">Hoạt động</option>
+                                        <option value="0">Không hoạt động</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Mức giảm giá từ: </label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input value="@ViewData["giamgia_tu"]" type="number" min="0" oninput="this.value = Math.abs(this.value)" id="giamgia_tu" name="giamgia_tu" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Đến:</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input value="@ViewData["giamgia_den"]" type="number" min="0" oninput="this.value = Math.abs(this.value)" id="giamgia_den" name="giamgia_den" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Hình thức: </label>
+                                <div class="col-md-9 col-xs-12">
+                                    <select value="@ViewData["hinhthuc"]" name="hinhthuc" id="hinhthuc" class="form-select">
+                                        <option value="Vnd">Vnd</option>
+                                        <option value="%">%</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                    <a class="btn btn-outline-primary" asp-action="Index"><i class="fas fa-undo-alt"></i></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 <button class="btn btn-primary col-md-3" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
 <form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
     <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" value="" hidden="hidden" />
@@ -45,7 +104,7 @@
         <div class="col-md-4">
             <label class="col-md-5"><strong>Mức giảm giá:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input asp-for="DiscountRate" value="0" id="DiscountRate" class="form-control" />
+                <input asp-for="DiscountRate" type="number" min="0" oninput="this.value = Math.abs(this.value)" id="DiscountRate" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
@@ -60,13 +119,13 @@
         <div class="col-md-4">
             <label class="col-md-5"><strong>Số lượng:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input type="number" value="0" asp-for="NumberOfVouchers" id="NumberOfVouchers" minlength="0" class="form-control" />
+                <input type="number" type="number" min="0" oninput="this.value = Math.abs(this.value)" asp-for="NumberOfVouchers" id="NumberOfVouchers" minlength="0" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Số tiền tối thiểu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input asp-for="MinimumOrder" value="0" id="MinimumOrder" class="form-control" />
+                <input asp-for="MinimumOrder" type="number" min="0" oninput="this.value = Math.abs(this.value)" id="MinimumOrder" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
@@ -93,7 +152,10 @@
         </div>
     </div>
 </form>
+
 <hr style="color:red;" />
+
+
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -113,6 +175,8 @@
                             <th>Thời hạn</th>
                             <th>Người tạo</th>
                             <th>Trạng thái</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -150,15 +214,17 @@
                                     </td>
                                     <td>
                                         <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                        <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                    </td>
+                                    <td>
                                         @if (item.Status == 1)
                                         {
 
-                                            <a class="btn btn-danger" onclick="ActiveVoucher(@item.Id)"> <i class="fa-regular fa-trash-can"></i>Xóa </a>
+                                            <a class="btn btn-success" onclick="ActiveVoucher(@item.Id)"> <i class="fas fa-toggle-on"></i>  </a>
                                         }
                                         else
                                         {
-                                            <a class="btn text-success" onclick="ActiveVoucher(@item.Id)"> <i class="fa-solid fa-toggle-off"></i>HĐ </a>
+                                            <a class="btn text-danger" onclick="ActiveVoucher(@item.Id)"> <i class="fas fa-toggle-off"></i> </a>
                                         }
                                     </td>
                                 </tr>
@@ -215,21 +281,34 @@
         }
     });
 
-    function ActiveVoucher(id){
-        $.ajax({
-            url: "/Voucher/UpdateSatus?id=" + id,
-            type: "GET",
-            success: function (result) {
-                if(result){
-                    swal("Thông báo", "Trạng thái đã được thay đổi", "error");
-                }
-                else{
-                    swal("Thông báo", "Trạng thái thay đổi không thành công", "error");
-                }
+    function ActiveVoucher(id) {
+        swal("Bạn có muốn thay đổi trạng thái không?", {
+            title: 'Thông báo!',
+            icon: 'info',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $.ajax({
+                    url: "/Voucher/UpdateSatus?id=" + id,
+                    type: "GET",
+                    success: function (result) {
+                        if (result) {
+                            swal("Thông báo", "Trạng thái đã được thay đổi", "success");
+                            location.href = '/Voucher/Index'
+                        }
+                        else {
+                            swal("Thông báo", "Trạng thái thay đổi không thành công", "success");
+                        }
+                    }
+                })
+            } else {
+                swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
             }
         })
     }
     function ViewDetailData(id) {
+        $('#formdata').show();
+        $("#changeform").text("Hủy thay đổi");
         $.getJSON("/Voucher/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);
             $("#VoucherId").val(data.voucherId);
@@ -243,23 +322,24 @@
             document.getElementById('namee').innerText = data.name;
             document.getElementById('code').innerText = data.hexCode;
             document.getElementById('status').innerText = data.status == 1 ? "Đang sử dụng" : "Không sử dụng";
-            $("#changeform").text("Thêm mới");
+            
             ChangePanel()
-            $('#ViewDetail').modal('show');
+           
         });
     }
     function btnClose() {
         $('#ViewDetail').modal('hide');
     }
-    var reg = new RegExp('^[0-9]$');
 
     function checkValidateDataVoucher() {
-        debugger
+        var regex = /^[0-9]+$/;
+
+
         if ($('#Name').val() == '') {
             sweetAlert("Thông báo", "Thông tin tên không được để trống", "error");
             return false;
         }
-        if ($('#DiscountRate').val() == '' && reg.test($('#DiscountRate').val())) {
+        if ($('#DiscountRate').val() == '') {
             sweetAlert("Thông báo", "Thông tin mức giảm giá không hợp lệ", "error");
             return false;
         }
@@ -267,11 +347,11 @@
             sweetAlert("Thông báo", "Thông tin hình thức để trống", "error");
             return false;
         }
-        if ($('#NumberOfVouchers').val() == '' && reg.test($('#NumberOfVouchers').val())) {
+        if ($('#NumberOfVouchers').val() == '' ) {
             sweetAlert("Thông báo", "Thông tin số lượng không hợp lệ", "error");
             return false;
         }
-        if ($('#MinimumOrder').val() == '' && reg.test($('#MinimumOrder').val())) {
+        if ($('#MinimumOrder').val() == '' ) {
             sweetAlert("Thông báo", "Thông tin số tiền tối thiểu không hợp lệ", "error");
             return false;
         }

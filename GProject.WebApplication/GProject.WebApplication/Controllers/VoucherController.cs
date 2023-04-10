@@ -3,19 +3,50 @@ using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Xml.Linq;
 
 namespace GProject.WebApplication.Controllers
 {
     public class VoucherController : Controller
     {
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? ten, int? trangthai, float? giamgia_tu, float? giamgia_den, string? hinhthuc)
         {
             try
             {
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
-                var data = new VoucherDto() { VoucherList = lstObjs };
+                ViewData["Ten"] = ten;
+                ViewData["trangthai"] = trangthai;
+                ViewData["hinhthuc"] = hinhthuc;
+                ViewData["giamgia_tu"] = giamgia_tu;
+                ViewData["giamgia_den"] = giamgia_den;
 
+                if (!string.IsNullOrEmpty(ten))
+                {
+                    lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(ten.ToLower())).ToList();
+                    
+                }
+                if (trangthai.HasValue)
+                {
+                    lstObjs = lstObjs.Where(c => c.Status == trangthai).ToList();
+                    
+                }
+                if (!string.IsNullOrEmpty(hinhthuc))
+                {
+                    lstObjs = lstObjs.Where(c => c.DiscountForm == hinhthuc).ToList();
+                    
+                }
+                if (giamgia_tu.HasValue  && !string.IsNullOrEmpty(hinhthuc))
+                {
+                    lstObjs = lstObjs.Where(c => c.DiscountRate >= giamgia_tu  && c.DiscountForm == hinhthuc).ToList();
+                    
+                }
+                if (giamgia_den.HasValue && !string.IsNullOrEmpty(hinhthuc))
+                {
+                    lstObjs = lstObjs.Where(c => c.DiscountRate <= giamgia_den && c.DiscountForm == hinhthuc).ToList();
+                   
+                }
+                var data = new VoucherDto() { VoucherList = lstObjs };
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
@@ -28,6 +59,7 @@ namespace GProject.WebApplication.Controllers
                 throw;
             }
         }
+
 
         [HttpPost]
         public async Task<ActionResult> Save(VoucherDto obj)
@@ -97,7 +129,9 @@ namespace GProject.WebApplication.Controllers
         [HttpGet]
         public async Task<bool> UpdateSatus(int id)
         {
-            await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all?id=" + id));
+            var dataVoucher = new UpdateNumberVoucherDto() { Id = id };
+            await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-status"));
+
             return true;
         }
     }

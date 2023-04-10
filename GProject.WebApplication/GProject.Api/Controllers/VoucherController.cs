@@ -92,13 +92,13 @@ namespace GProject.Api.Controllers
         }
 
 
-        [HttpGet]
+        [HttpPost]
         [Route("update-status")]
-        public bool UpdateStatus(int id)
+        public bool UpdateStatus(UpdateNumberVoucherModel input)
         {
             try
             {
-                voucherService.UpdateStatus(id);
+                voucherService.UpdateStatus(input.Id);
                 return true;
             }
             catch (Exception)

@@ -1,6 +1,7 @@
 ﻿using GProject.Data.Context;
 using GProject.Data.DomainClass;
 using GProject.Data.MyRepositories.IRepositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

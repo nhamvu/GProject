@@ -62,7 +62,7 @@ namespace GProject.Api.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpGet]
         [Route("delete")]
         public bool Delete(int id)
         {

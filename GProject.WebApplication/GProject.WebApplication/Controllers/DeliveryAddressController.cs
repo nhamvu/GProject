@@ -69,11 +69,12 @@ namespace GProject.WebApplication.Controllers
             return true;
         }
 
-        //[HttpPost]
-        //public async Task<JsonResult> Delete(int id)
-        //{
-
-        //}
+        [HttpGet]
+        public async Task<bool> Delete(int id)
+        {
+            await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/delete?id=" + id));
+            return true;
+        }
 
         public async Task<JsonResult> Detail(int id)
         {

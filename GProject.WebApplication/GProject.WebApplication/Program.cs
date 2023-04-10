@@ -1,3 +1,5 @@
+using GProject.WebApplication.Services.IServices;
+using GProject.WebApplication.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,9 @@ builder.Services.AddSession(c =>
 );
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages()
+    .AddRazorRuntimeCompilation();
+builder.Services.AddScoped<IVnPayService, VnPayService>();
 builder.Services.AddSession(c =>
 {
     c.IOTimeout = TimeSpan.FromSeconds(20);

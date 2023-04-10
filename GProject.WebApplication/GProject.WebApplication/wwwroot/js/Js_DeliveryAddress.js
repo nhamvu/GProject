@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-
     var PlaceHolderElement = $('#layout');
     $('button[data-toggle="ajax-modal"]').click(function (event) {
         var url = $(this).data('url');
@@ -18,6 +17,21 @@ function ChangePanel() {
         $('#formdata').hide();
         $("#changeform").text("Thêm mới");
     }
+}
+
+function DataAddressCustomer() {
+    $.ajax({
+        url: "/Product/GetDataDeliveryAddressByCustomerId",
+        type: "GET",
+        success: function (result) {
+
+            var renderData = "<option></option>";
+            $.each(result, function (value) {
+                renderData += '<option value="' + result[value].id + '">' + result[value].name + ' | ' + result[value].phoneNumber + ', ' + result[value].address + ', ' + result[value].wardName + ', ' + result[value].districtName + ', ' + result[value].provinceName + '</option>';
+            });
+            $("#selectDeliveryAddress").html(renderData)
+        }
+    })
 }
 
 function SaveDeliveryAddress() {
@@ -53,6 +67,7 @@ function SaveDeliveryAddress() {
                             swal("Thành công", "Lưu địa chỉ thành công", "success");
                             LoadDataTable();
                             ClearData();
+                            DataAddressCustomer();
                             $('#formdata').hide();
                             $("#changeform").text("Thêm mới");
                         }
@@ -68,6 +83,35 @@ function SaveDeliveryAddress() {
     }
 
 }
+
+function DeleteDeliveryAddress(id) {
+
+    swal("Bạn có muốn xóa thông tin địa chỉ này không?", {
+        title: 'Thông Báo!',
+        icon: 'info',
+        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+    }).then(function (isConfirm) {
+        if (isConfirm) {
+            $.ajax({
+                url: "/DeliveryAddress/Delete?id=" + id,
+                type: "GET",
+                success: function (result) {
+                    if (result) {
+                        swal("Thành công", "Xóa địa chỉ thành công", "success");
+                        LoadDataTable();
+                    }
+                    else {
+                        swal("Không thành công", "Xóa địa chỉ thất bại", "error");
+                    }
+                }
+            })
+        } else {
+            swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+        }
+    });
+
+}
+
 
 function ClearData() {
     $("#txtId").val(0);
@@ -90,7 +134,7 @@ function LoadDataTable() {
             $.each(result, function (value) {
                 renderData += '<tr>';
                 renderData += '<td>' + result[value].name + ' | ' + result[value].phoneNumber + ', ' + result[value].address + ', ' + result[value].wardName + ', ' + result[value].districtName + ', ' + result[value].provinceName + '</td>';
-                renderData += '<td><a class="btn btn-warning" onclick="ViewDetailData(' + result[value].id + ')" ><i class="fa-solid fa-pen-to-square"></i></a>' + ' | ' + '<a class="btn btn-danger"> <i class="fa-regular fa-trash-can"> </i></a></td>'
+                renderData += '<td><a class="btn btn-warning" onclick="ViewDetailData(' + result[value].id + ')" ><i class="fa-solid fa-pen-to-square"></i></a>' + ' | ' + '<a class="btn btn-danger" onclick="DeleteDeliveryAddress(' + result[value].id + ')"> <i class="fa-regular fa-trash-can"> </i></a></td>'
                 renderData += '<tr>';
             });
             $("#tbody").html(renderData)
