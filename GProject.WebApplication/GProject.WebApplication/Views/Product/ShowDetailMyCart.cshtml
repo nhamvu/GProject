@@ -502,7 +502,6 @@
                 success: function (result) {
                     let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
                     let discount = 0;
-                    debugger
                     if(result != null){                        
                         if (result.discountForm == "%") {
                             discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))

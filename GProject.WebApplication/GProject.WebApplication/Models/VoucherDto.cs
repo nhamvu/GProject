@@ -1,4 +1,6 @@
-﻿namespace GProject.WebApplication.Models
+﻿using GProject.Data.DomainClass;
+
+namespace GProject.WebApplication.Models
 {
     public class VoucherDto
     {
@@ -14,5 +16,6 @@
         public DateTime? UpdateDate { get; set; }
         public Guid? EmployeeId { get; set; }
         public int Status { get; set; }
+        public List<Voucher> VoucherList { get; set; }
     }
 }

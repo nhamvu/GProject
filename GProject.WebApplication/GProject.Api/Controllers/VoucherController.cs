@@ -90,5 +90,21 @@ namespace GProject.Api.Controllers
                 throw;
             }
         }
+
+
+        [HttpGet]
+        [Route("update-status")]
+        public bool UpdateStatus(int id)
+        {
+            try
+            {
+                voucherService.UpdateStatus(id);
+                return true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }
