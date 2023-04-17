@@ -241,3 +241,13 @@ function checkValidateVOucher() {
     }
     return true;
 }
+
+//function OrderAccomplishedAsync(id) {
+//    $.ajax({
+//        url: "/Order/OrderAccomplishedAsync?id=" + id,
+//        type: "GET",
+//        success: function (result) {
+//            location.href = '/Product/ShowDetailMyCart'
+//        }
+//    })
+//}

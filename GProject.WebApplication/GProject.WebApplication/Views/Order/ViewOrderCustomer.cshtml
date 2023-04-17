@@ -13,48 +13,24 @@
 }
 <div class="super_container">
     <div class="col product_section clearfix">
-
-        <!-- Breadcrumbs -->
-
         <div class="row d-none d-lg-block motor-breadscrumb">
             <a class="breadscrumb-parent" href="/product/index">Trang chủ</a>
             <span class="breadscrumb-arrow">❯</span>
             <a class="breadscrumb-parent" href="/Order/ViewOrderCustomer">Trạng thái đơn hàng</a>
         </div>
-        <div>
-            <form method="GET" action="/Order/ViewOrderCustomer" class="form" enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-7"></div>
-                                        <div class="col-md-5">                                       
-                                        <div class="form-group row">                                            
-                                            <div class="col-md-7 col-xs-12">
-                                                <select name="trangthai"  id="trangthai" class="form-select col-12">
-                                                    <option value="0">Chờ xác nhận</option>
-                                                    <option value="1">Đang vận chuyển</option>
-                                                    <option value="2">Đang giao hàng</option>
-                                                    <option value="3">Hoàn thành</option>
-                                                    <option value="4">Trả hàng</option>
-                                                    <option value="5">Đã hủy</option>
-                                                </select>
-                                            </div>
-                                            <div class="panel-footer text-center col-md-4" style="margin-left: -20px;">
-                                                <button class="btn btn-success col-7" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
-                                                <a class="btn btn-outline-primary" asp-action="ViewOrderCustomer"><i class="fas fa-undo-alt"></i></i></a>
-                                            </div>
-                                        </div>
-                                    </div>                                   
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
-            </form>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-8">
+                <a class="btn btn-outline-primary" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["InProgress"]">Chờ xác nhận</a>
+                <a class="btn btn-outline-secondary" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Confirmed"]">Đang vận chuyển</a>
+                <a class="btn btn-outline-warning" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Delivery"]">Đang giao hàng</a>
+                <a class="btn btn-outline-success" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Accomplished"]">Hoàn thành</a>
+                <a class="btn btn-outline-dark" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Returned"]">Trả hàng</a>
+                <a class="btn btn-outline-danger" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Canceled"]">Đã hủy</a>
+                <a class="btn btn-outline-info" style="margin-left:10px" asp-action="ViewOrderCustomer"><i class="fas fa-undo-alt"></i></a>
+            </div>
         </div>
-        <h1 class="text-center" style=" margin-bottom:25px">Trạng thái đơn hàng</h1>
+        <h1 class="text-center" style="margin-top:25px; margin-bottom:25px">Trạng thái đơn hàng</h1>
         @if (Model.OrderList.Count() == 0)
         {
             <h3 class="text-center text-warning">Không có thông tin trạng thái hóa đơn!</h3>
@@ -67,8 +43,13 @@
                     <div class="card-body p-4">
                         <div class="card shadow-0 border mb-4">
                             <div class="card-body">
-                                <div>
-                                    <p class="text-success">Thời gian đặt hàng: @item.CreateDate.ToString("dd/MM/yyyy HH:mm")</p>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-md-8">
+                                        <p class="text-success">Thời gian đặt hàng: @item.CreateDate.ToString("dd/MM/yyyy HH:mm")</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="text-success">Mã hóa đơn: @item.OrderId</p>
+                                    </div>
                                 </div>
                                 <div class="row d-flex align-items-center">
                                     <div class="col-md-2">
@@ -154,8 +135,26 @@
                                         <div>
                                             <h5>@item.ShippingAddress, @item.ShippingTown, @item.ShippingDistrict, @item.ShippingCity</h5>
                                         </div>
+
                                     </div>
                                     <div class="col-md-4">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h4>Trạng thái:</h4>
+                                            </div>
+                                            <div class="col-6">
+                                                @{
+                                                    if (item.PaymentType == PaymentType.PayReceive)
+                                                    {
+                                                        <h4 class="text-primary">Chưa thanh toán</h4>
+                                                    }
+                                                    else if (item.Status == OrderStatus.Accomplished || item.PaymentType == PaymentType.PayOrder)
+                                                    {
+                                                        <h4 class="text-primary">Đã thanh toán</h4>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
                                         <div class="row">
                                             <div class="col-6">
                                                 <h5>Phí ship:</h5>
@@ -180,6 +179,7 @@
                                                 <h4 style="color: red"> @item.TotalMoney đ</h4>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -188,7 +188,7 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-8"></div>
                                         <div class="col-md-4">
-                                            <button class="btn btn-danger col-6">Đã nhận hàng</button>
+                                            <a href="/Order/Index?accomplished=@item.Id" class="btn btn-success col-10">Đã nhận hàng</a>
                                         </div>
                                     </div>
                                 }
@@ -197,22 +197,70 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-8"></div>
                                         <div class="col-md-4">
-                                            <button class="btn btn-danger col-6">Hủy đơn</button>
+                                            <a du_lieu_id="@item.Id" du_lieu_pay="@((int)item.PaymentType)" style="color: white" class="btn btn-danger col-10 CanceledOrder">Hủy đơn</a>
                                         </div>
                                     </div>
                                 }
-
+                                else if (item.Status == OrderStatus.Accomplished)
+                                {
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-md-8"></div>
+                                        <div class="col-md-4">
+                                            <button disabled class="btn btn-success col-10">Đã giao hàng thành công</button>
+                                        </div>
+                                    </div>
+                                }
+                                else if (item.Status == OrderStatus.Canceled)
+                                {
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-md-8"></div>
+                                        <div class="col-md-4">
+                                            <button disabled class="btn btn-danger col-10">Đơn hàng đã bị hủy</button>
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             }
-        }       
+        }
     </div>
 </div>
 
 <script>
     $(document).ready(function () {
-
-    }
+        $(".CanceledOrder").click(function () {
+            debugger
+            var payType = $(this).attr("du_lieu_pay");
+            if (payType == "1"){
+                swal("Thông báo", "Đơn hàng không thể hủy do bạn đã thanh toán, bạn cần liên hệ với shop!", "error");
+            }
+            else
+            {
+                swal("Bạn có muốn hủy đơn hàng này không?", {
+                    title: 'Thông báo',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        var _id = $(this).attr("du_lieu_id");
+                        $.ajax({
+                            url: "/Order/Index?canceled=" + _id,
+                            method: 'POST',
+                            contentType: 'application/json',
+                            success: function () {
+                                swal("Thành công", "Đơn hàng đã được hủy!", "success");
+                                location.href = "/Order/ViewOrderCustomer"
+                            }, error: function (data) {
+                                swal("Thông báo", "Đơn hàng không chưa được hủy!", "error");
+                            }
+                        })
+                    } else {
+                        swal("Thông báo", "Đơn hàng không chưa được hủy!", "error");
+                    }
+                });
+            }
+        });
+    });
 </script>

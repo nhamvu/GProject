@@ -39,12 +39,12 @@ namespace GProject.WebApplication.Services
             return paymentUrl;
         }
 
-        public PaymentResponseModel PaymentExecute(IQueryCollection collections)
+        public bool PaymentExecute(IQueryCollection collections)
         {
             var pay = new VnPayLibrary();
             var response = pay.GetFullResponseData(collections, _configuration["Vnpay:HashSecret"]);
-
-            return response;
+            if (response.PaymentId == "0") return false;
+            return true;
         }
     }
 }
