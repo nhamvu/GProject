@@ -98,7 +98,6 @@
 
 <form id="formdata" asp-action="Create" class="form-horizontal d-block" enctype="multipart/form-data">
     <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
-    <input asp-for="ProductType" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <input asp-for="ViewCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <input asp-for="LikeCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
     <div class="row">
@@ -167,32 +166,9 @@
                                 <input class="form-check-input-productType" type="checkbox" value="0" id="ckbNormally">
                                 <label class="form-check-label">Sản phẩm thông thường</label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input-productType" type="checkbox" value="1" id="ckbNew">
-                                <label class="form-check-label">Sản phẩm mới</label>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-check">
-                                <input class="form-check-input-productType" type="checkbox" value="2" id="ckbFeatured">
-                                <label class="form-check-label">Sản phẩm nổi bật</label>
                             </div>
-                            <div class="form-check">
-                                <input class="form-check-input-productType" type="checkbox" value="3" id="ckbFavorited">
-                                <label class="form-check-label">Sản phẩm được yêu thích</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check">
-                                <input class="form-check-input-productType" type="checkbox" value="4" id="ckbPromotional">
-                                <label class="form-check-label">Sản phẩm khuyến mại</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="form-group">
         <label class="control-label col-sm-3"><strong>Mô tả:</strong></label>
         <div class="col-sm-12">
@@ -300,16 +276,6 @@
         }
     }
 
-    function SetProductType(){
-        var type = '';
-        if ($('#ckbNormally').prop("checked") == true) type += "0,";
-        if ($('#ckbNew').prop("checked") == true) type += "1,";
-        if ($('#ckbFeatured').prop("checked") == true) type += "2,";
-        if ($('#ckbFavorited').prop("checked") == true) type += "3,";
-        if ($('#ckbPromotional').prop("checked") == true) type += "4";
-        if(type == '') type = '0';
-        $('#ProductType').val(type);
-    }
     $(document).ready(function () {
 
 
@@ -335,13 +301,6 @@
             }
         });
 
-        $('#ckbAllProductType').change(function () {
-            if ($(this).is(':checked')) {
-                $('.form-check-input-productType').prop('checked', true);
-            } else {
-                $('.form-check-input-productType').prop('checked', false);
-            }
-        });
     });
 
     document.querySelector('#formdata').addEventListener('submit', function (e) {
@@ -349,7 +308,6 @@
 
         e.preventDefault();
         if (checkValidateData()) {
-            SetProductType();
             swal("Bạn chắc chắn lưu những thay đổi này?", {
                 title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
                 icon: 'info',

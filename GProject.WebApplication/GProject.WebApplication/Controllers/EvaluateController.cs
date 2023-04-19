@@ -58,10 +58,6 @@ namespace GProject.WebApplication.Controllers
 
                 //-- Gửi request cho api sử lí
                 bool result = await Commons.Add_or_UpdateAsync(prd, url);
-                if (!result) 
-                    HttpContext.Session.SetString("mess", "Failed");
-                else 
-                    HttpContext.Session.SetString("mess", "Success");
                 return RedirectToAction("ProductDetail", "Product", new { product_id = new Guid(ProductId) });
             }
             catch (Exception)

@@ -26,7 +26,6 @@ namespace GProject.Data.Context
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartDetail> CartDetails { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CategoryProduct> CategoryProducts { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -54,7 +53,6 @@ namespace GProject.Data.Context
             modelBuilder.ApplyConfiguration(new Brand_Configuration());
             modelBuilder.ApplyConfiguration(new Cart_Configuration());
             modelBuilder.ApplyConfiguration(new CartDetail_Configuration());
-            modelBuilder.ApplyConfiguration(new CategoryProduct_Configuration());
             modelBuilder.ApplyConfiguration(new Category_Configuration());
             modelBuilder.ApplyConfiguration(new Color_Configuration());
             modelBuilder.ApplyConfiguration(new Contact_Configuration());

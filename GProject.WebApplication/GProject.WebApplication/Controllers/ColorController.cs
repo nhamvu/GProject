@@ -10,7 +10,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace GProject.WebApplication.Controllers
 {
-    [Authorize]
     public class ColorController : Controller
     {
         private IColorService iColorService;

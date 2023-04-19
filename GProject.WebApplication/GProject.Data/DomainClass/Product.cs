@@ -30,7 +30,6 @@ namespace GProject.Data.DomainClass
         public List<ProductVariation>? ProductVariations { get; set; }
         public List<Evaluate>? Evaluates { get; set; }
         public List<PromotionDetail>? PromotionDetails { get; set; }
-        public List<CategoryProduct>? CategoryProducts { get; set; }
         public List<ViewHistory>? ViewHistories { get; set; }
         public List<FavoriteProduct>? FavoriteProducts { get; set; }
     }

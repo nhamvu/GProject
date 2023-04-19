@@ -10,13 +10,6 @@ using GProject.Data.DomainClass;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.Owin.Security.Google;
-using System;
-using Google.Apis.Auth.OAuth2;
-using Google.Apis.Services;
-using Google.Apis.Plus.v1;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -156,8 +149,6 @@ namespace GProject.WebApplication.Controllers
             }
             else
             {
-                var cus = new Customer()
-                {
                     Id = Guid.NewGuid(),
                     Name = info.Principal.FindFirstValue(ClaimTypes.Name),
                     Email = info.Principal.FindFirstValue(ClaimTypes.Email),
@@ -172,7 +163,6 @@ namespace GProject.WebApplication.Controllers
                     Description = "",
                     Image = ""
                 };
-
                 //-- Gửi request cho api sử lí
                 bool result = await Commons.Add_or_UpdateAsync(cus, Commons.mylocalhost + "Customer/add-Customer");
                 if (!result)
@@ -189,39 +179,6 @@ namespace GProject.WebApplication.Controllers
                     {
                         return RedirectToAction("Index", "Product");
                     }
-                }
-            }
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginViewModel model, string returnUrl = null)
-        {
-            if (ModelState.IsValid)
-            {
-                // Get the information about the user from the external login provider
-                var info = await _signInManager.GetExternalLoginInfoAsync();
-                if (info == null)
-                {
-                    throw new ApplicationException("Error loading external login information during confirmation.");
-                }
-
-                var user = new Customer { UserName = model.Email, Email = model.Email };
-                var result = await _userManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    result = await _userManager.AddLoginAsync(user, info);
-                    if (result.Succeeded)
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
-                        return LocalRedirect(returnUrl);
-                    }
-                }
-                AddErrors(result);
-            }
-
-            ViewData["ReturnUrl"] = returnUrl;
-            return View(nameof(ExternalLogin), model);
         }
 
         private IActionResult RedirectToLocal(string returnUrl)
@@ -301,7 +258,6 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
