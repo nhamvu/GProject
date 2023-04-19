@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "j4iBCElG7RJQrPbGXBYHmEoMVtXMGG0dHpca1eV0Cgk0mw8wiY8o5Fo/gPP7wYl7dECRrX4NDvd2KqCRz+R1Cg==",
+  "dgSpecHash": "nX4m6rv86R0sKjabkSnsHhp+Bc7Vlhr8VqJgXw/IdaOJGfzpIg9fPBuaUtU0F+sXcRa/Y3aHBnU9DdbQEHgZCQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+  "projectFilePath": "D:\\Du_An_Tot_Nghiep\\Shipping Fee\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\easynetq\\7.5.0\\easynetq.7.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
@@ -108,6 +108,7 @@
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.10.0\\microsoft.identitymodel.protocols.openidconnect.6.10.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.10.0\\microsoft.identitymodel.tokens.6.10.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.net.sdk.razor\\3.1.32\\microsoft.net.sdk.razor.3.1.32.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
@@ -228,7 +229,11 @@
     "C:\\Users\\Admin\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\twilio\\5.60.0\\twilio.5.60.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\twilio.aspnet.common\\5.37.2\\twilio.aspnet.common.5.37.2.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\twilio.aspnet.core\\5.37.2\\twilio.aspnet.core.5.37.2.nupkg.sha512"
+    "C:\\Users\\Admin\\.nuget\\packages\\twilio.aspnet.core\\5.37.2\\twilio.aspnet.core.5.37.2.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.16\\microsoft.windowsdesktop.app.ref.6.0.16.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.16\\microsoft.netcore.app.ref.6.0.16.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.16\\microsoft.aspnetcore.app.ref.6.0.16.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.16\\microsoft.netcore.app.host.win-x64.6.0.16.nupkg.sha512"
   ],
   "logs": [
     {

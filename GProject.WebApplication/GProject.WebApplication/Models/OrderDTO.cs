@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 
 namespace GProject.WebApplication.Models
 {
-    public class OrderDTO
+    public class OrderDto
     {
         public Order Order { get; set; }
         public Brand Brand { get; set; }

@@ -375,14 +375,6 @@ D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\o
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.csproj.CoreCompileInputs.cache
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.MvcApplicationPartsAssemblyInfo.cs
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.MvcApplicationPartsAssemblyInfo.cache
-D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\msbuild.GProject.Api.Microsoft.AspNetCore.StaticWebAssets.props
-D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\msbuild.build.GProject.Api.props
-D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GProject.Api.props
-D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GProject.Api.props
-D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets.pack.json
-D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets.build.json
-D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets.development.json
-D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\scopedcss\bundle\GProject.Api.styles.css
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.csproj.CopyComplete
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.dll
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\refint\GProject.Api.dll
@@ -464,3 +456,15 @@ C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.pdb
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.genruntimeconfig.cache
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\ref\GProject.Api.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\EntityFramework.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\System.CodeDom.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\System.Data.SqlClient.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.RazorTargetAssemblyInfo.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\GProject.Api.StaticWebAssets.Manifest.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\GProject.Api.StaticWebAssets.xml
