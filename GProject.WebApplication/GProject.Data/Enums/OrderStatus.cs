@@ -25,6 +25,9 @@ namespace GProject.Data.Enums
         Paided = 4,
 
         [Description("Đã hủy")]
-        Canceled = 5
+        Canceled = 5,
+
+        [Description("Đã xác nhận")]
+        DaXacNhan = 6,
     }
 }

@@ -28,6 +28,7 @@ namespace GProject.WebApplication.Services
                 productInfo.Id = (Product.Id == Guid.Empty || Product.Id == null) ? uuid : Product.Id;
                 productInfo.BrandId = Product.BrandId;
                 productInfo.Name = Product.Name;
+                productInfo.CategoryId = Product.CategoryId;
                 productInfo.CreateDate = DateTime.Now;
                 productInfo.UpdateDate = DateTime.Now;
                 productInfo.CreateBy = CreateBy;
@@ -66,6 +67,8 @@ namespace GProject.WebApplication.Services
                             ColorId = colorVariation.Id,
                             SizeId = sizeVariation.Id,
                             Image = image,
+                            CreateDate = DateTime.Now,
+                            UpdateDate = DateTime.Now,
                             QuantityInStock = sizeVariation.QuantityInstock.NullToInt(),
                         };
 
@@ -116,6 +119,7 @@ namespace GProject.WebApplication.Services
                 ProductMGRDTO productData = new ProductMGRDTO();
                 var product = lstProduct.FirstOrDefault(c => c.Id == id);
                 productData.Id = id;
+                productData.CategoryId = product.CategoryId;
                 productData.Name = product.Name;
                 productData.BrandId = product.BrandId;
                 productData.CreateBy = product.CreateBy;

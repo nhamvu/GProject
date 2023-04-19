@@ -3,13 +3,23 @@ using GProject.Api.MyServices.Services;
 using GProject.Data.DomainClass;
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
+using GProject.WebApplication.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RabbitMQ.Client;
+using System.Net.Mail;
+using System.Net;
 using System.Reflection.Metadata;
+using System.Text;
 using static System.Net.Mime.MediaTypeNames;
+using static IdentityServer4.Models.IdentityResources;
+using System.Configuration;
+using GProject.WebApplication.Helpers;
+using Twilio.Types;
 
 namespace GProject.WebApplication.Controllers
 {
+    [GProject.WebApplication.Services.Authorize]
     public class ColorController : Controller
     {
         private IColorService iColorService;
@@ -34,6 +44,32 @@ namespace GProject.WebApplication.Controllers
                 return View(data);
             }
             catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public async Task SendEmailAsync(string fromAddress, string toAddress, string subject, string body)
+        {
+            try
+            {
+                MailMessage message = new MailMessage();
+                message.From = new MailAddress(fromAddress);
+                message.To.Add(toAddress);
+                message.Subject = subject;
+                message.Body = body;
+
+                // Cấu hình thông tin chứng thực tài khoản Yahoo của bạn
+                SmtpClient smtp = new SmtpClient("smtp.mail.yahoo.com", 587);
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("nhamvdph18699@yahoo.com", "NhamVu14082002");
+                smtp.EnableSsl = true;
+
+                // Gửi email
+                smtp.Send(message);
+            }
+            catch (Exception ex)
             {
 
                 throw;

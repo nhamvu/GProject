@@ -12,6 +12,7 @@ using System.Xml.Linq;
 
 namespace GProject.WebApplication.Controllers
 {
+    [GProject.WebApplication.Services.Authorize]
     public class EmployeeController : Controller
     {
         private IEmployeeService iEmployeeService;

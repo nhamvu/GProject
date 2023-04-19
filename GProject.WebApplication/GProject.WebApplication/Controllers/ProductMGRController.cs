@@ -10,6 +10,7 @@ using System.Reflection.Metadata;
 
 namespace GProject.WebApplication.Controllers
 {
+    [GProject.WebApplication.Services.Authorize]
     public class ProductMGRController : Controller
     {
         private IProductMGRService iProductService;

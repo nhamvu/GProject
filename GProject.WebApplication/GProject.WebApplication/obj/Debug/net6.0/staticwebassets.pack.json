@@ -2005,6 +2005,10 @@
       "PackagePath": "staticwebassets\\images\\images.jpg"
     },
     {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\logoGoogle.PNG",
+      "PackagePath": "staticwebassets\\images\\logoGoogle.PNG"
+    },
+    {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\magentaColor.PNG",
       "PackagePath": "staticwebassets\\images\\magentaColor.PNG"
     },
@@ -2071,6 +2075,10 @@
     {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\áo khoác dù dây thêu _ xám.PNG",
       "PackagePath": "staticwebassets\\images\\áo khoác dù dây thêu _ xám.PNG"
+    },
+    {
+      "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\áo khoác dù dây thêu _xanh vỏ đậu.PNG",
+      "PackagePath": "staticwebassets\\images\\áo khoác dù dây thêu _xanh vỏ đậu.PNG"
     },
     {
       "Id": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\áo khoác dù dây thêu _đen.PNG",

@@ -58,23 +58,55 @@
                     </tr>
                     <tr>
                         <th>Tên khách hàng</th>
-                        <td><h5><strong>@OrderData.ShippingFullName</strong></h5></td>
+                        <td><h5><strong>@OrderData.ShippingFullName.NullToString()</strong></h5></td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td><h5><strong>@OrderData.ShippingEmail</strong></h5></td>
+                        <td><h5><strong>@OrderData.ShippingEmail.NullToString()</strong></h5></td>
                     </tr>
                     <tr>
                         <th>Địa chỉ</th>
-                        <td><h5><strong>@OrderData.ShippingAddress</strong></h5></td>
+                        <td><h5><strong>@OrderData.ShippingAddress.NullToString()</strong></h5></td>
                     </tr>
                     <tr>
                         <th>Ngày đặt</th>
-                        <td><h5><strong>@OrderData.CreateDate</strong></h5></td>
+                        <td><h5><strong>@OrderData.CreateDate.NullToString()</strong></h5></td>
                     </tr>
                     <tr>
                         <th>Phí ship</th>
                         <td><h5><strong>@string.Format("{0:0,0} VNĐ", OrderData.ShippingFee)</strong></h5></td>
+                    </tr>
+                    <tr>
+                        <th>Trạng thái</th>
+                        <td>
+                            <h5>
+                                <strong>
+                                    @{
+                                        switch ((int)OrderData.Status)
+                                        {
+                                            case 0:
+                                                <button type="button" class="btn btn-secondary">Chờ xác nhận</button>
+                                                break;
+                                            case 6:
+                                                <button type="button" class="btn btn-warning">Đã xác nhận</button>
+                                                break;
+                                            case 1:
+                                                <button type="button" class="btn btn-info">Đang vận chuyển</button>
+                                                break;
+                                            case 2:
+                                                <button type="button" class="btn btn-primary">Đang giao hàng</button>
+                                                break;
+                                            case 3:
+                                                <button type="button" class="btn btn-success">Đã hoàn thành</button>
+                                                break;
+                                            default:
+                                                <button type="button" class="btn btn-danger">Đã hủy</button>
+                                                break;
+                                        }
+                                    }
+                                </strong>
+                            </h5>
+                        </td>
                     </tr>
                     <tr>
                         <th>Mô tả</th>
@@ -132,3 +164,67 @@
         </div>
     </div>
 </div>
+<div class="row">
+    @if ((int)OrderData.Status != 6)
+    {
+        <button type="button" onclick="ConfirmOrder()" class="btn btn-outline-warning col-md-2 m-1"><i class="fas fa-check-square" style="margin-right:10px;"></i>Xác nhận đơn hàng</button>
+    }
+    @if ((int)OrderData.Status != 1)
+    {
+        <button type="button" onclick="DeliveryOrder()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang vận chuyển</button>
+    }
+    @if ((int)OrderData.Status != 3)
+    {
+        <button type="button" onclick="CompleteOrder()" class="btn btn-outline-success col-md-2 m-1"><i class="fas fa-check-double" style="margin-right:10px;"></i>Hoàn thành đơn hàng</button>
+    }
+    @if ((int)OrderData.Status != 5)
+    {
+        <button type="button" onclick="CancelOrder()" class="btn btn-outline-danger col-md-2 m-1"><i class="fas fa-window-close" style="margin-right:10px;"></i>Hủy đơn hàng</button>
+    }
+    </div>
+<script>
+    function ConfirmOrder(){
+        swal("Bạn chắc chắn muốn xác nhận đơn hàng này?", {
+            title: '',
+            icon: 'info',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                window.location = '/Order/ChangeStatus?id=@OrderData.Id.ToString()&status=6'
+            }
+        });
+    }
+    function DeliveryOrder(){
+        swal("Bạn chắc chắn muốn chuyển trạng thái đơn hàng này sang đang vận chuyển?", {
+            title: '',
+            icon: 'info',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                window.location = '/Order/ChangeStatus?id=@OrderData.Id.ToString()&status=1'
+            }
+        });
+    }
+    function CompleteOrder() {
+        swal("Bạn chắc chắn muốn hoàn thành đơn hàng này?", {
+            title: '',
+            icon: 'info',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                window.location = '/Order/ChangeStatus?id=@OrderData.Id.ToString()&status=3'
+            }
+        });
+    }
+    function CancelOrder() {
+        swal("Bạn chắc chắn muốn hủy đơn hàng này?", {
+            title: '',
+            icon: 'info',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                window.location = '/Order/ChangeStatus?id=@OrderData.Id.ToString()&status=5'
+            }
+        });
+    }
+</script>

@@ -16,6 +16,8 @@ namespace GProject.WebApplication.Helpers
         /// Tghoong tin người dùng khi đăng nhập vào,nếu chưa đăng nhập thì mặc định là ""
         /// </summary>
         public static string mylocalhost = "https://localhost:7009/api/";
+        public static string email = "nhamvdph18699@fpt.edu.vn";
+        public static string passemail = "14082002";
         public static Guid id = Guid.Empty;
 
         public static T? ConverObject<T>(object obj)

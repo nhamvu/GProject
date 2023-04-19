@@ -33,6 +33,7 @@
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/style.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet" />
     <link href="~/css/responsive.css" rel="stylesheet" />
     <link href="~/css/versions.css" rel="stylesheet" />
     <link href="~/css/slick-theme.css" rel="stylesheet" />
@@ -222,7 +223,7 @@
                             <a href="/user/change-personal-infomation-employee-page">Đổi thông tin cá nhân</a>
                         </li>
                         <li>
-                            <a href="/Login/logout">Đăng xuất</a>
+                            <a href="/Account/logout">Đăng xuất</a>
                         </li>
                     </ul>
                 </li>
@@ -238,9 +239,9 @@
         </div>
         <nav style="height:60px">
             <div>
-                <form action="/Product/Search" class="d-flex justify-content-center" method="post">
+                <form action="/Product/Index" class="d-flex justify-content-center" method="post">
                     <div class="col-md-4" style="height:40px; margin:10px 10px 20px 200px;">
-                        <input type="text" name="Keyword" id="Keyword" placeholder="Tìm kiếm trên Dream Fashion" class="form-control" style="height:40px;margin-left:30px;" />
+                        <input type="text" name="Keyword" id="Keyword" value="@ViewData["Keyword"]" placeholder="Tìm kiếm trên Dream Fashion" class="form-control" style="height:40px;margin-left:30px;" />
                     </div>
                     <button class="btn btn-outline-light" type="submit" style="height:40px;margin:10px 2px 10px 10px; width:110px;"><i class="fa fa-search" aria-hidden="true" style="margin-right:4px;"></i>Tìm kiếm</button>
                     <a class="btn btn-outline-light" type="button" style="height:40px;margin:10px 2px 10px 10px; width:110px;" href="/Product/ShowDetailMyCart"><i class="fa fa-shopping-cart" aria-hidden="true" style="margin-right:4px;"></i>Giỏ hàng</a>

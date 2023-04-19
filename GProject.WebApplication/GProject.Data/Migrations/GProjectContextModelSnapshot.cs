@@ -216,21 +216,6 @@ namespace GProject.Data.Migrations
                     b.ToTable("Category", (string)null);
                 });
 
-            modelBuilder.Entity("GProject.Data.DomainClass.CategoryProduct", b =>
-                {
-                    b.Property<Guid?>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("CategoryId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CategoryProduct", (string)null);
-                });
-
             modelBuilder.Entity("GProject.Data.DomainClass.Color", b =>
                 {
                     b.Property<int?>("Id")
@@ -861,6 +846,9 @@ namespace GProject.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("int");
 
+                    b.Property<Guid?>("CategoryId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("CreateBy")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -911,6 +899,8 @@ namespace GProject.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("BrandId");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Product", (string)null);
                 });
@@ -1335,25 +1325,6 @@ namespace GProject.Data.Migrations
                     b.Navigation("ProductVariationId_Navigation");
                 });
 
-            modelBuilder.Entity("GProject.Data.DomainClass.CategoryProduct", b =>
-                {
-                    b.HasOne("GProject.Data.DomainClass.Category", "CategoryId_Navigation")
-                        .WithMany("CategoryProducts")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("GProject.Data.DomainClass.Product", "ProductId_Navigation")
-                        .WithMany("CategoryProducts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CategoryId_Navigation");
-
-                    b.Navigation("ProductId_Navigation");
-                });
-
             modelBuilder.Entity("GProject.Data.DomainClass.Contact", b =>
                 {
                     b.HasOne("GProject.Data.DomainClass.Customer", "CustomerId_navigation")
@@ -1451,7 +1422,13 @@ namespace GProject.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GProject.Data.DomainClass.Category", "CategoryId_Navigation")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId");
+
                     b.Navigation("BrandId_Navigation");
+
+                    b.Navigation("CategoryId_Navigation");
                 });
 
             modelBuilder.Entity("GProject.Data.DomainClass.ProductVariation", b =>
@@ -1525,7 +1502,7 @@ namespace GProject.Data.Migrations
 
             modelBuilder.Entity("GProject.Data.DomainClass.Category", b =>
                 {
-                    b.Navigation("CategoryProducts");
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("GProject.Data.DomainClass.Color", b =>
@@ -1567,8 +1544,6 @@ namespace GProject.Data.Migrations
 
             modelBuilder.Entity("GProject.Data.DomainClass.Product", b =>
                 {
-                    b.Navigation("CategoryProducts");
-
                     b.Navigation("Evaluates");
 
                     b.Navigation("FavoriteProducts");

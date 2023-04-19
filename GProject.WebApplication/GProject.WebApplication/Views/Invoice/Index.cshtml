@@ -1,0 +1,175 @@
+﻿@model GProject.WebApplication.Models.OrderDTO
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GProject.WebApplication.Models
+@using GProject.Api.MyServices.Services;
+@using GProject.WebApplication.Helpers;
+@using GProject.Data.DomainClass;
+@{
+    ViewBag.Title = "Danh sách hóa đơn";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    Pager pager = new Pager();
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+    var lstOrderDetail = await Commons.GetAll<OrderDetail>(String.Concat(Commons.mylocalhost, "Order/get-all-Order-detail"));
+}
+<style>
+    label {
+        color: black;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    .sticky-header th {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background-color: #E5E5E5;
+    }
+
+    .sticky-table {
+        border-collapse: separate !important;
+    }
+</style>
+
+@if (@ViewData["Mess"] != null)
+{
+    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+}
+<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Invoice/Index">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên khách hàng</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Email</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Số điện thoại</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sPhone" maxlength="10" name="sPhone" value="@ViewData["sPhone"]" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Hình thức thanh toán</label>
+                                <div class="col-md-9">
+                                    @{
+                                        int gender = int.Parse(Html.Encode(ViewData["sPaymentType"]));
+                                    }
+                                    @Html.DropDownList("sPaymentType",new[]
+                                    {
+                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (gender== -1)},
+                                    new SelectListItem{Text="Thanh toán khi nhận hàng", Value="0", Selected= (gender== 0)},
+                                    new SelectListItem{Text="Thanh toán ngay khi đặt hàng", Value="1", Selected=  (gender == 1)}
+                                    }, new { @name = "sPaymentType", @class="searchText form-control select"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<hr style="color:red;" />
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-users" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH ĐƠN ĐẶT HÀNG</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                <table class="table table-bordered table-hover sticky-table">
+                    <thead class="sticky-header">
+                        <tr>
+                            <th>STT</th>
+                            <th>Tên khách hàng</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày đặt hàng</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Xem chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Orders != null)
+                        {
+                            @for (int i = 0; i < Model.Orders.Count(); i++)
+                            {
+                                int statusSel = (int)Model.Orders[i].Status;
+                                <tr>
+                                    <td hidden><input class="orderId" disabled hidden="hidden" type="text" value="@(Model.Orders[i].Id.ToString())"></td>
+                                    <td hidden><input class="customerId" disabled hidden="hidden" type="text" value="@(Model.Orders[i].CustomerId.ToString())"></td>
+                                    <td>@(i)</td>
+                                    <td>@Model.Orders[i].ShippingFullName</td>
+                                    <td>@Model.Orders[i].ShippingEmail</td>
+                                    <td>@Model.Orders[i].ShippingPhone</td>
+                                    <td>@Model.Orders[i].CreateDate</td>
+                                    <td>@string.Format("{0:0,0} VNĐ", Model.Orders[i].TotalMoney)</td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">Đã hoàn thành</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info" onclick="location.href='@Url.Action("Detail", "Invoice",new { id = Model.Orders[i].Id})'" />
+                                        <i class="fa fa-eye"></i>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link" asp-controller="Invoice" asp-action="Index" asp-route-pg="1">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="Invoice" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+            </li>
+
+            @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-controller="Invoice" asp-action="Index" asp-route-pg="@pge"> @pge</a>
+                </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link" asp-controller="Invoice" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="Invoice" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+            </li>
+        </ul>
+    }
+</div>

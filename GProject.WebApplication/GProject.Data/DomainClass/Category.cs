@@ -14,6 +14,6 @@ namespace GProject.Data.DomainClass
         public string SearchCount { get; set; }
         public int Status { get; set; } = 1; // 0: sử dụng || 1: không sử dụng
         public string? Description { get; set; }
-        public List<CategoryProduct>? CategoryProducts { get; set; }
+        public List<Product>? Products { get; set; }
     }
 }

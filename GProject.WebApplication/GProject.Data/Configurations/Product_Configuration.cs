@@ -24,6 +24,7 @@ namespace GProject.Data.Configurations
             builder.Property(e => e.ImportPrice).HasDefaultValueSql("((0))");
             builder.Property(e => e.Status).HasDefaultValueSql("((0))");
             builder.HasOne(d => d.BrandId_Navigation).WithMany(p => p.Products).HasForeignKey(d => d.BrandId);
+            builder.HasOne(d => d.CategoryId_Navigation).WithMany(p => p.Products).HasForeignKey(d => d.CategoryId);
         }
     }
 }

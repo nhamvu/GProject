@@ -10,6 +10,7 @@
 }
 @{
     var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+    var lstCategory = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
     IList<SelectListItem> StoreItems = new List<SelectListItem>();
     if (lstBrand.Count > 0)
     {
@@ -27,6 +28,27 @@
                         Value = br.Id.ToString(),
                         Text = br.Name,
                         Selected = br.Id == Model.BrandId,
+                    });
+        }
+    }
+
+    IList<SelectListItem> CategoryItems = new List<SelectListItem>();
+    if (lstCategory.Count > 0)
+    {
+        CategoryItems.Add(new SelectListItem()
+                {
+                    Value = "-1",
+                    Text = "-- Danh mục sản phẩm --",
+                    Selected = "-1" == Model.CategoryId.ToString(),
+                });
+
+        foreach (var br in lstCategory)
+        {
+            CategoryItems.Add(new SelectListItem()
+                    {
+                        Value = br.Id.ToString(),
+                        Text = br.Name,
+                        Selected = br.Id == Model.CategoryId,
                     });
         }
     }
@@ -136,36 +158,47 @@
             </div>
         </div>
     </div>
-    <div class="form-group">
-        <label class="control-label col-sm-3"><strong>Trạng thái:<span style="color: red">(*)</span></strong></label>
+    <div class="row">
         <div class="col-md-6">
-            @Html.DropDownList("Status", new[]
-            {
-            new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-            new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
-            }, new { @class = "form-control iscompany" })
+            <label class="control-label col-sm-3"><strong>Trạng thái:<span style="color: red">(*)</span></strong></label>
+            <div class="col-md-6">
+                @Html.DropDownList("Status", new[]
+                {
+                new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : true)}
+                }, new { @class = "form-control iscompany" })
+            </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
+                <label class="control-label col-sm-3"><strong>Loại :<span style="color: red">(*)</span></strong></label>
+                <div class="col-md-6">
+                    @Html.DropDownList("ProductType", new[]
+                    {
+                    new SelectListItem{Text="Sản phẩm thông thường", Value="0", Selected = (Model.ProductType != null ? (Model.ProductType == "0") : true)},
+                    new SelectListItem{Text="Sản phẩm mới", Value="1",  Selected = (Model.ProductType != null ? (Model.ProductType == "1") : true)},
+                    new SelectListItem{Text="Sản phẩm nổi bật", Value="2", Selected = (Model.ProductType != null ? (Model.ProductType == "2") : true)},
+                    new SelectListItem{Text="Sản phẩm được yêu thích", Value="3",  Selected = (Model.ProductType != null ? (Model.ProductType == "3") : true)},
+                    new SelectListItem{Text="Sản phẩm khuyến mại", Value="4", Selected = (Model.ProductType != null ? (Model.ProductType == "4") : true)}
+                    }, new { @class = "form-control iscompany" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label col-sm-5"><strong>Loại danh mục:<span style="color: red">(*)</span></strong></label>
                 <div class="col-sm-9">
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="form-check">
-                                    <input type="checkbox" id="ckbAllProductType" class="form-check-input-productType" />
-                                    <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-check">
-                                <input class="form-check-input-productType" type="checkbox" value="2" id="ckbFeatured">
-                                <label class="form-check-label">Sản phẩm nổi bật</label>
-                            </div>
-                            </div>
-                        </div>
+                    @Html.DropDownList("CategoryId", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
     <div class="form-group">
         <label class="control-label col-sm-3"><strong>Mô tả:</strong></label>
         <div class="col-sm-12">
@@ -326,6 +359,10 @@
         }
         if (parseFloat($('#BrandId').val()) == -1) {
             sweetAlert("Thông báo", "Thông tin tên sản phẩm không được để trống", "error");
+            return false;
+        }
+        if (parseFloat($('#CategoryId').val()) == -1) {
+            sweetAlert("Thông báo", "Vui lòng chọn loại danh mục sản phẩm", "error");
             return false;
         }
         if ($('#ImportPrice').val() == '') {

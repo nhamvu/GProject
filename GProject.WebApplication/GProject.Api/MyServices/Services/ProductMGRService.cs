@@ -46,6 +46,7 @@ namespace GProject.Api.MyServices.Services
         {
             if (cv == null) return false;
             var temp = _iProductRepository.GetAll().FirstOrDefault(c => c.Id == cv.Id);
+            temp.CategoryId = cv.CategoryId;
             temp.CreateBy = cv.CreateBy;
             temp.Status = cv.Status;
             temp.LikeCount = cv.LikeCount;

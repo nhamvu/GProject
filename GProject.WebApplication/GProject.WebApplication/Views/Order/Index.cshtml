@@ -150,7 +150,29 @@
                                     <td>@Model.Orders[i].CreateDate</td>
                                     <td>@string.Format("{0:0,0} VNĐ", Model.Orders[i].TotalMoney)</td>
                                     <td>
-                                        @Commons.GetEnumDescription(Model.Orders[i].Status)
+                                        @{
+                                            switch ((int)Model.Orders[i].Status)
+                                            {
+                                                case 0:
+                                                    <button type="button" class="btn btn-secondary">Chờ xác nhận</button>
+                                                    break;
+                                                case 6:
+                                                    <button type="button" class="btn btn-warning">Đã xác nhận</button>
+                                                    break;
+                                                case 1:
+                                                    <button type="button" class="btn btn-info">Đang vận chuyển</button>
+                                                    break;
+                                                case 2:
+                                                    <button type="button" class="btn btn-primary">Đang giao hàng</button>
+                                                    break;
+                                                case 3:
+                                                    <button type="button" class="btn btn-success">Đã hoàn thành</button>
+                                                    break;
+                                                default:
+                                                    <button type="button" class="btn btn-danger">Đã hủy</button>
+                                                    break;
+                                            }
+                                        }
                                     </td>
                                     <td>
                                         <button class="btn btn-info" onclick="location.href='@Url.Action("Detail", "Order",new { id = Model.Orders[i].Id})'" />
@@ -197,9 +219,9 @@
         var er = document.getElementById('error')
         if (er != null) {
             if ($('#error').text() == 'Failed')
-                swal("Không thành công", "Vui lòng xem lại thông tin đã nhập", "error");
+                swal("Không thành công", "Chuyển trạng thái đơn hàng thất bại", "error");
             else
-                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                swal("Thành công", "Chuyển trạng thái đơn hàng thành công", "success");
         }
 
         $('#sPhone').keyup(function () {

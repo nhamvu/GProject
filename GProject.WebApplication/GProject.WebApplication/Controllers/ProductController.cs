@@ -18,23 +18,35 @@ namespace GProject.WebApplication.Controllers
     public class ProductController : Controller
     {
         //[HttpGet]
-        public async Task<ActionResult> Index(int? type, int pg = 1, int pageSize = 8)
+        public async Task<ActionResult> Index(string prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice, int? type, int pg = 1, int pageSize = 8, string Keyword = null)
         {
             try
             {
-                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
-                var data = await pService.GetDataForIndex(type.NullToString(), pg, pageSize);
+				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
+				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
+				Guid valCategory = category.HasValue ? category.Value : Guid.Empty;
+				int valBrand = brand.HasValue ? brand.Value : -1;
+
+				var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+				GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                var data = await pService.GetDataForIndex(prodName, valCategory, valBrand, valFromPrice, valToPrice, type.NullToString(), pg, pageSize, customer, Keyword);
 				this.ViewBag.Pager = data.pager;
-				return View(data.tuple);
+				this.ViewData[nameof(prodName)] = (object)prodName;
+				this.ViewData[nameof(fPrice)] = (object)valFromPrice;
+				this.ViewData[nameof(tPrice)] = (object)valFromPrice;
+				this.ViewData[nameof(brand)] = (object)valBrand;
+				this.ViewData[nameof(category)] = (object)valCategory;
+				this.ViewData[nameof(Keyword)] = (object)Keyword;
+                return View(data.tuple);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "OAuth");
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
-        [Route("/productdetail/{product_id}")]
+		[Route("/productdetail/{product_id}")]
 		public async Task<ActionResult> ProductDetail(Guid product_id)
 		{
 			try
@@ -44,21 +56,24 @@ namespace GProject.WebApplication.Controllers
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                if (customer == null)
+                    customer = new Customer();
                 return View(await pService.GetProductDetail(product_id, customer));
 			}
 			catch (Exception ex)
 			{
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
 		}
 
+        [GProject.WebApplication.Services.Authorize]
         public async Task<ActionResult> AddToCart(string cTotalMoney, string cColor, string cSize, string cQuantity, string cPrice, string cProductId, string cDescription)
         {
             try
             {
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                if (customer == null) return RedirectToAction("Index", "Login");
+                if (customer == null) return RedirectToAction("Index", "Account");
 
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 bool result = await pService.AddToCart(cTotalMoney, cColor, cSize, cQuantity, cPrice, cProductId, cDescription, customer.Id);
@@ -71,10 +86,11 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
+        [GProject.WebApplication.Services.Authorize]
         [HttpGet]
         public ActionResult Order(string products)
         {
@@ -84,6 +100,7 @@ namespace GProject.WebApplication.Controllers
             return Ok();
         }
 
+        [GProject.WebApplication.Services.Authorize]
         [HttpGet]
         public async Task<ActionResult> RemoveToCart(string products)
         {
@@ -102,6 +119,8 @@ namespace GProject.WebApplication.Controllers
             // Xử lý danh sách đối tượng ở đây
             return RedirectToAction("ProductDetail", "Product", new { product_id = productId });
         }
+
+        [GProject.WebApplication.Services.Authorize]
         [HttpGet]
         public ActionResult GetCustomerInfo()
         {
@@ -109,6 +128,7 @@ namespace GProject.WebApplication.Controllers
             return Ok(customer);
         }
 
+        [GProject.WebApplication.Services.Authorize]
         [HttpGet]
         public async Task<ActionResult> ReleaseHeart(string cProductId)
         {
@@ -121,15 +141,26 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
+
+        [GProject.WebApplication.Services.Authorize]
+        [HttpGet]
+        public async Task<ActionResult> GetQuantityInstock(string cColorId, string cSizeId, string cProductId)
+        {
+            GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+            int instock = await pService.GetQuantityInstock(cColorId.NullToString(), cSizeId.NullToString(), cProductId);
+            return Ok(instock);
+        }
+
+        [GProject.WebApplication.Services.Authorize]
         public async Task<ActionResult> ShowDetailMyCart(string prodName, int? brand, decimal? fPrice, decimal? tPrice)
 		{
 			try
 			{
 				var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-				if (customer == null) return RedirectToAction("Index", "Login");
+				if (customer == null) return RedirectToAction("Login", "Account");
 				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
 				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
 				int valBrand = brand.HasValue ? brand.Value : -1;
@@ -148,7 +179,7 @@ namespace GProject.WebApplication.Controllers
 			catch (Exception ex)
 			{
 				Console.WriteLine(ex);
-				return RedirectToAction("AccessDenied", "Login");
+				return RedirectToAction("AccessDenied", "Account");
 			}
 		}
 

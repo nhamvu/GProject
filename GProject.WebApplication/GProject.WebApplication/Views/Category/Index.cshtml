@@ -1,0 +1,159 @@
+﻿@model GProject.WebApplication.Models.CategoryDTO
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GProject.WebApplication.Models
+@using GProject.Api.MyServices.Services;
+@{
+    ViewBag.Title = "Quản lý danh mục sản phẩm";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    label {
+        color: black;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    .sticky-header th {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background-color: #E5E5E5;
+    }
+
+    .sticky-table {
+        border-collapse: separate !important;
+    }
+</style>
+<h1>QUẢN LÍ DANH MỤC SẢN PHẨM</h1>
+
+@if (@ViewData["Mess"] != null)
+{
+    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+}
+<button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
+<form id="formdata" asp-action="Save" class="form">
+    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Tên danh mục:<span style="color: red">(*)</span></strong></label>
+            <div class="form-input">
+                <input asp-for="Name" placeholder="Category name" maxlength="200" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
+            <div style="margin-top:10px;">
+                @Html.DropDownList("Status", new[]
+                {
+                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
+                }, new { @class = "form-control iscompany" })
+            </div>
+        </div>
+        <div class="col-md-9">
+            <label class="col-md-5"><strong>Mô tả:</strong></label>
+            <div class="form-input">
+                @Html.TextAreaFor(c => c.Description, new { @class= "form-control", @maxlength="256"})
+                @*<textarea asp-for="Description" placeholder="Description" /></textarea>*@
+            </div>
+        </div>
+        <div class="col-md-2">
+            <strong><label></label></strong>
+            <div class="form-input">
+                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+            </div>
+        </div>
+    </div>
+</form>
+<hr style="color:red;" />
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH NHÃN HIỆU</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                <table class="table table-bordered table-hover sticky-table">
+                    <thead class="sticky-header">
+                        <tr>
+                            <th>Tên danh mục</th>
+                            <th>Trạng thái</th>
+                            <th>Mô tả</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.CategoryList != null)
+                        {
+                            @foreach (var item in Model.CategoryList)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.Name
+                                    </td>
+                                    <td>
+                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
+                                    </td>
+                                    <td>
+                                        @item.Description
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#formdata').hide();
+        var er = document.getElementById('error')
+        if (er != null) {
+            if ($('#error').text() == 'Failed')
+                swal("Không thành công", "Vui lòng xem lại thông tin đã nhập", "error");
+            else
+                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+        }
+    });
+
+    function ChangePanel() {
+        if ($("#changeform").text() == "Thêm mới") {
+            $('#formdata').show();
+            $("#changeform").text("Hủy thay đổi");
+        } else if ($("#changeform").text() == "Hủy thay đổi") {
+            $("#Name").val('');
+            $("#Status").val(0);
+            $('#formdata').hide();
+            $("#changeform").text("Thêm mới");
+        }
+    }
+    document.querySelector('#formdata').addEventListener('submit', function (e) {
+        var form = this;
+
+        e.preventDefault();
+        if (checkValidateData()) {
+            swal("Bạn chắc chắn lưu những thay đổi này?", {
+                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                icon: 'info',
+                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    form.submit();
+                } else {
+                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                }
+            });
+        }
+    });
+
+    function checkValidateData() {
+        if ($('#Name').val() == '') {
+            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+            return false;
+        }
+        return true;
+    }
+</script>

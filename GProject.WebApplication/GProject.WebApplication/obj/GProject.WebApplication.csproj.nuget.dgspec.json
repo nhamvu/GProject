@@ -242,13 +242,21 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EasyNetQ": {
+              "target": "Package",
+              "version": "[7.5.0, )"
+            },
             "Google.Apis.Auth": {
               "target": "Package",
               "version": "[1.60.0, )"
             },
-            "Google.Apis.Plus.v1": {
+            "IdentityServer4": {
               "target": "Package",
-              "version": "[1.49.0.1627, )"
+              "version": "[4.1.2, )"
+            },
+            "IdentityServer4.AspNetIdentity": {
+              "target": "Package",
+              "version": "[4.1.2, )"
             },
             "Microsoft.AspNet.Identity.Owin": {
               "target": "Package",
@@ -258,9 +266,17 @@
               "target": "Package",
               "version": "[5.2.9, )"
             },
+            "Microsoft.AspNetCore.Authentication": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Cookies": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",
-              "version": "[6.0.11, )"
+              "version": "[6.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -271,6 +287,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[6.0.12, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[6.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
@@ -290,9 +310,21 @@
               "target": "Package",
               "version": "[13.0.2, )"
             },
+            "RabbitMQ.Client": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
             "RestSharp": {
               "target": "Package",
               "version": "[108.0.3, )"
+            },
+            "Twilio": {
+              "target": "Package",
+              "version": "[5.60.0, )"
+            },
+            "Twilio.AspNet.Core": {
+              "target": "Package",
+              "version": "[5.37.2, )"
             }
           },
           "imports": [

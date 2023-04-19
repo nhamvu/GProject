@@ -23,13 +23,31 @@ namespace GProject.WebApplication.Services
             return Commons.ConverObject<List<ProductDTO>>(data);
         }
 
-        public async Task<(Pager pager, Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?> tuple)> GetDataForIndex(string type, int pg, int pageSize)
+        public async Task<(Pager pager, Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?, List<ViewHistory>?> tuple)> GetDataForIndex(string prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice, string type, int pg, int pageSize, Customer customer, string Keyword)
         {
             var products = await GetProductViewModel();
             if (!string.IsNullOrEmpty(type))
             {
                 products = products.Where(c => c.Product.ProductType.Contains(type)).ToList();
             }
+			if (!string.IsNullOrEmpty(Keyword))
+			{
+				products = products.Where(c => c.Product.Name.ToLower().Contains(Keyword.ToLower())
+				|| c.Brand.Name.ToLower().Contains(Keyword.ToLower())
+				|| c.Category.Name.ToLower().Contains(Keyword.ToLower())).ToList();
+			}
+			if (!string.IsNullOrEmpty(prodName))
+				products = products.Where(c => c.Product.Name.ToLower().Contains(prodName.ToLower())).ToList();
+			if (!string.IsNullOrEmpty(category.NullToString()) && category != Guid.Empty)
+				products = products.Where(c => c.Product.CategoryId == category).ToList();
+			if (brand != -1)
+				products = products.Where(c => c.Brand.Id == brand).ToList();
+			if (fPrice != -1)
+				products = products.Where(c => c.Product.Price >= fPrice).ToList();
+			if (tPrice != -1)
+				products = products.Where(c => c.Product.Price <= tPrice).ToList();
+
+
 			if (pg < 1)
 				pg = 1;
 
@@ -40,7 +58,13 @@ namespace GProject.WebApplication.Services
 			var lstColor = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
             var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
             var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
-            return (pager, new Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?>(products, lstColor, lstSize, lstBrand));
+            var lstViewHistory = await Commons.GetAll<ViewHistory>(String.Concat(Commons.mylocalhost, "ViewHistory/get-all-ViewHistory"));
+
+            if (customer != null)
+            {
+                lstViewHistory = lstViewHistory.Where(c => c.CustomerId == customer.Id).OrderByDescending(c => c.DateView).ToList();
+			}
+            return (pager, new Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?, List<ViewHistory>?>(products, lstColor, lstSize, lstBrand, lstViewHistory));
         }
 
         public async Task<Tuple<Product?, List<ProductVariation>?, Brand?, EvaluateCommentDTO, decimal, int, Customer>> GetProductDetail(Guid product_id, Customer customer)
@@ -53,6 +77,7 @@ namespace GProject.WebApplication.Services
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
             var lstEvaluate = await Commons.GetAll<Evaluate>(String.Concat(Commons.mylocalhost, "Evaluate/get-all-Evaluate"));
+            var lstViewHistory = await Commons.GetAll<ViewHistory>(String.Concat(Commons.mylocalhost, "ViewHistory/get-all-ViewHistory"));
 
             var product = lstProducts.FirstOrDefault(c => c.Id == product_id);
             if (product != null)
@@ -86,6 +111,19 @@ namespace GProject.WebApplication.Services
                 ratingSum = 0;
                 ratingCount = 0;
             }
+
+            //--Thêm vaofg danh sách xem gần đây của Khách hàng này
+            ViewHistory viewHistory = new ViewHistory()
+            {
+                DateView = DateTime.Now,
+                ProductId = product_id,
+                CustomerId = customer.Id
+            };
+            if (lstViewHistory.FirstOrDefault(c => c.CustomerId == customer.Id && c.ProductId == product_id) != null)
+                await Commons.Add_or_UpdateAsync(viewHistory, String.Concat(Commons.mylocalhost, "ViewHistory/update-ViewHistory"));
+            else
+                await Commons.Add_or_UpdateAsync(viewHistory, String.Concat(Commons.mylocalhost, "ViewHistory/add-ViewHistory"));
+
 
             return new Tuple<Product?, List<ProductVariation>?, Brand?, EvaluateCommentDTO, decimal, int, Customer>(product,
                     productVariation,
@@ -174,6 +212,26 @@ namespace GProject.WebApplication.Services
             return result;
         }
 
+        public async Task<int> GetQuantityInstock(string cColorId, string cSizeId, string cProductId)
+        {
+            var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+            if (!string.IsNullOrEmpty(cColorId) && !string.IsNullOrEmpty(cSizeId))
+            {
+                return lstProductvariation.Where(c => c.ProductId == new Guid(cProductId) && c.SizeId == int.Parse(cSizeId) && c.ColorId == int.Parse(cColorId)).Select(c => c.QuantityInStock).FirstOrDefault().NullToInt();
+            }
+            
+            if (!string.IsNullOrEmpty(cColorId) && string.IsNullOrEmpty(cSizeId))
+            {
+                return lstProductvariation.Where(c => c.ProductId == new Guid(cProductId) && c.ColorId == int.Parse(cColorId)).Sum(c => c.QuantityInStock);
+            }
+
+            if (string.IsNullOrEmpty(cColorId) && !string.IsNullOrEmpty(cSizeId))
+            {
+                return lstProductvariation.Where(c => c.ProductId == new Guid(cProductId) && c.SizeId == int.Parse(cSizeId)).Sum(c => c.QuantityInStock);
+            }
+            return lstProductvariation.Where(c => c.ProductId == new Guid(cProductId)).Sum(c => c.QuantityInStock);
+        }
+
         public async Task<List<CartDTO>> ShowMyCart(Guid? customer_id, string prodName, decimal? fPrice, decimal? tPrice, int? brand)
         {
 			var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
@@ -231,5 +289,5 @@ namespace GProject.WebApplication.Services
 
 			return carts;
         }
-    }
+	}
 }

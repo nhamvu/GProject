@@ -9,6 +9,7 @@ using System.Reflection.Metadata;
 
 namespace GProject.WebApplication.Controllers
 {
+    [GProject.WebApplication.Services.Authorize]
     public class EvaluateController : Controller
     {
         private IEvaluateService iEvaluateService;
@@ -45,7 +46,7 @@ namespace GProject.WebApplication.Controllers
             try
             {
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                if (customer == null) return RedirectToAction("Index", "Login");
+                if (customer == null) return RedirectToAction("Login", "Account");
 
                 Guid id = string.IsNullOrEmpty(Id) ? Guid.NewGuid() : new Guid(Id);
                 string url = Commons.mylocalhost;

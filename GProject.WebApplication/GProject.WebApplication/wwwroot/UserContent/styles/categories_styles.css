@@ -1292,16 +1292,21 @@ section
 	padding-left: 34px;
 }
 
-.product-grid
-{
+.product-grid {
 	width: 100%;
+	max-height: 460px;
 	margin-top: 57px;
+	border: 1px solid #ddd;
+	display: flex;
+	overflow-x: auto;
 }
-.product-item
-{
-	width: 25%;
+.product-item {
+	border: 1px solid #ddd;
+	margin-right: 5px;
+	width: 24%;
 	height: 450px;
 	cursor: pointer;
+	margin-bottom: 10px;
 }
 .product-item::after
 {

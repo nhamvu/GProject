@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3VL2OLWSR1Sd79zwG9uZ3YnihTuaGVbbR/cuvtx+bxg=",
+  "Hash": "R7+eHCsgf6Ph6q62oHYXg1bj7cMrRtGCRSdFdaWNrpI=",
   "Source": "GProject.WebApplication",
   "BasePath": "_content/GProject.WebApplication",
   "Mode": "Default",
@@ -6608,6 +6608,23 @@
       "OriginalItemSpec": "wwwroot\\images\\áo khoác dù dây thêu _đen.PNG"
     },
     {
+      "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\áo khoác dù dây thêu _xanh vỏ đậu.PNG",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "images/áo khoác dù dây thêu _xanh vỏ đậu.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\áo khoác dù dây thêu _xanh vỏ đậu.PNG"
+    },
+    {
       "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\Áo khoác dù_trắng.PNG",
       "SourceId": "GProject.WebApplication",
       "SourceType": "Discovered",
@@ -7048,6 +7065,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\LimeColor.PNG"
+    },
+    {
+      "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\logoGoogle.PNG",
+      "SourceId": "GProject.WebApplication",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\",
+      "BasePath": "_content/GProject.WebApplication",
+      "RelativePath": "images/logoGoogle.PNG",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logoGoogle.PNG"
     },
     {
       "Identity": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\wwwroot\\images\\magentaColor.PNG",
