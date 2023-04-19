@@ -325,8 +325,8 @@ namespace GProject.WebApplication.Controllers
                 return false;
             }
         }
-    }
-        }
+    
+
 
         public async Task<ActionResult> Index(Guid? accomplished, Guid? canceled)
         {
