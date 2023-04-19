@@ -1,3 +1,5 @@
+using GProject.WebApplication.Services.IServices;
+using GProject.WebApplication.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
@@ -70,8 +72,10 @@ namespace YourNamespace
 					return Task.CompletedTask;
 				};
 			});
-
-            services.AddAuthorization();
+			services.AddRazorPages()
+	.AddRazorRuntimeCompilation();
+			services.AddScoped<IVnPayService, VnPayService>();
+			services.AddAuthorization();
             services.AddIdentity<Customer, IdentityRole>()
                 .AddEntityFrameworkStores<GProjectContext>()
                 .AddDefaultTokenProviders();

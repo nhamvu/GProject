@@ -426,56 +426,20 @@
                     </div>
                     <div class="modal-body">
                         <input type="text" id="pTotalMoney" name="pTotalMoney" hidden="hidden" />
+                        <input type="text" id="cShippingFee" name="cShippingFee" hidden="hidden" />
+                        <input type="text" id="idDeliveryAddress" name="idDeliveryAddress" value="" hidden="hidden" />
+                        <input type="text" id="cGiamGia" name="cGiamGia" value="" hidden="hidden" />
+
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Họ và tên:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingFullName" name="ShippingFullName" value="" placeholder="Your Name" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingCity" name="ShippingCity" value="" placeholder="Your City" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingDistrict" name="ShippingDistrict" value="" placeholder="Your District" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingTown" name="ShippingTown" value="" placeholder="Your Town" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" placeholder="Your Address" class="form-control" />
+                                        <select id="selectDeliveryAddress" class="form-select">
+                                        </select>
+                                        <button style="margin-top: 5px;" class="btn btn-success " onclick="OpenDeliveryAddress(); return false;" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
+                                            Thêm
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -485,13 +449,13 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5"><strong>Email:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <input type="email" id="ShippingEmail" name="ShippingEmail" value="" placeholder="name@examle.com" class="form-control" />
+                                        <input type="email" id="ShippingEmail" name="ShippingEmail" value="" placeholder="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Loại thanh toán:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5"><strong>Email:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
                                         @{
                                             int PaymentType = 0;
@@ -504,6 +468,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-6"><strong>Mã giảm giá:<span style="color: red">(*)</span></strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectVoucher" name="selectVoucher" class="form-select">
+                                            <option value="0"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-3"><strong>Mô tả của bạn:</strong></label>
                                 <div class="col-sm-12">
@@ -511,14 +485,35 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-7">
+                                <div class="col-sm-9">
+                                    <label class="control-label col-md-12"><strong>Phí ship:</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p><strong id="txtPhiShip">0</strong><strong style="margin-left: 5px;">đ</strong></p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="control-label col-md-12"><strong>Giảm giá:</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p><strong>- </strong> <strong id="txtGiamGia">0</strong><strong style="margin-left: 5px;">đ</strong></p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
+                                    <label class="control-label col-md-12"><strong>Tổng tiền sản phẩm:</strong></label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p><strong id="txtTotalProduct"></strong><strong style="margin-left: 5px;">đ</strong></p>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-9">
                                     <h2><label class="control-label col-md-12"><strong>Tổng tiền thanh toán:</strong></label></h2>
                                 </div>
                                 <div class="col-sm-3">
-                                    <h2><strong style="color:red;" id="textTotalMoney"></strong></h2>
-                                </div>
-                                <div class="col-sm-2">
-                                    <h2><strong>VNĐ</strong></h2>
+                                    <h2><strong style="color:red;" id="textTotalMoney"></strong><strong style="margin-left: 5px;color:red;">đ</strong></h2>
                                 </div>
                             </div>
                         </div>
@@ -537,7 +532,87 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
+
+        document.querySelector('#formdata').addEventListener('submit', function (e) {
+            var form = this;
+            e.preventDefault();
+            if ($("#selectDeliveryAddress").val() == "") {
+                sweetAlert("", "Vui lòng nhập địa chỉ nhận hàng", "error");
+            }
+            else if (checkValidateData()) {
+                swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
+                    title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    } else {
+                        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                    }
+                });
+            }
+        });
+
+        $("#selectDeliveryAddress").change(function () {
+            let _id = $("#selectDeliveryAddress").val();
+            $.ajax({
+                url: "/Product/GetDataDeliveryAddress?id=" + _id,
+                type: "GET",
+                success: function (result) {
+                    if (result != null) {
+                        ShippingFee(result.districtID, result.wardCode)
+                        $("#idDeliveryAddress").val(result.id)
+                    }
+                    else {
+                        var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''))
+                        swal("Thông báo!", "Bạn không được để trống thông tin địa chỉ!", "error");
+                        $("#txtPhiShip").text(commasThousands(0))
+                        $('#textTotalMoney').text(commasThousands(total));
+                        $('#pTotalMoney').val(total);
+                        $('#cShippingFee').val(0);
+                    }
+                }
+            })
+        });
+
         
+
+        $("#selectVoucher").change(function () {
+            let _id = $("#selectVoucher").val();
+            $.ajax({
+                url: "/Product/GetVoucher?id=" + _id,
+                type: "GET",
+                success: function (result) {
+                    let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                    let discount = 0;
+                    if (result != null) {
+                        if (result.discountForm == "%") {
+                            discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
+                            $("#txtGiamGia").text(commasThousands(discount))
+                        }
+                        else {
+                            discount = result.discountRate
+                            $("#txtGiamGia").text(commasThousands(result.discountRate))
+                        }
+                        var total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    }
+                    else {
+                        swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
+                        $("#txtGiamGia").text(0)
+                        $("#txtDiscountForm").text("Vnd")
+                        var total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    }
+
+                    $('#textTotalMoney').text(commasThousands(total));
+                    $('#pTotalMoney').val(total);
+                    $('#cGiamGia').val(discount);
+                }
+            })
+        });
+
+        
+
         $('[data-quantity="plus"]').click(function (e) {
             e.preventDefault();
             fieldName = $(this).attr('data-field');
@@ -585,9 +660,71 @@
 
     });
 
-    document.querySelector('#buyFormData').addEventListener('submit', function (e) {
-        var form = this;
+    function ShippingFee(district_id, ward_code) {
+            $.ajax({
+                url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
+                type: "GET",
+                success: function (result) {
+                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
+                    $("#txtPhiShip").text(commasThousands(result))
+                    $('#textTotalMoney').text(commasThousands(total));
+                    $('#pTotalMoney').val(total);
+                    $('#cShippingFee').val(result);
+                }
+            })
+        }
 
+        function GetDataVoucherById(totalMoneyOrder) {
+            $.ajax({
+                url: "/Product/GetVoucher?totalMoneyOrder=" + totalMoneyOrder,
+                type: "GET",
+                success: function (result) {
+                    var renderData = "<option></option>";
+                    $.each(result, function (value) {
+                        var date = result[value].expirationDate;
+                        renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
+                        renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
+                        renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
+                        renderData += '<option disabled style="font-style:italic"></option>'
+                    });
+                    $("#selectVoucher").html(renderData)
+                }
+            })
+        }
+
+    function GetDataVoucher(totalMoneyOrder) {
+        $.ajax({
+            url: "/Product/GetVoucher?totalMoneyOrder=" + totalMoneyOrder,
+            type: "GET",
+            success: function (result) {
+                var renderData = "<option></option>";
+                $.each(result, function (value) {
+                    debugger
+                    var date = result[value].expirationDate;
+                    renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
+                    renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
+                    renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
+                    renderData += '<option disabled style="font-style:italic"></option>'
+                });
+                $("#selectVoucher").html(renderData)
+            }
+        })
+    }
+
+    function TinhPhanTram(tongtien, giamgia) {
+        let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
+        return thanhtien
+    }
+
+    function ConvertDate(time) {
+        var date = new Date(time);
+        var dateConvert = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + date.getFullYear())
+        return dateConvert
+    }
+
+    function OpenDeliveryAddress() {
+        $('#OrderModal').modal('hide');
+    }
         e.preventDefault();
         if (checkValidateData() && checkOrderData()) {
             swal("Bạn chắc chắn lưu những thay đổi này?", {
@@ -628,7 +765,7 @@
         $('#cTotalMoney').val(mQuantity * mPrice);
         $('#pTotalMoney').val(mQuantity * mPrice);
         $('#totalMoney').text(commasThousands(mQuantity * mPrice) + ' VND');
-        $('#textTotalMoney').text(commasThousands($('#pTotalMoney').val()));
+        $('#txtTotalProduct').text(commasThousands($('#pTotalMoney').val()));
     }
 
     function commasThousands(nStr) {
@@ -656,7 +793,8 @@
         if ($('#cColor').val() == '') {
             sweetAlert("", "Vui lòng chọn màu sắc", "error");
             return false;
-        }
+        }     
+        
         return true;
     }
 
@@ -730,6 +868,7 @@
     }
 
     function BuyNow(){
+        
         var products = [];
         var _product = {};
         _product.color = parseInt($('#cColor').val());
@@ -739,7 +878,15 @@
         _product.totalMoneyItem = parseFloat($('#cTotalMoney').val());
         _product.productId = $('#cProductId').val();
         products.push(_product);
+        
+        let total = $('#cTotalMoney').val();
 
+        DataAddressCustomer()
+        GetDataVoucher(total);
+        
+        $('#textTotalMoney').text(commasThousands(total));
+        $('#pTotalMoney').val(total);
+        
         $.ajax({
             data: {
                 products: JSON.stringify(products)
@@ -759,7 +906,7 @@
             success: function (result) {
                 $("#ShippingFullName").val(result.name);
                 $("#ShippingPhone").val(result.phoneNumber);
-                $("#ShippingAddress").val(result.address);
+@*                $("#ShippingAddress").val(result.address);*@
                 $("#ShippingEmail").val(result.email);
             }
         });

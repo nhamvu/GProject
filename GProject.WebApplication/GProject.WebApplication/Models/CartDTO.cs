@@ -1,4 +1,5 @@
 ﻿using GProject.Data.DomainClass;
+using GProject.WebApplication.Models.DeliveryAddressAndShippingFee;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

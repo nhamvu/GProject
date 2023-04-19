@@ -12,11 +12,19 @@ using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 using System.Drawing;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using GProject.WebApplication.Services;
+using GProject.WebApplication.Models.DeliveryAddressAndShippingFee;
 
 namespace GProject.WebApplication.Controllers
 {
     public class ProductController : Controller
     {
+        private readonly DeliveryAddressAndShippingFeeService _deliveryAddressAndShippingFeeService;
+        public ProductController()
+        {
+            _deliveryAddressAndShippingFeeService = new DeliveryAddressAndShippingFeeService();
+        }
+
         //[HttpGet]
         public async Task<ActionResult> Index(string prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice, int? type, int pg = 1, int pageSize = 8, string Keyword = null)
         {
@@ -50,7 +58,7 @@ namespace GProject.WebApplication.Controllers
 		public async Task<ActionResult> ProductDetail(Guid product_id)
 		{
 			try
-			{
+			{                
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
@@ -155,7 +163,7 @@ namespace GProject.WebApplication.Controllers
         }
 
         [GProject.WebApplication.Services.Authorize]
-        public async Task<ActionResult> ShowDetailMyCart(string prodName, int? brand, decimal? fPrice, decimal? tPrice)
+        public async Task<ActionResult> ShowDetailMyCart(string prodName, int? brand, decimal? fPrice, decimal? tPrice, int idProvince)
 		{
 			try
 			{
@@ -202,6 +210,52 @@ namespace GProject.WebApplication.Controllers
         public ActionResult ProdPromotional()
         {
             return RedirectToAction("Index", "Product", new { type = 4 });
+        }
+        [HttpGet]
+        public async Task<JsonResult> ShippingFee(int district_id, string ward_code)
+        {
+            var fee = await _deliveryAddressAndShippingFeeService.ShippingFee(district_id, ward_code);
+            return Json(fee);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetDataDeliveryAddress(int id)
+        {
+            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+            var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+            var data = lstObjs.FirstOrDefault(x => x.CustomerId == customer.Id && x.Id == id);
+            return Json(data);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetDataDeliveryAddressByCustomerId()
+        {
+            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+            var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+            var data = lstObjs.Where(x => x.CustomerId == customer.Id);
+            return Json(data);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetVoucher(int? totalMoneyOrder, int? id)
+        {
+            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+            var lstVoucher = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
+            if (id == null && totalMoneyOrder != null)
+            {
+                var data = lstVoucher.Where(x => x.Status == 1 && x.ExpirationDate >= DateTime.Now && x.MinimumOrder <= totalMoneyOrder && x.NumberOfVouchers > 0);
+                return Json(data);
+            }
+            else if(id != null && totalMoneyOrder == null)
+            {
+                var data = lstVoucher.FirstOrDefault(x => x.Id == id && x.NumberOfVouchers > 0 && x.Status == 1);
+                return Json(data);
+            }
+            else
+            {
+                return Json(null);
+            }
+            
         }
     }
 }

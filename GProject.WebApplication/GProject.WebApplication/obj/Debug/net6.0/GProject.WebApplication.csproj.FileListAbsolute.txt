@@ -362,6 +362,7 @@ C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplicatio
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.pdb
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.genruntimeconfig.cache
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\ref\GProject.WebApplication.dll
+<<<<<<< HEAD
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\RabbitMQ.Client.dll
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Threading.Channels.dll
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\EasyNetQ.dll
@@ -372,3 +373,595 @@ C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplicatio
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Twilio.AspNet.Common.dll
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Twilio.AspNet.Core.dll
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.Google.dll
+=======
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.AssemblyReference.cache
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.GeneratedMSBuildEditorConfig.editorconfig
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.AssemblyInfoInputs.cache
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.AssemblyInfo.cs
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.CoreCompileInputs.cache
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.MvcApplicationPartsAssemblyInfo.cs
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.MvcApplicationPartsAssemblyInfo.cache
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.RazorAssemblyInfo.cache
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.RazorAssemblyInfo.cs
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\refint\GProject.WebApplication.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.pdb
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.Development.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.deps.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.runtimeconfig.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.exe
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.staticwebassets.runtime.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.exe
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.deps.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.runtimeconfig.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.pdb
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Humanizer.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\RestSharp.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Data.dll
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.pdb
+D:\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Data.pdb
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.GProject.WebApplication.Microsoft.AspNetCore.StaticWebAssets.props
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.build.GProject.WebApplication.props
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GProject.WebApplication.props
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GProject.WebApplication.props
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.pack.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.build.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.development.json
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutAdmin.cshtml.rz.scp.css
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutUser.cshtml.rz.scp.css
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\bundle\GProject.WebApplication.styles.css
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\projectbundle\GProject.WebApplication.bundle.scp.css
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.CopyComplete
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.genruntimeconfig.cache
+D:\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\ref\GProject.WebApplication.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.Development.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.deps.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.runtimeconfig.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.exe
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.staticwebassets.runtime.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.exe
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.deps.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.runtimeconfig.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.pdb
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Humanizer.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.OpenApi.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\RestSharp.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Drawing.Common.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Runtime.Caching.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Security.Permissions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Windows.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Data.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.pdb
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Data.pdb
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.AssemblyReference.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.GeneratedMSBuildEditorConfig.editorconfig
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.AssemblyInfoInputs.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.AssemblyInfo.cs
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.CoreCompileInputs.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.MvcApplicationPartsAssemblyInfo.cs
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.MvcApplicationPartsAssemblyInfo.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.RazorAssemblyInfo.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.RazorAssemblyInfo.cs
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.GProject.WebApplication.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.build.GProject.WebApplication.props
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GProject.WebApplication.props
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GProject.WebApplication.props
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.pack.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.build.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.development.json
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutAdmin.cshtml.rz.scp.css
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutUser.cshtml.rz.scp.css
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\bundle\GProject.WebApplication.styles.css
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\projectbundle\GProject.WebApplication.bundle.scp.css
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.CopyComplete
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\refint\GProject.WebApplication.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.pdb
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.genruntimeconfig.cache
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\ref\GProject.WebApplication.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\appsettings.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.deps.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.runtimeconfig.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.exe
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.staticwebassets.runtime.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.exe
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.deps.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.runtimeconfig.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.WebApplication.pdb
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Humanizer.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\RestSharp.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Runtime.Caching.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Data.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Api.pdb
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\GProject.Data.pdb
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.AssemblyReference.cache
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.AssemblyInfoInputs.cache
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.AssemblyInfo.cs
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.CoreCompileInputs.cache
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.RazorAssemblyInfo.cache
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.RazorAssemblyInfo.cs
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.GProject.WebApplication.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.build.GProject.WebApplication.props
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GProject.WebApplication.props
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GProject.WebApplication.props
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutAdmin.cshtml.rz.scp.css
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\Views\Shared\_LayoutUser.cshtml.rz.scp.css
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\bundle\GProject.WebApplication.styles.css
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\scopedcss\projectbundle\GProject.WebApplication.bundle.scp.css
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.csproj.CopyComplete
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\refint\GProject.WebApplication.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.pdb
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.genruntimeconfig.cache
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\ref\GProject.WebApplication.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Antiforgery.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authentication.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authentication.Cookies.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authentication.Core.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authentication.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authentication.OAuth.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authorization.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Authorization.Policy.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Components.Authorization.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Components.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Components.Forms.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Components.Server.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Components.Web.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.CookiePolicy.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cors.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.DataProtection.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.DataProtection.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.DataProtection.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Diagnostics.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Diagnostics.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Diagnostics.HealthChecks.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.HostFiltering.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Hosting.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Hosting.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Hosting.Server.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Html.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Http.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Http.Connections.Common.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Http.Connections.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Http.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Http.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Http.Features.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Http.Results.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.HttpLogging.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.HttpOverrides.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.HttpsPolicy.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Identity.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Localization.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Localization.Routing.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Metadata.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.ApiExplorer.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.Core.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.Cors.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.DataAnnotations.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.Formatters.Json.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.Formatters.Xml.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.Localization.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.Razor.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.RazorPages.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.TagHelpers.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Mvc.ViewFeatures.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Razor.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Razor.Runtime.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.ResponseCaching.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.ResponseCaching.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.ResponseCompression.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Rewrite.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Routing.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Routing.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Server.HttpSys.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Server.IIS.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Server.IISIntegration.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Server.Kestrel.Core.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Server.Kestrel.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.Session.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.SignalR.Common.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.SignalR.Core.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.SignalR.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.StaticFiles.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.WebSockets.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.AspNetCore.WebUtilities.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.CSharp.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Caching.Memory.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.Binder.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.CommandLine.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.EnvironmentVariables.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.Ini.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.Json.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.KeyPerFile.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.UserSecrets.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Configuration.Xml.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.DependencyInjection.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Features.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Composite.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.FileProviders.Physical.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Hosting.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Hosting.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Http.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Identity.Core.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Identity.Stores.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Localization.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Localization.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Logging.Configuration.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Logging.Console.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Logging.Debug.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Logging.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Logging.EventLog.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Logging.EventSource.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Logging.TraceSource.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.ObjectPool.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Options.ConfigurationExtensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Options.DataAnnotations.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Options.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Extensions.WebEncoders.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.JSInterop.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Net.Http.Headers.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.VisualBasic.Core.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.VisualBasic.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Win32.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\Microsoft.Win32.Registry.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\mscorlib.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\netstandard.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.AppContext.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Buffers.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Collections.Concurrent.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Collections.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Collections.Immutable.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Collections.NonGeneric.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Collections.Specialized.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ComponentModel.Annotations.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ComponentModel.DataAnnotations.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ComponentModel.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ComponentModel.EventBasedAsync.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ComponentModel.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ComponentModel.TypeConverter.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Configuration.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Console.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Core.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Data.Common.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Data.DataSetExtensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Data.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.Contracts.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.Debug.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.DiagnosticSource.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.EventLog.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.FileVersionInfo.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.Process.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.StackTrace.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.TextWriterTraceListener.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.Tools.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.TraceSource.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Diagnostics.Tracing.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Drawing.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Drawing.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Dynamic.Runtime.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Formats.Asn1.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Globalization.Calendars.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Globalization.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Globalization.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.Compression.Brotli.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.Compression.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.Compression.FileSystem.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.Compression.ZipFile.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.FileSystem.AccessControl.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.FileSystem.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.FileSystem.DriveInfo.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.FileSystem.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.FileSystem.Watcher.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.IsolatedStorage.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.MemoryMappedFiles.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.Pipelines.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.Pipes.AccessControl.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.Pipes.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.IO.UnmanagedMemoryStream.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Linq.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Linq.Expressions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Linq.Parallel.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Linq.Queryable.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Memory.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.Http.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.Http.Json.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.HttpListener.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.Mail.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.NameResolution.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.NetworkInformation.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.Ping.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.Requests.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.Security.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.ServicePoint.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.Sockets.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.WebClient.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.WebHeaderCollection.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.WebProxy.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.WebSockets.Client.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Net.WebSockets.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Numerics.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Numerics.Vectors.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ObjectModel.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.DispatchProxy.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.Emit.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.Emit.ILGeneration.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.Emit.Lightweight.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.Metadata.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Reflection.TypeExtensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Resources.Reader.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Resources.ResourceManager.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Resources.Writer.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.CompilerServices.Unsafe.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.CompilerServices.VisualC.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Handles.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.InteropServices.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Intrinsics.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Loader.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Numerics.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Serialization.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Serialization.Formatters.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Serialization.Json.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Serialization.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Runtime.Serialization.Xml.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.AccessControl.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Claims.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Cryptography.Algorithms.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Cryptography.Cng.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Cryptography.Csp.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Cryptography.Encoding.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Cryptography.OpenSsl.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Cryptography.Primitives.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Cryptography.X509Certificates.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Cryptography.Xml.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Principal.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.Principal.Windows.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Security.SecureString.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ServiceModel.Web.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ServiceProcess.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Text.Encoding.CodePages.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Text.Encoding.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Text.Encoding.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Text.Encodings.Web.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Text.Json.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Text.RegularExpressions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.Channels.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.Overlapped.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.Tasks.Dataflow.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.Tasks.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.Tasks.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.Tasks.Parallel.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.Thread.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.ThreadPool.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Threading.Timer.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Transactions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Transactions.Local.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.ValueTuple.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Web.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Web.HttpUtility.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Windows.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.Linq.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.ReaderWriter.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.Serialization.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.XDocument.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.XmlDocument.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.XmlSerializer.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.XPath.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\System.Xml.XPath.XDocument.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\refs\WindowsBase.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.Extensions.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+>>>>>>> origin/VoucherAndShippingFee

@@ -491,6 +491,69 @@ namespace GProject.Data.Migrations
                     b.ToTable("Deliver", (string)null);
                 });
 
+            modelBuilder.Entity("GProject.Data.DomainClass.DeliveryAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CustomerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("DistrictID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DistrictName")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
+
+                    b.Property<int>("ProvinceID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProvinceName")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("WardCode")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
+
+                    b.Property<string>("WardName")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("DeliveryAddress", (string)null);
+                });
+
             modelBuilder.Entity("GProject.Data.DomainClass.Employee", b =>
                 {
                     b.Property<Guid?>("Id")
@@ -677,6 +740,11 @@ namespace GProject.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float?>("DiscountRate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("real")
+                        .HasDefaultValueSql("((0))");
+
                     b.Property<Guid?>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
@@ -746,6 +814,11 @@ namespace GProject.Data.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("VoucherId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValueSql("((0))");
 
                     b.HasKey("Id");
 
@@ -1189,6 +1262,59 @@ namespace GProject.Data.Migrations
                     b.ToTable("ViewHistory", (string)null);
                 });
 
+            modelBuilder.Entity("GProject.Data.DomainClass.Voucher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DiscountForm")
+                        .IsRequired()
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)");
+
+                    b.Property<float>("DiscountRate")
+                        .HasColumnType("real");
+
+                    b.Property<Guid?>("EmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("ExpirationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<float>("MinimumOrder")
+                        .HasColumnType("real");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(225)
+                        .HasColumnType("nvarchar(225)");
+
+                    b.Property<int>("NumberOfVouchers")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("VoucherId")
+                        .IsRequired()
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vouchers", (string)null);
+                });
+
+            
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

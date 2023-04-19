@@ -17,8 +17,11 @@ namespace GProject.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATNChuan;Integrated Security=True"
-            //@"Data Source=LAPTOP-2GTIBL55\SQLEXPRESS;Initial Catalog=GProject_Database;Integrated Security=True"
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATNChuan;Integrated Security=True");
+            //@"Data Source=LAPTOP-2GTIBL55\SQLEXPRESS;Initial Catalog=ABC;Integrated Security=True"
+            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=DB_DATN;Integrated Security=True");
+
+            //DESKTOP-M2OGLAO    DB_DATN
+            //D-SDC6-HUYLQ   ABC
         }
         public DbSet<AppUsers> AppUsers { get; set; }
         public DbSet<AppRoles> AppRoles { get; set; }
@@ -45,6 +48,8 @@ namespace GProject.Data.Context
         public DbSet<Slide> Slides { get; set; }
         public DbSet<ViewHistory> ViewHistories { get; set; }
         public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
+        public DbSet<DeliveryAddress>  DeliveryAddresses { get; set; }
+        public DbSet<Voucher> Vouchers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure using Fluent API
@@ -72,9 +77,15 @@ namespace GProject.Data.Context
             modelBuilder.ApplyConfiguration(new Slide_Configuration());
             modelBuilder.ApplyConfiguration(new ViewHistory_Configuration());
             modelBuilder.ApplyConfiguration(new FavoriteProduct_Configuration());
-            modelBuilder.Entity<IdentityUserRole<string>>().HasNoKey();
-            modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
-            modelBuilder.Entity<IdentityUserToken<string>>().HasNoKey();
+            modelBuilder.ApplyConfiguration(new DeliveryAddress_Configuration());
+            modelBuilder.ApplyConfiguration(new Voucher_Configuration());
+
+            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
+            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
+            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
+
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
+            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
         }
     }
 }

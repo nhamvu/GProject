@@ -241,8 +241,9 @@ namespace GProject.WebApplication.Services
 			var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
 			var lstColor = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
 			var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
+            var lstOrderDetails = await Commons.GetAll<OrderDetail>(String.Concat(Commons.mylocalhost, "Order/get-all-Order-detail"));
 
-			var result = lstProducts
+            var result = lstProducts
 						.Join(lstProductvariation,
 							  t1 => t1.Id,
 							  t2 => t2.ProductId,
@@ -267,6 +268,7 @@ namespace GProject.WebApplication.Services
 							  t123456 => t123456.t2.SizeId,
 							  t7 => t7.Id,
 							  (t123456, t7) => new { t123456.t1, t123456.t2, t123456.t3, t123456.t4, t123456.t5, t123456.t6, t7 })
+                        
                         .Where(c => c.t5.CustomerId == customer_id)
 						.Select(result => new {
 							Product = result.t1,
@@ -289,5 +291,56 @@ namespace GProject.WebApplication.Services
 
 			return carts;
         }
-	}
+
+        public async Task<List<ShowOrderDto>> ShowMyOrder(Guid? customer_id)
+        {
+            var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
+            var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+            var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));           
+            var lstColor = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
+            var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
+            var lstOrderDetails = await Commons.GetAll<OrderDetail>(String.Concat(Commons.mylocalhost, "Order/get-all-Order-detail"));
+            var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
+
+            var result = lstProducts
+                        .Join(lstProductvariation,
+                              t1 => t1.Id,
+                              t2 => t2.ProductId,
+                              (t1, t2) => new { t1, t2 })
+                        .Join(lstBrand,
+                              t12 => t12.t1.BrandId,
+                              t3 => t3.Id,
+                              (t12, t3) => new { t12.t1, t12.t2, t3 })
+                        .Join(lstOrderDetails,
+                              t123 => t123.t2.Id,
+                              t4 => t4.ProductVariationId,
+                              (t123, t4) => new { t123.t1, t123.t2, t123.t3, t4 })
+                        .Join(lstOrder,
+                              t1234 => t1234.t4.OrderId,
+                              t5 => t5.Id,
+                              (t1234, t5) => new { t1234.t1, t1234.t2, t1234.t3, t1234.t4, t5 })
+                        .Join(lstColor,
+                              t12345 => t12345.t2.ColorId,
+                              t6 => t6.Id,
+                              (t12345, t6) => new { t12345.t1, t12345.t2, t12345.t3, t12345.t4, t12345.t5, t6 })
+                        .Join(lstSize,
+                              t123456 => t123456.t2.SizeId,
+                              t7 => t7.Id,
+                              (t123456, t7) => new { t123456.t1, t123456.t2, t123456.t3, t123456.t4, t123456.t5, t123456.t6, t7 })
+
+                        .Where(c => c.t5.CustomerId == customer_id)
+                        .Select(result => new {
+                            Product = result.t1,
+                            ProductVariation = result.t2,
+                            Brand = result.t3,
+                            OrderDetail = result.t4,
+                            Order = result.t5,
+                            Color = result.t6,
+                            Size = result.t7
+                        }).ToList();
+            List<ShowOrderDto> showOrder = Commons.ConverObject<List<ShowOrderDto>>(result);
+
+            return showOrder;
+        }
+    }
 }
