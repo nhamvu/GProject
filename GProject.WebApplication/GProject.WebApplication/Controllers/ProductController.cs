@@ -120,12 +120,15 @@ namespace GProject.WebApplication.Controllers
                 var RestRemoveCartDetail = new RestSharpHelper(urlRemoveCartDetail);
                 var resRemoveCartDetail = await RestRemoveCartDetail.RequestBaseAsync(urlRemoveCartDetail, RestSharp.Method.Delete);
                 if (!resRemoveCartDetail.IsSuccessful)
+                {
                     HttpContext.Session.SetString("mess", "Failed");
+                    return BadRequest();
+                }
             }
             HttpContext.Session.SetString("mess", "Success");
             var productId = lstProductvariation.Where(c => c.Id == new Guid(lstProdOrders.Select(c => c.prodVariationId).FirstOrDefault())).Select(c => c.ProductId).FirstOrDefault();
             // Xử lý danh sách đối tượng ở đây
-            return RedirectToAction("ProductDetail", "Product", new { product_id = productId });
+            return Ok();
         }
 
         [GProject.WebApplication.Services.Authorize]

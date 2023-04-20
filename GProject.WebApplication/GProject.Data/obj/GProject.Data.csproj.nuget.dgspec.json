@@ -1,32 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {}
+    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {}
   },
   "projects": {
-    "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
         "projectName": "GProject.Data",
-        "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
-        "packagesPath": "C:\\Users\\huy.luu\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\huy.luu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -89,12 +90,26 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.16, 6.0.16]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.16, 6.0.16]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.16, 6.0.16]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

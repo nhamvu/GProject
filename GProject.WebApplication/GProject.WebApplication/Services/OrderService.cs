@@ -14,8 +14,11 @@ namespace GProject.WebApplication.Services
         public async Task<bool> AddToOrder(int selectVoucher, string cGiamGia, string cShippingFee, string cTotalMoney, string ShippingFullName, string ShippingPhone,
             string ShippingCity, string ShippingDistrict, string ShippingTown, string ShippingAddress, string ShippingEmail, string cDescription, int PaymentType = 0, Guid? customer_id = null, List<ProdOrder>? prodOrders = null)
         {
-            var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
-            string strUrl = "";
+			var lstCart = await Commons.GetAll<Cart>(String.Concat(Commons.mylocalhost, "Cart/get-all-Cart"));
+			var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+			var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
+
+			string strUrl = "";
             Guid order_id = Guid.NewGuid();
 
             //Order
@@ -78,11 +81,15 @@ namespace GProject.WebApplication.Services
                     return false;
             }
 
-            string urlRemoveCart = string.Concat(Commons.mylocalhost, "Cart/delete-Cart?id=", new Guid(prodOrders.Select(c => c.cartId).FirstOrDefault().NullToString()));
-            var RestRemoveCart = new RestSharpHelper(urlRemoveCart);
-            var resultRemoveCart = await RestRemoveCart.RequestBaseAsync(urlRemoveCart, RestSharp.Method.Delete);
-            if (!resultRemoveCart.IsSuccessful)
-                return false;
+            var isExist = (from c in lstCart join b in lstCartDetail on c.Id equals b.CartId where c.CustomerId == customer_id select b).FirstOrDefault();
+            if (isExist == null)
+            {
+				string urlRemoveCart = string.Concat(Commons.mylocalhost, "Cart/delete-Cart?id=", new Guid(prodOrders.Select(c => c.cartId).FirstOrDefault().NullToString()));
+				var RestRemoveCart = new RestSharpHelper(urlRemoveCart);
+				var resultRemoveCart = await RestRemoveCart.RequestBaseAsync(urlRemoveCart, RestSharp.Method.Delete);
+				if (!resultRemoveCart.IsSuccessful)
+					return false;
+			}
 
             return true;
         }

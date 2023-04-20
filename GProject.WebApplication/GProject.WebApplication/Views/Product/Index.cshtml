@@ -241,44 +241,44 @@
 				<!-- Hiển thị giảm giá -->
 				@if (promotions.Count() > 0 && promotions != null)
 				{
-					<div class="products_iso row">
-							<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-								<div class="carousel-indicators">
-									<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-									@for (int i = 1; i < promotions.Count(); i++)
-									{
-										<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="@i" aria-label="Slide 2"></button>
-									}
+					<div style="margin: 10px 0px;">
+						<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+							<div class="carousel-indicators">
+								<button type="button" style="background-color:white;" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+								@for (int i = 1; i < promotions.Count(); i++)
+								{
+									<button type="button" style="background-color:white;" data-bs-target="#carouselExampleDark" data-bs-slide-to="@i" aria-label="Slide 2"></button>
+								}
 
+							</div>
+							<div class="carousel-inner">
+								<div class="carousel-item active" data-bs-interval="5000">
+									<img src="~/images/@promotions.Select(c => c.Image).FirstOrDefault().NullToString()" class="d-block w-100 h-80" alt="...">
+									<div class="carousel-caption d-none d-md-block">
+										<h4 style="color:white;">@promotions.Select(c => c.PromotionName).FirstOrDefault().NullToString()</h4>
+										<p style="color:white;">@promotions.Select(c => c.Description).FirstOrDefault().NullToString()</p>
+									</div>
 								</div>
-								<div class="carousel-inner">
-									<div class="carousel-item active" data-bs-interval="5000">
-										<img src="~/images/@promotions.Select(c => c.Image).FirstOrDefault().NullToString()" class="d-block w-100" alt="...">
+								@for (int i = 1; i < promotions.Count(); i++)
+								{
+									<div class="carousel-item" data-bs-interval="5000">
+										<img src="~/images/@promotions[i].Image.NullToString()" class="d-block" style="height:400px;" alt="...">
 										<div class="carousel-caption d-none d-md-block">
-											<h4>@promotions.Select(c => c.PromotionName).FirstOrDefault().NullToString()</h4>
-											<p>@promotions.Select(c => c.Description).FirstOrDefault().NullToString()</p>
+											<h4 style="color:white;">@promotions[i].PromotionName.NullToString()</h4>
+											<p style="color:white;">@promotions[i].Description.NullToString()</p>
 										</div>
 									</div>
-									@for (int i = 1; i < promotions.Count(); i++)
-									{
-										<div class="carousel-item" data-bs-interval="5000">
-											<img src="~/images/@promotions[i].Image.NullToString()" class="d-block" alt="...">
-											<div class="carousel-caption d-none d-md-block">
-												<h4>@promotions[i].PromotionName.NullToString()</h4>
-												<p>@promotions[i].Description.NullToString()</p>
-											</div>
-										</div>
-									}
-								</div>
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Previous</span>
-								</button>
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="visually-hidden">Next</span>
-								</button>
+								}
 							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden" style="background-color:white;">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
 					</div>
 				}
 				<!-- Products -->

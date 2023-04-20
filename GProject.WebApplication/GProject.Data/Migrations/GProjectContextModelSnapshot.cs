@@ -1314,7 +1314,6 @@ namespace GProject.Data.Migrations
                     b.ToTable("Vouchers", (string)null);
                 });
 
-            
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

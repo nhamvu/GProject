@@ -290,7 +290,7 @@
                                     <button type="submit" id="btnOrder" class="btn btn-primary col-md-3"><i class="fa fa-calendar-check-o" style="margin-right:10px;"></i>ĐẶT MUA</button>
                                 </div>
                                 <div class="element-right">
-                                    <button type="submit" onclick="RemoveToCart()" class="btn btn-danger col-md-3"><i class="fa fa-calendar-check-o" style="margin-right:10px;"></i>Gỡ khỏi giỏ hàng</button>
+                                    <button type="button" id="btnOrder" onclick="RemoveToCart()" class="btn btn-danger col-md-3"><i class="fa fa-calendar-check-o" style="margin-right:10px;"></i>Gỡ khỏi giỏ hàng</button>
                                 </div>
                             </div>
                         </div>
@@ -355,7 +355,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-6"><strong>Mã giảm giá:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-6"><strong>Mã giảm giá:</strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectVoucher" name="selectVoucher" class="form-select">
                                             <option value="0"></option>
@@ -742,7 +742,7 @@
                 url: '/Product/RemoveToCart',
                 type: 'GET'
             });
-
+            swal("Thành công", "Đã gỡ sản phẩm khỏi giỏ hàng", "success");
         }
     }
 </script>
