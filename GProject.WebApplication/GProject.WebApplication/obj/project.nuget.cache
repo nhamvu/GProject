@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nX4m6rv86R0sKjabkSnsHhp+Bc7Vlhr8VqJgXw/IdaOJGfzpIg9fPBuaUtU0F+sXcRa/Y3aHBnU9DdbQEHgZCQ==",
+  "dgSpecHash": "5gEbnqCP5t/wj/S4xCtDrsnU96zKlZaT+sbfSkiFxUg7CbFMZk2k/1durP3cz7fuPsuC3wsGSFCsgxLYNRPZGA==",
   "success": true,
-  "projectFilePath": "D:\\Du_An_Tot_Nghiep\\Shipping Fee\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\easynetq\\7.5.0\\easynetq.7.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
