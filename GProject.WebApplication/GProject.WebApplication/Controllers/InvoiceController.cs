@@ -43,7 +43,7 @@ namespace GProject.WebApplication.Controllers
                     pg = 1;
                 var pager = new Pager(lstObjs.Count(), pg, pageSize);
                 var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
-                var data = new OrderDTO() { Orders = lstData };
+                var data = new OrderDto() { Orders = lstData };
 
                 this.ViewBag.Pager = pager;
                 this.ViewData[nameof(sName)] = (object)sName;

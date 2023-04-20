@@ -13,7 +13,8 @@
           "Microsoft.EntityFrameworkCore": "6.0.12",
           "Microsoft.EntityFrameworkCore.Design": "6.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.12",
-          "Microsoft.EntityFrameworkCore.Tools": "6.0.12"
+          "Microsoft.EntityFrameworkCore.Tools": "6.0.12",
+          "Microsoft.NET.Sdk.Razor": "3.1.32"
         },
         "runtime": {
           "GProject.Data.dll": {}
@@ -396,6 +397,7 @@
           }
         }
       },
+      "Microsoft.NET.Sdk.Razor/3.1.32": {},
       "Microsoft.NETCore.Platforms/3.1.0": {},
       "Microsoft.Win32.Registry/4.7.0": {
         "dependencies": {
@@ -863,6 +865,13 @@
       "sha512": "sha512-gTqzsGcmD13HgtNePPcuVHZ/NXWmyV+InJgalW/FhWpII1D7V1k0obIseGlWMeA4G+tZfeGMfXr0klnWbMR/mQ==",
       "path": "microsoft.identitymodel.tokens/6.8.0",
       "hashPath": "microsoft.identitymodel.tokens.6.8.0.nupkg.sha512"
+    },
+    "Microsoft.NET.Sdk.Razor/3.1.32": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9/DyCcwqIjP70i44qVR1Az/5+teybsaGpqgUdadU9++N0YeSTpZCBxczTgaKN+zArzC2/8uvHDKdqqvHoCK4Kg==",
+      "path": "microsoft.net.sdk.razor/3.1.32",
+      "hashPath": "microsoft.net.sdk.razor.3.1.32.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
       "type": "package",
