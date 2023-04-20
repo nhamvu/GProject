@@ -325,10 +325,10 @@ namespace GProject.WebApplication.Controllers
                 return false;
             }
         }
-    
 
 
-        public async Task<ActionResult> Index(Guid? accomplished, Guid? canceled)
+        [HttpGet]    
+        public async Task<ActionResult> CheckOrderStatus(Guid? accomplished, Guid? canceled)
         {
             try
             {
@@ -454,11 +454,11 @@ namespace GProject.WebApplication.Controllers
         }
 
         //[HttpGet]
-        public async Task<IActionResult> OrderCanceledAsync(Guid id)
-        {
-            var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/order-canceled?id=" + id));
-            return RedirectToAction("ViewOrderCustomer", "Order");
-        }
+        //public async Task<IActionResult> OrderCanceledAsync(Guid id)
+        //{
+        //    var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/order-canceled?id=" + id));
+        //    return RedirectToAction("ViewOrderCustomer", "Order");
+        //}
 
     }
 }

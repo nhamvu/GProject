@@ -188,7 +188,7 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-8"></div>
                                         <div class="col-md-4">
-                                            <a href="/Order/Index?accomplished=@item.Id" class="btn btn-success col-10">Đã nhận hàng</a>
+                                            <a href="/Order/CheckOrderStatus?accomplished=@item.Id" class="btn btn-success col-10">Đã nhận hàng</a>
                                         </div>
                                     </div>
                                 }
@@ -228,26 +228,26 @@
     </div>
 </div>
 
-<script>
+<script asp-append-version="true">
     $(document).ready(function () {
         $(".CanceledOrder").click(function () {
-            debugger
             var payType = $(this).attr("du_lieu_pay");
-            if (payType == "1"){
+            var _id = $(this).attr('du_lieu_id');
+            if (payType == "1") {
                 swal("Thông báo", "Đơn hàng không thể hủy do bạn đã thanh toán, bạn cần liên hệ với shop!", "error");
             }
-            else
-            {
+            else {
                 swal("Bạn có muốn hủy đơn hàng này không?", {
                     title: 'Thông báo',
                     icon: 'info',
                     buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
                 }).then(function (isConfirm) {
                     if (isConfirm) {
-                        var _id = $(this).attr("du_lieu_id");
+                        debugger
+                        
                         $.ajax({
-                            url: "/Order/Index?canceled=" + _id,
-                            method: 'POST',
+                            url: "/Order/CheckOrderStatus?canceled=" + _id,
+                            method: 'GET',
                             contentType: 'application/json',
                             success: function () {
                                 swal("Thành công", "Đơn hàng đã được hủy!", "success");

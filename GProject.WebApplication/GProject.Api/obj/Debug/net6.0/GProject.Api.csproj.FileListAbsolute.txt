@@ -442,14 +442,6 @@ C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.csproj.CoreCompileInputs.cache
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\msbuild.GProject.Api.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\msbuild.build.GProject.Api.props
-C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GProject.Api.props
-C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GProject.Api.props
-C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets.pack.json
-C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets.build.json
-C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets.development.json
-C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\scopedcss\bundle\GProject.Api.styles.css
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.csproj.CopyComplete
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.dll
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\refint\GProject.Api.dll
@@ -468,3 +460,15 @@ D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\b
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.RazorTargetAssemblyInfo.cache
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\GProject.Api.StaticWebAssets.Manifest.cache
 D:\Du_An_Tot_Nghiep\Shipping Fee\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\GProject.Api.StaticWebAssets.xml
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\EntityFramework.SqlServer.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\EntityFramework.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\System.CodeDom.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\GProject.Api.RazorTargetAssemblyInfo.cache
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\GProject.Api.StaticWebAssets.Manifest.cache
+C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.Api\obj\Debug\net6.0\staticwebassets\GProject.Api.StaticWebAssets.xml
