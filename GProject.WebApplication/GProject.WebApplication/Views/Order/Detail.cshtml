@@ -173,11 +173,15 @@
     {
         <button type="button" onclick="DeliveryOrder()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang vận chuyển</button>
     }
+    @if ((int)OrderData.Status != 2)
+    {
+        <button type="button" onclick="DangGiaoHang()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang giao hàng</button>
+    }
     @if ((int)OrderData.Status != 3)
     {
         <button type="button" onclick="CompleteOrder()" class="btn btn-outline-success col-md-2 m-1"><i class="fas fa-check-double" style="margin-right:10px;"></i>Hoàn thành đơn hàng</button>
     }
-    @if ((int)OrderData.Status != 5)
+    @if ((int)OrderData.Status != 5 && (int)OrderData.Status != 3)
     {
         <button type="button" onclick="CancelOrder()" class="btn btn-outline-danger col-md-2 m-1"><i class="fas fa-window-close" style="margin-right:10px;"></i>Hủy đơn hàng</button>
     }
@@ -224,6 +228,18 @@
         }).then(function (isConfirm) {
             if (isConfirm) {
                 window.location = '/Order/ChangeStatus?id=@OrderData.Id.ToString()&status=5'
+            }
+        });
+    }
+
+    function DangGiaoHang() {
+        swal("Bạn chắc chắn muốn hủy đơn hàng này?", {
+            title: '',
+            icon: 'info',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                window.location = '/Order/ChangeStatus?id=@OrderData.Id.ToString()&status=2'
             }
         });
     }

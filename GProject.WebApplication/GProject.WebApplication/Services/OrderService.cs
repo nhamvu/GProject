@@ -156,7 +156,7 @@ namespace GProject.WebApplication.Services
             return true;
         }
 
-        public async Task<List<OrderDTO>> ShowMyOrder(Guid? orderid)
+        public async Task<List<OrderDto>> ShowMyOrder(Guid? orderid)
         {
             var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
@@ -201,7 +201,7 @@ namespace GProject.WebApplication.Services
                             Color = result.t6,
                             Size = result.t7
                         }).ToList();
-            List<OrderDTO> orders = Commons.ConverObject<List<OrderDTO>>(result);
+            List<OrderDto> orders = Commons.ConverObject<List<OrderDto>>(result);
             return orders;
         }
     }
