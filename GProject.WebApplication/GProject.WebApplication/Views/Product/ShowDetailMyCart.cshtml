@@ -450,6 +450,9 @@
                     }
                     else {
                         var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''))
+                        if (total < 0) {
+                            total = 0;
+                        }
                         swal("Thông báo!", "Bạn không được để trống thông tin địa chỉ!", "error");
                         $("#txtPhiShip").text(commasThousands(0))
                         $('#textTotalMoney').text(commasThousands(total));
@@ -465,11 +468,15 @@
                 url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
                 type: "GET",
                 success: function (result) {
-                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
-                    $("#txtPhiShip").text(commasThousands(result))
+                    var total = 0;
+                    total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));                    
+                    if (total < 0) {
+                        total = 0;
+                    }
                     $('#textTotalMoney').text(commasThousands(total));
                     $('#cTotalMoney').val(total);
                     $('#cShippingFee').val(result);
+                    $("#txtPhiShip").text(commasThousands(result))
                 }
             })
         }
@@ -484,6 +491,10 @@
                         var date = result[value].expirationDate;
                         renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
                         renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
+
+                        if(result[value].discountForm == "%")
+                            renderData += '<option disabled style = "font-style:italic" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
+
                         renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
                         renderData += '<option disabled style="font-style:italic"></option>'
                     });
@@ -500,22 +511,29 @@
                 success: function (result) {
                     let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
                     let discount = 0;
+                    var total = 0;
                     if (result != null) {
                         if (result.discountForm == "%") {
                             discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
-                            $("#txtGiamGia").text(commasThousands(discount))
+                            if(discount > result.maximumDiscount)
+                                discount = result.maximumDiscount
                         }
                         else {
                             discount = result.discountRate
-                            $("#txtGiamGia").text(commasThousands(result.discountRate))
                         }
-                        var total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        $("#txtGiamGia").text(commasThousands(discount))
+                        total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
                     }
                     else {
                         swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
                         $("#txtGiamGia").text(0)
                         $("#txtDiscountForm").text("Vnd")
-                        var total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    }
+                    
+                    if(total < 0)
+                    {
+                        total = 0;
                     }
 
                     $('#textTotalMoney').text(commasThousands(total));

@@ -9,6 +9,7 @@ namespace GProject.WebApplication.Models
         public string Name { get; set; }
         public float DiscountRate { get; set; }  //mức giảm giá
         public string DiscountForm { get; set; } //hình thức
+        public float? MaximumDiscount { get; set; } // giam toi da
         public int NumberOfVouchers { get; set; } //số lượng voucher
         public float MinimumOrder { get; set; }  //đơn hàng tối thiểu
         public DateTime ExpirationDate { get; set; } //ngày hết hạn

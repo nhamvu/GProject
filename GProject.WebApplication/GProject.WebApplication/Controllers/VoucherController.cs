@@ -83,6 +83,7 @@ namespace GProject.WebApplication.Controllers
                     Name = obj.Name,
                     DiscountRate = obj.DiscountRate,
                     DiscountForm= obj.DiscountForm,
+                    MaximumDiscount = obj.MaximumDiscount,
                     NumberOfVouchers = obj.NumberOfVouchers,
                     MinimumOrder= obj.MinimumOrder,
                     ExpirationDate= obj.ExpirationDate,
