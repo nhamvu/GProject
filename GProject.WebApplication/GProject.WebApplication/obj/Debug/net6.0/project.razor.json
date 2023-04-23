@@ -18394,13 +18394,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\Account\\ChangePasswordCustomer.cshtml",
+      "TargetPath": "Views\\Account\\ChangePasswordCustomer.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\ProductMGR\\Index.cshtml",
       "TargetPath": "Views\\ProductMGR\\Index.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\Account\\UpdateProfileCustomer.cshtml",
+      "TargetPath": "Views\\Account\\UpdateProfileCustomer.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\Order\\Detail.cshtml",
       "TargetPath": "Views\\Order\\Detail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\Account\\UpdateProfileEmployee.cshtml",
+      "TargetPath": "Views\\Account\\UpdateProfileEmployee.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -18499,6 +18514,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\Account\\ForgotPassword.cshtml",
+      "TargetPath": "Views\\Account\\ForgotPassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\Size\\Index.cshtml",
       "TargetPath": "Views\\Size\\Index.cshtml",
       "FileKind": "mvc"
@@ -18526,6 +18546,11 @@
     {
       "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\Brand\\Index.cshtml",
       "TargetPath": "Views\\Brand\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\Views\\Account\\ChangePasswordEmployee.cshtml",
+      "TargetPath": "Views\\Account\\ChangePasswordEmployee.cshtml",
       "FileKind": "mvc"
     },
     {
