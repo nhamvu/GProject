@@ -359,8 +359,21 @@
                                     <label class="control-label col-sm-6"><strong>Mã giảm giá:</strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectVoucher" name="selectVoucher" class="form-select">
-                                            <option value="0"></option>
+                                            <option value=""></option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Nhập mã giảm giá:<span style="color: red">(*)</span></strong></label>
+                                    <div class="row col-md-12">
+                                        <div class="col-sm-8">
+                                            <input type="text" id="DiscountCode" name="DiscountCode" value="" placeholder="" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a class="btn btn-outline-info" onclick="CheckDiscountCode()"><i class="fa-solid fa-check fa-lg"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -451,6 +464,9 @@
                     }
                     else {
                         var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''))
+                        if (total < 0) {
+                            total = 0;
+                        }
                         swal("Thông báo!", "Bạn không được để trống thông tin địa chỉ!", "error");
                         $("#txtPhiShip").text(commasThousands(0))
                         $('#textTotalMoney').text(commasThousands(total));
@@ -466,11 +482,15 @@
                 url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
                 type: "GET",
                 success: function (result) {
-                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
-                    $("#txtPhiShip").text(commasThousands(result))
+                    var total = 0;
+                    total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));                    
+                    if (total < 0) {
+                        total = 0;
+                    }
                     $('#textTotalMoney').text(commasThousands(total));
                     $('#cTotalMoney').val(total);
                     $('#cShippingFee').val(result);
+                    $("#txtPhiShip").text(commasThousands(result))
                 }
             })
         }
@@ -485,6 +505,10 @@
                         var date = result[value].expirationDate;
                         renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
                         renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
+
+                        if(result[value].discountForm == "%")
+                            renderData += '<option disabled style = "font-style:italic" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
+
                         renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
                         renderData += '<option disabled style="font-style:italic"></option>'
                     });
@@ -494,6 +518,8 @@
         }
 
         $("#selectVoucher").change(function () {
+            $("#DiscountCode").val('')
+
             let _id = $("#selectVoucher").val();
             $.ajax({
                 url: "/Product/GetVoucher?id=" + _id,
@@ -501,22 +527,29 @@
                 success: function (result) {
                     let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
                     let discount = 0;
+                    var total = 0;
                     if (result != null) {
                         if (result.discountForm == "%") {
                             discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
-                            $("#txtGiamGia").text(commasThousands(discount))
+                            if(discount > result.maximumDiscount)
+                                discount = result.maximumDiscount
                         }
                         else {
                             discount = result.discountRate
-                            $("#txtGiamGia").text(commasThousands(result.discountRate))
                         }
-                        var total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        $("#txtGiamGia").text(commasThousands(discount))
+                        total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
                     }
                     else {
                         swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
                         $("#txtGiamGia").text(0)
                         $("#txtDiscountForm").text("Vnd")
-                        var total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    }
+                    
+                    if(total < 0)
+                    {
+                        total = 0;
                     }
 
                     $('#textTotalMoney').text(commasThousands(total));
@@ -524,7 +557,7 @@
                     $('#cGiamGia').val(discount);
                 }
             })
-        });
+        });        
 
         function TinhPhanTram(tongtien, giamgia) {
             let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
@@ -650,6 +683,48 @@
         }
     });
 
+    function CheckDiscountCode() {
+        $("#selectVoucher").val(0)
+
+        let _discountCode = $("#DiscountCode").val();
+        $.ajax({
+            url: "/Product/GetVoucher?discountCode=" + _discountCode,
+            type: "GET",
+            success: function (result) {
+                let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                let discount = 0;
+                var total = 0;
+                if (result != null) {
+                    if (result.discountForm == "%") {
+                        discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
+                        if (discount > result.maximumDiscount)
+                            discount = result.maximumDiscount
+                    }
+                    else {
+                        discount = result.discountRate
+                    }
+                    $("#txtGiamGia").text(commasThousands(discount))
+                    total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+                else {
+                    swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
+                    $("#txtGiamGia").text(0)
+                    $("#txtDiscountForm").text("Vnd")
+                    total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+
+                if (total < 0) {
+                    total = 0;
+                }
+
+                $('#textTotalMoney').text(commasThousands(total));
+                $('#pTotalMoney').val(total);
+                $('#cGiamGia').val(discount);
+            }
+        })
+    }
+
+
     function loadMoney() {
         var _totalPaymentMoney = 0;
         $('table tbody tr .totalMoneyItem').each((index, item) => {
@@ -703,10 +778,6 @@
         }
         if ($('#ShippingEmail').val() == '') {
             sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
-            return false;
-        }
-        if (parseInt($('#cTotalMoney').val() || 0) === 0) {
-            sweetAlert("Thông báo", "Thông tin tổng tiền thanh toán không hợp lệ", "error");
             return false;
         }
         return true;

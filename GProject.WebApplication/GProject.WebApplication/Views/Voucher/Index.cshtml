@@ -25,13 +25,17 @@
     .sticky-table {
         border-collapse: separate !important;
     }
+
+    input[type=text] {
+        margin: 0;
+    }
 </style>
 
 @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
-<form method="GET" action="/Voucher/Index" class="form" enctype="multipart/form-data">
+<form method="GET" action="/Voucher/Index" class="form" style="margin-bottom: 20px;" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -104,16 +108,22 @@
         <div class="col-md-4">
             <label class="col-md-5"><strong>Mức giảm giá:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input asp-for="DiscountRate" type="number" min="0" oninput="this.value = Math.abs(this.value)" id="DiscountRate" class="form-control" />
+                <input asp-for="DiscountRate" min="0" oninput="this.value = Math.abs(this.value)" id="DiscountRate" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Hình thức:<span style="color: red">(*)</span></strong></label>
             <div>
-                <select asp-for="DiscountForm" id="DiscountForm" class="form-select">
+                <select asp-for="DiscountForm" onclick="SetDisable()" id="DiscountForm" class="form-select">
                     <option value="Vnd">Vnd</option>
                     <option value="%">%</option>
                 </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <label class="col-md-5"><strong>Giảm giá tối đa:<span style="color: red">(*)</span></strong></label>
+            <div class="form-input">
+                <input disabled asp-for="MaximumDiscount" min="0" oninput="this.value = Math.abs(this.value)"  id="MaximumDiscount" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
@@ -125,13 +135,13 @@
         <div class="col-md-4">
             <label class="col-md-5"><strong>Số tiền tối thiểu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input asp-for="MinimumOrder" type="number" min="0" oninput="this.value = Math.abs(this.value)" id="MinimumOrder" class="form-control" />
+                <input asp-for="MinimumOrder" oninput="this.value = Math.abs(this.value)" min="0" id="MinimumOrder" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Thời hạn:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input type="datetime-local" asp-for="ExpirationDate" id="ExpirationDate" class="form-control" />
+                <input type="datetime-local" value="<?php echo date('Y-m-d'); ?>" asp-for="ExpirationDate" id="ExpirationDate" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
@@ -139,8 +149,9 @@
             <div style="margin-top:10px;">
                 @Html.DropDownList("Status", new[]
                 {
-                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)},
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)}
+                new SelectListItem{Text="Tất cả", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : true)},
+                new SelectListItem{Text="Giới hạn", Value="2", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},               
                 }, new { @class = "form-control iscompany" })
             </div>
         </div>
@@ -159,7 +170,7 @@
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH MÀU SẮC</h3>
+            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH MÃ KHUYẾN MẠI</h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
@@ -170,10 +181,10 @@
                             <th>Tên</th>
                             <th>Mức giảm giá</th>
                             <th>Hình thức</th>
+                            <th>Giảm tối đa</th>
                             <th>Số lượng</th>
                             <th>Số tiền tối thiểu</th>
                             <th>Thời hạn</th>
-                            <th>Người tạo</th>
                             <th>Trạng thái</th>
                             <th></th>
                             <th></th>
@@ -198,6 +209,11 @@
                                         @item.DiscountForm
                                     </td>
                                     <td>
+                                        @if(item.DiscountForm == "%"){
+                                            <a>@item.MaximumDiscount đ</a>
+                                        }                                        
+                                    </td>
+                                    <td>
                                         @item.NumberOfVouchers
                                     </td>
                                     <td>
@@ -207,16 +223,13 @@
                                         @item.ExpirationDate
                                     </td>
                                     <td>
-                                        @item.EmployeeId
-                                    </td>
-                                    <td>
-                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
+                                        @(item.Status == 1 ? "Tất cả" : item.Status == 2 ? "Giới hạn" : "Không sử dụng")
                                     </td>
                                     <td>
                                         <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
                                         <i class="fas fa-pen-square" aria-hidden="true"></i>
                                     </td>
-                                    <td>
+                                    @* <td>
                                         @if (item.Status == 1)
                                         {
 
@@ -226,7 +239,7 @@
                                         {
                                             <a class="btn text-danger" onclick="ActiveVoucher(@item.Id)"> <i class="fas fa-toggle-off"></i> </a>
                                         }
-                                    </td>
+                                    </td> *@
                                 </tr>
                             }
                         }
@@ -238,7 +251,7 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#formdata').hide();
+        $('#formdata').hide();        
         var er = document.getElementById('error')
         if (er != null) {
             if ($('#error').text() == 'Failed')
@@ -246,40 +259,52 @@
             else
                 swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
         }
+
+        document.querySelector('#formdata').addEventListener('submit', function (e) {
+            var form = this;
+
+            e.preventDefault();
+            if (checkValidateDataVoucher()) {
+                swal("Bạn chắc chắn lưu những thay đổi này?", {
+                    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                        ClearDateVoucher()
+                    } else {
+                        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                    }
+                });
+            }
+        });
     });
 
     function ChangePanel() {
         if ($("#changeform").text() == "Thêm mới") {
             $('#formdata').show();
+            //$("#ExpirationDate").val(new Date().toJSON().slice(0,19));
             $("#changeform").text("Hủy thay đổi");
         } else if ($("#changeform").text() == "Hủy thay đổi") {
-            $("#Name").val('');
-            $("#HEXCode").val('');
-            $("#Status").val(0);
+            ClearDateVoucher()
             $('#formdata').hide();
             $("#changeform").text("Thêm mới");
         }
     }
 
-    document.querySelector('#formdata').addEventListener('submit', function (e) {
-        var form = this;
-
-        e.preventDefault();
-        if (checkValidateDataVoucher()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                    ClearDateVoucher()
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
+    function SetDisable(){
+        if($("#DiscountForm").val() == "%")
+        {
+            document.getElementById('MaximumDiscount').disabled = false;
         }
-    });
+        else 
+        {
+            document.getElementById('MaximumDiscount').disabled = true;
+            $("#MaximumDiscount").val('')
+        }
+    }
+
 
     function ActiveVoucher(id) {
         swal("Bạn có muốn thay đổi trạng thái không?", {
@@ -310,6 +335,12 @@
         $('#formdata').show();
         $("#changeform").text("Hủy thay đổi");
         $.getJSON("/Voucher/Detail?id=" + id, function (data) {
+
+            if(data.discountForm == "%") 
+                document.getElementById('MaximumDiscount').disabled = false;
+            else
+                document.getElementById('MaximumDiscount').disabled = true;
+
             $("#Name").val(data.name);
             $("#VoucherId").val(data.voucherId);
             $("#DiscountRate").val(data.discountRate);
@@ -317,6 +348,7 @@
             $("#NumberOfVouchers").val(data.numberOfVouchers);
             $("#MinimumOrder").val(data.minimumOrder);
             $("#ExpirationDate").val(data.expirationDate);
+            $("#MaximumDiscount").val(data.maximumDiscount);
             $("#Status").val(data.status);
             $("#Id").val(data.id);
             document.getElementById('namee').innerText = data.name;
@@ -332,21 +364,28 @@
     }
 
     function checkValidateDataVoucher() {
-        var regex = /^[0-9]+$/;
-
+        debugger
         if ($('#Name').val() == '') {
             sweetAlert("Thông báo", "Thông tin tên không được để trống", "error");
             return false;
         }
-        if ($('#DiscountRate').val() == '') {
+        if ($('#DiscountRate').val() == 0) {
             sweetAlert("Thông báo", "Thông tin mức giảm giá không hợp lệ", "error");
             return false;
         }
-        if ($('#DiscountForm').val() == '') {
-            sweetAlert("Thông báo", "Thông tin hình thức để trống", "error");
+        if ($('#DiscountForm').val() == '%' && $('#DiscountRate').val() > 100) {
+            sweetAlert("Thông báo", "Thông tin giảm giá không hợp lệ", "error");
             return false;
         }
-        if ($('#NumberOfVouchers').val() == '' ) {
+        if ($('#DiscountForm').val() == '') {
+            sweetAlert("Thông báo", "Thông tin hình thức không được để trống", "error");
+            return false;
+        }
+        if ($('#DiscountForm').val() == '%' && $('#MaximumDiscount').val() == '') {
+            sweetAlert("Thông báo", "Thông tin giảm giá tối đa không được để trống", "error");
+            return false;
+        }
+        if ($('#NumberOfVouchers').val() == 0 ) {
             sweetAlert("Thông báo", "Thông tin số lượng không hợp lệ", "error");
             return false;
         }
@@ -370,6 +409,7 @@
         $("#ExpirationDate").val('');
         $("#Status").val(1);
         $("#Id").val('');
+        $("#MaximumDiscount").val('');
         $("#VoucherId").val('');
     }
 </script>

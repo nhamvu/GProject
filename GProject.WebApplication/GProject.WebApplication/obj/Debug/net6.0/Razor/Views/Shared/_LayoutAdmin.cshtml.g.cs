@@ -12,28 +12,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -77,7 +77,7 @@ using GProject.WebApplication.Helpers;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
   
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Employee>(Context.Session, "userLogin");
 
@@ -98,7 +98,7 @@ using GProject.WebApplication.Helpers;
     <meta name=""robots"" content=""noindex,nofollow"">
     <title>");
 #nullable restore
-#line 20 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 20 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
       Write(ViewData["title"]);
 
 #line default
@@ -198,7 +198,7 @@ using GProject.WebApplication.Helpers;
                                 <a class=""profile-pic dropdown-toggle"" href=""#"" role=""button"" id=""dropdownMenuLink"" data-bs-toggle=""dropdown"" aria-expanded=""false"">
 ");
 #nullable restore
-#line 89 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 89 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
                                       
                                         string imgAvata = "avatar.jpg";
                                         if (user != null)
@@ -221,7 +221,7 @@ using GProject.WebApplication.Helpers;
                 BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "src", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 AddHtmlAttributeValue("", 5998, "~/images/", 5998, 9, true);
 #nullable restore
-#line 98 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 98 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
 AddHtmlAttributeValue("", 6007, imgAvata, 6007, 9, false);
 
 #line default
@@ -241,7 +241,7 @@ AddHtmlAttributeValue("", 6007, imgAvata, 6007, 9, false);
                 WriteLiteral("\r\n");
                 WriteLiteral("                                    <span class=\"text-white font-medium\">");
 #nullable restore
-#line 100 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 100 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
                                                                      Write(user == null ? "Tài khoản" : user.Name.NullToString());
 
 #line default
@@ -363,7 +363,7 @@ AddHtmlAttributeValue("", 6007, imgAvata, 6007, 9, false);
                             <a class=""sidebar-link waves-effect waves-dark sidebar-link"" href=""/Voucher/Index""
                                aria-expanded=""false"">
                                 <i class=""fas fa-tags""></i>
-                                <span class=""hide-menu"">Giảm giá</span>
+                                <span class=""hide-menu"">Mã khuyến mại</span>
                             </a>
                         </li>
                     </ul>
@@ -379,7 +379,7 @@ AddHtmlAttributeValue("", 6007, imgAvata, 6007, 9, false);
                     <div class=""col-lg-6 col-md-4 col-sm-4 col-xs-12"">
                         <h1 class=""page-title"">");
 #nullable restore
-#line 224 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 224 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
                                           Write(ViewData["Title"]);
 
 #line default
@@ -387,7 +387,7 @@ AddHtmlAttributeValue("", 6007, imgAvata, 6007, 9, false);
 #nullable disable
                 WriteLiteral("</h1>\r\n                    </div>\r\n                </div>\r\n                <!-- /.col-lg-12 -->\r\n            </div>\r\n            <div class=\"container-fluid\">\r\n                <div class=\"row justify-content-center\">\r\n                    ");
 #nullable restore
-#line 231 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 231 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
                Write(RenderBody());
 
 #line default

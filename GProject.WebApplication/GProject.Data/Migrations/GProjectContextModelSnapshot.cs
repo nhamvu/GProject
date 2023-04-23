@@ -1287,6 +1287,9 @@ namespace GProject.Data.Migrations
                     b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<float?>("MaximumDiscount")
+                        .HasColumnType("real");
+
                     b.Property<float>("MinimumOrder")
                         .HasColumnType("real");
 

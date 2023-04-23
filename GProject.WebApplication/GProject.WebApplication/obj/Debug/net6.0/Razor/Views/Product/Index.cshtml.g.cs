@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.Data.MyRepositories.IRepositories;
 
 #line default
@@ -101,7 +101,7 @@ using GProject.Data.MyRepositories.IRepositories;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 8 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 8 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
   
 	ViewBag.Title = "Danh sách sản phẩm";
 	Layout = "~/Views/Shared/_Layout.cshtml";

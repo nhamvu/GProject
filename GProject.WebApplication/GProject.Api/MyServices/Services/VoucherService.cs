@@ -21,6 +21,7 @@ namespace GProject.Api.MyServices.Services
                 Name = obj.Name,
                 DiscountRate = obj.DiscountRate,
                 DiscountForm = obj.DiscountForm,
+                MaximumDiscount = obj.MaximumDiscount,
                 NumberOfVouchers = obj.NumberOfVouchers,
                 MinimumOrder = obj.MinimumOrder,
                 ExpirationDate = obj.ExpirationDate,
@@ -54,6 +55,7 @@ namespace GProject.Api.MyServices.Services
             result.DiscountRate = obj.DiscountRate;
             result.DiscountForm = obj.DiscountForm;
             result.NumberOfVouchers = obj.NumberOfVouchers;
+            result.MaximumDiscount = obj.MaximumDiscount;
             result.MinimumOrder = obj.MinimumOrder;
             result.ExpirationDate = obj.ExpirationDate;
             result.UpdateDate = DateTime.Now;

@@ -13,49 +13,49 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 using GProject.WebApplication.Models.DeliveryAddressAndShippingFee;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 8 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 using GProject.WebApplication.Services;
 
 #line default
@@ -71,7 +71,7 @@ using GProject.WebApplication.Services;
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-horizontal"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("/Product/ShowDetailMyCart"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_5 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:120px;height:50px;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_6 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "0", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_6 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_7 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("formdata"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_8 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("/Order/Order"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_9 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-horizontal d-block"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -103,7 +103,7 @@ using GProject.WebApplication.Services;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 9 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 9 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
   
     ViewBag.Title = "Giỏ Hàng";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -223,7 +223,7 @@ using GProject.WebApplication.Services;
 <script src=""https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js""></script>");
             WriteLiteral("\r\n");
 #nullable restore
-#line 122 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 122 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
  if (@ViewData["Mess"] != null)
 {
 
@@ -232,7 +232,7 @@ using GProject.WebApplication.Services;
 #nullable disable
             WriteLiteral("    <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 124 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 124 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                          Write(ViewData["Mess"]);
 
 #line default
@@ -240,7 +240,7 @@ using GProject.WebApplication.Services;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 125 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 125 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 }
 
 #line default
@@ -282,7 +282,7 @@ using GProject.WebApplication.Services;
                                                 <div class=""col-md-8 col-xs-12"">
                                                     ");
 #nullable restore
-#line 155 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 155 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                Write(Html.DropDownList("brand", StoreItems, new { @maxlength = "30", @class = "searchText form-control" }));
 
 #line default
@@ -296,7 +296,7 @@ using GProject.WebApplication.Services;
                                                 <div class=""col-md-8 col-xs-12"">
 ");
 #nullable restore
-#line 161 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 161 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                       
                                                         decimal fPrice = decimal.Parse(Html.Encode(ViewData["fPrice"]));
                                                     
@@ -306,7 +306,7 @@ using GProject.WebApplication.Services;
 #nullable disable
                 WriteLiteral("                                                    ");
 #nullable restore
-#line 164 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 164 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                Write(Html.DropDownList("fPrice",new[]
                                                     {
                                                     new SelectListItem{Text="-- Tất cả --", Value="-1", Selected= (fPrice== -1)},
@@ -328,7 +328,7 @@ using GProject.WebApplication.Services;
                                                 <div class=""col-md-8 col-xs-12"">
 ");
 #nullable restore
-#line 178 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 178 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                       
                                                         int tPrice = int.Parse(Html.Encode(ViewData["tPrice"]));
                                                     
@@ -338,7 +338,7 @@ using GProject.WebApplication.Services;
 #nullable disable
                 WriteLiteral("                                                    ");
 #nullable restore
-#line 181 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 181 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                Write(Html.DropDownList("tPrice",new[]
                                                     {
                                                     new SelectListItem{Text="-- Tất cả --", Value="-1", Selected= (tPrice== -1)},
@@ -406,7 +406,7 @@ using GProject.WebApplication.Services;
                                     </span>
                                     <b>");
 #nullable restore
-#line 220 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 220 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                   Write(Model.Select(c => c.CartDetail).Count());
 
 #line default
@@ -436,7 +436,7 @@ using GProject.WebApplication.Services;
                                             <th style=""width: 40px; text-align: center"">
                                                 ");
 #nullable restore
-#line 241 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 241 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                            Write(Html.CheckBox("ckbAll", new { style="vertical-align:middle;"}));
 
 #line default
@@ -444,7 +444,7 @@ using GProject.WebApplication.Services;
 #nullable disable
             WriteLiteral("\r\n                                            </th>\r\n                                        </tr>\r\n                                    </thead>\r\n                                    <tbody>\r\n");
 #nullable restore
-#line 246 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 246 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                          if (Model != null && Model.Count() > 0)
                                         {
                                             int i = 0;
@@ -454,7 +454,7 @@ using GProject.WebApplication.Services;
 #line hidden
 #nullable disable
 #nullable restore
-#line 249 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 249 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                              foreach (var item in Model)
                                             {
                                                 i++;
@@ -465,7 +465,7 @@ using GProject.WebApplication.Services;
             WriteLiteral("                                                <tr>\r\n                                                    <td hidden><input class=\"cartId\" disabled hidden=\"hidden\" type=\"text\"");
             BeginWriteAttribute("value", " value=\"", 13170, "\"", 13214, 1);
 #nullable restore
-#line 253 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 253 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 WriteAttributeValue("", 13178, item.CartDetail.CartId.ToString(), 13178, 36, false);
 
 #line default
@@ -475,7 +475,7 @@ WriteAttributeValue("", 13178, item.CartDetail.CartId.ToString(), 13178, 36, fal
             WriteLiteral("></td>\r\n                                                    <td hidden><input class=\"prodVariationId\" disabled hidden=\"hidden\" type=\"text\"");
             BeginWriteAttribute("value", " value=\"", 13353, "\"", 13409, 1);
 #nullable restore
-#line 254 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 254 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 WriteAttributeValue("", 13361, item.CartDetail.ProductVariationId.ToString(), 13361, 48, false);
 
 #line default
@@ -484,7 +484,7 @@ WriteAttributeValue("", 13361, item.CartDetail.ProductVariationId.ToString(), 13
             EndWriteAttribute();
             WriteLiteral("></td>\r\n                                                    <td>");
 #nullable restore
-#line 255 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 255 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                    Write(i);
 
 #line default
@@ -500,7 +500,7 @@ WriteAttributeValue("", 13361, item.CartDetail.ProductVariationId.ToString(), 13
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "src", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
             AddHtmlAttributeValue("", 13640, "~/images/", 13640, 9, true);
 #nullable restore
-#line 257 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 257 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 AddHtmlAttributeValue("", 13649, item.ProductVariation.Image, 13649, 28, false);
 
 #line default
@@ -516,7 +516,7 @@ AddHtmlAttributeValue("", 13649, item.ProductVariation.Image, 13649, 28, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                    </td>\r\n                                                    <td>");
 #nullable restore
-#line 259 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 259 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                    Write(item.Product.Name);
 
 #line default
@@ -524,7 +524,7 @@ AddHtmlAttributeValue("", 13649, item.ProductVariation.Image, 13649, 28, false);
 #nullable disable
             WriteLiteral("</td>\r\n                                                    <td>");
 #nullable restore
-#line 260 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 260 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                    Write(item.Brand.Name);
 
 #line default
@@ -532,7 +532,7 @@ AddHtmlAttributeValue("", 13649, item.ProductVariation.Image, 13649, 28, false);
 #nullable disable
             WriteLiteral("</td>\r\n                                                    <td>Màu: ");
 #nullable restore
-#line 261 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 261 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                          Write(item.Color.Name);
 
 #line default
@@ -540,7 +540,7 @@ AddHtmlAttributeValue("", 13649, item.ProductVariation.Image, 13649, 28, false);
 #nullable disable
             WriteLiteral(" <br /> Size: ");
 #nullable restore
-#line 261 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 261 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                                                                          Write(item.Size.Code);
 
 #line default
@@ -549,7 +549,7 @@ AddHtmlAttributeValue("", 13649, item.ProductVariation.Image, 13649, 28, false);
             WriteLiteral("</td>\r\n                                                    <td>\r\n                                                        <input type=\"text\" class=\"price align-right textr\" readonly maxlength=\"18\"");
             BeginWriteAttribute("value", " value=\"", 14207, "\"", 14256, 1);
 #nullable restore
-#line 263 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 263 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 WriteAttributeValue("", 14215, item.CartDetail.Price.ToString("0.##"), 14215, 41, false);
 
 #line default
@@ -564,7 +564,7 @@ WriteAttributeValue("", 14215, item.CartDetail.Price.ToString("0.##"), 14215, 41
                                                             <input readonly aria-label=""quantity"" class=""quantity"" type=""text"" id=""quantity"" name=""quantity""");
             BeginWriteAttribute("value", " value=\"", 14755, "\"", 14788, 1);
 #nullable restore
-#line 268 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 268 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 WriteAttributeValue("", 14763, item.CartDetail.Quantity, 14763, 25, false);
 
 #line default
@@ -579,7 +579,7 @@ WriteAttributeValue("", 14763, item.CartDetail.Quantity, 14763, 25, false);
                                                         <input class=""totalMoneyItem"" readonly type=""text""");
             BeginWriteAttribute("value", " value=\"", 15231, "\"", 15268, 1);
 #nullable restore
-#line 273 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 273 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
 WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
 
 #line default
@@ -594,14 +594,14 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
             EndWriteAttribute();
             WriteLiteral(">\r\n                                                    </td>\r\n                                                </tr>\r\n");
 #nullable restore
-#line 279 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 279 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                             }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 279 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
+#line 279 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                              
                                         }
 
@@ -738,6 +738,24 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
                                     </div>
                                 </div>
                             </div>
+                            <div class=""col-md-6"">
+                                <div class=""form-group"">
+                                    <label class=""control-label col-sm-5""><strong>Nhập mã giảm giá:<span style=""color: red"">(*)</span></strong></label>
+                                    <div class=""row col-md-12"">
+                                        <div class=""col-sm-8"">
+                                            <input type=""text"" id=""DiscountCode"" name=""DiscountCode""");
+                BeginWriteAttribute("value", " value=\"", 22097, "\"", 22105, 0);
+                EndWriteAttribute();
+                BeginWriteAttribute("placeholder", " placeholder=\"", 22106, "\"", 22120, 0);
+                EndWriteAttribute();
+                WriteLiteral(@" class=""form-control"" />
+                                        </div>
+                                        <div class=""col-sm-4"">
+                                            <a class=""btn btn-outline-info"" onclick=""CheckDiscountCode()""><i class=""fa-solid fa-check fa-lg""></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class=""form-group"">
                                 <label class=""control-label col-sm-3""><strong>Mô tả của bạn:</strong></label>
                                 <div class=""col-sm-12"">
@@ -745,12 +763,12 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
                                 </div>
                             </div>
                             <div class=""form-group row"">
-                                <div class=""col-sm-9"">
+                                <div cla");
+                WriteLiteral(@"ss=""col-sm-9"">
                                     <label class=""control-label col-md-12""><strong>Phí ship:</strong></label>
                                 </div>
                                 <div class=""col-sm-3"">
-                                    <p><strong id=""txtPhiShip");
-                WriteLiteral(@""">0</strong><strong style=""margin-left: 5px;"">đ</strong></p>
+                                    <p><strong id=""txtPhiShip"">0</strong><strong style=""margin-left: 5px;"">đ</strong></p>
                                 </div>
                             </div>
                             <div class=""form-group row"">
@@ -762,12 +780,12 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
                                 </div>
                             </div>
                             <div class=""form-group row"">
-                                <div class=""col-sm-9"">
+    ");
+                WriteLiteral(@"                            <div class=""col-sm-9"">
                                     <label class=""control-label col-md-12""><strong>Tổng tiền sản phẩm:</strong></label>
                                 </div>
                                 <div class=""col-sm-3"">
-               ");
-                WriteLiteral(@"                     <p><strong id=""txtTotalProduct""></strong><strong style=""margin-left: 5px;"">đ</strong></p>
+                                    <p><strong id=""txtTotalProduct""></strong><strong style=""margin-left: 5px;"">đ</strong></p>
                                 </div>
                             </div>
                             <div class=""form-group row"">
@@ -777,12 +795,12 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
                                 <div class=""col-sm-3"">
                                     <h2><strong style=""color:red;"" id=""textTotalMoney""></strong><strong style=""margin-left: 5px;color:red;"">đ</strong></h2>
                                 </div>
-                            </div>
+             ");
+                WriteLiteral(@"               </div>
                         </div>
                     </div>
                     <div class=""modal-footer"">
-                        <button type=""submit"" class=""btn btn-sm btn-success"" id=""cpCopyBtn""><i class=""fa fa-check"" aria-hidden=""true""></i> Đặt hàng</butt");
-                WriteLiteral(@"on>
+                        <button type=""submit"" class=""btn btn-sm btn-success"" id=""cpCopyBtn""><i class=""fa fa-check"" aria-hidden=""true""></i> Đặt hàng</button>
                         <button type=""button"" class=""btn btn-sm btn-default btn-dimiss-modal"" id=""btnCloseModal"">
                             <i class=""fa fa-times""></i> Đóng
                         </button>
@@ -848,44 +866,56 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
                     }
                     else {
                         var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''))
+                        if (total < 0) {
+                            total = 0;
+                        }
                         swal(""Thông báo!"", ""Bạn không được để trống thông tin địa chỉ!"", ""error"");
                         $(""#txtPhiShip"").text(commasThousands(0))
                         $('#textTotalMoney').text(commasThousands(total));
                         $('#cTotalMoney').val(total);
                         $('#cShippingFee').val(0);
-                    }
+          ");
+            WriteLiteral(@"          }
                 }
             })
         });
 
-        function ShippingFee(district_id, ward");
-            WriteLiteral(@"_code) {
+        function ShippingFee(district_id, ward_code) {
             $.ajax({
                 url: ""/Product/ShippingFee?district_id="" + district_id + ""&ward_code="" + ward_code,
                 type: ""GET"",
                 success: function (result) {
-                    var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
-                    $(""#txtPhiShip"").text(commasThousands(result))
+                    var total = 0;
+                    total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));                    
+                    if (total < 0) {
+                        total = 0;
+                    }
                     $('#textTotalMoney').text(commasThousands(total));
                     $('#cTotalMoney').val(total);
                     $('#cShippingFee').val(result);
+                    $(""#txtPhiShip"").text(commasThousands(result))
                 }
             })
         }
 
         function GetDataVoucher(totalMoneyOrder) {
-            $.ajax({
+       ");
+            WriteLiteral(@"     $.ajax({
                 url: ""/Product/GetVoucher?totalMoneyOrder="" + totalMoneyOrder,
                 type: ""GET"",
                 success: function (result) {
                     var renderData = ""<option></option>"";
-                    $.each(r");
-            WriteLiteral(@"esult, function (value) {
+                    $.each(result, function (value) {
                         var date = result[value].expirationDate;
                         renderData += '<option value=""' + result[value].id + '"">' + result[value].name + '</option>';
                         renderData += '<option disabled style = ""font-style:italic"" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
+
+                        if(result[value].discountForm == ""%"")
+                            renderData += '<option disabled style = ""font-style:italic"" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
+
                         renderData += '<option disabled style = ""font-style:italic"" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
-                        renderData += '<option disabled style=""font-style:italic""></option>'
+    ");
+            WriteLiteral(@"                    renderData += '<option disabled style=""font-style:italic""></option>'
                     });
                     $(""#selectVoucher"").html(renderData)
                 }
@@ -893,39 +923,48 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
         }
 
         $(""#selectVoucher"").change(function () {
+            $(""#DiscountCode"").val('')
+
             let _id = $(""#selectVoucher"").val();
             $.ajax({
                 url: ""/Product/GetVoucher?id="" + _id,
                 type: ""GET"",
                 success: function (result) {
-                    let tot");
-            WriteLiteral(@"alProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                    let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
                     let discount = 0;
+                    var total = 0;
                     if (result != null) {
                         if (result.discountForm == ""%"") {
                             discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
-                            $(""#txtGiamGia"").text(commasThousands(discount))
+                            if(discount > result.maximumDiscount)
+                                discount");
+            WriteLiteral(@" = result.maximumDiscount
                         }
                         else {
                             discount = result.discountRate
-                            $(""#txtGiamGia"").text(commasThousands(result.discountRate))
                         }
-                        var total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        $(""#txtGiamGia"").text(commasThousands(discount))
+                        total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
                     }
                     else {
                         swal(""Thông báo!"", ""Mã giảm giá không được áp dụng!"", ""error"");
                         $(""#txtGiamGia"").text(0)
-                        $(""#txtDiscountFo");
-            WriteLiteral(@"rm"").text(""Vnd"")
-                        var total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        $(""#txtDiscountForm"").text(""Vnd"")
+                        total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    }
+                    
+                    if(total < 0)
+                    {
+                        total = 0;
                     }
 
                     $('#textTotalMoney').text(commasThousands(total));
-                    $('#cTotalMoney').val(total);
+                    $('#cTo");
+            WriteLiteral(@"talMoney').val(total);
                     $('#cGiamGia').val(discount);
                 }
             })
-        });
+        });        
 
         function TinhPhanTram(tongtien, giamgia) {
             let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
@@ -940,15 +979,15 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
 
         $('input.quantity').each(function () {
             var $this = $(this),
-                qty = $this.parent()");
-            WriteLiteral(@".find('.is-form'),
+                qty = $this.parent().find('.is-form'),
                 min = Number($this.attr('min')),
                 max = Number($this.attr('max'))
             if (min == 0) {
                 var d = 0
             } else d = min
             $(qty).on('click', function () {
-                if ($(this).hasClass('minus')) {
+                ");
+            WriteLiteral(@"if ($(this).hasClass('minus')) {
                     if (d > min) d += -1;
                 } else if ($(this).hasClass('plus')) {
                     var x = Number($this.val()) + 1
@@ -968,8 +1007,9 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
 
 
         $('#ckbAll').change(function () {
-            i");
-            WriteLiteral("f ($(this).is(\':checked\')) {\r\n                $(\'.ckbProdItem\').prop(\'checked\', true);\r\n                $(\'#selected-invs\').text(");
+            if ($(this).is(':checked')) {
+                $('.ckbProdItem').prop('checked', true);
+                $('#selected-invs').text(");
 #nullable restore
 #line 571 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ShowDetailMyCart.cshtml"
                                     Write(Model.Select(c => c.CartDetail).Count());
@@ -1062,6 +1102,50 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
         }
     });
 
+    function CheckDiscountCode() {
+        $(""#selectVoucher"").val(0)
+
+        let _discountCode = $(""#DiscountCode"").val();
+        $.ajax({
+            url: ""/Product/GetVoucher?discountCode="" + _discountCode,
+            type: ""GET"",
+            success: function (result) {
+                let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                let discount = 0;
+                var total = 0;
+                if (result != null) {
+                    if (result.discountForm == ""%"") {
+                        discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
+                        if (di");
+            WriteLiteral(@"scount > result.maximumDiscount)
+                            discount = result.maximumDiscount
+                    }
+                    else {
+                        discount = result.discountRate
+                    }
+                    $(""#txtGiamGia"").text(commasThousands(discount))
+                    total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+                else {
+                    swal(""Thông báo!"", ""Mã giảm giá không được áp dụng!"", ""error"");
+                    $(""#txtGiamGia"").text(0)
+                    $(""#txtDiscountForm"").text(""Vnd"")
+                    total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+
+                if (total < 0) {
+                    total = 0;
+                }
+
+                $('#textTotalMoney').text(commasThousands(total));
+                $('#pTotalMoney').val(total);
+                $(");
+            WriteLiteral(@"'#cGiamGia').val(discount);
+            }
+        })
+    }
+
+
     function loadMoney() {
         var _totalPaymentMoney = 0;
         $('table tbody tr .totalMoneyItem').each((index, item) => {
@@ -1076,15 +1160,15 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
     }
 
 
-    function OpenDeliveryAddress() {");
-            WriteLiteral(@"
+    function OpenDeliveryAddress() {
         $('#OrderModal').modal('hide');
     }
 
 
     function changeSelectedProd(param) {
         var totalItem = parseFloat($(param).parents(""tr"").find(""input[type=text].totalMoneyItem"").val()) || 0;
-        var _totalPayment = parseFloat($('#totalPayment').val()) || 0;
+        var _totalPayment = parseFloat($('#totalPayment'");
+            WriteLiteral(@").val()) || 0;
         var selectedCount = parseInt($('#selected-invs').text()) || 0;
         if (param.checked) {
             $('#selected-invs').text(selectedCount + 1);
@@ -1106,8 +1190,7 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
         while (rgx.test(x1)) {
             x1 = x1.replace(rgx, '$1' + ',' + '$2');
         }
-        ret");
-            WriteLiteral(@"urn x1 + x2;
+        return x1 + x2;
     }
 
     function checkValidateData() {
@@ -1115,12 +1198,9 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
             sweetAlert(""Thông báo"", ""Thông tin địa chỉ không được để trống"", ""error"");
             return false;
         }
-        if ($('#ShippingEmail').val() == '') {
+        if ($('#Shippin");
+            WriteLiteral(@"gEmail').val() == '') {
             sweetAlert(""Thông báo"", ""Thông tin email không được để trống"", ""error"");
-            return false;
-        }
-        if (parseInt($('#cTotalMoney').val() || 0) === 0) {
-            sweetAlert(""Thông báo"", ""Thông tin tổng tiền thanh toán không hợp lệ"", ""error"");
             return false;
         }
         return true;
@@ -1135,13 +1215,13 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
         var products = [];
         $('input[name=cbid]:checked').each(function () {
             var _product = {};
-            _product.cartId = $(this).parents(""tr"").find(""input[type=text].cartId"").val();");
-            WriteLiteral(@"
+            _product.cartId = $(this).parents(""tr"").find(""input[type=text].cartId"").val();
             _product.prodVariationId = $(this).parents(""tr"").find(""input[type=text].prodVariationId"").val();
             _product.size = $(this).parents(""tr"").find(""select.size"").val();
             _product.price = parseFloat($(this).parents(""tr"").find(""input[type=text].price"").val()) || 0;
             _product.quantity = parseInt($(this).parents(""tr"").find(""input[type=text].quantity"").val()) || 0;
-            _product.totalMoneyItem = parseFloat($(this).parents(""tr"").find(""input[type=text].totalMoneyItem"").val()) || 0;
+            _product.totalMoneyItem = parseFloat(");
+            WriteLiteral(@"$(this).parents(""tr"").find(""input[type=text].totalMoneyItem"").val()) || 0;
             products.push(_product);
         });
         if (products.length == 0) {
@@ -1156,8 +1236,12 @@ WriteAttributeValue("", 15239, item.CartDetail.ToatlMoney, 15239, 29, false);
                 contentType: 'application/json',
                 dataType: 'json',
                 url: '/Product/RemoveToCart',
-           ");
-            WriteLiteral("     type: \'GET\'\r\n            });\r\n            swal(\"Thành công\", \"Đã gỡ sản phẩm khỏi giỏ hàng\", \"success\");\r\n        }\r\n    }\r\n</script>");
+                type: 'GET'
+            });
+            swal(""Thành công"", ""Đã gỡ sản phẩm khỏi giỏ hàng"", ""success"");
+        }
+    }
+</script>");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

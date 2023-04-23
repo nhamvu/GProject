@@ -13,35 +13,35 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -56,7 +56,8 @@ using GProject.Data.MyRepositories.IRepositories;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"90e9fc9327dd9095d44826afc1e28b09e8fb6869", @"/Views/Product/ProductDetail.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b08ccb6f7db288cae79c4c47cdc6330c880c5d3c", @"/Views/_ViewImports.cshtml")]
-    public class Views_Product_ProductDetail : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>, GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>>
+    public class Views_Product_ProductDetail : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>,
+GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("imgProd"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:650px;height:500px;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -73,7 +74,7 @@ using GProject.Data.MyRepositories.IRepositories;
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_12 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("border-radius:50%; width:35px; border:2px solid black;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_13 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("commentBox"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_14 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", "_CommentBox", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_15 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "0", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_15 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_16 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("buyFormData"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_17 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Order", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_18 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "BuyNow", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -125,14 +126,17 @@ using GProject.Data.MyRepositories.IRepositories;
     var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
     var lstCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
     var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
-    var lstOrderDetail = await Commons.GetAll<OrderDetail>(String.Concat(Commons.mylocalhost, "Order/get-all-Order-detail"));
+    var lstOrderDetail = await Commons.GetAll<OrderDetail>(String.Concat(Commons.mylocalhost,
+    "Order/get-all-Order-detail"));
     var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
-    var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+    var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost,
+    "ProductVariation/get-all-ProductVariation"));
 
     var isOrder = lstOrder
-                .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { A = a, B = b })
-                .Join(Model.Item2, ab => ab.B.ProductVariationId, c => c.Id, (ab, c) => new { A = ab.A, B = ab.B, C = c })
-                .Where(k => k.C.ProductId == Model.Item1.Id && k.A.CustomerId == Model.Item7.Id).Select(c => c.A.CustomerId).FirstOrDefault();
+    .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { A = a, B = b })
+    .Join(Model.Item2, ab => ab.B.ProductVariationId, c => c.Id, (ab, c) => new { A = ab.A, B = ab.B, C = c })
+    .Where(k => k.C.ProductId == Model.Item1.Id && k.A.CustomerId == Model.Item7.Id).Select(c =>
+    c.A.CustomerId).FirstOrDefault();
 
     IPromotionRepository _IPromotionRepository = new PromotionRepository();
     IPromotionDetailRepository _IPromotionDetalRepository = new PromotionDetailRepository();
@@ -159,30 +163,29 @@ using GProject.Data.MyRepositories.IRepositories;
 #nullable disable
             WriteLiteral(@"
 <style>
-
     .plus-minus-input {
         -webkit-align-items: center;
         -ms-flex-align: center;
         align-items: center;
     }
 
-        .plus-minus-input .input-group-field {
-            text-align: center;
-            margin-left: 0.5rem;
-            margin-right: 0.5rem;
-            padding: 1rem;
-        }
+    .plus-minus-input .input-group-field {
+        text-align: center;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        padding: 1rem;
+    }
 
-            .plus-minus-input .input-group-field::-webkit-inner-spin-button,
-            .plus-minus-input .input-group-field ::-webkit-outer-spin-button {
-                -webkit-appearance: none;
-                appearance: none;
-            }
+    .plus-minus-input .input-group-field::-webkit-inner-spin-button,
+    .plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+    }
 
-        .plus-minus-input .input-group-button .circle {
-            border-radius: 50%;
-            padding: 0.25em 0.8em;
-        }
+    .plus-minus-input .input-group-button .circle {
+        border-radius: 50%;
+        padding: 0.25em 0.8em;
+    }
 
     #btnAction {
         display: inline-block;
@@ -194,24 +197,25 @@ using GProject.Data.MyRepositories.IRepositories;
         outline: none;
         color: black;
         background-color: white;
-        border: none");
-            WriteLiteral(@";
+        border: none;
         border-radius: 15px;
         border: 2px solid Red;
-        box-shadow: 0 9px #999;
+        box-shado");
+            WriteLiteral(@"w: 0 9px #999;
         margin: 10px 20px;
     }
 
-        #btnAction:hover {
-            background-color: Red; /* Green */
-            color: white;
-        }
+    #btnAction:hover {
+        background-color: Red;
+        /* Green */
+        color: white;
+    }
 
-        #btnAction:active {
-            background-color: #3e8e41;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
+    #btnAction:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
 
     .image__img {
         display: block;
@@ -240,19 +244,19 @@ using GProject.Data.MyRepositories.IRepositories;
         backdrop-filter: blur(5px);
     }
 
-    .im");
-            WriteLiteral(@"age__overlay > * {
+    .image__overlay>* {
         transform: translateY(20px);
         transition: transform 0.25s;
     }
 
-    .image__overlay:hover {
+    .i");
+            WriteLiteral(@"mage__overlay:hover {
         opacity: 1;
     }
 
-        .image__overlay:hover > * {
-            transform: translateY(0);
-        }
+    .image__overlay:hover>* {
+        transform: translateY(0);
+    }
 
     .image__title {
         font-size: 2em;
@@ -329,7 +333,8 @@ using GProject.Data.MyRepositories.IRepositories;
 #nullable restore
 #line 189 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
                       
-                        string img = Model.Item2.Where(c => c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault();
+                        string img = Model.Item2.Where(c => c.ProductId == Model.Item1.Id).Select(c =>
+                        c.Image).FirstOrDefault();
                     
 
 #line default
@@ -367,7 +372,8 @@ AddHtmlAttributeValue("", 7442, img, 7442, 4, false);
                           
                             foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                             {
-                                string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
+                                string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c =>
+                                c.Image).FirstOrDefault().NullToString();
 
 #line default
 #line hidden
@@ -535,7 +541,11 @@ WriteAttributeValue("", 8902, Model.Item1.Id.ToString(), 8902, 26, false);
 #line default
 #line hidden
 #nullable disable
-                WriteLiteral(" <i class=\"fa fa-eye\"></i> người đã xem sản phẩm này</h3>\r\n                            <div class=\"row\">\r\n                                <div class=\"col-md-10\">\r\n                                    <h3><strong>Lượt thích:</strong> ");
+                WriteLiteral(@" <i class=""fa fa-eye""></i> người đã xem sản
+                                phẩm này</h3>
+                            <div class=""row"">
+                                <div class=""col-md-10"">
+                                    <h3><strong>Lượt thích:</strong> ");
 #nullable restore
 #line 258 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
                                                                 Write(Model.Item1.LikeCount);
@@ -569,13 +579,14 @@ WriteAttributeValue("", 8902, Model.Item1.Id.ToString(), 8902, 26, false);
 #line default
 #line hidden
 #nullable disable
-                WriteLiteral("</span>  sản phẩm có sẵn</h3>\r\n                            <h3 class=\"cl-class\">\r\n                                <strong>Màu sắc:</strong>\r\n");
+                WriteLiteral("</span> sản phẩm có sẵn</h3>\r\n                            <h3 class=\"cl-class\">\r\n                                <strong>Màu sắc:</strong>\r\n");
 #nullable restore
 #line 267 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
                                   
                                     foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                                     {
-                                        string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
+                                        string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId ==
+                                        Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
 
 #line default
 #line hidden
@@ -682,14 +693,17 @@ WriteAttributeValue("", 13499, item, 13499, 5, false);
                                 <div class=""col-md-8 justify-content-center"">
                                     <div class=""row"">
                                         <div class=""input-group-button col-md-3 mt-2"">
-                                            <button type=""button"" class=""btn-warning hollow circle"" data-quantity=""minus"" data-field=""quantity"" style=""margin-right:5px;"">
+                                            <button type=""button"" class=""btn-warning hollow circle"" data-quantity=""minus""
+                                                data-field=""quantity"" style=""margin-right:5px;"">
                                                 <i class=""fa fa-minus"" aria-hidden=""true""></i>
                                             </button>
                                         </div>
-                                        <input class=""input-group-field form-control col-md-5"" type=""number"" id=""quantity"" name=""quantity"" value=""0"" style=""width:50px;"">
-                                        <div class=""input-gro");
-                WriteLiteral(@"up-button col-md-3 mt-2"">
-                                            <button type=""button"" class=""btn-info hollow circle"" data-quantity=""plus"" data-field=""quantity"" style=""margin-left:5px;"">
+                                        <input class=""input-group-field form-control col-md-5"" type=""number"" id=""quantity""
+                                            name=""quantity""");
+                WriteLiteral(@" value=""0"" style=""width:50px;"">
+                                        <div class=""input-group-button col-md-3 mt-2"">
+                                            <button type=""button"" class=""btn-info hollow circle"" data-quantity=""plus""
+                                                data-field=""quantity"" style=""margin-left:5px;"">
                                                 <i class=""fa fa-plus"" aria-hidden=""true""></i>
                                             </button>
                                         </div>
@@ -699,19 +713,23 @@ WriteAttributeValue("", 13499, item, 13499, 5, false);
 
                             </div>
                             <hr>
-                            <h3><strong>Thành tiền:</strong></h3><h1><strong style=""color:red;"" id=""totalMoney"" name=""totalMoney""> 0 VND</strong></h1>
+                            <h3><strong>Thành tiền:</strong></h3>
+                            <h1><strong style=""color:red;"" id=""totalMoney"" name=""totalMoney""> 0 VND</strong></h1>
                             <div class=""form-group"">
-                                <label class=""control-label col-sm-3""><strong>Mô tả của bạn:</strong></label>
+                                <label class=""control-label col-sm-3""><strong>Mô tả của bạn:</s");
+                WriteLiteral(@"trong></label>
                                 <div class=""col-sm-12"">
-                                    <textarea class=""form-control"" name=""cDescription"" id=""cDescript");
-                WriteLiteral(@"ion"" cols=""50"" rows=""5"" style=""border:double 4px orange;""></textarea>
+                                    <textarea class=""form-control"" name=""cDescription"" id=""cDescription"" cols=""50"" rows=""5""
+                                        style=""border:double 4px orange;""></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class=""row"">
-                        <button type=""button"" id=""btnAction"" onclick=""AddToCart()"" class=""btn btn-primary col-md-5""><i class=""fa fa-shopping-cart"" style=""margin-right:10px;""></i>Thêm vào giỏ hàng</button>
-                        <button type=""button"" id=""btnAction"" onclick=""BuyNow()"" class=""btn btn-primary col-md-5""><i class=""fa fa-calendar-o"" style=""margin-right:10px;""></i>Mua ngay</button>
+                        <button type=""button"" id=""btnAction"" onclick=""AddToCart()"" class=""btn btn-primary col-md-5""><i
+                                class=""fa fa-shopping-cart"" style=""margin-right:10px;""></i>Thêm vào giỏ hàng</button>
+                        <button type=""button"" id=""btnAction"" onclick=""BuyNow()"" class=""btn btn-primary col-md-5""><i
+                                class=""fa fa-calendar-o"" style=""margin-right:10px;""></i>Mua ngay</button>
                     </div>
 
                 ");
@@ -742,7 +760,8 @@ WriteAttributeValue("", 13499, item, 13499, 5, false);
 #nullable restore
 #line 329 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
               
-                var lstSimilarProduct = lstProducts.Where(c => c.ProductType.Contains(Model.Item1.ProductType) && c.Id != Model.Item1.Id).ToList();
+                var lstSimilarProduct = lstProducts.Where(c => c.ProductType.Contains(Model.Item1.ProductType) && c.Id !=
+                Model.Item1.Id).ToList();
             
 
 #line default
@@ -773,7 +792,8 @@ WriteAttributeValue("", 13499, item, 13499, 5, false);
 #nullable restore
 #line 344 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
                                       
-                                        string image = lstProductvariation.Where(c => c.ProductId == x.Id && !string.IsNullOrEmpty(c.Image)).Select(c => c.Image).FirstOrDefault().NullToString();
+                                        string image = lstProductvariation.Where(c => c.ProductId == x.Id &&
+                                        !string.IsNullOrEmpty(c.Image)).Select(c => c.Image).FirstOrDefault().NullToString();
                                     
 
 #line default
@@ -815,7 +835,8 @@ WriteAttributeValue("", 18102, x.Id, 18102, 5, false);
 #line hidden
 #nullable disable
             EndWriteAttribute();
-            WriteLiteral(@" style=""border-radius:10px;""><i class=""fa fa-shopping-cart"" style=""margin-right:10px;""></i>Thêm vào giỏ hàng</a>
+            WriteLiteral(@" style=""border-radius:10px;""><i
+                                                class=""fa fa-shopping-cart"" style=""margin-right:10px;""></i>Thêm vào giỏ hàng</a>
                                     </div>
                                 </div>
                                 <div class=""card-body"">
@@ -1070,7 +1091,8 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                 WriteLiteral(@"
                 <div class=""modal-content justify-content-center"" style=""border-width:1px;"">
                     <div class=""modal-header"" style=""width:800px;"">
-                        <h2 class=""modal-title text-center""><strong><i class=""fa fa-cubes"" aria-hidden=""true"" style=""margin-right:5px;""></i>THÔNG TIN ĐƠN HÀNG</strong></h2>
+                        <h2 class=""modal-title text-center""><strong><i class=""fa fa-cubes"" aria-hidden=""true""
+                                    style=""margin-right:5px;""></i>THÔNG TIN ĐƠN HÀNG</strong></h2>
                     </div>
                     <div class=""modal-body"">
                         <input type=""text"" id=""pTotalMoney"" name=""pTotalMoney"" hidden=""hidden"" />
@@ -1086,22 +1108,26 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                         <div class=""row"">
                             <div class=""col-md-12"">
                                 <div class=""form-group"">
-                                    <label class=""control-label col-sm-5""><strong>Địa chỉ đặt hàng:<span style=""color: red"">(*)</span></strong></label>
+                                    <label class=""control-label col-sm-5""><strong>Địa chỉ đặt hàng:<span
+                                                style=""color: red"">(*)</span></strong></label>
                                     <div class=""col-sm-12"">
                                         <select id=""selectDeliveryAddress"" class=""form-select"">
                                         </select>
-                                        <button style=""margin-top: 5px;"" class=""btn btn-success "" onclick=""OpenDeliveryAddress(); return false;"" data-toggle=""ajax-modal"" data-target=""#showDataDeliveryAddress"" data-url=""/DeliveryAddress/Index"">
+                                        <button style=""margin-top: 5px;"" class=""btn btn-success ""
+                                            onclick=""OpenDeliveryAddress(); return false;"" data-toggle=""ajax-modal""
+                                            data-target=""#showDataDeliveryAddress"" data-url=""/DeliveryAddress/Index"">
                                             Thêm
                                         </button>
-                                    </div>
+");
+                WriteLiteral(@"                                    </div>
                                 </div>
                             </div>
-                   ");
-                WriteLiteral(@"     </div>
+                        </div>
                         <div class=""row"">
                             <div class=""col-md-6"">
                                 <div class=""form-group"">
-                                    <label class=""control-label col-sm-5""><strong>Email:<span style=""color: red"">(*)</span></strong></label>
+                                    <label class=""control-label col-sm-5""><strong>Email:<span
+                                                style=""color: red"">(*)</span></strong></label>
                                     <div class=""col-sm-12"">
                                         <input type=""email"" id=""ShippingEmail"" name=""ShippingEmail""");
                 BeginWriteAttribute("value", " value=\"", 24243, "\"", 24251, 0);
@@ -1114,7 +1140,8 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                             </div>
                             <div class=""col-md-6"">
                                 <div class=""form-group"">
-                                    <label class=""control-label col-sm-5""><strong>Email:<span style=""color: red"">(*)</span></strong></label>
+                                    <label class=""control-label col-sm-12""><strong>Hình thức thanh toán:<span
+                                                style=""color: red"">(*)</span></strong></label>
                                     <div class=""col-sm-12"">
 ");
 #nullable restore
@@ -1131,8 +1158,10 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
 #line 470 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
                                    Write(Html.DropDownList("PaymentType",new[]
                                         {
-                                        new SelectListItem{Text="Thanh toán khi nhận hàng", Value="0", Selected= (PaymentType== 0)},
-                                        new SelectListItem{Text="Thanh toán khi đặt hàng", Value="1", Selected= (PaymentType== 1)},
+                                        new SelectListItem{Text="Thanh toán khi nhận hàng", Value="0", Selected=
+                                        (PaymentType== 0)},
+                                        new SelectListItem{Text="Thanh toán khi đặt hàng", Value="1", Selected=
+                                        (PaymentType== 1)},
                                         }, new { @name = "PaymentType", @class="searchText form-control select"}));
 
 #line default
@@ -1144,7 +1173,8 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                             </div>
                             <div class=""col-md-6"">
                                 <div class=""form-group"">
-                                    <label class=""control-label col-sm-6""><strong>Mã giảm giá:<span style=""color: red"">(*)</span></strong></label>
+                                    <label class=""control-label col-sm-6""><strong>Mã giảm giá:<span
+                                                style=""color: red"">(*)</span></strong></label>
                                     <div class=""col-sm-12"">
                                         <select id=""selectVoucher"" name=""selectVoucher"" class=""form-select"">
                                             ");
@@ -1167,19 +1197,41 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                                     </div>
                                 </div>
                             </div>
+                            <div class=""col-md-6"">
+                                <div class=""form-group"">
+                                    <label class=""control-label col-sm-5""><strong>Nhập mã giảm giá:<span
+                                                style=""color: red"">(*)</span></strong></label>
+                                    <div class=""row col-md-12"">
+                                        <div class=""col-sm-8"">
+                                            <input type=""text"" id=""DiscountCode"" name=""DiscountCode""");
+                BeginWriteAttribute("value", " value=\"", 26496, "\"", 26504, 0);
+                EndWriteAttribute();
+                BeginWriteAttribute("placeholder", "\r\n                                                placeholder=\"", 26505, "\"", 26568, 0);
+                EndWriteAttribute();
+                WriteLiteral(@" class=""form-control col-12"" />
+                                        </div>
+                                        <div class=""col-sm-4"">
+                                            <a class=""btn btn-outline-info"" onclick=""CheckDiscountCode()""><i
+                                                    class=""fa-solid fa-check fa-lg""></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class=""form-group"">
                                 <label class=""control-label col-sm-3""><strong>Mô tả của bạn:</strong></label>
                                 <div class=""col-sm-12"">
-                                    <textarea class=""form-control"" name=""cDescription"" id=""cDescription"" cols=""50"" rows=""5"" style=""border:double 4px orange;""></textarea>
+                                    <textarea class=""form-control"" name=""cDescription"" id=""cDescription"" cols=""50""
+                                        rows=""5"" style=""border:double 4px orange;""></textarea>
                                 </div>
-                            </div>
+                            </div");
+                WriteLiteral(@">
                             <div class=""form-group row"">
                                 <div class=""col-sm-9"">
                                     <label class=""control-label col-md-12""><strong>Phí ship:</strong></label>
                                 </div>
                                 <div class=""col-sm-3"">
-                                    <p><strong id=""txtPhiShip");
-                WriteLiteral(@""">0</strong><strong style=""margin-left: 5px;"">đ</strong></p>
+                                    <p><strong id=""txtPhiShip"">0</strong><strong style=""margin-left: 5px;"">đ</strong>
+                                    </p>
                                 </div>
                             </div>
                             <div class=""form-group row"">
@@ -1187,7 +1239,9 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                                     <label class=""control-label col-md-12""><strong>Giảm giá:</strong></label>
                                 </div>
                                 <div class=""col-sm-3"">
-                                    <p><strong>- </strong> <strong id=""txtGiamGia"">0</strong><strong style=""margin-left: 5px;"">đ</strong></p>
+                                    <p><strong>- </strong> <strong id=""txtGiamGia"">0</strong><strong
+                                        ");
+                WriteLiteral(@"    style=""margin-left: 5px;"">đ</strong></p>
                                 </div>
                             </div>
                             <div class=""form-group row"">
@@ -1195,23 +1249,26 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                                     <label class=""control-label col-md-12""><strong>Tổng tiền sản phẩm:</strong></label>
                                 </div>
                                 <div class=""col-sm-3"">
-               ");
-                WriteLiteral(@"                     <p><strong id=""txtTotalProduct""></strong><strong style=""margin-left: 5px;"">đ</strong></p>
+                                    <p><strong id=""txtTotalProduct""></strong><strong
+                                            style=""margin-left: 5px;"">đ</strong></p>
                                 </div>
                             </div>
                             <div class=""form-group row"">
                                 <div class=""col-sm-9"">
-                                    <h2><label class=""control-label col-md-12""><strong>Tổng tiền thanh toán:</strong></label></h2>
-                                </div>
+                                    <h2><label class=""control-label col-md-12""><strong>Tổng tiền thanh
+                                                toán:</strong></label></h2>
+                            ");
+                WriteLiteral(@"    </div>
                                 <div class=""col-sm-3"">
-                                    <h2><strong style=""color:red;"" id=""textTotalMoney""></strong><strong style=""margin-left: 5px;color:red;"">đ</strong></h2>
+                                    <h2><strong style=""color:red;"" id=""textTotalMoney""></strong><strong
+                                            style=""margin-left: 5px;color:red;"">đ</strong></h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class=""modal-footer"">
-                        <button type=""submit"" class=""btn btn-sm btn-success"" id=""cpCopyBtn""><i class=""fa fa-check"" aria-hidden=""true""></i> Đặt hàng</butt");
-                WriteLiteral(@"on>
+                        <button type=""submit"" class=""btn btn-sm btn-success"" id=""cpCopyBtn""><i class=""fa fa-check""
+                                aria-hidden=""true""></i> Đặt hàng</button>
                         <button type=""button"" class=""btn btn-sm btn-default btn-dimiss-modal"" id=""btnCloseModal"">
                             <i class=""fa fa-times""></i> Đóng
                         </button>
@@ -1246,14 +1303,14 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
 </div>
 <script type=""text/javascript"">
     $(document).ready(function () {
-
-        document.querySelector('#formdata').addEventListener('submit', function (e) {
+        document.querySelector('#buyFormData').addEventListener('submit', function (e) {
             var form = this;
             e.preventDefault();
-            if ($(""#selectDeliveryAddress"").val() == """") {
-                sweetAlert("""", ""Vui lòng nhập địa chỉ nhận hàng"", ""error"");
+
+            if ($('#selectDeliveryAddress').val() == '') {
+                sweetAlert(""Thông báo"", ""Thông tin địa chỉ không được để trống"", ""error"");
             }
-            else if (checkValidateData()) {
+            else {
                 swal(""Bạn chắc chắn muốn đặt đơn hàng này?"", {
                     title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
                     icon: 'info',
@@ -1267,9 +1324,8 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                 });
             }
         });
-
-    ");
-            WriteLiteral(@"    $(""#selectDeliveryAddress"").change(function () {
+        $(""#s");
+            WriteLiteral(@"electDeliveryAddress"").change(function () {
             let _id = $(""#selectDeliveryAddress"").val();
             $.ajax({
                 url: ""/Product/GetDataDeliveryAddress?id="" + _id,
@@ -1281,20 +1337,23 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                     }
                     else {
                         var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''))
+                        if (total < 0) {
+                            total = 0;
+                        }
                         swal(""Thông báo!"", ""Bạn không được để trống thông tin địa chỉ!"", ""error"");
                         $(""#txtPhiShip"").text(commasThousands(0))
-                        $('#textTotalMoney').text(commasThousands(total));
+                        $('#textTotalMoney').text");
+            WriteLiteral(@"(commasThousands(total));
                         $('#pTotalMoney').val(total);
-                  ");
-            WriteLiteral(@"      $('#cShippingFee').val(0);
+                        $('#cShippingFee').val(0);
                     }
                 }
             })
         });
 
 
-
         $(""#selectVoucher"").change(function () {
+            $(""#DiscountCode"").val('')
             let _id = $(""#selectVoucher"").val();
             $.ajax({
                 url: ""/Product/GetVoucher?id="" + _id,
@@ -1302,28 +1361,35 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                 success: function (result) {
                     let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
                     let discount = 0;
+                    var total = 0;
                     if (result != null) {
                         if (result.discountForm == ""%"") {
                             discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
-                            $(""#txtGiamGia"").text(commasThousands(discount))
+                            if (discount > result.maximumDiscount)
+                                discount = result.max");
+            WriteLiteral(@"imumDiscount
                         }
                         else {
                             discount = result.discountRate
-                            $(""#txtGiamGia"").text(commasThousands(result.discountRate))
-         ");
-            WriteLiteral(@"               }
-                        var total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        }
+                        $(""#txtGiamGia"").text(commasThousands(discount))
+                        total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
                     }
                     else {
                         swal(""Thông báo!"", ""Mã giảm giá không được áp dụng!"", ""error"");
                         $(""#txtGiamGia"").text(0)
                         $(""#txtDiscountForm"").text(""Vnd"")
-                        var total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    }
+
+                    if (total < 0) {
+                        total = 0;
                     }
 
                     $('#textTotalMoney').text(commasThousands(total));
                     $('#pTotalMoney').val(total);
-                    $('#cGiamGia').val(discount);
+                    $('#cGiam");
+            WriteLiteral(@"Gia').val(discount);
                 }
             })
         });
@@ -1334,8 +1400,7 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
             e.preventDefault();
             fieldName = $(this).attr('data-field');
             var currentVal = parseInt($('input[name=' + fieldName + ']').val());
-     ");
-            WriteLiteral(@"       if (!isNaN(currentVal)) {
+            if (!isNaN(currentVal)) {
                 $('input[name=' + fieldName + ']').val(currentVal + 1);
             } else {
                 $('input[name=' + fieldName + ']').val(0);
@@ -1351,7 +1416,8 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
             } else {
                 $('input[name=' + fieldName + ']').val(0);
             }
-            sumTotal();
+            sumTotal(");
+            WriteLiteral(@");
         });
 
         $('.cl-class > button').click(function () {
@@ -1361,8 +1427,7 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
             getQuantityInstock();
         });
 
-        $('");
-            WriteLiteral(@".si-class > button').click(function () {
+        $('.si-class > button').click(function () {
             $('.si-class > button').css('background-color', 'white');
             $(this).css('background-color', '#00CCCC');
             $('#cSize').val($(this).val());
@@ -1379,13 +1444,62 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
 
     });
 
+
+
+    function CheckDiscountCode() {
+        $(""#selectVoucher"").val(0)
+
+        let _discountCode = $(""#Disco");
+            WriteLiteral(@"untCode"").val();
+        $.ajax({
+            url: ""/Product/GetVoucher?discountCode="" + _discountCode,
+            type: ""GET"",
+            success: function (result) {
+                let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                let discount = 0;
+                var total = 0;
+                if (result != null) {
+                    if (result.discountForm == ""%"") {
+                        discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
+                        if (discount > result.maximumDiscount)
+                            discount = result.maximumDiscount
+                    }
+                    else {
+                        discount = result.discountRate
+                    }
+                    $(""#txtGiamGia"").text(commasThousands(discount))
+                    total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+           ");
+            WriteLiteral(@"     }
+                else {
+                    swal(""Thông báo!"", ""Mã giảm giá không được áp dụng!"", ""error"");
+                    $(""#txtGiamGia"").text(0)
+                    $(""#txtDiscountForm"").text(""Vnd"")
+                    total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+
+                if (total < 0) {
+                    total = 0;
+                }
+
+                $('#textTotalMoney').text(commasThousands(total));
+                $('#pTotalMoney').val(total);
+                $('#cGiamGia').val(discount);
+            }
+        })
+    }
+
     function ShippingFee(district_id, ward_code) {
         $.ajax({
             url: ""/Product/ShippingFee?district_id="" + district_id + ""&ward_code="" + ward_code,
             type: ""GET"",
             success: function (result) {
-                var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replac");
-            WriteLiteral(@"e(/,/g, ''));
+                var total = 0;
+                var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''))");
+            WriteLiteral(@" + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
+                if (total < 0) {
+                    total = 0;
+                }
                 $(""#txtPhiShip"").text(commasThousands(result))
                 $('#textTotalMoney').text(commasThousands(total));
                 $('#pTotalMoney').val(total);
@@ -1403,9 +1517,13 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
                 $.each(result, function (value) {
                     var date = result[value].expirationDate;
                     renderData += '<option value=""' + result[value].id + '"">' + result[value].name + '</option>';
-                    renderData += '<option disabled style = ""font-style:italic"" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
-                    renderData += '<option disabled style = ""font-style:italic"" >");
-            WriteLiteral(@" (HSD: ' + ConvertDate(date) + ')' + ' </option>'
+                    renderData += '<option disabled style = ""font-style:italic"" > (Đơn");
+            WriteLiteral(@" Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
+
+                    if (result[value].discountForm == ""%"")
+                        renderData += '<option disabled style = ""font-style:italic"" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
+
+                    renderData += '<option disabled style = ""font-style:italic"" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
                     renderData += '<option disabled style=""font-style:italic""></option>'
                 });
                 $(""#selectVoucher"").html(renderData)
@@ -1420,12 +1538,16 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
             success: function (result) {
                 var renderData = ""<option></option>"";
                 $.each(result, function (value) {
-                    debugger
-                    var date = result[value].expirationDate;
+
+                    var date = result[value].expirationD");
+            WriteLiteral(@"ate;
                     renderData += '<option value=""' + result[value].id + '"">' + result[value].name + '</option>';
                     renderData += '<option disabled style = ""font-style:italic"" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
-                    renderData += '<option disabled style = ""font-style:italic"" > ");
-            WriteLiteral(@"(HSD: ' + ConvertDate(date) + ')' + ' </option>'
+
+                    if (result[value].discountForm == ""%"")
+                        renderData += '<option disabled style = ""font-style:italic"" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
+
+                    renderData += '<option disabled style = ""font-style:italic"" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
                     renderData += '<option disabled style=""font-style:italic""></option>'
                 });
                 $(""#selectVoucher"").html(renderData)
@@ -1438,7 +1560,8 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
         return thanhtien
     }
 
-    function ConvertDate(time) {
+    functio");
+            WriteLiteral(@"n ConvertDate(time) {
         var date = new Date(time);
         var dateConvert = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + date.getFullYear())
         return dateConvert
@@ -1467,8 +1590,8 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
     }
 
     function sumTotal() {
-        let mQuantity = parseInt($('#quantity').val().replace(/,/g, '') || 0) || 0;
-        let mPrice = parseFloat(");
+        let mQuantity = parseInt($('#quantity').val().re");
+            WriteLiteral("place(/,/g, \'\') || 0) || 0;\r\n        let mPrice = parseFloat(");
 #nullable restore
 #line 755 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
                            Write(price);
@@ -1589,54 +1712,56 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
 
     function BuyNow() {");
             WriteLiteral(@"
+        if (checkValidateData()) {
+            var products = [];
+            var _product = {};
+            _product.color = parseInt($('#cColor').val());
+            _product.size = parseInt($('#cSize').val());
+            _product.price = parseFloat($('#cPrice').val());
+            _product.quantity = parseInt($('#cQuantity').val());
+            _product.totalMoneyItem = parseFloat($('#cTotalMoney').val());
+            _product.productId = $('#cProductId').val();
+            products.push(_product);
 
-        var products = [];
-        var _product = {};
-        _product.color = parseInt($('#cColor').val());
-        _product.size = parseInt($('#cSize').val());
-        _product.price = parseFloat($('#cPrice').val());
-        _product.quantity = parseInt($('#cQuantity').val());
-        _product.totalMoneyItem = parseFloat($('#cTotalMoney').val());
-        _product.productId = $('#cProductId').val();
-        products.push(_product);
+            let total = $('#cTotalMoney').val();
 
-        let total = $('#cTotalMoney').val();
+            DataAddressCustomer()
+            GetDataVoucher(total);
 
-        DataAddressCustomer()
-        GetDataVoucher(total);
+            $('#textTotalMoney').text(commasThousands(total));
+            $('#pTotalMoney').val(total);
 
-        $('#textTotalMoney').text(commasThousands(total));
-        $('#pTotalMoney').val(total);
+            $.ajax({
+                data: {
+                    products: JSON.stringify(products)
+                },
+                contentType: 'application/json',
+                dataType: 'json',
+                url: '/Product/Order',
+                type");
+            WriteLiteral(@": 'GET'
+            });
 
-        $.ajax({
-            data: {
-                products: JSON.stringify(products)
-            },
-            contentType: 'application/json',
-            dataType: 'json',
-            url: '/Product/Order',
-            type: 'GET'
-        });
-
-        //Lấy thông tin người dùng
-        $.ajax({
-            contentType: 'application/json',");
-            WriteLiteral(@"
-            dataType: 'json',
-            url: '/Product/GetCustomerInfo',
-            type: 'GET',
-            success: function (result) {
-                $(""#ShippingFullName"").val(result.name);
-                $(""#ShippingPhone"").val(result.phoneNumber);
-                $(""#ShippingEmail"").val(result.email);
-            }
-        });
-        $('#OrderModal').modal('show');
+            //Lấy thông tin người dùng
+            $.ajax({
+                contentType: 'application/json',
+                dataType: 'json',
+                url: '/Product/GetCustomerInfo',
+                type: 'GET',
+                success: function (result) {
+                    $(""#ShippingFullName"").val(result.name);
+                    $(""#ShippingPhone"").val(result.phoneNumber);
+                    $(""#ShippingEmail"").val(result.email);
+                }
+            });
+            $('#OrderModal').modal('show');
+        }
     }
 
     $('#btnCloseModal').click(function () {
         $('#OrderModal').modal('hide');
     });
+
 
     function SCRate() {
         for (var i = 1; i <= ");
@@ -1659,7 +1784,8 @@ AddHtmlAttributeValue("", 20334, imgCusAvata, 20334, 12, false);
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
         public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>, GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>,
+GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>> Html { get; private set; }
     }
 }
 #pragma warning restore 1591

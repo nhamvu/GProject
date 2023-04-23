@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
@@ -62,7 +62,7 @@ using GProject.WebApplication.Models;
         {
             WriteLiteral("\r\n");
 #nullable restore
-#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
   
     ViewData["Title"] = "Trang chủ";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -171,7 +171,7 @@ WriteAttributeValue("", 2082, ViewData["toDate"], 2082, 19, false);
                     <li class=""ms-auto""><span class=""counter text-su");
             WriteLiteral("ccess\">");
 #nullable restore
-#line 68 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
+#line 68 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
                                                                        Write(ViewBag.CountOrder);
 
 #line default
@@ -193,7 +193,7 @@ WriteAttributeValue("", 2082, ViewData["toDate"], 2082, 19, false);
                     </li>
                     <li class=""ms-auto""><span class=""counter text-purple"">");
 #nullable restore
-#line 82 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
+#line 82 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
                                                                       Write(ViewBag.CountProduct);
 
 #line default
@@ -216,7 +216,7 @@ WriteAttributeValue("", 2082, ViewData["toDate"], 2082, 19, false);
                     <li class=""ms-auto"">
                         <span class=""counter text-info"">");
 #nullable restore
-#line 97 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
+#line 97 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
                                                     Write(ViewBag.CountCustomer);
 
 #line default
@@ -240,7 +240,7 @@ WriteAttributeValue("", 2082, ViewData["toDate"], 2082, 19, false);
                     <li class=""ms-auto"">
                         <span class=""counter text-info""> ");
 #nullable restore
-#line 113 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
+#line 113 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
                                                      Write(ViewBag.CountEvaluate);
 
 #line default
@@ -248,7 +248,7 @@ WriteAttributeValue("", 2082, ViewData["toDate"], 2082, 19, false);
 #nullable disable
             WriteLiteral(" <i class=\"fa fa-comments\" aria-hidden=\"true\"></i> ");
 #nullable restore
-#line 113 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
+#line 113 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
                                                                                                                                 Write(ViewBag.CountView);
 
 #line default
@@ -256,7 +256,7 @@ WriteAttributeValue("", 2082, ViewData["toDate"], 2082, 19, false);
 #nullable disable
             WriteLiteral(" <i class=\"fa fa-eye\" aria-hidden=\"true\"></i> ");
 #nullable restore
-#line 113 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
+#line 113 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Dashboard\Index.cshtml"
                                                                                                                                                                                                   Write(ViewBag.CountLike);
 
 #line default
