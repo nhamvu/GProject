@@ -964,3 +964,8 @@ C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplicatio
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.pdb
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\GProject.WebApplication.genruntimeconfig.cache
 C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\ref\GProject.WebApplication.dll
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\Razor\Views\Account\ChangePasswordCustomer.cshtml.g.cs
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\Razor\Views\Account\ChangePasswordEmployee.cshtml.g.cs
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\Razor\Views\Account\UpdateProfileCustomer.cshtml.g.cs
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\Razor\Views\Account\UpdateProfileEmployee.cshtml.g.cs
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\Razor\Views\Account\ForgotPassword.cshtml.g.cs

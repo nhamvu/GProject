@@ -4,6 +4,7 @@
 @using GProject.Api.MyServices.Services;
 @using GProject.Data.DomainClass;
 @using GProject.WebApplication.Helpers;
+@using GProject.Data.MyRepositories.IRepositories;
 @{
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -29,6 +30,26 @@
                 .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { A = a, B = b })
                 .Join(Model.Item2, ab => ab.B.ProductVariationId, c => c.Id, (ab, c) => new { A = ab.A, B = ab.B, C = c })
                 .Where(k => k.C.ProductId == Model.Item1.Id && k.A.CustomerId == Model.Item7.Id).Select(c => c.A.CustomerId).FirstOrDefault();
+
+    IPromotionRepository _IPromotionRepository = new PromotionRepository();
+    IPromotionDetailRepository _IPromotionDetalRepository = new PromotionDetailRepository();
+
+    var promotiondata = (from p in _IPromotionRepository.GetAll()
+                         join q in _IPromotionDetalRepository.GetAll() on p.Id equals q.PromotionId
+                         where p.Status == GProject.Data.Enums.PromotionStatus.Happenning
+                         select new
+                         {
+                             Promotion = p,
+                             PromotionDetail = q
+                         }).ToList();
+
+    decimal price = Model.Item1.Price;
+    var existProdPromotion = promotiondata.Where(c => c.PromotionDetail.ProductId == Model.Item1.Id).FirstOrDefault();
+    if (existProdPromotion!= null)
+    {
+        price = existProdPromotion.PromotionDetail.CurrentPrice;
+    }
+
 }
 
 <style>
@@ -137,6 +158,15 @@
 
 </style>
 
+<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
+<link href="/UserContent/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="/UserContent/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="/UserContent/styles/categories_styles.css">
+<link rel="stylesheet" type="text/css" href="/UserContent/styles/categories_responsive.css">
+<link href="/AdminContent/css/style.min.css" rel="stylesheet">
 @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
@@ -185,7 +215,13 @@
                     <input id="cProductId" name="cProductId" value="@Model.Item1.Id.ToString()" hidden="hidden" />
 
                     <h1 class="d-none d-lg-block" style="color:Black"><strong>@Model.Item1.Name</strong></h1>
-                    <h1 class="d-none d-lg-block" style="color:Red">Giá hiện tại: <strong>@string.Format("{0:0,0}", Model.Item1.Price) VNĐ</strong> </h1>
+                    @if (existProdPromotion != null)
+                    {
+                        <div class="text-center">
+                            <h3 class="d-none d-lg-block" style="color:Red">Giá ban đầu: <del><strong>@string.Format("{0:0,0}", existProdPromotion.PromotionDetail.InitialPrice) VNĐ</strong> </del></h3>
+                        </div>
+                    }
+                    <h1 class="d-none d-lg-block" style="color:Red">Giá hiện tại: <strong>@string.Format("{0:0,0}", price) VNĐ</strong> </h1>
                     <div class="overview-detail mb-3" style="min-height: 0">
                         <div class="characteristics-desc">
                             <h3><strong>Nhãn hiệu:</strong> @Model.Item3.Name</h3>
@@ -232,7 +268,7 @@
                                     foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                                     {
                                         string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
-                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="width: 60px; height:40px;" href="/productdetail/@item/@Model.Item1.Id">@(lstColor.FirstOrDefault(c => c.Id == item).Name.NullToString())</button>
+                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="width: 80px; height:40px;" href="/productdetail/@item/@Model.Item1.Id">@(lstColor.FirstOrDefault(c => c.Id == item).Name.NullToString())</button>
                                     }
                                 }
                             </h3>
@@ -241,7 +277,7 @@
                                 @{
                                     foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
                                     {
-                                        <button type="button" value="@item" id="btnSize" style="width: 60px; height:40px;">@(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())</button>
+                                        <button type="button" value="@item" id="btnSize" style="width: 80px; height:40px;">@(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())</button>
                                     }
                                 }
                             </h3>
@@ -716,7 +752,7 @@
 
     function sumTotal() {
         let mQuantity = parseInt($('#quantity').val().replace(/,/g, '') || 0) || 0;
-        let mPrice = parseFloat(@Model.Item1.Price) || 0;
+        let mPrice = parseFloat(@price) || 0;
         $('#cQuantity').val(mQuantity);
         $('#cPrice').val(mPrice);
         $('#cTotalMoney').val(mQuantity * mPrice);
@@ -883,207 +919,3 @@
         SCRate();
     });
 </script>
-
-    function TinhPhanTram(tongtien, giamgia) {
-        let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
-        return thanhtien
-    }
-
-    function ConvertDate(time) {
-        var date = new Date(time);
-        var dateConvert = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + date.getFullYear())
-        return dateConvert
-    }
-
-    function OpenDeliveryAddress() {
-        $('#OrderModal').modal('hide');
-    }
-
-
-    function getQuantityInstock() {
-        $.ajax({
-            data: {
-                cColorId: $('#cColor').val(),
-                cSizeId: $('#cSize').val(),
-                cProductId: $('#cProductId').val()
-            },
-            contentType: 'application/json',
-            dataType: 'json',
-            url: '/Product/GetQuantityInstock',
-            type: 'GET',
-            success: function (result) {
-                $('#mQuantityInstock').text(result);
-            }
-        });
-    }
-
-    function sumTotal() {
-        let mQuantity = parseInt($('#quantity').val().replace(/,/g, '') || 0) || 0;
-        let mPrice = parseFloat(@Model.Item1.Price) || 0;
-        $('#cQuantity').val(mQuantity);
-        $('#cPrice').val(mPrice);
-        $('#cTotalMoney').val(mQuantity * mPrice);
-        $('#pTotalMoney').val(mQuantity * mPrice);
-        $('#totalMoney').text(commasThousands(mQuantity * mPrice) + ' VND');
-        $('#txtTotalProduct').text(commasThousands($('#pTotalMoney').val()));
-    }
-
-    function commasThousands(nStr) {
-        nStr += '';
-        nStr = nStr.replace(/,/g, '');
-        x = nStr.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? '.' + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
-        }
-        return x1 + x2;
-    }
-
-    function checkValidateData() {
-        if ($('#cQuantity').val() == '' || $('#cQuantity').val() == '0') {
-            sweetAlert("Thông báo", "Thông tin số lượng sản phẩm không được để trống", "error");
-            return false;
-        }
-        if ($('#cSize').val() == '') {
-            sweetAlert("", "Vui lòng chọn kích cỡ", "error");
-            return false;
-        }
-        if ($('#cColor').val() == '') {
-            sweetAlert("", "Vui lòng chọn màu sắc", "error");
-            return false;
-        }
-
-        return true;
-    }
-
-    function validatePhoneNumber(code) {
-        var regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
-        return regex.test(code);
-    }
-    function checkOrderData() {
-        if ($('#ShippingFullName').val() == '') {
-            sweetAlert("Thông báo", "Thông tin Họ tên người mua hàng không được để trống", "error");
-            return false;
-        }
-        if ($('#ShippingPhone').val() == '') {
-            sweetAlert("", "Thông tin Số điện thoại không được để trống", "error");
-            return false;
-        }
-        if (!validatePhoneNumber($('#ShippingPhone').val())) {
-            sweetAlert("Thông báo", "Thông tin Số điện thoại không đúng định dạng", "error");
-            return false;
-        }
-        if ($('#ShippingAddress').val() == '') {
-            sweetAlert("", "Thông tin địa chỉ không được địa chỉ", "error");
-            return false;
-        }
-        return true;
-    }
-
-
-    function changeImageProd(strImage) {
-        $('#imgProd').attr('src', '/images/' + strImage);
-        getQuantityInstock();
-    }
-    function changeLikeCount() {
-        $.ajax({
-            data: { cProductId: $('#cProductId').val() },
-            contentType: 'application/json',
-            dataType: 'json',
-            url: '/Product/ReleaseHeart',
-            type: 'GET',
-            success: function (response) {
-                location.reload();
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                location.reload();
-            }
-        });
-    }
-
-    function AddToCart() {
-        if (checkValidateData()) {
-            swal("Bạn muốn thêm nhanh vào giỏ hàng của mình?", {
-                title: 'Bạn muốn thêm nhanh vào giỏ hàng của mình?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    var _total_money = $('#cTotalMoney').val();
-                    var _color = $('#cColor').val();
-                    var _size = $('#cSize').val();
-                    var _quantity = $('#cQuantity').val();
-                    var _price = $('#cPrice').val();
-                    var _product_id = $('#cProductId').val();
-                    var _description = $('#cDescription').val();
-                    document.location = "/Product/AddToCart?cTotalMoney=" + _total_money + "&cColor=" + _color + "&cSize=" + _size + "&cQuantity=" + _quantity + "&cPrice=" + _price
-                        + "&cProductId=" + _product_id + "&cDescription=" + _description;
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
-        }
-    }
-
-    function BuyNow() {
-
-        var products = [];
-        var _product = {};
-        _product.color = parseInt($('#cColor').val());
-        _product.size = parseInt($('#cSize').val());
-        _product.price = parseFloat($('#cPrice').val());
-        _product.quantity = parseInt($('#cQuantity').val());
-        _product.totalMoneyItem = parseFloat($('#cTotalMoney').val());
-        _product.productId = $('#cProductId').val();
-        products.push(_product);
-
-        let total = $('#cTotalMoney').val();
-
-        DataAddressCustomer()
-        GetDataVoucher(total);
-
-        $('#textTotalMoney').text(commasThousands(total));
-        $('#pTotalMoney').val(total);
-
-        $.ajax({
-            data: {
-                products: JSON.stringify(products)
-            },
-            contentType: 'application/json',
-            dataType: 'json',
-            url: '/Product/Order',
-            type: 'GET'
-        });
-
-        //Lấy thông tin người dùng
-        $.ajax({
-            contentType: 'application/json',
-            dataType: 'json',
-            url: '/Product/GetCustomerInfo',
-            type: 'GET',
-            success: function (result) {
-                $("#ShippingFullName").val(result.name);
-                $("#ShippingPhone").val(result.phoneNumber);
-             $("#ShippingAddress").val(result.address);
-                    $("#ShippingEmail").val(result.email);
-            }
-        });
-        $('#OrderModal').modal('show');
-    }
-
-    $('#btnCloseModal').click(function () {
-        $('#OrderModal').modal('hide');
-    });
-
-    function SCRate() {
-        for (var i = 1; i <= @totalRating; i++) {
-            $("#sRate" + i).attr('class', 'starGlowN');
-        }
-    }
-
-    $(function () {
-        SCRate();
-    });
-</script>*@

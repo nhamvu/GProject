@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Trang chủ";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    List<EmployeeStaticalDTO> employeeStaticals = (List<EmployeeStaticalDTO>)ViewData["EmployeeStatical"];
+    List<ProductStaticalDTO> ProductStaticals = (List<ProductStaticalDTO>)ViewData["ProductStatical"];
     List<CategoryStaticalDTP> categoryStaticals = (List<CategoryStaticalDTP>)ViewData["CategoryStatical"];
 
     var labels = new List<string>();
@@ -122,7 +122,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="white-box" id="chart-container">
-                <h3 class="box-title">DOANH THU, CHI PHÍ, LỢI NHUẬN</h3>
+                <h3 class="box-title">TỔNG DOANH THU</h3>
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <canvas id="myChart" class="col-md-12 w-100 h-100" style="box-sizing: border-box;"></canvas>
                 </div>
@@ -144,7 +144,7 @@
         <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="white-box">
                 <div class="d-md-flex mb-3">
-                    <h3 class="box-title mb-0">DOANH SỐ NHÂN VIÊN TRONG THÁNG</h3>
+                    <h3 class="box-title mb-0">BẢNG XẾP HẠNG DOANH SỐ SẢN PHẨM THEO THÁNG</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table no-wrap">
@@ -152,22 +152,50 @@
                             <tr>
                                 <th class="border-top-0">STT</th>
                                 <th class="border-top-0">Tháng</th>
-                                <th class="border-top-0">Số đơn hàng</th>
-                                <th class="border-top-0">Số sản phẩm</th>
+                                <th class="border-top-0">Tên sản phẩm</th>
+                                <th class="border-top-0">Loại danh mục</th>
+                                <th class="border-top-0">Nhãn hiệu</th>
+                                <th class="border-top-0">Loại sản phẩm</th>
+                                <th class="border-top-0">Số lượng</th>
                                 <th class="border-top-0">Doanh số</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @for (int i = 0; i < employeeStaticals.Count(); i++)
+                            @for (int i = 0; i < ProductStaticals.Count(); i++)
                             {
+                                string productType = "";
+                                foreach (var item in ProductStaticals[i].ProdType.Split(',').Distinct().ToList())
+                                {
+                                    switch (item)
+                                    {
+                                        case "0":
+                                            productType += "Sản phẩm bình thường";
+                                            break;
+                                        case "1":
+                                            productType += ", Sản phẩm mới";
+                                            break;
+                                        case "2":
+                                            productType += ", Sản phẩm nổi bật";
+                                            break;
+                                        case "3":
+                                            productType += ", Sản phẩm được yêu thích";
+                                            break;
+                                        case "4":
+                                            productType += ", Sản phẩm khuyến mại";
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                }
                                 <tr>
                                     <td>@i</td>
-                                    <td class="txt-oflo">@employeeStaticals[i].Employee_Id</td>
-                                    <td class="txt-oflo">@employeeStaticals[i].Employee_Name</td>
-                                    <td class="txt-oflo">@employeeStaticals[i].Day</td>
-                                    <td class="txt-oflo"><span class="text-success">@employeeStaticals[i].Total_Quantity</span></td>
-                                    <td class="txt-oflo"><span class="text-success">@employeeStaticals[i].Total_number_Sales</span></td>
-                                    <td class="txt-oflo"><span class="text-success">@string.Format("{0:0,0} VNĐ", Convert.ToDouble(@employeeStaticals[i].Total_Revenue.ToString()))</span></td>
+                                    <td class="txt-oflo">Tháng @(ProductStaticals[i].CreateDate)</td>
+                                    <td class="txt-oflo">@ProductStaticals[i].ProdName</td>
+                                    <td class="txt-oflo">@ProductStaticals[i].Category</td>
+                                    <td class="txt-oflo">@ProductStaticals[i].Brand</td>
+                                    <td class="txt-oflo">@productType</td>
+                                    <td class="txt-oflo">@ProductStaticals[i].Total_Quantity</td>
+                                    <td class="txt-oflo"><span class="text-success">@string.Format("{0:0,0} VNĐ", Convert.ToDouble(@ProductStaticals[i].Total_Revenue.ToString()))</span></td>
                                 </tr>
                             }
                             
@@ -181,6 +209,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <script>
 
     //-- Doanh thu, Chi phí, lợi nhuận
@@ -196,27 +225,15 @@
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Tổng thành tiền',
+                label: 'Tổng doanh thu',
                 data: tongThanhTienData,
+                backgroundColor: 'rgba(72,209,204, 1)',
                 borderColor: 'rgba(72,209,204, 1)',
-                backgroundColor: 'rgba(0,206,209, 0.2)',
-                fill: true
-            }, {
-                label: 'Tổng số lượng',
-                data: tongLoiNhuanData,
-                borderColor: 'rgba(46,139,87, 1)',
-                backgroundColor: 'rgba(60,179,113, 0.2)',
-                fill: true
-            }, {
-                label: 'Tổng chi phí',
-                data: tongChiPhiData,
-                borderColor: 'rgba(255, 206, 86, 1)',
-                backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                fill: true
+                borderWidth: 1
             }]
         },
         options: {
@@ -224,10 +241,25 @@
             plugins: {
                 title: {
                     display: true
+                },
+                datalabels: {
+                    color: '#fff',
+                    anchor: 'center',
+                    align: 'center',
+                    formatter: function (value, context) {
+                        return value.toLocaleString(); // định dạng lại giá trị hiển thị
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
                 }
             }
         }
     });
+
+
 
     //-- Thống kê theo danh mục sản phẩm
     var ctxPieChart = document.getElementById('myPieChart').getContext('2d');

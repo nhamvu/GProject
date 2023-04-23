@@ -157,7 +157,7 @@ namespace GProject.WebApplication.Controllers
                 var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(idDeliveryAddress));
                 var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                if (customer == null) return RedirectToAction("Index", "Login");
+                if (customer == null) return RedirectToAction("Login", "Account");
                 if (PaymentType == 1)
                 {
                     _selectVoucher = selectVoucher;

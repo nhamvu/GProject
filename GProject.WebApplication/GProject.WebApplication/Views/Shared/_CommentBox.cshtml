@@ -1,6 +1,44 @@
 ﻿@model Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>, GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, GProject.Data.DomainClass.Customer>
 <link href="/AdminContent/css/style.min.css" rel="stylesheet">
 <link href="/AdminContent/css/InputCss.css" rel="stylesheet">
+<style>
+
+    .commentBox {
+        background-color: #efefef;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .starFade {
+        background-image: url("/images/sao_trang.png");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .starFadeN {
+        background-image: url("/images/sao_trang.png");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+    }
+
+    .starGlow {
+        background-image: url("/images/sao_vang.jpg");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .starGlowN {
+        background-image: url("/images/sao_vang.jpg");
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+    }
+</style>
 <div class="dl-horizontal">
     <dt>
         Comment
@@ -93,49 +131,3 @@
         }
     }
 </script>
-<style>
-    .body-content {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    .dl-horizontal dt {
-        white-space: normal;
-    }
-
-    .commentBox {
-        background-color: #efefef;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .starFade {
-        background-image: url("/images/sao_trang.png");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .starFadeN {
-        background-image: url("/images/sao_trang.png");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-    }
-
-    .starGlow {
-        background-image: url("/images/sao_vang.jpg");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .starGlowN {
-        background-image: url("/images/sao_vang.jpg");
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-    }
-</style>
