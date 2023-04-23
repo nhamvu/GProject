@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8yp8cCu6TyY0+e1Q/j08i5oObYL+Sg7hLVYzeh10WYQXLNf2Tmthsj/D8Koc2ucp5Ke8gyYzoPdFPjkKPW922w==",
+  "dgSpecHash": "YKhMN6HUoVv6X0c8KG7/HLTtYSyvScIinQQ0uaTJxCXM/XtokntpizZ7oWe8g+kWBE2uOkVoKe2E3hvvRQCoSA==",
   "success": true,
-  "projectFilePath": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\easynetq\\7.5.0\\easynetq.7.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
@@ -236,12 +236,6 @@
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.16\\microsoft.netcore.app.host.win-x64.6.0.16.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",

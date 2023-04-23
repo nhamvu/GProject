@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LRpE8GGMgYO14tO9n5xASqk9udiwEQG8k6HrDFfYLyhijUX+jAXYcWOyGUszXRyiROiXI3TZ0rdxmX95qCw4Fg==",
+  "dgSpecHash": "xgqrMSZb1uXgJwWZ03RiRjhz36x80H7hkO9JzTRLG9S2atXyoGjP66gOdYHylQnMIM5WCVZAZ53iEKST/OBSTQ==",
   "success": true,
-  "projectFilePath": "D:\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -73,12 +73,5 @@
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.16\\microsoft.aspnetcore.app.ref.6.0.16.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.16\\microsoft.netcore.app.host.win-x64.6.0.16.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  "logs": []
 }

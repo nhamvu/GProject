@@ -12,28 +12,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -101,7 +101,7 @@ using GProject.WebApplication.Helpers;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
   
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
 
@@ -112,7 +112,7 @@ using GProject.WebApplication.Helpers;
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f591c5e10863e2c9e417714e2f33bedd217f40d214337", async() => {
                 WriteLiteral("\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>");
 #nullable restore
-#line 11 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 11 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
       Write(ViewData["Title"]);
 
 #line default
@@ -145,7 +145,7 @@ using GProject.WebApplication.Helpers;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.Href = (string)__tagHelperAttribute_2.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
 #nullable restore
-#line 13 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 13 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
 
 #line default
@@ -171,7 +171,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.Href = (string)__tagHelperAttribute_3.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
 #nullable restore
-#line 14 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 14 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
 
 #line default
@@ -446,7 +446,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("body", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f591c5e10863e2c9e417714e2f33bedd217f40d240219", async() => {
                 WriteLiteral("\r\n    <div id=\"layout\"></div>\r\n    <header style =\"font-size:14px; color:white; background-color:#c00\">\r\n        <div style=\"font-size:14px; color:white; background-color:#c00\">\r\n            <ul>\r\n");
 #nullable restore
-#line 58 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 58 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                  if (!User.IsInRole("manager") && !User.IsInRole("employee"))
                 {
 
@@ -506,14 +506,14 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
                     </li>
 ");
 #nullable restore
-#line 109 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 109 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                 }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 110 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 110 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                  if (User.IsInRole("manager"))
                 {
 
@@ -534,7 +534,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
                     <li class=""arrow"">|</li>
 ");
 #nullable restore
-#line 124 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 124 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                 }
 
 #line default
@@ -542,7 +542,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
 #nullable disable
                 WriteLiteral("\r\n");
 #nullable restore
-#line 126 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 126 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                  if (User.IsInRole("employee"))
                 {
 
@@ -560,14 +560,14 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
                     <li class=""arrow"">|</li>
 ");
 #nullable restore
-#line 137 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 137 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                 }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 138 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 138 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                  if (User.IsInRole("manager") || User.IsInRole("employee"))
                 {
 
@@ -616,14 +616,14 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
                     ");
                 WriteLiteral("    <a href=\"/customer/customerpage\" style=\"font-size:14px; color:white;\"><i class=\"fa fa-building\" aria-hidden=\"true\"></i>Hóa đơn</a>\r\n                    </li>\r\n");
 #nullable restore
-#line 180 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 180 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                 }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 181 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 181 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                  if (User.IsInRole("manager"))
                 { 
 
@@ -649,7 +649,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
                             </");
                 WriteLiteral("li>\r\n                        </ul>\r\n                    </li>\r\n");
 #nullable restore
-#line 202 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 202 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                 }
 
 #line default
@@ -657,7 +657,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
 #nullable disable
                 WriteLiteral("                <li class=\"arrow\">|</li>\r\n                <li class=\"arrow \">\r\n                    <a href=\"#\" style=\"font-size:14px; color:white;\">\r\n");
 #nullable restore
-#line 206 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 206 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                           
                             string imgAvata = "avatar.jpg";
                             if (user != null)
@@ -680,7 +680,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
                 BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "src", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 AddHtmlAttributeValue("", 11901, "~/images/", 11901, 9, true);
 #nullable restore
-#line 215 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 215 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 AddHtmlAttributeValue("", 11910, imgAvata, 11910, 9, false);
 
 #line default
@@ -698,7 +698,7 @@ AddHtmlAttributeValue("", 11910, imgAvata, 11910, 9, false);
                 WriteLiteral("\r\n");
                 WriteLiteral("                        ");
 #nullable restore
-#line 217 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 217 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
                     Write(user == null ? "Tài khoản" : user.Name.NullToString());
 
 #line default
@@ -764,7 +764,7 @@ WriteAttributeValue("", 13626, ViewData["Keyword"], 13626, 20, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n            </div>\r\n        </nav>\r\n    </header>\r\n    <div class=\"container\" style=\"max-width:1500px;\">\r\n        <main role=\"main\">\r\n            ");
 #nullable restore
-#line 260 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 260 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
        Write(RenderBody());
 
 #line default
@@ -809,7 +809,7 @@ WriteAttributeValue("", 13626, ViewData["Keyword"], 13626, 20, false);
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.Src = (string)__tagHelperAttribute_25.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_25);
 #nullable restore
-#line 265 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 265 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.AppendVersion = true;
 
 #line default
@@ -834,7 +834,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.AppendVersion = true;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.Src = (string)__tagHelperAttribute_26.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_26);
 #nullable restore
-#line 266 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 266 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.AppendVersion = true;
 
 #line default
@@ -850,7 +850,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_ScriptTagHelper.AppendVersion = true;
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n    ");
 #nullable restore
-#line 267 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 267 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 Write(await RenderSectionAsync("Scripts", required: false));
 
 #line default

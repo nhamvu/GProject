@@ -10793,42 +10793,44 @@
   },
   "packageFolders": {
     "C:\\Users\\Admin\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
       "projectName": "GProject.WebApplication",
-      "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+      "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
-              "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj"
+            "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj"
             },
-            "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
-              "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+            "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+              "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
             }
           }
         }
@@ -10986,12 +10988,6 @@
     }
   },
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",
