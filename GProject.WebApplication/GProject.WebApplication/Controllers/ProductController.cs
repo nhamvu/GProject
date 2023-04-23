@@ -240,25 +240,29 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpGet]
-        public async Task<JsonResult> GetVoucher(int? totalMoneyOrder, int? id)
+        public async Task<JsonResult> GetVoucher(int? totalMoneyOrder, int? id, string? discountCode)
         {
             var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
             var lstVoucher = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
-            if (id == null && totalMoneyOrder != null)
+            if (id == null && totalMoneyOrder != null && discountCode == null)
             {
                 var data = lstVoucher.Where(x => x.Status == 1 && x.ExpirationDate >= DateTime.Now && x.MinimumOrder <= totalMoneyOrder && x.NumberOfVouchers > 0);
                 return Json(data);
             }
-            else if(id != null && totalMoneyOrder == null)
+            else if(id != null && totalMoneyOrder == null && discountCode == null)
             {
-                var data = lstVoucher.FirstOrDefault(x => x.Id == id && x.NumberOfVouchers > 0 && x.Status == 1);
+                var data = lstVoucher.FirstOrDefault(x => x.Id == id && x.NumberOfVouchers > 0 && x.Status != 0 && x.ExpirationDate >= DateTime.Now);
+                return Json(data);
+            }
+            else if(id == null && totalMoneyOrder == null && discountCode != null)
+            {
+                var data = lstVoucher.FirstOrDefault(x => x.VoucherId == discountCode && x.NumberOfVouchers > 0 && x.Status != 0 && x.ExpirationDate >= DateTime.Now);
                 return Json(data);
             }
             else
             {
                 return Json(null);
-            }
-            
+            }          
         }
     }
 }

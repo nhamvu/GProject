@@ -1,4 +1,5 @@
-﻿@model Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>, GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
+﻿@model Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>,
+GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
@@ -21,41 +22,43 @@
     var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
     var lstCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
     var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
-    var lstOrderDetail = await Commons.GetAll<OrderDetail>(String.Concat(Commons.mylocalhost, "Order/get-all-Order-detail"));
+    var lstOrderDetail = await Commons.GetAll<OrderDetail>(String.Concat(Commons.mylocalhost,
+    "Order/get-all-Order-detail"));
     var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
-    var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+    var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost,
+    "ProductVariation/get-all-ProductVariation"));
 
     var isOrder = lstOrder
-                .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { A = a, B = b })
-                .Join(Model.Item2, ab => ab.B.ProductVariationId, c => c.Id, (ab, c) => new { A = ab.A, B = ab.B, C = c })
-                .Where(k => k.C.ProductId == Model.Item1.Id && k.A.CustomerId == Model.Item7.Id).Select(c => c.A.CustomerId).FirstOrDefault();
+    .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { A = a, B = b })
+    .Join(Model.Item2, ab => ab.B.ProductVariationId, c => c.Id, (ab, c) => new { A = ab.A, B = ab.B, C = c })
+    .Where(k => k.C.ProductId == Model.Item1.Id && k.A.CustomerId == Model.Item7.Id).Select(c =>
+    c.A.CustomerId).FirstOrDefault();
 }
 
 <style>
-
     .plus-minus-input {
         -webkit-align-items: center;
         -ms-flex-align: center;
         align-items: center;
     }
 
-        .plus-minus-input .input-group-field {
-            text-align: center;
-            margin-left: 0.5rem;
-            margin-right: 0.5rem;
-            padding: 1rem;
-        }
+    .plus-minus-input .input-group-field {
+        text-align: center;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        padding: 1rem;
+    }
 
-            .plus-minus-input .input-group-field::-webkit-inner-spin-button,
-            .plus-minus-input .input-group-field ::-webkit-outer-spin-button {
-                -webkit-appearance: none;
-                appearance: none;
-            }
+    .plus-minus-input .input-group-field::-webkit-inner-spin-button,
+    .plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        appearance: none;
+    }
 
-        .plus-minus-input .input-group-button .circle {
-            border-radius: 50%;
-            padding: 0.25em 0.8em;
-        }
+    .plus-minus-input .input-group-button .circle {
+        border-radius: 50%;
+        padding: 0.25em 0.8em;
+    }
 
     #btnAction {
         display: inline-block;
@@ -74,16 +77,17 @@
         margin: 10px 20px;
     }
 
-        #btnAction:hover {
-            background-color: Red; /* Green */
-            color: white;
-        }
+    #btnAction:hover {
+        background-color: Red;
+        /* Green */
+        color: white;
+    }
 
-        #btnAction:active {
-            background-color: #3e8e41;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
+    #btnAction:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
 
     .image__img {
         display: block;
@@ -112,7 +116,7 @@
         backdrop-filter: blur(5px);
     }
 
-    .image__overlay > * {
+    .image__overlay>* {
         transform: translateY(20px);
         transition: transform 0.25s;
     }
@@ -121,9 +125,9 @@
         opacity: 1;
     }
 
-        .image__overlay:hover > * {
-            transform: translateY(0);
-        }
+    .image__overlay:hover>* {
+        transform: translateY(0);
+    }
 
     .image__title {
         font-size: 2em;
@@ -186,7 +190,8 @@
             <div class="col-12 col-lg-7 overview-left container-fliud">
                 <div class="characteristics-image">
                     @{
-                        string img = Model.Item2.Where(c => c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault();
+                        string img = Model.Item2.Where(c => c.ProductId == Model.Item1.Id).Select(c =>
+                        c.Image).FirstOrDefault();
                     }
                     <img id="imgProd" style="width:650px;height:500px;" src="~/images/@img" alt="">
                 </div>
@@ -197,8 +202,10 @@
                         @{
                             foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                             {
-                                string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
-                                <button type="button" onclick="changeImageProd('@im')"><img style="width:250px; height:100px;" class="img-thumbnail" src="~/images/@im" alt=""></button>
+                                string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c =>
+                                c.Image).FirstOrDefault().NullToString();
+                                <button type="button" onclick="changeImageProd('@im')"><img style="width:250px; height:100px;"
+                                    class="img-thumbnail" src="~/images/@im" alt=""></button>
                             }
                         }
                     </fieldset>
@@ -214,7 +221,8 @@
                     <input id="cProductId" name="cProductId" value="@Model.Item1.Id.ToString()" hidden="hidden" />
 
                     <h1 class="d-none d-lg-block" style="color:Black"><strong>@Model.Item1.Name</strong></h1>
-                    <h1 class="d-none d-lg-block" style="color:Red">Giá hiện tại: <strong>@string.Format("{0:0,0}", Model.Item1.Price) VNĐ</strong> </h1>
+                    <h1 class="d-none d-lg-block" style="color:Red">Giá hiện tại: <strong>@string.Format("{0:0,0}",
+                        Model.Item1.Price) VNĐ</strong> </h1>
                     <div class="overview-detail mb-3" style="min-height: 0">
                         <div class="characteristics-desc">
                             <h3><strong>Nhãn hiệu:</strong> @Model.Item3.Name</h3>
@@ -245,23 +253,31 @@
                                 }
                             }
                             <h3><strong>Loại sản phẩm:</strong> @productType</h3>
-                            <h3><strong>Lượt xem:</strong> @Model.Item1.ViewCount <i class="fa fa-eye"></i> người đã xem sản phẩm này</h3>
+                            <h3><strong>Lượt xem:</strong> @Model.Item1.ViewCount <i class="fa fa-eye"></i> người đã xem sản
+                                phẩm này</h3>
                             <div class="row">
                                 <div class="col-md-10">
-                                    <h3><strong>Lượt thích:</strong> @Model.Item1.LikeCount <i class="fa fa-heart"></i> người đã thích sản phẩm này</h3>
+                                    <h3><strong>Lượt thích:</strong> @Model.Item1.LikeCount <i class="fa fa-heart"></i>
+                                        người đã thích sản phẩm này</h3>
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="button" onclick="changeLikeCount()"><img style="width:50px;height:50px;" src="~/images/tymImg.jpg" /></button>
+                                    <button type="button" onclick="changeLikeCount()"><img style="width:50px;height:50px;"
+                                            src="~/images/tymImg.jpg" /></button>
                                 </div>
                             </div>
-                            <h3><strong>Số lượng còn lại:</strong><span id="mQuantityInstock" value="">@Model.Item2.Sum(c => c.QuantityInStock)</span>  sản phẩm có sẵn</h3>
+                            <h3><strong>Số lượng còn lại:</strong><span id="mQuantityInstock" value="">@Model.Item2.Sum(c =>
+                                c.QuantityInStock)</span> sản phẩm có sẵn</h3>
                             <h3 class="cl-class">
                                 <strong>Màu sắc:</strong>
                                 @{
                                     foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                                     {
-                                        string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
-                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="width: 60px; height:40px;" href="/productdetail/@item/@Model.Item1.Id">@(lstColor.FirstOrDefault(c => c.Id == item).Name.NullToString())</button>
+                                        string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId ==
+                                        Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
+                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')"
+                                            style="width: 60px; height:40px;"
+                                            href="/productdetail/@item/@Model.Item1.Id">@(lstColor.FirstOrDefault(c => c.Id ==
+                                item).Name.NullToString())</button>
                                     }
                                 }
                             </h3>
@@ -270,7 +286,9 @@
                                 @{
                                     foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
                                     {
-                                        <button type="button" value="@item" id="btnSize" style="width: 60px; height:40px;">@(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())</button>
+                                        <button type="button" value="@item" id="btnSize"
+                                            style="width: 60px; height:40px;">@(lstSize.FirstOrDefault(c => c.Id ==
+                                item).Code.NullToString())</button>
                                     }
                                 }
                             </h3>
@@ -280,13 +298,16 @@
                                 <div class="col-md-8 justify-content-center">
                                     <div class="row">
                                         <div class="input-group-button col-md-3 mt-2">
-                                            <button type="button" class="btn-warning hollow circle" data-quantity="minus" data-field="quantity" style="margin-right:5px;">
+                                            <button type="button" class="btn-warning hollow circle" data-quantity="minus"
+                                                data-field="quantity" style="margin-right:5px;">
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
                                         </div>
-                                        <input class="input-group-field form-control col-md-5" type="number" id="quantity" name="quantity" value="0" style="width:50px;">
+                                        <input class="input-group-field form-control col-md-5" type="number" id="quantity"
+                                            name="quantity" value="0" style="width:50px;">
                                         <div class="input-group-button col-md-3 mt-2">
-                                            <button type="button" class="btn-info hollow circle" data-quantity="plus" data-field="quantity" style="margin-left:5px;">
+                                            <button type="button" class="btn-info hollow circle" data-quantity="plus"
+                                                data-field="quantity" style="margin-left:5px;">
                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                             </button>
                                         </div>
@@ -296,18 +317,22 @@
 
                             </div>
                             <hr>
-                            <h3><strong>Thành tiền:</strong></h3><h1><strong style="color:red;" id="totalMoney" name="totalMoney"> 0 VND</strong></h1>
+                            <h3><strong>Thành tiền:</strong></h3>
+                            <h1><strong style="color:red;" id="totalMoney" name="totalMoney"> 0 VND</strong></h1>
                             <div class="form-group">
                                 <label class="control-label col-sm-3"><strong>Mô tả của bạn:</strong></label>
                                 <div class="col-sm-12">
-                                    <textarea class="form-control" name="cDescription" id="cDescription" cols="50" rows="5" style="border:double 4px orange;"></textarea>
+                                    <textarea class="form-control" name="cDescription" id="cDescription" cols="50" rows="5"
+                                        style="border:double 4px orange;"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <button type="button" id="btnAction" onclick="AddToCart()" class="btn btn-primary col-md-5"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</button>
-                        <button type="button" id="btnAction" onclick="BuyNow()" class="btn btn-primary col-md-5"><i class="fa fa-calendar-o" style="margin-right:10px;"></i>Mua ngay</button>
+                        <button type="button" id="btnAction" onclick="AddToCart()" class="btn btn-primary col-md-5"><i
+                                class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</button>
+                        <button type="button" id="btnAction" onclick="BuyNow()" class="btn btn-primary col-md-5"><i
+                                class="fa fa-calendar-o" style="margin-right:10px;"></i>Mua ngay</button>
                     </div>
 
                 </form>
@@ -320,7 +345,8 @@
         <!-- Danh sách sản phẩm liên quan-->
         <div>
             @{
-                var lstSimilarProduct = lstProducts.Where(c => c.ProductType.Contains(Model.Item1.ProductType) && c.Id != Model.Item1.Id).ToList();
+                var lstSimilarProduct = lstProducts.Where(c => c.ProductType.Contains(Model.Item1.ProductType) && c.Id !=
+                Model.Item1.Id).ToList();
             }
             @if (lstSimilarProduct.Count() > 0)
             {
@@ -335,16 +361,19 @@
                                 <div class="image">
 
                                     @{
-                                        string image = lstProductvariation.Where(c => c.ProductId == x.Id && !string.IsNullOrEmpty(c.Image)).Select(c => c.Image).FirstOrDefault().NullToString();
+                                        string image = lstProductvariation.Where(c => c.ProductId == x.Id &&
+                                        !string.IsNullOrEmpty(c.Image)).Select(c => c.Image).FirstOrDefault().NullToString();
                                     }
                                     <img class="image__img" src="~/images/@image" alt="Bricks">
                                     <div class="image__overlay image__overlay--primary">
                                         <p class="image__description">Mua ngay</p>
-                                        <a class="btn btn-primary" href="/productdetail/@x.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
+                                        <a class="btn btn-primary" href="/productdetail/@x.Id" style="border-radius:10px;"><i
+                                                class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(x.Price.ToString()))</strong></h4>
+                                    <h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ",
+                                Convert.ToDouble(x.Price.ToString()))</strong></h4>
                                     <div>
                                         <h4 class="card-title text-center"><strong>@x.Name</strong></h4>
                                     </div>
@@ -419,10 +448,12 @@
 <div class="modal" id="OrderModal" role="dialog">
     <div class="modal-dialog modal-md" style="text-align:left; background-color:white; max-width:900px">
         <div style="width:900px;">
-            <form id="buyFormData" asp-controller="Order" asp-action="BuyNow" method="post" class="form-horizontal d-block">
+            <form id="buyFormData" asp-controller="Order" asp-action="BuyNow" method="post"
+                class="form-horizontal d-block">
                 <div class="modal-content justify-content-center" style="border-width:1px;">
                     <div class="modal-header" style="width:800px;">
-                        <h2 class="modal-title text-center"><strong><i class="fa fa-cubes" aria-hidden="true" style="margin-right:5px;"></i>THÔNG TIN ĐƠN HÀNG</strong></h2>
+                        <h2 class="modal-title text-center"><strong><i class="fa fa-cubes" aria-hidden="true"
+                                    style="margin-right:5px;"></i>THÔNG TIN ĐƠN HÀNG</strong></h2>
                     </div>
                     <div class="modal-body">
                         <input type="text" id="pTotalMoney" name="pTotalMoney" hidden="hidden" />
@@ -433,11 +464,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span
+                                                style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectDeliveryAddress" class="form-select">
                                         </select>
-                                        <button style="margin-top: 5px;" class="btn btn-success " onclick="OpenDeliveryAddress(); return false;" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
+                                        <button style="margin-top: 5px;" class="btn btn-success "
+                                            onclick="OpenDeliveryAddress(); return false;" data-toggle="ajax-modal"
+                                            data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
                                             Thêm
                                         </button>
                                     </div>
@@ -447,41 +481,64 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Email:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5"><strong>Email:<span
+                                                style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <input type="email" id="ShippingEmail" name="ShippingEmail" value="" placeholder="" class="form-control" />
+                                        <input type="email" id="ShippingEmail" name="ShippingEmail" value=""
+                                            placeholder="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Email:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-12"><strong>Hình thức thanh toán:<span
+                                                style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
                                         @{
                                             int PaymentType = 0;
                                         }
                                         @Html.DropDownList("PaymentType",new[]
                                         {
-                                        new SelectListItem{Text="Thanh toán khi nhận hàng", Value="0", Selected= (PaymentType== 0)},
-                                        new SelectListItem{Text="Thanh toán khi đặt hàng", Value="1", Selected= (PaymentType== 1)},
+                                        new SelectListItem{Text="Thanh toán khi nhận hàng", Value="0", Selected=
+                                        (PaymentType== 0)},
+                                        new SelectListItem{Text="Thanh toán khi đặt hàng", Value="1", Selected=
+                                        (PaymentType== 1)},
                                         }, new { @name = "PaymentType", @class="searchText form-control select"})
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-6"><strong>Mã giảm giá:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-6"><strong>Mã giảm giá:<span
+                                                style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectVoucher" name="selectVoucher" class="form-select">
-                                            <option value="0"></option>
+                                            <option value=""></option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Nhập mã giảm giá:<span
+                                                style="color: red">(*)</span></strong></label>
+                                    <div class="row col-md-12">
+                                        <div class="col-sm-8">
+                                            <input type="text" id="DiscountCode" name="DiscountCode" value=""
+                                                placeholder="" class="form-control col-12" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a class="btn btn-outline-info" onclick="CheckDiscountCode()"><i
+                                                    class="fa-solid fa-check fa-lg"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-sm-3"><strong>Mô tả của bạn:</strong></label>
                                 <div class="col-sm-12">
-                                    <textarea class="form-control" name="cDescription" id="cDescription" cols="50" rows="5" style="border:double 4px orange;"></textarea>
+                                    <textarea class="form-control" name="cDescription" id="cDescription" cols="50"
+                                        rows="5" style="border:double 4px orange;"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -489,7 +546,8 @@
                                     <label class="control-label col-md-12"><strong>Phí ship:</strong></label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <p><strong id="txtPhiShip">0</strong><strong style="margin-left: 5px;">đ</strong></p>
+                                    <p><strong id="txtPhiShip">0</strong><strong style="margin-left: 5px;">đ</strong>
+                                    </p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -497,7 +555,8 @@
                                     <label class="control-label col-md-12"><strong>Giảm giá:</strong></label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <p><strong>- </strong> <strong id="txtGiamGia">0</strong><strong style="margin-left: 5px;">đ</strong></p>
+                                    <p><strong>- </strong> <strong id="txtGiamGia">0</strong><strong
+                                            style="margin-left: 5px;">đ</strong></p>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -505,21 +564,25 @@
                                     <label class="control-label col-md-12"><strong>Tổng tiền sản phẩm:</strong></label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <p><strong id="txtTotalProduct"></strong><strong style="margin-left: 5px;">đ</strong></p>
+                                    <p><strong id="txtTotalProduct"></strong><strong
+                                            style="margin-left: 5px;">đ</strong></p>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-9">
-                                    <h2><label class="control-label col-md-12"><strong>Tổng tiền thanh toán:</strong></label></h2>
+                                    <h2><label class="control-label col-md-12"><strong>Tổng tiền thanh
+                                                toán:</strong></label></h2>
                                 </div>
                                 <div class="col-sm-3">
-                                    <h2><strong style="color:red;" id="textTotalMoney"></strong><strong style="margin-left: 5px;color:red;">đ</strong></h2>
+                                    <h2><strong style="color:red;" id="textTotalMoney"></strong><strong
+                                            style="margin-left: 5px;color:red;">đ</strong></h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"><i class="fa fa-check" aria-hidden="true"></i> Đặt hàng</button>
+                        <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"><i class="fa fa-check"
+                                aria-hidden="true"></i> Đặt hàng</button>
                         <button type="button" class="btn btn-sm btn-default btn-dimiss-modal" id="btnCloseModal">
                             <i class="fa fa-times"></i> Đóng
                         </button>
@@ -537,9 +600,9 @@
             e.preventDefault();
 
             if ($('#selectDeliveryAddress').val() == '') {
-            sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
+                sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
             }
-            else{               
+            else {
                 swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
                     title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
                     icon: 'info',
@@ -579,8 +642,8 @@
         });
 
 
-
         $("#selectVoucher").change(function () {
+            $("#DiscountCode").val('')
             let _id = $("#selectVoucher").val();
             $.ajax({
                 url: "/Product/GetVoucher?id=" + _id,
@@ -592,7 +655,7 @@
                     if (result != null) {
                         if (result.discountForm == "%") {
                             discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
-                            if(discount > result.maximumDiscount)
+                            if (discount > result.maximumDiscount)
                                 discount = result.maximumDiscount
                         }
                         else {
@@ -668,6 +731,49 @@
 
     });
 
+
+
+    function CheckDiscountCode() {
+        $("#selectVoucher").val(0)
+
+        let _discountCode = $("#DiscountCode").val();
+        $.ajax({
+            url: "/Product/GetVoucher?discountCode=" + _discountCode,
+            type: "GET",
+            success: function (result) {
+                let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                let discount = 0;
+                var total = 0;
+                if (result != null) {
+                    if (result.discountForm == "%") {
+                        discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
+                        if (discount > result.maximumDiscount)
+                            discount = result.maximumDiscount
+                    }
+                    else {
+                        discount = result.discountRate
+                    }
+                    $("#txtGiamGia").text(commasThousands(discount))
+                    total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+                else {
+                    swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
+                    $("#txtGiamGia").text(0)
+                    $("#txtDiscountForm").text("Vnd")
+                    total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+
+                if (total < 0) {
+                    total = 0;
+                }
+
+                $('#textTotalMoney').text(commasThousands(total));
+                $('#pTotalMoney').val(total);
+                $('#cGiamGia').val(discount);
+            }
+        })
+    }
+
     function ShippingFee(district_id, ward_code) {
         $.ajax({
             url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
@@ -697,8 +803,8 @@
                     renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
                     renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
 
-                    if(result[value].discountForm == "%")
-                            renderData += '<option disabled style = "font-style:italic" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
+                    if (result[value].discountForm == "%")
+                        renderData += '<option disabled style = "font-style:italic" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
 
                     renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
                     renderData += '<option disabled style="font-style:italic"></option>'
@@ -715,13 +821,13 @@
             success: function (result) {
                 var renderData = "<option></option>";
                 $.each(result, function (value) {
-                    
+
                     var date = result[value].expirationDate;
                     renderData += '<option value="' + result[value].id + '">' + result[value].name + '</option>';
                     renderData += '<option disabled style = "font-style:italic" > (Đơn Tối Thiểu ' + commasThousands(result[value].minimumOrder) + 'đ)' + '</option>'
 
-                    if(result[value].discountForm == "%")
-                            renderData += '<option disabled style = "font-style:italic" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
+                    if (result[value].discountForm == "%")
+                        renderData += '<option disabled style = "font-style:italic" > (Giảm tối đa ' + commasThousands(result[value].maximumDiscount) + 'đ)' + '</option>'
 
                     renderData += '<option disabled style = "font-style:italic" > (HSD: ' + ConvertDate(date) + ')' + ' </option>'
                     renderData += '<option disabled style="font-style:italic"></option>'
@@ -877,54 +983,54 @@
 
     function BuyNow() {
         if (checkValidateData()) {
-        var products = [];
-        var _product = {};
-        _product.color = parseInt($('#cColor').val());
-        _product.size = parseInt($('#cSize').val());
-        _product.price = parseFloat($('#cPrice').val());
-        _product.quantity = parseInt($('#cQuantity').val());
-        _product.totalMoneyItem = parseFloat($('#cTotalMoney').val());
-        _product.productId = $('#cProductId').val();
-        products.push(_product);
+            var products = [];
+            var _product = {};
+            _product.color = parseInt($('#cColor').val());
+            _product.size = parseInt($('#cSize').val());
+            _product.price = parseFloat($('#cPrice').val());
+            _product.quantity = parseInt($('#cQuantity').val());
+            _product.totalMoneyItem = parseFloat($('#cTotalMoney').val());
+            _product.productId = $('#cProductId').val();
+            products.push(_product);
 
-        let total = $('#cTotalMoney').val();
+            let total = $('#cTotalMoney').val();
 
-        DataAddressCustomer()
-        GetDataVoucher(total);
+            DataAddressCustomer()
+            GetDataVoucher(total);
 
-        $('#textTotalMoney').text(commasThousands(total));
-        $('#pTotalMoney').val(total);
+            $('#textTotalMoney').text(commasThousands(total));
+            $('#pTotalMoney').val(total);
 
-        $.ajax({
-            data: {
-                products: JSON.stringify(products)
-            },
-            contentType: 'application/json',
-            dataType: 'json',
-            url: '/Product/Order',
-            type: 'GET'
-        });
+            $.ajax({
+                data: {
+                    products: JSON.stringify(products)
+                },
+                contentType: 'application/json',
+                dataType: 'json',
+                url: '/Product/Order',
+                type: 'GET'
+            });
 
-        //Lấy thông tin người dùng
-        $.ajax({
-            contentType: 'application/json',
-            dataType: 'json',
-            url: '/Product/GetCustomerInfo',
-            type: 'GET',
-            success: function (result) {
-                $("#ShippingFullName").val(result.name);
-                $("#ShippingPhone").val(result.phoneNumber);
-                $("#ShippingEmail").val(result.email);
-            }
-        });
-        $('#OrderModal').modal('show');
+            //Lấy thông tin người dùng
+            $.ajax({
+                contentType: 'application/json',
+                dataType: 'json',
+                url: '/Product/GetCustomerInfo',
+                type: 'GET',
+                success: function (result) {
+                    $("#ShippingFullName").val(result.name);
+                    $("#ShippingPhone").val(result.phoneNumber);
+                    $("#ShippingEmail").val(result.email);
+                }
+            });
+            $('#OrderModal').modal('show');
         }
     }
 
     $('#btnCloseModal').click(function () {
         $('#OrderModal').modal('hide');
     });
-    
+
 
     function SCRate() {
         for (var i = 1; i <= @totalRating; i++) {
