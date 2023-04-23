@@ -10,7 +10,6 @@ using GProject.Data.DomainClass;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-
 namespace GProject.WebApplication.Controllers
 {
     public class AccountController : Controller

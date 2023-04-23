@@ -151,8 +151,6 @@
                         <thead>
                             <tr>
                                 <th class="border-top-0">STT</th>
-                                <th class="border-top-0">Mã nhân viên</th>
-                                <th class="border-top-0">Tên nhân viên</th>
                                 <th class="border-top-0">Tháng</th>
                                 <th class="border-top-0">Số đơn hàng</th>
                                 <th class="border-top-0">Số sản phẩm</th>
@@ -190,14 +188,10 @@
 
     var labels = [];
     var tongThanhTienData = [];
-    var tongLoiNhuanData = [];
-    var tongChiPhiData = [];
 
     for (var i = 0; i < chartData.length; i++) {
         labels.push(formatDate(chartData[i].day));
         tongThanhTienData.push(chartData[i].tongThanhTien);
-        tongLoiNhuanData.push(chartData[i].tongLoiNhuan);
-        tongChiPhiData.push(chartData[i].tongChiPhi);
     }
 
     var ctx = document.getElementById('myChart').getContext('2d');

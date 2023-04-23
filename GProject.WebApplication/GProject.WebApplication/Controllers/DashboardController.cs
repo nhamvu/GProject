@@ -88,10 +88,8 @@ namespace GProject.WebApplication.Controllers
                                     Day = g.Key.Month,
                                     Total_Quantity = g.Count(),
                                     Total_Revenue = g.Sum(c => c.bhct.Quantity * c.bhct.Price),
-                                    Total_number_Sales = g.Sum(c => c.bhct.Quantity)
                                 })
                                 .ToList();
-
                 //-- Số đơn hàng
                 var OrderDataStatical = lstOrders.Join(lstOrderDetail, x => x.Id, y => y.OrderId, (x, y) => new { Order = x, OrderDetail = y }).ToList();
 
@@ -99,7 +97,6 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(fromDate))
                 {
                     OrderDataStatical = OrderDataStatical.Where(c => c.Order.CreateDate >= DateTime.Parse(fromDate)).ToList();
-                    resultsEmployeeStatical = resultsEmployeeStatical.Where(c => c.Day >= DateTime.Parse(fromDate).Month).ToList();
                     results = results.Where(c => c.Day >= DateTime.Parse(fromDate)).ToList();
                     lstEvaluate = lstEvaluate.Where(c => c.CreateDate >= DateTime.Parse(fromDate)).ToList();
                     lstProducts = lstProducts.Where(c => c.CreateDate >= DateTime.Parse(fromDate)).ToList();
@@ -108,7 +105,6 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(toDate))
                 {
                     OrderDataStatical = OrderDataStatical.Where(c => c.Order.CreateDate <= DateTime.Parse(toDate)).ToList();
-                    resultsEmployeeStatical = resultsEmployeeStatical.Where(c => c.Day <= DateTime.Parse(fromDate).Month).ToList();
                     results = results.Where(c => c.Day <= DateTime.Parse(toDate)).ToList();
                     lstEvaluate = lstEvaluate.Where(c => c.CreateDate <= DateTime.Parse(toDate)).ToList();
                     lstProducts = lstProducts.Where(c => c.CreateDate <= DateTime.Parse(toDate)).ToList();
