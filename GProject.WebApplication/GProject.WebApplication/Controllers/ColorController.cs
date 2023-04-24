@@ -50,32 +50,6 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-        public async Task SendEmailAsync(string fromAddress, string toAddress, string subject, string body)
-        {
-            try
-            {
-                MailMessage message = new MailMessage();
-                message.From = new MailAddress(fromAddress);
-                message.To.Add(toAddress);
-                message.Subject = subject;
-                message.Body = body;
-
-                // Cấu hình thông tin chứng thực tài khoản Yahoo của bạn
-                SmtpClient smtp = new SmtpClient("smtp.mail.yahoo.com", 587);
-                smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new NetworkCredential("nhamvdph18699@yahoo.com", "NhamVu14082002");
-                smtp.EnableSsl = true;
-
-                // Gửi email
-                smtp.Send(message);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-
         [HttpPost]
         public async Task<ActionResult> Save( ColorDTO Color)
         {

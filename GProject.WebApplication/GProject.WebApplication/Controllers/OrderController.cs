@@ -148,19 +148,28 @@ namespace GProject.WebApplication.Controllers
         private static string _pTotalMoney;
 
         [HttpPost]
-        public async Task<ActionResult> Order(int selectVoucher, string cGiamGia, string idDeliveryAddress, string cShippingFee, string cTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
+        public async Task<ActionResult> Order(int selectVoucher,string DiscountCode, string cGiamGia, string idDeliveryAddress, string cShippingFee, string cTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
         {
             try
             {
+                int voucherId = 0;
+                var voucherList = (await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"))).ToList();
+                if (selectVoucher != 0)
+                        voucherId = selectVoucher;
+                else
+                {
+                    var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
+                    voucherId = voucher.Id;
+                }
                 List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
                 var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
                 var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(idDeliveryAddress));
-                var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
+                var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));                
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                if (customer == null) return RedirectToAction("Index", "Login");
+                if (customer == null) return RedirectToAction("Login", "Account");
                 if (PaymentType == 1)
                 {
-                    _selectVoucher = selectVoucher;
+                    _selectVoucher = voucherId;
                     _cGiamGia = cGiamGia;
                     _idDeliveryAddress = idDeliveryAddress;
                     _cShippingFee = cShippingFee;
@@ -183,7 +192,7 @@ namespace GProject.WebApplication.Controllers
 
 
                 GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
-                bool result = await pService.AddToOrder(selectVoucher, cGiamGia, cShippingFee, cTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
+                bool result = await pService.AddToOrder(voucherId, cGiamGia, cShippingFee, cTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
                     ShippingEmail, cDescription, PaymentType, customer.Id, prodOrders);
 
                 if (!result)
@@ -191,7 +200,7 @@ namespace GProject.WebApplication.Controllers
                 else
                 {
 
-                    var dataVoucher = new UpdateNumberVoucherDto() { Id = selectVoucher };
+                    var dataVoucher = new UpdateNumberVoucherDto() { Id = voucherId };
                     await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
 
                     HttpContext.Session.SetString("mess", "Success");
@@ -209,10 +218,19 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> BuyNow(int selectVoucher, string cGiamGia, string idDeliveryAddress, string cShippingFee, string pTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
+        public async Task<ActionResult> BuyNow(int selectVoucher, string DiscountCode, string cGiamGia, string idDeliveryAddress, string cShippingFee, string pTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
         {
             try
             {
+                int voucherId = 0;
+                var voucherList = (await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"))).ToList();
+                if (selectVoucher != 0)
+                    voucherId = selectVoucher;
+                else
+                {
+                    var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
+                    voucherId = voucher.Id;
+                }
                 List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
                 var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
                 var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
@@ -222,7 +240,7 @@ namespace GProject.WebApplication.Controllers
 
                 if (PaymentType == 1)
                 {
-                    _selectVoucher = selectVoucher;
+                    _selectVoucher = voucherId;
                     _cGiamGia = cGiamGia;
                     _idDeliveryAddress = idDeliveryAddress;
                     _cShippingFee = cShippingFee;
@@ -244,14 +262,14 @@ namespace GProject.WebApplication.Controllers
                 }
 
                 GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
-                bool result = await pService.BuyNow(selectVoucher, cGiamGia, cShippingFee, pTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
+                bool result = await pService.BuyNow(voucherId, cGiamGia, cShippingFee, pTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
                     ShippingEmail, cDescription, PaymentType, customer.Id, prodOrders);
 
                 if (!result)
                     HttpContext.Session.SetString("mess", "Failed");
                 else
                 {
-                    var dataVoucher = new UpdateNumberVoucherDto() { Id = selectVoucher };
+                    var dataVoucher = new UpdateNumberVoucherDto() { Id = voucherId };
                     await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
                     HttpContext.Session.SetString("mess", "Success");
                 }

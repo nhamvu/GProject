@@ -5,6 +5,7 @@ using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using System.Net.NetworkInformation;
 using System.Reflection.Metadata;
 using static System.Net.Mime.MediaTypeNames;
@@ -32,6 +33,7 @@ namespace GProject.WebApplication.Controllers
                 var lstCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
                 var lstEmployee = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
                 var lstCategories = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
+                var lstBrands = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
 
                 //--Thông kê lợi nhuận = Tổng doanh thu - tổng chi phí
                 var results = lstOrders
@@ -66,29 +68,29 @@ namespace GProject.WebApplication.Controllers
                             })
                             .ToList();
 
-                //--Thống kê của Nhân Viên
-                var resultsEmployeeStatical = lstOrders
-                                .Join(lstOrderDetail, b => b.Id, bhct => bhct.OrderId, (b, bhct) => new { b, bhct })
-                                .Join(lstEmployee, x => x.b.EmployeeId, s => s.Id, (x, s) => new { x.b, x.bhct, s })
-                                .OrderBy(x => x.b.CreateDate)
-                                .GroupBy(x => new
-                                {
-                                    x.s.EmployeeId,
-                                    x.s.Name,
-                                    x.s.PhoneNumber,
-                                    x.s.Sex,
-                                    x.b.CreateDate.Month,
-                                })
+                //--Top 5 sản phẩm bán chạy
+                var top5Product = lstOrders
+                                .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { Order = a, OrderDetail = b })
+                                .Join(lstProductvariation, ab => ab.OrderDetail.ProductVariationId, c => c.Id, (ab, c) => new { Order = ab.Order, OrderDetail = ab.OrderDetail, ProductVariation = c })
+                                .Join(lstProducts, abc => abc.ProductVariation.ProductId, d => d.Id, (abc, d) => new { abc.Order, abc.OrderDetail, abc.ProductVariation, Product = d })
+                                .Join(lstBrands, abcd => abcd.Product.BrandId, e => e.Id, (abcd, e) => new { abcd.Order, abcd.OrderDetail, abcd.ProductVariation, abcd.Product, Brand = e })
+                                .Join(lstCategories, abcde => abcde.Product.CategoryId, p => p.Id, (abcde, p) => new { abcde.Order, abcde.OrderDetail, abcde.ProductVariation, abcde.Product, abcde.Brand, Category = p })
+                                .OrderBy(abcde => abcde.Order.CreateDate)
+                                .GroupBy(abcde => new 
+                                {   Month = abcde.Order.CreateDate.Month,
+                                    ProdName = abcde.Product.Name,
+                                    Category = abcde.Category.Name,
+                                    Brand = abcde.Brand.Name,
+                                    ProdType = abcde.Product.ProductType })
                                 .Select(g => new
                                 {
-                                    Employee_Id = g.Key.EmployeeId,
-                                    Employee_Name = g.Key.Name,
-                                    Phone_Number = g.Key.PhoneNumber,
-                                    Sex = g.Key.Sex,
-                                    Day = g.Key.Month,
-                                    Total_Quantity = g.Count(),
-                                    Total_Revenue = g.Sum(c => c.bhct.Quantity * c.bhct.Price),
-                                    Total_number_Sales = g.Sum(c => c.bhct.Quantity)
+                                    ProdName = g.Key.ProdName,
+                                    CreateDate = g.Key.Month,
+                                    Category = g.Key.Category,
+                                    Brand = g.Key.Brand,
+                                    ProdType = g.Key.ProdType,
+                                    Total_Quantity = g.Sum(c => c.OrderDetail.Quantity),
+                                    Total_Revenue = g.Sum(c => c.OrderDetail.Quantity * c.OrderDetail.Price),
                                 })
                                 .ToList();
 
@@ -99,20 +101,20 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(fromDate))
                 {
                     OrderDataStatical = OrderDataStatical.Where(c => c.Order.CreateDate >= DateTime.Parse(fromDate)).ToList();
-                    resultsEmployeeStatical = resultsEmployeeStatical.Where(c => c.Day >= DateTime.Parse(fromDate).Month).ToList();
                     results = results.Where(c => c.Day >= DateTime.Parse(fromDate)).ToList();
                     lstEvaluate = lstEvaluate.Where(c => c.CreateDate >= DateTime.Parse(fromDate)).ToList();
                     lstProducts = lstProducts.Where(c => c.CreateDate >= DateTime.Parse(fromDate)).ToList();
                     lstCustomer = lstCustomer.Where(c => c.CreateDate >= DateTime.Parse(fromDate)).ToList();
+                    top5Product = top5Product.Where(c => c.CreateDate >= DateTime.Parse(toDate).Month).ToList();
                 }
                 if (!string.IsNullOrEmpty(toDate))
                 {
                     OrderDataStatical = OrderDataStatical.Where(c => c.Order.CreateDate <= DateTime.Parse(toDate)).ToList();
-                    resultsEmployeeStatical = resultsEmployeeStatical.Where(c => c.Day <= DateTime.Parse(fromDate).Month).ToList();
                     results = results.Where(c => c.Day <= DateTime.Parse(toDate)).ToList();
                     lstEvaluate = lstEvaluate.Where(c => c.CreateDate <= DateTime.Parse(toDate)).ToList();
                     lstProducts = lstProducts.Where(c => c.CreateDate <= DateTime.Parse(toDate)).ToList();
                     lstCustomer = lstCustomer.Where(c => c.CreateDate <= DateTime.Parse(toDate)).ToList();
+                    top5Product = top5Product.Where(c => c.CreateDate <= DateTime.Parse(toDate).Month).ToList();
                 }
                 ViewBag.CountOrder = OrderDataStatical.Select(c => c.Order).ToList().Count();
                 ViewBag.CountProduct = OrderDataStatical.Sum(c => c.OrderDetail.Quantity);
@@ -124,7 +126,7 @@ namespace GProject.WebApplication.Controllers
                 this.ViewData[nameof(fromDate)] = (object)fromDate;
                 this.ViewData[nameof(toDate)] = (object)toDate;
 
-                this.ViewData["EmployeeStatical"] = Commons.ConverObject<List<EmployeeStaticalDTO>>(resultsEmployeeStatical);
+                this.ViewData["ProductStatical"] = Commons.ConverObject<List<ProductStaticalDTO>>(top5Product);
                 this.ViewData["CategoryStatical"] = Commons.ConverObject<List<CategoryStaticalDTP>>(resultsCategoryStatical);
                 return View(Commons.ConverObject<List<MyChartData>>(results));
             }

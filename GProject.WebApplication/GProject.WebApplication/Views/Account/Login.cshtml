@@ -48,6 +48,10 @@
     </style>
 </head>
 <body>
+    @if (@ViewData["Mess"] != null)
+    {
+        <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+    }
     <section class="vh-100">
         <div class="container-fluid h-custom">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -87,7 +91,7 @@
                                     <strong>Nhớ tài khoản</strong>
                                 </label>
                             </div>
-                            <a href="#!" class="text-body"><strong>Quên mật khẩu?</strong></a>
+                            <a href="/quen-mat-khau.html" class="text-body"><strong>Quên mật khẩu?</strong></a>
                         </div>
                         <div class="d-flex justify-content-center text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg"
@@ -117,10 +121,10 @@
 </html>
 <script type="text/javascript">
     $(document).ready(function () {
-        var d = document.getElementById('error')
-        if (d != null) {
-            swal("Không thành công", "Đăng nhập không thành công,vui lòng nhập lại thông tin", "error");
-
+        var er = document.getElementById('error')
+        if (er != null) {
+            if ($('#error').text() == 'Failed')
+                swal("Đăng nhập không thành công", "Tài khoản hoặc mật khẩu không chính xác", "error");
         }
         $.ajax({
             data: {

@@ -286,12 +286,13 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                                <div class="element-right">
-                                    <button type="submit" id="btnOrder" class="btn btn-primary col-md-3"><i class="fa fa-calendar-check-o" style="margin-right:10px;"></i>ĐẶT MUA</button>
+                                <div class="row">
+                                    <div class="element-right">
+                                        <button type="submit" id="btnOrder" class="btn btn-primary col-md-3"><i class="fa fa-shopping-bag" style="margin-right:10px;"></i>ĐẶT MUA</button>
+                                        <button type="button" id="btnOrder" onclick="RemoveToCart()" class="btn btn-danger col-md-3"><i class="fa fa-trash-o" style="margin-right:10px;"></i>Gỡ khỏi giỏ hàng</button>
+                                    </div>
                                 </div>
-                                <div class="element-right">
-                                    <button type="button" id="btnOrder" onclick="RemoveToCart()" class="btn btn-danger col-md-3"><i class="fa fa-calendar-check-o" style="margin-right:10px;"></i>Gỡ khỏi giỏ hàng</button>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -358,8 +359,21 @@
                                     <label class="control-label col-sm-6"><strong>Mã giảm giá:</strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectVoucher" name="selectVoucher" class="form-select">
-                                            <option value="0"></option>
+                                            <option value=""></option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Nhập mã giảm giá:<span style="color: red">(*)</span></strong></label>
+                                    <div class="row col-md-12">
+                                        <div class="col-sm-8">
+                                            <input type="text" id="DiscountCode" name="DiscountCode" value="" placeholder="" class="form-control" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <a class="btn btn-outline-info" onclick="CheckDiscountCode()"><i class="fa-solid fa-check fa-lg"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -504,6 +518,8 @@
         }
 
         $("#selectVoucher").change(function () {
+            $("#DiscountCode").val('')
+
             let _id = $("#selectVoucher").val();
             $.ajax({
                 url: "/Product/GetVoucher?id=" + _id,
@@ -541,7 +557,7 @@
                     $('#cGiamGia').val(discount);
                 }
             })
-        });
+        });        
 
         function TinhPhanTram(tongtien, giamgia) {
             let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
@@ -667,6 +683,48 @@
         }
     });
 
+    function CheckDiscountCode() {
+        $("#selectVoucher").val(0)
+
+        let _discountCode = $("#DiscountCode").val();
+        $.ajax({
+            url: "/Product/GetVoucher?discountCode=" + _discountCode,
+            type: "GET",
+            success: function (result) {
+                let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                let discount = 0;
+                var total = 0;
+                if (result != null) {
+                    if (result.discountForm == "%") {
+                        discount = Math.round(TinhPhanTram(totalProduct, result.discountRate))
+                        if (discount > result.maximumDiscount)
+                            discount = result.maximumDiscount
+                    }
+                    else {
+                        discount = result.discountRate
+                    }
+                    $("#txtGiamGia").text(commasThousands(discount))
+                    total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+                else {
+                    swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
+                    $("#txtGiamGia").text(0)
+                    $("#txtDiscountForm").text("Vnd")
+                    total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                }
+
+                if (total < 0) {
+                    total = 0;
+                }
+
+                $('#textTotalMoney').text(commasThousands(total));
+                $('#pTotalMoney').val(total);
+                $('#cGiamGia').val(discount);
+            }
+        })
+    }
+
+
     function loadMoney() {
         var _totalPaymentMoney = 0;
         $('table tbody tr .totalMoneyItem').each((index, item) => {
@@ -720,10 +778,6 @@
         }
         if ($('#ShippingEmail').val() == '') {
             sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
-            return false;
-        }
-        if (parseInt($('#cTotalMoney').val() || 0) === 0) {
-            sweetAlert("Thông báo", "Thông tin tổng tiền thanh toán không hợp lệ", "error");
             return false;
         }
         return true;

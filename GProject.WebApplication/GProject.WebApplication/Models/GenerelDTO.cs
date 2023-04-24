@@ -85,4 +85,15 @@ namespace GProject.WebApplication.Models
         public string Subject { get; set; }
         public string Body { get; set; }
     }
+
+    public class ProductStaticalDTO
+    {
+        public string ProdName { get; set; }
+        public int CreateDate { get; set; }
+        public string Category { get; set; }
+        public string Brand { get; set; }
+        public string ProdType { get; set; }
+        public int Total_Quantity { get; set; }
+        public decimal Total_Revenue { get; set; }
+    }
 }

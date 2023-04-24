@@ -149,8 +149,9 @@
             <div style="margin-top:10px;">
                 @Html.DropDownList("Status", new[]
                 {
-                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)},
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)}
+                new SelectListItem{Text="Tất cả", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : true)},
+                new SelectListItem{Text="Giới hạn", Value="2", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},               
                 }, new { @class = "form-control iscompany" })
             </div>
         </div>
@@ -222,13 +223,13 @@
                                         @item.ExpirationDate
                                     </td>
                                     <td>
-                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
+                                        @(item.Status == 1 ? "Tất cả" : item.Status == 2 ? "Giới hạn" : "Không sử dụng")
                                     </td>
                                     <td>
                                         <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
                                         <i class="fas fa-pen-square" aria-hidden="true"></i>
                                     </td>
-                                    <td>
+                                    @* <td>
                                         @if (item.Status == 1)
                                         {
 
@@ -238,7 +239,7 @@
                                         {
                                             <a class="btn text-danger" onclick="ActiveVoucher(@item.Id)"> <i class="fas fa-toggle-off"></i> </a>
                                         }
-                                    </td>
+                                    </td> *@
                                 </tr>
                             }
                         }
