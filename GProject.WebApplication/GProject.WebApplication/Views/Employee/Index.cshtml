@@ -138,11 +138,11 @@
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Ngày sinh:<span style="color: red">(*)</span></strong></label>
-            <input asp-for="DateOfBirth" placeholder="__/ __/ ____" maxlength="200" class="form-control" />
+            <input asp-for="DateOfBirth" value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Ngày gia nhập:<span style="color: red">(*)</span></strong></label>
-            <input asp-for="DateOfJoin" placeholder="__/ __/ ____" maxlength="200" class="form-control" />
+            <input asp-for="DateOfJoin" value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
