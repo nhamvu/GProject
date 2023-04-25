@@ -24,6 +24,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
                 var lstColor = await Commons.GetAll<ProductVariationDTO>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
                 var lstSize = await Commons.GetAll<ProductSizeVariation>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
@@ -52,13 +54,15 @@ namespace GProject.WebApplication.Controllers
             catch (Exception)
             {
 
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
         [HttpGet]
         public async Task<ActionResult> Create()
         {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                return RedirectToAction("AccessDenied", "Account");
             GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
             ProductMGRDTO product = await pService.GetProductViewModel();
             return View(product);
@@ -69,6 +73,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
                 bool result = await pService.Save(Product, User.Identity.Name != null ? User.Identity.Name : "");
 
@@ -81,13 +87,15 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return BadRequest();
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
         [HttpGet]
         public async Task<ActionResult> Update(Guid? id)
         {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                return RedirectToAction("AccessDenied", "Account");
             GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
             ProductMGRDTO prd = new ProductMGRDTO();
             prd = await pService.GetProduct(id);
@@ -99,6 +107,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
                 bool result = await pService.Save(Product, User.Identity.Name != null ? User.Identity.Name : "");
 
@@ -111,7 +121,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return BadRequest();
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
@@ -120,6 +130,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 GProject.WebApplication.Services.ProductMGRService pService = new GProject.WebApplication.Services.ProductMGRService();
                 bool result = await pService.Save(Product, User.Identity.Name != null ? User.Identity.Name : "");
                 
@@ -131,7 +143,7 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception)
             {
-                return BadRequest();
+                return RedirectToAction("AccessDenied", "Account");
             }
 
         }

@@ -1,0 +1,188 @@
+﻿@model List<GProject.WebApplication.Models.EvaluateViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GProject.WebApplication.Models
+@using GProject.Api.MyServices.Services;
+@{
+    ViewBag.Title = "Quản lý bình luận, đánh giá";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    Pager pager = new Pager();
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
+
+}
+<style>
+    label {
+        color: black;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    .sticky-header th {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background-color: #E5E5E5;
+    }
+
+    .sticky-table {
+        border-collapse: separate !important;
+    }
+</style>
+
+
+@if (@ViewData["Mess"] != null)
+{
+    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+}<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Evaluate/Index">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên Khách hàng</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên sản phẩm</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sProdName" name="sProdName" value="@ViewData["sProdName"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Từ ngày</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="date" id="fromDate" name="fromDate" style="padding: 12px 20px; margin: 8px 0; box-sizing: border-box;border: none;border-bottom: 2px solid red;" value="@ViewData["fromDate"]" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">đến ngày</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="date" id="toDate" name="toDate" style="padding: 12px 20px; margin: 8px 0; box-sizing: border-box;border: none;border-bottom: 2px solid red;" value="@ViewData["toDate"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<hr style="color:red;" />
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-users" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH BÌNH LUẬN ĐÁNH GIÁ</h3>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                <table class="table table-bordered table-hover sticky-table">
+                    <thead class="sticky-header">
+                        <tr>
+                            <th style="width:20px;">STT</th>
+                            <th style="width:250px;">Tên khách hàng</th>
+                            <th style="width:250px;">Tên sản phẩm</th>
+                            <th style="width:150px;">Ngày</th>
+                            <th>Bình luận</th>
+                            <th style="width:100px;">Đánh giá</th>
+                            <th style="width:50px;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Count() > 0)
+                        {
+                            int index = 0;
+                            @foreach (var item in Model)
+                            {
+                                index++;
+                                <tr>
+                                    <td>
+                                        @index
+                                    </td>
+                                    <td>
+                                        @item.Customer.Name
+                                    </td>
+                                    <td>
+                                        @item.Product.Name
+                                    </td>
+                                    <td>
+                                        @item.Evaluate.CreateDate.ToString("dd/MM/yyyy")
+                                    </td>
+                                    <td>
+                                        @item.Evaluate.Comment
+                                    </td>
+                                    <td>
+                                        @(item.Evaluate.Rating + " sao") 
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger" onclick="location.href='@Url.Action("Delete", "Evaluate",new { id = item.Evaluate.Id})'" />
+                                        <i class="fa fa-trash"></i>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    @if (pager.TotalPages > 0)
+    {
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link" asp-controller="Evaluate" asp-action="Index" asp-route-pg="1">First</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="Evaluate" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+            </li>
+
+            @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+            {
+                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-controller="Evaluate" asp-action="Index" asp-route-pg="@pge"> @pge</a>
+                </li>
+            }
+
+            <li class="page-item">
+                <a class="page-link" asp-controller="Evaluate" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" asp-controller="Evaluate" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
+            </li>
+        </ul>
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var er = document.getElementById('error')
+        if (er != null) {
+            if ($('#error').text() == 'Failed')
+                swal("Không thành công", "Xóa bình luận không thành công", "error");
+            else
+                swal("Thành công", "Bạn đã xóa bình luận này", "success");
+        }
+
+        $('.datefield').datepicker({
+            format: 'dd/mm/yyyy'
+        });
+    });
+
+</script>

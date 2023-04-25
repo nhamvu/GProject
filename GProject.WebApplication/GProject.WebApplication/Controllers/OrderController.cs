@@ -42,6 +42,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 int valsPaymentType = sPaymentType.HasValue ? sPaymentType.Value : -1;
                 var lstObjs = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
 
@@ -116,7 +118,7 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception ex)
             {
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
             }
             
         }
@@ -131,7 +133,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
@@ -170,7 +172,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
@@ -250,7 +252,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
@@ -317,7 +319,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 

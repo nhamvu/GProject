@@ -30,7 +30,9 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
-				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+                    return RedirectToAction("AccessDenied", "Account");
+                decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
 				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
 				Guid valCategory = category.HasValue ? category.Value : Guid.Empty;
 				int valBrand = brand.HasValue ? brand.Value : -1;
@@ -58,7 +60,9 @@ namespace GProject.WebApplication.Controllers
 		public async Task<ActionResult> ProductDetail(Guid product_id)
 		{
 			try
-			{                
+			{
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
@@ -80,6 +84,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
                 if (customer == null) return RedirectToAction("Index", "Account");
 
@@ -102,6 +108,8 @@ namespace GProject.WebApplication.Controllers
         [HttpGet]
         public ActionResult Order(string products)
         {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+                return RedirectToAction("AccessDenied", "Account");
             List<ProdOrder> lstProdOrders = JsonConvert.DeserializeObject<List<ProdOrder>>(products);
             Commons.setObjectAsJson(HttpContext.Session, "productOrders", lstProdOrders);
             // Xử lý danh sách đối tượng ở đây
@@ -112,6 +120,8 @@ namespace GProject.WebApplication.Controllers
         [HttpGet]
         public async Task<ActionResult> RemoveToCart(string products)
         {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+                return RedirectToAction("AccessDenied", "Account");
             List<ProdOrder> lstProdOrders = JsonConvert.DeserializeObject<List<ProdOrder>>(products);
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             foreach (var item in lstProdOrders)
@@ -122,7 +132,7 @@ namespace GProject.WebApplication.Controllers
                 if (!resRemoveCartDetail.IsSuccessful)
                 {
                     HttpContext.Session.SetString("mess", "Failed");
-                    return BadRequest();
+                    return RedirectToAction("AccessDenied", "Account");
                 }
             }
             HttpContext.Session.SetString("mess", "Success");
@@ -170,7 +180,9 @@ namespace GProject.WebApplication.Controllers
 		{
 			try
 			{
-				var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+                    return RedirectToAction("AccessDenied", "Account");
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
 				if (customer == null) return RedirectToAction("Login", "Account");
 				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
 				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;

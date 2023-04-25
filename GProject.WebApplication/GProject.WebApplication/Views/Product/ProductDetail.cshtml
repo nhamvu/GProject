@@ -29,11 +29,14 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
     var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost,
     "ProductVariation/get-all-ProductVariation"));
 
+    var lstEvaluates = await Commons.GetAll<Evaluate>(String.Concat(Commons.mylocalhost, "Evaluate/get-all-Evaluate"));
+
     var isOrder = lstOrder
                 .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { A = a, B = b })
                 .Join(Model.Item2, ab => ab.B.ProductVariationId, c => c.Id, (ab, c) => new { A = ab.A, B = ab.B, C = c })
                 .Where(k => k.C.ProductId == Model.Item1.Id && k.A.CustomerId == Model.Item7.Id).Select(c => c.A.CustomerId).FirstOrDefault();
 
+    var isComment = lstEvaluates.FirstOrDefault(c => c.ProductId == Model.Item1.Id && c.CustomerId == Model.Item7.Id);
     IPromotionRepository _IPromotionRepository = new PromotionRepository();
     IPromotionDetailRepository _IPromotionDetalRepository = new PromotionDetailRepository();
 
@@ -159,6 +162,41 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
         margin-top: 0.25em;
     }
 
+    .commentBox {
+        background-color: #efefef;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .starFade {
+        background-image: url("/images/saotrang.jpg");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .starFadeN {
+        background-image: url("/images/saotrang.jpg");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+    }
+
+    .starGlow {
+        background-image: url("/images/sao_vang.jpg");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .starGlowN {
+        background-image: url("/images/sao_vang.jpg");
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+    }
 </style>
 
 <link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
@@ -436,7 +474,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
             }
         }
         <hr />
-        @if (isOrder != null)
+        @if (isOrder != null && isComment == null)
         {
             <partial id="commentBox" name="_CommentBox" />
         }

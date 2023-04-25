@@ -25,6 +25,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 int valsGender = sGender.HasValue ? sGender.Value : -1;
                 int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
@@ -62,7 +64,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
@@ -71,6 +73,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 //-- Parse lại dữ liệu từ ViewModel
                 var cusdata = new Customer();
                 cusdata.Id = Customer.Id;
@@ -114,7 +118,7 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception)
             {
-                return BadRequest();
+                return RedirectToAction("AccessDenied", "Account");
             }
 
         }
