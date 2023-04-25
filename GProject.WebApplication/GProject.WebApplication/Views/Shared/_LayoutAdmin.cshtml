@@ -140,13 +140,16 @@
                                 <span class="hide-menu">Danh sách hóa đơn</span>
                             </a>
                         </li>
-                        <li class="sidebar-item pt-2">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Promotion/Index"
+                        @if (user.Position == GProject.Data.Enums.EmployeePosition.Manager)
+                        {
+                            <li class="sidebar-item pt-2">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Promotion/Index"
                                aria-expanded="false">
-                                <i class="fas fa-atom"></i>
-                                <span class="hide-menu">Giảm giá</span>
-                            </a>
-                        </li>
+                                    <i class="fas fa-atom"></i>
+                                    <span class="hide-menu">Giảm giá</span>
+                                </a>
+                            </li>
+                        }
                         <li class="sidebar-item dropdown">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Category/Index"
                                aria-expanded="false">
@@ -189,13 +192,16 @@
                                 <span class="hide-menu">Bình luận đánh giá</span>
                             </a>
                         </li>
-                        <li class="sidebar-item dropdown">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Employee/Index"
+                        @if (user.Position == GProject.Data.Enums.EmployeePosition.Manager)
+                        {
+                            <li class="sidebar-item dropdown">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Employee/Index"
                                aria-expanded="false">
-                                <i class="fas fa-user-nurse"></i>
-                                <span class="hide-menu">Nhân viên</span>
-                            </a>
-                        </li>
+                                    <i class="fas fa-user-nurse"></i>
+                                    <span class="hide-menu">Nhân viên</span>
+                                </a>
+                            </li>
+                        }
                         <li class="sidebar-item dropdown">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Customer/Index"
                                aria-expanded="false">
@@ -203,13 +209,16 @@
                                 <span class="hide-menu">Khách hàng</span>
                             </a>
                         </li>
-                        <li class="sidebar-item dropdown">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Voucher/Index"
+                        @if (user.Position == GProject.Data.Enums.EmployeePosition.Manager)
+                        {
+                            <li class="sidebar-item dropdown">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Voucher/Index"
                                aria-expanded="false">
-                                <i class="fas fa-tags"></i>
-                                <span class="hide-menu">Mã khuyến mại</span>
-                            </a>
-                        </li>
+                                    <i class="fas fa-tags"></i>
+                                    <span class="hide-menu">Mã khuyến mại</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
 
                 </nav>

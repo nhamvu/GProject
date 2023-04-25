@@ -39,7 +39,7 @@
 		StoreItems.Add(new SelectListItem()
 				{
 					Value = "-1",
-					Text = "-- Tất cả --",
+					Text = "-- Nhãn hiệu --",
 					Selected = "-1" == brand.ToString(),
 				});
 
@@ -65,7 +65,7 @@
 		CategoryItems.Add(new SelectListItem()
 				{
 					Value = "-1",
-					Text = "-- Danh mục sản phẩm --",
+					Text = "-- Danh mục --",
 					Selected = "-1" == category.NullToString(),
 				});
 
@@ -227,48 +227,47 @@
 											</div>
 											<div class="col-md-2">
 												<div class="form-group">
-														@Html.DropDownList("category", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
-													</div>
+													@Html.DropDownList("category", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
 												</div>
+											</div>
 											<div class="col-md-2">
 												<div class="form-group">
-														@Html.DropDownList("brand", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
-													</div>
+													@Html.DropDownList("brand", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
 												</div>
+											</div>
 											<div class="col-md-2">
 												<div class="form-group">
-													<div class="col-md-12 col-xs-12">
-														@{
-															decimal fPrice = decimal.Parse(Html.Encode(ViewData["fPrice"]));
-														}
-														@Html.DropDownList("fPrice",new[]
-														{
-														new SelectListItem{Text="-- Giá từ --", Value="-1", Selected= (fPrice== -1)},
-														new SelectListItem{Text="0 VNĐ", Value="0", Selected= (fPrice== 0)},
-														new SelectListItem{Text="100.000 VNĐ", Value="100000", Selected= (fPrice== 100000)},
-														new SelectListItem{Text="200.000 VNĐ", Value="200000", Selected=  (fPrice == 200000)},
-														new SelectListItem{Text="500.000 VNĐ", Value="500000", Selected= (fPrice== 500000)},
-														new SelectListItem{Text="1.000.000 VNĐ", Value="1000000", Selected=  (fPrice == 1000000)}
-														}, new { @name = "sStatus", @class="searchText form-control select"})
-													</div>
+													@{
+														decimal fPrice = decimal.Parse(Html.Encode(ViewData["fPrice"]));
+													}
+													@Html.DropDownList("fPrice",new[]
+													{
+													new SelectListItem{Text="-- Giá từ --", Value="-1", Selected= (fPrice== -1)},
+													new SelectListItem{Text="0 VNĐ", Value="0", Selected= (fPrice== 0)},
+													new SelectListItem{Text="100.000 VNĐ", Value="100000", Selected= (fPrice== 100000)},
+													new SelectListItem{Text="200.000 VNĐ", Value="200000", Selected=  (fPrice == 200000)},
+													new SelectListItem{Text="500.000 VNĐ", Value="500000", Selected= (fPrice== 500000)},
+													new SelectListItem{Text="1.000.000 VNĐ", Value="1000000", Selected=  (fPrice == 1000000)}
+													}, new { @name = "sStatus", @class="searchText form-control select"})
 												</div>
+											</div>
 											<div class="col-md-2">
 												<div class="form-group">
-														@{
-															int tPrice = int.Parse(Html.Encode(ViewData["tPrice"]));
-														}
-														@Html.DropDownList("tPrice",new[]
-														{
-														new SelectListItem{Text="-- Đến --", Value="-1", Selected= (tPrice== -1)},
-														new SelectListItem{Text="0 VNĐ", Value="0", Selected= (tPrice== 0)},
-														new SelectListItem{Text="< 100.000 VNĐ", Value="100000", Selected= (tPrice== 100000)},
-														new SelectListItem{Text="< 200.000 VNĐ", Value="200000", Selected=  (tPrice == 200000)},
-														new SelectListItem{Text="< 500.000 VNĐ", Value="500000", Selected= (tPrice== 500000)},
-														new SelectListItem{Text="< 1.000.000 VNĐ", Value="1000000", Selected=  (tPrice == 1000000)},
-														new SelectListItem{Text="trên 1.000.000 VNĐ", Value="1000001", Selected=  (tPrice == 1000001)}
-														}, new { @name = "sStatus", @class="searchText form-control select"})
-													</div>
+													@{
+														int tPrice = int.Parse(Html.Encode(ViewData["tPrice"]));
+													}
+													@Html.DropDownList("tPrice",new[]
+													{
+													new SelectListItem{Text="-- Giá đến --", Value="-1", Selected= (tPrice== -1)},
+													new SelectListItem{Text="0 VNĐ", Value="0", Selected= (tPrice== 0)},
+													new SelectListItem{Text="< 100.000 VNĐ", Value="100000", Selected= (tPrice== 100000)},
+													new SelectListItem{Text="< 200.000 VNĐ", Value="200000", Selected=  (tPrice == 200000)},
+													new SelectListItem{Text="< 500.000 VNĐ", Value="500000", Selected= (tPrice== 500000)},
+													new SelectListItem{Text="< 1.000.000 VNĐ", Value="1000000", Selected=  (tPrice == 1000000)},
+													new SelectListItem{Text="trên 1.000.000 VNĐ", Value="1000001", Selected=  (tPrice == 1000001)}
+													}, new { @name = "sStatus", @class="searchText form-control select"})
 												</div>
+											</div>
 											<div class="col-md-1">
 												<div class="form-group">
 													<button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
