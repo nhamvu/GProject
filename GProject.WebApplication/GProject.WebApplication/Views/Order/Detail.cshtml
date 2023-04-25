@@ -165,15 +165,19 @@
     </div>
 </div>
 <div class="row">
-    @if ((int)OrderData.Status != 6)
+    @if ((int)OrderData.Status != 0 && (int)OrderData.Status != 3)
+    {
+        <button type="button" onclick="WaitOrder()" class="btn btn-outline-secondary col-md-2 m-1"><i class="fa fa-clock-o" style="margin-right:10px;"></i>Chờ xác nhận</button>
+    }
+    @if ((int)OrderData.Status != 6 && (int)OrderData.Status != 3)
     {
         <button type="button" onclick="ConfirmOrder()" class="btn btn-outline-warning col-md-2 m-1"><i class="fas fa-check-square" style="margin-right:10px;"></i>Xác nhận đơn hàng</button>
     }
-    @if ((int)OrderData.Status != 1)
+    @if ((int)OrderData.Status != 1 && (int)OrderData.Status != 3)
     {
         <button type="button" onclick="DeliveryOrder()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang vận chuyển</button>
     }
-    @if ((int)OrderData.Status != 2)
+    @if ((int)OrderData.Status != 2 && (int)OrderData.Status != 3)
     {
         <button type="button" onclick="DangGiaoHang()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang giao hàng</button>
     }
@@ -187,6 +191,17 @@
     }
     </div>
 <script>
+    function WaitOrder() {
+        swal("Bạn chắc chắn muốn chuyển trạng đơn hàng này sang chờ xác nhận?", {
+            title: '',
+            icon: 'info',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                window.location = '/Order/ChangeStatus?id=@OrderData.Id.ToString()&status=0'
+            }
+        });
+    }
     function ConfirmOrder(){
         swal("Bạn chắc chắn muốn xác nhận đơn hàng này?", {
             title: '',

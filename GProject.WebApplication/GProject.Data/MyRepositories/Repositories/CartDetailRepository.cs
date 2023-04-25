@@ -33,10 +33,18 @@ namespace GProject.Data.MyRepositories.IRepositories
 
         public bool Update(CartDetail obj)
         {
-            if (obj == null) return false;
-            _context.CartDetails.Update(obj);
-            _context.SaveChanges();
-            return true;
+            try
+            {
+                if (obj == null) return false;
+                _context.CartDetails.Update(obj);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
         }
 
         public List<CartDetail> GetAll()

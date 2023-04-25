@@ -212,6 +212,10 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
+@if (@ViewData["message"] != null)
+{
+    <p style="visibility: hidden;" id="messerror">@ViewData["message"]</p>
+}
 @if (Model != null)
 {
     <div id="motor-detail" class="container">
@@ -298,16 +302,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             <h3><strong>Loại sản phẩm:</strong> @productType</h3>
                             <h3><strong>Lượt xem:</strong> @Model.Item1.ViewCount <i class="fa fa-eye"></i> người đã xem sản
                                 phẩm này</h3>
-                            <div class="row">
-                                <div class="col-md-10">
-                                    <h3><strong>Lượt thích:</strong> @Model.Item1.LikeCount <i class="fa fa-heart"></i>
-                                        người đã thích sản phẩm này</h3>
-                                </div>
-                                <div class="col-md-2">
-                                    <button type="button" onclick="changeLikeCount()"><img style="width:50px;height:50px;"
-                                            src="~/images/tymImg.jpg" /></button>
-                                </div>
-                            </div>
+                            
                             <h3><strong>Số lượng còn lại:</strong><span id="mQuantityInstock" value="">@Model.Item2.Sum(c =>
                                 c.QuantityInStock)</span> sản phẩm có sẵn</h3>
                             <h3 class="cl-class">
@@ -340,8 +335,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
                                         </div>
-                                        <input class="input-group-field form-control col-md-5" type="number" id="quantity"
-                                            name="quantity" value="0" style="width:50px;">
+                                        <input class="input-group-field form-control col-md-5" readonly type="number" id="quantity"
+                                            name="quantity" value="0" style="width:100px;">
                                         <div class="input-group-button col-md-3 mt-2">
                                             <button type="button" class="btn-info hollow circle" data-quantity="plus"
                                                 data-field="quantity" style="margin-left:5px;">
@@ -424,6 +419,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
         <!-- Bình luận, đánh giá-->
         <div class="p-1 text-left" style="background-color: #CCCCCC;">
             <h2><strong><i class="fa fa-comments" style="margin:5px 10px;"></i>DANH SÁCH BÌNH LUẬN,ĐÁNH GIÁ</strong></h2>
+            <h3><strong><i class="fa fa-comments" style="margin:5px 10px;"></i>Có @lstEvaluates.Where(c => c.ProductId == Model.Item1.Id).Count() lượt đánh giá bình luận về sản phẩm này</strong></h3>
         </div>
         <div>
             <span class="starFadeN" id="sRate1"></span>
@@ -766,6 +762,10 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                 swal("Thành công", "Thao tác thành công", "success");
         }
 
+        var messerror = document.getElementById('messerror')
+        if (messerror != null) {
+            swal("Không thành công", messerror, "error");
+        }
     });
 
 
@@ -935,6 +935,10 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
     function checkValidateData() {
         if ($('#cQuantity').val() == '' || $('#cQuantity').val() == '0') {
             sweetAlert("Thông báo", "Thông tin số lượng sản phẩm không được để trống", "error");
+            return false;
+        }
+        if (parseInt($('#cQuantity').val() || 0) > parseInt($('#mQuantityInstock').text() || 0)) {
+            sweetAlert("Thông báo", "Thông tin số lượng không được lớn hơn số lượng còn lại của sản phẩm", "error");
             return false;
         }
         if ($('#cSize').val() == '') {

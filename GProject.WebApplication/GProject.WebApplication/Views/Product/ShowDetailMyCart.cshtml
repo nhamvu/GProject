@@ -250,6 +250,7 @@
                                             {
                                                 i++;
                                                 <tr>
+                                                    <td hidden><input class="itemQuantityInstock" disabled hidden="hidden" type="text" value="@(item.ProductVariation.QuantityInStock)"></td>
                                                     <td hidden><input class="cartId" disabled hidden="hidden" type="text" value="@(item.CartDetail.CartId.ToString())"></td>
                                                     <td hidden><input class="prodVariationId" disabled hidden="hidden" type="text" value="@(item.CartDetail.ProductVariationId.ToString())"></td>
                                                     <td>@i</td>
@@ -629,17 +630,24 @@
 
             var products = [];
             $('input[name=cbid]:checked').each(function () {
+                var itemQuantityInstock = parseInt($(this).parents("tr").find("input[type=text].itemQuantityInstock").val()) || 0;
+                var _quantity = parseInt($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
+                if (_quantity > itemQuantityInstock) {
+                     swal('Xin lỗi', 'Số lượng còn lại của sản phẩm không đáp ứng được số lượng bạn đặt!', 'warning');
+                    products = [];
+                     return;
+                }
                 var _product = {};
                 _product.cartId = $(this).parents("tr").find("input[type=text].cartId").val();
                 _product.prodVariationId = $(this).parents("tr").find("input[type=text].prodVariationId").val();
                 _product.size = $(this).parents("tr").find("select.size").val();
                 _product.price = parseFloat($(this).parents("tr").find("input[type=text].price").val()) || 0;
-                _product.quantity = parseInt($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
+                _product.quantity = _quantity;
                 _product.totalMoneyItem = parseFloat($(this).parents("tr").find("input[type=text].totalMoneyItem").val()) || 0;
                 products.push(_product);
             });
             if (products.length == 0) {
-                swal('Lỗi', 'Bạn chưa chọn sản phẩm', 'error');
+                 return;
             }
             else {
                 //Lấy danh sách sản phẩm và Session
@@ -667,6 +675,7 @@
                     }
                 });
                 $('#OrderModal').modal('show');
+            }
         });
 
         $('#btnCloseModal').click(function () {
