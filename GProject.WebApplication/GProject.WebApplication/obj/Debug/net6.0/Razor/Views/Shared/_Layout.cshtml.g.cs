@@ -12,28 +12,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -101,7 +101,7 @@ using GProject.WebApplication.Helpers;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
   
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
 
@@ -112,7 +112,7 @@ using GProject.WebApplication.Helpers;
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ef4dc5682605b11cb40cb8c8b6b4d847ccfacc9714337", async() => {
                 WriteLiteral("\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>");
 #nullable restore
-#line 11 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 11 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
       Write(ViewData["Title"]);
 
 #line default
@@ -145,7 +145,7 @@ using GProject.WebApplication.Helpers;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.Href = (string)__tagHelperAttribute_2.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
 #nullable restore
-#line 13 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 13 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
 
 #line default
@@ -171,7 +171,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.Href = (string)__tagHelperAttribute_3.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
 #nullable restore
-#line 14 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 14 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_LinkTagHelper.AppendVersion = true;
 
 #line default

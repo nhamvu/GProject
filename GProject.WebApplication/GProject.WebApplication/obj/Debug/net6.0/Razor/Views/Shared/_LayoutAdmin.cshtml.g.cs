@@ -12,28 +12,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -43,11 +43,9 @@ using GProject.WebApplication.Helpers;
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b08ccb6f7db288cae79c4c47cdc6330c880c5d3c", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__LayoutAdmin : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("role", new global::Microsoft.AspNetCore.Html.HtmlString("search"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("app-search d-none d-md-block me-3"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("alt", new global::Microsoft.AspNetCore.Html.HtmlString("user-img"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("width", new global::Microsoft.AspNetCore.Html.HtmlString("36"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-circle"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("alt", new global::Microsoft.AspNetCore.Html.HtmlString("user-img"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("width", new global::Microsoft.AspNetCore.Html.HtmlString("36"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("img-circle"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
         #pragma warning disable 0649
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
@@ -70,14 +68,12 @@ using GProject.WebApplication.Helpers;
         }
         private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.HeadTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_HeadTagHelper;
         private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.BodyTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_BodyTagHelper;
-        private global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper;
-        private global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper;
         private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
   
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Employee>(Context.Session, "userLogin");
 
@@ -98,7 +94,7 @@ using GProject.WebApplication.Helpers;
     <meta name=""robots"" content=""noindex,nofollow"">
     <title>");
 #nullable restore
-#line 20 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 20 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
       Write(ViewData["title"]);
 
 #line default
@@ -149,25 +145,7 @@ using GProject.WebApplication.Helpers;
          data-sidebar-position=""absolute"" data-header-position=""absolute"" data-boxed-layout=""full"">
         <header class=""topbar"" data-navbarbg=""skin5"">
             <nav class=""navbar top-navbar navbar-expand-md navbar-dark"">
-                <div class=""navbar-header"" data-logobg=""skin6"">
-                    <a class=""navbar-brand"" href=""dashboard.html"">
-                        <!-- Logo icon -->
-                        <b class=""logo-icon"">
-                            <!-- Dark Logo icon -->
-                            <img src=""/images/imageLogo.PNG"" style=""width:70px; height:50px;"" alt=""homepage"" />
-                        </b>
-                        <!--End Logo icon -->
-                        <!-- Logo text -->
-           ");
-                WriteLiteral(@"             <h6 class=""justify-content-center"">
-                            <!-- dark Logo text -->
-                            <strong style=""color:black;"">DREAM FASHION</strong>
-                        </h6>
-                    </a>
-                    <a class=""nav-toggler waves-effect waves-light text-dark d-block d-md-none""
-                       href=""javascript:void(0)""><i class=""ti-menu ti-close""></i></a>
-                </div>
-                <div class=""navbar-collapse collapse"" id=""navbarSupportedContent"" data-navbarbg=""skin5"">
+                <div class=""navbar-collapse collapse"" id=""navbarSupportedContent"" style=""margin-top: -43px;"" data-navbarbg=""skin5"">
                     <ul class=""navbar-nav ms-auto d-flex align-items-center"">
                         <li class="" in"">
                             ");
@@ -198,7 +176,7 @@ using GProject.WebApplication.Helpers;
                                 <a class=""profile-pic dropdown-toggle"" href=""#"" role=""button"" id=""dropdownMenuLink"" data-bs-toggle=""dropdown"" aria-expanded=""false"">
 ");
 #nullable restore
-#line 89 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 64 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
                                       
                                         string imgAvata = "avatar.jpg";
                                         if (user != null)
@@ -219,18 +197,18 @@ using GProject.WebApplication.Helpers;
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper);
                 BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "src", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-                AddHtmlAttributeValue("", 5998, "~/images/", 5998, 9, true);
+                AddHtmlAttributeValue("", 4585, "~/images/", 4585, 9, true);
 #nullable restore
-#line 98 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
-AddHtmlAttributeValue("", 6007, imgAvata, 6007, 9, false);
+#line 73 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+AddHtmlAttributeValue("", 4594, imgAvata, 4594, 9, false);
 
 #line default
 #line hidden
 #nullable disable
                 EndAddHtmlAttributeValues(__tagHelperExecutionContext);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_0);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_2);
-                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
-                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
                 await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
                 if (!__tagHelperExecutionContext.Output.IsContentModified)
                 {
@@ -241,7 +219,7 @@ AddHtmlAttributeValue("", 6007, imgAvata, 6007, 9, false);
                 WriteLiteral("\r\n");
                 WriteLiteral("                                    <span class=\"text-white font-medium\">");
 #nullable restore
-#line 100 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
+#line 75 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_LayoutAdmin.cshtml"
                                                                      Write(user == null ? "Tài khoản" : user.Name.NullToString());
 
 #line default
@@ -338,8 +316,7 @@ AddHtmlAttributeValue("", 6007, imgAvata, 6007, 9, false);
                                 <span class=""hide-menu"">Kích cỡ</span>
                             </a>
                         </li>
-                        <li class=""sidebar-item dropdown"">
-                            <a class=""sidebar-link waves-effect waves-dark sidebar-link"" href=""/Brand/Index""
+                        <li class=""sidebar-item dropdown"">                            <a class=""sidebar-link waves-effect waves-dark sidebar-link"" href=""/Brand/Index""
                                aria-expanded=""false"">
                                 <i class=""fab fa-bandcamp""></i>
                                 <span class=""hide-menu"">Nhãn hiệu</span>

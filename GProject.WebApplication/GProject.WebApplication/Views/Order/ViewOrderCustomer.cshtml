@@ -6,6 +6,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<style>
+    .totalStatus:after {
+        content: attr(value);
+        font-size: 15px;
+        background: red;
+        border-radius: 50%;
+        padding: 3px 6px;
+        position: relative;
+        left: -8px;
+        top: -10px;
+        opacity: 0.9;
+        color: white;
+    }
+</style>
+
 
 @if (@ViewData["Mess"] != null)
 {
@@ -21,13 +36,27 @@
         <div class="row">
             <div class="col-md-4"></div>
             <div class="col-md-8">
-                <a class="btn btn-outline-primary" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["InProgress"]">Chờ xác nhận</a>
-                <a class="btn btn-outline-secondary" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Confirmed"]">Đang vận chuyển</a>
-                <a class="btn btn-outline-warning" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Delivery"]">Đang giao hàng</a>
-                <a class="btn btn-outline-success" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Accomplished"]">Hoàn thành</a>
-                <a class="btn btn-outline-dark" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Returned"]">Trả hàng</a>
-                <a class="btn btn-outline-danger" style="margin-left:10px" asp-action="ViewOrderCustomer" asp-route-sortOrder="@ViewData["Canceled"]">Đã hủy</a>
-                <a class="btn btn-outline-info" style="margin-left:10px" asp-action="ViewOrderCustomer"><i class="fas fa-undo-alt"></i></a>
+                <a class="btn btn-outline-primary totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["InProgress"]" value="@ViewData["totalInPro"]">
+            Chờ xác nhận
+        </a>
+        <a class="btn btn-outline-secondary totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["Confirmed"]" value="@ViewData["totalConfi"]">
+            Đang vận chuyển
+        </a>
+        <a class="btn btn-outline-warning totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["Delivery"]" value="@ViewData["totalDelivery"]">
+            Đang giao hàng
+        </a>
+        <a class="btn btn-outline-success totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["Accomplished"]" value="@ViewData["totalAcc"]">
+            Hoàn thành
+        </a>
+        <a class="btn btn-outline-danger totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["Canceled"]" value="@ViewData["totalXCan"]">
+            Đã hủy
+        </a>
+        <a class="btn btn-outline-info" style="margin-left:10px" asp-action="ViewOrderCustomer"><i class="fas fa-undo-alt"></i></a>
             </div>
         </div>
         <h1 class="text-center" style="margin-top:25px; margin-bottom:25px">Trạng thái đơn hàng</h1>

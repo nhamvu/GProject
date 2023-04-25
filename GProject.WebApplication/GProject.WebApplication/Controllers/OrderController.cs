@@ -38,15 +38,55 @@ namespace GProject.WebApplication.Controllers
             orderDetailRepository = new OrderDetailRepository();
         }
 
-        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, int? sStatus, int pg = 1)
+        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int pg = 1)
         {
             try
             {
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
                     return RedirectToAction("AccessDenied", "Account");
                 int valsPaymentType = sPaymentType.HasValue ? sPaymentType.Value : -1;
-                int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
                 var lstObjs = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
+
+                ViewData["totalInPro"] = lstObjs.Where(x => x.Status == OrderStatus.InProgress).ToList().Count();
+                ViewData["totalConfi"] = lstObjs.Where(x => x.Status == OrderStatus.Confirmed).ToList().Count();
+                ViewData["totalDelivery"] = lstObjs.Where(x => x.Status == OrderStatus.Delivery).ToList().Count();
+                ViewData["totalAcc"] = lstObjs.Where(x => x.Status == OrderStatus.Accomplished).ToList().Count();
+                ViewData["totalXCan"] = lstObjs.Where(x => x.Status == OrderStatus.Canceled).ToList().Count();
+
+                ViewData["InProgress"] = sortOrder == "InProgress" ? "NotSort" : "InProgress";
+                ViewData["Confirmed"] = sortOrder == "Confirmed" ? "NotSort" : "Confirmed";
+                ViewData["Delivery"] = sortOrder == "Delivery" ? "NotSort" : "Delivery";
+                ViewData["Accomplished"] = sortOrder == "Accomplished" ? "NotSort" : "Accomplished";
+                ViewData["Returned"] = sortOrder == "InProgress" ? "NotSort" : "Returned";
+                ViewData["Canceled"] = sortOrder == "Canceled" ? "NotSort" : "Canceled";
+
+
+                switch (sortOrder)
+                {
+                    case "InProgress":
+                        lstObjs = lstObjs.Where(x => x.Status == OrderStatus.InProgress).ToList();
+                        break;
+                    case "Confirmed":
+                        lstObjs = lstObjs.Where(x => x.Status == OrderStatus.Confirmed).ToList();
+                        break;
+                    case "Delivery":
+                        lstObjs = lstObjs.Where(x => x.Status == OrderStatus.Delivery).ToList();
+                        break;
+                    case "Accomplished":
+                        lstObjs = lstObjs.Where(x => x.Status == OrderStatus.Accomplished).ToList();
+                        break;
+                    case "Returned":
+                        lstObjs = lstObjs.Where(x => x.Status == OrderStatus.Returned).ToList();
+                        break;
+                    case "Canceled":
+                        lstObjs = lstObjs.Where(x => x.Status == OrderStatus.Canceled).ToList();
+                        break;
+                    case "NotSort":
+                        lstObjs = lstObjs.ToList();
+                        break;
+                    default: break;
+                }
+
 
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.ShippingFullName.ToLower().Contains(sName.ToLower())).ToList();
@@ -56,8 +96,7 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => c.ShippingPhone.ToLower().Contains(sPhone.ToLower())).ToList();
                 if (valsPaymentType != -1)
                     lstObjs = lstObjs.Where(c => (int)c.PaymentType == sPaymentType).ToList();
-                if (valsStatus != -1)
-                    lstObjs = lstObjs.Where(c => (int)c.Status == valsStatus).ToList();
+
 
                 const int pageSize = 20;
                 if (pg < 1)
@@ -71,7 +110,6 @@ namespace GProject.WebApplication.Controllers
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
                 this.ViewData[nameof(sPaymentType)] = (object)valsPaymentType;
-                this.ViewData[nameof(sStatus)] = (object)valsStatus;
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
@@ -379,6 +417,13 @@ namespace GProject.WebApplication.Controllers
                 //-- Lấy danh sách từ api
                 var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
                 var lstProductvariation = await pService.ShowMyOrder(customer.Id);
+
+                ViewData["totalInPro"] = lstOrder.Where(x => x.Status == OrderStatus.InProgress).ToList().Count();
+                ViewData["totalConfi"] = lstOrder.Where(x => x.Status == OrderStatus.Confirmed).ToList().Count();
+                ViewData["totalDelivery"] = lstOrder.Where(x => x.Status == OrderStatus.Delivery).ToList().Count();
+                ViewData["totalAcc"] = lstOrder.Where(x => x.Status == OrderStatus.Accomplished).ToList().Count();
+                ViewData["totalXCan"] = lstOrder.Where(x => x.Status == OrderStatus.Canceled).ToList().Count();
+
 
                 ViewData["InProgress"] = sortOrder == "InProgress" ? "NotSort" : "InProgress";
                 ViewData["Confirmed"] = sortOrder == "Confirmed" ? "NotSort" : "Confirmed";

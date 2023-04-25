@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
@@ -102,7 +102,7 @@ using GProject.WebApplication.Models;
     ");
             WriteLiteral("</dt>\r\n    <dd>\r\n        <div class=\"commentBox\">\r\n");
 #nullable restore
-#line 48 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
+#line 48 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
              using (Html.BeginForm("Save", "Evaluate", FormMethod.Post, new { onsubmit = "return SubmitComment()" }))
             {
                 
@@ -111,14 +111,14 @@ using GProject.WebApplication.Models;
 #line hidden
 #nullable disable
 #nullable restore
-#line 50 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
+#line 50 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
            Write(Html.AntiForgeryToken());
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 50 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
+#line 50 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
                                         ;
 
 #line default
@@ -132,7 +132,7 @@ using GProject.WebApplication.Models;
                         <div class=""col-md-1 d-flex justify-content-between"">
 ");
 #nullable restore
-#line 57 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
+#line 57 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
                               
                                 if (string.IsNullOrEmpty(Model.Item7.Image))
                                 {
@@ -157,7 +157,7 @@ using GProject.WebApplication.Models;
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
 #nullable restore
-#line 61 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
+#line 61 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
                                 }
                                 else
                                 {
@@ -191,7 +191,7 @@ AddHtmlAttributeValue("", 2287, Model.Item7.Image, 2287, 18, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n");
 #nullable restore
-#line 65 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
+#line 65 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
                                 }
                             
 
@@ -244,7 +244,7 @@ WriteAttributeValue("", 3879, Model.Item4.ProductId, 3879, 22, false);
             EndWriteAttribute();
             WriteLiteral("/>\r\n                                <input type=\"hidden\" id=\"Rating\" name=\"Rating\" />\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n");
 #nullable restore
-#line 91 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
+#line 91 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_CommentBox.cshtml"
             }
 
 #line default
