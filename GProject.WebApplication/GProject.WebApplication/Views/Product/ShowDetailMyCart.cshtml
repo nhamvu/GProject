@@ -730,8 +730,12 @@
         $('table tbody tr .totalMoneyItem').each((index, item) => {
             var _price = parseFloat($(item).parents("tr").find("input[type=text].price").val()) || 0;
             var _quantity = parseInt($(item).parents("tr").find("input[type=text].quantity").val()) || 0;
-            $(item).val(_price * _quantity);
-            _totalPaymentMoney += parseFloat($(item).val());
+            var ckecedItem = $(item).parents("tr").find("input[type=checkbox].ckbProdItem");
+            if (ckecedItem.is(':checked')) {
+                $(item).val(_price * _quantity);
+                _totalPaymentMoney += parseFloat($(item).val());
+            }
+            
         });
         $('#totalPayment').val(_totalPaymentMoney);
         //$('#cTotalMoney').val(_totalPaymentMoney);

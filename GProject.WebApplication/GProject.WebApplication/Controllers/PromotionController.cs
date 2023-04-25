@@ -29,6 +29,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "manager")
+                    return RedirectToAction("AccessDenied", "Account");
                 int valsPercent = sPercent.HasValue ? sPercent.Value : -1;
                 int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
                 //-- Lấy danh sách từ api
@@ -68,13 +70,15 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
         [HttpGet]
         public async Task<ActionResult> Create()
         {
+            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "manager")
+                return RedirectToAction("AccessDenied", "Account");
             var lstPromotion = _IPromotionRepository.GetAll();
             var lstProduct = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
             //-- Lấy danh sách sản phẩm chưa đc giảm giá
@@ -187,6 +191,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "manager")
+                    return RedirectToAction("AccessDenied", "Account");
                 var Promotion = _IPromotionRepository.GetAll().Where(c => c.Id == id).FirstOrDefault();
                 if (Promotion == null)
                 {

@@ -13,6 +13,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "manager")
+                    return RedirectToAction("AccessDenied", "Account");
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
                 ViewData["Ten"] = ten;
@@ -66,6 +68,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "manager")
+                    return RedirectToAction("AccessDenied", "Account");
                 string url = Commons.mylocalhost;
 
                 string randomVoucherId = RandomString().ToString();

@@ -26,6 +26,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 int valsPaymentType = sPaymentType.HasValue ? sPaymentType.Value : -1;
                 var lstObjs = orderRepository.GetAll().Where(c => c.Status == Data.Enums.OrderStatus.Accomplished).ToList();
 
@@ -59,7 +61,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
@@ -73,7 +75,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Login");
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
     }

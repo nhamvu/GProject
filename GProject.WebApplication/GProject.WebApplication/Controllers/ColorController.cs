@@ -33,6 +33,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
                 var data = new ColorDTO() { ColorList = lstObjs };
@@ -45,8 +47,7 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception)
             {
-
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
@@ -55,6 +56,9 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
+
                 string url = Commons.mylocalhost;
                 string image = "";
                 if (Color.Image_Upload != null)
@@ -83,7 +87,7 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception)
             {
-                return BadRequest();
+                return RedirectToAction("AccessDenied", "Account");
             }
 
         }

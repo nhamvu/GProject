@@ -23,6 +23,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
                 var data = new SizeDTO() { SizeList = lstObjs };
@@ -36,7 +38,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception)
             {
 
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
@@ -45,6 +47,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 string url = Commons.mylocalhost;
                 //-- Parse lại dữ liệu từ ViewModel
                 var prd = new Size() { Id = Size.Id, Code = Size.Code, Name = Size.Name, Status = Size.Status };
@@ -63,7 +67,7 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception)
             {
-                return BadRequest();
+                return RedirectToAction("AccessDenied", "Account");
             }
 
         }

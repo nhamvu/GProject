@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Net.Mail;
 using System.Net;
+using GProject.WebApplication.Services;
+using Microsoft.AspNetCore.Http;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -62,10 +64,12 @@ namespace GProject.WebApplication.Controllers
                     claims.Add(new Claim(ClaimTypes.Country, user.Image != null ? user.Image : ""));
                     if (Emp.Position == Data.Enums.EmployeePosition.Manager)
                     {
+                        HttpContext.Session.SetString("myRole", "manager");
                         claims.Add(new Claim(ClaimTypes.Role, "manager"));
                     }
                     else
                     {
+                        HttpContext.Session.SetString("myRole", "employee");
                         claims.Add(new Claim(ClaimTypes.Role, "employee"));
                     }
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -83,6 +87,7 @@ namespace GProject.WebApplication.Controllers
                 else if (Cus != null)
                 {
                     Commons.setObjectAsJson(HttpContext.Session, "userLogin", Cus);
+                    HttpContext.Session.SetString("myRole", "customer");
                     var claims = new List<Claim>();
                     claims.Add(new Claim("username", Cus.Name));
                     claims.Add(new Claim(ClaimTypes.NameIdentifier, Cus.Id.ToString()));
@@ -123,6 +128,7 @@ namespace GProject.WebApplication.Controllers
         {
 			await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
             HttpContext.Session.Remove("userLogin");
+            HttpContext.Session.Remove("myRole");
             return Redirect("/");
         }
         [HttpGet]
