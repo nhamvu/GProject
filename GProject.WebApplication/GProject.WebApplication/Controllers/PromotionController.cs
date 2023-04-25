@@ -90,7 +90,9 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
-                var lstPromotion = _IPromotionDetailRepository.GetAll();
+                var lstPromotion1 = _IPromotionRepository.GetAll();
+                var lstPromotionDEtail = _IPromotionDetailRepository.GetAll();
+                var lstPromotion = (from x in lstPromotion1 join y in lstPromotionDEtail on x.Id equals y.PromotionId where x.Status == Data.Enums.PromotionStatus.Happenning select y).ToList();
                 var lstProduct = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
                 List<Product> tableData = new List<Product>();
 
@@ -109,7 +111,7 @@ namespace GProject.WebApplication.Controllers
                 }
                 else
                 {
-                    var lstPromotionDetail = _IPromotionDetailRepository.GetAll().Where(c => c.PromotionId == new Guid(promotionid)).ToList();
+                    var lstPromotionDetail = lstPromotion.Where(c => c.PromotionId == new Guid(promotionid)).ToList();
                     tableData = lstProduct.Join(lstPromotionDetail, x => x.Id, y => y.ProductId, (x, y) => x).ToList();
                 }
                 return PartialView("_ProductTable", tableData);

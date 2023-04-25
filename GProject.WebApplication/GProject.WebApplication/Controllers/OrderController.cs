@@ -438,17 +438,16 @@ namespace GProject.WebApplication.Controllers
         public async Task<ActionResult> CheckOrderStatus(Guid? accomplished, Guid? canceled)
         {
             try
-            {
-                var order = orderRepository.GetAll().Where(c => c.Id == canceled).FirstOrDefault();
-                var LstorderDetail = orderDetailRepository.GetAll().Where(c => c.OrderId == order.Id).ToList();
+            {                
                 if (accomplished.HasValue)
                 {
-                    ChangQuantityInStock((int)order.Status, 3, LstorderDetail);
                     var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/order-accomplished?id=" + accomplished));
                     return RedirectToAction("ViewOrderCustomer", "Order");
                 }
                 if (canceled.HasValue)
                 {
+                    var order = orderRepository.GetAll().Where(c => c.Id == canceled).FirstOrDefault();
+                    var LstorderDetail = orderDetailRepository.GetAll().Where(c => c.OrderId == order.Id).ToList();
                     ChangQuantityInStock((int)order.Status, 5, LstorderDetail);
                     var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/order-canceled?id=" + canceled));
                     return RedirectToAction("ViewOrderCustomer", "Order");
@@ -471,12 +470,14 @@ namespace GProject.WebApplication.Controllers
                 //-- Lấy danh sách từ api
                 var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
                 var lstProductvariation = await pService.ShowMyOrder(customer.Id);
+                lstOrder = lstOrder.Where(x => x.CustomerId == customer.Id).ToList();
 
                 ViewData["totalInPro"] = lstOrder.Where(x => x.Status == OrderStatus.InProgress).ToList().Count();
                 ViewData["totalConfi"] = lstOrder.Where(x => x.Status == OrderStatus.Confirmed).ToList().Count();
                 ViewData["totalDelivery"] = lstOrder.Where(x => x.Status == OrderStatus.Delivery).ToList().Count();
                 ViewData["totalAcc"] = lstOrder.Where(x => x.Status == OrderStatus.Accomplished).ToList().Count();
                 ViewData["totalXCan"] = lstOrder.Where(x => x.Status == OrderStatus.Canceled).ToList().Count();
+                ViewData["totalXacNhan"] = lstOrder.Where(x => x.Status == OrderStatus.DaXacNhan).ToList().Count();
 
 
                 ViewData["InProgress"] = sortOrder == "InProgress" ? "NotSort" : "InProgress";
@@ -485,8 +486,8 @@ namespace GProject.WebApplication.Controllers
                 ViewData["Accomplished"] = sortOrder == "Accomplished" ? "NotSort" : "Accomplished";
                 ViewData["Returned"] = sortOrder == "InProgress" ? "NotSort" : "Returned";
                 ViewData["Canceled"] = sortOrder == "Canceled" ? "NotSort" : "Canceled";
-
-                lstOrder = lstOrder.Where(x => x.CustomerId == customer.Id).ToList();
+                ViewData["XacNhan"] = sortOrder == "DaXacNhan" ? "NotSort" : "DaXacNhan";
+                
 
                 switch (sortOrder)
                 {
@@ -507,6 +508,9 @@ namespace GProject.WebApplication.Controllers
                         break;
                     case "Canceled":
                         lstOrder = lstOrder.Where(x => x.Status == OrderStatus.Canceled).ToList();
+                        break;
+                    case "DaXacNhan":
+                        lstOrder = lstOrder.Where(x => x.Status == OrderStatus.DaXacNhan).ToList();
                         break;
                     case "NotSort":
                         lstOrder = lstOrder.ToList();

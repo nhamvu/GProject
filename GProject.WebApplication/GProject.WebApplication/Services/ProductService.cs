@@ -189,6 +189,7 @@ namespace GProject.WebApplication.Services
                 cartdetail_data.Status = Data.Enums.CartDetailStatus.Ready;
                 cartdetail_data.Description = cDescription.NullToString();
                 strUrl = String.Concat(Commons.mylocalhost, "Cart/add-cart-detail");
+                cartDetailRepository.Add(cartdetail_data);
             }
             else
             {
@@ -196,8 +197,9 @@ namespace GProject.WebApplication.Services
                 cartdetail_data.ToatlMoney = cartdetail_data.ToatlMoney + cTotalMoney.NullToDecimal();
                 cartdetail_data.Description = cDescription.NullToString();
                 strUrl = String.Concat(Commons.mylocalhost, "Cart/update-cart-detail");
+                cartDetailRepository.Update(cartdetail_data);
             }
-            cartDetailRepository.Update(cartdetail_data);
+            
             //if (!await Commons.Add_or_UpdateAsync(cartdetail_data, strUrl))
             //    return false;
 

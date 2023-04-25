@@ -27,7 +27,7 @@ namespace GProject.Api.MyServices.Services
                 ExpirationDate = obj.ExpirationDate,
                 CreateDate = DateTime.Now,
                 EmployeeId = obj.EmployeeId,
-                Status = 1
+                Status = obj.Status
             };
             _voucherRepository.Add(obj);
             return true;

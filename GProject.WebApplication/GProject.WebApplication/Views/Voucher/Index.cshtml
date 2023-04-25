@@ -147,11 +147,16 @@
         <div class="col-md-4">
             <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
             <div style="margin-top:10px;">
+                @* <select class = "form-control iscompany" asp-for="Status" name="Status" id="Status">
+                    <option value="1">Tất cả</option>
+                    <option value="2">Giới hạn</option>
+                    <option value="0">Không sử dụng</option>
+                </select> *@
                 @Html.DropDownList("Status", new[]
                 {
-                new SelectListItem{Text="Tất cả", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : true)},
-                new SelectListItem{Text="Giới hạn", Value="2", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},               
+                new SelectListItem{Text="Tất cả", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)},
+                new SelectListItem{Text="Giới hạn", Value="2", Selected = (Model.Status != null ? (Model.Status == 2) : false)},
+                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : false)},               
                 }, new { @class = "form-control iscompany" })
             </div>
         </div>
