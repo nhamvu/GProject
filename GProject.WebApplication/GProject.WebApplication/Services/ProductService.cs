@@ -21,11 +21,13 @@ namespace GProject.WebApplication.Services
         {
             //var result = _product_DetailRepository.GetAll().Join(_productRepository.GetAll(), a => a.Product_Id, b => b.Id, (a, b) => new { a, b }).Join(_colorRepository.GetAll(), c => c.a.Color_Id, d => d.Id, (c, d) => new { c, d }).Join(_categoryRepository.GetAll(), e => e.c.a.Category_Id, f => f.Id, (e, f) => new { e, f }).Join(_producerRepository.GetAll(), g => g.e.c.a.Producer_Id, h => h.Id, (g, h) => new { g, h }).Select(i => new { Producer = i.h, Category = i.g.f, Color = i.g.e.d, Product = i.g.e.c.b, Product_Detail = i.g.e.c.a });
             var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+            var lstCategory = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
             var data = lstProducts
                .Join(lstBrand, a => a.BrandId, b => b.Id, (a, b) => new { a, b })
-               .Select(i => new { Product = i.a, Brand = i.b, ProductVariations = lstProductvariation.Where(c => c.ProductId == i.a.Id).ToList() });
+               .Join(lstCategory, ab => ab.a.CategoryId, c => c.Id, (ab, c) => new { ab, c })
+               .Select(i => new { Product = i.ab.a, Brand = i.ab.b, Category = i.c, ProductVariations = lstProductvariation.Where(c => c.ProductId == i.ab.a.Id).ToList() });
             return Commons.ConverObject<List<ProductDTO>>(data);
         }
 

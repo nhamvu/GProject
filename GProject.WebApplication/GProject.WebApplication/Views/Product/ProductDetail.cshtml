@@ -242,12 +242,15 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         <Legend><strong>Màu sắc khác của sản phẩm này</strong></Legend>
                         <hr>
                         @{
-                            foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
+                            if(Model.Item2.Select(c => c.ColorId).Distinct().ToList().Count() > 0)
+                            {
+                                foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                             {
                                 string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c =>
                                 c.Image).FirstOrDefault().NullToString();
                                 <button type="button" onclick="changeImageProd('@im')"><img style="width:250px; height:100px;"
                                     class="img-thumbnail" src="~/images/@im" alt=""></button>
+                            }
                             }
                         }
                     </fieldset>
@@ -318,9 +321,12 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             <h3 class="si-class">
                                 <strong>Size:</strong>
                                 @{
-                                    foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
+                                    if(Model.Item2.Select(c => c.SizeId).Distinct().ToList().Count() > 0)
+                                    {
+                                        foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
                                     {
                                         <button type="button" value="@item" id="btnSize" style="width: 80px; height:40px;">@(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())</button>
+                                    }
                                     }
                                 }
                             </h3>
@@ -335,7 +341,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                                 <i class="fa fa-minus" aria-hidden="true"></i>
                                             </button>
                                         </div>
-                                        <input class="input-group-field form-control col-md-5" type="number" id="quantity"
+                                        <input class="input-group-field form-control col-md-5 quantity" type="number" id="quantity"
                                             name="quantity" value="0" style="width:100px;">
                                         <div class="input-group-button col-md-3 mt-2">
                                             <button type="button" class="btn-info hollow circle" data-quantity="plus"
@@ -674,6 +680,12 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
             })
         });
 
+        $('input.quantity').keyup(function () {
+            let regex = /^[0-9]+$/;
+            if (!regex.test($(this).val()))
+                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
+        });
+
 
         $("#selectVoucher").change(function () {
             $("#DiscountCode").val('')
@@ -737,6 +749,10 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
             } else {
                 $('input[name=' + fieldName + ']').val(0);
             }
+            sumTotal();
+        });
+
+        $(".quantity").change(function(){
             sumTotal();
         });
 

@@ -244,8 +244,11 @@ namespace GProject.WebApplication.Controllers
                         voucherId = selectVoucher;
                 else
                 {
-                    var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
-                    voucherId = voucher.Id;
+                    if(!string.IsNullOrEmpty(DiscountCode)) 
+                    {
+                        var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
+                        voucherId = voucher.Id;
+                    }
                 }
                 List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
                 var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
