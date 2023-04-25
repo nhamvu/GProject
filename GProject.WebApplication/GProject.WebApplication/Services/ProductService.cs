@@ -1,4 +1,5 @@
 ﻿using GProject.Data.DomainClass;
+using GProject.Data.MyRepositories.IRepositories;
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +12,11 @@ namespace GProject.WebApplication.Services
 {
     public class ProductService
     {
+        private static ICartDetailRepository cartDetailRepository;
+        public ProductService()
+        {
+            cartDetailRepository = new CartDetailRepository();
+        }
         public async Task<List<ProductDTO>> GetProductViewModel()
         {
             //var result = _product_DetailRepository.GetAll().Join(_productRepository.GetAll(), a => a.Product_Id, b => b.Id, (a, b) => new { a, b }).Join(_colorRepository.GetAll(), c => c.a.Color_Id, d => d.Id, (c, d) => new { c, d }).Join(_categoryRepository.GetAll(), e => e.c.a.Category_Id, f => f.Id, (e, f) => new { e, f }).Join(_producerRepository.GetAll(), g => g.e.c.a.Producer_Id, h => h.Id, (g, h) => new { g, h }).Select(i => new { Producer = i.h, Category = i.g.f, Color = i.g.e.d, Product = i.g.e.c.b, Product_Detail = i.g.e.c.a });
@@ -186,14 +192,14 @@ namespace GProject.WebApplication.Services
             }
             else
             {
-                cartdetail_data.Quantity += int.Parse(cQuantity);
-                cartdetail_data.ToatlMoney += decimal.Parse(cTotalMoney);
-                cartdetail_data.Description = cDescription;
+                cartdetail_data.Quantity = cartdetail_data.Quantity + cQuantity.NullToInt();
+                cartdetail_data.ToatlMoney = cartdetail_data.ToatlMoney + cTotalMoney.NullToDecimal();
+                cartdetail_data.Description = cDescription.NullToString();
                 strUrl = String.Concat(Commons.mylocalhost, "Cart/update-cart-detail");
             }
-
-            if (!await Commons.Add_or_UpdateAsync(cartdetail_data, strUrl))
-                return false;
+            cartDetailRepository.Update(cartdetail_data);
+            //if (!await Commons.Add_or_UpdateAsync(cartdetail_data, strUrl))
+            //    return false;
 
             return true;
         }

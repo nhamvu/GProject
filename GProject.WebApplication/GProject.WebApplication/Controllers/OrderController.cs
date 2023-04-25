@@ -30,12 +30,14 @@ namespace GProject.WebApplication.Controllers
 		private ISendMailRepository sendMailRepository;
         private IOrderRepository orderRepository;
         private IOrderDetailRepository orderDetailRepository;
+        private IProductVariationRepository productVariationRepository;
         public OrderController(IVnPayService vnPayService)
         {
 			_vnPayService = vnPayService;
 			sendMailRepository = new SendMailRepository();
             orderRepository = new OrderRepository();
             orderDetailRepository = new OrderDetailRepository();
+            productVariationRepository = new ProductVariationRepository();
         }
 
         public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int pg = 1)
@@ -143,8 +145,11 @@ namespace GProject.WebApplication.Controllers
             {
                 var employee = HttpContext.Session.GetObjectFromJson<Employee>("userLogin");
                 var order = orderRepository.GetAll().Where(c => c.Id == new Guid(id)).FirstOrDefault();
+                
                 if (order != null)
                 {
+                    int oriStatus = (int)order.Status;
+                    var LstorderDetail = orderDetailRepository.GetAll().Where(c => c.OrderId == order.Id).ToList();
                     order.Status = (Data.Enums.OrderStatus)status;
                     if (!orderRepository.Update(order))
                         HttpContext.Session.SetString("mess", "Failed");
@@ -153,12 +158,16 @@ namespace GProject.WebApplication.Controllers
                         switch (status)
                         {
                             case 6:
-                                EMailSender(Commons.email, Commons.passemail, "nhamvdph18699@fpt.edu.vn", "Dream Fashion xin thông báo tới quý khách hàng", $"Thông báo đơn hàng {order.OrderId} được đặt vào {order.CreateDate} của bạn đã được xác nhận, chúng tôi sẽ giao hàng trong thời gian sớm nhất. Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!", employee.Email);
+                                ChangQuantityInStock(oriStatus, status, LstorderDetail);
+                                EMailSender(Commons.email, Commons.passemail, "huylqph18771@fpt.edu.vn", "Dream Fashion xin thông báo tới quý khách hàng", $"Thông báo đơn hàng {order.OrderId} được đặt vào {order.CreateDate} của bạn đã được xác nhận, chúng tôi sẽ giao hàng trong thời gian sớm nhất. Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!", employee.Email);
                                 break;
                             case 5:
-                                EMailSender(Commons.email, Commons.passemail, "nhamvdph18699@fpt.edu.vn", "Dream Fashion xin thông báo tới quý khách hàng", $"Thông báo đơn hàng {order.OrderId} được đặt vào {order.CreateDate} của bạn đã được hủy, chúng tôi xin lỗi vì sự bất tiện này. Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!", employee.Email);
+                                EMailSender(Commons.email, Commons.passemail, "huylqph18771@fpt.edu.vn", "Dream Fashion xin thông báo tới quý khách hàng", $"Thông báo đơn hàng {order.OrderId} được đặt vào {order.CreateDate} của bạn đã được hủy, chúng tôi xin lỗi vì sự bất tiện này. Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi!", employee.Email);
+                                //-- Hủy đơn hàng, trả lại số lượng còn lại của sản phẩm
+                                ChangQuantityInStock(oriStatus, status, LstorderDetail);
                                 break;
                             default:
+                                ChangQuantityInStock(oriStatus, status, LstorderDetail);
                                 break;
                         }
 
@@ -176,6 +185,44 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
+        /// <summary>
+        /// Nếu mà đơn hàng đang 
+        /// </summary>
+        /// <param name="OriStatus"></param>
+        /// <returns></returns>
+        public void ChangQuantityInStock(int OriStatus, int changStatusVal, List<OrderDetail> orderDetails)
+        {
+            List<ProductVariation> variations = productVariationRepository.GetAll();
+            //Nếu trạng thái đang là Hủy, và muốn đổi sang trạng thái khác Hủy, thì
+            //cộng thêm số lượng ở orderDetail và giảm ở ProdVariation
+            if (OriStatus == 5 && changStatusVal != 5)
+            {
+                foreach (var item in orderDetails)
+                {
+                    var prodVariation = variations.Where(c => c.Id == item.ProductVariationId).FirstOrDefault();
+                    if (prodVariation != null)
+                    {
+                        prodVariation.QuantityInStock = prodVariation.QuantityInStock - item.Quantity;
+                        productVariationRepository.Update(prodVariation);
+                    }
+                };
+            }
+
+            //Nếu trạng thái hiện tại khác hủy và muốn chuyển sang hủy, 
+            //thì lại cộng thêm số lượng cho prodVariation
+            if (OriStatus != 5 && changStatusVal == 5)
+            {
+                foreach (var item in orderDetails)
+                {
+                    var prodVariation = variations.Where(c => c.Id == item.ProductVariationId).FirstOrDefault();
+                    if (prodVariation != null)
+                    {
+                        prodVariation.QuantityInStock = prodVariation.QuantityInStock + item.Quantity;
+                        productVariationRepository.Update(prodVariation);
+                    }
+                };
+            }
+        }
         private static int _selectVoucher;
         private static string _cGiamGia;
         private static string _idDeliveryAddress;
@@ -267,8 +314,11 @@ namespace GProject.WebApplication.Controllers
                     voucherId = selectVoucher;
                 else
                 {
-                    var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
-                    voucherId = voucher.Id;
+                    if (!string.IsNullOrEmpty(DiscountCode))
+                    {
+						var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
+						voucherId = voucher.Id;
+					}
                 }
                 List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
                 var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
@@ -389,13 +439,17 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                var order = orderRepository.GetAll().Where(c => c.Id == canceled).FirstOrDefault();
+                var LstorderDetail = orderDetailRepository.GetAll().Where(c => c.OrderId == order.Id).ToList();
                 if (accomplished.HasValue)
                 {
+                    ChangQuantityInStock((int)order.Status, 3, LstorderDetail);
                     var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/order-accomplished?id=" + accomplished));
                     return RedirectToAction("ViewOrderCustomer", "Order");
                 }
                 if (canceled.HasValue)
                 {
+                    ChangQuantityInStock((int)order.Status, 5, LstorderDetail);
                     var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/order-canceled?id=" + canceled));
                     return RedirectToAction("ViewOrderCustomer", "Order");
                 }
@@ -404,7 +458,7 @@ namespace GProject.WebApplication.Controllers
             catch (Exception)
             {
 
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
             }
         }
 
