@@ -242,15 +242,14 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         <Legend><strong>Màu sắc khác của sản phẩm này</strong></Legend>
                         <hr>
                         @{
-                            if(Model.Item2.Select(c => c.ColorId).Distinct().ToList().Count() > 0)
-                            {
-                                foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
+                            foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                             {
                                 string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c =>
                                 c.Image).FirstOrDefault().NullToString();
-                                <button type="button" onclick="changeImageProd('@im')"><img style="width:250px; height:100px;"
-                                    class="img-thumbnail" src="~/images/@im" alt=""></button>
-                            }
+                                <button type="button" onclick="changeImageProd('@im')">
+                                    <img style="width:250px; height:100px;"
+                             class="img-thumbnail" src="~/images/@im" alt="">
+                                </button>
                             }
                         }
                     </fieldset>
@@ -321,12 +320,10 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             <h3 class="si-class">
                                 <strong>Size:</strong>
                                 @{
-                                    if(Model.Item2.Select(c => c.SizeId).Distinct().ToList().Count() > 0)
-                                    {
-                                        foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
+
+                                    foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
                                     {
                                         <button type="button" value="@item" id="btnSize" style="width: 80px; height:40px;">@(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())</button>
-                                    }
                                     }
                                 }
                             </h3>
