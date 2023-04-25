@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 4 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 5 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 6 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 7 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 8 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.Data.MyRepositories.IRepositories;
 
 #line default
@@ -108,7 +108,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>>
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 9 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 9 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
   
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -314,7 +314,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>>
 <link rel=""stylesheet"" type=""text/css"" href=""/UserContent/plugins/OwlCarousel2-2.2.1/owl.theme.default.css"">
 <link rel=""stylesheet"" type=""text/css"" href=""/UserContent/plugins/OwlCarousel2-2.2.1/animate.css"">
 <link rel=""stylesheet"" type=""text/css"" href=""/UserContent/plugins/jquery-ui-1.12.1.custom/jquery-ui.css"">
-<link rel=""stylesheet"" type=""text/css"" href=""/UserContent/styles/categories_styles.css""><link rel=""stylesheet"" type=""text/css"" href=""/UserContent/styles/categories_responsive.css"">
+<link rel=""stylesheet"" type=""text/css"" href=""/UserContent/styles/categories_styles.css"">
+<link rel=""stylesheet"" type=""text/css"" href=""/UserContent/styles/categories_responsive.css"">
 <link href=""/AdminContent/css/style.min.css"" rel=""stylesheet"">
 ");
 #nullable restore
