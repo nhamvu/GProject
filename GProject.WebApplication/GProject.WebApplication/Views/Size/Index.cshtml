@@ -50,16 +50,6 @@
                 <input asp-for="Name" placeholder="Size name" maxlength="200" />
             </div>
         </div>
-        <div class="col-md-4">
-            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
-            <div style="margin-top:10px;">
-                @Html.DropDownList("Status", new[]
-                {
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
-                }, new { @class = "form-control iscompany" })
-            </div>
-        </div>
         <div class="col-md-2">
             <strong><label></label></strong>
             <div class="form-input">
@@ -81,7 +71,6 @@
                         <tr>
                             <th>Mã Size</th>
                             <th>Tên Size</th>
-                            <th>Trạng thái</th>
                             <th>Chi tiết</th>
                         </tr>
                     </thead>
@@ -96,9 +85,6 @@
                                     </td>
                                     <td>
                                         @item.Name
-                                    </td>
-                                    <td>
-                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
                                     </td>
                                     <td>
                                         <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
@@ -123,7 +109,6 @@
             <div class="modal-body">
                 <h5>Tên:<strong id="namee"></strong></h5>
                 <h5>Mã:<strong id="code"></strong></h5>
-                <h5>Trạng thái:<strong id="status"></strong></h5>
             </div>
             <div class="modal-footer" style="position:relative;clear:both;z-index:1000000" id="transport-footer">
                 <button type="button" class="btn btn-default pull-left btn-sm" data-dismiss="modal" onclick="btnClose()"><i class="fa fa-times"></i>Đóng</button>
@@ -150,7 +135,6 @@
         } else if ($("#changeform").text() == "Hủy thay đổi") {
             $("#Name").val('');
             $("#Code").val('');
-            $("#Status").val(0);
             $('#formdata').hide();
             $("#changeform").text("Thêm mới");
         }
@@ -181,11 +165,9 @@
         $.getJSON("/Color/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);
             $("#Code").val(data.Code);
-            $("#Status").val(data.status);
             $("#Id").val(data.id);
             document.getElementById('namee').innerText = data.name;
             document.getElementById('code').innerText = data.code;
-            document.getElementById('status').innerText = data.status ? "Đang sử dụng" : "Không sử dụng";
             $("#changeform").text("Thêm mới");
             ChangePanel()
             $('#ViewDetail').modal('show');

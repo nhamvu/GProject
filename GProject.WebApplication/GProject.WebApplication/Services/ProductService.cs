@@ -24,7 +24,7 @@ namespace GProject.WebApplication.Services
             var lstCategory = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             var lstProducts = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
-            var data = lstProducts
+            var data = lstProducts.Where(x => x.Status != 1)
                .Join(lstBrand, a => a.BrandId, b => b.Id, (a, b) => new { a, b })
                .Join(lstCategory, ab => ab.a.CategoryId, c => c.Id, (ab, c) => new { ab, c })
                .Select(i => new { Product = i.ab.a, Brand = i.ab.b, Category = i.c, ProductVariations = lstProductvariation.Where(c => c.ProductId == i.ab.a.Id).ToList() });

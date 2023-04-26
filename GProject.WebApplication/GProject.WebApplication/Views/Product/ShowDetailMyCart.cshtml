@@ -572,10 +572,7 @@
             })
         });        
 
-        function TinhPhanTram(tongtien, giamgia) {
-            let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
-            return thanhtien
-        }
+        
 
         function ConvertDate(time) {
             var date = new Date(time);
@@ -702,6 +699,11 @@
                 swal("Thành công", "Thao tác thành công", "success");
         }
     });
+
+    function TinhPhanTram(tongtien, giamgia) {
+        let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
+        return thanhtien
+    }
 
     function CheckDiscountCode() {
         $("#selectVoucher").val(0)

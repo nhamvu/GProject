@@ -54,12 +54,14 @@ namespace GProject.WebApplication.Controllers
                 ViewData["totalDelivery"] = lstObjs.Where(x => x.Status == OrderStatus.Delivery).ToList().Count();
                 ViewData["totalAcc"] = lstObjs.Where(x => x.Status == OrderStatus.Accomplished).ToList().Count();
                 ViewData["totalXCan"] = lstObjs.Where(x => x.Status == OrderStatus.Canceled).ToList().Count();
+                ViewData["totalXacNhan"] = lstObjs.Where(x => x.Status == OrderStatus.DaXacNhan).ToList().Count();
 
                 ViewData["InProgress"] = sortOrder == "InProgress" ? "NotSort" : "InProgress";
                 ViewData["Confirmed"] = sortOrder == "Confirmed" ? "NotSort" : "Confirmed";
                 ViewData["Delivery"] = sortOrder == "Delivery" ? "NotSort" : "Delivery";
                 ViewData["Accomplished"] = sortOrder == "Accomplished" ? "NotSort" : "Accomplished";
                 ViewData["Returned"] = sortOrder == "InProgress" ? "NotSort" : "Returned";
+                ViewData["XacNhan"] = sortOrder == "DaXacNhan" ? "NotSort" : "DaXacNhan";
                 ViewData["Canceled"] = sortOrder == "Canceled" ? "NotSort" : "Canceled";
 
 
@@ -82,6 +84,9 @@ namespace GProject.WebApplication.Controllers
                         break;
                     case "Canceled":
                         lstObjs = lstObjs.Where(x => x.Status == OrderStatus.Canceled).ToList();
+                        break;
+                    case "DaXacNhan":
+                        lstObjs = lstObjs.Where(x => x.Status == OrderStatus.DaXacNhan).ToList();
                         break;
                     case "NotSort":
                         lstObjs = lstObjs.ToList();

@@ -124,6 +124,10 @@
             asp-route-sortOrder="@ViewData["InProgress"]" value="@ViewData["totalInPro"]">
             Chờ xác nhận
         </a>
+                <a class="btn btn-outline-secondary totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["XacNhan"]" value="@ViewData["totalXacNhan"]">
+            Đã xác nhận
+        </a>
         <a class="btn btn-outline-secondary totalStatus" style="margin-left:10px" asp-action="Index"
             asp-route-sortOrder="@ViewData["Confirmed"]" value="@ViewData["totalConfi"]">
             Đang vận chuyển

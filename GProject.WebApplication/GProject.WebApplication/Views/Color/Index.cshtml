@@ -48,16 +48,6 @@
             </div>
         </div>
         <div class="col-md-4">
-            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
-            <div style="margin-top:10px;">
-                @Html.DropDownList("Status", new[]
-                {
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
-                }, new { @class = "form-control iscompany" })
-            </div>
-        </div>
-        <div class="col-md-4">
             <label class="col-md-5"><strong>Hình ảnh:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
                 <input asp-for="Image_Upload" type="file" multiple class="form-control" />
@@ -85,7 +75,6 @@
                             <th>Mã Màu</th>
                             <th>Tên Màu</th>
                             <th>Hình ảnh</th>
-                            <th>Trạng thái</th>
                             <th>Chi tiết</th>
                         </tr>
                     </thead>
@@ -103,9 +92,6 @@
                                     </td>
                                     <td>
                                         <img style="width:120px;height:50px; border;1px solid;" src="~/images/@item.Image" />
-                                    </td>
-                                    <td>
-                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
                                     </td>
                                     <td>
                                         <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
@@ -130,7 +116,6 @@
             <div class="modal-body">
                 <h5>Tên màu:<strong id="namee"></strong></h5>
                 <h5>Mã màu:<strong id="code"></strong></h5>
-                <h5>Trạng thái:<strong id="status"></strong></h5>
             </div>
             <div class="modal-footer" style="position:relative;clear:both;z-index:1000000" id="transport-footer">
                 <button type="button" class="btn btn-default pull-left btn-sm" data-dismiss="modal" onclick="btnClose()"><i class="fa fa-times"></i>Đóng</button>
@@ -157,7 +142,6 @@
         } else if ($("#changeform").text() == "Hủy thay đổi") {
             $("#Name").val('');
             $("#HEXCode").val('');
-            $("#Status").val(0);
             $('#formdata').hide();
             $("#changeform").text("Thêm mới");
         }
@@ -188,11 +172,9 @@
         $.getJSON("/Color/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);
             $("#HEXCode").val(data.hexCode);
-            $("#Status").val(data.status);
             $("#Id").val(data.id);
             document.getElementById('namee').innerText = data.name;
             document.getElementById('code').innerText = data.hexCode;
-            document.getElementById('status').innerText = data.status == 1 ? "Đang sử dụng" : "Không sử dụng";
             $("#changeform").text("Thêm mới");
             ChangePanel()
             $('#ViewDetail').modal('show');
