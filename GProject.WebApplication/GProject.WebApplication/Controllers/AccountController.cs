@@ -74,13 +74,13 @@ namespace GProject.WebApplication.Controllers
                     }
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                    await HttpContext.SignInAsync(claimsPrincipal);
+                    await HttpContext.SignInAsync(claimsPrincipal);                   
                     if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl) && !returnUrl.NullToString().Contains("Account"))
                     {
                         return Redirect(returnUrl);
                     }
                     else
-                    {
+                    {                       
                         return RedirectToAction("Index", "Dashboard");
                     }
                 }
@@ -104,7 +104,9 @@ namespace GProject.WebApplication.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Product");
+						ViewBag.checkLogin = user.Email;
+
+						return RedirectToAction("Index", "Product");
                     }
                 }
                 HttpContext.Session.SetString("mess", "Failed");
@@ -199,6 +201,7 @@ namespace GProject.WebApplication.Controllers
 			}
 			else
 			{
+				ViewBag.checkLogin = existCus.Email;
 				return RedirectToAction("Index", "Product");
 			}
 		}

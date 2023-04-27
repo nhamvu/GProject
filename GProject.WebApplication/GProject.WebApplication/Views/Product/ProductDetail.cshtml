@@ -58,156 +58,13 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
 }
 
-<style>
-    .plus-minus-input {
-        -webkit-align-items: center;
-        -ms-flex-align: center;
-        align-items: center;
-    }
 
-    .plus-minus-input .input-group-field {
-        text-align: center;
-        margin-left: 0.5rem;
-        margin-right: 0.5rem;
-        padding: 1rem;
-    }
 
-    .plus-minus-input .input-group-field::-webkit-inner-spin-button,
-    .plus-minus-input .input-group-field ::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        appearance: none;
-    }
-
-    .plus-minus-input .input-group-button .circle {
-        border-radius: 50%;
-        padding: 0.25em 0.8em;
-    }
-
-    #btnAction {
-        display: inline-block;
-        font-size: 20px;
-        padding: 10px 10px;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        outline: none;
-        color: black;
-        background-color: white;
-        border: none;
-        border-radius: 15px;
-        border: 2px solid Red;
-        box-shadow: 0 9px #999;
-        margin: 10px 20px;
-    }
-
-    #btnAction:hover {
-        background-color: Red;
-        /* Green */
-        color: white;
-    }
-
-    #btnAction:active {
-        background-color: #3e8e41;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-    }
-
-    .image__img {
-        display: block;
-        width: 100%;
-        height: 280px;
-    }
-
-    .image__overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        color: #ffffff;
-        font-family: 'Quicksand', sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.25s;
-    }
-
-    .image__overlay--blur {
-        backdrop-filter: blur(5px);
-    }
-
-    .image__overlay>* {
-        transform: translateY(20px);
-        transition: transform 0.25s;
-    }
-
-    .image__overlay:hover {
-        opacity: 1;
-    }
-
-    .image__overlay:hover>* {
-        transform: translateY(0);
-    }
-
-    .image__title {
-        font-size: 2em;
-        font-weight: bold;
-    }
-
-    .image__description {
-        font-size: 1.25em;
-        margin-top: 0.25em;
-    }
-
-    .commentBox {
-        background-color: #efefef;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .starFade {
-        background-image: url("/images/saotrang.jpg");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .starFadeN {
-        background-image: url("/images/saotrang.jpg");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-    }
-
-    .starGlow {
-        background-image: url("/images/sao_vang.jpg");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .starGlowN {
-        background-image: url("/images/sao_vang.jpg");
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-    }
-</style>
-
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="/UserContent/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="/UserContent/styles/categories_styles.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/styles/categories_responsive.css">
+<link href="/css/product_details.css" rel="stylesheet">
 <link href="/AdminContent/css/style.min.css" rel="stylesheet">
+
+<div style="margin-top: 200px;">
 @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
@@ -219,15 +76,6 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 @if (Model != null)
 {
     <div id="motor-detail" class="container">
-        <div class="row d-none d-lg-block motor-breadscrumb">
-            <a class="breadscrumb-parent" href="/product/index">Trang chủ</a>
-            <span class="breadscrumb-arrow">❯</span>
-            <a class="breadscrumb-parent" href="/product/index">Danh sách sản phẩm</a>
-            <span class="breadscrumb-arrow">❯</span>
-            <a class="breadscrumb-parent" href="/product/index">Sản phẩm</a>
-            <span class="breadscrumb-arrow">❯</span>
-            <a class="breadscrumb-current">@Model.Item1.Name</a>
-        </div>
         <div class="row overview">
             <div class="col-12 col-lg-7 overview-left container-fliud">
                 <div class="characteristics-image">
@@ -239,7 +87,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                 </div>
                 <div class="row">
                     <fieldset>
-                        <Legend><strong>Màu sắc khác của sản phẩm này</strong></Legend>
+                       
                         <hr>
                         @{
                             foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
@@ -264,17 +112,21 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                     <input id="cPrice" name="cPrice" hidden="hidden" />
                     <input id="cProductId" name="cProductId" value="@Model.Item1.Id.ToString()" hidden="hidden" />
 
-                    <h1 class="d-none d-lg-block" style="color:Black"><strong>@Model.Item1.Name</strong></h1>
-                    @if (existProdPromotion != null)
-                    {
-                        <div class="text-center">
-                            <h3 class="d-none d-lg-block" style="color:Red">Giá ban đầu: <del><strong>@string.Format("{0:0,0}", existProdPromotion.PromotionDetail.InitialPrice) VNĐ</strong> </del></h3>
-                        </div>
-                    }
-                    <h1 class="d-none d-lg-block" style="color:Red">Giá hiện tại: <strong>@string.Format("{0:0,0}", price) VNĐ</strong> </h1>
+                    <h2 class="d-none d-lg-block" style="color:Black">@Model.Item1.Name</h2>
+                    
+                    <div class="row">
+                        <h3 class="d-none d-lg-block" style="color:Red">
+                        Giá hiện tại: @string.Format("{0:0,0}", price) đ  
+                        @if (existProdPromotion != null)
+                        {
+                            <del style="    color: gray; font-size: 18px;">@string.Format("{0:0,0}", existProdPromotion.PromotionDetail.InitialPrice) đ </del>
+                        }                       
+                        </h3>
+                        
+                    </div>
                     <div class="overview-detail mb-3" style="min-height: 0">
                         <div class="characteristics-desc">
-                            <h3><strong>Nhãn hiệu:</strong> @Model.Item3.Name</h3>
+                            <h4>Nhãn hiệu: @Model.Item3.Name</h4>
                             @{
                                 string productType = "";
                                 foreach (var item in Model.Item1.ProductType.Split(',').Distinct().ToList())
@@ -285,51 +137,50 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                             productType += "Sản phẩm bình thường";
                                             break;
                                         case "1":
-                                            productType += ", Sản phẩm mới";
+                                            productType += "Sản phẩm mới";
                                             break;
                                         case "2":
-                                            productType += ", Sản phẩm nổi bật";
+                                            productType += "Sản phẩm nổi bật";
                                             break;
                                         case "3":
-                                            productType += ", Sản phẩm được yêu thích";
+                                            productType += "Sản phẩm được yêu thích";
                                             break;
                                         case "4":
-                                            productType += ", Sản phẩm khuyến mại";
+                                            productType += "Sản phẩm khuyến mại";
                                             break;
                                         default:
                                             break;
                                     }
                                 }
                             }
-                            <h3><strong>Loại sản phẩm:</strong> @productType</h3>
-                            <h3><strong>Lượt xem:</strong> @Model.Item1.ViewCount <i class="fa fa-eye"></i> người đã xem sản
-                                phẩm này</h3>
+                            <h4>Loại sản phẩm: @productType</h4>
+                            <h4>Lượt xem: @Model.Item1.ViewCount <i class="fa fa-eye"></i></h4>
                             
-                            <h3><strong>Số lượng còn lại:</strong><span id="mQuantityInstock" value="">@Model.Item2.Sum(c =>
-                                c.QuantityInStock)</span> sản phẩm có sẵn</h3>
-                            <h3 class="cl-class">
-                                <strong>Màu sắc:</strong>
+                            <h4>Số lượng còn lại: <span id="mQuantityInstock" value="">@Model.Item2.Sum(c =>
+                                c.QuantityInStock)</span> </h4>
+                            <h4 class="cl-class">
+                                Màu sắc:
                                 @{
                                     foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                                     {
                                         string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
-                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="width: 80px; height:40px;" href="/productdetail/@item/@Model.Item1.Id">@(lstColor.FirstOrDefault(c => c.Id == item).Name.NullToString())</button>
+                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="width: 60px; height:30px;" href="/productdetail/@item/@Model.Item1.Id">@(lstColor.FirstOrDefault(c => c.Id == item).Name.NullToString())</button>
                                     }
                                 }
-                            </h3>
-                            <h3 class="si-class">
-                                <strong>Size:</strong>
+                            </h4>
+                            <h4 class="si-class">
+                                Size:
                                 @{
 
                                     foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
                                     {
-                                        <button type="button" value="@item" id="btnSize" style="width: 80px; height:40px;">@(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())</button>
+                                        <button type="button" value="@item" id="btnSize" style="width: 60px; height:30px;">@(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())</button>
                                     }
                                 }
-                            </h3>
+                            </h4>
 
                             <div class="input-group plus-minus-input row">
-                                <h3 class="col-md-4"><strong>Số lượng:</strong></h3>
+                                <h4 class="col-md-4">Số lượng:</h4>
                                 <div class="col-md-8 justify-content-center">
                                     <div class="row">
                                         <div class="input-group-button col-md-3 mt-2">
@@ -352,8 +203,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
                             </div>
                             <hr>
-                            <h3><strong>Thành tiền:</strong></h3>
-                            <h1><strong style="color:red;" id="totalMoney" name="totalMoney"> 0 VND</strong></h1>
+                            <h3>Thành tiền:</h3>
+                            <h2 style="color:red;" id="totalMoney" name="totalMoney"> 0 VND</h2>
                             <div class="form-group">
                                 <label class="control-label col-sm-3"><strong>Mô tả của bạn:</strong></label>
                                 <div class="col-sm-12">
@@ -364,17 +215,17 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         </div>
                     </div>
                     <div class="row">
-                        <button type="button" id="btnAction" onclick="AddToCart()" class="btn btn-primary col-md-5"><i
-                                class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</button>
-                        <button type="button" id="btnAction" onclick="BuyNow()" class="btn btn-primary col-md-5"><i
-                                class="fa fa-calendar-o" style="margin-right:10px;"></i>Mua ngay</button>
+                        <button type="button" id="btnAction" onclick="AddToCart()" class="btn btn-outline-danger col-md-5"><i
+                                class="fa fa-shopping-cart" style="margin-right:10px; font-size: 17px;"></i>Thêm vào giỏ hàng</button>
+                        <button type="button" id="btnAction" onclick="BuyNow()" class="btn btn-outline-danger col-md-5"><i
+                                class="fa fa-calendar-o" style="margin-right:10px; font-size: 17px;"></i>Mua ngay</button>
                     </div>
 
                 </form>
 
             </div>
         </div>
-        <h2><strong>Mô tả chi tiết:</strong> </h2>
+        <h3>Mô tả chi tiết:</h3>
         <br>
         <p>@Model.Item1.Description.NullToString()</p>
         <!-- Danh sách sản phẩm liên quan-->
@@ -385,8 +236,9 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
             }
             @if (lstSimilarProduct.Count() > 0)
             {
-                <div class="p-1 text-left" style="background-color: #CCCCCC;">
-                    <h2><strong><i class="fa fa-bars" style="margin:5px 10px;"></i>SẢN PHẨM LIÊN QUAN</strong></h2>
+                <hr>
+                <div class="p-1 text-center" >
+                    <h2 >Sản phẩm liên quan</h2>
                 </div>
                 <div class="product-grid" style="height:450px;">
                     @foreach (var x in lstSimilarProduct)
@@ -407,10 +259,11 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ",
-                                Convert.ToDouble(x.Price.ToString()))</strong></h4>
+                                    <h4 class="card-title text-center" style="color:red;">
+                                         @string.Format("{0:0,0} VNĐ",Convert.ToDouble(x.Price.ToString()))
+                                    </h4>
                                     <div>
-                                        <h4 class="card-title text-center"><strong>@x.Name</strong></h4>
+                                        <h4 class="card-title text-center">@x.Name</h4>
                                     </div>
                                 </div>
                             </div>
@@ -420,9 +273,9 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
             }
         </div>
         <!-- Bình luận, đánh giá-->
-        <div class="p-1 text-left" style="background-color: #CCCCCC;">
-            <h2><strong><i class="fa fa-comments" style="margin:5px 10px;"></i>DANH SÁCH BÌNH LUẬN,ĐÁNH GIÁ</strong></h2>
-            <h3><strong><i class="fa fa-comments" style="margin:5px 10px;"></i>Có @lstEvaluates.Where(c => c.ProductId == Model.Item1.Id).Count() lượt đánh giá bình luận về sản phẩm này</strong></h3>
+        <div class="p-1 text-left" style="background-color: #CCCCCC; margin-top: 30px;">
+            <h4><i class="fa fa-comments" style="margin:5px 10px;"></i>Đánh giá sản phẩm</h4>
+            <h6><i class="fa fa-comments" style="margin:5px 10px;"></i>Có @lstEvaluates.Where(c => c.ProductId == Model.Item1.Id).Count() lượt đánh giá</h6>
         </div>
         <div>
             <span class="starFadeN" id="sRate1"></span>
@@ -629,6 +482,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function () {
         document.querySelector('#buyFormData').addEventListener('submit', function (e) {
