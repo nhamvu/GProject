@@ -104,8 +104,6 @@ namespace GProject.WebApplication.Controllers
                     }
                     else
                     {
-						ViewBag.checkLogin = user.Email;
-
 						return RedirectToAction("Index", "Product");
                     }
                 }
@@ -201,7 +199,6 @@ namespace GProject.WebApplication.Controllers
 			}
 			else
 			{
-				ViewBag.checkLogin = existCus.Email;
 				return RedirectToAction("Index", "Product");
 			}
 		}

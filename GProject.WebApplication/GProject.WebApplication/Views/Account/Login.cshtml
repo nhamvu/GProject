@@ -31,7 +31,6 @@
             border: none;
             border-radius: 15px;
             border: 2px solid Red;
-            box-shadow: 0 9px #999;
             margin: 10px 20px;
         }
 
@@ -60,26 +59,26 @@
                          class="img-fluid col-md-12" alt="Sample image">
                 </div>
                 <div class="col-md-3">
-                    <form action="/Account/login" method="post">
-                        <input type="text" name="returnUrl" id="returnUrl" hidden value="@ViewBag.returnUrl" />
-                        <div class="divider d-flex align-items-center my-4" style="justify-content:center;">
+                    <div class="divider d-flex align-items-center my-4" style="justify-content:center;">
                             <img src="/images/imageLogo.PNG" style="width:80%;height:80%;" />
                         </div>
+                        <h3 class="text-center">Đăng nhập</h3>
+                    <form action="/Account/login" method="post">
+                        <input type="text" name="returnUrl" id="returnUrl" hidden value="@ViewBag.returnUrl" />
+                        
 
-                        <div class="divider d-flex align-items-center my-4">
-                            <h3 class="text-center fw-bold mx-3 mb-0">ĐĂNG NHẬP</h3>
-                        </div>
+                        
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <label class="form-label" for="form3Example3"><strong>Địa chỉ email:<span style="color:red;">(*)</span></strong></label>
+                            <label class="form-label" for="form3Example3">Email:</label>
                             <input asp-for="Email" type="email" name="Email" id="form3Example3" class="form-control form-control-lg"
                                    placeholder="name@example.com" />
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-3">
-                            <label class="form-label" for="form3Example4"><strong>Mật khẩu:<span style="color:red;">(*)</span></strong></label>
+                            <label class="form-label" for="form3Example4">Mật khẩu:</label>
                             <input asp-for="password" type="password" id="form3Example4" class="form-control form-control-lg"
                                    placeholder="password" />
                         </div>
@@ -88,10 +87,10 @@
                             <div class="form-check mb-0">
                                 <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
                                 <label class="form-check-label" for="form2Example3">
-                                    <strong>Nhớ tài khoản</strong>
+                                    Nhớ tài khoản
                                 </label>
                             </div>
-                            <a href="/quen-mat-khau.html" class="text-body"><strong>Quên mật khẩu?</strong></a>
+                            <a href="/quen-mat-khau.html" class="text-body">Quên mật khẩu?</a>
                         </div>
                         <div class="d-flex justify-content-center text-center text-lg-start mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg"
@@ -106,11 +105,9 @@
                     </div>
                     
                     <div class="text-center text-lg-start mt-4 pt-2">
-                        <p class="small fw-bold mt-2 pt-1 mb-0">
-                            <strong>
+                        <p class="small ">                           
                                 Bạn chưa có chưa khoản? <a href="/Account/register"
-                                                           class="link-danger">Đăng kí ngay</a>
-                            </strong>
+                                                           class="link-primary">Đăng kí ngay</a>    
                         </p>
                     </div>
                 </div>
