@@ -135,7 +135,7 @@
                                 string img = Model.ProductVariationList.Where(c => c.ProductId == item.Id).Select(c => c.Image).FirstOrDefault().NullToString();
                                 <tr>
                                     <td>
-                                        <img style="width:120px;height:50px;" src="~/images/@img" />
+                                        <img style="width:120px;height:130px;" src="~/images/@img" />
                                     </td>
                                     <td>
                                         @item.Name
@@ -181,35 +181,39 @@
                 </table>
             </div>
         </div>
+        <div class="container" style="margin-top: 10px;">
+			@if (pager.TotalPages > 0)
+			{
+				<ul class="pagination justify-content-end">
+					@if (pager.CurrentPage < pager.TotalPages)
+					{
+						<li class="page-item">
+							<a class="page-link" asp-controller="ProductMGR" asp-action="Index"
+						asp-route-pg="@(pager.TotalPages)">Last</a>
+						</li>
+					}
+					@for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+					{
+						<li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
+							<a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@pge">@pge</a>
+						</li>
+					}
+
+
+					@if (pager.CurrentPage < pager.TotalPages)
+					{
+						<li class="page-item">
+							<a class="page-link" asp-controller="ProductMGR" asp-action="Index"
+						asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+						</li>
+
+					}
+				</ul>
+			}
+		</div>
     </div>
 </div>
-<div class="container">
-    @if (pager.TotalPages > 0)
-    {
-        <ul class="pagination justify-content-end">
-            <li class="page-item">
-                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="1">First</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
-            </li>
 
-            @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
-            {
-                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                    <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@pge"> @pge</a>
-                </li>
-            }
-
-            <li class="page-item">
-                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
-            </li>
-        </ul>
-    }
-</div>
 
 <script type="text/javascript">
 
