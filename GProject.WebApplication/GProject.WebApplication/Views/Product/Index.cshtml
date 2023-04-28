@@ -1,4 +1,6 @@
-﻿@model Tuple<List<GProject.WebApplication.Models.ProductDTO>, List<GProject.Data.DomainClass.Color>, List<GProject.Data.DomainClass.Size>, List<GProject.Data.DomainClass.Brand>, List<GProject.Data.DomainClass.ViewHistory>>
+﻿@model Tuple<List<GProject.WebApplication.Models.ProductDTO>, List<GProject.Data.DomainClass.Color>,
+List<GProject.Data.DomainClass.Size>, List<GProject.Data.DomainClass.Brand>,
+List<GProject.Data.DomainClass.ViewHistory>>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
@@ -95,150 +97,198 @@
 	</div>
 </div>
 <div class="new_arrivals">
-		<div class="container">
-			<div class="row">
-				<div class="col text-center">
-					<div class="section_title new_arrivals_title">
-						<h2>Danh sách sản phẩm</h2>
-					</div>
+	<div class="container">
+		<div class="row">
+			<div class="col text-center">
+				<div class="section_title new_arrivals_title">
+					<h2>Danh sách sản phẩm</h2>
 				</div>
 			</div>
-			<div class="row align-items-center">
-				<div class="col text-center">
-					<div class="new_arrivals_sorting">
-						<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">women's</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">accessories</li>
-							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>
-						</ul>
-					</div>
+		</div>
+		<div class="row align-items-center">
+			<div class="col text-center">
+				<div class="new_arrivals_sorting">
+					<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+						<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked"
+							data-filter="*">Tất cả</li>
+						@foreach (var item in lstCategory)
+						{
+							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center"
+								data-filter=".@item.Id">@item.Name</li>
+						}
+					</ul>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col">
-					<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-						@if (Model.Item1.ToList().Count() > 0)
-							{
-									@foreach (var x in Model.Item1.ToList())
-									{										
-										var existProdPromotion = promotiondata.Where(c => c.PromotionDetail.ProductId == x.Product.Id).FirstOrDefault();
-										
-										<div class="product-item men">
-											<div class="product discount product_filter">
-												<div class="product_image">
-													@{
-														string image = "";
-														if (x.ProductVariations != null && x.ProductVariations.Count > 0)
-														{
-															var imgItem = x.ProductVariations.Select(c => c.Image).FirstOrDefault();
-															image = imgItem != null ? imgItem : "";
-														}
-													}
-													<img src="~/images/@image" style="height: 250px;" alt="">
-												</div>
-												<div class="favorite favorite_left"></div>
-												@if (existProdPromotion != null && existProdPromotion.Promotion.DiscountPercent == 1)
-												{
-													<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-@(existProdPromotion.Promotion.DiscountRate)%</span></div>
-												}
-												@if (existProdPromotion != null && existProdPromotion.Promotion.DiscountPercent == 0)
-												{
-													<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center" style="text-transform: none;"><span>-@(existProdPromotion.Promotion.DiscountRate)đ</span></div>
-												}
-												<div class="product_info">
-													<h6 class="product_name">
-														<a href="single.html">@x.Product.Name</a>
-													</h6>
-													
-													@if (existProdPromotion == null)
-													{
-														<div class="product_price">@string.Format("{0:0,0} đ", Convert.ToDouble(x.Product.Price.ToString()))</div>
-													}
-													else
-													{
-														<div class="product_price">
-															@string.Format("{0:0,0} đ", Convert.ToDouble(existProdPromotion.PromotionDetail.CurrentPrice.ToString()))															
-															<span>@string.Format("{0:0,0} đ", Convert.ToDouble(existProdPromotion.PromotionDetail.InitialPrice.ToString()))</span>
-														</div>
-													}
-													
-												</div>
-											</div>
-											<div class="red_button add_to_cart_button">
-												<a href="/productdetail/@x.Product.Id">Xem chi tiết</a>
-											</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+					@if (Model.Item1.ToList().Count() > 0)
+					{
+						@foreach (var x in Model.Item1.ToList())
+						{
+							var existProdPromotion = promotiondata.Where(c => c.PromotionDetail.ProductId ==
+							x.Product.Id).FirstOrDefault();
+							var getCategory = lstCategory.FirstOrDefault(c => c.Id == x.Product.CategoryId);
+
+							<div class="product-item @getCategory.Id">
+								<div class="product discount product_filter">
+									<div class="product_image">
+										@{
+											string image = "";
+											if (x.ProductVariations != null && x.ProductVariations.Count > 0)
+											{
+												var imgItem = x.ProductVariations.Select(c => c.Image).FirstOrDefault();
+												image = imgItem != null ? imgItem : "";
+											}
+										}
+										<img src="~/images/@image" style="height: 250px;" alt="">
+									</div>
+									<div class="favorite favorite_left"></div>
+									@if (existProdPromotion != null && existProdPromotion.Promotion.DiscountPercent == 1)
+									{
+										<div
+											class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
+											<span>-@(existProdPromotion.Promotion.DiscountRate)%</span>
 										</div>
 									}
-							}
-					</div>
-				</div>
-			</div>		
-			@if (pager.TotalPages > 0)
-								{
-									<ul class="pagination justify-content-end">
-										<li class="page-item">
-											<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="1">First</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
-										</li>
+									@if (existProdPromotion != null && existProdPromotion.Promotion.DiscountPercent == 0)
+									{
+										<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"
+											style="text-transform: none;">
+											<span>-@(existProdPromotion.Promotion.DiscountRate)đ</span>
+										</div>
+									}
+									<div class="product_info">
+										<h6 class="product_name">
+											<a href="single.html">@x.Product.Name</a>
+										</h6>
 
-										@for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+										@if (existProdPromotion == null)
 										{
-											<li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-												<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="@pge"> @pge</a>
-											</li>
+											<div class="product_price">@string.Format("{0:0,0} đ",
+									Convert.ToDouble(x.Product.Price.ToString()))</div>
+										}
+										else
+										{
+											<div class="product_price">
+												@string.Format("{0:0,0} đ",
+									Convert.ToDouble(existProdPromotion.PromotionDetail.CurrentPrice.ToString()))
+												<span>@string.Format("{0:0,0} đ",
+										Convert.ToDouble(existProdPromotion.PromotionDetail.InitialPrice.ToString()))</span>
+											</div>
 										}
 
-										<li class="page-item">
-											<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
-										</li>
-									</ul>
-								}		
+									</div>
+								</div>
+								<div class="red_button add_to_cart_button">
+									<a href="/productdetail/@x.Product.Id">Xem chi tiết</a>
+								</div>
+							</div>
+						}
+					}
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			@if (pager.TotalPages > 0)
+			{
+				<ul class="pagination justify-content-end">
+					@if (pager.CurrentPage < pager.TotalPages)
+					{
+						<li class="page-item">
+							<a class="page-link" asp-controller="Product" asp-action="Index"
+						asp-route-pg="@(pager.TotalPages)">Last</a>
+						</li>
+					}
+					@for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+					{
+						<li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
+							<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="@pge">@pge</a>
+						</li>
+					}
+
+
+					@if (pager.CurrentPage < pager.TotalPages)
+					{
+						<li class="page-item">
+							<a class="page-link" asp-controller="Product" asp-action="Index"
+						asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+						</li>
+
+					}
+				</ul>
+			}
+		</div>
+		@*
+		@if (pager.TotalPages > 0)
+		{
+		<ul class="pagination justify-content-end">
+		<li class="page-item">
+		<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="1">First</a>
+		</li>
+		<li class="page-item">
+		<a class="page-link" asp-controller="Product" asp-action="Index"
+		asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
+		</li>
+
+		@for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+		{
+		<li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
+		<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="@pge"> @pge</a>
+		</li>
+		}
+
+		<li class="page-item">
+		<a class="page-link" asp-controller="Product" asp-action="Index"
+		asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+		</li>
+		<li class="page-item">
+		<a class="page-link" asp-controller="Product" asp-action="Index"
+		asp-route-pg="@(pager.TotalPages)">Last</a>
+		</li>
+		</ul>
+		} *@
+	</div>
+</div>
+</div>
+
+<div class="deal_ofthe_week">
+	<div class="container">
+		<div class="row align-items-center">
+			<div class="col-lg-6">
+				<div class="deal_ofthe_week_img">
+					<img src="/images/deal_ofthe_week.png" alt="">
+				</div>
+			</div>
+			<div class="col-lg-6 text-right deal_ofthe_week_col">
+				<div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
+					<div class="section_title">
+						<h2>Deal Of The Week</h2>
+					</div>
+					<ul class="timer">
+						<li class="d-inline-flex flex-column justify-content-center align-items-center">
+							<div id="day" class="timer_num">03</div>
+							<div class="timer_unit">Day</div>
+						</li>
+						<li class="d-inline-flex flex-column justify-content-center align-items-center">
+							<div id="hour" class="timer_num">15</div>
+							<div class="timer_unit">Hours</div>
+						</li>
+						<li class="d-inline-flex flex-column justify-content-center align-items-center">
+							<div id="minute" class="timer_num">45</div>
+							<div class="timer_unit">Mins</div>
+						</li>
+						<li class="d-inline-flex flex-column justify-content-center align-items-center">
+							<div id="second" class="timer_num">23</div>
+							<div class="timer_unit">Sec</div>
+						</li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
 
-<div class="deal_ofthe_week">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-6">
-					<div class="deal_ofthe_week_img">
-						<img src="/images/deal_ofthe_week.png" alt="">
-					</div>
-				</div>
-				<div class="col-lg-6 text-right deal_ofthe_week_col">
-					<div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
-						<div class="section_title">
-							<h2>Deal Of The Week</h2>
-						</div>
-						<ul class="timer">
-							<li class="d-inline-flex flex-column justify-content-center align-items-center">
-								<div id="day" class="timer_num">03</div>
-								<div class="timer_unit">Day</div>
-							</li>
-							<li class="d-inline-flex flex-column justify-content-center align-items-center">
-								<div id="hour" class="timer_num">15</div>
-								<div class="timer_unit">Hours</div>
-							</li>
-							<li class="d-inline-flex flex-column justify-content-center align-items-center">
-								<div id="minute" class="timer_num">45</div>
-								<div class="timer_unit">Mins</div>
-							</li>
-							<li class="d-inline-flex flex-column justify-content-center align-items-center">
-								<div id="second" class="timer_num">23</div>
-								<div class="timer_unit">Sec</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> 
 
-    
 

@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Mvc;
+﻿@using GProject.Data.DomainClass;
+@using Microsoft.AspNetCore.Mvc;
 @using GProject.WebApplication.Helpers;
 @{
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
@@ -247,16 +248,23 @@
 										<i class="fa fa-angle-down"></i>
 									</a>
 									<ul class="account_selection">
-                                        
-                                            <li><a href="/Account/Login"><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng nhập</a></li>
-                                        
-                                            <li><a href="/Doi-mat-khau-khach-hang.html"><i class="fa fa-user-plus" aria-hidden="true"></i>Đổi mật khẩu</a></li>
-						                    <li>
-                                                <button class="btn" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" style="font-size: 14px;" data-url="/DeliveryAddress/Index">
-                                                    <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
-                                                    Địa chỉ đặt hàng
-                                                </button>  
-                                            </li>                                   										
+                                            @{
+                                                @if (user == null)
+                                                {
+                                                    <li><a href="/Account/Login"><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng nhập</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a href="/Account/logout"><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng xuất</a></li>
+                                                    <li><a href="/Doi-mat-khau-khach-hang.html"><i class="fa fa-user-plus" aria-hidden="true"></i>Đổi mật khẩu</a></li>
+                                                    <li>
+                                                        <button class="btn" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" style="font-size: 14px;" data-url="/DeliveryAddress/Index">
+                                                            <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                                                            Địa chỉ đặt hàng
+                                                        </button>
+                                                    </li>
+                                                }
+                                            }                                  										
 									</ul>
 								</li>
 							</ul>

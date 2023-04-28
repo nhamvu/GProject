@@ -78,7 +78,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
     <div id="motor-detail" class="container">
         <div class="row overview">
             <div class="col-12 col-lg-7 overview-left container-fliud">
-                <div class="characteristics-image">
+                <div class="characteristics-image text-center">
                     @{
                         string img = Model.Item2.Where(c => c.ProductId == Model.Item1.Id).Select(c =>
                         c.Image).FirstOrDefault();
@@ -95,7 +95,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                 string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c =>
                                 c.Image).FirstOrDefault().NullToString();
                                 <button type="button" onclick="changeImageProd('@im')">
-                                    <img style="width:250px; height:100px;"
+                                    <img style="width:130px; height:160px;"
                              class="img-thumbnail" src="~/images/@im" alt="">
                                 </button>
                             }
@@ -156,15 +156,20 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             <h4>Loại sản phẩm: @productType</h4>
                             <h4>Lượt xem: @Model.Item1.ViewCount <i class="fa fa-eye"></i></h4>
                             
-                            <h4>Số lượng còn lại: <span id="mQuantityInstock" value="">@Model.Item2.Sum(c =>
-                                c.QuantityInStock)</span> </h4>
+                            <h4>Số lượng còn lại: 
+                                <span id="mQuantityInstock" value="">@Model.Item2.Sum(c => c.QuantityInStock)
+
+                                </span>
+                            </h4>
                             <h4 class="cl-class">
                                 Màu sắc:
                                 @{
                                     foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                                     {
                                         string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
-                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="width: 60px; height:30px;" href="/productdetail/@item/@Model.Item1.Id">@(lstColor.FirstOrDefault(c => c.Id == item).Name.NullToString())</button>
+                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="padding: 0 5px 0 5px;" href="/productdetail/@item/@Model.Item1.Id">
+                                            @(lstColor.FirstOrDefault(c => c.Id == item).Name.NullToString())
+                                        </button>
                                     }
                                 }
                             </h4>
@@ -174,7 +179,9 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
                                     foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
                                     {
-                                        <button type="button" value="@item" id="btnSize" style="width: 60px; height:30px;">@(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())</button>
+                                        <button type="button" value="@item" id="btnSize" style="padding: 0 9px 0 9px;" >
+                                            @(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())
+                                        </button>
                                     }
                                 }
                             </h4>
@@ -203,10 +210,12 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
                             </div>
                             <hr>
-                            <h3>Thành tiền:</h3>
-                            <h2 style="color:red;" id="totalMoney" name="totalMoney"> 0 VND</h2>
+                            <div class="row">
+                                <h3 class="col-4">Thành tiền:</h3>
+                                <h3 class="col-8" style="color:red;" id="totalMoney" name="totalMoney"> 0 đ</h3>
+                            </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3"><strong>Mô tả của bạn:</strong></label>
+                                <label class="control-label col-sm-3">Mô tả của bạn:</label>
                                 <div class="col-sm-12">
                                     <textarea class="form-control" name="cDescription" id="cDescription" cols="50" rows="5"
                                         style="border:double 4px orange;"></textarea>
@@ -225,7 +234,6 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
             </div>
         </div>
-        <h3>Mô tả chi tiết:</h3>
         <br>
         <p>@Model.Item1.Description.NullToString()</p>
         <!-- Danh sách sản phẩm liên quan-->
@@ -305,7 +313,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         }
                     </div>
                     <div class="col-md-11">
-                        <i style="margin-right: 30px; vertical-align: top;"><strong>@cusInfo.Name.NullToString()</strong></i>
+                        <i style="margin-right: 30px; vertical-align: top;">@cusInfo.Name.NullToString()</i>
                         <i style="margin-right: 30px; vertical-align: top;">@item.CreateDate</i>
                         @for (int i = 0; i < item.Rating; i++)
                         {
@@ -341,8 +349,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                 class="form-horizontal d-block">
                 <div class="modal-content justify-content-center" style="border-width:1px;">
                     <div class="modal-header" style="width:800px;">
-                        <h2 class="modal-title text-center"><strong><i class="fa fa-cubes" aria-hidden="true"
-                                    style="margin-right:5px;"></i>THÔNG TIN ĐƠN HÀNG</strong></h2>
+                        <h4 class="modal-title text-center">Thông tin đơn hàng</h4>
                     </div>
                     <div class="modal-body">
                         <input type="text" id="pTotalMoney" name="pTotalMoney" hidden="hidden" />
@@ -353,8 +360,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ đặt hàng:<span
-                                                style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Địa chỉ đặt hàng:<span
+                                                style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <select id="selectDeliveryAddress" class="form-select">
                                         </select>
@@ -370,8 +377,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Email:<span
-                                                style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Email:<span
+                                                style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <input type="email" id="ShippingEmail" name="ShippingEmail" value=""
                                             placeholder="" class="form-control" />
@@ -380,8 +387,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-12"><strong>Hình thức thanh toán:<span
-                                                style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-12">Hình thức thanh toán:<span
+                                                style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         @{
                                             int PaymentType = 0;
@@ -398,8 +405,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-6"><strong>Mã giảm giá:<span
-                                                style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-6">Mã giảm giá:<span
+                                                style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <select id="selectVoucher" name="selectVoucher" class="form-select">
                                             <option value=""></option>
@@ -409,8 +416,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Nhập mã giảm giá:<span
-                                                style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Nhập mã giảm giá:<span
+                                                style="color: red">(*)</span></label>
                                     <div class="row col-md-12">
                                         <div class="col-sm-8">
                                             <input type="text" id="DiscountCode" name="DiscountCode" value=""
@@ -424,7 +431,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-sm-3"><strong>Mô tả của bạn:</strong></label>
+                                <label class="control-label col-sm-3">Mô tả của bạn:</label>
                                 <div class="col-sm-12">
                                     <textarea class="form-control" name="cDescription" id="cDescription" cols="50"
                                         rows="5" style="border:double 4px orange;"></textarea>
@@ -432,44 +439,45 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-9">
-                                    <label class="control-label col-md-12"><strong>Phí ship:</strong></label>
+                                    <label class="control-label col-md-12">Phí ship:</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <p><strong id="txtPhiShip">0</strong><strong style="margin-left: 5px;">đ</strong>
+                                    <p><label id="txtPhiShip">0</label><label style="margin-left: 5px;">đ</label>
                                     </p>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top: -20px">
                                 <div class="col-sm-9">
-                                    <label class="control-label col-md-12"><strong>Giảm giá:</strong></label>
+                                    <label class="control-label col-md-12">Giảm giá:</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <p><strong>- </strong> <strong id="txtGiamGia">0</strong><strong
-                                            style="margin-left: 5px;">đ</strong></p>
+                                    <p><label>- </label> <label id="txtGiamGia">0</label><label
+                                            style="margin-left: 5px;">đ</label></p>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top: -20px">
                                 <div class="col-sm-9">
-                                    <label class="control-label col-md-12"><strong>Tổng tiền sản phẩm:</strong></label>
+                                    <label class="control-label col-md-12">Tổng tiền sản phẩm:</label>
                                 </div>
                                 <div class="col-sm-3">
-                                    <p><strong id="txtTotalProduct"></strong><strong
-                                            style="margin-left: 5px;">đ</strong></p>
+                                    <p><label id="txtTotalProduct"></label>
+                                    <label style="margin-left: 5px;">đ</label></p>
                                 </div>
                             </div>
-                            <div class="form-group row">
+                            <div class="form-group row" style="margin-top: -20px">
                                 <div class="col-sm-9">
-                                    <h2><label class="control-label col-md-12"><strong>Tổng tiền thanh
-                                                toán:</strong></label></h2>
+                                    <h5><label class="control-label col-md-12">
+                                        Tổng tiền thanhtoán:
+                                    </label></h5>
                                 </div>
                                 <div class="col-sm-3">
-                                    <h2><strong style="color:red;" id="textTotalMoney"></strong><strong
-                                            style="margin-left: 5px;color:red;">đ</strong></h2>
+                                    <h5><label style="color:red;" id="textTotalMoney"></label><label
+                                            style="margin-left: 5px;color:red;">đ</label></h5>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer" style="margin-top: -20px">
                         <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"><i class="fa fa-check"
                                 aria-hidden="true"></i> Đặt hàng</button>
                         <button type="button" class="btn btn-sm btn-default btn-dimiss-modal" id="btnCloseModal">
@@ -485,6 +493,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
 <script type="text/javascript">
     $(document).ready(function () {
+
         document.querySelector('#buyFormData').addEventListener('submit', function (e) {
             var form = this;
             e.preventDefault();
@@ -563,7 +572,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                     else {
                         swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
                         $("#txtGiamGia").text(0)
-                        $("#txtDiscountForm").text("Vnd")
+                        $("#txtDiscountForm").text("đ")
                         total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
                     }
 
@@ -663,7 +672,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                 else {
                     swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
                     $("#txtGiamGia").text(0)
-                    $("#txtDiscountForm").text("Vnd")
+                    $("#txtDiscountForm").text("đ")
                     total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
                 }
 
@@ -782,7 +791,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
         $('#cPrice').val(mPrice);
         $('#cTotalMoney').val(mQuantity * mPrice);
         $('#pTotalMoney').val(mQuantity * mPrice);
-        $('#totalMoney').text(commasThousands(mQuantity * mPrice) + ' VND');
+        $('#totalMoney').text(commasThousands(mQuantity * mPrice) + ' đ');
         $('#txtTotalProduct').text(commasThousands($('#pTotalMoney').val()));
     }
 

@@ -1015,6 +1015,8 @@ namespace GProject.Data.Migrations
 
                     b.HasIndex("ProductId");
 
+                    b.HasIndex("SizeId");
+
                     b.ToTable("ProductVariation", (string)null);
                 });
 
@@ -1565,13 +1567,13 @@ namespace GProject.Data.Migrations
                         .WithMany("Variations")
                         .HasForeignKey("ColorId");
 
-                    b.HasOne("GProject.Data.DomainClass.Size", "SizeId_Navigation")
-                        .WithMany("Variations")
-                        .HasForeignKey("ColorId");
-
                     b.HasOne("GProject.Data.DomainClass.Product", "ProductId_Navigation")
                         .WithMany("ProductVariations")
                         .HasForeignKey("ProductId");
+
+                    b.HasOne("GProject.Data.DomainClass.Size", "SizeId_Navigation")
+                        .WithMany("Variations")
+                        .HasForeignKey("SizeId");
 
                     b.Navigation("ColorId_Navigation");
 

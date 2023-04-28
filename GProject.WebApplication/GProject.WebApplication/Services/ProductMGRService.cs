@@ -1,8 +1,10 @@
 ﻿using GProject.Data.DomainClass;
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System.Xml.Linq;
 
@@ -10,13 +12,16 @@ namespace GProject.WebApplication.Services
 {
     public class ProductMGRService
     {
-        /// <summary>
-        /// Hàm Lưu sản phâm
-        /// </summary>
-        /// <param name="Product"></param>
-        /// <param name="CreateBy"></param>
-        /// <returns></returns>
-        public async Task<bool> Save(ProductMGRDTO Product, string CreateBy)
+		public static HttpContext _httpContext => new HttpContextAccessor().HttpContext;
+		private IWebHostEnvironment _hostEnviroment => (IWebHostEnvironment)_httpContext.RequestServices.GetService(typeof(IWebHostEnvironment));
+
+		/// <summary>
+		/// Hàm Lưu sản phâm
+		/// </summary>
+		/// <param name="Product"></param>
+		/// <param name="CreateBy"></param>
+		/// <returns></returns>
+		public async Task<bool> Save(ProductMGRDTO Product, string CreateBy)
         {
             try
             {
@@ -50,16 +55,8 @@ namespace GProject.WebApplication.Services
                 {
                     foreach (var sizeVariation in colorVariation.SizeAndStock)
                     {
-                        string image = "";
-                        if (colorVariation.Image_Upload != null)
-                        {
-                            string full_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", colorVariation.Image_Upload.FileName);
-                            using (var file = new FileStream(full_path, FileMode.Create))
-                            {
-                                colorVariation.Image_Upload.CopyTo(file);
-                            }
-                            image = colorVariation.Image_Upload.FileName;
-                        }
+                        string image = UploadFile(colorVariation);
+
                         var ProductVariationInfo = new ProductVariation()
                         {
                             Id = colorVariation.VariationId,
@@ -207,5 +204,23 @@ namespace GProject.WebApplication.Services
                 throw;
             }
         }
-    }
+
+
+		//upload image
+		private string UploadFile(ProductVariationDTO model)
+		{
+			string uniqueFileName = null;
+            if (model.Image_Upload != null)
+            {
+				string uploadsFolder = Path.Combine(_hostEnviroment.WebRootPath, "images");
+				uniqueFileName = model.Image_Upload.FileName;
+				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				{
+					model.Image_Upload.CopyTo(fileStream);
+				}
+			}
+			return uniqueFileName;
+		}
+	}
 }

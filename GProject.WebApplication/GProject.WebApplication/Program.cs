@@ -51,7 +51,9 @@ namespace YourNamespace
                 c.Cookie.IsEssential = true;
             });
 
-            services.AddControllersWithViews();
+			services.AddHttpContextAccessor();
+
+			services.AddControllersWithViews();
             services.AddDbContext<GProjectContext>();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -93,7 +95,12 @@ namespace YourNamespace
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+			app.ApplicationServices
+				.CreateScope()
+				.ServiceProvider
+				.GetRequiredService<IWebHostEnvironment>();
+
+			app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
