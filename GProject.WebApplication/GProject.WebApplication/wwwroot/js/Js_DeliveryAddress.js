@@ -112,6 +112,18 @@ function DeleteDeliveryAddress(id) {
 
 }
 
+function SearchProduct()
+{
+    var _key = $("#Keyword_Layout").val()
+    $.ajax({
+        url: "/Product/Index?Keyword=" + _key,
+        type: "GET",
+        success: function () {
+            location.href = "/Product/Index"
+        }
+    })
+}
+
 
 function ClearData() {
     $("#txtId").val(0);

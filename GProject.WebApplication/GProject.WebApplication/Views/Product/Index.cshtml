@@ -80,317 +80,53 @@
 		}
 	}
 }
-<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">
-<link href="/UserContent/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/plugins/OwlCarousel2-2.2.1/animate.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/styles/categories_styles.css">
-<link rel="stylesheet" type="text/css" href="/UserContent/styles/categories_responsive.css">
-<style>
-	.image__img {
-		display: block;
-		width: 100%;
-		height: 280px;
-	}
 
-	.image__overlay {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: rgba(0, 0, 0, 0.6);
-		color: #ffffff;
-		font-family: 'Quicksand', sans-serif;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		opacity: 0;
-		transition: opacity 0.25s;
-	}
 
-	.image__overlay--blur {
-		backdrop-filter: blur(5px);
-	}
-
-	.image__overlay > * {
-		transform: translateY(20px);
-		transition: transform 0.25s;
-	}
-
-	.image__overlay:hover {
-		opacity: 1;
-	}
-
-		.image__overlay:hover > * {
-			transform: translateY(0);
-		}
-
-	.image__title {
-		font-size: 2em;
-		font-weight: bold;
-	}
-
-	.image__description {
-		font-size: 1.25em;
-		margin-top: 0.25em;
-	}
-
-	.carousel,
-	.carousel-inner {
-		height: 100%;
-	}
-
-	.carousel-item img {
-		height: 400px;
-		width: 100%;
-	}
-
-	.myproduct-grid {
-		width: 100%;
-		height: 300px;
-		border: 1px solid #ddd;
-		display: flex;
-		overflow-x: auto;
-	}
-
-	.myproduct-item {
-		border: 1px solid #ddd;
-		margin-right: 5px;
-		width: 200px;
-		height: 280px;
-		cursor: pointer;
-		margin-bottom: 10px;
-	}
-
-		.product-item::after {
-			display: block;
-			position: absolute;
-			top: 0;
-			left: -1px;
-			width: calc(100% + 1px);
-			height: 100%;
-			pointer-events: none;
-			content: '';
-			border: solid 2px rgba(235,235,235,0);
-			border-radius: 3px;
-			-webkit-transition: all 0.3s ease;
-			-moz-transition: all 0.3s ease;
-			-ms-transition: all 0.3s ease;
-			-o-transition: all 0.3s ease;
-			transition: all 0.3s ease;
-		}
-
-		.product-item:hover::after {
-			box-shadow: 0 25px 29px #40E0D0;
-			border: solid 2px #40E0D0;
-		}
-
-	.myproduct {
-		width: 200px;
-		height: 300px;
-		border-right: solid 1px #e9e9e9;
-	}
-
-	.myproduct_image {
-		width: 100%;
-	}
-</style>
-<div class="super_container">
-	<div class="col product_section clearfix">
-
-		<!-- Breadcrumbs -->
-
-		<div class="row d-none d-lg-block motor-breadscrumb">
-			<a class="breadscrumb-parent" href="/product/index">Trang chủ</a>
-			<span class="breadscrumb-arrow">❯</span>
-			<a class="breadscrumb-parent" href="/Product/Index">Danh sách sản phẩm</a>
-		</div>
-
-		<!-- Sidebar -->
-		<div class="row">
-			<div class="sidebar col-md-12">
-				<div class="sidebar_section p-3" style="background-color:#E5E5E5;">
-					<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Product/index">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="panel panel-default">
-									<div class="panel-body">
-										<div class="row">
-											<div class="col-md-3">
-												<div class="form-group">
-													<input type="text" id="prodName" name="prodName" value="@ViewData["prodName"]" placeholder="Tên sản phẩm" class="form-control" />
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="form-group">
-													@Html.DropDownList("category", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="form-group">
-													@Html.DropDownList("brand", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="form-group">
-													@{
-														decimal fPrice = decimal.Parse(Html.Encode(ViewData["fPrice"]));
-													}
-													@Html.DropDownList("fPrice",new[]
-													{
-													new SelectListItem{Text="-- Giá từ --", Value="-1", Selected= (fPrice== -1)},
-													new SelectListItem{Text="0 VNĐ", Value="0", Selected= (fPrice== 0)},
-													new SelectListItem{Text="100.000 VNĐ", Value="100000", Selected= (fPrice== 100000)},
-													new SelectListItem{Text="200.000 VNĐ", Value="200000", Selected=  (fPrice == 200000)},
-													new SelectListItem{Text="500.000 VNĐ", Value="500000", Selected= (fPrice== 500000)},
-													new SelectListItem{Text="1.000.000 VNĐ", Value="1000000", Selected=  (fPrice == 1000000)}
-													}, new { @name = "sStatus", @class="searchText form-control select"})
-												</div>
-											</div>
-											<div class="col-md-2">
-												<div class="form-group">
-													@{
-														int tPrice = int.Parse(Html.Encode(ViewData["tPrice"]));
-													}
-													@Html.DropDownList("tPrice",new[]
-													{
-													new SelectListItem{Text="-- Giá đến --", Value="-1", Selected= (tPrice== -1)},
-													new SelectListItem{Text="0 VNĐ", Value="0", Selected= (tPrice== 0)},
-													new SelectListItem{Text="< 100.000 VNĐ", Value="100000", Selected= (tPrice== 100000)},
-													new SelectListItem{Text="< 200.000 VNĐ", Value="200000", Selected=  (tPrice == 200000)},
-													new SelectListItem{Text="< 500.000 VNĐ", Value="500000", Selected= (tPrice== 500000)},
-													new SelectListItem{Text="< 1.000.000 VNĐ", Value="1000000", Selected=  (tPrice == 1000000)},
-													new SelectListItem{Text="trên 1.000.000 VNĐ", Value="1000001", Selected=  (tPrice == 1000001)}
-													}, new { @name = "sStatus", @class="searchText form-control select"})
-												</div>
-											</div>
-											<div class="col-md-1">
-												<div class="form-group">
-													<button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
+<div class="main_slider" style="background-image:url(/images/slider_1.jpg)">
+	<div class="container fill_height">
+		<div class="row align-items-center fill_height">
+			<div class="col">
+				<div class="main_slider_content">
+					<h6>Spring / Summer Collection 2017</h6>
+					<h1>Get up to 30% Off New Arrivals</h1>
 				</div>
 			</div>
-
-			<div class="main_content col-md-12">
-				<!-- Hiển thị giảm giá -->
-				@if (promotions.Count() > 0 && promotions != null)
-				{
-					<div style="margin: 10px 0px;" class="row">
-						<div id="carouselExampleDark" class="col-md-6 carousel carousel-dark slide" data-bs-ride="carousel">
-							<div class="carousel-indicators">
-								<button type="button" style="background-color:white;" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-								@for (int i = 1; i < promotions.Count(); i++)
-								{
-									<button type="button" style="background-color:white;" data-bs-target="#carouselExampleDark" data-bs-slide-to="@i" aria-label="Slide 2"></button>
-								}
-
-							</div>
-							<div class="carousel-inner">
-								<div class="carousel-item active" data-bs-interval="5000">
-									<img src="~/images/@promotions.Select(c => c.Image).FirstOrDefault().NullToString()" class="d-block" style="height:300px;" alt="...">
-									<div class="carousel-caption d-none d-md-block">
-										<h4 style="color:white;">@promotions.Select(c => c.PromotionName).FirstOrDefault().NullToString()</h4>
-										<p style="color:white;">@promotions.Select(c => c.Description).FirstOrDefault().NullToString()</p>
-									</div>
-								</div>
-								@for (int i = 1; i < promotions.Count(); i++)
-								{
-									<div class="carousel-item" data-bs-interval="5000">
-										<img src="~/images/@promotions[i].Image.NullToString()" class="d-block" style="height:300px;" alt="...">
-										<div class="carousel-caption d-none d-md-block">
-											<h4 style="color:white;">@promotions[i].PromotionName.NullToString()</h4>
-											<p style="color:white;">@promotions[i].Description.NullToString()</p>
-										</div>
-									</div>
-								}
-							</div>
-							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="visually-hidden" style="background-color:white;">Previous</span>
-							</button>
-							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="visually-hidden">Next</span>
-							</button>
-						</div>
-
-						<div class="col-md-6" style="margin-top:0px; height:200px !important;">
-							@{
-								var listProductGiamGia = Model.Item1.ToList();
-							}
-							@if (listProductGiamGia.Count() > 0)
-							{
-								<div class="myproduct-grid">
-									@foreach (var x in listProductGiamGia)
-									{
-										var existProdPromotion = promotiondata.Where(c => c.PromotionDetail.ProductId == x.Product.Id).FirstOrDefault();
-										if (existProdPromotion != null)
-										{
-											<div class="witem myproduct-item men">
-												<div class="myproduct discount product_filter">
-													<div class="image">
-														@{
-															string image = "";
-															if (x.ProductVariations != null && x.ProductVariations.Count > 0)
-															{
-																var imgItem = x.ProductVariations.Select(c => c.Image).FirstOrDefault();
-																image = imgItem != null ? imgItem : "";
-															}
-														}
-														<img class="image__img" src="~/images/@image" alt="Bricks" style="height:160px;">
-														<div class="image__overlay image__overlay--primary">
-															<p class="image__description">Xem chi tiết</p>
-															<a class="btn btn-outline-warning" href="/productdetail/@x.Product.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Click vào đây</a>
-														</div>
-													</div>
-													<div class="card-body">
-														<div>
-															<p class="card-title text-center"><del style="font-size:12px">@string.Format("{0:0,0}", Convert.ToDouble(existProdPromotion.PromotionDetail.InitialPrice.ToString()))</del><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(existProdPromotion.PromotionDetail.CurrentPrice.ToString()))</strong></p>
-															<strong class="card-title text-center"><strong>@x.Product.Name</strong></strong>
-														</div>
-													</div>
-												</div>
-											</div>
-										}
-									}
-								</div>
-							}
-						</div>
+		</div>
+	</div>
+</div>
+<div class="new_arrivals">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<div class="section_title new_arrivals_title">
+						<h2>Danh sách sản phẩm</h2>
 					</div>
-				}
-				<!-- Products -->
-
-				<div class="products_iso">
-					<div class="row">
-						<div class="col">
-							<!-- Sản phẩm xem gần nhất-->
-							@{
-								var viewProdHistory = (from prd in Model.Item1 join viewHis in Model.Item5 on prd.Product.Id equals viewHis.ProductId orderby viewHis.DateView descending select new { Prds = prd, ViewHiss = viewHis }).ToList();
-							}
-							@if (viewProdHistory.Select(c => c.Prds).Count() > 0)
+				</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col text-center">
+					<div class="new_arrivals_sorting">
+						<ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
+							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
+							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".women">women's</li>
+							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">accessories</li>
+							<li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".men">men's</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
+						@if (Model.Item1.ToList().Count() > 0)
 							{
-								<div class="p-1 text-left" style="background-color: #CCCCCC;">
-									<h3><strong><i class="fa fa-bars" style="margin:2px 10px;"></i>SẢN PHẨM XEM GẦN NHẤT</strong></h3>
-								</div>
-
-								<div class="product-grid" style="height:450px;">
-									@foreach (var x in viewProdHistory.Select(c => c.Prds).ToList())
-									{
+									@foreach (var x in Model.Item1.ToList())
+									{										
+										var existProdPromotion = promotiondata.Where(c => c.PromotionDetail.ProductId == x.Product.Id).FirstOrDefault();
+										
 										<div class="product-item men">
 											<div class="product discount product_filter">
-												<div class="image">
-
+												<div class="product_image">
 													@{
 														string image = "";
 														if (x.ProductVariations != null && x.ProductVariations.Count > 0)
@@ -399,90 +135,46 @@
 															image = imgItem != null ? imgItem : "";
 														}
 													}
-													<img class="image__img" src="~/images/@image" alt="Bricks">
-													<div class="image__overlay image__overlay--primary">
-														<p class="image__description">Xem chi tiết</p>
-														<a class="btn btn-primary" href="/productdetail/@x.Product.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
-													</div>
+													<img src="~/images/@image" style="height: 250px;" alt="">
 												</div>
-												<div class="card-body">
-													@{
-														var existProdPromotion = promotiondata.Where(c => c.PromotionDetail.ProductId == x.Product.Id).FirstOrDefault();
-													}
+												<div class="favorite favorite_left"></div>
+												@if (existProdPromotion != null && existProdPromotion.Promotion.DiscountPercent == 1)
+												{
+													<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-@(existProdPromotion.Promotion.DiscountRate)%</span></div>
+												}
+												@if (existProdPromotion != null && existProdPromotion.Promotion.DiscountPercent == 0)
+												{
+													<div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center" style="text-transform: none;"><span>-@(existProdPromotion.Promotion.DiscountRate)đ</span></div>
+												}
+												<div class="product_info">
+													<h6 class="product_name">
+														<a href="single.html">@x.Product.Name</a>
+													</h6>
+													
 													@if (existProdPromotion == null)
 													{
-														<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(x.Product.Price.ToString()))</strong></h4>
+														<div class="product_price">@string.Format("{0:0,0} đ", Convert.ToDouble(x.Product.Price.ToString()))</div>
 													}
 													else
 													{
-														<h5 class="card-title text-center">Giá gốc: <del><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(existProdPromotion.PromotionDetail.InitialPrice.ToString()))</strong></del></h5>
-														<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(existProdPromotion.PromotionDetail.CurrentPrice.ToString()))</strong></h4>
+														<div class="product_price">
+															@string.Format("{0:0,0} đ", Convert.ToDouble(existProdPromotion.PromotionDetail.CurrentPrice.ToString()))															
+															<span>@string.Format("{0:0,0} đ", Convert.ToDouble(existProdPromotion.PromotionDetail.InitialPrice.ToString()))</span>
+														</div>
 													}
-													<div>
-														<h4 class="card-title text-center"><strong>@x.Product.Name</strong></h4>
-													</div>
+													
 												</div>
 											</div>
-										</div>
-
-									}
-								</div>
-							}
-							<!-- Tất cả sản phẩm-->
-							@{
-								var listProductNomal = Model.Item1.ToList();
-							}
-							@if (listProductNomal.Count() > 0)
-							{
-								<div class="p-1 text-left" style="background-color: #CCCCCC;">
-									<h2><strong><i class="fa fa-bars" style="margin:2px 10px;"></i>TẤT CẢ SẢN PHẨM</strong></h2>
-								</div>
-								<div class="product-grid">
-									@foreach (var x in listProductNomal)
-									{
-										<div class="witem product-item men">
-											<div class="product discount product_filter">
-												<div class="image">
-
-													@{
-														string image = "";
-														if (x.ProductVariations != null && x.ProductVariations.Count > 0)
-														{
-															var imgItem = x.ProductVariations.Select(c => c.Image).FirstOrDefault();
-															image = imgItem != null ? imgItem : "";
-														}
-													}
-													<img class="image__img" src="~/images/@image" alt="Bricks">
-													<div class="image__overlay image__overlay--primary">
-														<p class="image__description">Xem chi tiết</p>
-														<a class="btn btn-primary" href="/productdetail/@x.Product.Id" style="border-radius:10px;"><i class="fa fa-shopping-cart" style="margin-right:10px;"></i>Thêm vào giỏ hàng</a>
-													</div>
-												</div>
-												<div class="card-body">
-													@{
-														var existProdPromotion = promotiondata.Where(c => c.PromotionDetail.ProductId == x.Product.Id).FirstOrDefault();
-													}
-													@if (existProdPromotion == null)
-													{
-														<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(x.Product.Price.ToString()))</strong></h4>
-													}
-													else
-													{
-														<h5 class="card-title text-center">Giá gốc: <del><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(existProdPromotion.PromotionDetail.InitialPrice.ToString()))</strong></del></h5>
-														<h4 class="card-title text-center"><strong style="color:red;"> @string.Format("{0:0,0} VNĐ", Convert.ToDouble(existProdPromotion.PromotionDetail.CurrentPrice.ToString()))</strong></h4>
-													}
-													<div>
-														<h4 class="card-title text-center"><strong>@x.Product.Name</strong></h4>
-													</div>
-												</div>
+											<div class="red_button add_to_cart_button">
+												<a href="/productdetail/@x.Product.Id">Xem chi tiết</a>
 											</div>
 										</div>
 									}
-								</div>
 							}
-							<!-- Product Sorting -->
-							<div class="container">
-								@if (pager.TotalPages > 0)
+					</div>
+				</div>
+			</div>		
+			@if (pager.TotalPages > 0)
 								{
 									<ul class="pagination justify-content-end">
 										<li class="page-item">
@@ -506,21 +198,47 @@
 											<a class="page-link" asp-controller="Product" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
 										</li>
 									</ul>
-								}
-							</div>
+								}		
+		</div>
+	</div>
+</div>
 
+<div class="deal_ofthe_week">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6">
+					<div class="deal_ofthe_week_img">
+						<img src="/images/deal_ofthe_week.png" alt="">
+					</div>
+				</div>
+				<div class="col-lg-6 text-right deal_ofthe_week_col">
+					<div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
+						<div class="section_title">
+							<h2>Deal Of The Week</h2>
 						</div>
+						<ul class="timer">
+							<li class="d-inline-flex flex-column justify-content-center align-items-center">
+								<div id="day" class="timer_num">03</div>
+								<div class="timer_unit">Day</div>
+							</li>
+							<li class="d-inline-flex flex-column justify-content-center align-items-center">
+								<div id="hour" class="timer_num">15</div>
+								<div class="timer_unit">Hours</div>
+							</li>
+							<li class="d-inline-flex flex-column justify-content-center align-items-center">
+								<div id="minute" class="timer_num">45</div>
+								<div class="timer_unit">Mins</div>
+							</li>
+							<li class="d-inline-flex flex-column justify-content-center align-items-center">
+								<div id="second" class="timer_num">23</div>
+								<div class="timer_unit">Sec</div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		
+	</div> 
 
-		<!-- Main Content -->
+    
 
-		
-	</div>
-
-</div>
-<script src="/UserContent/plugins/Isotope/isotope.pkgd.min.js"></script>
-<script src="/UserContent/js/categories_custom.js"></script>

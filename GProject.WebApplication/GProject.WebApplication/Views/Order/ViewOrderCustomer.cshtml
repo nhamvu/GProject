@@ -26,44 +26,48 @@
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
-<div class="super_container">
+
+
+<div class="super_container" style="margin-top: 200px;">
     <div class="col product_section clearfix">
-        <div class="row d-none d-lg-block motor-breadscrumb">
-            <a class="breadscrumb-parent" href="/product/index">Trang chủ</a>
-            <span class="breadscrumb-arrow">❯</span>
-            <a class="breadscrumb-parent" href="/Order/ViewOrderCustomer">Trạng thái đơn hàng</a>
-        </div>
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-10">
-                <a class="btn btn-outline-primary totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
-            asp-route-sortOrder="@ViewData["InProgress"]" value="@ViewData["totalInPro"]">
+            <div class="col-md-3"></div>
+            <div class="col-md-9">
+                <a class="btn btn-outline-primary " style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["InProgress"]" >
             Chờ xác nhận
+            <span style="color: red;">(@ViewData["totalInPro"])</span>
         </a>
-        <a class="btn btn-outline-secondary totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
-            asp-route-sortOrder="@ViewData["XacNhan"]" value="@ViewData["totalXacNhan"]">
+        <a class="btn btn-outline-secondary " style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["XacNhan"]">
             Đã xác nhận
+            <span style="color: red;">(@ViewData["totalXacNhan"])</span>
         </a>
-        <a class="btn btn-outline-secondary totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
-            asp-route-sortOrder="@ViewData["Confirmed"]" value="@ViewData["totalConfi"]">
+        <a class="btn btn-outline-secondary " style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["Confirmed"]" >
             Đang vận chuyển
+            <span style="color: red;">(@ViewData["totalConfi"])</span>
         </a>
-        <a class="btn btn-outline-warning totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
-            asp-route-sortOrder="@ViewData["Delivery"]" value="@ViewData["totalDelivery"]">
+        <a class="btn btn-outline-warning" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["Delivery"]">
             Đang giao hàng
+            <span style="color: red;">(@ViewData["totalDelivery"])</span>
         </a>
-        <a class="btn btn-outline-success totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
-            asp-route-sortOrder="@ViewData["Accomplished"]" value="@ViewData["totalAcc"]">
+        <a class="btn btn-outline-success" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["Accomplished"]" >
             Hoàn thành
+            <span style="color: red;">(@ViewData["totalAcc"])</span>
         </a>
-        <a class="btn btn-outline-danger totalStatus" style="margin-left:10px" asp-action="ViewOrderCustomer"
-            asp-route-sortOrder="@ViewData["Canceled"]" value="@ViewData["totalXCan"]">
+        <a class="btn btn-outline-danger" style="margin-left:10px" asp-action="ViewOrderCustomer"
+            asp-route-sortOrder="@ViewData["Canceled"]">
             Đã hủy
+            <span style="color: red;">(@ViewData["totalXCan"])</span>
         </a>
         <a class="btn btn-outline-info" style="margin-left:10px" asp-action="ViewOrderCustomer"><i class="fas fa-undo-alt"></i></a>
             </div>
         </div>
-        <h1 class="text-center" style="margin-top:25px; margin-bottom:25px">Trạng thái đơn hàng</h1>
+
+        <h3 class="text-center" style="margin-top:25px; margin-bottom:25px">Trạng thái đơn hàng</h3>
         @if (Model.OrderList.Count() == 0)
         {
             <h3 class="text-center text-warning">Không có thông tin trạng thái hóa đơn!</h3>
@@ -161,55 +165,55 @@
 
                                 <div class="row d-flex align-items-center" style="margin-bottom: 20px;">
                                     <div class="col-md-8">
-                                        <h5>Thông tin giao hàng: </h5>
+                                        <label>Thông tin giao hàng: </label>
                                         <div>
-                                            <h5>@item.ShippingFullName | @item.ShippingPhone,</h5>
+                                            <label>@item.ShippingFullName | @item.ShippingPhone,</label>
                                         </div>
                                         <div>
-                                            <h5>@item.ShippingAddress, @item.ShippingTown, @item.ShippingDistrict, @item.ShippingCity</h5>
+                                            <label>@item.ShippingAddress, @item.ShippingTown, @item.ShippingDistrict, @item.ShippingCity</label>
                                         </div>
 
                                     </div>
                                     <div class="col-md-4">
                                         <div class="row">
                                             <div class="col-6">
-                                                <h4>Trạng thái:</h4>
+                                                <h5>Trạng thái:</h5>
                                             </div>
                                             <div class="col-6">
                                                 @{
                                                     if (item.PaymentType == PaymentType.PayReceive)
                                                     {
-                                                        <h4 class="text-primary">Chưa thanh toán</h4>
+                                                        <h5 class="text-primary">Chưa thanh toán</h5>
                                                     }
                                                     else if (item.Status == OrderStatus.Accomplished || item.PaymentType == PaymentType.PayOrder)
                                                     {
-                                                        <h4 class="text-primary">Đã thanh toán</h4>
+                                                        <h5 class="text-primary">Đã thanh toán</h5>
                                                     }
                                                 }
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <h5>Phí ship:</h5>
+                                                <label>Phí ship:</label>
                                             </div>
                                             <div class="col-6">
-                                                <h5> @item.ShippingFee đ</h5>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <h5>Giảm giá:</h5>
-                                            </div>
-                                            <div class="col-6">
-                                                <h5> - @item.DiscountRate đ</h5>
+                                                <label> @item.ShippingFee đ</label>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-6">
-                                                <h4>Thành tiền:</h4>
+                                                <label>Giảm giá:</label>
                                             </div>
                                             <div class="col-6">
-                                                <h4 style="color: red"> @item.TotalMoney đ</h4>
+                                                <label> - @item.DiscountRate đ</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <h5>Thành tiền:</h5>
+                                            </div>
+                                            <div class="col-6">
+                                                <h5 style="color: red"> @item.TotalMoney đ</h5>
                                             </div>
                                         </div>
 
