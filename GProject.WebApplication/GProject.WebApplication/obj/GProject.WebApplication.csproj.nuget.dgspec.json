@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {}
+    "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {}
   },
   "projects": {
-    "D:\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
+    "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+        "projectUniqueName": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
         "projectName": "GProject.Api",
-        "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\GProject\\GProject.WebApplication\\GProject.Api\\obj\\",
+        "projectPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+        "packagesPath": "C:\\Users\\jinbi\\.nuget\\packages\\",
+        "outputPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jinbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,15 +27,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
-                "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+              "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+                "projectPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
               }
             }
           }
@@ -93,24 +93,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.16, 6.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -119,24 +101,25 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+    "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "projectUniqueName": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
         "projectName": "GProject.Data",
-        "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
+        "projectPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "packagesPath": "C:\\Users\\jinbi\\.nuget\\packages\\",
+        "outputPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jinbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -145,7 +128,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -208,43 +190,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {
+    "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+        "projectUniqueName": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
         "projectName": "GProject.WebApplication",
-        "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\",
+        "projectPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+        "packagesPath": "C:\\Users\\jinbi\\.nuget\\packages\\",
+        "outputPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.WebApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jinbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -253,18 +222,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
-                "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj"
+              "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
+                "projectPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj"
               },
-              "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
-                "projectPath": "D:\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+              "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+                "projectPath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
               }
             }
           }
@@ -391,24 +359,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[6.0.16, 6.0.16]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.16, 6.0.16]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -417,7 +367,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
