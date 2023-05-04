@@ -41,7 +41,7 @@ namespace GProject.Data.MyRepositories.IRepositories
 
         public List<Customer> GetAll()
         {
-            return _context.Customers.ToList();
+            return _context.Customers.OrderByDescending(c =>c.UpdateDate).ToList();
         }
     }
 }

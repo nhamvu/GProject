@@ -33,7 +33,7 @@ namespace GProject.WebApplication.Controllers
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
 
-                const int pageSize = 10;
+                const int pageSize = 5;
                 if (pg < 1)
                     pg = 1;
 

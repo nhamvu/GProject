@@ -1,4 +1,5 @@
-﻿@model GProject.WebApplication.Models.ColorDTO
+﻿@*@model GProject.WebApplication.Models.ColorDTO*@
+@model X.PagedList.IPagedList<GProject.Data.DomainClass.Color>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
@@ -32,31 +33,31 @@
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
 <button class="btn btn-primary col-md-3" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-<form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
-    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+<form id="formdata" class="form" enctype="multipart/form-data">
+    <input id="Id" name="Id" hidden="hidden" />
     <div class="row mt-5">
         <div class="col-md-4">
             <label class="col-md-5"><strong>Mã Màu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input asp-for="HEXCode" placeholder="Hex code (#)" maxlength="15" class="form-control"/>
+                <input id="HEXCode" name="HEXCode" placeholder="Hex code (#)" maxlength="15" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Tên Màu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input asp-for="Name" placeholder="Color name" maxlength="200" class="form-control" />
+                <input id="Name" name="Name" placeholder="Color name" maxlength="200" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Hình ảnh:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input asp-for="Image_Upload" type="file" multiple class="form-control" />
+                <input id="Image_Upload" name="Image_Upload" type="file" multiple class="form-control" />
             </div>
         </div>
         <div class="col-md-2">
             <strong><label></label></strong>
             <div class="form-input">
-                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+                <button id="btnSave" class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
             </div>
         </div>
     </div>
@@ -79,9 +80,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Model.ColorList != null)
+                        @if (Model != null)
                         {
-                            @foreach (var item in Model.ColorList)
+                            @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>
@@ -105,6 +106,18 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
+    {
+    ActiveLiElementClass = "active",
+    PageClasses = new[]{ "page-link"},
+    LiElementClasses=new[] { "page-item" },
+    //LinkToNextPageFormat = "Next",
+    //LinkToPreviousPageFormat = "Prev",
+    DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
+    DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
+    })
 </div>
 <div id="ViewDetail" class="modal modal-default in">
     <div class="modal-dialog">
@@ -155,17 +168,18 @@
 
         e.preventDefault();
         if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
+            //swal("Bạn chắc chắn lưu những thay đổi này?"
+            //, {
+            //    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+            //    icon: 'info',
+            //    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            //}).then(function (isConfirm) {
+            //    if (isConfirm) {
+            //        form.submit();
+            //    } else {
+            //        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+            //    }
+            //});
         }
     });
     function ViewDetailData(id) {
@@ -199,4 +213,73 @@
         }
         return true;
     }
+
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            if ($('#HEXCode').val() == '') {
+                sweetAlert("Thông báo", "Thông tin mã màu không được để trống", "error");
+                return false;
+            }
+            if (!validateHEXCode($('#HEXCode').val())) {
+                sweetAlert("Thông báo", "Thông tin mã màu không đúng định dạng", "error");
+                return false;
+            }
+            if ($('#Name').val() == '') {
+                sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+                return false;
+            }
+            var id = $("#Id").val();
+            var hexcode = $("#HEXCode").val();
+            var name = $("#Name").val();
+            var image = $("#Image_Upload").val();
+            $.ajax({
+                url: "/Color/CheckHEXCode",
+                type: "POST",
+                data: { HEXCode: hexcode, Id: id },
+                success: function (result) {
+                    if (result.success) {
+                        $.ajax({
+                            url: "/Color/CheckName",
+                            type:"POST",
+                            data: { Name: name,Id:id },
+                            success:function(result){
+                                if (result.success) {
+                                    var data = { Id: id, HEXCode: hexcode, Name: name, Image_Upload: image };
+                                    $.ajax({
+                                        url: "/Color/Save",
+                                        type: "POST",
+                                        data: data,
+                                        success: function (result) {
+                                            if (result.success) {
+                                                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 2000);
+                                            } else {
+                                                swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 2000);
+                                            }
+                                        },
+                                        error: function (xhr, status, error) {
+                                            alert(error);
+                                        }
+                                    });
+                                } else {
+                                    swal("Lỗi", "Tên đã được sử dụng, vui lòng nhập tên khác", "error");
+                                }
+                            }
+                        });
+                    } 
+                    else {
+                        swal("Lỗi", "Mã đã được sử dụng, vui lòng nhập mã khác", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(error);
+                }
+            });
+        });
+    });
 </script>

@@ -1,4 +1,5 @@
-﻿@model GProject.WebApplication.Models.BrandDTO
+﻿@*@model GProject.WebApplication.Models.BrandDTO*@
+@model X.PagedList.IPagedList<GProject.Data.DomainClass.Brand>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
@@ -33,36 +34,34 @@
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
 <button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-<form id="formdata" asp-action="Save" class="form">
-    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+<form id="formdata" class="form">
+    <input id="Id" name="Id" hidden="hidden" />
     <div class="row mt-5">
         <div class="col-md-4">
             <label class="col-md-5"><strong>Tên nhãn hiệu:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-                <input asp-for="Name" placeholder="Brand name" maxlength="200" />
+                <input id="Name" name="Name" placeholder="Brand name" maxlength="200" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
             <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
-            <div style="margin-top:10px;">
-                @Html.DropDownList("Status", new[]
-                {
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
-                }, new { @class = "form-control iscompany" })
+            <div>
+                <select id="Status" name="Status" class="form-control">
+                    <option value="0">Không sử dụng</option>
+                    <option value="1">Sử dụng</option>
+                </select>
             </div>
         </div>
         <div class="col-md-9">
             <label class="col-md-5"><strong>Mô tả:</strong></label>
             <div class="form-input">
-                @Html.TextAreaFor(c => c.Description, new { @class= "form-control", @maxlength="256"})
-                @*<textarea asp-for="Description" placeholder="Description" /></textarea>*@
+                <textarea id="Description" name="Description" class="form-control" maxlength="256"></textarea>
             </div>
         </div>
         <div class="col-md-2">
             <strong><label></label></strong>
             <div class="form-input">
-                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+                <button id="btnSave" class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
             </div>
         </div>
     </div>
@@ -86,9 +85,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Model.BrandList != null)
+                        @if (Model != null)
                         {
-                            @foreach (var item in Model.BrandList)
+                            @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>
@@ -115,6 +114,18 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
+    {
+    ActiveLiElementClass = "active",
+    PageClasses = new[]{ "page-link"},
+    LiElementClasses=new[] { "page-item" },
+    //LinkToNextPageFormat = "Next",
+    //LinkToPreviousPageFormat = "Prev",
+    DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
+    DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
+    })
 </div>
 <div id="ViewDetail" class="modal modal-default in">
     <div class="modal-dialog">
@@ -163,17 +174,17 @@
 
         e.preventDefault();
         if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
+            //swal("Bạn chắc chắn lưu những thay đổi này?", {
+            //    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+            //    icon: 'info',
+            //    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            //}).then(function (isConfirm) {
+            //    if (isConfirm) {
+            //        form.submit();
+            //    } else {
+            //        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+            //    }
+            //});
         }
     });
     function ViewDetailData(id) {
@@ -197,9 +208,57 @@
 
     function checkValidateData() {
         if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+            sweetAlert("Thông báo", "Thông tin tên không được để trống", "error");
             return false;
         }
         return true;
     }
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            if ($('#Name').val() == '') {
+                sweetAlert("Thông báo", "Thông tin tên nhãn hiệu không được để trống", "error");
+                return false;
+            }
+            var id = $("#Id").val();
+            var name = $("#Name").val();
+            var status = $("#Status").val();
+            var description = $("#Description").val();
+            $.ajax({
+                url: "/Brand/CheckName",
+                type: "POST",
+                data: { Name: name, Id: id },
+                success: function (result) {
+                    if (result.success) {
+                        var data = { Id: id, Name: name, Status: status, Description: description };
+                        $.ajax({
+                            url: "/Brand/Save",
+                            type: "POST",
+                            data: data,
+                            success: function (result) {
+                                if (result.success) {
+                                    swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 2000);
+                                } else {
+                                    swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 2000);
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                alert(error);
+                            }
+                        });
+                    } else {
+                        swal("Lỗi", "Tên đã được sử dụng, vui lòng nhập tên khác", "error");
+                    }
+                },
+                error:function(xhr,status,error){
+                    alert(error);
+                }
+            });
+        });
+    });
 </script>

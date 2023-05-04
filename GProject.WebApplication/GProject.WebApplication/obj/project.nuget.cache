@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Ew11My/8dPdPrA+6oP7oOsO6fNi77bAqkWJogI+SYnXwUQUv8hPuOOrRC9mBXihUp6T40gNALtUKgt/r7iWMAQ==",
+  "dgSpecHash": "z/vUmq2Epgy+r9hXnVdQwy428ozN1s+052BtJh8blDBsaWCG6572ipq9N3e5s8zJjGrtAFkqJFZo97aGNP34kQ==",
   "success": true,
   "projectFilePath": "D:\\DuAnTotNghiep\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\jinbi\\.nuget\\packages\\identityserver4\\4.1.2\\identityserver4.4.1.2.nupkg.sha512",
     "C:\\Users\\jinbi\\.nuget\\packages\\identityserver4.aspnetidentity\\4.1.2\\identityserver4.aspnetidentity.4.1.2.nupkg.sha512",
     "C:\\Users\\jinbi\\.nuget\\packages\\identityserver4.storage\\4.1.2\\identityserver4.storage.4.1.2.nupkg.sha512",
+    "C:\\Users\\jinbi\\.nuget\\packages\\jetbrains.annotations\\2022.3.1\\jetbrains.annotations.2022.3.1.nupkg.sha512",
     "C:\\Users\\jinbi\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.3\\microsoft.aspnet.identity.core.2.2.3.nupkg.sha512",
     "C:\\Users\\jinbi\\.nuget\\packages\\microsoft.aspnet.identity.owin\\2.2.3\\microsoft.aspnet.identity.owin.2.2.3.nupkg.sha512",
     "C:\\Users\\jinbi\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.9\\microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
@@ -229,7 +230,9 @@
     "C:\\Users\\jinbi\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\jinbi\\.nuget\\packages\\twilio\\5.60.0\\twilio.5.60.0.nupkg.sha512",
     "C:\\Users\\jinbi\\.nuget\\packages\\twilio.aspnet.common\\5.37.2\\twilio.aspnet.common.5.37.2.nupkg.sha512",
-    "C:\\Users\\jinbi\\.nuget\\packages\\twilio.aspnet.core\\5.37.2\\twilio.aspnet.core.5.37.2.nupkg.sha512"
+    "C:\\Users\\jinbi\\.nuget\\packages\\twilio.aspnet.core\\5.37.2\\twilio.aspnet.core.5.37.2.nupkg.sha512",
+    "C:\\Users\\jinbi\\.nuget\\packages\\x.pagedlist\\8.4.7\\x.pagedlist.8.4.7.nupkg.sha512",
+    "C:\\Users\\jinbi\\.nuget\\packages\\x.pagedlist.mvc.core\\8.4.7\\x.pagedlist.mvc.core.8.4.7.nupkg.sha512"
   ],
   "logs": [
     {
