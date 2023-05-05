@@ -40,7 +40,7 @@ namespace GProject.WebApplication.Models
         public bool IsChecked { get; set; }
         public string Image { get; set; }
         public string ImageProduct { get; set; }
-        public IFormFile? Image_Upload { get; set; }
+        public IFormFile Image_Upload { get; set; }
         public int Status { get; set; }
         public List<ProductSizeVariation>? SizeAndStock { get; set; }
     }

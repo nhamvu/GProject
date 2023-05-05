@@ -19,6 +19,16 @@ namespace GProject.Api.MyServices.Services
         public bool Create(ProductVariation cv)
         {
             if (cv == null) return false;
+            cv = new ProductVariation()
+            {
+                Id = cv.Id,
+                ProductId = cv.ProductId,
+                ColorId = cv.ColorId,
+                SizeId = cv.SizeId,
+                QuantityInStock = cv.QuantityInStock,
+                Image = cv.Image,
+                CreateDate = DateTime.Now,
+            };
             if (_iProductVariationRepository.Add(cv))
             {
                 return true;
