@@ -495,7 +495,9 @@ namespace GProject.WebApplication.Controllers
                 ViewData["Returned"] = sortOrder == "InProgress" ? "NotSort" : "Returned";
                 ViewData["Canceled"] = sortOrder == "Canceled" ? "NotSort" : "Canceled";
                 ViewData["XacNhan"] = sortOrder == "DaXacNhan" ? "NotSort" : "DaXacNhan";
-                
+
+                if(sortOrder == null )
+                    lstOrder = lstOrder.Where(x => x.Status == OrderStatus.InProgress).ToList();
 
                 switch (sortOrder)
                 {
@@ -580,15 +582,6 @@ namespace GProject.WebApplication.Controllers
             }
             ViewBag.Message = response;
             return RedirectToAction("ShowDetailMyCart", "Product");
-            //return View(response);
         }
-
-        //[HttpGet]
-        //public async Task<IActionResult> OrderCanceledAsync(Guid id)
-        //{
-        //    var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/order-canceled?id=" + id));
-        //    return RedirectToAction("ViewOrderCustomer", "Order");
-        //}
-
     }
 }

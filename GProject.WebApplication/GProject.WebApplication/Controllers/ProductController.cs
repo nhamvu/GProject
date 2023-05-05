@@ -26,7 +26,7 @@ namespace GProject.WebApplication.Controllers
         }
 
         //[HttpGet]
-        public async Task<ActionResult> Index(string prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice, int? type, int pg = 1, int pageSize = 8, string Keyword = null)
+        public async Task<ActionResult> Index(string prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice, int? type, int pg = 1, int pageSize = 10, string Keyword = null)
         {
             try
             {
