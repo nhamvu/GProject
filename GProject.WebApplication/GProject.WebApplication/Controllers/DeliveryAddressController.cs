@@ -114,10 +114,18 @@ namespace GProject.WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetDataDeliveryAddress()
         {
-            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-            var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+            try
+            {
+                Customer cus = new Customer();
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                var lstObjs = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
 
-            return Json(lstObjs.Where(x => x.CustomerId == customer.Id));
+                return Json(lstObjs.Where(x => x.CustomerId == customer.Id));
+            }
+            catch (Exception)
+            {
+                return Json(null);
+            }
         }
     }
 }

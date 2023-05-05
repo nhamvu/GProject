@@ -56,6 +56,14 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
         price = existProdPromotion.PromotionDetail.CurrentPrice;
     }
 
+    var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
+
+    string nameByNow;
+    if(user == null)
+        nameByNow = "buyFormDataNotLogin";
+    else
+        nameByNow = "buyFormData";
+
 }
 
 
@@ -345,7 +353,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 <div class="modal" id="OrderModal" role="dialog">
     <div class="modal-dialog modal-md" style="text-align:left; background-color:white; max-width:900px">
         <div style="width:900px;">
-            <form id="buyFormData" asp-controller="Order" asp-action="BuyNow" method="post"
+            <form id="@nameByNow" order_id="@nameByNow" asp-controller="Order" asp-action="BuyNow" method="post"
                 class="form-horizontal d-block">
                 <div class="modal-content justify-content-center" style="border-width:1px;">
                     <div class="modal-header" style="width:800px;">
@@ -357,23 +365,94 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         <input type="text" id="idDeliveryAddress" name="idDeliveryAddress" value="" hidden="hidden" />
                         <input type="text" id="cGiamGia" name="cGiamGia" value="" hidden="hidden" />
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label col-sm-5">Địa chỉ đặt hàng:<span
+                        @{
+                            if(user != null)
+                            {
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-5">Địa chỉ đặt hàng:<span
                                                 style="color: red">(*)</span></label>
+                                            <div class="col-sm-12">
+                                                <select id="selectDeliveryAddress" class="form-select">
+                                                </select>
+                                                <button style="margin-top: 5px;" class="btn btn-success "
+                                                    onclick="OpenDeliveryAddress(); return false;" data-toggle="ajax-modal"
+                                                    data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
+                                                    Thêm
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <input type="text" id="Province" name="Province" value="" hidden="hidden" />
+                                <input type="text" id="District" name="District" value="" hidden="hidden" />
+                                <input type="text" id="Wards" name="Wards" value="" hidden="hidden" />
+                            <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Họ và tên:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <select id="selectDeliveryAddress" class="form-select">
-                                        </select>
-                                        <button style="margin-top: 5px;" class="btn btn-success "
-                                            onclick="OpenDeliveryAddress(); return false;" data-toggle="ajax-modal"
-                                            data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
-                                            Thêm
-                                        </button>
+                                        <input type="text" id="ShippingFullName" name="ShippingFullName" value="" placeholder="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectProvince" class="form-select">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectDistrict" class="form-select">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectWards" class="form-select">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            </div>                           
+                            }
+                        }
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -399,7 +478,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                         (PaymentType== 0)},
                                         new SelectListItem{Text="Thanh toán khi đặt hàng", Value="1", Selected=
                                         (PaymentType== 1)},
-                                        }, new { @name = "PaymentType", @class="searchText form-control select"})
+                                        }, new { @name = "PaymentType",  @id = "PaymentType", @class="searchText form-control select"})
                                     </div>
                                 </div>
                             </div>
@@ -494,15 +573,23 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 <script type="text/javascript">
     $(document).ready(function () {
 
-        document.querySelector('#buyFormData').addEventListener('submit', function (e) {
+        LoadProvince();
+        LoadDataTable();
+        LoadDistrict();
+        LoadWard();
+        
+
+        document.querySelector('#@nameByNow').addEventListener('submit', function (e) {
             var form = this;
             e.preventDefault();
-
-            if ($('#selectDeliveryAddress').val() == '') {
-                sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
-            }
-            else {
-                swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
+            var id = $(this).attr("order_id")
+            if(id == "buyFormData")
+            {
+                if ($('#selectDeliveryAddress').val() == '') {
+                    sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
+                }
+                else{
+                    swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
                     title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
                     icon: 'info',
                     buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
@@ -513,8 +600,34 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
                     }
                 });
+                }
             }
+            else if(id == "buyFormDataNotLogin"){
+
+                $('#Province').val( $("#selectProvince :selected").text() );
+                $('#District').val( $("#selectDistrict :selected").text() );
+                $('#Wards').val( $("#selectWards :selected").text() );
+
+                if(checkOrderData())
+                {
+                    swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
+                    title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    } else {
+                        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                    }
+                });
+                }
+                
+            }            
+            
         });
+
+
         $("#selectDeliveryAddress").change(function () {
             let _id = $("#selectDeliveryAddress").val();
             $.ajax({
@@ -539,6 +652,12 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                 }
             })
         });
+
+        $("#selectWards").change(function () {
+            let district = $("#selectDistrict").val();
+            let ward = $("#selectWards").val();
+            ShippingFee(district, ward)
+        })
 
         $('input.quantity').keyup(function () {
             let regex = /^[0-9]+$/;
@@ -846,8 +965,28 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
             sweetAlert("Thông báo", "Thông tin Số điện thoại không đúng định dạng", "error");
             return false;
         }
+        if ($('#selectProvince').val() == '') {
+            sweetAlert("", "Thông tin thành phố không được để trống", "error");
+            return false;
+        }
+        if ($('#selectDistrict').val() == '') {
+            sweetAlert("", "Thông tin huyện không được để trống", "error");
+            return false;
+        }
+        if ($('#selectWards').val() == '') {
+            sweetAlert("", "Thông tin phường xã không được để trống", "error");
+            return false;
+        }
+        if ($('#ShippingEmail').val() == '') {
+            sweetAlert("", "Thông tin Email không được để trống", "error");
+            return false;
+        }
+        if ($('#PaymentType').val() == '') {
+            sweetAlert("", "Thông tin thanh toán không được để trống", "error");
+            return false;
+        }
         if ($('#ShippingAddress').val() == '') {
-            sweetAlert("", "Thông tin địa chỉ không được địa chỉ", "error");
+            sweetAlert("", "Thông tin địa chỉ không được để trống", "error");
             return false;
         }
         return true;
