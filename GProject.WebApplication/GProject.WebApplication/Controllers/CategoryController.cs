@@ -19,26 +19,34 @@ namespace GProject.WebApplication.Controllers
             iCategoryService = new CategoryService();
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index(string sName, int? sStatus, int? page)
         {
             try
             {
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
                     return RedirectToAction("AccessDenied", "Account");
                 //-- Lấy danh sách từ api
+                int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
+
                 var lstObjs = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
+                if (!string.IsNullOrEmpty(sName))
+                    lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
+                if (valsStatus != -1)
+                    lstObjs = lstObjs.Where(c => c.Status == valsStatus).ToList();
+
                 var data = new CategoryDTO() { CategoryList = lstObjs };
                 if (page == null) page = 1;
                 var pageNumber = page ?? 1;
                 var pageSize = 5;
+
+                this.ViewData[nameof(sName)] = (object)sName;
+                this.ViewData[nameof(sStatus)] = (object)valsStatus;
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
-                List<Category> lsdata= lstObjs;
 
-                return View(lsdata.ToPagedList(pageNumber, pageSize));
+                return View(lstObjs.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception)
             {

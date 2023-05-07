@@ -32,6 +32,37 @@
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
+<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Color/Index">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Mã màu</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sHEXCode" name="sHEXCode" value="@ViewData["sHEXCode"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên màu</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <button class="btn btn-primary col-md-3" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
 <form id="formdata" class="form" enctype="multipart/form-data">
     <input id="Id" name="Id" hidden="hidden" />
@@ -231,7 +262,12 @@
             var id = $("#Id").val();
             var hexcode = $("#HEXCode").val();
             var name = $("#Name").val();
-            var image = $("#Image_Upload").val();
+            var image = $("#Image_Upload").get(0).files[0];
+            var data = new FormData();
+            data.append('Id', id);
+            data.append('HEXCode', hexcode);
+            data.append('Name', name);
+            data.append('Image_Upload', image);
             $.ajax({
                 url: "/Color/CheckHEXCode",
                 type: "POST",
@@ -244,11 +280,13 @@
                             data: { Name: name,Id:id },
                             success:function(result){
                                 if (result.success) {
-                                    var data = { Id: id, HEXCode: hexcode, Name: name, Image_Upload: image };
+                                    //var data = { Id: id, HEXCode: hexcode, Name: name, Image_Upload: image };
                                     $.ajax({
                                         url: "/Color/Save",
                                         type: "POST",
                                         data: data,
+                                        contentType: false,
+                                        processData: false,
                                         success: function (result) {
                                             if (result.success) {
                                                 swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");

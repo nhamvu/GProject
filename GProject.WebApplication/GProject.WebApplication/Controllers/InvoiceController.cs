@@ -22,8 +22,7 @@ namespace GProject.WebApplication.Controllers
             orderDetailRepository = new OrderDetailRepository();
         }
 
-        [HttpGet]
-        public ActionResult Index(string sName, string sEmail, string sPhone, int? sPaymentType, int? page)
+        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, int? page)
         {
             try
             {

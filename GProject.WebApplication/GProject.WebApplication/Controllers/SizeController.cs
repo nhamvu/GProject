@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
 using X.PagedList;
+using static IdentityServer4.Models.IdentityResources;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -19,8 +20,7 @@ namespace GProject.WebApplication.Controllers
             iSizeService = new SizeService();
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index(int? page, string sCode, string sName)
         {
             try
             {
@@ -32,6 +32,12 @@ namespace GProject.WebApplication.Controllers
                 if (page == null) page = 1;
                 var pageNumber = page ?? 1;
                 var pageSize = 5;
+                if (!string.IsNullOrEmpty(sName))
+                    lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(sCode))
+                    lstObjs = lstObjs.Where(c => c.Code.ToLower().Contains(sCode.ToLower())).ToList();
+                this.ViewData[nameof(sName)] = (object)sName;
+                this.ViewData[nameof(sCode)] = (object)sCode;
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");

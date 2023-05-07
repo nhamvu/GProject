@@ -33,6 +33,46 @@
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
+<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Brand/Index">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên nhãn hiệu</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Trạng thái</label>
+                                <div class="col-md-9 col-xs-12">
+                                    @{
+                                        int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                    }
+                                    @Html.DropDownList("sStatus",new[]
+                                    {
+                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                    new SelectListItem{Text="Không sử dụng", Value="0", Selected= (status== 0)},
+                                    new SelectListItem{Text="Đang sử dụng", Value="1", Selected=  (status == 1)}
+                                    }, new { @name = "sStatus", @class="searchText form-control select"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
 <form id="formdata" class="form">
     <input id="Id" name="Id" hidden="hidden" />

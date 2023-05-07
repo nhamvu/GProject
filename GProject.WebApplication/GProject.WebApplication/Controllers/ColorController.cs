@@ -29,8 +29,7 @@ namespace GProject.WebApplication.Controllers
             iColorService = new ColorService();
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Index(int? page)
+        public async Task<ActionResult> Index(int? page, string sHEXCode, string sName)
         {
             try
             {
@@ -42,7 +41,13 @@ namespace GProject.WebApplication.Controllers
                 if (page == null) page = 1;
                 var pageNumber = page ?? 1;
                 var pageSize = 5;
+                if (!string.IsNullOrEmpty(sName))
+                    lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(sHEXCode))
+                    lstObjs = lstObjs.Where(c => c.HEXCode.ToLower().Contains(sHEXCode.ToLower())).ToList();
                 //-- truyền vào message nếu có thông báo
+                this.ViewData[nameof(sName)] = (object)sName;
+                this.ViewData[nameof(sHEXCode)] = (object)sHEXCode;
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
@@ -99,7 +104,6 @@ namespace GProject.WebApplication.Controllers
             {
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
                     return Json(new { success = false });
-
                 var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
                 var existName = lstObjs.Any(x => x.Name == Name && (!Id.HasValue || x.Id != Id.Value));
                 return Json(new { success = !existName });

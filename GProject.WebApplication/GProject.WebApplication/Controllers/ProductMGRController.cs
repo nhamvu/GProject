@@ -3,10 +3,12 @@ using GProject.Api.MyServices.Services;
 using GProject.Data.DomainClass;
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
+using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Reflection.Metadata;
+using static IdentityServer4.Models.IdentityResources;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -19,8 +21,7 @@ namespace GProject.WebApplication.Controllers
             iProductService = new ProductMGRService();
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Index(int pg = 1)
+        public async Task<ActionResult> Index(string sName,decimal? sImportPrice,int? sStatus, string sBrand,decimal? sPrice, int pg = 1)
         {
             try
             {
@@ -41,11 +42,26 @@ namespace GProject.WebApplication.Controllers
                 var pager = new Pager(recsCount, pg, pageSize);
                 int recSkip = (pg - 1) * pageSize;
                 var data = lstObjs.Skip(recSkip).Take(pageSize).ToList();
+                int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
 
                 var result = new ProductMGRDTO() { ProductVariationList = lstProductvariation, ProductList = data, ProductVariationViewModel = lstColor.Where(c => c.Status == 1).ToList(), SizeList = lstSize };
+
+                if (!string.IsNullOrEmpty(sName))
+                    result.ProductList = result.ProductList.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(sBrand))
+                    //result = result.Where(c => c.Brand.ToLower().Contains(sEmail.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(sImportPrice.ToString()))
+                    result.ProductList = (List<Product>)result.ProductList.Where(c => c.ImportPrice >= sImportPrice);
+                if (!string.IsNullOrEmpty(sPrice.ToString()))
+                    result.ProductList = (List<Product>)result.ProductList.Where(c => c.Price <= sPrice);
+                if (valsStatus != -1)
+                    result.ProductList = result.ProductList.Where(c => c.Status == valsStatus).ToList();
                 this.ViewBag.Pager = pager;
-                //this.ViewBag.Data = data;
-                //-- truyền vào message nếu có thông báo
+                this.ViewData[nameof(sName)] = (object)sName;
+                this.ViewData[nameof(sImportPrice)] = (object)sImportPrice;
+                this.ViewData[nameof(sStatus)] = (object)valsStatus;
+                this.ViewData[nameof(sBrand)] = (object)sBrand;
+                this.ViewData[nameof(sPrice)] = (object)sPrice;
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
@@ -53,7 +69,6 @@ namespace GProject.WebApplication.Controllers
             }
             catch (Exception)
             {
-
                 return RedirectToAction("AccessDenied", "Account");
             }
         }

@@ -195,7 +195,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <img style="width:120px;height:50px; border;1px solid;" src="~/images/@item.Image" />
+                                        <img style="width:120px;height:90px; border;1px solid;" src="~/images/@item.Image" />
                                     </td>
                                     <td>
                                         @item.Name
@@ -307,17 +307,17 @@
 
         e.preventDefault();
         if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
+            //swal("Bạn chắc chắn lưu những thay đổi này?", {
+            //    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+            //    icon: 'info',
+            //    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            //}).then(function (isConfirm) {
+            //    if (isConfirm) {
+            //        form.submit();
+            //    } else {
+            //        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+            //    }
+            //});
         }
     });
     function ViewCustomerDetail(id) {
@@ -374,8 +374,21 @@
         }
         return true;
     }
+
     $(document).ready(function () {
         $("#btnSave").click(function () {
+            if ($('#Name').val() == '') {
+                sweetAlert("Thông báo", "Thông tin tên khách hàng không được để trống", "error");
+                return false;
+            }
+            if ($('#Email').val() == '') {
+                sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
+                return false;
+            }
+            if ($('#Password').val() == '') {
+                sweetAlert("Thông báo", "Thông tin mật khẩu không được để trống", "error");
+                return false;
+            }
             if ($('#PhoneNumber').val() == '') {
                 sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
                 return false;
@@ -384,49 +397,76 @@
                 sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
                 return false;
             }
-            if ($('#Name').val() == '') {
-                sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
-                return false;
-            }
-            if ($('#Email').val() == '') {
-                sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
-                return false;
-            }
             if ($('#Address').val() == '') {
                 sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
                 return false;
             }
-            var fileInput = $("#Image_Upload")[0];
-            var file = fileInput.files[0];
-            var formData = new FormData();
-            formData.append('Id', id);
-            formData.append('Name', name);
-            formData.append('Email', email);
-            formData.append('Password', password);
-            formData.append('DateOfBirth', dateOfBirth);
-            formData.append('PhoneNumber', phoneNumber);
-            formData.append('Sex', sex);
-            formData.append('Address', address);
-            formData.append('Description', description);
-            formData.append('Status', status);
-            formData.append('Description', description);
-            formData.append('Image_Upload', file);
-
+            var id = $("#Id").val();
+            var name = $("#Name").val();
+            var email = $("#Email").val();
+            var password = $("#Password").val();
+            var dateOfBirth = $("#DateOfBirth").val();
+            var phoneNumber = $("#PhoneNumber").val();
+            var sex = $("#Sex").val();
+            var address = $("#Address").val();
+            var description = $("#Description").val();
+            var status = $("#Status").val();
+            var image = $("#Image_Upload").get(0).files[0];
+            var data = new FormData();
+            data.append('Id', id);
+            data.append('Name', name);
+            data.append('Email', email);
+            data.append('Password', password);
+            data.append('DateOfBirth', dateOfBirth);
+            data.append('PhoneNumber', phoneNumber);
+            data.append('Sex', sex);
+            data.append('Address', address);
+            data.append('Description', description);
+            data.append('Status', status);
+            data.append('Image_Upload', image);
             $.ajax({
-                url: "/Customer/Save",
+                url: "/Customer/CheckEmail",
                 type: "POST",
-                data: formData,
+                data: { Email: email, Id: id },
                 success: function (result) {
                     if (result.success) {
-                        swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
-                        setTimeout(function () {
-                            location.reload();
-                        }, 2000);
-                    } else {
-                        swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
-                        setTimeout(function () {
-                            location.reload();
-                        }, 2000);
+                        $.ajax({
+                            url: "/Customer/CheckPhone",
+                            type: "POST",
+                            data: { PhoneNumber: phoneNumber, Id: id },
+                            success: function (result) {
+                                if (result.success) {
+                                    $.ajax({
+                                        url: "/Customer/Save",
+                                        type: "POST",
+                                        data: data,
+                                        contentType: false,
+                                        processData: false,
+                                        success: function (result) {
+                                            if (result.success) {
+                                                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 2000);
+                                            } else {
+                                                swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 2000);
+                                            }
+                                        },
+                                        error: function (xhr, status, error) {
+                                            alert(error);
+                                        }
+                                    });
+                                } else {
+                                    swal("Lỗi", "Số điện thoại đã được đăng ký, vui lòng nhập số khác", "error");
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        swal("Lỗi", "Email đã được đăng ký, vui lòng nhập email khác", "error");
                     }
                 },
                 error: function (xhr, status, error) {
