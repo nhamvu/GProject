@@ -7,6 +7,7 @@ using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection.Metadata;
+using X.PagedList;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -21,8 +22,7 @@ namespace GProject.WebApplication.Controllers
             orderDetailRepository = new OrderDetailRepository();
         }
 
-        [HttpGet]
-        public ActionResult Index(string sName, string sEmail, string sPhone, int? sPaymentType, int pg = 1)
+        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, int? page)
         {
             try
             {
@@ -40,14 +40,17 @@ namespace GProject.WebApplication.Controllers
                 if (valsPaymentType != -1)
                     lstObjs = lstObjs.Where(c => (int)c.PaymentType == sPaymentType).ToList();
 
-                const int pageSize = 20;
-                if (pg < 1)
-                    pg = 1;
-                var pager = new Pager(lstObjs.Count(), pg, pageSize);
-                var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
-                var data = new OrderDto() { Orders = lstData };
+                //const int pageSize = 20;
+                //if (pg < 1)
+                //    pg = 1;
+                //var pager = new Pager(lstObjs.Count(), pg, pageSize);
+                //var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
+                //var data = new OrderDto() { Orders = lstData };
+                if (page == null) page = 1;
+                var pageNumber = page ?? 1;
+                var pageSize = 5;
 
-                this.ViewBag.Pager = pager;
+                //this.ViewBag.Pager = pager;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
@@ -56,7 +59,7 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
-                return View(data);
+                return View(lstObjs.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception ex)
             {

@@ -21,6 +21,7 @@ using GProject.WebApplication.Models.Payments;
 using GProject.WebApplication.Services.IServices;
 using GProject.WebApplication.Services;
 using IdentityServer4.Models;
+using X.PagedList;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -40,7 +41,7 @@ namespace GProject.WebApplication.Controllers
             productVariationRepository = new ProductVariationRepository();
         }
 
-        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int pg = 1)
+        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int? page)
         {
             try
             {
@@ -48,6 +49,7 @@ namespace GProject.WebApplication.Controllers
                     return RedirectToAction("AccessDenied", "Account");
                 int valsPaymentType = sPaymentType.HasValue ? sPaymentType.Value : -1;
                 var lstObjs = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
+
 
                 ViewData["totalInPro"] = lstObjs.Where(x => x.Status == OrderStatus.InProgress).ToList().Count();
                 ViewData["totalConfi"] = lstObjs.Where(x => x.Status == OrderStatus.Confirmed).ToList().Count();
@@ -105,14 +107,17 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => (int)c.PaymentType == sPaymentType).ToList();
 
 
-                const int pageSize = 20;
-                if (pg < 1)
-                    pg = 1;
-                var pager = new Pager(lstObjs.Count(), pg, pageSize);
-                var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
-                var data = new OrderDto() { Orders = lstData };
+                // const int pageSize = 2;
+                // if (pg < 1)
+                //     pg = 1;
+                //var pager = new Pager(lstObjs.Count(), pg, pageSize);
+                // var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
+                if (page == null) page = 1;
+                var pageNumber = page ?? 1;
+                var pageSize = 5;
+                var data = new OrderDto() { Orders = lstObjs };
 
-                this.ViewBag.Pager = pager;
+                //this.ViewBag.Pager = pager;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
@@ -121,7 +126,10 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
-                return View(data);
+                //List<Order> lsOrder = lstObjs;
+
+                return View(lstObjs.ToPagedList(pageNumber, pageSize));
+
             }
             catch (Exception ex)
             {

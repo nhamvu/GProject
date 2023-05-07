@@ -12,35 +12,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 3 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+using X.PagedList.Mvc.Core;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 1 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 2 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 using Microsoft.AspNetCore.Mvc;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 3 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -93,7 +100,7 @@ using GProject.WebApplication.Helpers;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 4 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
   
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
 
@@ -104,7 +111,7 @@ using GProject.WebApplication.Helpers;
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "00b9310473e9d62f7c021d5b270ee0687ffc42409881", async() => {
                 WriteLiteral("\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>");
 #nullable restore
-#line 12 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
+#line 12 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Shared\_Layout.cshtml"
       Write(ViewData["Title"]);
 
 #line default

@@ -13,42 +13,49 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 3 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+using X.PagedList.Mvc.Core;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 5 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 6 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 7 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 8 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 9 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
 using GProject.Data.MyRepositories.IRepositories;
 
 #line default
@@ -100,7 +107,7 @@ List<GProject.Data.DomainClass.ViewHistory>>>
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 10 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
+#line 10 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\Index.cshtml"
   
 	ViewBag.Title = "Danh sách sản phẩm";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -365,6 +372,7 @@ WriteAttributeValue("", 4522, ViewData["prodName"], 4522, 21, false);
 							var existProdPromotion = promotiondata.Where(c => c.PromotionDetail.ProductId ==
 							x.Product.Id).FirstOrDefault();
 							var getCategory = lstCategory.FirstOrDefault(c => c.Id == x.Product.CategoryId);
+							var getbrand = lstBrand.FirstOrDefault(c => c.Id == x.Product.BrandId);
 							var getbrand = lstBrand.FirstOrDefault(c => c.Id == x.Product.BrandId);
 
 

@@ -45,17 +45,12 @@
     <PackageReference Include="RestSharp" Version="108.0.3" />
     <PackageReference Include="Twilio" Version="5.60.0" />
     <PackageReference Include="Twilio.AspNet.Core" Version="5.37.2" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.4.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GProject.Api\GProject.Api.csproj" />
     <ProjectReference Include="..\GProject.Data\GProject.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="FX.Utils">
-      <HintPath>..\..\..\Project Softdreams\easyinvoice-admin\LIB\FX.Utils.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>

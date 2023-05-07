@@ -13,42 +13,49 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 3 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+using X.PagedList.Mvc.Core;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 4 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 5 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 6 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 7 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 8 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
 using GProject.Data.MyRepositories.IRepositories;
 
 #line default
@@ -105,7 +112,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>>
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 9 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
+#line 9 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Product\ProductDetail.cshtml"
   
     ViewBag.Title = "Danh sách sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";

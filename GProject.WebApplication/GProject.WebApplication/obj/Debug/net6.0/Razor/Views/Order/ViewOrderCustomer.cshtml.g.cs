@@ -13,21 +13,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\ViewOrderCustomer.cshtml"
+#line 3 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+using X.PagedList.Mvc.Core;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 1 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Order\ViewOrderCustomer.cshtml"
 using GProject.Data.Enums;
 
 #line default
@@ -72,7 +79,7 @@ using GProject.Data.Enums;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\ViewOrderCustomer.cshtml"
+#line 4 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\Order\ViewOrderCustomer.cshtml"
   
     ViewBag.Title = "Trạng thái hóa đơn";
     Layout = "~/Views/Shared/_Layout.cshtml";

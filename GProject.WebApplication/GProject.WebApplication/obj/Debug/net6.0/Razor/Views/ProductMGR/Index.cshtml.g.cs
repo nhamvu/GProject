@@ -13,35 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 3 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+using X.PagedList.Mvc.Core;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 3 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 4 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 5 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 6 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -75,13 +82,15 @@ using GProject.WebApplication.Helpers;
                 return __backed__tagHelperScopeManager;
             }
         }
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper;
+        private global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper;
         private global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper;
         private global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 7 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
   
     ViewBag.Title = "Danh sách thông tin sản phẩm";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -182,7 +191,7 @@ using GProject.WebApplication.Helpers;
 
 ");
 #nullable restore
-#line 102 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 102 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
  if (@ViewData["Mess"] != null)
 {
 
@@ -191,7 +200,7 @@ using GProject.WebApplication.Helpers;
 #nullable disable
             WriteLiteral("    <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 104 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 104 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                          Write(ViewData["Mess"]);
 
 #line default
@@ -199,23 +208,156 @@ using GProject.WebApplication.Helpers;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 105 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 105 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 }
 
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("<button class=\"btn btn-primary\"");
-            BeginWriteAttribute("onclick", " onclick=\"", 2471, "\"", 2532, 3);
-            WriteAttributeValue("", 2481, "location.href=\'", 2481, 15, true);
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "da73a20d043c17b19dd4fdbeefe24c276e1b877710494", async() => {
+                WriteLiteral(@"
+    <div class=""row"">
+        <div class=""col-md-12"">
+            <div class=""panel panel-default"">
+                <div class=""panel-body"">
+                    <div class=""row"">
+                        <div class=""col-md-6"">
+
+                            <div class=""form-group"">
+                                <label class=""col-md-3 control-label"">Tên sản phẩm</label>
+                                <div class=""col-md-9 col-xs-12"">
+                                    <input type=""text"" id=""sName"" name=""sName""");
+                BeginWriteAttribute("value", " value=\"", 3071, "\"", 3097, 1);
 #nullable restore
-#line 106 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
-WriteAttributeValue("", 2496, Url.Action("Create", "ProductMGR"), 2496, 35, false);
+#line 117 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+WriteAttributeValue("", 3079, ViewData["sName"], 3079, 18, false);
 
 #line default
 #line hidden
 #nullable disable
-            WriteAttributeValue("", 2531, "\'", 2531, 1, true);
+                EndWriteAttribute();
+                WriteLiteral(@" class=""form-control"" />
+                                </div>
+                            </div>
+                            <div class=""form-group"">
+                                <label class=""col-md-3 control-label"">Giá nhập</label>
+                                <div class=""col-md-9 col-xs-12"">
+                                    <input type=""number"" id=""sImportPrice"" name=""sImportPrice"" step=""0.01""");
+                BeginWriteAttribute("value", " value=\"", 3514, "\"", 3547, 1);
+#nullable restore
+#line 123 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+WriteAttributeValue("", 3522, ViewData["sImportPrice"], 3522, 25, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(@" class=""form-control"" />
+                                </div>
+                            </div>
+                            <div class=""form-group"">
+                                <label class=""col-md-3 control-label"">Trạng thái</label>
+                                <div class=""col-md-9"">
+");
+#nullable restore
+#line 129 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+                                      
+                                        int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                    
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                    ");
+#nullable restore
+#line 132 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+                               Write(Html.DropDownList("sStatus",new[]
+                                    {
+                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                    new SelectListItem{Text="Đang bán", Value="0", Selected= (status== 0)},
+                                    new SelectListItem{Text="Ngừng bán", Value="1", Selected=  (status == 1)}
+                                    }, new { @name = "sStatus", @class="searchText form-control select"}));
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral(@"
+                                </div>
+                            </div>
+                        </div>
+                        <div class=""col-sm-6"">
+                            <div class=""form-group"">
+                                <label class=""col-md-3 control-label"">Nhãn hiệu</label>
+                                <div class=""col-md-9 col-xs-12"">
+                                    <input type=""text"" id=""sBrand"" maxlength=""10"" name=""sBrand""");
+                BeginWriteAttribute("value", " value=\"", 5040, "\"", 5067, 1);
+#nullable restore
+#line 145 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+WriteAttributeValue("", 5048, ViewData["sBrand"], 5048, 19, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(@" class=""form-control"" />
+                                </div>
+                            </div>
+                            <div class=""form-group"">
+                                <label class=""col-md-3 control-label"">Giá bán</label>
+                                <div class=""col-md-9"">
+                                    <input type=""number"" id=""sPrice"" name=""sPrice""");
+                BeginWriteAttribute("value", " value=\"", 5449, "\"", 5476, 1);
+#nullable restore
+#line 151 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+WriteAttributeValue("", 5457, ViewData["sPrice"], 5457, 19, false);
+
+#line default
+#line hidden
+#nullable disable
+                EndWriteAttribute();
+                WriteLiteral(@" class=""form-control"" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class=""panel-footer text-center"">
+                    <button class=""btn btn-success"" onclick=""$('.searchText').removeAttr('disabled')"" type=""submit""><i class=""fa fa-search""></i>Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+");
+            }
+            );
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.FormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
+            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_0);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Method = (string)__tagHelperAttribute_2.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
+            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
+            if (!__tagHelperExecutionContext.Output.IsContentModified)
+            {
+                await __tagHelperExecutionContext.SetOutputContentAsync();
+            }
+            Write(__tagHelperExecutionContext.Output);
+            __tagHelperExecutionContext = __tagHelperScopeManager.End();
+            WriteLiteral("\r\n<button class=\"btn btn-primary\"");
+            BeginWriteAttribute("onclick", " onclick=\"", 5994, "\"", 6055, 3);
+            WriteAttributeValue("", 6004, "location.href=\'", 6004, 15, true);
+#nullable restore
+#line 164 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+WriteAttributeValue("", 6019, Url.Action("Create", "ProductMGR"), 6019, 35, false);
+
+#line default
+#line hidden
+#nullable disable
+            WriteAttributeValue("", 6054, "\'", 6054, 1, true);
             EndWriteAttribute();
             WriteLiteral(@" type=""button""><i class=""fa fa-plus"" aria-hidden=""true""></i>Thêm mới</button>
 <hr style=""color:red;"" />
@@ -245,7 +387,7 @@ WriteAttributeValue("", 2496, Url.Action("Create", "ProductMGR"), 2496, 35, fals
                     <tbody>
 ");
 #nullable restore
-#line 131 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 189 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                          if (Model.ProductList != null)
                         {
                             
@@ -254,7 +396,7 @@ WriteAttributeValue("", 2496, Url.Action("Create", "ProductMGR"), 2496, 35, fals
 #line hidden
 #nullable disable
 #nullable restore
-#line 133 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 191 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                              foreach (var item in Model.ProductList)
                             {
                                 string img = Model.ProductVariationList.Where(c => c.ProductId == item.Id).Select(c => c.Image).FirstOrDefault().NullToString();
@@ -268,7 +410,7 @@ WriteAttributeValue("", 2496, Url.Action("Create", "ProductMGR"), 2496, 35, fals
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_0);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_5);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "src", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
             AddHtmlAttributeValue("", 4537, "~/images/", 4537, 9, true);
 #nullable restore
@@ -288,7 +430,7 @@ AddHtmlAttributeValue("", 4546, img, 4546, 4, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 141 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 199 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                    Write(item.Name);
 
 #line default
@@ -296,7 +438,7 @@ AddHtmlAttributeValue("", 4546, img, 4546, 4, false);
 #nullable disable
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 144 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 202 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(lstBrand.Where(c => c.Id == item.BrandId).Select(c => c.Name).FirstOrDefault());
 
 #line default
@@ -304,7 +446,7 @@ AddHtmlAttributeValue("", 4546, img, 4546, 4, false);
 #nullable disable
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 147 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 205 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(item.ImportPrice.ToString("0.##"));
 
 #line default
@@ -312,7 +454,7 @@ AddHtmlAttributeValue("", 4546, img, 4546, 4, false);
 #nullable disable
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 150 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 208 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(item.Price.ToString("0.##"));
 
 #line default
@@ -320,7 +462,7 @@ AddHtmlAttributeValue("", 4546, img, 4546, 4, false);
 #nullable disable
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 153 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 211 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(item.ViewCount);
 
 #line default
@@ -328,7 +470,7 @@ AddHtmlAttributeValue("", 4546, img, 4546, 4, false);
 #nullable disable
             WriteLiteral(" <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 156 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 214 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(item.LikeCount);
 
 #line default
@@ -336,7 +478,7 @@ AddHtmlAttributeValue("", 4546, img, 4546, 4, false);
 #nullable disable
             WriteLiteral(" <i class=\"fa fa-thumbs-up\" aria-hidden=\"true\"></i>\r\n                                    </td>\r\n                                    <td>\r\n");
 #nullable restore
-#line 159 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 217 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                           
                                             if (item.Status == 0)
                                             {
@@ -358,7 +500,7 @@ WriteAttributeValue("", 5964, item.Id, 5964, 8, false);
             EndWriteAttribute();
             WriteLiteral(">Đang bán</button>\r\n");
 #nullable restore
-#line 163 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 221 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                             }
                                             else
                                             {
@@ -380,7 +522,7 @@ WriteAttributeValue("", 6256, item.Id, 6256, 8, false);
             EndWriteAttribute();
             WriteLiteral(">Ngừng bán</button>\r\n");
 #nullable restore
-#line 167 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 225 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                             }
                                         
 
@@ -389,7 +531,7 @@ WriteAttributeValue("", 6256, item.Id, 6256, 8, false);
 #nullable disable
             WriteLiteral("                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 171 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 229 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                    Write(item.Description);
 
 #line default
@@ -409,20 +551,21 @@ WriteAttributeValue("", 6700, Url.Action("Update", "ProductMGR",new { id = item.
             EndWriteAttribute();
             WriteLiteral(" />\r\n                                        <i class=\"fas fa-pen-square\"></i>\r\n                                    </td>\r\n                                </tr>\r\n");
 #nullable restore
-#line 178 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 236 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                             }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 178 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 236 "D:\DuAnTotNghiep\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                              
                         }
 
 #line default
 #line hidden
 #nullable disable
+            WriteLiteral("                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n        <div class=\"container\" style=\"margin-top: 10px;\">\r\n");
             WriteLiteral("                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n        <div class=\"container\" style=\"margin-top: 10px;\">\r\n");
 #nullable restore
 #line 185 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
@@ -448,11 +591,11 @@ WriteAttributeValue("", 6700, Url.Action("Update", "ProductMGR",new { id = item.
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_2.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_3.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_7.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_7);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_8.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_8);
             if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
             {
                 throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-pg", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
@@ -515,11 +658,11 @@ WriteAttributeValue(" ", 7551, pge == pager.CurrentPage ? "Active" : "", 7552, 4
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_2.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_3.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_7.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_7);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_8.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_8);
             if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
             {
                 throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-pg", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
@@ -566,11 +709,11 @@ WriteAttributeValue(" ", 7551, pge == pager.CurrentPage ? "Active" : "", 7552, 4
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_1);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_2.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_3.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_7.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_7);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_8.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_8);
             if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
             {
                 throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-pg", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
@@ -615,6 +758,11 @@ WriteAttributeValue(" ", 7551, pge == pager.CurrentPage ? "Active" : "", 7552, 4
 </div>
 
 
+            WriteLiteral(@"		</div>
+    </div>
+</div>
+
+
 <script type=""text/javascript"">
 
     $(document).ready(function () {
@@ -646,6 +794,8 @@ WriteAttributeValue(" ", 7551, pge == pager.CurrentPage ? "Active" : "", 7552, 4
         if ($('#Name').val() == '') {
     ");
             WriteLiteral(@"        sweetAlert(""Thông báo"", ""Thông tin tên sản phẩm không được để trống"", ""error"");
+    ");
+            WriteLiteral(@"        sweetAlert(""Thông báo"", ""Thông tin tên sản phẩm không được để trống"", ""error"");
             return false;
         }
         if (parseFloat($('#BrandId').val()) == -1) {
@@ -667,6 +817,9 @@ WriteAttributeValue(" ", 7551, pge == pager.CurrentPage ? "Active" : "", 7552, 4
         if ($('#Price').val() == '') {
             sweetAlert("""", ""Thông tin giá bán không được để trống"", ""error"");
             return false;
+ ");
+            WriteLiteral(@"       }
+        if (isNaN($('#Price').val())) {
  ");
             WriteLiteral(@"       }
         if (isNaN($('#Price').val())) {
