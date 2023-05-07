@@ -338,8 +338,6 @@ namespace GProject.WebApplication.Services
                               t123456 => t123456.t2.SizeId,
                               t7 => t7.Id,
                               (t123456, t7) => new { t123456.t1, t123456.t2, t123456.t3, t123456.t4, t123456.t5, t123456.t6, t7 })
-
-                        .Where(c => c.t5.CustomerId == customer_id)
                         .Select(result => new {
                             Product = result.t1,
                             ProductVariation = result.t2,
@@ -349,7 +347,12 @@ namespace GProject.WebApplication.Services
                             Color = result.t6,
                             Size = result.t7
                         }).ToList();
+            if (customer_id != null)
+            {
+                result = result.Where(x => x.Order.CustomerId == customer_id).ToList();
+            }
             List<ShowOrderDto> showOrder = Commons.ConverObject<List<ShowOrderDto>>(result);
+            
 
             return showOrder;
         }

@@ -26,28 +26,78 @@ namespace GProject.WebApplication.Controllers
             _deliveryAddressAndShippingFeeService = new DeliveryAddressAndShippingFeeService();
         }
 
+
+        private static string _prodName;
+        private static Guid? _category;
+        private static int? _brand;
+        private static decimal? _fPrice;
+        private static decimal? _tPrice;
+
+        
         //[HttpGet]
-        public async Task<ActionResult> Index(string prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice, int? type, int pg = 1, int pageSize = 10, string Keyword = null)
+        public async Task<ActionResult> Index(
+            string? prodName, 
+            Guid? category, 
+            int? brand, 
+            decimal? fPrice, 
+            decimal? tPrice, 
+            int? type, 
+            string? clear,
+            int pg = 1, 
+            int pageSize = 10, 
+            string Keyword = null           
+        )
         {
             try
             {
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
                     return RedirectToAction("AccessDenied", "Account");
                 decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
-				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
-				Guid valCategory = category.HasValue ? category.Value : Guid.Empty;
-				int valBrand = brand.HasValue ? brand.Value : -1;
+                decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
+                Guid valCategory = category.HasValue ? category.Value : Guid.Empty;
+                int valBrand = brand.HasValue ? brand.Value : -1;
 
-				var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-				GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                SetDataStatic(prodName, category, brand, fPrice, tPrice);
+
+                if (prodName == null)
+                    prodName = _prodName;
+
+                if (category == null)
+                    category = _category;
+
+                if (brand == null)
+                    brand = _brand;
+
+                if (fPrice == null)
+                    fPrice = _fPrice;
+
+                if (tPrice == null)
+                    tPrice = _tPrice;
+
+                if(clear != null)
+                {
+                    prodName = null;
+                    _prodName = null;
+                    category = null;
+                    _category = null;
+                    brand = null; 
+                    _brand = null;
+                    fPrice = null; 
+                    _fPrice = null;
+                    tPrice = null; 
+                    _tPrice = null;
+                }    
+
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 var data = await pService.GetDataForIndex(prodName, valCategory, valBrand, valFromPrice, valToPrice, type.NullToString(), pg, pageSize, customer, Keyword);
-				this.ViewBag.Pager = data.pager;
-				this.ViewData[nameof(prodName)] = (object)prodName;
-				this.ViewData[nameof(fPrice)] = (object)valFromPrice;
-				this.ViewData[nameof(tPrice)] = (object)valFromPrice;
-				this.ViewData[nameof(brand)] = (object)valBrand;
-				this.ViewData[nameof(category)] = (object)valCategory;
-				this.ViewData[nameof(Keyword)] = (object)Keyword;
+                this.ViewBag.Pager = data.pager;
+                this.ViewData[nameof(prodName)] = (object)prodName;
+                this.ViewData[nameof(fPrice)] = (object)valFromPrice;
+                this.ViewData[nameof(tPrice)] = (object)valFromPrice;
+                this.ViewData[nameof(brand)] = (object)valBrand;
+                this.ViewData[nameof(category)] = (object)valCategory;
+                this.ViewData[nameof(Keyword)] = (object)Keyword;
                 return View(data.tuple);
             }
             catch (Exception ex)
@@ -57,11 +107,11 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-		[Route("/productdetail/{product_id}")]
-		public async Task<ActionResult> ProductDetail(Guid product_id)
-		{
-			try
-			{
+        [Route("/productdetail/{product_id}")]
+        public async Task<ActionResult> ProductDetail(Guid product_id)
+        {
+            try
+            {
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
                     return RedirectToAction("AccessDenied", "Account");
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
@@ -72,13 +122,13 @@ namespace GProject.WebApplication.Controllers
                 if (customer == null)
                     customer = new Customer();
                 return View(await pService.GetProductDetail(product_id, customer));
-			}
-			catch (Exception ex)
-			{
+            }
+            catch (Exception ex)
+            {
                 Console.WriteLine(ex);
                 return RedirectToAction("AccessDenied", "Account");
             }
-		}
+        }
 
         //[GProject.WebApplication.Services.Authorize]
         public async Task<ActionResult> AddToCart(string cTotalMoney, string cColor, string cSize, string cQuantity, string cPrice, string cProductId, string cDescription)
@@ -152,7 +202,7 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-        
+
 
         //[GProject.WebApplication.Services.Authorize]
         [HttpGet]
@@ -227,9 +277,9 @@ namespace GProject.WebApplication.Controllers
 
         //[GProject.WebApplication.Services.Authorize]
         public async Task<ActionResult> ShowDetailMyCart(string prodName, int? brand, decimal? fPrice, decimal? tPrice, int idProvince)
-		{
-			try
-			{
+        {
+            try
+            {
                 //if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
                 //    return RedirectToAction("AccessDenied", "Account");
 
@@ -266,20 +316,20 @@ namespace GProject.WebApplication.Controllers
                 }
 
 
-							
+
 
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
 
                 return View(await pService.ShowMyCart(customer.Id, prodName, valFromPrice, valToPrice, valBrand));
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex);
-				return RedirectToAction("AccessDenied", "Account");
-			}
-		}
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
 
         public ActionResult ProdNomal()
         {
@@ -336,12 +386,12 @@ namespace GProject.WebApplication.Controllers
                 var data = lstVoucher.Where(x => x.Status == 1 && x.ExpirationDate >= DateTime.Now && x.MinimumOrder <= totalMoneyOrder && x.NumberOfVouchers > 0);
                 return Json(data);
             }
-            else if(id != null && totalMoneyOrder == null && discountCode == null)
+            else if (id != null && totalMoneyOrder == null && discountCode == null)
             {
                 var data = lstVoucher.FirstOrDefault(x => x.Id == id && x.NumberOfVouchers > 0 && x.Status != 0 && x.ExpirationDate >= DateTime.Now);
                 return Json(data);
             }
-            else if(id == null && totalMoneyOrder == null && discountCode != null)
+            else if (id == null && totalMoneyOrder == null && discountCode != null)
             {
                 var data = lstVoucher.FirstOrDefault(x => x.VoucherId == discountCode && x.NumberOfVouchers > 0 && x.Status != 0 && x.ExpirationDate >= DateTime.Now);
                 return Json(data);
@@ -349,7 +399,7 @@ namespace GProject.WebApplication.Controllers
             else
             {
                 return Json(null);
-            }          
+            }
         }
 
         public Cart Create_CartNotLogin()
@@ -371,13 +421,13 @@ namespace GProject.WebApplication.Controllers
 
         public async Task<bool> AddToCart_DetailsNotLogin(
             List<CartDetail> cart_Deatils,
-            Guid? cartId, 
-            string cTotalMoney, 
-            string cColor, 
-            string cSize, 
-            string cQuantity, 
-            string cPrice, 
-            string cProductId, 
+            Guid? cartId,
+            string cTotalMoney,
+            string cColor,
+            string cSize,
+            string cQuantity,
+            string cPrice,
+            string cProductId,
             string cDescription
         )
         {
@@ -441,6 +491,24 @@ namespace GProject.WebApplication.Controllers
             {
                 return false;
             }
+        }
+
+        public void SetDataStatic(string? prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice)
+        {
+            if (prodName != null)
+                _prodName = prodName;
+
+            if (category != null)
+                _category = category;
+
+            if (brand != null)
+                _brand = brand;
+
+            if (fPrice != null)
+                _fPrice = fPrice;
+
+            if (tPrice != null)
+                _tPrice = tPrice;
         }
     }
 }

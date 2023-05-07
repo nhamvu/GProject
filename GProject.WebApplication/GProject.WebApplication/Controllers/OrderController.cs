@@ -649,22 +649,19 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-        public async Task<ActionResult> ViewOrderCustomer(string? sortOrder)
+        public async Task<ActionResult> ViewOrderCustomer(string? sortOrder, string? orderId, string? phone, int pg = 1, int pageSize = 10)
         {
             try
             {
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
 
-                if (customer == null)
-                {;
-                    return View(new OrderDTO() { OrderList = new List<Order>(), ShowOrderDtoList = new List<ShowOrderDto>() });
-                }
+                
                 
                 //-- Lấy danh sách từ api
                 var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
-                var lstProductvariation = await pService.ShowMyOrder(customer.Id);
-                lstOrder = lstOrder.Where(x => x.CustomerId == customer.Id).ToList();
+                var lstProductvariation = await pService.ShowMyOrder(null);
+                //lstOrder = lstOrder.Where(x => x.CustomerId == customer.Id).ToList();
 
                 ViewData["totalInPro"] = lstOrder.Where(x => x.Status == OrderStatus.InProgress).ToList().Count();
                 ViewData["totalConfi"] = lstOrder.Where(x => x.Status == OrderStatus.Confirmed).ToList().Count();
@@ -682,7 +679,7 @@ namespace GProject.WebApplication.Controllers
                 ViewData["Canceled"] = sortOrder == "Canceled" ? "NotSort" : "Canceled";
                 ViewData["XacNhan"] = sortOrder == "DaXacNhan" ? "NotSort" : "DaXacNhan";
 
-                if (sortOrder == null)
+                if (sortOrder == null && orderId == null && phone == null)
                     lstOrder = lstOrder.Where(x => x.Status == OrderStatus.InProgress).ToList();
 
                 switch (sortOrder)
@@ -714,6 +711,37 @@ namespace GProject.WebApplication.Controllers
                     default: break;
                 }
 
+                if(orderId != null)
+                {
+                    lstOrder = lstOrder.Where(x => x.OrderId == orderId).ToList();
+                    @ViewData["orderId"] = orderId;
+                }
+
+                if (phone != null)
+                {
+                    lstOrder = lstOrder.Where(x => x.ShippingPhone == phone).ToList();
+                    @ViewData["phone"] = phone;
+                }
+
+                if (pg < 1)
+                    pg = 1;
+
+                int recsCount = lstOrder.Count();
+                var pager = new Pager(recsCount, pg, pageSize);
+                int recSkip = (pg - 1) * pageSize;
+                lstOrder = lstOrder.Skip(recSkip).Take(pageSize).ToList();
+
+                if (customer == null && (orderId != null || phone != null))
+                {
+                    
+
+                    return View(new OrderDTO() { OrderList = lstOrder.OrderByDescending(x => x.CreateDate).ToList(), ShowOrderDtoList = lstProductvariation });
+                }
+
+                if (customer == null)
+                    {
+                        return View(new OrderDTO() { OrderList = new List<Order>(), ShowOrderDtoList = new List<ShowOrderDto>() });
+                    }
 
                 var data = new OrderDTO() { OrderList = lstOrder.Where(x => x.CustomerId == customer.Id).OrderByDescending(x => x.CreateDate).ToList(), ShowOrderDtoList = lstProductvariation };
 
