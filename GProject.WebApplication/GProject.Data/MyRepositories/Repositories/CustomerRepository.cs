@@ -15,6 +15,7 @@ namespace GProject.Data.MyRepositories.IRepositories
         {
             _context = new GProjectContext();
         }
+
         public bool Add(Customer obj)
         {
             if (obj == null) return false;

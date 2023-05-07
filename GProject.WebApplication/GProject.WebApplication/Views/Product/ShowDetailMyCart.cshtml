@@ -29,6 +29,12 @@
             }
         }
     }
+    var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
+    string nameOrder;
+    if(user == null)
+        nameOrder = "buyFormDataNotLogin";
+    else
+        nameOrder = "buyFormData";
 }
 
 <link href="/css/showCart.css" rel="stylesheet">
@@ -214,7 +220,7 @@
 <div class="modal" id="OrderModal" role="dialog">
     <div class="modal-dialog modal-md" style="text-align:left; background-color:white; max-width:900px">
         <div style="width:900px;">
-            <form id="formdata" action="/Order/Order" method="post" class="form-horizontal d-block">
+            <form id="@nameOrder" order_id="@nameOrder" action="/Order/Order" method="post" class="form-horizontal d-block">
                 <div class="modal-content justify-content-center" style="border-width:1px;">
                     <div class="modal-header ">
                         <h4 class="modal-title text-center">Thông tin đơn hàng</h4>
@@ -226,7 +232,10 @@
                         <input type="text" id="cGiamGia" name="cGiamGia" value="" hidden="hidden" />
 
                         <div class="row">
-                            <div class="row">
+                            @{
+                                if(user != null)
+                                {
+                                    <div class="row">
                                 <div class="form-group">
                                     <label class="control-label col-sm-5">Địa chỉ đặt hàng:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
@@ -238,7 +247,71 @@
                                     </div>
 
                                 </div>
+                                </div>
+                                }
+                                else{
+                                    <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Họ và tên:<span style="color: red">(*)</span></strong></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" id="ShippingFullName" name="ShippingFullName" value="" placeholder="" class="form-control" />
+                                    </div>
+                                </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectProvince" class="form-select">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectDistrict" class="form-select">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+
+                            <div class="row"> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectWards" class="form-select">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" id="ShippingAddress" name="ShippingAddress" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                                }
+                            }
                         </div>
                         <div class="row">
                             <div class="row" style="margin-top: 15px;">
@@ -350,15 +423,40 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        document.querySelector('#formdata').addEventListener('submit', function (e) {
+
+        LoadProvince();
+        LoadDataTable();
+        LoadDistrict();
+        LoadWard();
+
+        document.querySelector('#@nameOrder').addEventListener('submit', function (e) {
             var form = this;
             e.preventDefault();
-            if (checkValidateData()) {
+            var id = $(this).attr("order_id")
+
+            if (id == "buyFormData")
+            {
+                if (checkValidateData()) {
                 swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
                     title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
                     icon: 'info',
                     buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
                 }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    } else {
+                        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                    }
+                });
+                }
+            }
+            else if(id == "buyFormDataNotLogin")
+            {
+                swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
+                    title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                    }).then(function (isConfirm) {
                     if (isConfirm) {
                         form.submit();
                     } else {
@@ -521,7 +619,11 @@
         });
 
 
-
+        $("#selectWards").change(function () {
+            let district = $("#selectDistrict").val();
+            let ward = $("#selectWards").val();
+            ShippingFee(district, ward)
+        })
 
 
 
@@ -621,6 +723,8 @@
         let thanhtien = tongtien - (tongtien * ((100 - giamgia) / 100))
         return thanhtien
     }
+
+
 
     function CheckDiscountCode() {
         $("#selectVoucher").val(0)
@@ -726,10 +830,45 @@
         return true;
     }
 
-    //function validatePhoneNumber(code) {
-    //    var regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
-    //    return regex.test(code);
-    //}
+    function checkOrderData() {
+        if ($('#ShippingFullName').val() == '') {
+            sweetAlert("Thông báo", "Thông tin Họ tên người mua hàng không được để trống", "error");
+            return false;
+        }
+        if ($('#ShippingPhone').val() == '') {
+            sweetAlert("", "Thông tin Số điện thoại không được để trống", "error");
+            return false;
+        }
+        if (!validatePhoneNumber($('#ShippingPhone').val())) {
+            sweetAlert("Thông báo", "Thông tin Số điện thoại không đúng định dạng", "error");
+            return false;
+        }
+        if ($('#selectProvince').val() == '') {
+            sweetAlert("", "Thông tin thành phố không được để trống", "error");
+            return false;
+        }
+        if ($('#selectDistrict').val() == '') {
+            sweetAlert("", "Thông tin huyện không được để trống", "error");
+            return false;
+        }
+        if ($('#selectWards').val() == '') {
+            sweetAlert("", "Thông tin phường xã không được để trống", "error");
+            return false;
+        }
+        if ($('#ShippingEmail').val() == '') {
+            sweetAlert("", "Thông tin Email không được để trống", "error");
+            return false;
+        }
+        if ($('#PaymentType').val() == '') {
+            sweetAlert("", "Thông tin thanh toán không được để trống", "error");
+            return false;
+        }
+        if ($('#ShippingAddress').val() == '') {
+            sweetAlert("", "Thông tin địa chỉ không được để trống", "error");
+            return false;
+        }
+        return true;
+    }
 
     function RemoveToCart() {
         var products = [];

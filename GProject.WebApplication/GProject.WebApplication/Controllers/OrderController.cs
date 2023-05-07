@@ -237,6 +237,7 @@ namespace GProject.WebApplication.Controllers
         private static string _cDescription;
         private static int _PaymentType;
         private static string _pTotalMoney;
+        private static Guid? _customerId;
 
         [HttpPost]
         public async Task<ActionResult> Order(int selectVoucher,string DiscountCode, string cGiamGia, string idDeliveryAddress, string cShippingFee, string cTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
@@ -312,7 +313,23 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> BuyNow(int selectVoucher, string DiscountCode, string cGiamGia, string idDeliveryAddress, string cShippingFee, string pTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
+        public async Task<ActionResult> BuyNow(
+            int selectVoucher, 
+            string DiscountCode, 
+            string cGiamGia, 
+            string idDeliveryAddress, 
+            string cShippingFee, 
+            string pTotalMoney, 
+            string ShippingEmail, 
+            string cDescription,
+            string ShippingFullName,
+            string ShippingPhone,
+            string Province,
+            string District,
+            string Wards,
+            string ShippingAddress,
+            int PaymentType = 0         
+        )
         {
             try
             {
@@ -330,10 +347,47 @@ namespace GProject.WebApplication.Controllers
                 }
                 List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
                 var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
+                var getAllCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
                 var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
                 var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(idDeliveryAddress));
+               
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                if (customer == null) return RedirectToAction("Login", "Account");
+
+                Guid? customerId;
+
+                if (customer == null)
+                {
+                    var checkCustomer = getAllCustomer.FirstOrDefault(x => x.PhoneNumber == ShippingPhone && x.Email == ShippingEmail);
+
+                    if(checkCustomer != null)
+                        customerId = checkCustomer.Id;
+                    else
+                    {
+                        var cus = new Customer()
+                        {
+                            Name = ShippingFullName,
+                            Email = ShippingEmail,
+                            CustomerId = Commons.RandomString(10),
+                            Password = Commons.RandomString(6),
+                            CreateDate = DateTime.Now,
+                            DateOfBirth = DateTime.Now,
+                            PhoneNumber = ShippingPhone,
+                            Sex = 0,
+                            Address = ShippingAddress,
+                            Status = 0,
+                            Description = null,
+                            Image = "_customer.png"
+                        };
+                        await Commons.Add_or_UpdateAsync(cus, Commons.mylocalhost + "Customer/add-Customer");
+
+                        var getCustomerNew = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                        customerId = (getCustomerNew.FirstOrDefault(x => x.PhoneNumber == ShippingPhone && x.Email == ShippingEmail)).Id;
+                    }
+                }
+                else
+                {
+                    customerId = customer.Id;
+                }
 
                 if (PaymentType == 1)
                 {
@@ -345,6 +399,7 @@ namespace GProject.WebApplication.Controllers
                     _ShippingEmail = ShippingEmail;
                     _cDescription = cDescription;
                     _PaymentType = PaymentType;
+                    _customerId = customerId;
 
                     PaymentInformationModel model = new PaymentInformationModel()
                     {
@@ -359,8 +414,22 @@ namespace GProject.WebApplication.Controllers
                 }
 
                 GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
-                bool result = await pService.BuyNow(voucherId, cGiamGia, cShippingFee, pTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
-                    ShippingEmail, cDescription, PaymentType, customer.Id, prodOrders);
+                bool result = await pService.BuyNow(
+                    voucherId, 
+                    cGiamGia, 
+                    cShippingFee,
+                    pTotalMoney, 
+                    dataDeliveryAddress.Name, 
+                    dataDeliveryAddress.PhoneNumber, 
+                    dataDeliveryAddress.ProvinceName, 
+                    dataDeliveryAddress.DistrictName, 
+                    dataDeliveryAddress.WardName, 
+                    dataDeliveryAddress.Address,
+                    ShippingEmail, 
+                    cDescription, 
+                    PaymentType,
+                    customerId, 
+                    prodOrders);
 
                 if (!result)
                     HttpContext.Session.SetString("mess", "Failed");
@@ -564,13 +633,41 @@ namespace GProject.WebApplication.Controllers
             bool result = false;
             if (_pTotalMoney == null)
             {
-                result = await pService.AddToOrder(_selectVoucher, _cGiamGia, _cShippingFee, _cTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
-                    _ShippingEmail, _cDescription, _PaymentType, customer.Id, prodOrders);
+                result = await pService.AddToOrder(
+                    _selectVoucher, 
+                    _cGiamGia, 
+                    _cShippingFee, 
+                    _cTotalMoney, 
+                    dataDeliveryAddress.Name, 
+                    dataDeliveryAddress.PhoneNumber, 
+                    dataDeliveryAddress.ProvinceName, 
+                    dataDeliveryAddress.DistrictName, 
+                    dataDeliveryAddress.WardName, 
+                    dataDeliveryAddress.Address,
+                    _ShippingEmail, 
+                    _cDescription, 
+                    _PaymentType, 
+                    customer.Id, 
+                    prodOrders);
             }    
             else if(_cTotalMoney == null)
             {
-                result = await pService.BuyNow(_selectVoucher, _cGiamGia, _cShippingFee, _pTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
-                    _ShippingEmail, _cDescription, _PaymentType, customer.Id, prodOrders);
+                result = await pService.BuyNow(
+                    _selectVoucher, 
+                    _cGiamGia, 
+                    _cShippingFee, 
+                    _pTotalMoney, 
+                    dataDeliveryAddress.Name, 
+                    dataDeliveryAddress.PhoneNumber, 
+                    dataDeliveryAddress.ProvinceName, 
+                    dataDeliveryAddress.DistrictName, 
+                    dataDeliveryAddress.WardName, 
+                    dataDeliveryAddress.Address,
+                    _ShippingEmail, 
+                    _cDescription, 
+                    _PaymentType, 
+                    _customerId, 
+                    prodOrders);
             }
             if (!result)
                 HttpContext.Session.SetString("mess", "Failed");
