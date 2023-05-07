@@ -1,4 +1,5 @@
-﻿@model GProject.WebApplication.Models.SizeDTO
+﻿@*@model GProject.WebApplication.Models.SizeDTO*@
+@model X.PagedList.IPagedList<GProject.Data.DomainClass.Size>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
@@ -32,28 +33,59 @@
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
+<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Size/Index">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Mã size</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sCode" name="sCode" value="@ViewData["sCode"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Tên size</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 <button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-<form id="formdata" asp-action="Save" class="form">
-    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+<form id="formdata" class="form">
+    <input id="Id" name="Id" hidden="hidden" />
     <div class="row mt-5">
         <div class="col-md-4">
             <label class="col-md-5"><strong>Mã:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
-
-                <input asp-for="Code" placeholder="Size code (XL)" maxlength="15" />
+                <input id="Code" name="Code" placeholder="Size code (XL)" maxlength="15" class="form-control" />
             </div>
         </div>
         <div class="col-md-4">
             <label class="col-md-5"><strong>Tên:<span style="color: red">(*)</span></strong></label>
             <div class="form-input">
 
-                <input asp-for="Name" placeholder="Size name" maxlength="200" />
+                <input id="Name" name="Name" placeholder="Size name" maxlength="200" class="form-control" />
             </div>
         </div>
         <div class="col-md-2">
             <strong><label></label></strong>
             <div class="form-input">
-                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+                <button id="btnSave" class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
             </div>
         </div>
     </div>
@@ -75,9 +107,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @if (Model.SizeList != null)
+                        @if (Model != null)
                         {
-                            @foreach (var item in Model.SizeList)
+                            @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>
@@ -98,6 +130,18 @@
             </div>
         </div>
     </div>
+</div>
+<div class="container">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
+    {
+    ActiveLiElementClass = "active",
+    PageClasses = new[]{ "page-link"},
+    LiElementClasses=new[] { "page-item" },
+    //LinkToNextPageFormat = "Next",
+    //LinkToPreviousPageFormat = "Prev",
+    DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
+    DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
+    })
 </div>
 <div id="ViewDetail" class="modal modal-default in">
     <div class="modal-dialog">
@@ -148,23 +192,23 @@
 
         e.preventDefault();
         if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
+            //swal("Bạn chắc chắn lưu những thay đổi này?", {
+            //    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+            //    icon: 'info',
+            //    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            //}).then(function (isConfirm) {
+            //    if (isConfirm) {
+            //        form.submit();
+            //    } else {
+            //        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+            //    }
+            //});
         }
     });
     function ViewDetailData(id) {
-        $.getJSON("/Color/Detail?id=" + id, function (data) {
+        $.getJSON("/Size/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);
-            $("#Code").val(data.Code);
+            $("#Code").val(data.code);
             $("#Id").val(data.id);
             document.getElementById('namee').innerText = data.name;
             document.getElementById('code').innerText = data.code;
@@ -179,17 +223,85 @@
 
     function checkValidateData() {
         if ($('#Code').val() == '') {
-            sweetAlert("Thông báo", "Thông tin mã màu không được để trống", "error");
+            sweetAlert("Thông báo", "Thông tin mã size không được để trống", "error");
             return false;
         }
         if (!validateCode($('#Code').val())) {
-            sweetAlert("Thông báo", "Thông tin mã màu không đúng định dạng", "error");
+            sweetAlert("Thông báo", "Thông tin mã size không đúng định dạng", "error");
             return false;
         }
         if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+            sweetAlert("Thông báo", "Thông tin tên size không được để trống", "error");
             return false;
         }
         return true;
     }
+
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            if ($('#Code').val() == '') {
+                sweetAlert("Thông báo", "Thông tin mã size không được để trống", "error");
+                return false;
+            }
+            if (!validateCode($('#Code').val())) {
+                sweetAlert("Thông báo", "Thông tin mã size không đúng định dạng", "error");
+                return false;
+            }
+            if ($('#Name').val() == '') {
+                sweetAlert("Thông báo", "Thông tin tên size không được để trống", "error");
+                return false;
+            }
+            var id = $("#Id").val();
+            var code = $("#Code").val();
+            var name = $("#Name").val();
+            $.ajax({
+                url: "/Size/CheckCode",
+                type: "POST",
+                data: { Code: code, Id: id },
+                success: function (result) {
+                    if (result.success) {
+                        $.ajax({
+                            url: "/Size/CheckName",
+                            type: "POST",
+                            data: { Name: name, Id: id },
+                            success: function (result) {
+                                if (result.success) {
+                                    var data = { Id: id, Code: code, Name: name};
+                                    $.ajax({
+                                        url: "/Size/Save",
+                                        type: "POST",
+                                        data: data,
+                                        success: function (result) {
+                                            if (result.success) {
+                                                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 2000);
+                                            } else {
+                                                swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 2000);
+                                            }
+                                        },
+                                        error: function (xhr, status, error) {
+                                            alert(error);
+                                        }
+                                    });
+                                } else {
+                                    swal("Lỗi", "Tên đã được sử dụng, vui lòng nhập tên khác", "error");
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        swal("Lỗi", "Mã đã được sử dụng, vui lòng nhập mã khác", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(error);
+                }
+            });
+        });
+    });
 </script>
