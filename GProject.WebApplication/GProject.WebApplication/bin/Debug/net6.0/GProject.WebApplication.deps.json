@@ -60,6 +60,7 @@
           "RestSharp": "108.0.3",
           "Twilio": "5.60.0",
           "Twilio.AspNet.Core": "5.37.2",
+          "X.PagedList.Mvc.Core": "8.4.7",
           "Microsoft.AspNetCore.Antiforgery.Reference": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions.Reference": "6.0.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies.Reference": "6.0.0.0",
@@ -507,6 +508,17 @@
         },
         "compile": {
           "lib/netstandard2.0/IdentityServer4.Storage.dll": {}
+        }
+      },
+      "JetBrains.Annotations/2022.3.1": {
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "assemblyVersion": "4242.42.42.42",
+            "fileVersion": "2022.3.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {}
         }
       },
       "Microsoft.AspNet.Identity.Core/2.2.3": {
@@ -2668,6 +2680,34 @@
           "lib/netstandard1.6/Twilio.AspNet.Core.dll": {}
         }
       },
+      "X.PagedList/8.4.7": {
+        "dependencies": {
+          "JetBrains.Annotations": "2022.3.1"
+        },
+        "runtime": {
+          "lib/net6.0/X.PagedList.dll": {
+            "assemblyVersion": "8.4.7.0",
+            "fileVersion": "8.4.7.0"
+          }
+        },
+        "compile": {
+          "lib/net6.0/X.PagedList.dll": {}
+        }
+      },
+      "X.PagedList.Mvc.Core/8.4.7": {
+        "dependencies": {
+          "X.PagedList": "8.4.7"
+        },
+        "runtime": {
+          "lib/net6.0/X.PagedList.Mvc.Core.dll": {
+            "assemblyVersion": "8.4.7.0",
+            "fileVersion": "8.4.7.0"
+          }
+        },
+        "compile": {
+          "lib/net6.0/X.PagedList.Mvc.Core.dll": {}
+        }
+      },
       "GProject.Api/1.0.0": {
         "dependencies": {
           "GProject.Data": "1.0.0",
@@ -4499,6 +4539,13 @@
       "path": "identityserver4.storage/4.1.2",
       "hashPath": "identityserver4.storage.4.1.2.nupkg.sha512"
     },
+    "JetBrains.Annotations/2022.3.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-11nsS3+lFICGkztVs9PP2NRItxf9fF+qD6xEW/T0YGto52zj07wseUeBdMAU1ah9HNVTDZyRC1u4NWdtJScwhw==",
+      "path": "jetbrains.annotations/2022.3.1",
+      "hashPath": "jetbrains.annotations.2022.3.1.nupkg.sha512"
+    },
     "Microsoft.AspNet.Identity.Core/2.2.3": {
       "type": "package",
       "serviceable": true,
@@ -6010,6 +6057,20 @@
       "sha512": "sha512-kEmsczResMWJ1lHnhZRKhWVE2eiBuXWAUF6tsQDAeXWIOREmBpUxNIU5LI47ss8miSj7oIPxpM8yz5GYjZP9QQ==",
       "path": "twilio.aspnet.core/5.37.2",
       "hashPath": "twilio.aspnet.core.5.37.2.nupkg.sha512"
+    },
+    "X.PagedList/8.4.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ZA1WcyNviMUhivCgwKAm/5/YsNP3Yf/n81SzrPaHSJOcFzavA9MrXTT8M+ZX4fvHwLCL1bY6BPXvwZF5pRtgTg==",
+      "path": "x.pagedlist/8.4.7",
+      "hashPath": "x.pagedlist.8.4.7.nupkg.sha512"
+    },
+    "X.PagedList.Mvc.Core/8.4.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dS8sJr/aT3AoV9ePaqmF4wijh/2vqS9rxpOvzjPPStkQcR8rUaGPVezPgY/kJwWCZ2hdgKNralbU08So0otNxw==",
+      "path": "x.pagedlist.mvc.core/8.4.7",
+      "hashPath": "x.pagedlist.mvc.core.8.4.7.nupkg.sha512"
     },
     "GProject.Api/1.0.0": {
       "type": "project",

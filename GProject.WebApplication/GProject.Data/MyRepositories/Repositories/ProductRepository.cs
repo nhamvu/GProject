@@ -41,7 +41,7 @@ namespace GProject.Data.MyRepositories.IRepositories
 
         public List<Product> GetAll()
         {
-            return _context.Products.ToList();
+            return _context.Products.OrderByDescending(c=>c.CreateDate).ToList();
         }
     }
 }

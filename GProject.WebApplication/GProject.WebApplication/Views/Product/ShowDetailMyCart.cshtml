@@ -31,13 +31,23 @@
     }
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
     string nameOrder;
+    int checkByNow = 0;
     if(user == null)
         nameOrder = "buyFormDataNotLogin";
     else
+    {
         nameOrder = "buyFormData";
+        checkByNow = 1;
+    }
 }
 
 <link href="/css/showCart.css" rel="stylesheet">
+<style>
+    .form-control{
+        color: black;
+        font-size: 14px;
+    }
+</style>
 
 @if (@ViewData["Mess"] != null)
 {
@@ -64,13 +74,13 @@
                                                 <input type="text" id="prodName" name="prodName" value="" placeholder="Tên sản phẩm" class="form-control col-md-8" />
                                             </div>
                                             <div class="form-group row">
-                                                <h3 class="col-md-4 control-label"><strong>Nhãn hiệu</strong></h3>
+                                                <h3 class="col-md-4 control-label">Nhãn hiệu</h3>
                                                 <div class="col-md-8 col-xs-12">
                                                     @Html.DropDownList("brand", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <h3 class="col-md-4 control-label"><strong>Giá từ</strong></h3>
+                                                <h3 class="col-md-4 control-label">Giá từ</h3>
                                                 <div class="col-md-8 col-xs-12">
                                                     @{
                                                         decimal fPrice = decimal.Parse(Html.Encode(ViewData["fPrice"]));
@@ -87,7 +97,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <h3 class="col-md-4 control-label"><strong>Đến</strong></h3>
+                                                <h3 class="col-md-4 control-label">Đến</h3>
                                                 <div class="col-md-8 col-xs-12">
                                                     @{
                                                         int tPrice = int.Parse(Html.Encode(ViewData["tPrice"]));
@@ -253,7 +263,7 @@
                                     <div class="row"> 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Họ và tên:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Họ và tên:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <input type="text" id="ShippingFullName" name="ShippingFullName" value="" placeholder="" class="form-control" />
                                     </div>
@@ -261,7 +271,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Số điện thoại:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
                                     </div>
@@ -269,10 +279,10 @@
                             </div>
                             </div>
                             
-                            <div class="row"> 
+                            <div class="row" style="margin-top: 15px;"> 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
+                                    <label class="control-label col-sm-5">Tỉnh/Thành phố:</label>
                                     <div class="col-sm-12">
                                         <select id="selectProvince" class="form-select">
                                             <option></option>
@@ -282,7 +292,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
+                                    <label class="control-label col-sm-5">Quận/Huyện:</label>
                                     <div class="col-sm-12">
                                         <select id="selectDistrict" class="form-select">
                                         </select>
@@ -291,10 +301,10 @@
                             </div>
                             </div>
 
-                            <div class="row"> 
+                            <div class="row" style="margin-top: 15px;"> 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
+                                    <label class="control-label col-sm-5">Phường/Xã:</label>
                                     <div class="col-sm-12">
                                         <select id="selectWards" class="form-select">
                                         </select>
@@ -303,7 +313,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Địa chỉ chi tiết:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <input type="text" id="ShippingAddress" name="ShippingAddress" value="" class="form-control" />
                                     </div>
@@ -425,7 +435,6 @@
     $(document).ready(function () {
 
         LoadProvince();
-        LoadDataTable();
         LoadDistrict();
         LoadWard();
 
@@ -649,7 +658,10 @@
                 return;
             }
 
-            DataAddressCustomer()
+            if (@checkByNow == 1) {
+                DataAddressCustomer();
+            }
+
 
             var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''))
             GetDataVoucher(total);
