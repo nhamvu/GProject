@@ -20,21 +20,21 @@ using GProject.Data.Enums;
 using GProject.WebApplication.Models.Payments;
 using GProject.WebApplication.Services.IServices;
 using GProject.WebApplication.Services;
+using IdentityServer4.Models;
 
 namespace GProject.WebApplication.Controllers
 {
-    [GProject.WebApplication.Services.Authorize]
     public class OrderController : Controller
     {
-		private readonly IVnPayService _vnPayService;
-		private ISendMailRepository sendMailRepository;
+        private readonly IVnPayService _vnPayService;
+        private ISendMailRepository sendMailRepository;
         private IOrderRepository orderRepository;
         private IOrderDetailRepository orderDetailRepository;
         private IProductVariationRepository productVariationRepository;
         public OrderController(IVnPayService vnPayService)
         {
-			_vnPayService = vnPayService;
-			sendMailRepository = new SendMailRepository();
+            _vnPayService = vnPayService;
+            sendMailRepository = new SendMailRepository();
             orderRepository = new OrderRepository();
             orderDetailRepository = new OrderDetailRepository();
             productVariationRepository = new ProductVariationRepository();
@@ -127,7 +127,7 @@ namespace GProject.WebApplication.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            
+
         }
 
         public async Task<ActionResult> Detail(Guid id)
@@ -150,7 +150,7 @@ namespace GProject.WebApplication.Controllers
             {
                 var employee = HttpContext.Session.GetObjectFromJson<Employee>("userLogin");
                 var order = orderRepository.GetAll().Where(c => c.Id == new Guid(id)).FirstOrDefault();
-                
+
                 if (order != null)
                 {
                     int oriStatus = (int)order.Status;
@@ -230,7 +230,6 @@ namespace GProject.WebApplication.Controllers
         }
         private static int _selectVoucher;
         private static string _cGiamGia;
-        private static string _idDeliveryAddress;
         private static string _cShippingFee;
         private static string _cTotalMoney;
         private static string _ShippingEmail;
@@ -238,88 +237,21 @@ namespace GProject.WebApplication.Controllers
         private static int _PaymentType;
         private static string _pTotalMoney;
         private static Guid? _customerId;
+        private static string _ShippingFullName;
+        private static string _ShippingPhone;
+        private static string _Province;
+        private static string _District;
+        private static string _Wards;
+        private static string _ShippingAddress;
 
         [HttpPost]
-        public async Task<ActionResult> Order(int selectVoucher,string DiscountCode, string cGiamGia, string idDeliveryAddress, string cShippingFee, string cTotalMoney, string ShippingEmail, string cDescription, int PaymentType = 0)
-        {
-            try
-            {
-                int voucherId = 0;
-                var voucherList = (await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"))).ToList();
-                if (selectVoucher != 0)
-                        voucherId = selectVoucher;
-                else
-                {
-                    if(!string.IsNullOrEmpty(DiscountCode)) 
-                    {
-                        var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
-                        voucherId = voucher.Id;
-                    }
-                }
-                List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
-                var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
-                var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(idDeliveryAddress));
-                var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));                
-                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                if (customer == null) return RedirectToAction("Login", "Account");
-                if (PaymentType == 1)
-                {
-                    _selectVoucher = voucherId;
-                    _cGiamGia = cGiamGia;
-                    _idDeliveryAddress = idDeliveryAddress;
-                    _cShippingFee = cShippingFee;
-                    _cTotalMoney = cTotalMoney;
-                    _ShippingEmail = ShippingEmail;
-                    _cDescription = cDescription;
-                    _PaymentType = PaymentType;
-
-                    PaymentInformationModel model = new PaymentInformationModel()
-                    {
-                        Name = dataDeliveryAddress.Name,
-                        OrderDescription = "Thanh toán đơn hàng",
-                        Amount = Convert.ToSingle(cTotalMoney),
-                        OrderType = "electric"
-                    };
-                    var url = _vnPayService.CreatePaymentUrl(model, HttpContext);
-
-                    return Redirect(url);
-                }
-
-
-                GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
-                bool result = await pService.AddToOrder(voucherId, cGiamGia, cShippingFee, cTotalMoney, dataDeliveryAddress.Name, dataDeliveryAddress.PhoneNumber, dataDeliveryAddress.ProvinceName, dataDeliveryAddress.DistrictName, dataDeliveryAddress.WardName, dataDeliveryAddress.Address,
-                    ShippingEmail, cDescription, PaymentType, customer.Id, prodOrders);
-
-                if (!result)
-                    HttpContext.Session.SetString("mess", "Failed");
-                else
-                {
-
-                    var dataVoucher = new UpdateNumberVoucherDto() { Id = voucherId };
-                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
-
-                    HttpContext.Session.SetString("mess", "Success");
-                }
-
-
-                HttpContext.Session.Remove("productOrders");
-                return RedirectToAction("ShowDetailMyCart", "Product");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                return RedirectToAction("AccessDenied", "Account");
-            }
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> BuyNow(
+        public async Task<ActionResult> Order(
             int selectVoucher, 
             string DiscountCode, 
             string cGiamGia, 
             string idDeliveryAddress, 
             string cShippingFee, 
-            string pTotalMoney, 
+            string cTotalMoney, 
             string ShippingEmail, 
             string cDescription,
             string ShippingFullName,
@@ -328,7 +260,7 @@ namespace GProject.WebApplication.Controllers
             string District,
             string Wards,
             string ShippingAddress,
-            int PaymentType = 0         
+            int PaymentType = 0
         )
         {
             try
@@ -341,26 +273,25 @@ namespace GProject.WebApplication.Controllers
                 {
                     if (!string.IsNullOrEmpty(DiscountCode))
                     {
-						var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
-						voucherId = voucher.Id;
-					}
+                        var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
+                        voucherId = voucher.Id;
+                    }
                 }
                 List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
-                var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
-                var getAllCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+
                 var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
                 var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(idDeliveryAddress));
-               
+                var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                var getAllCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
 
-                Guid? customerId;
 
                 if (customer == null)
                 {
                     var checkCustomer = getAllCustomer.FirstOrDefault(x => x.PhoneNumber == ShippingPhone && x.Email == ShippingEmail);
 
-                    if(checkCustomer != null)
-                        customerId = checkCustomer.Id;
+                    if (checkCustomer != null)
+                        _customerId = checkCustomer.Id;
                     else
                     {
                         var cus = new Customer()
@@ -381,29 +312,209 @@ namespace GProject.WebApplication.Controllers
                         await Commons.Add_or_UpdateAsync(cus, Commons.mylocalhost + "Customer/add-Customer");
 
                         var getCustomerNew = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
-                        customerId = (getCustomerNew.FirstOrDefault(x => x.PhoneNumber == ShippingPhone && x.Email == ShippingEmail)).Id;
+                        _customerId = (getCustomerNew.FirstOrDefault(x => x.PhoneNumber == ShippingPhone && x.Email == ShippingEmail)).Id;
+
+                        _ShippingFullName = ShippingFullName;
+                        _ShippingPhone = ShippingPhone;
+                        _ShippingAddress = ShippingAddress;
+                        _Province = Province;
+                        _District = District;
+                        _Wards = Wards;
                     }
                 }
                 else
                 {
-                    customerId = customer.Id;
+                    _customerId = customer.Id;
+
+                    _ShippingFullName = dataDeliveryAddress.Name;
+                    _ShippingPhone = dataDeliveryAddress.PhoneNumber;
+                    _Province = dataDeliveryAddress.ProvinceName;
+                    _District = dataDeliveryAddress.DistrictName;
+                    _Wards = dataDeliveryAddress.WardName;
+                    _ShippingAddress = dataDeliveryAddress.Address;
                 }
+
 
                 if (PaymentType == 1)
                 {
                     _selectVoucher = voucherId;
                     _cGiamGia = cGiamGia;
-                    _idDeliveryAddress = idDeliveryAddress;
+                    _cShippingFee = cShippingFee;
+                    _cTotalMoney = cTotalMoney;
+                    _ShippingEmail = ShippingEmail;
+                    _cDescription = cDescription;
+                    _PaymentType = PaymentType;
+
+                    PaymentInformationModel model = new PaymentInformationModel()
+                    {
+                        Name = _ShippingFullName,
+                        OrderDescription = "Thanh toán đơn hàng",
+                        Amount = Convert.ToSingle(cTotalMoney),
+                        OrderType = "electric"
+                    };
+                    var url = _vnPayService.CreatePaymentUrl(model, HttpContext);
+
+                    return Redirect(url);
+                }
+
+
+                GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
+                bool result = await pService.AddToOrder(
+                    voucherId, 
+                    cGiamGia, 
+                    cShippingFee, 
+                    cTotalMoney,
+                    _ShippingFullName,
+                    _ShippingPhone,
+                    _Province,
+                    _District,
+                    _Wards,
+                    _ShippingAddress,
+                    ShippingEmail, 
+                    cDescription, 
+                    PaymentType, 
+                    _customerId, 
+                    prodOrders);
+
+                if (!result)
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                {
+
+                    var dataVoucher = new UpdateNumberVoucherDto() { Id = voucherId };
+                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
+
+                    HttpContext.Session.SetString("mess", "Success");
+                }
+
+                if(customer == null)
+                {
+                    List<CartDetail> cart_Details = HttpContext.Session.GetObjectFromJson<List<CartDetail>>("add_cart_details");
+                    foreach(var item in prodOrders)
+                    {
+                        var delete_cart_Details = cart_Details.FirstOrDefault(x => x.ProductVariationId.ToString() == item.prodVariationId);
+                        if(delete_cart_Details != null)
+                            cart_Details.Remove(delete_cart_Details);
+                    }
+
+                    Commons.setObjectAsJson(HttpContext.Session, "add_cart_details", cart_Details);
+                    //return RedirectToAction("ShowDetailMyCart", "Product");
+                }
+
+                HttpContext.Session.Remove("productOrders");
+                return RedirectToAction("ViewOrderCustomer", "Order");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> BuyNow(
+            int selectVoucher,
+            string DiscountCode,
+            string cGiamGia,
+            string? idDeliveryAddress,
+            string cShippingFee,
+            string pTotalMoney,
+            string ShippingEmail,
+            string cDescription,
+            string ShippingFullName,
+            string ShippingPhone,
+            string Province,
+            string District,
+            string Wards,
+            string ShippingAddress,
+            int PaymentType = 0
+        )
+        {
+            try
+            {
+                int voucherId = 0;
+                var voucherList = (await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"))).ToList();
+                if (selectVoucher != 0)
+                    voucherId = selectVoucher;
+                else
+                {
+                    if (!string.IsNullOrEmpty(DiscountCode))
+                    {
+                        var voucher = voucherList.FirstOrDefault(x => x.VoucherId == DiscountCode);
+                        voucherId = voucher.Id;
+                    }
+                }
+                List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
+                var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
+                var getAllCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
+                var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(idDeliveryAddress));
+
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+
+
+                if (customer == null)
+                {
+                    var checkCustomer = getAllCustomer.FirstOrDefault(x => x.PhoneNumber == ShippingPhone && x.Email == ShippingEmail);
+
+                    if (checkCustomer != null)
+                        _customerId = checkCustomer.Id;
+                    else
+                    {
+                        var cus = new Customer()
+                        {
+                            Name = ShippingFullName,
+                            Email = ShippingEmail,
+                            CustomerId = Commons.RandomString(10),
+                            Password = Commons.RandomString(6),
+                            CreateDate = DateTime.Now,
+                            DateOfBirth = DateTime.Now,
+                            PhoneNumber = ShippingPhone,
+                            Sex = 0,
+                            Address = ShippingAddress,
+                            Status = 0,
+                            Description = null,
+                            Image = "_customer.png"
+                        };
+                        await Commons.Add_or_UpdateAsync(cus, Commons.mylocalhost + "Customer/add-Customer");
+
+                        var getCustomerNew = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                        _customerId = (getCustomerNew.FirstOrDefault(x => x.PhoneNumber == ShippingPhone && x.Email == ShippingEmail)).Id;
+                    }
+
+                    _ShippingFullName = ShippingFullName;
+                    _ShippingPhone = ShippingPhone;
+                    _ShippingAddress = ShippingAddress;
+                    _Province = Province;
+                    _District = District;
+                    _Wards = Wards;
+                }
+                else
+                {
+                    _customerId = customer.Id;
+
+                    _ShippingFullName = dataDeliveryAddress.Name;
+                    _ShippingPhone = dataDeliveryAddress.PhoneNumber;
+                    _Province = dataDeliveryAddress.ProvinceName;
+                    _District = dataDeliveryAddress.DistrictName;
+                    _Wards = dataDeliveryAddress.WardName;
+                    _ShippingAddress = dataDeliveryAddress.Address;
+                }
+
+
+                if (PaymentType == 1)
+                {
+                    _selectVoucher = voucherId;
+                    _cGiamGia = cGiamGia;
                     _cShippingFee = cShippingFee;
                     _pTotalMoney = pTotalMoney;
                     _ShippingEmail = ShippingEmail;
                     _cDescription = cDescription;
                     _PaymentType = PaymentType;
-                    _customerId = customerId;
 
                     PaymentInformationModel model = new PaymentInformationModel()
                     {
-                        Name = dataDeliveryAddress.Name,
+                        Name = _ShippingFullName,
                         OrderDescription = "Thanh toán đơn hàng",
                         Amount = Convert.ToSingle(pTotalMoney),
                         OrderType = "electric"
@@ -415,20 +526,20 @@ namespace GProject.WebApplication.Controllers
 
                 GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
                 bool result = await pService.BuyNow(
-                    voucherId, 
-                    cGiamGia, 
+                    voucherId,
+                    cGiamGia,
                     cShippingFee,
-                    pTotalMoney, 
-                    dataDeliveryAddress.Name, 
-                    dataDeliveryAddress.PhoneNumber, 
-                    dataDeliveryAddress.ProvinceName, 
-                    dataDeliveryAddress.DistrictName, 
-                    dataDeliveryAddress.WardName, 
-                    dataDeliveryAddress.Address,
-                    ShippingEmail, 
-                    cDescription, 
+                    pTotalMoney,
+                    _ShippingFullName,
+                    _ShippingPhone,
+                    _Province,
+                    _District,
+                    _Wards,
+                    _ShippingAddress,
+                    ShippingEmail,
+                    cDescription,
                     PaymentType,
-                    customerId, 
+                    _customerId,
                     prodOrders);
 
                 if (!result)
@@ -441,7 +552,7 @@ namespace GProject.WebApplication.Controllers
                 }
 
                 HttpContext.Session.Remove("productOrders");
-                return RedirectToAction("ShowDetailMyCart", "Product");
+                return RedirectToAction("ProductDetail", "Product", new { product_id = new Guid(prodOrders.First().productId) });
             }
             catch (Exception ex)
             {
@@ -511,11 +622,11 @@ namespace GProject.WebApplication.Controllers
         }
 
 
-        [HttpGet]    
+        [HttpGet]
         public async Task<ActionResult> CheckOrderStatus(Guid? accomplished, Guid? canceled)
         {
             try
-            {                
+            {
                 if (accomplished.HasValue)
                 {
                     var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/order-accomplished?id=" + accomplished));
@@ -544,6 +655,12 @@ namespace GProject.WebApplication.Controllers
             {
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+
+                if (customer == null)
+                {;
+                    return View(new OrderDTO() { OrderList = new List<Order>(), ShowOrderDtoList = new List<ShowOrderDto>() });
+                }
+                
                 //-- Lấy danh sách từ api
                 var lstOrder = await Commons.GetAll<Order>(String.Concat(Commons.mylocalhost, "Order/get-all-Order"));
                 var lstProductvariation = await pService.ShowMyOrder(customer.Id);
@@ -565,7 +682,7 @@ namespace GProject.WebApplication.Controllers
                 ViewData["Canceled"] = sortOrder == "Canceled" ? "NotSort" : "Canceled";
                 ViewData["XacNhan"] = sortOrder == "DaXacNhan" ? "NotSort" : "DaXacNhan";
 
-                if(sortOrder == null )
+                if (sortOrder == null)
                     lstOrder = lstOrder.Where(x => x.Status == OrderStatus.InProgress).ToList();
 
                 switch (sortOrder)
@@ -597,8 +714,8 @@ namespace GProject.WebApplication.Controllers
                     default: break;
                 }
 
-               
-                var data = new OrderDTO() { OrderList = lstOrder.Where(x => x.CustomerId == customer.Id).OrderByDescending(x=> x.CreateDate).ToList(), ShowOrderDtoList = lstProductvariation };
+
+                var data = new OrderDTO() { OrderList = lstOrder.Where(x => x.CustomerId == customer.Id).OrderByDescending(x => x.CreateDate).ToList(), ShowOrderDtoList = lstProductvariation };
 
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
@@ -620,55 +737,63 @@ namespace GProject.WebApplication.Controllers
             {
                 ViewBag.Message = response;
                 HttpContext.Session.SetString("mess", "Failed");
-                return RedirectToAction("ShowDetailMyCart", "Product");
+                return RedirectToAction("Index", "Product");
             }
-                
 
-            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-            var deliveryAddressesList = await Commons.GetAll<DeliveryAddress>(String.Concat(Commons.mylocalhost, "DeliveryAddress/get-all"));
             List<ProdOrder> prodOrders = HttpContext.Session.GetObjectFromJson<List<ProdOrder>>("productOrders");
-            var dataDeliveryAddress = deliveryAddressesList.FirstOrDefault(x => x.Id == Convert.ToInt32(_idDeliveryAddress));
             GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
 
             bool result = false;
             if (_pTotalMoney == null)
             {
                 result = await pService.AddToOrder(
-                    _selectVoucher, 
-                    _cGiamGia, 
-                    _cShippingFee, 
-                    _cTotalMoney, 
-                    dataDeliveryAddress.Name, 
-                    dataDeliveryAddress.PhoneNumber, 
-                    dataDeliveryAddress.ProvinceName, 
-                    dataDeliveryAddress.DistrictName, 
-                    dataDeliveryAddress.WardName, 
-                    dataDeliveryAddress.Address,
-                    _ShippingEmail, 
-                    _cDescription, 
-                    _PaymentType, 
-                    customer.Id, 
-                    prodOrders);
-            }    
-            else if(_cTotalMoney == null)
-            {
-                result = await pService.BuyNow(
-                    _selectVoucher, 
-                    _cGiamGia, 
-                    _cShippingFee, 
-                    _pTotalMoney, 
-                    dataDeliveryAddress.Name, 
-                    dataDeliveryAddress.PhoneNumber, 
-                    dataDeliveryAddress.ProvinceName, 
-                    dataDeliveryAddress.DistrictName, 
-                    dataDeliveryAddress.WardName, 
-                    dataDeliveryAddress.Address,
-                    _ShippingEmail, 
-                    _cDescription, 
-                    _PaymentType, 
-                    _customerId, 
+                    _selectVoucher,
+                    _cGiamGia,
+                    _cShippingFee,
+                    _cTotalMoney,
+                    _ShippingFullName,
+                    _ShippingPhone,
+                    _Province,
+                    _District,
+                    _Wards,
+                    _ShippingAddress,
+                    _ShippingEmail,
+                    _cDescription,
+                    _PaymentType,
+                    _customerId,
                     prodOrders);
             }
+            else if (_cTotalMoney == null)
+            {
+                result = await pService.BuyNow(
+                    _selectVoucher,
+                    _cGiamGia,
+                    _cShippingFee,
+                    _pTotalMoney,
+                    _ShippingFullName,
+                    _ShippingPhone,
+                    _Province,
+                    _District,
+                    _Wards,
+                    _ShippingAddress,
+                    _ShippingEmail,
+                    _cDescription,
+                    _PaymentType,
+                    _customerId,
+                    prodOrders);
+
+                if (!result)
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                {
+                    var dataVoucher = new UpdateNumberVoucherDto() { Id = _selectVoucher };
+                    await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
+                    HttpContext.Session.SetString("mess", "Success");
+                }
+                ViewBag.Message = response;
+                return RedirectToAction("ProductDetail", "Product", new { product_id = new Guid(prodOrders.First().productId) });
+            }
+
             if (!result)
                 HttpContext.Session.SetString("mess", "Failed");
             else
@@ -678,7 +803,7 @@ namespace GProject.WebApplication.Controllers
                 HttpContext.Session.SetString("mess", "Success");
             }
             ViewBag.Message = response;
-            return RedirectToAction("ShowDetailMyCart", "Product");
+            return RedirectToAction("ViewOrderCustomer", "Order");
         }
     }
 }

@@ -14,6 +14,7 @@ using System.Drawing;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using GProject.WebApplication.Services;
 using GProject.WebApplication.Models.DeliveryAddressAndShippingFee;
+using GProject.Data.MyRepositories.IRepositories;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -79,18 +80,65 @@ namespace GProject.WebApplication.Controllers
             }
 		}
 
-        [GProject.WebApplication.Services.Authorize]
+        //[GProject.WebApplication.Services.Authorize]
         public async Task<ActionResult> AddToCart(string cTotalMoney, string cColor, string cSize, string cQuantity, string cPrice, string cProductId, string cDescription)
         {
             try
             {
-                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
-                    return RedirectToAction("AccessDenied", "Account");
+                //if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+                //    return RedirectToAction("AccessDenied", "Account");
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-                if (customer == null) return RedirectToAction("Index", "Account");
+
+                //Tao gio hang khi chua login
+                if (customer == null)
+                {
+                    bool checkAddCartDetail = true;
+
+                    var cartNotLogin = HttpContext.Session.GetObjectFromJson<Cart>("Create_CartNotLogin");
+                    List<CartDetail> cart_Details = HttpContext.Session.GetObjectFromJson<List<CartDetail>>("add_cart_details");
+
+                    if (cartNotLogin == null)
+                    {
+                        var create_Cart = Create_CartNotLogin();
+
+                        checkAddCartDetail = await AddToCart_DetailsNotLogin(
+                            cart_Details,
+                            create_Cart.Id,
+                            cTotalMoney,
+                            cColor,
+                            cSize,
+                            cQuantity,
+                            cPrice,
+                            cProductId,
+                            cDescription
+                            );
+                    }
+                    else
+                    {
+                        checkAddCartDetail = await AddToCart_DetailsNotLogin(
+                            cart_Details,
+                            cartNotLogin.Id,
+                            cTotalMoney,
+                            cColor,
+                            cSize,
+                            cQuantity,
+                            cPrice,
+                            cProductId,
+                            cDescription
+                           );
+                    }
+
+                    if (!checkAddCartDetail)
+                        HttpContext.Session.SetString("mess", "Failed");
+                    else
+                        HttpContext.Session.SetString("mess", "Success");
+                    return RedirectToAction("ProductDetail", "Product", new { product_id = new Guid(cProductId) });
+                }
 
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+
                 bool result = await pService.AddToCart(cTotalMoney, cColor, cSize, cQuantity, cPrice, cProductId, cDescription, customer.Id);
+
                 if (!result)
                     HttpContext.Session.SetString("mess", "Failed");
                 else
@@ -104,12 +152,14 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-        [GProject.WebApplication.Services.Authorize]
+        
+
+        //[GProject.WebApplication.Services.Authorize]
         [HttpGet]
         public ActionResult Order(string products)
         {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
-                return RedirectToAction("AccessDenied", "Account");
+            //if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+            //    return RedirectToAction("AccessDenied", "Account");
             List<ProdOrder> lstProdOrders = JsonConvert.DeserializeObject<List<ProdOrder>>(products);
             Commons.setObjectAsJson(HttpContext.Session, "productOrders", lstProdOrders);
             // Xử lý danh sách đối tượng ở đây
@@ -166,7 +216,7 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-        [GProject.WebApplication.Services.Authorize]
+        //[GProject.WebApplication.Services.Authorize]
         [HttpGet]
         public async Task<ActionResult> GetQuantityInstock(string cColorId, string cSizeId, string cProductId)
         {
@@ -175,28 +225,53 @@ namespace GProject.WebApplication.Controllers
             return Ok(instock);
         }
 
-        [GProject.WebApplication.Services.Authorize]
+        //[GProject.WebApplication.Services.Authorize]
         public async Task<ActionResult> ShowDetailMyCart(string prodName, int? brand, decimal? fPrice, decimal? tPrice, int idProvince)
 		{
 			try
 			{
-                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
-                    return RedirectToAction("AccessDenied", "Account");
-                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-				if (customer == null) return RedirectToAction("Login", "Account");
-				decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
-				decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
-				int valBrand = brand.HasValue ? brand.Value : -1;
+                //if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
+                //    return RedirectToAction("AccessDenied", "Account");
 
-				this.ViewData[nameof(prodName)] = (object)prodName;
-				this.ViewData[nameof(fPrice)] = (object)valFromPrice;
-				this.ViewData[nameof(tPrice)] = (object)valFromPrice;
-				this.ViewData[nameof(brand)] = (object)valBrand;
-				GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+
+                decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
+                decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
+                int valBrand = brand.HasValue ? brand.Value : -1;
+
+                this.ViewData[nameof(prodName)] = (object)prodName;
+                this.ViewData[nameof(fPrice)] = (object)valFromPrice;
+                this.ViewData[nameof(tPrice)] = (object)valFromPrice;
+                this.ViewData[nameof(brand)] = (object)valBrand;
+
+                if (customer == null)
+                {
+                    var cartNotLogin = HttpContext.Session.GetObjectFromJson<Cart>("Create_CartNotLogin");
+                    if (cartNotLogin == null) return View(new List<CartDTO>());
+                    List<Cart> cartList = new List<Cart>()
+                    {
+                        new Cart()
+                        {
+                            Id = cartNotLogin.Id,
+                            CartId = cartNotLogin.CartId,
+                            CreateDate = cartNotLogin.CreateDate,
+                            Status = cartNotLogin.Status,
+                        }
+
+                    };
+                    List<CartDetail> cart_Details = HttpContext.Session.GetObjectFromJson<List<CartDetail>>("add_cart_details");
+
+                    return View(await pService.ShowMyCartNotLogin(cartList, cart_Details));
+                }
+
+
+							
 
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
+
                 return View(await pService.ShowMyCart(customer.Id, prodName, valFromPrice, valToPrice, valBrand));
 			}
 			catch (Exception ex)
@@ -275,6 +350,97 @@ namespace GProject.WebApplication.Controllers
             {
                 return Json(null);
             }          
+        }
+
+        public Cart Create_CartNotLogin()
+        {
+            Guid cart_id = Guid.NewGuid();
+
+            //-- Tạo giỏ hàng
+
+            Cart cart_data = new Cart();
+            cart_data.Id = cart_id;
+            cart_data.CartId = string.Concat(DateTime.Now.ToString("ddMMyy"), Commons.RandomString(9));
+            cart_data.CreateDate = DateTime.Now;
+            cart_data.Status = 0;
+
+            Commons.setObjectAsJson(HttpContext.Session, "Create_CartNotLogin", cart_data);
+
+            return cart_data;
+        }
+
+        public async Task<bool> AddToCart_DetailsNotLogin(
+            List<CartDetail> cart_Deatils,
+            Guid? cartId, 
+            string cTotalMoney, 
+            string cColor, 
+            string cSize, 
+            string cQuantity, 
+            string cPrice, 
+            string cProductId, 
+            string cDescription
+        )
+        {
+
+            try
+            {
+                if (cart_Deatils == null) cart_Deatils = new List<CartDetail>();
+
+                //-- Lấy danh sách dữ liệu
+                var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+
+
+                ProductVariation productVariation = lstProductvariation.FirstOrDefault(c => c.ProductId == new Guid(cProductId) && c.ColorId == int.Parse(cColor) && c.SizeId == int.Parse(cSize));
+                if (productVariation == null) return false;
+
+                //-- Kiểm tra xem sản phẩm này || variation này đã tồn tại trong giỏ hàng của người này hay chưa
+                CartDetail? cartdetail_data = null;
+
+                if (cart_Deatils.Count() != 0)
+                {
+                    cartdetail_data = cart_Deatils.FirstOrDefault(c =>
+                                                c.ProductVariationId == productVariation.Id
+                                                && c.Price == decimal.Parse(cPrice)
+                                                );
+                }
+
+                if (cartdetail_data == null)
+                {
+                    cartdetail_data = new CartDetail();
+                    cartdetail_data.CartId = cartId;
+                    cartdetail_data.ProductVariationId = productVariation.Id;
+                    cartdetail_data.Price = decimal.Parse(cPrice);
+                    cartdetail_data.Quantity = int.Parse(cQuantity);
+                    cartdetail_data.CreateDate = DateTime.Now;
+                    cartdetail_data.ToatlMoney = decimal.Parse(cTotalMoney);
+                    cartdetail_data.Status = Data.Enums.CartDetailStatus.Ready;
+                    cartdetail_data.Description = cDescription.NullToString();
+
+                    cart_Deatils.Add(cartdetail_data);
+                }
+                else
+                {
+                    cartdetail_data.Quantity = cartdetail_data.Quantity + cQuantity.NullToInt();
+                    cartdetail_data.ToatlMoney = cartdetail_data.ToatlMoney + cTotalMoney.NullToDecimal();
+                    cartdetail_data.Description = cDescription.NullToString();
+
+                    for (int i = 0; i < cart_Deatils.Count; i++)
+                    {
+                        if (cart_Deatils[i].CartId == cartdetail_data.CartId)
+                        {
+                            cart_Deatils[i] = cartdetail_data;//Gán lại giá trị mới
+                        }
+                    }
+                }
+
+                Commons.setObjectAsJson(HttpContext.Session, "add_cart_details", cart_Deatils);
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

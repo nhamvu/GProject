@@ -4,6 +4,8 @@
 @{
     ViewBag.Title = "Trạng thái hóa đơn";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //int checkCus = int.Parse(Html.Encode(ViewBag.CusNull));
 }
 
 <style>
@@ -30,45 +32,97 @@
 
 <div class="super_container" style="margin-top: 200px;">
     <div class="col product_section clearfix">
-        <div class="row">
+        @* <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-9">
-                <a class="btn btn-outline-primary " style="margin-left:10px" asp-action="ViewOrderCustomer"
+                <a class="btn btn-outline-primary " asp-action="ViewOrderCustomer"
             asp-route-sortOrder="@ViewData["InProgress"]" >
             Chờ xác nhận
             <span style="color: red;">(@ViewData["totalInPro"])</span>
         </a>
-        <a class="btn btn-outline-secondary " style="margin-left:10px" asp-action="ViewOrderCustomer"
+        <a class="btn btn-outline-secondary "  asp-action="ViewOrderCustomer"
             asp-route-sortOrder="@ViewData["XacNhan"]">
             Đã xác nhận
             <span style="color: red;">(@ViewData["totalXacNhan"])</span>
         </a>
-        <a class="btn btn-outline-secondary " style="margin-left:10px" asp-action="ViewOrderCustomer"
+        <a class="btn btn-outline-secondary "  asp-action="ViewOrderCustomer"
             asp-route-sortOrder="@ViewData["Confirmed"]" >
             Đang vận chuyển
             <span style="color: red;">(@ViewData["totalConfi"])</span>
         </a>
-        <a class="btn btn-outline-warning" style="margin-left:10px" asp-action="ViewOrderCustomer"
+        <a class="btn btn-outline-warning"  asp-action="ViewOrderCustomer"
             asp-route-sortOrder="@ViewData["Delivery"]">
             Đang giao hàng
             <span style="color: red;">(@ViewData["totalDelivery"])</span>
         </a>
-        <a class="btn btn-outline-success" style="margin-left:10px" asp-action="ViewOrderCustomer"
+        <a class="btn btn-outline-success"  asp-action="ViewOrderCustomer"
             asp-route-sortOrder="@ViewData["Accomplished"]" >
             Hoàn thành
             <span style="color: red;">(@ViewData["totalAcc"])</span>
         </a>
-        <a class="btn btn-outline-danger" style="margin-left:10px" asp-action="ViewOrderCustomer"
+        <a class="btn btn-outline-danger"  asp-action="ViewOrderCustomer"
             asp-route-sortOrder="@ViewData["Canceled"]">
             Đã hủy
             <span style="color: red;">(@ViewData["totalXCan"])</span>
         </a>
-        <a class="btn btn-outline-info" style="margin-left:10px" asp-action="ViewOrderCustomer"><i class="fas fa-undo-alt"></i></a>
+        <a class="btn btn-outline-info"  asp-action="ViewOrderCustomer"><i class="fas fa-undo-alt"></i></a>
             </div>
-        </div>
+        </div> *@
+
+    <div class="container">
+        <form  asp-action="ViewOrderCustomer">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-2"></div>
+                                <div class="form-group col-3" >
+                                    <label class="col-12 control-label">Mã hóa đơn</label>
+                                    <div class="col-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group col-3">
+                                    <label class="col-12 control-label">Số điện thoại</label>
+                                    <div class="col-12">
+                                    <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group col-2">
+                                    <label class="col-12 control-label">Trạng thái</label>
+                                    <div class="col-12">
+                                        <select name="sortOrder" id="sortOrder" class="form-select">
+                                            <option value="@ViewData["InProgress"]">Chờ xác nhận</option>
+                                            <option value="@ViewData["XacNhan"]">Đã xác nhận</option>
+                                            <option value="@ViewData["Confirmed"]">Đang vận chuyển</option>
+                                            <option value="@ViewData["Delivery"]">Đang giao hàng</option>
+                                            <option value="@ViewData["Accomplished"]">Hoàn thành</option>
+                                            <option value="@ViewData["Canceled"]">Đã hủy</option>                   
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-2">
+                                    <label class="col-12 control-label"></label>
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <button class="btn btn-outline-success col-12"  type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                        <div class="col-4" style="margin-left: -10px;">
+                                            <a class="btn btn-outline-info col-12"  asp-action="ViewOrderCustomer"><i class="fas fa-undo-alt"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
 
         <h3 class="text-center" style="margin-top:25px; margin-bottom:25px">Trạng thái đơn hàng</h3>
-        @if (Model.OrderList.Count() == 0)
+        @if (Model.OrderList.Count() == 0 )
         {
             <h3 class="text-center text-warning">Không có thông tin trạng thái hóa đơn!</h3>
         }

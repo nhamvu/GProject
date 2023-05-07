@@ -59,10 +59,14 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
     var user = GProject.WebApplication.Helpers.Commons.GetObjectFromJson<GProject.Data.DomainClass.Customer>(Context.Session, "userLogin");
 
     string nameByNow;
+    int checkByNow = 0;
     if(user == null)
         nameByNow = "buyFormDataNotLogin";
     else
+    {
         nameByNow = "buyFormData";
+        checkByNow = 1;
+    }
 
 }
 
@@ -394,7 +398,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             <div class="row"> 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Họ và tên:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Họ và tên:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <input type="text" id="ShippingFullName" name="ShippingFullName" value="" placeholder="" class="form-control" />
                                     </div>
@@ -402,7 +406,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Số điện thoại:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
                                     </div>
@@ -413,7 +417,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             <div class="row"> 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
+                                    <label class="control-label col-sm-5">Tỉnh/Thành phố:</label>
                                     <div class="col-sm-12">
                                         <select id="selectProvince" class="form-select">
                                             <option></option>
@@ -423,7 +427,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
+                                    <label class="control-label col-sm-5">Quận/Huyện:</label>
                                     <div class="col-sm-12">
                                         <select id="selectDistrict" class="form-select">
                                         </select>
@@ -435,7 +439,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             <div class="row"> 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
+                                    <label class="control-label col-sm-5">Phường/Xã:</label>
                                     <div class="col-sm-12">
                                         <select id="selectWards" class="form-select">
                                         </select>
@@ -444,7 +448,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
+                                    <label class="control-label col-sm-5">Địa chỉ chi tiết:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
                                         <input type="text" id="ShippingAddress" name="ShippingAddress" value="" class="form-control" />
                                     </div>
@@ -574,8 +578,11 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
     $(document).ready(function () {
 
         LoadProvince();
-        LoadDataTable();
         LoadDistrict();
+        var id = $(this).attr("order_id")
+            if (id == "buyFormData") {
+                DataAddressCustomer();
+            }
         LoadWard();
         
 
@@ -1051,7 +1058,11 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
             let total = $('#cTotalMoney').val();
 
-            DataAddressCustomer()
+            if(@checkByNow == 1)
+            {
+                DataAddressCustomer();  
+            }
+            
             GetDataVoucher(total);
 
             $('#textTotalMoney').text(commasThousands(total));
