@@ -37,8 +37,6 @@
     <div>
         <button type="button" class="btn btn-success" onclick="ShowModal()">Thêm mới</button>
     </div>
-
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -255,9 +253,9 @@
     function Clear()
     {
         $("#Name").val('');
-            $("#Code").val('');
-            $("#Id").val('');
-            $("#Status").val('');
+        $("#Code").val('');
+        $("#Id").val('');
+        $("#Status").val('');
     }
 
     function checkValidateData() {
@@ -290,6 +288,8 @@
                 sweetAlert("Thông báo", "Thông tin tên size không được để trống", "error");
                 return false;
             }
+
+            var status = $("#Status").val();
             var id = $("#Id").val();
             var code = $("#Code").val();
             var name = $("#Name").val();
@@ -305,7 +305,7 @@
                             data: { Name: name, Id: id },
                             success: function (result) {
                                 if (result.success) {
-                                    var data = { Id: id, Code: code, Name: name };
+                                    var data = { Id: id, Code: code, Name: name, Status: status };
                                     $.ajax({
                                         url: "/Size/Save",
                                         type: "POST",
@@ -322,6 +322,7 @@
                                                 setTimeout(function () {
                                                     location.reload();
                                                 }, 2000);
+                                                Clear()
                                             }
                                         },
                                         error: function (xhr, status, error) {

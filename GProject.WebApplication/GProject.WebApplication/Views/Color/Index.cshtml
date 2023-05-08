@@ -296,11 +296,13 @@
             var id = $("#Id").val();
             var hexcode = $("#HEXCode").val();
             var name = $("#Name").val();
+            var status = $("#Status").val();
             var image = $("#Image_Upload").get(0).files[0];
             var data = new FormData();
             data.append('Id', id);
             data.append('HEXCode', hexcode);
             data.append('Name', name);
+            data.append('Status', status);
             data.append('Image_Upload', image);
             $.ajax({
                 url: "/Color/CheckHEXCode",
@@ -333,6 +335,7 @@
                                                 setTimeout(function () {
                                                     location.reload();
                                                 }, 2000);
+                                                Clear()
                                             }
                                         },
                                         error: function (xhr, status, error) {
