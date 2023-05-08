@@ -300,7 +300,7 @@ namespace GProject.WebApplication.Services
 			if (tPrice != -1)
 				carts = carts.Where(c => c.Product.Price <= tPrice).ToList();
 
-			return carts;
+			return carts.OrderByDescending(x => x.CartDetail.CreateDate).ToList();
         }
 
         public async Task<List<ShowOrderDto>> ShowMyOrder(Guid? customer_id)
@@ -402,7 +402,7 @@ namespace GProject.WebApplication.Services
                         }).ToList();
             List<CartDTO> carts = Commons.ConverObject<List<CartDTO>>(result);
 
-            return carts;
+            return carts.OrderByDescending(x => x.CartDetail.CreateDate).ToList();
         }
     }
 }

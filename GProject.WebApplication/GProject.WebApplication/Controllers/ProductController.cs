@@ -216,13 +216,29 @@ namespace GProject.WebApplication.Controllers
             return Ok();
         }
 
-        [GProject.WebApplication.Services.Authorize]
+        //[GProject.WebApplication.Services.Authorize]
         [HttpGet]
         public async Task<ActionResult> RemoveToCart(string products)
         {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() != "customer")
-                return RedirectToAction("AccessDenied", "Account");
+            var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+
             List<ProdOrder> lstProdOrders = JsonConvert.DeserializeObject<List<ProdOrder>>(products);
+
+            if (customer == null)
+            {
+                List<CartDetail> cart_Details = HttpContext.Session.GetObjectFromJson<List<CartDetail>>("add_cart_details");
+                foreach (var item in lstProdOrders)
+                {
+                    var delete_cart_Details = cart_Details.FirstOrDefault(x => x.ProductVariationId.ToString() == item.prodVariationId);
+                    if (delete_cart_Details != null)
+                        cart_Details.Remove(delete_cart_Details);
+                }
+
+                Commons.setObjectAsJson(HttpContext.Session, "add_cart_details", cart_Details);
+                return Ok();
+                //return RedirectToAction("AccessDenied", "Account");
+            }
+            
             var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             foreach (var item in lstProdOrders)
             {
