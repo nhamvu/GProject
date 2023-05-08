@@ -175,7 +175,7 @@
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH MÃ KHUYẾN MẠI</h3>
+            <h3 class="panel-title" style="text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>Danh sách mã khuyến mại</h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
@@ -231,8 +231,9 @@
                                         @(item.Status == 1 ? "Tất cả" : item.Status == 2 ? "Giới hạn" : "Không sử dụng")
                                     </td>
                                     <td>
-                                        <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
-                                        <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                        <button class="btn btn-info" onclick="ViewDetailData(@item.Id)">
+                                            <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                        </button>          
                                     </td>
                                     @* <td>
                                         @if (item.Status == 1)

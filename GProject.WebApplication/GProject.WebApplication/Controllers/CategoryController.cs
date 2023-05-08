@@ -102,5 +102,12 @@ namespace GProject.WebApplication.Controllers
                 return Json(new { success = false });
             }
         }
+
+        public async Task<JsonResult> Detail(Guid id)
+        {
+            var lstObjs = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
+            var data2 = lstObjs.FirstOrDefault(c => c.Id == id);
+            return Json(data2);
+        }
     }
 }
