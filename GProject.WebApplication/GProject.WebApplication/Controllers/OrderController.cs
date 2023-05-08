@@ -321,14 +321,15 @@ namespace GProject.WebApplication.Controllers
 
                         var getCustomerNew = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
                         _customerId = (getCustomerNew.FirstOrDefault(x => x.PhoneNumber == ShippingPhone && x.Email == ShippingEmail)).Id;
-
-                        _ShippingFullName = ShippingFullName;
-                        _ShippingPhone = ShippingPhone;
-                        _ShippingAddress = ShippingAddress;
-                        _Province = Province;
-                        _District = District;
-                        _Wards = Wards;
+                        
                     }
+
+                    _ShippingFullName = ShippingFullName;
+                    _ShippingPhone = ShippingPhone;
+                    _ShippingAddress = ShippingAddress;
+                    _Province = Province;
+                    _District = District;
+                    _Wards = Wards;
                 }
                 else
                 {
@@ -731,13 +732,13 @@ namespace GProject.WebApplication.Controllers
                     @ViewData["phone"] = phone;
                 }
 
-                if (pg < 1)
-                    pg = 1;
+                //if (pg < 1)
+                //    pg = 1;
 
-                int recsCount = lstOrder.Count();
-                var pager = new Pager(recsCount, pg, pageSize);
-                int recSkip = (pg - 1) * pageSize;
-                lstOrder = lstOrder.Skip(recSkip).Take(pageSize).ToList();
+                //int recsCount = lstOrder.Count();
+                //var pager = new Pager(recsCount, pg, pageSize);
+                //int recSkip = (pg - 1) * pageSize;
+                //lstOrder = lstOrder.Skip(recSkip).Take(pageSize).ToList();
 
                 if (customer == null && (orderId != null || phone != null))
                 {

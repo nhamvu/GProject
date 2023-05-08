@@ -260,6 +260,10 @@
                                 </div>
                                 }
                                 else{
+                                    <input type="text" id="Province" name="Province" value="" hidden="hidden" />
+                                <input type="text" id="District" name="District" value="" hidden="hidden" />
+                                <input type="text" id="Wards" name="Wards" value="" hidden="hidden" />
+
                                     <div class="row"> 
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -461,6 +465,10 @@
             }
             else if(id == "buyFormDataNotLogin")
             {
+                $('#Province').val( $("#selectProvince :selected").text() );
+                $('#District').val( $("#selectDistrict :selected").text() );
+                $('#Wards').val( $("#selectWards :selected").text() );
+
                 swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
                     title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
                     icon: 'info',
@@ -840,6 +848,11 @@
             return false;
         }
         return true;
+    }
+
+    function validatePhoneNumber(code) {
+        var regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
+        return regex.test(code);
     }
 
     function checkOrderData() {

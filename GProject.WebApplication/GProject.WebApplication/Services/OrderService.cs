@@ -18,7 +18,7 @@ namespace GProject.WebApplication.Services
 			var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
 			var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
 
-			string strUrl = "";
+            string strUrl = "";
             Guid order_id = Guid.NewGuid();
 
             //Order
@@ -73,12 +73,17 @@ namespace GProject.WebApplication.Services
                 if (!await Commons.Add_or_UpdateAsync(productVariation, String.Concat(Commons.mylocalhost, "ProductVariation/update-ProductVariation")))
                     return false;
 
-                //-- Add thành công vào OrderDetail -> Remove khỏi CartDetail
-                string urlRemoveCartDetail = string.Concat(Commons.mylocalhost, "Cart/delete-cart-detail?id=", new Guid(item.cartId), "&productVariation_id=", new Guid(item.prodVariationId));
-                var RestRemoveCartDetail = new RestSharpHelper(urlRemoveCartDetail);
-                var resRemoveCartDetail = await RestRemoveCartDetail.RequestBaseAsync(urlRemoveCartDetail, RestSharp.Method.Delete);
-                if (!resRemoveCartDetail.IsSuccessful)
-                    return false;
+                var result = lstCartDetail.FirstOrDefault(x => x.CartId.ToString() == item.cartId && x.ProductVariationId.ToString() == item.prodVariationId);
+
+                if (result != null)
+                {
+                    //-- Add thành công vào OrderDetail -> Remove khỏi CartDetail
+                    string urlRemoveCartDetail = string.Concat(Commons.mylocalhost, "Cart/delete-cart-detail?id=", new Guid(item.cartId), "&productVariation_id=", new Guid(item.prodVariationId));
+                    var RestRemoveCartDetail = new RestSharpHelper(urlRemoveCartDetail);
+                    var resRemoveCartDetail = await RestRemoveCartDetail.RequestBaseAsync(urlRemoveCartDetail, RestSharp.Method.Delete);
+                    if (!resRemoveCartDetail.IsSuccessful)
+                        return false;
+                }
             }
 
             var isExist = (from c in lstCart join b in lstCartDetail on c.Id equals b.CartId where c.CustomerId == customer_id select b).FirstOrDefault();
