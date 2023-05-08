@@ -47,6 +47,12 @@
         color: black;
         font-size: 14px;
     }
+    .form-select{
+        color: black;
+        font-size: 14px;
+    }
+
+
 </style>
 
 @if (@ViewData["Mess"] != null)
@@ -233,7 +239,7 @@
             <form id="@nameOrder" order_id="@nameOrder" action="/Order/Order" method="post" class="form-horizontal d-block">
                 <div class="modal-content justify-content-center" style="border-width:1px;">
                     <div class="modal-header ">
-                        <h4 class="modal-title text-center">Thông tin đơn hàng</h4>
+                        <h4 class="modal-title text-center" style="font-size: 18px;">Thông tin đơn hàng</h4>
                     </div>
                     <div class="modal-body">
                         <input type="text" id="cTotalMoney" name="cTotalMoney" hidden="hidden" />
@@ -251,7 +257,7 @@
                                     <div class="col-sm-12">
                                         <select id="selectDeliveryAddress" class="form-select">
                                         </select>
-                                        <button style="margin-top: 5px;" class="btn btn-success" onclick="OpenDeliveryAddress(); return false;" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
+                                        <button style="margin-top: 5px; font-size: 14px;" class="btn btn-success" onclick="OpenDeliveryAddress(); return false;" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" data-url="/DeliveryAddress/Index">
                                             Thêm
                                         </button>
                                     </div>
@@ -373,7 +379,7 @@
                                             <input type="text" id="DiscountCode" name="DiscountCode" value="" placeholder="" class="form-control" />
                                         </div>
                                         <div class="col-sm-4">
-                                            <a class="btn btn-outline-info" onclick="CheckDiscountCode()"><i class="fa-solid fa-check fa-lg"></i></a>
+                                            <a class="btn btn-outline-info" style="font-size: 14px;" onclick="CheckDiscountCode()"><i class="fa-solid fa-check fa-lg"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -584,6 +590,8 @@
                         }
                         $("#txtGiamGia").text(commasThousands(discount))
                         total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+
+                        swal("Áp dụng thành công mã: " + result.name, "Bạn được giảm: " + commasThousands(discount) + " đ", "success");
                     }
                     else {
                         swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
@@ -595,7 +603,7 @@
                     if(total < 0)
                     {
                         total = 0;
-                    }
+                    }                   
 
                     $('#textTotalMoney').text(commasThousands(total));
                     $('#cTotalMoney').val(total);
@@ -768,6 +776,8 @@
                     }
                     $("#txtGiamGia").text(commasThousands(discount))
                     total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+
+                    swal("Áp dụng thành công mã: " + _discountCode, "Bạn được giảm: " + commasThousands(discount) + " đ ", "success");
                 }
                 else {
                     swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
@@ -779,6 +789,7 @@
                 if (total < 0) {
                     total = 0;
                 }
+               
 
                 $('#textTotalMoney').text(commasThousands(total));
                 $('#pTotalMoney').val(total);

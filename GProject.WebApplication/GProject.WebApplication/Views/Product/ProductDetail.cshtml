@@ -694,6 +694,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         }
                         $("#txtGiamGia").text(commasThousands(discount))
                         total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    
+                         swal("Áp dụng thành công mã giảm giá: " + result.name, "Bạn được giảm: " + commasThousands(discount) + " đ", "success");
                     }
                     else {
                         swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
@@ -706,6 +708,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         total = 0;
                     }
 
+                
                     $('#textTotalMoney').text(commasThousands(total));
                     $('#pTotalMoney').val(total);
                     $('#cGiamGia').val(discount);
@@ -794,6 +797,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                     }
                     $("#txtGiamGia").text(commasThousands(discount))
                     total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                
+                    swal("Áp dụng thành công mã giảm giá: " + _discountCode, "Bạn được giảm: " + commasThousands(discount) + " đ ", "success");
                 }
                 else {
                     swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
@@ -806,6 +811,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                     total = 0;
                 }
 
+                
                 $('#textTotalMoney').text(commasThousands(total));
                 $('#pTotalMoney').val(total);
                 $('#cGiamGia').val(discount);
