@@ -92,6 +92,7 @@ namespace GProject.WebApplication.Controllers
                 GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
                 var data = await pService.GetDataForIndex(prodName, valCategory, valBrand, valFromPrice, valToPrice, type.NullToString(), pg, pageSize, customer, Keyword);
                 this.ViewBag.Pager = data.pager;
+                ViewData["pg"] = pg;
                 this.ViewData[nameof(prodName)] = (object)prodName;
                 this.ViewData[nameof(fPrice)] = (object)valFromPrice;
                 this.ViewData[nameof(tPrice)] = (object)valFromPrice;
