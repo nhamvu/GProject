@@ -160,7 +160,14 @@
         </div>
     </div>
     <div class="row">
-        
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-5"><strong>Loại danh mục:<span style="color: red">(*)</span></strong></label>
+                    <div class="col-sm-6">
+                        @Html.DropDownList("CategoryId", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
+                    </div>
+                </div>
+            </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label class="control-label col-sm-3">Loại :<span style="color: red">(*)</span></label>
@@ -213,7 +220,7 @@
             </div>
 
             <div class="form-group">
-                <div class="row" style="height: 500px; overflow-y: scroll;">
+                <div class="row" style="height: 500px; overflow-y: scroll; border: solid 1px;">
                     @if (Model != null && Model.ProductVariationViewModel.Count >= 0 && Model.ProductVariationViewModel != null && Model.SizeList.Count >= 0 && Model.SizeList != null)
 
                     {

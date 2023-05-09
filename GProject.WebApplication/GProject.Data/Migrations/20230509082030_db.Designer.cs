@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GProject.Data.Migrations
 {
     [DbContext(typeof(GProjectContext))]
-    [Migration("20230428125131_fixEntityProductVariation")]
-    partial class fixEntityProductVariation
+    [Migration("20230509082030_db")]
+    partial class db
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
