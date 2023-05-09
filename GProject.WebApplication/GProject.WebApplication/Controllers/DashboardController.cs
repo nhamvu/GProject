@@ -43,6 +43,7 @@ namespace GProject.WebApplication.Controllers
                                 .Join(lstProductvariation, ab => ab.OrderDetail.ProductVariationId, s => s.Id, (ab, s) => new { ab.Order, ab.OrderDetail, Productvariation = s })
                                 .Join(lstProducts, abs => abs.Productvariation.ProductId, p => p.Id, (abs, p) => new { abs.Order, abs.OrderDetail, abs.Productvariation, Product = p })
                                 .Where(absp => absp.Order.PaymentDate != null && absp.Productvariation.Id == absp.OrderDetail.ProductVariationId)
+                                .Where(absp => absp.Order.Status == Data.Enums.OrderStatus.Accomplished)
                                 .OrderBy(absp => absp.Order.CreateDate)
                                 .GroupBy(absp => new { absp.Order.CreateDate.Date })
                                 .Select(g => new
@@ -61,6 +62,7 @@ namespace GProject.WebApplication.Controllers
                             .Join(lstProductvariation, ab => ab.OrderDetail.ProductVariationId, s => s.Id, (ab, s) => new { ab.Order, ab.OrderDetail, Productvariation = s })
                             .Join(lstProducts, abs => abs.Productvariation.ProductId, p => p.Id, (abs, p) => new { abs.Order, abs.OrderDetail, abs.Productvariation, Product = p })
                             .Where(absp => absp.Order.PaymentDate != null && absp.Productvariation.Id == absp.OrderDetail.ProductVariationId)
+                            .Where(absp => absp.Order.Status == Data.Enums.OrderStatus.Accomplished)
                             .OrderBy(absp => absp.Order.CreateDate)
                             .GroupBy(absp => new { absp.Product.CategoryId })
                             .Select(g => new
@@ -77,13 +79,18 @@ namespace GProject.WebApplication.Controllers
                                 .Join(lstProducts, abc => abc.ProductVariation.ProductId, d => d.Id, (abc, d) => new { abc.Order, abc.OrderDetail, abc.ProductVariation, Product = d })
                                 .Join(lstBrands, abcd => abcd.Product.BrandId, e => e.Id, (abcd, e) => new { abcd.Order, abcd.OrderDetail, abcd.ProductVariation, abcd.Product, Brand = e })
                                 .Join(lstCategories, abcde => abcde.Product.CategoryId, p => p.Id, (abcde, p) => new { abcde.Order, abcde.OrderDetail, abcde.ProductVariation, abcde.Product, abcde.Brand, Category = p })
-                                .OrderBy(abcde => abcde.Order.CreateDate)
-                                .GroupBy(abcde => new 
-                                {   Month = abcde.Order.CreateDate.Month,
+                                .Where(absp => absp.Order.Status == Data.Enums.OrderStatus.Accomplished)
+                                .GroupBy(abcde => new
+                                {
+                                    Month = abcde.Order.CreateDate.Month,
                                     ProdName = abcde.Product.Name,
                                     Category = abcde.Category.Name,
                                     Brand = abcde.Brand.Name,
-                                    ProdType = abcde.Product.ProductType })
+                                    ProdType = abcde.Product.ProductType
+                                })
+                                .OrderByDescending(g => g.Sum(c => c.OrderDetail.Quantity))
+                                .ThenByDescending(g => g.Key.Month)
+                                .Take(5)
                                 .Select(g => new
                                 {
                                     ProdName = g.Key.ProdName,

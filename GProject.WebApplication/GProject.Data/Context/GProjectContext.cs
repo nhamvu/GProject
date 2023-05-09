@@ -18,7 +18,7 @@ namespace GProject.Data.Context
         {
             //@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATNChuan;Integrated Security=True"
             //@"Data Source=LAPTOP-2GTIBL55\SQLEXPRESS;Initial Catalog=ABC;Integrated Security=True"
-            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=DB_Du_An;Integrated Security=True");
+            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=DB_DATNChuan;Integrated Security=True");
 
             //DB_Du_An
 

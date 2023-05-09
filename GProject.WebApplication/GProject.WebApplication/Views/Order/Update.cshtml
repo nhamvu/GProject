@@ -1,0 +1,630 @@
+﻿@model GProject.WebApplication.Models.OrderViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using GProject.WebApplication.Models
+@using GProject.Api.MyServices.Services;
+@using GProject.WebApplication.Helpers;
+@using GProject.Data.DomainClass;
+@{
+    ViewBag.Title = "Thay đổi thông tin đơn hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    List<OrderDto> data = (List<GProject.WebApplication.Models.OrderDto>)ViewData["Data"];
+    var OrderData = data.Select(c => c.Order).FirstOrDefault();
+
+    var lstVoucher = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
+    var myVoucher = lstVoucher.FirstOrDefault(c => c.Id == Model.VoucherId);
+    string strVoucherId = myVoucher != null ? myVoucher.VoucherId.NullToString() : string.Empty.NullToString();
+}
+<style>
+    label {
+        color: black;
+    }
+
+    h1 {
+        color: black;
+    }
+
+    .sticky-header th {
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+        background-color: #E5E5E5;
+    }
+
+    .sticky-table {
+        border-collapse: separate !important;
+    }
+
+    .thongTinThanhToan {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        z-index: 9999; /* Giá trị z-index cao hơn các phần tử khác để đảm bảo phần tử này nằm trên cùng */
+    }
+</style>
+
+@if (@ViewData["Mess"] != null)
+{
+    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+}
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <!-- Thông tin thanh toán -->
+            <div class="modal-content justify-content-center" style="border-width:1px;">
+                <div class="panel-heading">
+                    <h4 class="panel-title" style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">Thông tin thanh toán</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row" name="thongTinThanhToan" style="text-align:center; padding:10px 10px 10px 10px;">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                    Tổng tiền sản phẩm:
+                                </label>
+                                <div class="col-sm-12">
+                                    <input style="font-weight: bold" readonly type="text" id="totalMoneyProd" value="@data.Sum(c => c.OrderDetail.TotalMoney).NullToDecimal().ToString("#,##0.##")" placeholder="" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                    Mã giảm giá:
+                                </label>
+                                <div class="col-sm-12">
+                                    <input style="font-weight: bold" readonly type="text" value="@strVoucherId"
+                                           placeholder="" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                    Mức giảm giá:
+                                </label>
+                                <div class="col-sm-12">
+                                    <input style="font-weight: bold" readonly type="text" id="cDiscountRate" name="cDiscountRate" value="@Model.DiscountRate.NullToDecimal().ToString("#,##0.##")"
+                                           placeholder="" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                    Phí giao hàng:
+                                </label>
+                                <div class="col-sm-12">
+                                    <input style="font-weight: bold" type="text" readonly id="cShippingFee" name="cShippingFee" value="@Model.ShippingFee.NullToDecimal().ToString("#,##0.##")"
+                                           placeholder="" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                    Tổng tiền thanh toán:
+                                </label>
+                                <div class="col-sm-12">
+                                    <input style="font-weight: bold; color: red; font-size:20px;" readonly type="text" id="cTotalMoney" name="cTotalMoney" value="@Model.TotalMoney.NullToDecimal().ToString("#,##0.##")"
+                                           placeholder="" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                <form id="buyFormData" asp-controller="Order" asp-action="ChangeInfoOrder" method="post"
+                      class="form-horizontal d-block">
+                    <input asp-for="Id" hidden="hidden" />
+                    <input asp-for="CustomerId" hidden="hidden" />
+                    <input asp-for="EmployeeId" hidden="hidden" />
+                    <input asp-for="DeliverId" hidden="hidden" />
+                    <input asp-for="OrderId" hidden="hidden" />
+                    <input asp-for="CreateDate" hidden="hidden" />
+                    <input asp-for="PaymentDate" hidden="hidden" />
+                    <input asp-for="OrderDetailJson" hidden="hidden" />
+                    <input asp-for="VoucherId" hidden="hidden" />
+                    <input asp-for="ShippingCountry" hidden="hidden" />
+
+                    <input asp-for="DiscountRate" hidden="hidden" />
+                    <input asp-for="ShippingFee" hidden="hidden" />
+                    <input asp-for="TotalMoney" hidden="hidden" />
+                    
+                    <!-- Thông tin chúng-->
+                    <div class="modal-content justify-content-center" style="border-width:1px;">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">Thông tin người đặt</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <input type="text" id="idDeliveryAddress" name="idDeliveryAddress" value="" hidden="hidden" />
+                            <input type="text" id="cGiamGia" name="cGiamGia" value="" hidden="hidden" />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">
+                                            Họ tên:<span style="color: red">(*)</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input type="text" asp-for="ShippingFullName"
+                                                   placeholder="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">
+                                            Email:<span style="color: red">(*)</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input type="text" asp-for="ShippingEmail"
+                                                   placeholder="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">
+                                            Số điện thoại:<span style="color: red">(*)</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input type="text" asp-for="ShippingPhone"
+                                                   placeholder="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">
+                                            Ngày đặt:<span style="color: red">(*)</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input asp-for="CreateDate" type="date" maxlength="200" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-outline-success col-md-3" onclick="ChangeInfoOrderer()"><i class="fas fa-check-double" style="margin-right:10px;"></i>Lưu thay đổi thông tin người đặt</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <!-- Tông tin địa chỉ-->
+                    <div class="modal-content justify-content-center" id="modalAddress" style="border-width:1px;">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">Thông tin địa chỉ</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">
+                                            Thành phố:<span style="color: red">(*)</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input type="text" asp-for="ShippingCity" readonly
+                                                   placeholder="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">
+                                            Quận, Huyện:<span style="color: red">(*)</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input type="text" asp-for="ShippingDistrict" readonly placeholder="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">
+                                            Phường, Xã:<span style="color: red">(*)</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input type="text" asp-for="ShippingTown" readonly
+                                                   placeholder="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-5">
+                                            Địa chỉ chi tiết:<span style="color: red">(*)</span>
+                                        </label>
+                                        <div class="col-sm-12">
+                                            <input type="text" asp-for="ShippingAddress" readonly
+                                                   placeholder="" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-outline-success col-md-3" onclick="ChangeAddress()"><i class="fas fa-check-double" style="margin-right:10px;"></i>Thay đổi địa chỉ</button>
+                        </div>
+                    </div>
+                    <br />
+                    <!-- Danh sách sản phẩm-->
+                    <div class="modal-content justify-content-center" style="border-width:1px;">
+                        <div class="panel-heading">
+                            <h4 class="panel-title" style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">Danh sách sản phẩm</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                                        <table class="table table-bordered table-hover sticky-table tableprod">
+                                            <thead class="sticky-header">
+                                                <tr>
+                                                    <th>STT</th>
+                                                    <th>Hình ảnh</th>
+                                                    <th>Tên sản phẩm</th>
+                                                    <th>Màu sắc</th>
+                                                    <th>Size</th>
+                                                    <th>Đơn giá</th>
+                                                    <th style="width:200px;">Số lượng</th>
+                                                    <th>Thành tiền</th>
+                                                    <th>Thao tác</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model != null)
+                                                {
+                                                    int index = 0;
+                                                    foreach (var item in data)
+                                                    {
+                                                        index++;
+                                                        <tr>
+                                                            <td hidden><input class="itemOrderId" disabled hidden="hidden" type="text" value="@item.OrderDetail.OrderId.NullToString()"></td>
+                                                            <td hidden><input class="itemProdID" disabled hidden="hidden" type="text" value="@item.OrderDetail.ProductVariationId.NullToString()"></td>
+                                                            <td hidden><input class="itemQuantityInstock" disabled hidden="hidden" type="text" value="@(item.ProductVariation.QuantityInStock)"></td>
+                                                            <td hidden><input class="itemOriginalQuantityInstock" disabled hidden="hidden" type="text" value="@item.OrderDetail.Quantity"></td>
+                                                            <td>@(index)</td>
+                                                            <td><img style="width:70px;height:70px;" src="~/images/@item.ProductVariation.Image.NullToString()" /></td>
+                                                            <td>@item.Product.Name</td>
+                                                            <td>@item.Color.Name</td>
+                                                            <td>@item.Size.Code</td>
+                                                            <td>
+                                                                <input type="text" class="price align-right textr inputOrder" disabled maxlength="18" value="@item.OrderDetail.Price.ToString("#,##0.##")" />
+                                                            </td>
+                                                            <td class="col-1" style="width:200px;">
+                                                                <div class="buttons_added ">
+                                                                    <input class="minus is-form inputOrder" type="button" value="-" style="width:20px;">
+                                                                    <input aria-label="quantity" style="width: 120px; text-align:center;" class="quantity inputOrder" type="text" id="quantity" name="quantity" value="@item.OrderDetail.Quantity" min="1" max="100000">
+                                                                    <input class="plus is-form inputOrder" type="button" value="+" style="width:20px;">
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <input style="font-weight: bold" class="totalMoneyItem inputOrder" disabled="disabled" type="text" value="@item.OrderDetail.TotalMoney.ToString("#,##0.##")">
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" class="btn btn-danger" onclick="RemoveProduct('@Model.Id', '@item.ProductVariation.Id')"><i class="fa fa-trash"></i></button>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-outline-success col-md-3" onclick="AddProdToOrder('@Model.Id')"><i class="fas fa-check-double" style="margin-right:10px;"></i>Thêm sản phẩm</button>
+                        </div>
+                    </div>
+                    <br />
+                    <hr style="color:red;" />
+                    <div class="row d-flex justify-content-center">
+                        <button type="button" onclick="document.location = '/Order/Index'" class="btn btn-outline-dark col-md-2 m-1"><i class="fa fa-backward" style="margin-right:10px;"></i>Quay lại</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="showDataDeliveryAddress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style=" background-color:white; max-width:900px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Địa Chỉ Đặt Hàng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-left: 15px">
+                    <form id="formdata" class="form" enctype="multipart/form-data" style="margin-top: -20px">
+                        <input id="txtId" value="0" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+                        <div class="row mt-5">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectProvince" class="form-select">
+                                            <option></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectDistrict" class="form-select">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
+                                    <div class="col-sm-12">
+                                        <select id="selectWards" class="form-select">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
+                                    <div class="col-sm-12">
+                                        <input type="text" id="ShippingAddressChange" name="ShippingAddressChange" value="" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <strong><label></label></strong>
+                                <div class="form-input">
+                                    <a class="btn btn-success" onclick="SaveChangeAddress()" style="height:40px;width:110px;">
+                                        <i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>
+                                        Lưu
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        LoadProvince();
+        LoadDataTable();
+        LoadDistrict();
+        LoadWard();
+        loadMoney();
+        
+        $("input.quantity").change(function () {
+            if (checkQuantityInstock($(this))) {
+                    var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/,/g, '');
+                    var _quantityVal = parseFloat($(this).val()) || 0;
+                    $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
+                    loadMoney();
+                ChangeQuantity($(this));
+                }
+        });
+
+        $('input.quantity').keyup(function () {
+            let regex = /^[0-9]+$/;
+            if (!regex.test($(this).val()))
+                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
+        });
+
+        $('input.quantity').each(function () {
+            if (checkQuantityInstock($(this))) {
+                var $this = $(this),
+                    qty = $this.parent().find('.is-form'),
+                    min = Number($this.attr('min')),
+                    max = Number($this.attr('max'))
+                if (min == 0) {
+                    var d = 0
+                } else d = min
+                $(qty).on('click', function () {
+                    if ($(this).hasClass('minus')) {
+                        if ($this.val() > 1)
+                            $this.val(Number($this.val()) - 1);
+                    } else if ($(this).hasClass('plus')) {
+                        $this.val(Number($this.val()) + 1);
+                    }
+                    //$this.attr('value', d).val(d);
+                    var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/,/g, '');
+                    var _quantityVal = parseFloat($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
+                    $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
+                    loadMoney();
+                    ChangeQuantity($(this));
+                })
+            }
+            
+        });
+
+        var messerror = document.getElementById('messerror')
+        if (messerror != null) {
+            swal("Không thành công", messerror, "error");
+        }
+    });
+
+    function RemoveProduct(id, prodId) {
+        var countProducts = $('.tableprod tbody tr').length;
+        if (countProducts > 1) {
+            swal("", {
+                title: 'Bạn chắc chắn muốn gỡ sản phẩm này khỏi đơn hàng?',
+                icon: 'warning',
+                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    $.getJSON("/Order/RemoveOrderDetail?id=" + id + "&prodId=" + prodId, function (data) {
+                        if (data == true)
+                            swal("Thành công", "Đã gỡ sản phẩm khỏi đơn hàng", "success");
+                        else
+                            swal("Không thành công", "Gỡ sản phẩm khỏi đơn hàng không thành công", "error");
+                        location.reload()
+                    });
+                }
+            });
+        } else {
+            swal("Thông báo", "Cần có tối thiếu 1 sản phẩm trong đơn hàng", "error");
+        }
+        
+    }
+
+    function loadMoney() {
+        var _totalPaymentMoney = 0;
+        var _discountRate = parseFloat($('#DiscountRate').val() || 0);
+        var _shippingFee = parseFloat($('#ShippingFee').val() || 0);
+        $('table tbody tr .totalMoneyItem').each((index, item) => {
+            var _item = ($(item).parents("tr").find("input[type=text].totalMoneyItem").val() || '').replace(/,/g, '');
+            _totalPaymentMoney = _totalPaymentMoney + parseFloat(_item);
+        });
+        $('#totalMoneyProd').val(commasThousands(_totalPaymentMoney));
+        var _totalPayment = _totalPaymentMoney + _shippingFee - _discountRate;
+        $('#cTotalMoney').val(commasThousands(_totalPayment));
+        $('#TotalMoney').val(_totalPayment);
+
+        
+    }
+    function ConvertDate(time) {
+        var date = new Date(time);
+        var dateConvert = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + date.getFullYear())
+        return dateConvert
+    }
+
+    function OpenDeliveryAddress() {
+        $('#OrderModal').modal('hide');
+    }
+
+    function ShippingFee(district_id, ward_code) {
+        $.ajax({
+            url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
+            type: "GET",
+            success: function (result) {
+                $('#ShippingFee').val(result);
+                $('#cShippingFee').val(commasThousands(result));
+                loadMoney();
+                $('#buyFormData').submit();
+            }
+        })
+    }
+
+
+    function commasThousands(nStr) {
+        nStr += '';
+        nStr = nStr.replace(/,/g, '');
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? '.' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+        return x1 + x2;
+    }
+
+    function checkValidateData() {
+        if ($('#cQuantity').val() == '' || $('#cQuantity').val() == '0') {
+            sweetAlert("Thông báo", "Thông tin số lượng sản phẩm không được để trống", "error");
+            return false;
+        }
+        if (parseInt($('#cQuantity').val() || 0) > parseInt($('#mQuantityInstock').text() || 0)) {
+            sweetAlert("Thông báo", "Thông tin số lượng không được lớn hơn số lượng còn lại của sản phẩm", "error");
+            return false;
+        }
+        if ($('#cSize').val() == '') {
+            sweetAlert("", "Vui lòng chọn kích cỡ", "error");
+            return false;
+        }
+        if ($('#cColor').val() == '') {
+            sweetAlert("", "Vui lòng chọn màu sắc", "error");
+            return false;
+        }
+
+        return true;
+    }
+
+
+    function ChangeAddress(){
+        swal("", {
+            title: 'Thay đổi địa chỉ có thể sẽ thay đổi phí ship, bạn vẫn muốn thay đổi chứ?',
+            icon: 'warning',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                $('#showDataDeliveryAddress').modal('show');
+            }
+        });
+    }
+
+    function btnClose() {
+        $('#showDataDeliveryAddress').modal('hide');
+    }
+
+    function SaveChangeAddress() {
+        if (checkValidateVOucher()) {
+            swal("Bạn có muốn lưu thông tin địa chỉ này không?", {
+                title: 'Thông Báo!',
+                icon: 'info',
+                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            }).then(function (isConfirm) {
+                if (isConfirm) {
+                    ShippingFee($("#selectDistrict").val(), $("#selectWards").val());
+                    $('#showDataDeliveryAddress').modal('hide');
+                    $('#ShippingCity').val($("[id='selectProvince'] option:selected").text());
+                    $('#ShippingDistrict').val($("[id='selectDistrict'] option:selected").text());
+                    $('#ShippingTown').val($("[id='selectWards'] option:selected").text());
+                    $('#ShippingAddress').val($("#ShippingAddressChange").val());
+                    loadMoney();
+                    
+                } else {
+                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                }
+            });
+        }
+    }
+
+    function checkQuantityInstock(e) {
+        var itemQuantityInstock = parseInt(e.parents("tr").find("input[type=text].itemQuantityInstock").val()) || 0;
+        var _quantity = parseInt(e.parents("tr").find("input[type=text].quantity").val()) || 0;
+        var _Originalquantity = parseInt(e.parents("tr").find("input[type=text].itemOriginalQuantityInstock").val()) || 0;
+        if (_quantity > itemQuantityInstock) {
+            sweetAlert('Số lượng còn lại của sản phẩm này không đáp ứng được số lượng bạn đặt!', '', 'warning');
+            e.val(_Originalquantity);
+            return false;
+        }
+        return true;
+    }
+
+    function ChangeQuantity(e) {
+        var itemOrderId = e.parents("tr").find("input[type=text].itemOrderId").val() || '';
+        var itemProdID = e.parents("tr").find("input[type=text].itemProdID").val() || '';
+        var itemQuantity = parseInt(e.parents("tr").find("input[type=text].quantity").val()) || 0;
+        $.getJSON("/Order/ChangeQuantityOrder?orderid=" + itemOrderId + "&prodId=" + itemProdID + "&quantity=" + itemQuantity, function (data) {
+        });
+    }
+
+    function ChangeInfoOrderer() {
+        swal("", {
+            title: 'Bạn chắc chắn muốn thay đổi thông tin người nhận chứ?',
+            icon: 'warning',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            $('#buyFormData').submit();
+        });
+    }
+
+    function AddProdToOrder(id) {
+        swal("", {
+            title: 'Thêm sản phẩm vào đơn hàng sẽ dẫn đến thay đổi thành tiền, bạn vẫn muốn thay đổi chứ?',
+            icon: 'warning',
+            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+        }).then(function (isConfirm) {
+            if (isConfirm) {
+                document.location = '/Order/ShowProductForAdmin?orderid=' + id;
+            }
+        });
+    }
+</script>
