@@ -8,9 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="bin\**" />
     <Compile Remove="wwwroot\AdminContent\css\icon\**" />
+    <Content Remove="bin\**" />
     <Content Remove="wwwroot\AdminContent\css\icon\**" />
+    <EmbeddedResource Remove="bin\**" />
     <EmbeddedResource Remove="wwwroot\AdminContent\css\icon\**" />
+    <None Remove="bin\**" />
     <None Remove="wwwroot\AdminContent\css\icon\**" />
   </ItemGroup>
 

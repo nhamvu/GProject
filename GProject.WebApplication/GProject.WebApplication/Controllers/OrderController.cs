@@ -864,10 +864,10 @@ namespace GProject.WebApplication.Controllers
                 ProdOrder prodOrder = JsonConvert.DeserializeObject<ProdOrder>(products);
                 ProductVariation productVariation = productVariationRepository.GetAll().FirstOrDefault(c => c.ProductId == new Guid(prodOrder.productId) && c.ColorId == prodOrder.color && c.SizeId == prodOrder.size);
                 OrderDetail orderDetail = orderDetailRepository.GetAll().FirstOrDefault(c => c.OrderId == orderid && c.ProductVariationId == productVariation.Id);
-                var prodvariation = productVariationRepository.GetAll().FirstOrDefault(c => c.Id == orderDetail.ProductVariationId);
-
+                
                 if (orderDetail != null)
                 {
+                    
                     strChange += $"\n Số lượng của sản phẩm {GetProductVariationById(productVariation.Id)} từ {orderDetail.Quantity} -> {orderDetail.Quantity + prodOrder.quantity}";
                     strChange += $"\n Tổng tiền của sản phẩm {GetProductVariationById(productVariation.Id)} từ {orderDetail.TotalMoney.ToString("#,##0.##")} -> {orderDetail.TotalMoney + prodOrder.totalMoneyItem.ToString("#,##0.##")}";
                     orderDetail.Quantity = orderDetail.Quantity + prodOrder.quantity;
@@ -913,7 +913,7 @@ namespace GProject.WebApplication.Controllers
                     }
                 }
 
-               
+                var prodvariation = productVariationRepository.GetAll().FirstOrDefault(c => c.Id == orderDetail.ProductVariationId);
                 if (prodvariation != null)
                 {
                     prodvariation.QuantityInStock = prodvariation.QuantityInStock - orderDetail.Quantity;
