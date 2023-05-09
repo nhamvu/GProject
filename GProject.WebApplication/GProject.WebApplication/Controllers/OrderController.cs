@@ -104,7 +104,6 @@ namespace GProject.WebApplication.Controllers
                 if (valsPaymentType != -1)
                     lstObjs = lstObjs.Where(c => (int)c.PaymentType == sPaymentType).ToList();
 
-
                 const int pageSize = 20;
                 if (pg < 1)
                     pg = 1;

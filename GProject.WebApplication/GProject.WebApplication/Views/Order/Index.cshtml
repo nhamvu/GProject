@@ -264,16 +264,8 @@
             else
                 swal("Thành công", "Chuyển trạng thái đơn hàng thành công", "success");
         }
-
-        $('#sPhone').keyup(function () {
-            let regex = /^[0-9]+$/;
-            if (!regex.test($(this).val()))
-                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
-        });
     });
 
-    document.querySelector('#formdata').addEventListener('submit', function (e) {
-        var form = this;
 
         e.preventDefault();
         if (checkValidateData()) {
@@ -289,33 +281,5 @@
                 }
             });
         }
-    });
 
-    function checkValidateData() {
-        if ($('#PhoneNumber').val() == '') {
-            sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
-            return false;
-        }
-        if (!validatePhoneNumber($('#PhoneNumber').val())) {
-            sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
-            return false;
-        }
-        if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
-            return false;
-        }
-        if ($('#Email').val() == '') {
-            sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
-            return false;
-        }
-        //if (!validatePhoneNumber($('#PhoneNumber').val())) {
-        //    sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
-        //    return false;
-        //}
-        if ($('#Address').val() == '') {
-            sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
-            return false;
-        }
-        return true;
-    }
 </script>
