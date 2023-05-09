@@ -155,8 +155,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"
-                style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i
-                    class="fa fa-users" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH ĐƠN ĐẶT HÀNG</h3>
+                style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-recycle" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH ĐƠN ĐẶT HÀNG
+            </h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
@@ -170,7 +170,9 @@
                             <th>Ngày đặt hàng</th>
                             <th>Tổng tiền</th>
                             <th>Trạng thái</th>
-                            <th>Hành động</th>
+                            <th>Sửa</th>
+                            <th>Xem</th>
+                            <th>Lịch sử</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -195,36 +197,70 @@
                                             switch ((int)Model[i].Status)
                                             {
                                                 case 0:
-                                                    <button type="button" class="btn btn-secondary">Chờ xác nhận</button>
+                                                    <span class="label label-secondary text-dark">Chờ xác nhận</span>
                                                     break;
                                                 case 6:
-                                                    <button type="button" class="btn btn-warning">Đã xác nhận</button>
+                                                    <span class="label label-warning">Đã xác nhận</span>
                                                     break;
                                                 case 1:
-                                                    <button type="button" class="btn btn-info">Đang vận chuyển</button>
+                                                    <span class="label label-info">Đang vận chuyển</span>
                                                     break;
                                                 case 2:
-                                                    <button type="button" class="btn btn-primary">Đang giao hàng</button>
+                                                    <span class="label label-primary">Đang giao hàng</span>
                                                     break;
                                                 case 3:
-                                                    <button type="button" class="btn btn-success">Đã hoàn thành</button>
+                                                    <span class="label label-success">Đã hoàn thành</span>
                                                     break;
                                                 default:
-                                                    <button type="button" class="btn btn-danger">Đã hủy</button>
+                                                    <span class="label label-danger">Đã hủy</span>
                                                     break;
                                             }
                                         }
                                     </td>
                                     <td>
                                         <button class="btn btn-info"
-                                            onclick="location.href='@Url.Action("Detail", "Order",new { id = Model[i].Id})'" />
+                                            onclick="location.href='@Url.Action("Detail", "Order",new { id = Model.Orders[i].Id})'" />
                                         <i class="fas fa-pen-square"></i>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-outline-info border-0" onclick="location.href='@Url.Action("Detail", "Order",new { id = Model.Orders[i].Id})'" />
+                                        <i class="fa fa-eye"></i>
+                                    </td>
+                                    <td>
+                                        @if (!string.IsNullOrEmpty(Model.Orders[i].HistoryLogChange))
+                                        {
+                                            <button type="button" class="btn btn-outline-info border-0" onclick="ViewOrderDetailData('@Model.Orders[i].Id')"><i class="fa fa-eye"></i></button>
+                                        }
+                                        else
+                                        {
+                                            <button type="button" class="btn btn-outline-default border-0"><i class="fa fa-lock"></i></button>
+                                        }
+
                                     </td>
                                 </tr>
                             }
                         }
                     </tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="ViewDetail" role="dialog">
+    <div class="modal-dialog modal-md" style="text-align:left; background-color:white; max-width:1200px">
+        <div style="width:1200px;">
+            <div class="modal-content justify-content-center" style="border-width:1px;">
+                <div class="modal-header" style="width:1000px;">
+                    <h4 class="modal-title text-center">Lịch sử chỉnh sửa</h4>
+                </div>
+                <div class="modal-body">
+                    <span id="pName"></span>
+                </div>
+                <div class="modal-footer" style="margin-top: -20px">
+                    <button type="button" class="btn btn-sm btn-default btn-dimiss-modal" onclick="btnClose()"
+                        <i class="fa fa-times"></i> Đóng
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -246,62 +282,32 @@
         var er = document.getElementById('error')
         if (er != null) {
             if ($('#error').text() == 'Failed')
-                swal("Không thành công", "Chuyển trạng thái đơn hàng thất bại", "error");
+                swal("Không thành công", "Lưu không thành công những thay đổi vừa rồi", "error");
             else
-                swal("Thành công", "Chuyển trạng thái đơn hàng thành công", "success");
+                swal("Thành công", "Bạn đã lưu thành công những thay đổi vừa rồi", "success");
         }
-
-        $('#sPhone').keyup(function () {
-            let regex = /^[0-9]+$/;
-            if (!regex.test($(this).val()))
-                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
-        });
     });
 
-    document.querySelector('#formdata').addEventListener('submit', function (e) {
-        var form = this;
 
-        e.preventDefault();
-        if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
+    function ViewOrderDetailData(ID) {
+        $.getJSON("/Order/GetLog?id=" + ID)
+            .done(function (data) {
+                data = data.replace(new RegExp('Thời gian', 'g'), '<b>Thời gian</b>');
+                data = data.replace(new RegExp('Người thay đổi', 'g'), '<b>Người thay đổi</b>');
+                data = data.replace(new RegExp('\n', 'g'), '<br/>');
+                data = data.replace(new RegExp('<------------------------------------------>', 'g'), '<br/><br/><br/>');
+
+                // update the modal content with the modified data
+                $("#pName").html(data);
+                $('#ViewDetail').modal('show');
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var err = textStatus + ", " + error;
+                console.log("Request Failed: " + err);
             });
-        }
-    });
-
-    function checkValidateData() {
-        if ($('#PhoneNumber').val() == '') {
-            sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
-            return false;
-        }
-        if (!validatePhoneNumber($('#PhoneNumber').val())) {
-            sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
-            return false;
-        }
-        if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
-            return false;
-        }
-        if ($('#Email').val() == '') {
-            sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
-            return false;
-        }
-        //if (!validatePhoneNumber($('#PhoneNumber').val())) {
-        //    sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
-        //    return false;
-        //}
-        if ($('#Address').val() == '') {
-            sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
-            return false;
-        }
-        return true;
     }
+    function btnClose() {
+        $('#ViewDetail').modal('hide');
+    }
+
 </script>

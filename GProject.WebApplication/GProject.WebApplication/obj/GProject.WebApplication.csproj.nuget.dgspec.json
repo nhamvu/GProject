@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {}
   },
   "projects": {
@@ -12,29 +13,48 @@
         "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
         "packagesPath": "C:\\Users\\huy.luu\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\obj\\",
+=======
+    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+        "projectName": "GProject.Api",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\obj\\",
+>>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\huy.luu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
                 "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+=======
+              "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+>>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
               }
             }
           }
@@ -105,6 +125,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -113,21 +134,32 @@
         "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
         "packagesPath": "C:\\Users\\huy.luu\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
+=======
+    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "projectName": "GProject.Data",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
+>>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\huy.luu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -199,6 +231,7 @@
         }
       }
     },
+<<<<<<< HEAD
     "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -207,32 +240,51 @@
         "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
         "packagesPath": "C:\\Users\\huy.luu\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\",
+=======
+    "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+        "projectName": "GProject.WebApplication",
+        "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\obj\\",
+>>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
           "C:\\Users\\huy.luu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
+<<<<<<< HEAD
               "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
                 "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj"
               },
               "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
                 "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+=======
+              "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj"
+              },
+              "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+                "projectPath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+>>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
               }
             }
           }

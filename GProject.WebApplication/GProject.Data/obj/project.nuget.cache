@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "2876WScYkGowJWmYZ4pvJeCVx4YAxuvVjWHwyE2qmkMuY4GKbl0IXI1Y5Rx2Hof63jsOQcYNcu/5X6pZ9nwMOw==",
   "success": true,
   "projectFilePath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+=======
+  "dgSpecHash": "HSCOu/DBUMzoghRcbkUiwYM2CDDRPjbguUwuo7iI+fq28WFB6uRQZKwZRPaBMikLRHrbnF3mWwDpQ84j9+nzYQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+>>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
   "expectedPackageFiles": [
     "C:\\Users\\huy.luu\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\huy.luu\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

@@ -20,8 +20,12 @@ using GProject.Data.Enums;
 using GProject.WebApplication.Models.Payments;
 using GProject.WebApplication.Services.IServices;
 using GProject.WebApplication.Services;
+<<<<<<< HEAD
 using IdentityServer4.Models;
 using X.PagedList;
+=======
+using Newtonsoft.Json.Linq;
+>>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
 
 namespace GProject.WebApplication.Controllers
 {
@@ -32,6 +36,10 @@ namespace GProject.WebApplication.Controllers
         private IOrderRepository orderRepository;
         private IOrderDetailRepository orderDetailRepository;
         private IProductVariationRepository productVariationRepository;
+        private IProductRepository productRepository;
+        private IColorRepository colorRepository;
+        private ISizeRepository sizeRepository;
+        private ICustomerRepository customerRepository;
         public OrderController(IVnPayService vnPayService)
         {
             _vnPayService = vnPayService;
@@ -39,6 +47,10 @@ namespace GProject.WebApplication.Controllers
             orderRepository = new OrderRepository();
             orderDetailRepository = new OrderDetailRepository();
             productVariationRepository = new ProductVariationRepository();
+            customerRepository = new CustomerRepository();
+            productRepository = new ProductRepository();
+            colorRepository = new ColorRepository();
+            sizeRepository = new SizeRepository();
         }
 
         public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int? page)
@@ -105,7 +117,7 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => c.ShippingPhone.ToLower().Contains(sPhone.ToLower())).ToList();
                 if (valsPaymentType != -1)
                     lstObjs = lstObjs.Where(c => (int)c.PaymentType == sPaymentType).ToList();
-
+                lstObjs = lstObjs.OrderBy(c => c.Status).ThenByDescending(c => c.CreateDate).ToList();
 
                 // const int pageSize = 2;
                 // if (pg < 1)
@@ -152,6 +164,52 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
+        public async Task<ActionResult> Update(Guid? id)
+        {
+            try
+            {
+                GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
+                var Data = await pService.ShowMyOrder(id);
+                ViewData["Data"] = Data;
+                Order order = Data.Select(c => c.Order).FirstOrDefault();
+                OrderViewModel orderViewModel = new OrderViewModel();
+                orderViewModel.Id = order.Id;
+                orderViewModel.CustomerId = order.CustomerId;
+                orderViewModel.EmployeeId = order.EmployeeId;
+                orderViewModel.DeliverId = order.DeliverId;
+                orderViewModel.OrderId = order.OrderId;
+                orderViewModel.CreateDate = order.CreateDate;
+                orderViewModel.PaymentDate = order.PaymentDate;
+                orderViewModel.PaymentType = order.PaymentType;
+                orderViewModel.ShippingFullName = order.ShippingFullName;
+                orderViewModel.ShippingCountry = order.ShippingCountry;
+                orderViewModel.ShippingCity = order.ShippingCity;
+                orderViewModel.ShippingDistrict = order.ShippingDistrict;
+                orderViewModel.ShippingTown = order.ShippingTown;
+
+                orderViewModel.ShippingAddress = order.ShippingAddress;
+                orderViewModel.ShippingPhone = order.ShippingPhone;
+                orderViewModel.ShippingEmail = order.ShippingEmail;
+                orderViewModel.VoucherId = order.VoucherId;
+                orderViewModel.DiscountRate = order.DiscountRate;
+                orderViewModel.ShippingFee = order.ShippingFee;
+                orderViewModel.TotalMoney = order.TotalMoney;
+                orderViewModel.Status = order.Status;
+                orderViewModel.Description = order.Description;
+                orderViewModel.ReasonForChange = order.ReasonForChange;
+                orderViewModel.HistoryLogChange = order.HistoryLogChange;
+
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
+                    ViewData["Mess"] = HttpContext.Session.GetString("mess");
+                HttpContext.Session.Remove("mess");
+                return View(orderViewModel);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
         public ActionResult ChangeStatus(string id, int status)
         {
             try
@@ -841,6 +899,312 @@ namespace GProject.WebApplication.Controllers
             }
             ViewBag.Message = response;
             return RedirectToAction("ViewOrderCustomer", "Order");
+        }
+
+        public async Task<ActionResult> RemoveOrderDetail(Guid id, Guid prodId)
+        {
+            try
+            {
+                var employee = HttpContext.Session.GetObjectFromJson<Employee>("userLogin");
+                bool result = true;
+                var orDetail = orderDetailRepository.GetAll().FirstOrDefault(c => c.OrderId == id && c.ProductVariationId == prodId);
+                if (orDetail != null)
+                {
+                    var prodvariation = productVariationRepository.GetAll().FirstOrDefault(c => c.Id == orDetail.ProductVariationId);
+                    if (prodvariation != null)
+                    {
+                        prodvariation.QuantityInStock = prodvariation.QuantityInStock + orDetail.Quantity;
+                        result = productVariationRepository.Update(prodvariation);
+                    }
+                    if (orderDetailRepository.Delete(orDetail))
+                    {
+                        var order = orderRepository.GetAll().FirstOrDefault(c => c.Id == orDetail.OrderId);
+                        decimal totalPaymentChange = order.TotalMoney - orDetail.TotalMoney;
+                        string strChange = $"Thời gian: {DateTime.Now} \nNgười thay đổi: {employee.Email}";
+                        strChange += $"\n Sản phẩm {prodId} từ bị gỡ khỏi giỏ hàng";
+                        strChange += $"\n Tổng tiền thanh toán từ {order.TotalMoney.ToString("#,##0.##")} -> {totalPaymentChange.ToString("#,##0.##")}";
+                        order.TotalMoney = totalPaymentChange;
+                        order.HistoryLogChange = strChange + order.HistoryLogChange.NullToString();
+                        result = orderRepository.Update(order);
+                    }
+                    
+                }
+                if (!result)
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangeInfoOrder(OrderViewModel orderDTO)
+        {
+            try
+            {
+                var employee = HttpContext.Session.GetObjectFromJson<Employee>("userLogin");
+                var order = orderRepository.GetAll().FirstOrDefault(c => c.Id == orderDTO.Id);
+
+                #region Ghi log thay đổi 
+                string strChange = $"Thời gian: {DateTime.Now} \nNgười thay đổi: {employee.Email}";
+                if (order.ShippingFullName != orderDTO.ShippingFullName)
+                    strChange += $"\n Tên người nhận từ {order.ShippingFullName} -> {orderDTO.ShippingFullName}";
+                if (order.ShippingCity != orderDTO.ShippingCity || order.ShippingDistrict != orderDTO.ShippingDistrict || order.ShippingTown != orderDTO.ShippingTown || order.ShippingAddress != orderDTO.ShippingAddress)
+                    strChange += $"\n Địa chỉ từ {order.ShippingAddress},{order.ShippingTown},{order.ShippingDistrict},{order.ShippingCity} -> " +
+                        $"{orderDTO.ShippingAddress},{orderDTO.ShippingTown},{orderDTO.ShippingDistrict},{orderDTO.ShippingCity}";
+                if (order.ShippingPhone != orderDTO.ShippingPhone)
+                    strChange += $"\n Số điện thoại từ {order.ShippingPhone} -> {orderDTO.ShippingPhone}";
+                if (order.ShippingEmail != orderDTO.ShippingEmail)
+                    strChange += $"\n Email từ {order.ShippingEmail} -> {orderDTO.ShippingEmail}";
+                if (order.DiscountRate != orderDTO.DiscountRate)
+                    strChange += $"\n Mức giảm giá từ {order.DiscountRate} -> {orderDTO.DiscountRate}";
+                if (order.ShippingFee != orderDTO.ShippingFee)
+                    strChange += $"\n Phí giao hàng từ {order.ShippingFee} -> {orderDTO.ShippingFee}";
+                if (order.TotalMoney != orderDTO.TotalMoney)
+                    strChange += $"\n Tổng tiền từ {order.TotalMoney} -> {orderDTO.TotalMoney}";
+                
+                #endregion
+
+
+                order.Id = orderDTO.Id;
+                order.CustomerId = orderDTO.CustomerId;
+                order.EmployeeId = orderDTO.EmployeeId;
+                order.DeliverId = orderDTO.DeliverId;
+                order.OrderId = orderDTO.OrderId;
+                order.CreateDate = orderDTO.CreateDate;
+                order.UpdateDate = DateTime.Now;
+                order.PaymentDate = orderDTO.PaymentDate;
+                order.PaymentType = orderDTO.PaymentType;
+                order.ShippingFullName = orderDTO.ShippingFullName;
+                order.ShippingCountry = orderDTO.ShippingCountry;
+                order.ShippingCity = orderDTO.ShippingCity;
+                order.ShippingDistrict = orderDTO.ShippingDistrict;
+                order.ShippingTown = orderDTO.ShippingTown;
+                order.ShippingAddress = orderDTO.ShippingAddress;
+                order.ShippingPhone = orderDTO.ShippingPhone;
+                order.ShippingEmail = orderDTO.ShippingEmail;
+                order.VoucherId = orderDTO.VoucherId;
+                order.DiscountRate = orderDTO.DiscountRate;
+                order.ShippingFee = orderDTO.ShippingFee;
+                order.TotalMoney = orderDTO.TotalMoney;
+                order.Status = orderDTO.Status;
+                order.Description = orderDTO.Description;
+                
+                strChange +=  $"<------------------------------------------>";
+                order.HistoryLogChange = strChange + order.HistoryLogChange.NullToString();
+
+                
+                if (!orderRepository.Update(order))
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("Index", "Order");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
+
+        public async Task<ActionResult> ChangeQuantityOrder(string orderid, string prodId, string quantity)
+        {
+            try
+            {
+                bool result = true;
+                var employee = HttpContext.Session.GetObjectFromJson<Employee>("userLogin");
+                string strChange = $"Thời gian: {DateTime.Now} \nNgười thay đổi: {employee.Email}";
+                var orDetail = orderDetailRepository.GetAll().FirstOrDefault(c => c.OrderId == new Guid(orderid) && c.ProductVariationId == new Guid(prodId));
+                
+                if (orDetail != null)
+                {
+                    var prodvariation = productVariationRepository.GetAll().FirstOrDefault(c => c.Id == orDetail.ProductVariationId);
+                    if (prodvariation != null)
+                    {
+                        prodvariation.QuantityInStock = prodvariation.QuantityInStock + quantity.NullToInt() - orDetail.Quantity;
+                        result = productVariationRepository.Update(prodvariation);
+                    }
+                    var order = orderRepository.GetAll().FirstOrDefault(c => c.Id == new Guid(orderid));
+                    decimal totalPaymentChange = (order.TotalMoney - orDetail.TotalMoney) + (int.Parse(quantity) * orDetail.Price);
+                    strChange += $"\n Số lượng của sản phẩm {GetProductVariationById(new Guid(prodId))} từ {orDetail.Quantity} -> {quantity}";
+                    strChange += $"\n Tổng tiền của sản phẩm {GetProductVariationById(new Guid(prodId))} từ {orDetail.TotalMoney.ToString("#,##0.##")} -> {(int.Parse(quantity) * orDetail.Price).ToString("#,##0.##")}";
+                    
+                    orDetail.Quantity = int.Parse(quantity);
+                    orDetail.TotalMoney = int.Parse(quantity) * orDetail.Price;
+                    result = orderDetailRepository.Update(orDetail);
+                    if (result)
+                    {
+                        
+                        strChange += $"\n Tổng tiền thanh toán từ {order.TotalMoney.ToString("#,##0.##")} -> {totalPaymentChange.ToString("#,##0.##")}";
+                        strChange += $"<------------------------------------------>";
+                        order.TotalMoney = totalPaymentChange;
+                        order.HistoryLogChange = strChange + order.HistoryLogChange.NullToString();
+                        result = orderRepository.Update(order);
+                    }
+                }
+                return Json(result);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
+
+        public async Task<JsonResult> GetLog(Guid id)
+        {
+            var jsonString = orderRepository.GetAll().FirstOrDefault(c => c.Id == id).HistoryLogChange.NullToString();
+            return Json(jsonString);
+        }
+
+        public async Task<ActionResult> ShowProductForAdmin(Guid orderid, string prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice, int? type, int pg = 1, int pageSize = 10, string Keyword = null)
+        {
+            
+            try
+            {
+                TempData["orderId"] = orderid;
+                GProject.WebApplication.Services.OrderService pService = new GProject.WebApplication.Services.OrderService();
+                decimal valFromPrice = fPrice.HasValue ? fPrice.Value : -1;
+                decimal valToPrice = tPrice.HasValue ? tPrice.Value : -1;
+                Guid valCategory = category.HasValue ? category.Value : Guid.Empty;
+                int valBrand = brand.HasValue ? brand.Value : -1;
+
+                var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
+                var data = await pService.GetDataForIndex(prodName, valCategory, valBrand, valFromPrice, valToPrice, type.NullToString(), pg, pageSize, Keyword);
+                this.ViewBag.Pager = data.pager;
+                this.ViewData[nameof(prodName)] = (object)prodName;
+                this.ViewData[nameof(fPrice)] = (object)valFromPrice;
+                this.ViewData[nameof(tPrice)] = (object)valFromPrice;
+                this.ViewData[nameof(brand)] = (object)valBrand;
+                this.ViewData[nameof(category)] = (object)valCategory;
+                this.ViewData[nameof(Keyword)] = (object)Keyword;
+                return View(data.tuple);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
+
+        
+
+        [Route("/productdetail-for-admin/{product_id}")]
+        public async Task<ActionResult> ProductDetailForAdmin(Guid product_id)
+        {
+            try
+            {
+                Guid orderid = (Guid)TempData["orderId"];
+                TempData.Keep("orderId");
+
+                Order order = orderRepository.GetAll().FirstOrDefault(c => c.Id == orderid);
+                Customer customer = customerRepository.GetAll().FirstOrDefault(c => c.Id == order.CustomerId);
+                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
+                    ViewData["Mess"] = HttpContext.Session.GetString("mess");
+                return View(await pService.GetProductDetail(product_id, customer));
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
+
+        public async Task<ActionResult> AddToOrderForAdmin(string products)
+        {
+            try
+            {
+                var employee = HttpContext.Session.GetObjectFromJson<Employee>("userLogin");
+                string strChange = $"Thời gian: {DateTime.Now} \nNgười thay đổi: {employee.Email}";
+                Guid orderid = (Guid)TempData["orderId"];
+                TempData.Keep("orderId");
+                Order order = orderRepository.GetAll().FirstOrDefault(c => c.Id == orderid);
+                ProdOrder prodOrder = JsonConvert.DeserializeObject<ProdOrder>(products);
+                ProductVariation productVariation = productVariationRepository.GetAll().FirstOrDefault(c => c.ProductId == new Guid(prodOrder.productId) && c.ColorId == prodOrder.color && c.SizeId == prodOrder.size);
+                OrderDetail orderDetail = orderDetailRepository.GetAll().FirstOrDefault(c => c.OrderId == orderid && c.ProductVariationId == productVariation.Id);
+                var prodvariation = productVariationRepository.GetAll().FirstOrDefault(c => c.Id == orderDetail.ProductVariationId);
+
+                if (orderDetail != null)
+                {
+                    strChange += $"\n Số lượng của sản phẩm {GetProductVariationById(productVariation.Id)} từ {orderDetail.Quantity} -> {orderDetail.Quantity + prodOrder.quantity}";
+                    strChange += $"\n Tổng tiền của sản phẩm {GetProductVariationById(productVariation.Id)} từ {orderDetail.TotalMoney.ToString("#,##0.##")} -> {orderDetail.TotalMoney + prodOrder.totalMoneyItem.ToString("#,##0.##")}";
+                    orderDetail.Quantity = orderDetail.Quantity + prodOrder.quantity;
+                    orderDetail.TotalMoney = orderDetail.TotalMoney + prodOrder.totalMoneyItem.NullToDecimal();
+                    if (orderDetailRepository.Update(orderDetail))
+                    {
+                        decimal totalPaymentChange = order.TotalMoney + prodOrder.totalMoneyItem.NullToDecimal();
+                        strChange += $"\n Tổng tiền thanh toán từ {order.TotalMoney.ToString("#,##0.##")} -> {totalPaymentChange.ToString("#,##0.##")}";
+                        strChange += $"<------------------------------------------>";
+                        order.TotalMoney = totalPaymentChange;
+                        order.HistoryLogChange = strChange + order.HistoryLogChange.NullToString();
+                        if (!orderRepository.Update(order))
+                            HttpContext.Session.SetString("mess", "Thêm sản phẩm vào đơn hàng thất bại");
+                        else
+                            HttpContext.Session.SetString("mess", "Thêm sản phẩm vào đơn hàng thành công");
+                    }
+                }
+                else
+                {
+                    orderDetail = new OrderDetail();
+                    orderDetail.OrderId = orderid;
+                    orderDetail.ProductVariationId = productVariation.Id;
+                    orderDetail.Price = prodOrder.price.NullToDecimal();
+                    orderDetail.Quantity = prodOrder.quantity.NullToInt();
+                    orderDetail.TotalMoney = prodOrder.totalMoneyItem.NullToDecimal();
+                    orderDetail.Status = OrderDetailStatus.Watting;
+                    if (orderDetailRepository.Add(orderDetail))
+                    {
+                        strChange += $"\n Thêm sản phẩm {GetProductVariationById(productVariation.Id)} vào đơn hàng với thông tin như sau:";
+                        strChange += $"\n Đơn giá: {prodOrder.price.NullToDecimal().ToString("#,##0.##")}";
+                        strChange += $"\n Số lượng: {prodOrder.quantity}";
+                        strChange += $"\n Tổng tiền sản phẩm: {prodOrder.totalMoneyItem.NullToDecimal().ToString("#,##0.##")}";
+
+                        decimal totalPaymentChange = order.TotalMoney + orderDetail.TotalMoney;
+                        strChange += $"\n Tổng tiền thanh toán từ {order.TotalMoney.ToString("#,##0.##")} -> {totalPaymentChange.ToString("#,##0.##")}";
+                        strChange += $"<------------------------------------------>";
+                        order.TotalMoney = totalPaymentChange;
+                        order.HistoryLogChange = strChange + order.HistoryLogChange.NullToString();
+                        if (!orderRepository.Update(order))
+                            HttpContext.Session.SetString("mess", "Thêm sản phẩm vào đơn hàng thất bại");
+                        else
+                            HttpContext.Session.SetString("mess", "Thêm sản phẩm vào đơn hàng thành công");
+                    }
+                }
+
+               
+                if (prodvariation != null)
+                {
+                    prodvariation.QuantityInStock = prodvariation.QuantityInStock - orderDetail.Quantity;
+                    productVariationRepository.Update(prodvariation);
+                }
+                return Json(true);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private string GetProductVariationById(Guid? id)
+        {
+            var result = productRepository.GetAll()
+                        .Join(productVariationRepository.GetAll(), prd => prd.Id, prv => prv.ProductId, (prd, prv) => new { prd, prv })
+                        .Join(colorRepository.GetAll(), pv => pv.prv.ColorId, cl => cl.Id, (pv, cl) => new { pv.prd, pv.prv, cl })
+                        .Join(sizeRepository.GetAll(), pvc => pvc.prv.SizeId, sz => sz.Id, (pvc, sz) => new { pvc.prd, pvc.prv, pvc.cl, sz })
+                        .Where(pvcs => pvcs.prv.Id == id)
+                        .Select(pvcs => new
+                        {
+                            product_name = pvcs.prd.Name,
+                            color_name = pvcs.cl.Name,
+                            size_code = pvcs.sz.Code,
+                        })
+                        .FirstOrDefault();
+            
+            return result != null ? $" (Tên sản phẩm: {result.product_name.NullToString()}, Màu sắc: {result.color_name.NullToString()}, Size: {result.size_code.NullToString()})" : "";
         }
     }
 }
