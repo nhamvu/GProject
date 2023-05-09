@@ -217,13 +217,13 @@
                                             }
                                         }
                                     </td>
-                                    @*<td>
+                                    <td>
                                         <button class="btn btn-info"
                                             onclick="location.href='@Url.Action("Detail", "Order",new { id = Model[i].Id})'" />
                                         <i class="fas fa-pen-square"></i>
-                                        @if ((int)Model.Orders[i].Status == 0)
+                                        @if ((int)Model[i].Status == 0)
                                         {
-                                            <button class="btn btn-outline-warning border-0" onclick="location.href='@Url.Action("Update", "Order",new { id = Model.Orders[i].Id})'" />
+                                            <button class="btn btn-outline-warning border-0" onclick="location.href='@Url.Action("Update", "Order",new { id = Model[i].Id})'" />
                                             <i class="fas fa-pen-square"></i>
                                         }
                                         else
@@ -233,20 +233,20 @@
                                         
                                     </td>
                                     <td>
-                                        <button class="btn btn-outline-info border-0" onclick="location.href='@Url.Action("Detail", "Order",new { id = Model.Orders[i].Id})'" />
+                                        <button class="btn btn-outline-info border-0" onclick="location.href='@Url.Action("Detail", "Order",new { id = Model[i].Id})'" />
                                         <i class="fa fa-eye"></i>
                                     </td>
                                     <td>
-                                        @if (!string.IsNullOrEmpty(Model.Orders[i].HistoryLogChange))
+                                        @if (!string.IsNullOrEmpty(Model[i].HistoryLogChange))
                                         {
-                                            <button type="button" class="btn btn-outline-info border-0" onclick="ViewOrderDetailData('@Model.Orders[i].Id')"><i class="fa fa-eye"></i></button>
+                                            <button type="button" class="btn btn-outline-info border-0" onclick="ViewOrderDetailData('@Model[i].Id')"><i class="fa fa-eye"></i></button>
                                         }
                                         else
                                         {
                                             <button type="button" class="btn btn-outline-default border-0"><i class="fa fa-lock"></i></button>
                                         }
 
-                                    </td>*@
+                                    </td>
                                 </tr>
                             }
                         }
@@ -275,7 +275,7 @@
         </div>
     </div>
 </div>
-@*<div class="container">
+<div class="container">
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
     {
     ActiveLiElementClass = "active",
@@ -286,7 +286,7 @@
     DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
     DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
     })
-</div>*@
+</div>
 
 
 <script type="text/javascript">

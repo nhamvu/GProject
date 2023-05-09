@@ -985,3 +985,6 @@ C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplicatio
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\Razor\Views\Order\ProductDetailForAdmin.cshtml.g.cs
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\Razor\Views\Order\ShowProductForAdmin.cshtml.g.cs
 C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\obj\Debug\net6.0\Razor\Views\Order\Update.cshtml.g.cs
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\JetBrains.Annotations.dll
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\X.PagedList.dll
+C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\bin\Debug\net6.0\X.PagedList.Mvc.Core.dll
