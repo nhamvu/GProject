@@ -20,12 +20,9 @@ using GProject.Data.Enums;
 using GProject.WebApplication.Models.Payments;
 using GProject.WebApplication.Services.IServices;
 using GProject.WebApplication.Services;
-<<<<<<< HEAD
 using IdentityServer4.Models;
 using X.PagedList;
-=======
 using Newtonsoft.Json.Linq;
->>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
 
 namespace GProject.WebApplication.Controllers
 {

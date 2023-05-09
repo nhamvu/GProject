@@ -1,14 +1,8 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "H54+f5hQ6Vu0zitWh1AK/RdydkvvsO42xeosOMhe+4P58xsaJFn612etRlGIjnTcDXK+ilZNPDhKLzMGtJ0QmQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
-=======
-  "dgSpecHash": "YKhMN6HUoVv6X0c8KG7/HLTtYSyvScIinQQ0uaTJxCXM/XtokntpizZ7oWe8g+kWBE2uOkVoKe2E3hvvRQCoSA==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
->>>>>>> origin/nhamvd-Cho-nhan-vien-sua-thong-tin-don-hang
   "expectedPackageFiles": [
     "C:\\Users\\huy.luu\\.nuget\\packages\\easynetq\\7.5.0\\easynetq.7.5.0.nupkg.sha512",
     "C:\\Users\\huy.luu\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
