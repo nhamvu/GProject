@@ -38,232 +38,257 @@
     }
 </style>
 
-@if (@ViewData["Mess"] != null)
-{
-    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
-}
-<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Customer/Index">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
+<div class="container">
+    @if (@ViewData["Mess"] != null)
+    {
+        <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+    }
 
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Tên khách hàng</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+    <button class="btn btn-success" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
+    <button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+
+    <form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
+        <input id="Id" name="Id" hidden="hidden" />
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="col-md-5">Tên khách hàng:<span style="color: red">(*)</span></label>
+                    <input id="Name" type="text" name="Name" placeholder="Name" maxlength="200" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Email:<span style="color: red">(*)</span></label>
+                    <input id="Email" name="Email" type="email" placeholder="name@example.com" maxlength="200"
+                        class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Mật khẩu:<span style="color: red">(*)</span></label>
+                    <input id="Password" name="Password" type="password" placeholder="password" maxlength="200"
+                        class="form-control" />
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="col-md-5">Ngày sinh:<span style="color: red">(*)</span></label>
+                    <input id="DateOfBirth" name="DateOfBirth" type="date" value="<?php echo date('Y-m-d'); ?>"
+                        maxlength="200" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Số điện thoại:<span style="color: red">(*)</span></label>
+                    <input id="PhoneNumber" name="PhoneNumber" type="text" placeholder="(+84) ..." maxlength="200"
+                        class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label>Giới tính:</label><span style="color: red">(*)</span>
+                    <div>
+                        <select id="Sex" name="Sex" class="form-control">
+                            <option value="0">Nam</option>
+                            <option value="1">Nữ</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="col-md-5">Địa chỉ:<span style="color: red">(*)</span></label>
+                    <input id="Address" name="Address" type="text" placeholder="Address" maxlength="200"
+                        class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Mô tả:</label>
+                    <input id="Description" name="Description" type="text" placeholder="Description" maxlength="200"
+                        class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label>Trạng thái</label><span style="color: red">(*)</span>
+                    <div>
+                        <select id="Status" name="Status" class="form-control">
+                            <option value="0">Bình thường</option>
+                            <option value="1">Đáng chú ý</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="col-md-5">Hình ảnh:<span style="color: red">(*)</span></label>
+                    <input id="Image_Upload" name="Image_Upload" type="file" class="form-control" />
+                </div>
+            </div>
+            <div style="margin-top: 10px;">
+                <button id="btnSave" class="btn btn-success" type="submit" style="height:40px;width:110px;"><i
+                        class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+            </div>
+        </div>
+    </form>
+    <hr style="color:red;" />
+    <form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Customer/Index">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Tên khách hàng</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input type="text" id="sName" name="sName" value="@ViewData["sName"]"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Email</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Trạng thái</label>
+                                    <div class="col-md-9">
+                                        @{
+                                            int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                        }
+                                        @Html.DropDownList("sStatus",new[]
+                                        {
+                                        new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                        new SelectListItem{Text="Bình thường", Value="0", Selected= (status== 0)},
+                                        new SelectListItem{Text="Đáng chú ý", Value="1", Selected= (status == 1)}
+                                        }, new { @name = "sStatus", @class="searchText form-control select"})
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Số điện thoại</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input type="text" id="sPhone" maxlength="10" name="sPhone"
+                                            value="@ViewData["sPhone"]" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Email</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Trạng thái</label>
-                                <div class="col-md-9">
-                                    @{
-                                        int status = int.Parse(Html.Encode(ViewData["sStatus"]));
-                                    }
-                                    @Html.DropDownList("sStatus",new[]
-                                    {
-                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
-                                    new SelectListItem{Text="Bình thường", Value="0", Selected= (status== 0)},
-                                    new SelectListItem{Text="Đáng chú ý", Value="1", Selected=  (status == 1)}
-                                    }, new { @name = "sStatus", @class="searchText form-control select"})
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Số điện thoại</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input type="text" id="sPhone" maxlength="10" name="sPhone" value="@ViewData["sPhone"]" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Giới tính</label>
-                                <div class="col-md-9">
-                                    @{
-                                        int gender = int.Parse(Html.Encode(ViewData["sGender"]));
-                                    }
-                                    @Html.DropDownList("sGender",new[]
-                                    {
-                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (gender== -1)},
-                                    new SelectListItem{Text="Nam", Value="0", Selected= (gender== 0)},
-                                    new SelectListItem{Text="Nữ", Value="1", Selected=  (gender == 1)}
-                                    }, new { @name = "sGender", @class="searchText form-control select"})
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Giới tính</label>
+                                    <div class="col-md-9">
+                                        @{
+                                            int gender = int.Parse(Html.Encode(ViewData["sGender"]));
+                                        }
+                                        @Html.DropDownList("sGender",new[]
+                                        {
+                                        new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (gender== -1)},
+                                        new SelectListItem{Text="Nam", Value="0", Selected= (gender== 0)},
+                                        new SelectListItem{Text="Nữ", Value="1", Selected= (gender == 1)}
+                                        }, new { @name = "sGender", @class="searchText form-control select"})
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="panel-footer text-center">
+                        <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')"
+                            type="submit"><i class="fa fa-search"></i></button>
+                        <a class="btn btn-outline-info" asp-action="Index">
+                            <i class="fas fa-undo-alt"></i>
+                        </a>
+                    </div>
                 </div>
-                <div class="panel-footer text-center">
-                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
-                </div>
             </div>
         </div>
-    </div>
-</form>
-<button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-<form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
-    <input id="Id" name="Id" hidden="hidden" />
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Tên khách hàng:<span style="color: red">(*)</span></strong></label>
-            <input id="Name" name="Name" placeholder="Name" maxlength="200" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Email:<span style="color: red">(*)</span></strong></label>
-            <input id="Email" name="Email" type="email" placeholder="name@example.com" maxlength="200" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Mật khẩu:<span style="color: red">(*)</span></strong></label>
-            <input id="Password" name="Password" type="password" placeholder="password" maxlength="200" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Ngày sinh:<span style="color: red">(*)</span></strong></label>
-            <input id="DateOfBirth" name="DateOfBirth" type="date" value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
-            <input id="PhoneNumber" name="PhoneNumber" type="text" placeholder="(+84) ..." maxlength="200" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <strong><label>Giới tính:</label><span style="color: red">(*)</span></strong>
-            <div>
-                <select id="Sex" name="Sex" class="form-control">
-                    <option value="0">Nam</option>
-                    <option value="1">Nữ</option>
-                </select>
+    </form>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"
+                    style="margin-top: 20px; text-align:center; height:50px; padding:10px 10px 10px 10px;">Danh sách
+                    khách hàng</h3>
             </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Địa chỉ:<span style="color: red">(*)</span></strong></label>
-            <input id="Address" name="Address" type="text" placeholder="Address" maxlength="200" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Mô tả:</strong></label>
-            <input id="Description" name="Description" type="text" placeholder="Description" maxlength="200" class="form-control" />
-        </div>
-        <div class="col-md-4">
-            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
-            <div>
-                <select id="Status" name="Status" class="form-control">
-                    <option value="0">Bình thường</option>
-                    <option value="1">Đáng chú ý</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Hình ảnh:<span style="color: red">(*)</span></strong></label>
-            <input id="Image_Upload" name="Image_Upload" type="file" class="form-control" />
-        </div>
-        <div class="col-md-2">
-            <strong><label></label></strong>
-            <button id="btnSave" class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
-        </div>
-    </div>
-</form>
-<hr style="color:red;" />
-<div class="row">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-users" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH KHÁCH HÀNG</h3>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
-                <table class="table table-bordered table-hover sticky-table">
-                    <thead class="sticky-header">
-                        <tr>
-                            <th>Hình ảnh</th>
-                            <th>Tên khách hàng</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Giới tính</th>
-                            <th>Trạng thái</th>
-                            <th>Chi tiết</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model != null)
-                        {
-                            @foreach (var item in Model)
+            <div class="panel-body">
+                <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                    <table class="table table-bordered table-hover sticky-table">
+                        <thead class="sticky-header">
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên khách hàng</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Giới tính</th>
+                                <th>Trạng thái</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
                             {
-                                <tr>
-                                    <td>
-                                        <img style="width:120px;height:90px; border;1px solid;" src="~/images/@item.Image" />
-                                    </td>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                    <td>
-                                        @item.Email
-                                    </td>
-                                    <td>
-                                        @item.PhoneNumber
-                                    </td>
-                                    <td>
-                                        @(item.Sex == 0 ? "Nam" : "Nữ")
-                                    </td>
-                                    <td>
-                                        @(item.Status == 1 ? "Bình thường" : "Đáng chú ý")
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-info" onclick="ViewCustomerDetail('@item.Id')" />
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img style="width:120px;height:90px; border;1px solid;"
+                                                src="~/images/@item.Image" />
+                                        </td>
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td>
+                                            @item.Email
+                                        </td>
+                                        <td>
+                                            @item.PhoneNumber
+                                        </td>
+                                        <td>
+                                            @(item.Sex == 0 ? "Nam" : "Nữ")
+                                        </td>
+                                        <td>
+                                            @(item.Status == 1 ? "Bình thường" : "Đáng chú ý")
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info" onclick="ViewCustomerDetail('@item.Id')">
+                                                <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-footer">
+                <div style="float: right">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new
+                    X.PagedList.Web.Common.PagedListRenderOptions()
+                    {
+                    ActiveLiElementClass = "active",
+                    PageClasses = new[]{ "page-link"},
+                    LiElementClasses=new[] { "page-item" },
+                    LinkToNextPageFormat = "Next",
+                    LinkToPreviousPageFormat = "Prev",
+                    })
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="container">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
-    {
-    ActiveLiElementClass = "active",
-    PageClasses = new[]{ "page-link"},
-    LiElementClasses=new[] { "page-item" },
-    //LinkToNextPageFormat = "Next",
-    //LinkToPreviousPageFormat = "Prev",
-    DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
-    DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
-    })
-</div>
-<div id="ViewDetail" class="modal modal-default in">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="padding: 5px 15px;">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                <h3 class="modal-title text-left">Thông tin khách hàng</h3>
-            </div>
-            <div class="modal-body">
-                <h5>Tên khách hàng:<strong id="pName"></strong></h5>
-                <h5>Email:<strong id="pEmail"></strong></h5>
-                <h5>Ngày sinh:<strong id="pDOB"></strong></h5>
-                <h5>Số điện thoại:<strong id="pPhoneNumber"></strong></h5>
-                <h5>Giới tính:<strong id="pSex"></strong></h5>
-                <h5>Địa chỉ:<strong id="pAddress"></strong></h5>
-                <h5>Trạng thái:<strong id="pStatus"></strong></h5>
-                <h5>Mô tả:<strong id="pDescription"></strong></h5>
-                <h5>Hình ảnh</h5>
-                <img style="width:120px;height:50px; border;1px solid;" id="pImg" src="" />
-            </div>
-            <div class="modal-footer" style="position:relative;clear:both;z-index:1000000" id="transport-footer">
-                <button type="button" class="btn btn-default pull-left btn-sm" data-dismiss="modal" onclick="btnClose()"><i class="fa fa-times"></i>Đóng</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 <script type="text/javascript">
     $(document).ready(function () {
+
+        if ($("#sName").val() != '' ||
+            $("#sEmail").val() != '' ||
+            $("#sPhone").val() != '') 
+        {
+            $('#Searchform').show();
+        }
+        else{
+            $('#Searchform').hide();
+        }
+
         $('#formdata').hide();
         var er = document.getElementById('error')
         if (er != null) {
@@ -285,6 +310,7 @@
             $('#formdata').show();
             $("#changeform").text("Hủy thay đổi");
         } else if ($("#changeform").text() == "Hủy thay đổi") {
+            $("#Id").val('');
             $("#Name").val('');
             $("#Email").val('');
             $("#Password").val('');
@@ -301,6 +327,16 @@
     function validatePhoneNumber(code) {
         var regex = /(84|0[3|5|7|8|9])+([0-9]{8})\b/;
         return regex.test(code);
+    }
+    function ChangeSearch() {
+        if ($("#changeformsearch").text() == "Tìm kiếm") {
+            $('#Searchform').show();
+            //$("#ExpirationDate").val(new Date().toJSON().slice(0,19));
+            $("#changeformsearch").text("Hủy tìm kiếm");
+        } else if ($("#changeformsearch").text() == "Hủy tìm kiếm") {
+            $('#Searchform').hide();
+            $("#changeformsearch").text("Tìm kiếm");
+        }
     }
     document.querySelector('#formdata').addEventListener('submit', function (e) {
         var form = this;
@@ -332,24 +368,10 @@
             $("#Address").val(data.address);
             $("#Description").val(data.description);
             $('#formdata').hide();
-
-            $("#pName").text(data.name);
-            $("#pEmail").text(data.email);
-            $("#pStatus").text(data.status == 1 ? "Đáng chú ý" : "Bình thường");
-            $("#pDOB").text(data.dateOfBirth);
-            $("#pPhoneNumber").text(data.phoneNumber);
-            $("#pSex").text(data.sex == 1 ? "Nữ" : "Nam");
-            $("#pAddress").text(data.address);
-            $("#pDescription").text(data.description);
-            $("#pImg").attr('src', "/images/" + data.image);
-            $("#changeform").text("Thêm mới");
             ChangePanel()
-            $('#ViewDetail').modal('show');
         });
     }
-    function btnClose() {
-        $('#ViewDetail').modal('hide');
-    }
+
 
     function checkValidateData() {
         if ($('#PhoneNumber').val() == '') {

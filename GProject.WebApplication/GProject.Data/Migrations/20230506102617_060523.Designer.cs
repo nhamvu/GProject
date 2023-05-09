@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GProject.Data.Migrations
 {
     [DbContext(typeof(GProjectContext))]
-    [Migration("20230428125131_fixEntityProductVariation")]
-    partial class fixEntityProductVariation
+    [Migration("20230506102617_060523")]
+    partial class _060523
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -750,6 +750,9 @@ namespace GProject.Data.Migrations
                     b.Property<Guid?>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("HistoryLogChange")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OrderId")
                         .IsRequired()
                         .HasMaxLength(15)
@@ -761,6 +764,9 @@ namespace GProject.Data.Migrations
 
                     b.Property<int>("PaymentType")
                         .HasColumnType("int");
+
+                    b.Property<string>("ReasonForChange")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShippingAddress")
                         .IsRequired()

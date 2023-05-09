@@ -748,6 +748,9 @@ namespace GProject.Data.Migrations
                     b.Property<Guid?>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("HistoryLogChange")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OrderId")
                         .IsRequired()
                         .HasMaxLength(15)
@@ -759,6 +762,9 @@ namespace GProject.Data.Migrations
 
                     b.Property<int>("PaymentType")
                         .HasColumnType("int");
+
+                    b.Property<string>("ReasonForChange")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ShippingAddress")
                         .IsRequired()

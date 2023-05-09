@@ -99,18 +99,23 @@
 </style>
 
 
-@if (@ViewData["Mess"] != null)
+<div class="container">
+    @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
+
+<button class="btn btn-success" onclick="location.href='@Url.Action("Create", "ProductMGR")'" type="button">Thêm mới</button>
+<button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+<hr style="color:red;" />
+
 <form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/ProductMGR/Index">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-6">
-
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Tên sản phẩm</label>
                                 <div class="col-md-9 col-xs-12">
@@ -120,9 +125,28 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Giá nhập</label>
                                 <div class="col-md-9 col-xs-12">
-                                    <input type="number" id="sImportPrice" name="sImportPrice" step="0.01" value="@ViewData["sImportPrice"]" class="form-control" />
+                                    <input type="number" id="sImportPrice" name="sImportPrice" min="0" oninput="this.value = Math.abs(this.value)" value="@ViewData["sImportPrice"]" class="form-control" />
                                 </div>
                             </div>
+                            
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Nhãn hiệu</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sBrand" maxlength="10" name="sBrand" value="@ViewData["sBrand"]" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Giá bán</label>
+                                <div class="col-md-9">
+                                    <input type="number" id="sPrice" name="sPrice" min="0" oninput="this.value = Math.abs(this.value)" value="@ViewData["sPrice"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Trạng thái</label>
                                 <div class="col-md-9">
@@ -138,35 +162,23 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Nhãn hiệu</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input type="text" id="sBrand" maxlength="10" name="sBrand" value="@ViewData["sBrand"]" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Giá bán</label>
-                                <div class="col-md-9">
-                                    <input type="number" id="sPrice" name="sPrice" value="@ViewData["sPrice"]" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="panel-footer text-center">
-                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i></button>
+                    <a class="btn btn-outline-info" asp-action="Index">
+                            <i class="fas fa-undo-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "ProductMGR")'" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</button>
-<hr style="color:red;" />
+
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-cubes" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH SẢN PHẨM</h3>
+            <h3 class="panel-title" style="text-align:center; height:50px; padding:10px 10px 10px 10px;">Danh sách sản phẩm</h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
@@ -239,15 +251,16 @@
                 </table>
             </div>
         </div>
-        <div class="container" style="margin-top: 10px;">
-			@if (pager.TotalPages > 0)
+        <div class="form-footer" >
+			<div style="float: right">
+                @if (pager.TotalPages > 0)
 			{
 				<ul class="pagination justify-content-end">
 					@if (pager.CurrentPage < pager.TotalPages)
 					{
 						<li class="page-item">
 							<a class="page-link" asp-controller="ProductMGR" asp-action="Index"
-						asp-route-pg="@(pager.TotalPages)">Last</a>
+						asp-route-pg="@(pager.TotalPages)">Prev</a>
 						</li>
 					}
 					@for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
@@ -268,14 +281,29 @@
 					}
 				</ul>
 			}
+            </div>
 		</div>
     </div>
+</div>
 </div>
 
 
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        if ($("#sName").val() != '' ||
+            $("#sBrand").val() != '' ||
+            $("#sImportPrice").val() != '' ||
+            $("#sPrice").val() != ''
+        ) 
+        {
+            $('#Searchform').show();
+        }
+        else{
+            $('#Searchform').hide();
+        }
+
         $('#formdata').hide();
         var er = document.getElementById('error')
         if (er != null) {
@@ -294,6 +322,17 @@
                 swal("Không thành công", "Thay đổi trạng thái không thành công", "error");
             location.reload()
         });
+    }
+
+    function ChangeSearch() {
+        if ($("#changeformsearch").text() == "Tìm kiếm") {
+            $('#Searchform').show();
+            //$("#ExpirationDate").val(new Date().toJSON().slice(0,19));
+            $("#changeformsearch").text("Hủy tìm kiếm");
+        } else if ($("#changeformsearch").text() == "Hủy tìm kiếm") {
+            $('#Searchform').hide();
+            $("#changeformsearch").text("Tìm kiếm");
+        }
     }
 
     function btnClose() {

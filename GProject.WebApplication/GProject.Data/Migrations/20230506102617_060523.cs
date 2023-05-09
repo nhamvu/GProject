@@ -4,33 +4,31 @@
 
 namespace GProject.Data.Migrations
 {
-    public partial class update_table_Order : Migration
+    public partial class _060523 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<float>(
-                name: "DiscountRate",
+            migrationBuilder.AddColumn<string>(
+                name: "HistoryLogChange",
                 table: "Order",
-                type: "real",
-                nullable: true,
-                defaultValueSql: "((0))");
+                type: "nvarchar(max)",
+                nullable: true);
 
-            migrationBuilder.AddColumn<int>(
-                name: "VoucherId",
+            migrationBuilder.AddColumn<string>(
+                name: "ReasonForChange",
                 table: "Order",
-                type: "int",
-                nullable: true,
-                defaultValueSql: "((0))");
+                type: "nvarchar(max)",
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "DiscountRate",
+                name: "HistoryLogChange",
                 table: "Order");
 
             migrationBuilder.DropColumn(
-                name: "VoucherId",
+                name: "ReasonForChange",
                 table: "Order");
         }
     }

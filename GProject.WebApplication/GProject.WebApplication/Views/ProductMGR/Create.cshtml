@@ -112,7 +112,8 @@
     }
 </style>
 
-
+<div class="container">
+    
 @if (@ViewData["Mess"] != null)
 {<p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
@@ -124,7 +125,7 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label col-sm-5"><strong>Tên sản phầm:<span style="color: red">(*)</span></strong></label>
+                <label class="control-label col-sm-5">Tên sản phầm:<span style="color: red">(*)</span></label>
                 <div class="col-sm-9">
                     <input asp-for="Name" class="form-control" placeholder="Product name" maxlength="200" />
                 </div>
@@ -132,17 +133,18 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label col-sm-5"><strong>Tên nhãn hiệu:<span style="color: red">(*)</span></strong></label>
+                <label class="control-label col-sm-5">Tên nhãn hiệu:<span style="color: red">(*)</span></label>
                 <div class="col-sm-9">
                     @Html.DropDownList("BrandId", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
+    
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label col-sm-3"><strong>Giá nhập:<span style="color: red">(*)</span></strong></label>
+                <label class="control-label col-sm-3">Giá nhập:<span style="color: red">(*)</span></label>
                 <div class="col-sm-9">
                     @Html.TextBox("ImportPrice", decimal.Parse(Model.ImportPrice.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
                 </div>
@@ -150,7 +152,7 @@
         </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label col-sm-3"><strong>Giá bán:<span style="color: red">(*)</span></strong></label>
+                <label class="control-label col-sm-3">Giá bán:<span style="color: red">(*)</span></label>
                 <div class="col-sm-9">
                     @Html.TextBox("Price", decimal.Parse(Model.Price.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
                 </div>
@@ -158,21 +160,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-sm-3"><strong>Trạng thái:<span style="color: red">(*)</span></strong></label>
-                <div class="col-md-6">
-                    @Html.DropDownList("Status", new[]
-                    {
-                    new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                    new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
-                    }, new { @class = "form-control iscompany" })
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-5"><strong>Loại danh mục:<span style="color: red">(*)</span></strong></label>
+                    <div class="col-sm-6">
+                        @Html.DropDownList("CategoryId", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
+                    </div>
                 </div>
             </div>
-        </div>
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label col-sm-3"><strong>Loại :<span style="color: red">(*)</span></strong></label>
+                <label class="control-label col-sm-3">Loại :<span style="color: red">(*)</span></label>
                 <div class="col-md-6">
                     @Html.DropDownList("ProductType", new[]
                     {
@@ -189,9 +187,13 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group">
-                <label class="control-label col-sm-5"><strong>Loại danh mục:<span style="color: red">(*)</span></strong></label>
-                <div class="col-sm-9">
-                    @Html.DropDownList("CategoryId", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
+                <label class="control-label col-sm-3">Trạng thái:<span style="color: red">(*)</span></label>
+                <div class="col-md-6">
+                    @Html.DropDownList("Status", new[]
+                    {
+                    new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                    new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
+                    }, new { @class = "form-control iscompany" })
                 </div>
             </div>
         </div>
@@ -199,26 +201,26 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label col-sm-3"><strong>Mô tả:</strong></label>
+        <label class="control-label col-sm-3">Mô tả:</label>
         <div class="col-sm-12">
             <textarea class="form-control" asp-for="Description" cols="50" rows="5" style="border:double 4px orange;"></textarea>
         </div>
     </div>
 
-    <h1>THÔNG TIN CHI TIẾT SẢN PHẨM</h1>
+    <h3>Thông tin sản phẩm chi tiết</h3>
     <div class="productDetail">
         <div class="col-md-12">
             <div class="form-group">
                 <div class="row">
                     <div class="form-check">
                         <input type="checkbox" id="ckbAll" class="form-check-input" />
-                        <h4 class="form-check-label"><strong>Chọn tất cả</strong></h4> <span style="color: red">Lưu ý(*): Chỉ lưu thông tin những sản phẩm có đánh dấu</span>
+                        <h5 class="form-check-label">Chọn tất cả</h5> <span style="color: red">Lưu ý(*): Chỉ lưu thông tin những sản phẩm có đánh dấu</span>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                <div class="row" style="height: 500px; overflow-y: scroll;border-style: dotted dashed solid double;">
+                <div class="row" style="height: 500px; overflow-y: scroll; border: solid 1px;">
                     @if (Model != null && Model.ProductVariationViewModel.Count >= 0 && Model.ProductVariationViewModel != null && Model.SizeList.Count >= 0 && Model.SizeList != null)
 
                     {
@@ -230,7 +232,7 @@
                             <div class="form-check col-md-12 m-2">
                                 <input type="checkbox" asp-for="ProductVariationViewModel[i].IsChecked" class="form-check-input-variation-item">
                                 <label class="form-check-label">
-                                    <strong>(@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name </strong><img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
+                                    (@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name <img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
                                 </label>
                             </div>
                             <div class="campic col-md-3">
@@ -266,6 +268,8 @@
         <i class="fa fa-times"></i> Quay lại
     </button>
 </form>
+</div>
+
 <script type="text/javascript">
     function uploadImage(id) {
         let picImgdata = ".picImg" + id;

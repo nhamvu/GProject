@@ -37,6 +37,8 @@ namespace GProject.Data.DomainClass
         public decimal TotalMoney { get; set; }
         public OrderStatus Status { get; set; }
         public string? Description { get; set; }
+        public string? ReasonForChange { get; set; }
+        public string? HistoryLogChange { get; set; }
         public Employee? EmployeeId_Nagavition { get; set; }
         public Customer? CustomerId_Nagavition { get; set; }
         public Deliver? DeliverId_Nagavition { get; set; }

@@ -11,7 +11,7 @@ namespace GProject.WebApplication.Models
         public Guid? Id { get; set; }
         public string Name { get; set; }
         public string SearchCount { get; set; }
-        public int Status { get; set; } = 1; // 0: sử dụng || 1: không sử dụng
+        public int Status { get; set; }
         public string? Description { get; set; }
         public List<Category>? CategoryList { get; set; }
     }

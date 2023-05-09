@@ -209,5 +209,51 @@ namespace GProject.WebApplication.Services
             List<OrderDto> orders = Commons.ConverObject<List<OrderDto>>(result);
             return orders;
         }
+
+        public async Task<(Pager pager, Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?> tuple)> GetDataForIndex(string prodName, Guid? category, int? brand, decimal? fPrice, decimal? tPrice, string type, int pg, int pageSize, string Keyword)
+        {
+            try
+            {
+                GProject.WebApplication.Services.ProductService pService = new GProject.WebApplication.Services.ProductService();
+                var products = await pService.GetProductViewModel();
+                if (!string.IsNullOrEmpty(type))
+                {
+                    products = products.Where(c => c.Product.ProductType.Contains(type)).ToList();
+                }
+                if (!string.IsNullOrEmpty(Keyword))
+                {
+                    products = products.Where(c => c.Product.Name.ToLower().Contains(Keyword.ToLower())
+                    || c.Brand.Name.ToLower().Contains(Keyword.ToLower())
+                    || c.Category.Name.ToLower().Contains(Keyword.ToLower())).ToList();
+                }
+                if (!string.IsNullOrEmpty(prodName))
+                    products = products.Where(c => c.Product.Name.ToLower().Contains(prodName.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(category.NullToString()) && category != Guid.Empty)
+                    products = products.Where(c => c.Product.CategoryId == category).ToList();
+                if (brand != -1)
+                    products = products.Where(c => c.Brand.Id == brand).ToList();
+                if (fPrice != -1)
+                    products = products.Where(c => c.Product.Price >= fPrice).ToList();
+                if (tPrice != -1)
+                    products = products.Where(c => c.Product.Price <= tPrice).ToList();
+
+
+                if (pg < 1)
+                    pg = 1;
+
+                int recsCount = products.Count();
+                var pager = new Pager(recsCount, pg, pageSize);
+                int recSkip = (pg - 1) * pageSize;
+                products = products.Skip(recSkip).Take(pageSize).ToList();
+                var lstColor = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
+                var lstSize = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
+                var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
+                return (pager, new Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?>(products, lstColor, lstSize, lstBrand));
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

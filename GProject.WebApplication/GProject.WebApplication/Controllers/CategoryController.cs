@@ -86,7 +86,7 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CheckName(string Name)
+        public async Task<ActionResult> CheckName(string Name, Guid? Id)
         {
             try
             {
@@ -94,13 +94,20 @@ namespace GProject.WebApplication.Controllers
                     return Json(new { success = false });
 
                 var lstObjs = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
-                var existName = lstObjs.Any(x => x.Name == Name);
+                var existName = lstObjs.Any(x => x.Name == Name && (!Id.HasValue || x.Id != Id.Value));
                 return Json(new { success = !existName });
             }
             catch (Exception)
             {
                 return Json(new { success = false });
             }
+        }
+
+        public async Task<JsonResult> Detail(Guid id)
+        {
+            var lstObjs = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
+            var data2 = lstObjs.FirstOrDefault(c => c.Id == id);
+            return Json(data2);
         }
     }
 }
