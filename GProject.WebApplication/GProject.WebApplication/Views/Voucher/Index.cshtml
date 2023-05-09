@@ -31,233 +31,278 @@
     }
 </style>
 
-@if (@ViewData["Mess"] != null)
-{
-    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
-}
-<form method="GET" action="/Voucher/Index" class="form" style="margin-bottom: 20px;" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Tên mã giảm giá:</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input type="text" id="ten" name="ten" value="@ViewData["Ten"]" class="form-control" />
+<div class="container">
+
+    @if (@ViewData["Mess"] != null)
+    {
+        <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+    }
+
+    <button class="btn btn-success " id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
+    <button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+    <form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
+        <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" value="" hidden="hidden" />
+        <input asp-for="VoucherId" style="width:0px;height:0px;visibility: hidden;" value="" hidden="hidden" />
+        <div class="row mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="col-md-5">Tên:<span style="color: red">(*)</span></label>
+                    <div class="form-input">
+                        <input asp-for="Name" id="Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Mức giảm giá:<span style="color: red">(*)</span></label>
+                    <div class="form-input">
+                        <input asp-for="DiscountRate" min="0" oninput="this.value = Math.abs(this.value)"
+                            id="DiscountRate" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Hình thức:<span style="color: red">(*)</span></label>
+                    <div>
+                        <select asp-for="DiscountForm" onclick="SetDisable()" id="DiscountForm" class="form-select">
+                            <option value="Vnd">Vnd</option>
+                            <option value="%">%</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="col-md-5">Giảm giá tối đa:<span style="color: red">(*)</span></label>
+                    <div class="form-input">
+                        <input disabled asp-for="MaximumDiscount" min="0" oninput="this.value = Math.abs(this.value)"
+                            id="MaximumDiscount" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Số lượng:<span style="color: red">(*)</span></label>
+                    <div class="form-input">
+                        <input type="number" type="number" min="0" oninput="this.value = Math.abs(this.value)"
+                            asp-for="NumberOfVouchers" id="NumberOfVouchers" minlength="0" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Số tiền tối thiểu:<span style="color: red">(*)</span></label>
+                    <div class="form-input">
+                        <input asp-for="MinimumOrder" oninput="this.value = Math.abs(this.value)" min="0"
+                            id="MinimumOrder" class="form-control" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="col-md-5">Thời hạn:<span style="color: red">(*)</span></label>
+                    <div class="form-input">
+                        <input type="datetime-local" value="<?php echo date('Y-m-d'); ?>" asp-for="ExpirationDate"
+                            id="ExpirationDate" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label>Trạng thái</label><span style="color: red">(*)</span>
+                    <div style="margin-top:10px;">
+                        @* <select class = "form-control iscompany" asp-for="Status" name="Status" id="Status">
+                        <option value="1">Tất cả</option>
+                        <option value="2">Giới hạn</option>
+                        <option value="0">Không sử dụng</option>
+                        </select> *@
+                        @Html.DropDownList("Status", new[]
+                        {
+                        new SelectListItem{Text="Tất cả", Value="1", Selected = (Model.Status != null ? (Model.Status ==
+                        1) : false)},
+                        new SelectListItem{Text="Giới hạn", Value="2", Selected = (Model.Status != null ? (Model.Status
+                        == 2) : false)},
+                        new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ?
+                        (Model.Status == 0) : false)},
+                        }, new { @class = "form-control iscompany" })
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 10px;">
+                <div class="form-input">
+                    <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus"
+                            aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <hr style="color:red;" />
+
+    <form method="GET" id="search" action="/Voucher/Index" class="form" style="margin-bottom: 20px;"
+        enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Tên mã giảm giá:</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input type="text" id="ten" name="ten" value="@ViewData["Ten"]"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Trạng thái:</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <select name="trangthai" value="@ViewData["trangthai"]" id="trangthai"
+                                            class="form-select">
+                                            <option value="1">Hoạt động</option>
+                                            <option value="0">Không hoạt động</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Trạng thái:</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <select name="trangthai" value="@ViewData["trangthai"]" id="trangthai" class="form-select">
-                                        <option value="1">Hoạt động</option>
-                                        <option value="0">Không hoạt động</option>
-                                    </select>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Mức giảm giá từ: </label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input value="@ViewData["giamgia_tu"]" type="number" min="0"
+                                            oninput="this.value = Math.abs(this.value)" id="giamgia_tu"
+                                            name="giamgia_tu" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Đến:</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input value="@ViewData["giamgia_den"]" type="number" min="0"
+                                            oninput="this.value = Math.abs(this.value)" id="giamgia_den"
+                                            name="giamgia_den" class="form-control" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Mức giảm giá từ: </label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input value="@ViewData["giamgia_tu"]" type="number" min="0" oninput="this.value = Math.abs(this.value)" id="giamgia_tu" name="giamgia_tu" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Đến:</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input value="@ViewData["giamgia_den"]" type="number" min="0" oninput="this.value = Math.abs(this.value)" id="giamgia_den" name="giamgia_den" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Hình thức: </label>
-                                <div class="col-md-9 col-xs-12">
-                                    <select value="@ViewData["hinhthuc"]" name="hinhthuc" id="hinhthuc" class="form-select">
-                                        <option value="Vnd">Vnd</option>
-                                        <option value="%">%</option>
-                                    </select>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Hình thức: </label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <select value="@ViewData["hinhthuc"]" name="hinhthuc" id="hinhthuc"
+                                            class="form-select">
+                                            <option value="Vnd">Vnd</option>
+                                            <option value="%">%</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="panel-footer text-center">
+                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i></button>
+                        <a class="btn btn-outline-primary" asp-action="Index"><i class="fas fa-undo-alt"></i></i></a>
+                    </div>
                 </div>
-                <div class="panel-footer text-center">
-                    <button class="btn btn-success" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
-                    <a class="btn btn-outline-primary" asp-action="Index"><i class="fas fa-undo-alt"></i></i></a>
-                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
-<button class="btn btn-primary col-md-3" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-<form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
-    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" value="" hidden="hidden" />
-    <input asp-for="VoucherId" style="width:0px;height:0px;visibility: hidden;" value="" hidden="hidden" />
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Tên:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <input asp-for="Name" id="Name" class="form-control" />
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style="text-align:center; height:50px; padding:10px 10px 10px 10px;"><i
+                        class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>Danh sách mã khuyến
+                    mại</h3>
             </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Mức giảm giá:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <input asp-for="DiscountRate" min="0" oninput="this.value = Math.abs(this.value)" id="DiscountRate" class="form-control" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Hình thức:<span style="color: red">(*)</span></strong></label>
-            <div>
-                <select asp-for="DiscountForm" onclick="SetDisable()" id="DiscountForm" class="form-select">
-                    <option value="Vnd">Vnd</option>
-                    <option value="%">%</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Giảm giá tối đa:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <input disabled asp-for="MaximumDiscount" min="0" oninput="this.value = Math.abs(this.value)"  id="MaximumDiscount" class="form-control" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Số lượng:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <input type="number" type="number" min="0" oninput="this.value = Math.abs(this.value)" asp-for="NumberOfVouchers" id="NumberOfVouchers" minlength="0" class="form-control" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Số tiền tối thiểu:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <input asp-for="MinimumOrder" oninput="this.value = Math.abs(this.value)" min="0" id="MinimumOrder" class="form-control" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Thời hạn:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <input type="datetime-local" value="<?php echo date('Y-m-d'); ?>" asp-for="ExpirationDate" id="ExpirationDate" class="form-control" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
-            <div style="margin-top:10px;">
-                @* <select class = "form-control iscompany" asp-for="Status" name="Status" id="Status">
-                    <option value="1">Tất cả</option>
-                    <option value="2">Giới hạn</option>
-                    <option value="0">Không sử dụng</option>
-                </select> *@
-                @Html.DropDownList("Status", new[]
-                {
-                new SelectListItem{Text="Tất cả", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)},
-                new SelectListItem{Text="Giới hạn", Value="2", Selected = (Model.Status != null ? (Model.Status == 2) : false)},
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : false)},               
-                }, new { @class = "form-control iscompany" })
-            </div>
-        </div>
-        <div class="col-md-2">
-            <strong><label></label></strong>
-            <div class="form-input">
-                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
-            </div>
-        </div>
-    </div>
-</form>
-
-<hr style="color:red;" />
-
-
-<div class="row">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title" style="text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>Danh sách mã khuyến mại</h3>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
-                <table class="table table-bordered table-hover sticky-table">
-                    <thead class="sticky-header">
-                        <tr>
-                            <th>Mã giảm giá</th>
-                            <th>Tên</th>
-                            <th>Mức giảm giá</th>
-                            <th>Hình thức</th>
-                            <th>Giảm tối đa</th>
-                            <th>Số lượng</th>
-                            <th>Số tiền tối thiểu</th>
-                            <th>Thời hạn</th>
-                            <th>Trạng thái</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.VoucherList != null)
-                        {
-                            @foreach (var item in Model.VoucherList)
+            <div class="panel-body">
+                <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                    <table class="table table-bordered table-hover sticky-table">
+                        <thead class="sticky-header">
+                            <tr>
+                                <th>Mã giảm giá</th>
+                                <th>Tên</th>
+                                <th>Mức giảm giá</th>
+                                <th>Hình thức</th>
+                                <th>Giảm tối đa</th>
+                                <th>Số lượng</th>
+                                <th>Số tiền tối thiểu</th>
+                                <th>Thời hạn</th>
+                                <th>Trạng thái</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.VoucherList != null)
                             {
-                                <tr>
-                                    <td>
-                                        @item.VoucherId
-                                    </td>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                    <td>
-                                        @item.DiscountRate
-                                    </td>
-                                    <td>
-                                        @item.DiscountForm
-                                    </td>
-                                    <td>
-                                        @if(item.DiscountForm == "%"){
-                                            <a>@item.MaximumDiscount đ</a>
-                                        }                                        
-                                    </td>
-                                    <td>
-                                        @item.NumberOfVouchers
-                                    </td>
-                                    <td>
-                                        @item.MinimumOrder
-                                    </td>
-                                    <td>
-                                        @item.ExpirationDate
-                                    </td>
-                                    <td>
-                                        @(item.Status == 1 ? "Tất cả" : item.Status == 2 ? "Giới hạn" : "Không sử dụng")
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-info" onclick="ViewDetailData(@item.Id)">
-                                            <i class="fas fa-pen-square" aria-hidden="true"></i>
-                                        </button>          
-                                    </td>
-                                    @* <td>
-                                        @if (item.Status == 1)
-                                        {
+                                @foreach (var item in Model.VoucherList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.VoucherId
+                                        </td>
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td>
+                                            @item.DiscountRate
+                                        </td>
+                                        <td>
+                                            @item.DiscountForm
+                                        </td>
+                                        <td>
+                                            @if (item.DiscountForm == "%")
+                                            {
+                                                <a>@item.MaximumDiscount đ</a>
+                                            }
+                                        </td>
+                                        <td>
+                                            @item.NumberOfVouchers
+                                        </td>
+                                        <td>
+                                            @item.MinimumOrder
+                                        </td>
+                                        <td>
+                                            @item.ExpirationDate
+                                        </td>
+                                        <td>
+                                            @(item.Status == 1 ? "Tất cả" : item.Status == 2 ? "Giới hạn" : "Không sử dụng")
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info" onclick="ViewDetailData(@item.Id)">
+                                                <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                        @* <td>
+                                @if (item.Status == 1)
+                                {
 
-                                            <a class="btn btn-success" onclick="ActiveVoucher(@item.Id)"> <i class="fas fa-toggle-on"></i>  </a>
-                                        }
-                                        else
-                                        {
-                                            <a class="btn text-danger" onclick="ActiveVoucher(@item.Id)"> <i class="fas fa-toggle-off"></i> </a>
-                                        }
-                                    </td> *@
-                                </tr>
+                                <a class="btn btn-success" onclick="ActiveVoucher(@item.Id)"> <i class="fas
+                                fa-toggle-on"></i> </a>
+                                }
+                                else
+                                {
+                                <a class="btn text-danger" onclick="ActiveVoucher(@item.Id)"> <i class="fas
+                                fa-toggle-off"></i> </a>
+                                }
+                                </td> *@
+                                    </tr>
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#formdata').hide();        
+
+        if ($("#ten").val() != '' ||
+            $("#giamgia_tu").val() != '' ||
+            $("#giamgia_den").val() != '') {
+            $('#search').show();
+        }
+        else{
+            $('#search').hide();
+        }
+
+        $('#formdata').hide();
+
         var er = document.getElementById('error')
         if (er != null) {
             if ($('#error').text() == 'Failed')
@@ -265,6 +310,8 @@
             else
                 swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
         }
+
+
 
         document.querySelector('#formdata').addEventListener('submit', function (e) {
             var form = this;
@@ -287,6 +334,18 @@
         });
     });
 
+
+    function ChangeSearch() {
+        if ($("#changeformsearch").text() == "Tìm kiếm") {
+            $('#search').show();
+            //$("#ExpirationDate").val(new Date().toJSON().slice(0,19));
+            $("#changeformsearch").text("Hủy tìm kiếm");
+        } else if ($("#changeformsearch").text() == "Hủy tìm kiếm") {
+            $('#search').hide();
+            $("#changeformsearch").text("Tìm kiếm");
+        }
+    }
+
     function ChangePanel() {
         if ($("#changeform").text() == "Thêm mới") {
             $('#formdata').show();
@@ -299,13 +358,11 @@
         }
     }
 
-    function SetDisable(){
-        if($("#DiscountForm").val() == "%")
-        {
+    function SetDisable() {
+        if ($("#DiscountForm").val() == "%") {
             document.getElementById('MaximumDiscount').disabled = false;
         }
-        else 
-        {
+        else {
             document.getElementById('MaximumDiscount').disabled = true;
             $("#MaximumDiscount").val('')
         }
@@ -342,7 +399,7 @@
         $("#changeform").text("Hủy thay đổi");
         $.getJSON("/Voucher/Detail?id=" + id, function (data) {
 
-            if(data.discountForm == "%") 
+            if (data.discountForm == "%")
                 document.getElementById('MaximumDiscount').disabled = false;
             else
                 document.getElementById('MaximumDiscount').disabled = true;
@@ -360,17 +417,13 @@
             document.getElementById('namee').innerText = data.name;
             document.getElementById('code').innerText = data.hexCode;
             document.getElementById('status').innerText = data.status == 1 ? "Đang sử dụng" : "Không sử dụng";
-            
+
             ChangePanel()
-           
+
         });
-    }
-    function btnClose() {
-        $('#ViewDetail').modal('hide');
     }
 
     function checkValidateDataVoucher() {
-        debugger
         if ($('#Name').val() == '') {
             sweetAlert("Thông báo", "Thông tin tên không được để trống", "error");
             return false;
@@ -391,11 +444,11 @@
             sweetAlert("Thông báo", "Thông tin giảm giá tối đa không được để trống", "error");
             return false;
         }
-        if ($('#NumberOfVouchers').val() == 0 ) {
+        if ($('#NumberOfVouchers').val() == 0) {
             sweetAlert("Thông báo", "Thông tin số lượng không hợp lệ", "error");
             return false;
         }
-        if ($('#MinimumOrder').val() == '' ) {
+        if ($('#MinimumOrder').val() == '') {
             sweetAlert("Thông báo", "Thông tin số tiền tối thiểu không hợp lệ", "error");
             return false;
         }
