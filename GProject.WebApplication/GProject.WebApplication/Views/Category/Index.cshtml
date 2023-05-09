@@ -38,14 +38,13 @@
         <button type="button" class="btn btn-success" onclick="ShowModal()">Thêm mới</button>
     </div>
 
-
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Danh mục</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="Clear()" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="Clear()"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formdata" class="form" enctype="multipart/form-data">
@@ -74,7 +73,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onclick="Clear()" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" onclick="Clear()"
+                                data-bs-dismiss="modal">Close</button>
                             <button id="btnSave" class="btn btn-success" type="submit">Lưu</button>
                         </div>
 
@@ -120,7 +120,7 @@
                             <div class="col-2">
                                 <div class="form-group">
                                     <div class="row">
-                                        <div class="col-2">
+                                        <div class="col-3">
                                             <button class="btn btn-success"
                                                 onclick="$('.searchText').removeAttr('disabled')" type="submit"><i
                                                     class="fa fa-search"></i></button>
@@ -215,6 +215,81 @@
                 swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
         }
 
+        $("#btnSave").click(function () {
+            if ($('#Name').val() == '') {
+                sweetAlert("Thông báo", "Thông tin tên danh mục không được để trống", "error");
+                return false;
+            }
+            var id = $("#Id").val();
+            var name = $("#Name").val();
+            var status = $("#Status").val();
+            var description = $("#Description").val();
+
+            $.ajax({
+                url: "/Category/CheckName",
+                type: "POST",
+                data: { Name: name, Id: id },
+                success: function (result) {
+                    if (result.success) {
+                        var data = { Id: id, Name: name, Status: status, Description: description };
+                        $.ajax({
+                            url: "/Category/Save",
+                            type: "POST",
+                            data: data,
+                            success: function (result) {
+                                if (result.success) {
+                                    // Thành công, làm gì đó ở đây
+                                    swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 2000);
+                                    Clear()
+                                } else {
+                                    // Lỗi, hiển thị thông báo lỗi
+                                    swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 2000);
+                                    Clear()
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                // Lỗi, hiển thị thông báo lỗi
+                                alert(error);
+                            }
+                        });
+                    } else {
+                        // Tên đã được sử dụng, hiển thị thông báo lỗi
+                        swal("Lỗi", "Tên đã được sử dụng, vui lòng nhập tên khác", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Lỗi, hiển thị thông báo lỗi
+                    alert(error);
+                }
+            });
+        });
+
+        document.querySelector('#formdata').addEventListener('submit', function (e) {
+            var form = this;
+
+            e.preventDefault();
+            if (checkValidateData()) {
+                swal("Bạn chắc chắn lưu những thay đổi này?", {
+                    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+                        form.submit();
+                    } else {
+                        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                    }
+                });
+            }
+        });
+
     });
 
     function ShowModal() {
@@ -240,24 +315,7 @@
         $("#Description").val('');
     }
 
-    document.querySelector('#formdata').addEventListener('submit', function (e) {
-        var form = this;
 
-        e.preventDefault();
-        if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
-        }
-    });
 
     function checkValidateData() {
         if ($('#Name').val() == '') {
@@ -267,60 +325,5 @@
         return true;
     }
 
-    $(document).ready(function () {
-        $("#btnSave").click(function () {
-            if ($('#Name').val() == '') {
-                sweetAlert("Thông báo", "Thông tin tên danh mục không được để trống", "error");
-                return false;
-            }
-            var id = $("#Id").val();
-            var name = $("#Name").val();
-            var status = $("#Status").val();
-            var description = $("#Description").val();
 
-            $.ajax({
-                url: "/Category/CheckName",
-                type: "POST",
-                data: { Name: name },
-                success: function (result) {
-                    if (result.success) {
-                        var data = { Id: id, Name: name, Status: status, Description: description };
-                        $.ajax({
-                            url: "/Category/Save",
-                            type: "POST",
-                            data: data,
-                            success: function (result) {
-                                if (result.success) {
-                                    // Thành công, làm gì đó ở đây
-                                    swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 2000);
-
-                                    Clear()
-                                } else {
-                                    // Lỗi, hiển thị thông báo lỗi
-                                    swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
-                                    setTimeout(function () {
-                                        location.reload();
-                                    }, 2000);
-                                }
-                            },
-                            error: function (xhr, status, error) {
-                                // Lỗi, hiển thị thông báo lỗi
-                                alert(error);
-                            }
-                        });
-                    } else {
-                        // Tên đã được sử dụng, hiển thị thông báo lỗi
-                        swal("Lỗi", "Tên đã được sử dụng, vui lòng nhập tên khác", "error");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    // Lỗi, hiển thị thông báo lỗi
-                    alert(error);
-                }
-            });
-        });
-    });
 </script>
