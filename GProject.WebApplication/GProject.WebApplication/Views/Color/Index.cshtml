@@ -181,7 +181,7 @@
                                             @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
                                         </td>
                                         <td>
-                                            <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
+                                            <button class="btn btn-info" onclick="ViewDetailDataColor('@item.Id')" />
                                             <i class="fas fa-pen-square" aria-hidden="true"></i>
                                         </td>
                                     </tr>
@@ -233,21 +233,11 @@
 
         e.preventDefault();
         if (checkValidateData()) {
-            //swal("Bạn chắc chắn lưu những thay đổi này?"
-            //, {
-            //    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-            //    icon: 'info',
-            //    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            //}).then(function (isConfirm) {
-            //    if (isConfirm) {
-            //        form.submit();
-            //    } else {
-            //        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-            //    }
-            //});
         }
     });
-    function ViewDetailData(id) {
+
+    function ViewDetailDataColor(id) {
+        $("#exampleModal").modal('show');
         $.getJSON("/Color/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);
             $("#HEXCode").val(data.hexCode);

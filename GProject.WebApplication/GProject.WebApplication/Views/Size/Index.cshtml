@@ -168,7 +168,7 @@
                                             @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
                                         </td>
                                         <td>
-                                            <button class="btn btn-info" onclick="ViewDetailData(@item.Id)">
+                                            <button class="btn btn-info" onclick="ViewDetailDataSize(@item.Id)">
                                                 <i class="fas fa-pen-square" aria-hidden="true"></i>
                                             </button>  
                                         </td>
@@ -238,7 +238,7 @@
             //});
         }
     });
-    function ViewDetailData(id) {
+    function ViewDetailDataSize(id) {
         $("#exampleModal").modal('show');
         $.getJSON("/Size/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);

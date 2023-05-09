@@ -40,7 +40,18 @@
         left: 0;
         width: 100%;
         background-color: white;
-        z-index: 9999; /* Giá trị z-index cao hơn các phần tử khác để đảm bảo phần tử này nằm trên cùng */
+        z-index: 9999;
+        /* Giá trị z-index cao hơn các phần tử khác để đảm bảo phần tử này nằm trên cùng */
+    }
+
+    .inputUpdateOrder {
+        border-top-style: hidden;
+        border-right-style: hidden;
+        border-left-style: hidden;
+        border-bottom-style: hidden;
+    }
+    .form-control:disabled, .form-control[readonly] {
+        background-color: white;
     }
 </style>
 
@@ -54,62 +65,82 @@
             <!-- Thông tin thanh toán -->
             <div class="modal-content justify-content-center" style="border-width:1px;">
                 <div class="panel-heading">
-                    <h4 class="panel-title" style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">Thông tin thanh toán</h4>
+                    <h4 class="panel-title text-center"
+                        style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
+                        Thông tin thanh toán</h4>
                 </div>
                 <div class="modal-body">
 
                     <div class="row" name="thongTinThanhToan" style="text-align:center; padding:10px 10px 10px 10px;">
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                <label
+                                    style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;"
+                                    class="control-label col-sm-12">
                                     Tổng tiền sản phẩm:
                                 </label>
                                 <div class="col-sm-12">
-                                    <input style="font-weight: bold" readonly type="text" id="totalMoneyProd" value="@data.Sum(c => c.OrderDetail.TotalMoney).NullToDecimal().ToString("#,##0.##")" placeholder="" class="form-control" />
+                                    <input style="font-weight: bold" readonly type="text" id="totalMoneyProd"
+                                        value="@data.Sum(c => c.OrderDetail.TotalMoney).NullToDecimal().ToString("#,##0.##")"
+                                        placeholder="" class="form-control inputUpdateOrder" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                <label
+                                    style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;"
+                                    class="control-label col-sm-12">
                                     Mã giảm giá:
                                 </label>
                                 <div class="col-sm-12">
                                     <input style="font-weight: bold" readonly type="text" value="@strVoucherId"
-                                           placeholder="" class="form-control" />
+                                        placeholder="" class="form-control inputUpdateOrder" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                <label
+                                    style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;"
+                                    class="control-label col-sm-12">
                                     Mức giảm giá:
                                 </label>
                                 <div class="col-sm-12">
-                                    <input style="font-weight: bold" readonly type="text" id="cDiscountRate" name="cDiscountRate" value="@Model.DiscountRate.NullToDecimal().ToString("#,##0.##")"
-                                           placeholder="" class="form-control" />
+                                    <input style="font-weight: bold" readonly type="text" id="cDiscountRate"
+                                        name="cDiscountRate"
+                                        value="@Model.DiscountRate.NullToDecimal().ToString("#,##0.##")" placeholder=""
+                                        class="form-control inputUpdateOrder" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                <label
+                                    style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;"
+                                    class="control-label col-sm-12">
                                     Phí giao hàng:
                                 </label>
                                 <div class="col-sm-12">
-                                    <input style="font-weight: bold" type="text" readonly id="cShippingFee" name="cShippingFee" value="@Model.ShippingFee.NullToDecimal().ToString("#,##0.##")"
-                                           placeholder="" class="form-control" />
+                                    <input style="font-weight: bold" type="text" readonly id="cShippingFee"
+                                        name="cShippingFee"
+                                        value="@Model.ShippingFee.NullToDecimal().ToString("#,##0.##")" placeholder=""
+                                        class="form-control inputUpdateOrder" />
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;" class="control-label col-sm-12">
+                                <label
+                                    style="font-weight: bold; display: flex; justify-content: flex-start; align-items: flex-end; text-align: left;"
+                                    class="control-label col-sm-12 ">
                                     Tổng tiền thanh toán:
                                 </label>
                                 <div class="col-sm-12">
-                                    <input style="font-weight: bold; color: red; font-size:20px;" readonly type="text" id="cTotalMoney" name="cTotalMoney" value="@Model.TotalMoney.NullToDecimal().ToString("#,##0.##")"
-                                           placeholder="" class="form-control" />
+                                    <input style="font-weight: bold; color: red; font-size:20px;" readonly type="text"
+                                        id="cTotalMoney" name="cTotalMoney"
+                                        value="@Model.TotalMoney.NullToDecimal().ToString("#,##0.##")" placeholder=""
+                                        class="form-control inputUpdateOrder" />
                                 </div>
                             </div>
                         </div>
@@ -117,12 +148,12 @@
                 </div>
             </div>
             <br />
-            
+
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
                 <form id="buyFormData" asp-controller="Order" asp-action="ChangeInfoOrder" method="post"
-                      class="form-horizontal d-block">
+                    class="form-horizontal d-block">
                     <input asp-for="Id" hidden="hidden" />
                     <input asp-for="CustomerId" hidden="hidden" />
                     <input asp-for="EmployeeId" hidden="hidden" />
@@ -137,61 +168,67 @@
                     <input asp-for="DiscountRate" hidden="hidden" />
                     <input asp-for="ShippingFee" hidden="hidden" />
                     <input asp-for="TotalMoney" hidden="hidden" />
-                    
+
                     <!-- Thông tin chúng-->
                     <div class="modal-content justify-content-center" style="border-width:1px;">
                         <div class="panel-heading">
-                            <h4 class="panel-title" style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">Thông tin người đặt</h4>
+                            <h4 class="panel-title text-center"
+                                style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
+                                Thông tin người đặt</h4>
                         </div>
                         <div class="modal-body">
 
-                            <input type="text" id="idDeliveryAddress" name="idDeliveryAddress" value="" hidden="hidden" />
+                            <input type="text" id="idDeliveryAddress" name="idDeliveryAddress" value=""
+                                hidden="hidden" />
                             <input type="text" id="cGiamGia" name="cGiamGia" value="" hidden="hidden" />
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-5">
+                                        <label>
                                             Họ tên:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingFullName"
-                                                   placeholder="" class="form-control" />
+                                            <input type="text" asp-for="ShippingFullName" placeholder=""
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-5">
+                                        <label>
                                             Email:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingEmail"
-                                                   placeholder="" class="form-control" />
+                                            <input type="text" asp-for="ShippingEmail" placeholder=""
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-5">
+                                        <label>
                                             Số điện thoại:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingPhone"
-                                                   placeholder="" class="form-control" />
+                                            <input type="text" asp-for="ShippingPhone" placeholder=""
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-5">
+                                        <label>
                                             Ngày đặt:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input asp-for="CreateDate" type="date" maxlength="200" class="form-control" />
+                                            <input asp-for="CreateDate" type="date" maxlength="200"
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-outline-success col-md-3" onclick="ChangeInfoOrderer()"><i class="fas fa-check-double" style="margin-right:10px;"></i>Lưu thay đổi thông tin người đặt</button>
+                                <button type="button" class="btn btn-outline-success col-md-3"
+                                    onclick="ChangeInfoOrderer()"><i class="fas fa-check-double"
+                                        style="margin-right:10px;"></i>Lưu thay đổi thông tin người đặt</button>
                             </div>
                         </div>
                     </div>
@@ -199,62 +236,68 @@
                     <!-- Tông tin địa chỉ-->
                     <div class="modal-content justify-content-center" id="modalAddress" style="border-width:1px;">
                         <div class="panel-heading">
-                            <h4 class="panel-title" style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">Thông tin địa chỉ</h4>
+                            <h4 class="panel-title text-center"
+                                style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
+                                Thông tin địa chỉ</h4>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-5">
+                                        <label>
                                             Thành phố:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingCity" readonly
-                                                   placeholder="" class="form-control" />
+                                            <input type="text" asp-for="ShippingCity" readonly placeholder=""
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-5">
+                                        <label>
                                             Quận, Huyện:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingDistrict" readonly placeholder="" class="form-control" />
+                                            <input type="text" asp-for="ShippingDistrict" readonly placeholder=""
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-5">
+                                        <label>
                                             Phường, Xã:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingTown" readonly
-                                                   placeholder="" class="form-control" />
+                                            <input type="text" asp-for="ShippingTown" readonly placeholder=""
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-5">
+                                        <label>
                                             Địa chỉ chi tiết:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingAddress" readonly
-                                                   placeholder="" class="form-control" />
+                                            <input type="text" asp-for="ShippingAddress" readonly placeholder=""
+                                                class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-outline-success col-md-3" onclick="ChangeAddress()"><i class="fas fa-check-double" style="margin-right:10px;"></i>Thay đổi địa chỉ</button>
+                            <button type="button" class="btn btn-outline-success col-md-3" onclick="ChangeAddress()"><i
+                                    class="fas fa-check-double" style="margin-right:10px;"></i>Thay đổi địa chỉ</button>
                         </div>
                     </div>
                     <br />
                     <!-- Danh sách sản phẩm-->
                     <div class="modal-content justify-content-center" style="border-width:1px;">
                         <div class="panel-heading">
-                            <h4 class="panel-title" style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">Danh sách sản phẩm</h4>
+                            <h4 class="panel-title text-center"
+                                style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
+                                Danh sách sản phẩm</h4>
                         </div>
                         <div class="modal-body">
                             <div class="panel panel-default">
@@ -282,30 +325,55 @@
                                                     {
                                                         index++;
                                                         <tr>
-                                                            <td hidden><input class="itemOrderId" disabled hidden="hidden" type="text" value="@item.OrderDetail.OrderId.NullToString()"></td>
-                                                            <td hidden><input class="itemProdID" disabled hidden="hidden" type="text" value="@item.OrderDetail.ProductVariationId.NullToString()"></td>
-                                                            <td hidden><input class="itemQuantityInstock" disabled hidden="hidden" type="text" value="@(item.ProductVariation.QuantityInStock)"></td>
-                                                            <td hidden><input class="itemOriginalQuantityInstock" disabled hidden="hidden" type="text" value="@item.OrderDetail.Quantity"></td>
+                                                            <td hidden><input class="itemOrderId" disabled hidden="hidden"
+                                                                    type="text"
+                                                                    value="@item.OrderDetail.OrderId.NullToString()"></td>
+                                                            <td hidden><input class="itemProdID" disabled hidden="hidden"
+                                                                    type="text"
+                                                                    value="@item.OrderDetail.ProductVariationId.NullToString()">
+                                                            </td>
+                                                            <td hidden><input class="itemQuantityInstock" disabled
+                                                                    hidden="hidden" type="text"
+                                                                    value="@(item.ProductVariation.QuantityInStock)"></td>
+                                                            <td hidden><input class="itemOriginalQuantityInstock" disabled
+                                                                    hidden="hidden" type="text"
+                                                                    value="@item.OrderDetail.Quantity"></td>
                                                             <td>@(index)</td>
-                                                            <td><img style="width:70px;height:70px;" src="~/images/@item.ProductVariation.Image.NullToString()" /></td>
+                                                            <td><img style="width:70px;height:70px;"
+                                                                    src="~/images/@item.ProductVariation.Image.NullToString()" />
+                                                            </td>
                                                             <td>@item.Product.Name</td>
                                                             <td>@item.Color.Name</td>
                                                             <td>@item.Size.Code</td>
                                                             <td>
-                                                                <input type="text" class="price align-right textr inputOrder" disabled maxlength="18" value="@item.OrderDetail.Price.ToString("#,##0.##")" />
+                                                                <input type="text"
+                                                                    class="price align-right textr inputUpdateOrder" disabled
+                                                                    maxlength="18"
+                                                                    value="@item.OrderDetail.Price.ToString("#,##0.##")" />
                                                             </td>
                                                             <td class="col-1" style="width:200px;">
                                                                 <div class="buttons_added ">
-                                                                    <input class="minus is-form inputOrder" type="button" value="-" style="width:20px;">
-                                                                    <input aria-label="quantity" style="width: 120px; text-align:center;" class="quantity inputOrder" type="text" id="quantity" name="quantity" value="@item.OrderDetail.Quantity" min="1" max="100000">
-                                                                    <input class="plus is-form inputOrder" type="button" value="+" style="width:20px;">
+                                                                    <input class="minus is-form inputUpdateOrder" type="button"
+                                                                        value="-" style="width:20px;">
+                                                                    <input aria-label="quantity"
+                                                                        style="width: 120px; text-align:center;"
+                                                                        class="quantity inputUpdateOrder" type="text"
+                                                                        id="quantity" name="quantity"
+                                                                        value="@item.OrderDetail.Quantity" min="1" max="100000">
+                                                                    <input class="plus is-form inputUpdateOrder" type="button"
+                                                                        value="+" style="width:20px;">
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <input style="font-weight: bold" class="totalMoneyItem inputOrder" disabled="disabled" type="text" value="@item.OrderDetail.TotalMoney.ToString("#,##0.##")">
+                                                                <input style="font-weight: bold"
+                                                                    class="totalMoneyItem inputUpdateOrder" disabled="disabled"
+                                                                    type="text"
+                                                                    value="@item.OrderDetail.TotalMoney.ToString("#,##0.##")">
                                                             </td>
                                                             <td>
-                                                                <button type="button" class="btn btn-danger" onclick="RemoveProduct('@Model.Id', '@item.ProductVariation.Id')"><i class="fa fa-trash"></i></button>
+                                                                <button type="button" class="btn btn-danger"
+                                                                    onclick="RemoveProduct('@Model.Id', '@item.ProductVariation.Id')"><i
+                                                                        class="fa fa-trash"></i></button>
                                                             </td>
                                                         </tr>
                                                     }
@@ -315,20 +383,25 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-outline-success col-md-3" onclick="AddProdToOrder('@Model.Id')"><i class="fas fa-check-double" style="margin-right:10px;"></i>Thêm sản phẩm</button>
+                            <button type="button" class="btn btn-outline-success col-md-3"
+                                onclick="AddProdToOrder('@Model.Id')"><i class="fas fa-check-double"
+                                    style="margin-right:10px;"></i>Thêm sản phẩm</button>
                         </div>
                     </div>
                     <br />
                     <hr style="color:red;" />
                     <div class="row d-flex justify-content-center">
-                        <button type="button" onclick="document.location = '/Order/Index'" class="btn btn-outline-dark col-md-2 m-1"><i class="fa fa-backward" style="margin-right:10px;"></i>Quay lại</button>
+                        <button type="button" onclick="document.location = '/Order/Index'"
+                            class="btn btn-outline-dark col-md-2 m-1"><i class="fa fa-backward"
+                                style="margin-right:10px;"></i>Quay lại</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="showDataDeliveryAddress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="showDataDeliveryAddress" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" style=" background-color:white; max-width:900px">
         <div class="modal-content">
             <div class="modal-header">
@@ -342,7 +415,7 @@
                         <div class="row mt-5">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
+                                    <label><strong>Tỉnh/Thành phố:</strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectProvince" class="form-select">
                                             <option></option>
@@ -352,7 +425,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
+                                    <label><strong>Quận/Huyện:</strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectDistrict" class="form-select">
                                         </select>
@@ -361,7 +434,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
+                                    <label><strong>Phường/Xã:</strong></label>
                                     <div class="col-sm-12">
                                         <select id="selectWards" class="form-select">
                                         </select>
@@ -370,16 +443,18 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
+                                    <label><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingAddressChange" name="ShippingAddressChange" value="" class="form-control" />
+                                        <input type="text" id="ShippingAddressChange" name="ShippingAddressChange"
+                                            value="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <strong><label></label></strong>
                                 <div class="form-input">
-                                    <a class="btn btn-success" onclick="SaveChangeAddress()" style="height:40px;width:110px;">
+                                    <a class="btn btn-success" onclick="SaveChangeAddress()"
+                                        style="height:40px;width:110px;">
                                         <i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>
                                         Lưu
                                     </a>
@@ -399,15 +474,15 @@
         LoadDistrict();
         LoadWard();
         loadMoney();
-        
+
         $("input.quantity").change(function () {
             if (checkQuantityInstock($(this))) {
-                    var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/,/g, '');
-                    var _quantityVal = parseFloat($(this).val()) || 0;
-                    $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
-                    loadMoney();
+                var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/,/g, '');
+                var _quantityVal = parseFloat($(this).val()) || 0;
+                $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
+                loadMoney();
                 ChangeQuantity($(this));
-                }
+            }
         });
 
         $('input.quantity').keyup(function () {
@@ -440,7 +515,7 @@
                     ChangeQuantity($(this));
                 })
             }
-            
+
         });
 
         var messerror = document.getElementById('messerror')
@@ -470,7 +545,7 @@
         } else {
             swal("Thông báo", "Cần có tối thiếu 1 sản phẩm trong đơn hàng", "error");
         }
-        
+
     }
 
     function loadMoney() {
@@ -486,7 +561,7 @@
         $('#cTotalMoney').val(commasThousands(_totalPayment));
         $('#TotalMoney').val(_totalPayment);
 
-        
+
     }
     function ConvertDate(time) {
         var date = new Date(time);
@@ -547,7 +622,7 @@
     }
 
 
-    function ChangeAddress(){
+    function ChangeAddress() {
         swal("", {
             title: 'Thay đổi địa chỉ có thể sẽ thay đổi phí ship, bạn vẫn muốn thay đổi chứ?',
             icon: 'warning',
@@ -578,7 +653,7 @@
                     $('#ShippingTown').val($("[id='selectWards'] option:selected").text());
                     $('#ShippingAddress').val($("#ShippingAddressChange").val());
                     loadMoney();
-                    
+
                 } else {
                     swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
                 }

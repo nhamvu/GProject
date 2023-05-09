@@ -164,13 +164,13 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Mã Nhân Viên</label>
+                                    <label class="">Mã Nhân Viên</label>
                                     <div class="col-md-9 col-xs-12">
                                         <input id="sId" name="sId" value="@ViewData["sId"]" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Tên Nhân Viên</label>
+                                    <label class="">Tên Nhân Viên</label>
                                     <div class="col-md-9 col-xs-12">
                                         <input id="sName" name="sName" value="@ViewData["sName"]"
                                             class="form-control" />
@@ -180,7 +180,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Trạng thái</label>
+                                    <label class="">Trạng thái</label>
                                     <div class="col-md-9">
                                         @{
                                             int status = int.Parse(Html.Encode(ViewData["sStatus"]));
@@ -194,7 +194,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Email</label>
+                                    <label class="">Email</label>
                                     <div class="col-md-9 col-xs-12">
                                         <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
                                             class="form-control" />
@@ -203,14 +203,14 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Số điện thoại</label>
+                                    <label class="">Số điện thoại</label>
                                     <div class="col-md-9 col-xs-12">
                                         <input id="sPhone" maxlength="10" name="sPhone" value="@ViewData["sPhone"]"
                                             class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Giới tính</label>
+                                    <label class="">Giới tính</label>
                                     <div class="col-md-9">
                                         @{
                                             int gender = int.Parse(Html.Encode(ViewData["sGender"]));

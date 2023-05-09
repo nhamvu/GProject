@@ -19,31 +19,35 @@
         hoverBackgroundColor.Add("#" + Guid.NewGuid().ToString().Substring(0, 6));
     }
 }
-<div class="white-box row">
+<div class="row">
     <div class="col-md-7">
-        <h1>Thống kê</h1>
+        <h3>Thống kê</h3>
     </div>
     <div class="col-md-5">
         <form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Dashboard/Index">
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group row">
-                        <label class="col-md-2 control-label mt-3">Từ</label>
-                        <div class="col-md-10">
-                            <input type="date" id="fromDate" name="fromDate" style="padding: 12px 20px; margin: 8px 0; box-sizing: border-box;border: none;border-bottom: 2px solid red;" value="@ViewData["fromDate"]" class="form-control" />
+                        <label >Từ</label>
+                        <div class="col-md-12">
+                            <input type="date" id="fromDate" name="fromDate" style="margin-top: -5px;" value="@ViewData["fromDate"]" class="form-control" />
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group row">
-                        <label class="col-md-2 control-label mt-3">Đến</label>
-                        <div class="col-md-10 col-xs-12">
-                            <input type="date" id="toDate" name="toDate" style="padding: 12px 20px; margin: 8px 0; box-sizing: border-box;border: none;border-bottom: 2px solid red;" value="@ViewData["toDate"]" class="form-control" />
+                        <label >Đến</label>
+                        <div class="col-md-12">
+                            <input type="date" id="toDate" name="toDate" style="margin-top: -5px;" value="@ViewData["toDate"]" class="form-control col-12" />
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 mt-2">
-                    <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i>Xem thống kê</button>
+                <div class="col-md-3 mt-2">
+                    <label></label>
+                    <div class="col-md-12" style="margin-top: -5px;">
+                        <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </div>
+                    
                 </div>
             </div>
         </form>
@@ -56,8 +60,8 @@
     <!-- ============================================================== -->
     <div class="row justify-content-center">
         <div class="col-lg-3 col-md-12">
-            <div class="white-box analytics-info" style="border: 3px solid #3399CC;">
-                <h3 class="box-title"><i class="fa fa-shopping-bag" style="margin-right:10px;"></i>SỐ ĐƠN HÀNG</h3>
+            <div class="white-box analytics-info" style="border: 1px solid #3399CC;">
+                <h5 class=""><i class="fa fa-shopping-bag" style="margin-right:10px;"></i>Số đơn hàng</h5>
                 <ul class="list-inline two-part d-flex align-items-center mb-0">
                     <li>
                         <div id="sparklinedash">
@@ -70,8 +74,8 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-12">
-            <div class="white-box analytics-info" style="border: 3px solid #33FF66;">
-                <h3 class="box-title"><i class="fa fa-cubes" style="margin-right:10px;"></i>SỐ LƯỢNG SẢN PHẨM</h3>
+            <div class="white-box analytics-info" style="border: 1px solid #33FF66;">
+                <h5 class=""><i class="fa fa-cubes" style="margin-right:10px;"></i>Số lượng sản phẩm</h5>
                 <ul class="list-inline two-part d-flex align-items-center mb-0">
                     <li>
                         <div id="sparklinedash2">
@@ -84,11 +88,11 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-12">
-            <div class="white-box analytics-info" style="border: 3px solid #FFCC33;">
-                <h3 class="box-title"><i class="fa fa-users" style="margin-right: 10px;"></i>SỐ KHÁCH HÀNG</h3>
+            <div class="white-box analytics-info" style="border: 1px solid #FFCC33;">
+                <h5 class=""><i class="fa fa-users" style="margin-right: 10px;"></i>Số khách hàng</h5>
                 <ul class="list-inline two-part d-flex align-items-center mb-0">
                     <li>
-                        <div id="sparklinedash3">
+                        <div id="sparklinedash5">
                             <canvas width="67" height="30"
                                     style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                         </div>
@@ -100,8 +104,8 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-12">
-            <div class="white-box analytics-info" style="border: 3px solid #CC0000;">
-                <h3 class="box-title"><i class="fa fa-clone" style="margin-right: 10px;"></i>LƯỢT TƯƠNG TÁC</h3>
+            <div class="white-box analytics-info" style="border: 1px solid #CC0000;">
+                <h5 class=""><i class="fa fa-clone" style="margin-right: 10px;"></i>Lượt tương tác</h5>
                 <ul class="list-inline two-part d-flex align-items-center mb-0">
                     <li>
                         <div id="sparklinedash4">
@@ -122,7 +126,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="white-box" id="chart-container">
-                <h3 class="box-title">TỔNG DOANH THU</h3>
+                <h5 class="">Tổng doanh thu</h5>
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <canvas id="myChart" class="col-md-12 w-100 h-100" style="box-sizing: border-box;"></canvas>
                 </div>
@@ -130,7 +134,7 @@
         </div>
         <div class="col-md-4">
             <div class="white-box">
-                <h3 class="box-title">DOANH SỐ THEO DANH MỤC SẢN PHẨM</h3>
+                <h5 class="">Doanh thu theo mục sản phẩm</h5>
                 <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <canvas id="myPieChart" class="col-md-12" style="box-sizing: border-box; width: 100%;"></canvas>
                 </div>
@@ -144,7 +148,7 @@
         <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="white-box">
                 <div class="d-md-flex mb-3">
-                    <h3 class="box-title mb-0">BẢNG XẾP HẠNG DOANH SỐ SẢN PHẨM THEO THÁNG</h3>
+                    <h3 class=" mb-0">Bảng xếp hạng doanh số sản phẩm theo tháng</h3>
                 </div>
                 <div class="table-responsive">
                     <table class="table no-wrap">

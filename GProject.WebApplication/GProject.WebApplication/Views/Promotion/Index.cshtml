@@ -39,11 +39,12 @@
     }
 </style>
 
-@if (@ViewData["Mess"] != null)
+<div class="container">
+    @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
-<button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Promotion")'" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</button>
+<button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Promotion")'" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</button>
 <hr style="color:red;" />
 <form id="searchForm" name="searchForm" method="post" class="form-horizontal" action="/Promotion/Index">
     <div class="row">
@@ -87,7 +88,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 row">
-                            <label class="col-md-4 control-label">Mức giảm giá từ:</label>
+                            <label class="col-md-4 control-label">Giảm giá từ:</label>
                             <div class="col-md-8 col-xs-12">
                                 <input type="text" id="sfromDiscountRate" maxlength="10" name="sPhone" value="@ViewData["sfromDiscountRate"]" class="form-control" />
                             </div>
@@ -101,17 +102,20 @@
                     </div>
                 </div>
                 <div class="panel-footer text-center">
-                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i>Tìm kiếm</button>
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i></button>
+                    <a class="btn btn-outline-info" asp-action="Index">
+                        <i class="fas fa-undo-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<hr style="color:red;" />
-<div class="row">
+
+<div class="row" style="margin-top: 10px;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-atom" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH GIẢM GIÁ</h3>
+            <h3 class="panel-title" style=" text-align:center; height:50px; padding:10px 10px 10px 10px;">Danh sách giảm giá</h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
@@ -199,6 +203,8 @@
         </ul>
     }
 </div>
+</div>
+
 
 <script type="text/javascript">
     $(document).ready(function () {

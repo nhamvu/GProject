@@ -184,7 +184,7 @@
                                             @item.Description
                                         </td>
                                         <td>
-                                            <button class="btn btn-info" onclick="ViewDetailData(@item.Id)">
+                                            <button class="btn btn-info" onclick="ViewDetailDataBrand(@item.Id)">
                                                 <i class="fas fa-pen-square" aria-hidden="true"></i>
                                             </button>                                           
                                         </td>
@@ -248,7 +248,7 @@
             //});
         }
     });
-    function ViewDetailData(id) {
+    function ViewDetailDataBrand(id) {
         $("#exampleModal").modal('show');
         $.getJSON("/Brand/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);

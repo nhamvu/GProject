@@ -173,7 +173,7 @@
                                             @item.Description
                                         </td>
                                         <td>
-                                            <a class="btn btn-info" onclick="ViewDetailData('@item.Id')">
+                                            <a class="btn btn-info" onclick="ViewDetailDataCategory('@item.Id')">
                                                 <i class="fas fa-pen-square" aria-hidden="true"></i>
                                             </a>
                                         </td>
@@ -294,7 +294,7 @@
         $("#exampleModal").modal('show');
     }
 
-    function ViewDetailData(_id) {
+    function ViewDetailDataCategory(_id) {
         $("#exampleModal").modal('show');
         $.getJSON("/Category/Detail?id=" + _id, function (data) {
             $("#Name").val(data.name);
