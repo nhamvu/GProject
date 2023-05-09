@@ -254,6 +254,19 @@
                 </table>
             </div>
         </div>
+
+        <div class="form-footer">
+            <div style="float: right">
+                @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
+                {
+                ActiveLiElementClass = "active",
+                PageClasses = new[]{ "page-link"},
+                LiElementClasses=new[] { "page-item" },
+                LinkToNextPageFormat = "Next",
+                LinkToPreviousPageFormat = "Prev",
+                })
+            </div>
+        </div>
     </div>
 </div>
 <div class="modal" id="ViewDetail" role="dialog">
@@ -275,18 +288,7 @@
         </div>
     </div>
 </div>
-<div class="container">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new X.PagedList.Web.Common.PagedListRenderOptions()
-    {
-    ActiveLiElementClass = "active",
-    PageClasses = new[]{ "page-link"},
-    LiElementClasses=new[] { "page-item" },
-    //LinkToNextPageFormat = "Next",
-    //LinkToPreviousPageFormat = "Prev",
-    DisplayLinkToFirstPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
-    DisplayLinkToLastPage = X.PagedList.Web.Common.PagedListDisplayMode.Always,
-    })
-</div>
+
 
 
 <script type="text/javascript">
