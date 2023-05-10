@@ -58,6 +58,7 @@ namespace GProject.Api.Controllers
             var order = iOrderService.GetAll().FirstOrDefault(x => x.Id == id);
             order.Status = Data.Enums.OrderStatus.Accomplished;
             order.UpdateDate = DateTime.Now;
+            order.PaymentDate = DateTime.Now;
             return iOrderService.Update(order);
         }
 

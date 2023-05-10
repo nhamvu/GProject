@@ -122,6 +122,7 @@ namespace GProject.WebApplication.Controllers
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
                 if (customer == null)
                     customer = new Customer();
+                    ViewBag.productId = product_id;
                 return View(await pService.GetProductDetail(product_id, customer));
             }
             catch (Exception ex)

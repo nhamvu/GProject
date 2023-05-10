@@ -45,7 +45,7 @@ List<GProject.Data.DomainClass.ViewHistory>>
 					Selected = "-1" == brand.ToString(),
 				});
 
-		foreach (var br in lstBrand.Distinct())
+		foreach (var br in lstBrand.Distinct().Where(x => x.Status == 1))
 		{
 			if (StoreItems.FirstOrDefault(c => c.Value == br.Id.ToString()) == null)
 			{
@@ -71,7 +71,7 @@ List<GProject.Data.DomainClass.ViewHistory>>
 					Selected = "-1" == category.NullToString(),
 				});
 
-		foreach (var br in lstCategory)
+		foreach (var br in lstCategory.Where(x => x.Status == 1))
 		{
 			CategoryItems.Add(new SelectListItem()
 					{
