@@ -48,7 +48,7 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => c.DiscountRate <= giamgia_den && c.DiscountForm == hinhthuc).ToList();
                    
                 }
-                var data = new VoucherDto() { VoucherList = lstObjs };
+                var data = new VoucherDto() { VoucherList = lstObjs.OrderByDescending(x => x.ExpirationDate).ToList() };
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
@@ -91,7 +91,7 @@ namespace GProject.WebApplication.Controllers
                     NumberOfVouchers = obj.NumberOfVouchers,
                     MinimumOrder= obj.MinimumOrder,
                     ExpirationDate= obj.ExpirationDate,
-                    CreateDate = DateTime.Now,
+                    CreateDate = obj.CreateDate,
                     UpdateDate = DateTime.Now,
                     EmployeeId = customer.Id,
                     Status = obj.Status

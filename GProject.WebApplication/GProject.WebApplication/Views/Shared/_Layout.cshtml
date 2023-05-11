@@ -140,14 +140,21 @@
 						<i class="fa fa-angle-down"></i>
 					</a>
 					<ul class="menu_selection">
-                            <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng nhập</a></li>
-						<li><a href="/Doi-mat-khau-khach-hang.html"><i class="fa fa-user-plus" aria-hidden="true"></i>Đổi mật khẩu</a></li>
-						<li>
-                            <button class="btn" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" style="font-size: 14px;" data-url="/DeliveryAddress/Index">
-                                <i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
-                                Địa chỉ đặt hàng
-                            </button> 
-                        </li>
+                        @if (user == null)
+                            {
+                                <li><a href="/Account/Login"><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng nhập</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="/Account/logout"><i class="fa fa-sign-in" aria-hidden="true"></i>Đăng xuất</a></li>
+								<li><a href="/Doi-mat-khau-khach-hang.html"><i class="fa fa-user-plus" aria-hidden="true"></i>Đổi mật khẩu</a></li>
+								<li>
+                            		<button class="btn" data-toggle="ajax-modal" data-target="#showDataDeliveryAddress" style="font-size: 14px;" data-url="/DeliveryAddress/Index">
+                                		<i class="fa-solid fa-map-location-dot" aria-hidden="true"></i>
+                                		Địa chỉ đặt hàng
+                            		</button> 
+								</li>
+							}
 					</ul>
 				</li>
 				<li class="menu_item"><a href="#">home</a></li>
@@ -174,8 +181,8 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>free shipping</h6>
-							<p>Suffered Alteration in Some Form</p>
+							<h6>Vận chuyển toàn quốc</h6>
+							<p>Thời gian giao hàng nhanh chóng</p>
 						</div>
 					</div>
 				</div>
@@ -183,17 +190,17 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>cach on delivery</h6>
-							<p>The Internet Tend To Repeat</p>
+							<h6>Giao hàng hỏa tốc</h6>
+							<p>Giao hàng 2-3h trong bán kính 10km</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-3 benefit_col">
 					<div class="benefit_item d-flex flex-row align-items-center">
-						<div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+						<div class="benefit_icon"><i class="far fa-credit-card"></i></div>
 						<div class="benefit_content">
-							<h6>45 days return</h6>
-							<p>Making it Look Like Readable</p>
+							<h6>Mua hàng nhanh chóng</h6>
+							<p>Thanh toán VNpay hoặc khi nhận hàng</p>
 						</div>
 					</div>
 				</div>
@@ -201,8 +208,8 @@
 					<div class="benefit_item d-flex flex-row align-items-center">
 						<div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
 						<div class="benefit_content">
-							<h6>opening all week</h6>
-							<p>8AM - 09PM</p>
+							<h6>Tất cả các ngày trong tuần</h6>
+							<p>8h - 21h</p>
 						</div>
 					</div>
 				</div>
@@ -239,7 +246,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="footer_nav_container">
-						<div class="cr">©2023 All Rights Reserverd. Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a> &amp; distributed by <a href="https://themewagon.com">ThemeWagon</a></div>
+						<div class="cr">©2023 All Rights Reserverd. Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Dream Fashions</div>
 					</div>
 				</div>
 			</div>

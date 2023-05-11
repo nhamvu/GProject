@@ -25,7 +25,7 @@ namespace GProject.Api.MyServices.Services
                 NumberOfVouchers = obj.NumberOfVouchers,
                 MinimumOrder = obj.MinimumOrder,
                 ExpirationDate = obj.ExpirationDate,
-                CreateDate = DateTime.Now,
+                CreateDate = obj.CreateDate,
                 EmployeeId = obj.EmployeeId,
                 Status = obj.Status
             };
@@ -58,6 +58,7 @@ namespace GProject.Api.MyServices.Services
             result.MaximumDiscount = obj.MaximumDiscount;
             result.MinimumOrder = obj.MinimumOrder;
             result.ExpirationDate = obj.ExpirationDate;
+            result.CreateDate = obj.CreateDate;
             result.UpdateDate = DateTime.Now;
             result.Status= obj.Status;
             _voucherRepository.Update(result);

@@ -24,7 +24,7 @@ namespace GProject.Data.DomainClass
         [Column(TypeName = "decimal(20, 0)")]
         public decimal ImportPrice { get; set; }
         public string CreateBy { get; set; }
-        public int Status { get; set; } = 1; // 0: đang bán || 1: ngừng bán
+        public int Status { get; set; } // 0: đang bán || 1: ngừng bán
         public string? Description { get; set; }
         public string ProductType { get; set; } //0: sản phẩm bình thường |1 sản phẩm mới |2 sản phẩm nổi bật |3 sản phẩm được yêu thích |4 sản phẩm khuyến mại, nhận vào là 1 chuỗi json giá trị
         public Brand? BrandId_Navigation { get; set; }
