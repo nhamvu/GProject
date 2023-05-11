@@ -180,7 +180,7 @@
                                                 <i class="fas fa-pen-square" aria-hidden="true"></i>
                                             </a>
                                             <button class="btn btn-danger delete" onclick="deleteObject('@item.Id')">
-                                                <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                                <i class="fas fa-trash-alt"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -217,7 +217,14 @@
             type: "POST",
             success: function (result) {
                 if (result.success) {
-                    $.ajax({
+
+                    swal("Bạn có muốn xóa thông tin danh mục này không?", {
+                        title: 'Thông Báo!',
+                        icon: 'info',
+                        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                    }).then(function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
                         url: "/Category/Delete",
                         data: { "Id": id },
                         type: "POST",
@@ -243,6 +250,10 @@
                             alert(error);
                         }
                     });
+                        } else {
+                            swal("Đã hủy", "Xóa không thành công!", "error");
+                        }
+                    });                  
                 } else {
                     swal("Xin lỗi", "Danh mục này đã được sử dụng.", "error");
                 }
