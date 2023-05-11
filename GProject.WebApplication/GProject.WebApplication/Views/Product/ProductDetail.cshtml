@@ -195,7 +195,6 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             <h4 class="si-class">
                                 Size:
                                 @{
-
                                     foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
                                     {
                                         var dataSize = lstSize.Where(x => x.Status == 1 && x.Id == item).FirstOrDefault();
