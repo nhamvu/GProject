@@ -17,6 +17,7 @@ using System.Configuration;
 using GProject.WebApplication.Helpers;
 using Twilio.Types;
 using X.PagedList;
+using GProject.Data.Context;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -24,9 +25,12 @@ namespace GProject.WebApplication.Controllers
     public class ColorController : Controller
     {
         private IColorService iColorService;
+        private GProjectContext _context;
+
         public ColorController()
         {
             iColorService = new ColorService();
+            _context = new GProjectContext();
         }
 
         public async Task<ActionResult> Index(int? page, string sHEXCode, string sName)
@@ -135,6 +139,43 @@ namespace GProject.WebApplication.Controllers
             var lstObjs = await Commons.GetAll<Color>(String.Concat(Commons.mylocalhost, "Color/get-all-Color"));
             var data2 = lstObjs.FirstOrDefault(c => c.Id == id);
             return Json(data2);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int? Id)
+        {
+            try
+            {
+                var removeData = iColorService.GetAll().FirstOrDefault(c => c.Id == Id);
+                if (!iColorService.Delete(removeData))
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckExistId(int Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+
+                var result = _context.ProductVariations.Any(x => x.ColorId == Id);
+
+                return Json(new { success = !result });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
         }
     }
 }

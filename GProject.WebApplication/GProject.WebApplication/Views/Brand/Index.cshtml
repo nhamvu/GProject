@@ -186,7 +186,10 @@
                                         <td>
                                             <button class="btn btn-info" onclick="ViewDetailDataBrand(@item.Id)">
                                                 <i class="fas fa-pen-square" aria-hidden="true"></i>
-                                            </button>                                           
+                                            </button>
+                                            <button class="btn btn-danger delete" onclick="deleteObject('@item.Id')">
+                                                <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -212,9 +215,47 @@
         </div>
     </div>
 </div>
-
-
 <script type="text/javascript">
+    function deleteObject(id) {
+        $.ajax({
+            url: "/Brand/CheckExistId",
+            data: { "Id": id },
+            type: "POST",
+            success: function (result) {
+                if (result.success) {
+                    $.ajax({
+                        url: "/Brand/Delete",
+                        data: { "Id": id },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                swal("Thành công", "Bạn đã xóa thành công", "success");
+
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            } else {
+                                swal("Thành công!", "Bạn đã xóa thành công", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert(error);
+                        }
+                    });
+                } else {
+                    swal("Xin lỗi", "Nhãn hiệu này đã được sử dụng.", "error");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert(error);
+            }
+        });
+    }
     $(document).ready(function () {
         
         var er = document.getElementById('error')

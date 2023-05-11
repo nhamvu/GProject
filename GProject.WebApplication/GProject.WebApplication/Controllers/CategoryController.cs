@@ -1,10 +1,12 @@
 ﻿using GProject.Api.MyServices.IServices;
 using GProject.Api.MyServices.Services;
+using GProject.Data.Context;
 using GProject.Data.DomainClass;
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection.Metadata;
 using X.PagedList;
 
@@ -14,9 +16,11 @@ namespace GProject.WebApplication.Controllers
     public class CategoryController : Controller
     {
         private ICategoryService iCategoryService;
+        private GProjectContext _context;
         public CategoryController()
         {
             iCategoryService = new CategoryService();
+            _context = new GProjectContext();
         }
 
         public async Task<ActionResult> Index(string sName, int? sStatus, int? page)
@@ -109,5 +113,43 @@ namespace GProject.WebApplication.Controllers
             var data2 = lstObjs.FirstOrDefault(c => c.Id == id);
             return Json(data2);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(Guid? Id)
+        {
+            try
+            {
+                var removeData = iCategoryService.GetAll().FirstOrDefault(c => c.Id == Id);
+                if (!iCategoryService.Delete(removeData))
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckExistId(Guid Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+
+                var result = _context.Products.Any(x => x.CategoryId == Id);
+
+                return Json(new { success = !result });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+
     }
 }

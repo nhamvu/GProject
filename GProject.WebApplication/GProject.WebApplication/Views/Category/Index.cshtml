@@ -44,7 +44,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Danh mục</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="Clear()"
-                        aria-label="Close"></button>
+                            aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="formdata" class="form" enctype="multipart/form-data">
@@ -69,12 +69,14 @@
                             <label class="col-md-5">Mô tả:</label>
                             <div class="form-input">
                                 <textarea id="Description" name="Description" class="form-control"
-                                    maxlength="256"></textarea>
+                                          maxlength="256"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" onclick="Clear()"
-                                data-bs-dismiss="modal">Close</button>
+                                    data-bs-dismiss="modal">
+                                Close
+                            </button>
                             <button id="btnSave" class="btn btn-success" type="submit">Lưu</button>
                         </div>
 
@@ -96,7 +98,7 @@
                                 <div class="form-group">
                                     <div class="col-12 col-xs-12">
                                         <input id="sName" name="sName" value="@ViewData["sName"]"
-                                            placeholder="Tìm kiếm theo tên..." class="form-control" />
+                                               placeholder="Tìm kiếm theo tên..." class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -122,8 +124,9 @@
                                     <div class="row">
                                         <div class="col-3">
                                             <button class="btn btn-success"
-                                                onclick="$('.searchText').removeAttr('disabled')" type="submit"><i
-                                                    class="fa fa-search"></i></button>
+                                                    onclick="$('.searchText').removeAttr('disabled')" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
                                         </div>
                                         <div class="col-6">
                                             <a class="btn btn-outline-info" asp-action="Index">
@@ -142,8 +145,8 @@
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title" style=" text-align:center; height:50px; padding:10px 10px 10px 10px;"><i
-                        class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>Danh sách danh mục
+                <h3 class="panel-title" style=" text-align:center; height:50px; padding:10px 10px 10px 10px;">
+                    <i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>Danh sách danh mục
                 </h3>
             </div>
             <div class="panel-body">
@@ -154,7 +157,7 @@
                                 <th>Tên danh mục</th>
                                 <th>Trạng thái</th>
                                 <th>Mô tả</th>
-                                <th></th>
+                                <th>Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,6 +179,9 @@
                                             <a class="btn btn-info" onclick="ViewDetailDataCategory('@item.Id')">
                                                 <i class="fas fa-pen-square" aria-hidden="true"></i>
                                             </a>
+                                            <button class="btn btn-danger delete" onclick="deleteObject('@item.Id')">
+                                                <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -194,7 +200,7 @@
                     PageClasses = new[]{ "page-link"},
                     LiElementClasses=new[] { "page-item" },
                     LinkToNextPageFormat = "Next",
-                    LinkToPreviousPageFormat = "Prev", 
+                    LinkToPreviousPageFormat = "Prev",
                     })
                 </div>
             </div>
@@ -204,6 +210,50 @@
 
 
 <script type="text/javascript">
+    function deleteObject(id) {
+        $.ajax({
+            url: "/Category/CheckExistId",
+            data: { "Id": id },
+            type: "POST",
+            success: function (result) {
+                if (result.success) {
+                    $.ajax({
+                        url: "/Category/Delete",
+                        data: { "Id": id },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                // Thành công, làm gì đó ở đây
+                                swal("Thành công", "Bạn đã xóa thành công", "success");
+
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            } else {
+                                // Lỗi, hiển thị thông báo lỗi
+                                swal("Thành công!", "Bạn đã xóa thành công", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert(error);
+                        }
+                    });
+                } else {
+                    swal("Xin lỗi", "Danh mục này đã được sử dụng.", "error");
+                }
+            },
+            error: function (xhr, status, error) {
+                // Lỗi, hiển thị thông báo lỗi
+                alert(error);
+            }
+        });
+    }
+
     $(document).ready(function () {
         var er = document.getElementById('error')
         if (er != null) {
