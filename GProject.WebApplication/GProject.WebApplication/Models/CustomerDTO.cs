@@ -20,7 +20,7 @@ namespace GProject.WebApplication.Models
         public string PhoneNumber { get; set; }
         public int Sex { get; set; } // 0:Nam || 1: Nữ
         public string Address { get; set; }
-        public int Status { get; set; } = 1; // 0: bình thường || 1: khách hàng cần chú ý
+        public int Status { get; set; } // 0: bình thường || 1: khách hàng cần chú ý
         public string? Description { get; set; }
         public string Image { get; set; }
         public IFormFile? Image_Upload { get; set; }

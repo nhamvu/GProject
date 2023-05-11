@@ -1,5 +1,6 @@
 ﻿using GProject.Api.MyServices.IServices;
 using GProject.Api.MyServices.Services;
+using GProject.Data.Context;
 using GProject.Data.DomainClass;
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
@@ -14,9 +15,11 @@ namespace GProject.WebApplication.Controllers
     public class BrandController : Controller
     {
         private IBrandService iBrandService;
+        private GProjectContext _context;
         public BrandController()
         {
             iBrandService = new BrandService();
+            _context = new GProjectContext();
         }
 
         public async Task<ActionResult> Index(int? page, string sName, int? sStatus)
@@ -105,6 +108,43 @@ namespace GProject.WebApplication.Controllers
             var lstObjs = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
             var data2 = lstObjs.FirstOrDefault(c => c.Id == id);
             return Json(data2);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(int? Id)
+        {
+            try
+            {
+                var removeData = iBrandService.GetAll().FirstOrDefault(c => c.Id == Id);
+                if (!iBrandService.Delete(removeData))
+                    HttpContext.Session.SetString("mess", "Failed");
+                else
+                    HttpContext.Session.SetString("mess", "Success");
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckExistId(int Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+
+                var result = _context.Products.Any(x => x.BrandId == Id);
+
+                return Json(new { success = !result });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
         }
     }
 }

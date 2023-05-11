@@ -20,7 +20,7 @@ namespace GProject.WebApplication.Models
         public decimal Price { get; set; }
         public decimal ImportPrice { get; set; }
         public string CreateBy { get; set; }
-        public int Status { get; set; } = 1; // 0: đang bán || 1: ngừng bán
+        public int Status { get; set; } // 0: đang bán || 1: ngừng bán
         public string? Description { get; set; }
         public string ProductType { get; set; }
         public List<Product>? ProductList { get; set; }

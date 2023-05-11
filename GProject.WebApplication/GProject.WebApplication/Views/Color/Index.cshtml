@@ -183,6 +183,9 @@
                                         <td>
                                             <button class="btn btn-info" onclick="ViewDetailDataColor('@item.Id')" />
                                             <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                            <button class="btn btn-danger delete" onclick="deleteObject('@item.Id')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -209,6 +212,63 @@
     </div>
 </div>
 <script type="text/javascript">
+    function deleteObject(id) {
+        $.ajax({
+            url: "/Color/CheckExistId",
+            data: { "Id": id },
+            type: "POST",
+            success: function (result) {
+                if (result.success) {
+
+                    swal("Bạn có muốn xóa thông tin màu sắc này không?", {
+                        title: 'Thông Báo!',
+                        icon: 'info',
+                        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                    }).then(function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                        url: "/Color/Delete",
+                        data: { "Id": id },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                // Thành công, làm gì đó ở đây
+                                swal("Thành công", "Bạn đã xóa thành công", "success");
+
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            } else {
+                                // Lỗi, hiển thị thông báo lỗi
+                                swal("Thành công!", "Bạn đã xóa thành công", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert(error);
+                        }
+                    });
+                        } else {
+                            swal("Đã hủy", "Xóa không thành công!", "error");
+                        }
+                    });
+
+
+                    
+                } else {
+                    swal("Xin lỗi", "Màu này đã được sử dụng.", "error");
+                }
+            },
+            error: function (xhr, status, error) {
+                // Lỗi, hiển thị thông báo lỗi
+                alert(error);
+            }
+        });
+    }
     $(document).ready(function () {
 
         var er = document.getElementById('error')
