@@ -49,10 +49,10 @@ namespace GProject.WebApplication.Controllers
                 ViewBag.Error = "Đăng nhập không thành công! Vui lòng nhập lại thông tin đăng nhập!";
                 //--Kiểm tra dữ liệu đầu vào
                 var Employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
-                Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password && c.Status == 0);
+                Employee Emp = Employees.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password && c.Status == 1);
 
                 var Customers = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
-                Customer Cus = Customers.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password);
+                Customer Cus = Customers.FirstOrDefault(c => c.Email.ToLower() == user.Email.ToLower() && c.Password == user.password && c.Status == 1);
                 if (Emp != null)
                 {
                     Commons.setObjectAsJson(HttpContext.Session, "userLogin", Emp);
@@ -177,10 +177,10 @@ namespace GProject.WebApplication.Controllers
 					PhoneNumber = "",
 					Sex = 0,
 					Address = "",
-					Status = 0,
+					Status = 1,
 					Description = "",
 					GoogleId = "",
-					Image = ""
+					Image = "_customer.png"
 				};
 				//-- Gửi request cho api sử lí
 				bool result = await Commons.Add_or_UpdateAsync(existCus, Commons.mylocalhost + "Customer/add-Customer");
@@ -265,7 +265,7 @@ namespace GProject.WebApplication.Controllers
                     PhoneNumber = Customer.PhoneNumber,
                     Sex = Customer.Sex,
                     Address = Customer.Address,
-                    Status = 0,
+                    Status = 1,
                     Description = Customer.Description,
                     Image = image
                 };

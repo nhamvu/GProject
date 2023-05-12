@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <label class="col-md-5">Ngày sinh:<span style="color: red">(*)</span></label>
-                    <input id="DateOfBirth" name="DateOfBirth" type="date" value="<?php echo date('Y-m-d'); ?>"
+                    <input id="DateOfBirth" name="DateOfBirth" type="datetime-local" value="<?php echo date('Y-m-d'); ?>"
                         maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
@@ -104,8 +104,8 @@
                     <label>Trạng thái</label><span style="color: red">(*)</span>
                     <div>
                         <select id="Status" name="Status" class="form-control">
-                            <option value="0">Bình thường</option>
-                            <option value="1">Đáng chú ý</option>
+                            <option value="1">Hoạt động</option>
+                            <option value="0">Không hoạt động</option>
                         </select>
                     </div>
                 </div>
@@ -158,8 +158,8 @@
                                         @Html.DropDownList("sStatus",new[]
                                         {
                                         new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
-                                        new SelectListItem{Text="Bình thường", Value="0", Selected= (status== 0)},
-                                        new SelectListItem{Text="Đáng chú ý", Value="1", Selected= (status == 1)}
+                                        new SelectListItem{Text="Không hoạt động", Value="0", Selected= (status== 0)},
+                                        new SelectListItem{Text="Hoạt động", Value="1", Selected= (status == 1)}
                                         }, new { @name = "sStatus", @class="searchText form-control select"})
                                     </div>
                                 </div>
@@ -245,7 +245,7 @@
                                             @(item.Sex == 0 ? "Nam" : "Nữ")
                                         </td>
                                         <td>
-                                            @(item.Status == 1 ? "Bình thường" : "Đáng chú ý")
+                                            @(item.Status == 1 ? "Hoạt động" : "Không hoạt động")
                                         </td>
                                         <td>
                                             <button class="btn btn-info" onclick="ViewCustomerDetail('@item.Id')">
@@ -362,7 +362,7 @@
             $("#Email").val(data.email);
             $("#Status").val(data.status);
             $("#Id").val(data.id);
-            $("#DateOfBirth").val(new Date(data.dateOfBirth));
+            $("#DateOfBirth").val(data.dateOfBirth);
             $("#PhoneNumber").val(data.phoneNumber);
             $("#Sex").val(data.sex);
             $("#Address").val(data.address);

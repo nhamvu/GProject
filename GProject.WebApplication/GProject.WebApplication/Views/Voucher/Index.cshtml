@@ -266,7 +266,7 @@
                                             @(item.Status == 1 ? "Tất cả" : item.Status == 2 ? "Giới hạn" : "Không sử dụng")
                                         </td>
                                         <td>
-                                            <button class="btn btn-info" onclick="ViewDetailData(@item.Id)">
+                                            <button class="btn btn-info" onclick="ViewDetailDataVoucher(@item.Id)">
                                                 <i class="fas fa-pen-square" aria-hidden="true"></i>
                                             </button>
                                         </td>
@@ -399,7 +399,7 @@
             }
         })
     }
-    function ViewDetailData(id) {
+    function ViewDetailDataVoucher(id) {
         $('#formdata').show();
         $("#changeform").text("Hủy thay đổi");
         $.getJSON("/Voucher/Detail?id=" + id, function (data) {

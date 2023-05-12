@@ -136,9 +136,9 @@
                     <div style="margin-top:10px;">
                         @Html.DropDownList("Status", new[]
                         {
-                        new SelectListItem{Text="0 - Đang làm việc", Value="0", Selected = (Model.Status != null ?
+                        new SelectListItem{Text="Đang làm việc", Value="1", Selected = (Model.Status != null ?
                         (Model.Status == 0) : true)},
-                        new SelectListItem{Text="1 - Đã nghỉ việc", Value="1", Selected = (Model.Status != null ?
+                        new SelectListItem{Text="Đã nghỉ việc", Value="0", Selected = (Model.Status != null ?
                         (Model.Status == 1) : false)}
                         }, new { @class = "form-control iscompany" })
                     </div>
@@ -188,8 +188,8 @@
                                         @Html.DropDownList("sStatus",new[]
                                         {
                                         new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
-                                        new SelectListItem{Text="Đang làm việc", Value="0", Selected= (status== 0)},
-                                        new SelectListItem{Text="Đã nghỉ việc", Value="1", Selected= (status == 1)}
+                                        new SelectListItem{Text="Đang làm việc", Value="1", Selected= (status== 0)},
+                                        new SelectListItem{Text="Đã nghỉ việc", Value="0", Selected= (status == 1)}
                                         }, new { @name = "sStatus", @class="searchText form-control select"})
                                     </div>
                                 </div>
@@ -294,7 +294,7 @@
                                             @(item.Sex == 0 ? "Nam" : "Nữ")
                                         </td>
                                         <td>
-                                            @(item.Status == 1 ? "Đã nghỉ việc" : "Đang làm việc")
+                                            @(item.Status == 0 ? "Đã nghỉ việc" : "Đang làm việc")
                                         </td>
                                         <td>
                                             <button class="btn btn-info" onclick="ViewEmployeeDetail('@item.Id')">

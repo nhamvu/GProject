@@ -368,7 +368,7 @@ namespace GProject.WebApplication.Controllers
                             PhoneNumber = ShippingPhone,
                             Sex = 0,
                             Address = ShippingAddress,
-                            Status = 0,
+                            Status = 1,
                             Description = null,
                             Image = "_customer.png"
                         };
@@ -536,7 +536,7 @@ namespace GProject.WebApplication.Controllers
                             PhoneNumber = ShippingPhone,
                             Sex = 0,
                             Address = ShippingAddress,
-                            Status = 0,
+                            Status = 1,
                             Description = null,
                             Image = "_customer.png"
                         };
