@@ -41,7 +41,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Danh mục</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Kích cỡ</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="Clear()"
                         aria-label="Close"></button>
                 </div>
@@ -168,9 +168,12 @@
                                             @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
                                         </td>
                                         <td>
-                                            <button class="btn btn-info" onclick="ViewDetailData(@item.Id)">
+                                            <button class="btn btn-info" onclick="ViewDetailDataSize(@item.Id)">
                                                 <i class="fas fa-pen-square" aria-hidden="true"></i>
-                                            </button>  
+                                            </button>
+                                            <button class="btn btn-danger delete" onclick="deleteObject('@item.Id')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
                                         </td>
                                     </tr>
                                 }
@@ -196,11 +199,58 @@
         </div>
     </div>
 </div>
-   
-
-
-
 <script type="text/javascript">
+    function deleteObject(id) {
+        $.ajax({
+            url: "/Size/CheckExistId",
+            data: { "Id": id },
+            type: "POST",
+            success: function (result) {
+                if (result.success) {
+
+                    swal("Bạn có muốn xóa thông tin kích cỡ này không?", {
+                        title: 'Thông Báo!',
+                        icon: 'info',
+                        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                    }).then(function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                        url: "/Size/Delete",
+                        data: { "Id": id },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                swal("Thành công", "Bạn đã xóa thành công", "success");
+
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            } else {
+                                swal("Thành công!", "Bạn đã xóa thành công", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert(error);
+                        }
+                    });
+                        } else {
+                            swal("Đã hủy", "Xóa không thành công!", "error");
+                        }
+                    });                   
+                } else {
+                    swal("Xin lỗi", "Kích cỡ này đã được sử dụng.", "error");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert(error);
+            }
+        });
+    }
     $(document).ready(function () {
         var er = document.getElementById('error')
         if (er != null) {
@@ -238,7 +288,7 @@
             //});
         }
     });
-    function ViewDetailData(id) {
+    function ViewDetailDataSize(id) {
         $("#exampleModal").modal('show');
         $.getJSON("/Size/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);

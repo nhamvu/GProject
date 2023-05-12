@@ -1,6 +1,6 @@
 ﻿@model GProject.WebApplication.Models.DeliveryAddressAndShippingFee.DeliveryAddressDto
 
-@Model
+
 <div class="modal fade" id="showDataDeliveryAddress" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" style=" background-color:white; max-width:900px">
         <div class="modal-content">
@@ -10,30 +10,30 @@
             </div>
             <div class="modal-body">
                 <div style="margin-left: 15px">
-                    <button class="btn btn-primary col-md-2" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
+                    <button class="btn btn-success col-md-2" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
                     <form id="formdata" class="form" enctype="multipart/form-data" style="margin-top: -20px">
                         <input id="txtId" value="0" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
                         <div class="row mt-5">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Họ và tên:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
+                                    <label >Họ và tên:<span style="color: red">(*)</span></label>
+                                    <div class="col-sm-12" style="margin-top: 10px; margin-bottom: 10px">
                                         <input type="text" id="ShippingFullName" name="ShippingFullName" value="" placeholder="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Số điện thoại:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
+                                    <label >Số điện thoại:<span style="color: red">(*)</span></label>
+                                    <div class="col-sm-12" style="margin-top: 10px; margin-bottom: 10px">
                                         <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Tỉnh/Thành phố:</strong></label>
-                                    <div class="col-sm-12">
+                                    <label >Tỉnh/Thành phố:</label>
+                                    <div class="col-sm-12" style="margin-top: 10px; margin-bottom: 10px">
                                         <select id="selectProvince" class="form-select">
                                             <option></option>
                                         </select>
@@ -42,8 +42,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Quận/Huyện:</strong></label>
-                                    <div class="col-sm-12">
+                                    <label >Quận/Huyện:</label>
+                                    <div class="col-sm-12" style="margin-top: 10px; margin-bottom: 10px">
                                         <select id="selectDistrict" class="form-select">
                                         </select>
                                     </div>
@@ -51,8 +51,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Phường/Xã:</strong></label>
-                                    <div class="col-sm-12">
+                                    <label >Phường/Xã:</label>
+                                    <div class="col-sm-12" style="margin-top: 10px; margin-bottom: 10px">
                                         <select id="selectWards" class="form-select">
                                         </select>
                                     </div>
@@ -60,14 +60,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label col-sm-5"><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
+                                    <label >Địa chỉ chi tiết:<span style="color: red">(*)</span></label>
+                                    <div class="col-sm-12" style="margin-top: 10px; margin-bottom: 10px">
                                         <input type="text" id="ShippingAddress" name="ShippingAddress" value="" class="form-control" />
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <strong><label></label></strong>
+                                <label></label>
                                 <div class="form-input">
                                     <a class="btn btn-success" onclick="SaveDeliveryAddress()" style="height:40px;width:110px;">
                                         <i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>
@@ -111,7 +111,6 @@
 <script>
     $(document).ready(function () {
         $('#formdata').hide();
-        alert("a");
         LoadProvince();
         LoadDataTable();
         LoadDistrict();

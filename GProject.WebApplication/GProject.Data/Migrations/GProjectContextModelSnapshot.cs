@@ -757,7 +757,7 @@ namespace GProject.Data.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(15)");
 
-                    b.Property<DateTime>("PaymentDate")
+                    b.Property<DateTime?>("PaymentDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PaymentType")

@@ -47,40 +47,42 @@
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-users" aria-hidden="true" style="margin-right:10px;"></i>THÔNG TIN KHÁCH HÀNG</h3>
+            <h3 class="panel-title" style="text-align:center; height:50px; padding:10px 10px 10px 10px;">
+                Thông tin khách hàng
+            </h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
                 <table class="table table-bordered">
                     <tr>
                         <th style="width:300px;">Thông tin</th>
-                        <td><h5><strong>Thông tin liên quan</strong></h5></td>
+                        <td><label>Thông tin liên quan</label></td>
                     </tr>
                     <tr>
                         <th>Tên khách hàng</th>
-                        <td><h5><strong>@OrderData.ShippingFullName.NullToString()</strong></h5></td>
+                        <td><label>@OrderData.ShippingFullName.NullToString()</label></td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td><h5><strong>@OrderData.ShippingEmail.NullToString()</strong></h5></td>
+                        <td><label>@OrderData.ShippingEmail.NullToString()</label></td>
                     </tr>
                     <tr>
                         <th>Địa chỉ</th>
-                        <td><h5><strong>@OrderData.ShippingAddress.NullToString()</strong></h5></td>
+                        <td><label>@OrderData.ShippingAddress.NullToString()</label></td>
                     </tr>
                     <tr>
                         <th>Ngày đặt</th>
-                        <td><h5><strong>@OrderData.CreateDate.NullToString()</strong></h5></td>
+                        <td><label>@OrderData.CreateDate.NullToString()</label></td>
                     </tr>
                     <tr>
                         <th>Phí ship</th>
-                        <td><h5><strong>@string.Format("{0:0,0} VNĐ", OrderData.ShippingFee)</strong></h5></td>
+                        <td><label>@string.Format("{0:0,0} VNĐ", OrderData.ShippingFee)</label></td>
                     </tr>
                     <tr>
                         <th>Trạng thái</th>
                         <td>
-                            <h5>
-                                <strong>
+                            <label>
+                                
                                     @{
                                         switch ((int)OrderData.Status)
                                         {
@@ -104,8 +106,8 @@
                                                 break;
                                         }
                                     }
-                                </strong>
-                            </h5>
+                                
+                            </label>
                         </td>
                     </tr>
                     <tr>
@@ -121,7 +123,9 @@
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-recycle" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH SẢN PHẨM ĐẶT HÀNG</h3>
+            <h3 class="panel-title" style="text-align:center; height:50px; padding:10px 10px 10px 10px;">
+                Danh sách đơn đặt hàng
+            </h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">

@@ -67,7 +67,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
         nameByNow = "buyFormData";
         checkByNow = 1;
     }
-
+     var idproduct = ViewBag.productId;
 }
 
 
@@ -77,6 +77,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 <link href="/AdminContent/css/style.min.css" rel="stylesheet">
 
 <div style="margin-top: 200px;">
+
 @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
@@ -179,21 +180,32 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                     foreach (var item in Model.Item2.Select(c => c.ColorId).Distinct().ToList())
                                     {
                                         string im = Model.Item2.Where(c => c.ColorId == item && c.ProductId == Model.Item1.Id).Select(c => c.Image).FirstOrDefault().NullToString();
-                                        <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="padding: 0 5px 0 5px;" href="/productdetail/@item/@Model.Item1.Id">
-                                            @(lstColor.FirstOrDefault(c => c.Id == item).Name.NullToString())
-                                        </button>
+                                        
+                                        var dataColor = lstColor.Where(x => x.Status == 1 && x.Id == item).FirstOrDefault();
+
+                                        @if (dataColor != null )
+                                        {
+                                            <button type="button" value="@item" id="btnColor" onclick="changeImageProd('@im')" style="padding: 0 5px 0 5px;" href="/productdetail/@item/@Model.Item1.Id">
+                                                @(dataColor.Name.NullToString())
+                                            </button>
+                                        }                                        
                                     }
                                 }
                             </h4>
                             <h4 class="si-class">
                                 Size:
                                 @{
-
                                     foreach (var item in Model.Item2.Select(c => c.SizeId).Distinct().ToList())
                                     {
-                                        <button type="button" value="@item" id="btnSize" style="padding: 0 9px 0 9px;" >
-                                            @(lstSize.FirstOrDefault(c => c.Id == item).Code.NullToString())
-                                        </button>
+                                        var dataSize = lstSize.Where(x => x.Status == 1 && x.Id == item).FirstOrDefault();
+                                        var dataProductVariationSize = lstProductvariation.Where(x => x.ProductId == idproduct && x.SizeId == item && x.QuantityInStock > 0).FirstOrDefault();
+                                        @if (dataSize != null && dataProductVariationSize != null)
+                                        {
+                                            <button type="button" value="@item" id="btnSize" style="padding: 0 9px 0 9px;" >
+                                                @(dataSize.Code.NullToString())
+                                            </button>
+                                        }
+                                        
                                     }
                                 }
                             </h4>
@@ -353,6 +365,8 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
     </div>
 }
+
+
 
 <div class="modal" id="OrderModal" role="dialog">
     <div class="modal-dialog modal-md" style="text-align:left; background-color:white; max-width:900px">

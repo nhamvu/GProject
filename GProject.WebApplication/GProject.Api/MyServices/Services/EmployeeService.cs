@@ -71,6 +71,7 @@ namespace GProject.Api.MyServices.Services
             temp.Address = cv.Address;
             temp.Description = cv.Description;
             temp.Image = cv.Image;
+            temp.Status = cv.Status;
             if (_iEmployeeRepository.Update(temp))
             {
                 return true;

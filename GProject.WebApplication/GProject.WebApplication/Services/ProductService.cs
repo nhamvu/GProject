@@ -27,7 +27,13 @@ namespace GProject.WebApplication.Services
             var data = lstProducts.Where(x => x.Status != 1)
                .Join(lstBrand, a => a.BrandId, b => b.Id, (a, b) => new { a, b })
                .Join(lstCategory, ab => ab.a.CategoryId, c => c.Id, (ab, c) => new { ab, c })
-               .Select(i => new { Product = i.ab.a, Brand = i.ab.b, Category = i.c, ProductVariations = lstProductvariation.Where(c => c.ProductId == i.ab.a.Id).ToList() });
+               .Select(i => new
+               {
+                   Product = i.ab.a,
+                   Brand = i.ab.b,
+                   Category = i.c,
+                   ProductVariations = lstProductvariation.Where(c => c.ProductId == i.ab.a.Id).ToList()
+               }).Where(x => x.Brand.Status == 1 && x.Category.Status == 1);
             return Commons.ConverObject<List<ProductDTO>>(data);
         }
 

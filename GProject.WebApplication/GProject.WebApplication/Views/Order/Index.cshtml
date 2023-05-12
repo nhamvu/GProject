@@ -57,6 +57,8 @@
     }
 </style>
 
+<div class="container">
+    
 @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
@@ -68,40 +70,46 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-6">
-
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label class="col-md-12 control-label">Tên khách hàng</label>
-                                <div class="col-md-9 col-xs-12">
+                                <label class="">Tên khách hàng</label>
+                                <div class="col--12">
                                     <input type="text" id="sName" name="sName" value="@ViewData["sName"]"
                                         class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-12 control-label">Email</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
-                                        class="form-control" />
+                                <label>Trạng thái</label>
+                                <div class="col-12">
+                                    <select name="sortOrder" id="sortOrder" class="form-select">
+                                        <option value="">-- Tất cả --</option>
+                                        <option value="@ViewData["InProgress"]">Chờ xác nhận</option>
+                                        <option value="@ViewData["XacNhan"]">Đã xác nhận</option>
+                                        <option value="@ViewData["Confirmed"]">Đang vận chuyển</option>
+                                        <option value="@ViewData["Delivery"]">Đang giao hàng</option>
+                                        <option value="@ViewData["Accomplished"]">Hoàn thành</option>
+                                        <option value="@ViewData["Canceled"]">Đã hủy</option>                   
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="col-md-12 control-label">Số điện thoại</label>
-                                <div class="col-md-9 col-xs-12">
+                                <label class="">Số điện thoại</label>
+                                <div class="col-12">
                                     <input type="text" id="sPhone" maxlength="10" name="sPhone"
                                         value="@ViewData["sPhone"]" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-12 control-label">Hình thức thanh toán</label>
-                                <div class="col-md-9">
+                                <label class="">Hình thức thanh toán</label>
+                                <div class="col-md-12">
                                     @{
                                         int gender = int.Parse(Html.Encode(ViewData["sPaymentType"]));
                                     }
                                     @Html.DropDownList("sPaymentType",new[]
                                     {
-                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (gender== -1)},
+                                    new SelectListItem{Text="-- Tất cả --", Value="-1", Selected= (gender== -1)},
                                     new SelectListItem{Text="Thanh toán khi nhận hàng", Value="0", Selected= (gender==
                                     0)},
                                     new SelectListItem{Text="Thanh toán ngay khi đặt hàng", Value="1", Selected= (gender
@@ -110,17 +118,30 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label class="">Email</label>
+                                <div class="col--12">
+                                    <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
+                                        class="form-control" />
+                                </div>
+                            </div>                            
+                        </div>
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i
-                            class="fa fa-search"></i>Tìm kiếm</button>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <a class="btn btn-outline-info" asp-action="Index">
+                        <i class="fas fa-undo-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </form>
-<div class="row" style="margin-top: 25px;margin-bottom: 15px;">
+@* <div class="row" style="margin-top: 25px;margin-bottom: 15px;">
     <div class="col-md-2"></div>
     <div class="col-md-10">
         <a class="btn btn-outline-primary totalStatus" style="margin-left:10px" asp-action="Index"
@@ -149,13 +170,14 @@
         </a>
         <a class="btn btn-outline-info" style="margin-left:10px" asp-action="Index"><i class="fas fa-undo-alt"></i></a>
     </div>
-</div>
+</div> *@
 <hr style="color:red;" />
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title"
-                style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-recycle" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH ĐƠN ĐẶT HÀNG
+                style="text-align:center; height:50px; padding:10px 10px 10px 10px;">
+                Danh sách đơn đặt hàng
             </h3>
         </div>
         <div class="panel-body">
@@ -289,6 +311,7 @@
     </div>
 </div>
 
+</div>
 
 
 <script type="text/javascript">

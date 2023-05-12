@@ -45,7 +45,7 @@ List<GProject.Data.DomainClass.ViewHistory>>
 					Selected = "-1" == brand.ToString(),
 				});
 
-		foreach (var br in lstBrand.Distinct())
+		foreach (var br in lstBrand.Distinct().Where(x => x.Status == 1))
 		{
 			if (StoreItems.FirstOrDefault(c => c.Value == br.Id.ToString()) == null)
 			{
@@ -71,7 +71,7 @@ List<GProject.Data.DomainClass.ViewHistory>>
 					Selected = "-1" == category.NullToString(),
 				});
 
-		foreach (var br in lstCategory)
+		foreach (var br in lstCategory.Where(x => x.Status == 1))
 		{
 			CategoryItems.Add(new SelectListItem()
 					{
@@ -91,7 +91,7 @@ List<GProject.Data.DomainClass.ViewHistory>>
 		<div class="row align-items-center fill_height">
 			<div class="col">
 				<div class="main_slider_content">
-					<h6>Spring / Summer Collection 2017</h6>
+					<h6>Bộ sưu tập đa dạng</h6>
 					<h1>Get up to 30% Off New Arrivals</h1>
 				</div>
 			</div>
@@ -353,19 +353,19 @@ List<GProject.Data.DomainClass.ViewHistory>>
 					<ul class="timer">
 						<li class="d-inline-flex flex-column justify-content-center align-items-center">
 							<div id="day" class="timer_num">03</div>
-							<div class="timer_unit">Day</div>
+							<div class="timer_unit">Ngày</div>
 						</li>
 						<li class="d-inline-flex flex-column justify-content-center align-items-center">
 							<div id="hour" class="timer_num">15</div>
-							<div class="timer_unit">Hours</div>
+							<div class="timer_unit">Giờ</div>
 						</li>
 						<li class="d-inline-flex flex-column justify-content-center align-items-center">
 							<div id="minute" class="timer_num">45</div>
-							<div class="timer_unit">Mins</div>
+							<div class="timer_unit">Phút</div>
 						</li>
 						<li class="d-inline-flex flex-column justify-content-center align-items-center">
 							<div id="second" class="timer_num">23</div>
-							<div class="timer_unit">Sec</div>
+							<div class="timer_unit">Giây</div>
 						</li>
 					</ul>
 				</div>

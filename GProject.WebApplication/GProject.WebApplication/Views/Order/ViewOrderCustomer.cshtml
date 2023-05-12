@@ -237,11 +237,11 @@
                                             </div>
                                             <div class="col-6">
                                                 @{
-                                                    if (item.PaymentType == PaymentType.PayReceive)
+                                                    if (item.PaymentDate == null)
                                                     {
                                                         <h5 class="text-primary">Chưa thanh toán</h5>
                                                     }
-                                                    else if (item.Status == OrderStatus.Accomplished || item.PaymentType == PaymentType.PayOrder)
+                                                    else if (item.Status == OrderStatus.Accomplished || item.PaymentDate != null)
                                                     {
                                                         <h5 class="text-primary">Đã thanh toán</h5>
                                                     }

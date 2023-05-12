@@ -95,7 +95,14 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Thời hạn:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Ngày bắt đầu:<span style="color: red">(*)</span></label>
+                    <div class="form-input">
+                        <input type="datetime-local" value="<?php echo date('Y-m-d'); ?>" asp-for="CreateDate"
+                            id="CreateDate" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Ngày kết thúc:<span style="color: red">(*)</span></label>
                     <div class="form-input">
                         <input type="datetime-local" value="<?php echo date('Y-m-d'); ?>" asp-for="ExpirationDate"
                             id="ExpirationDate" class="form-control" />
@@ -104,11 +111,6 @@
                 <div class="col-md-4">
                     <label>Trạng thái</label><span style="color: red">(*)</span>
                     <div style="margin-top:10px;">
-                        @* <select class = "form-control iscompany" asp-for="Status" name="Status" id="Status">
-                        <option value="1">Tất cả</option>
-                        <option value="2">Giới hạn</option>
-                        <option value="0">Không sử dụng</option>
-                        </select> *@
                         @Html.DropDownList("Status", new[]
                         {
                         new SelectListItem{Text="Tất cả", Value="1", Selected = (Model.Status != null ? (Model.Status ==
@@ -218,9 +220,9 @@
                                 <th>Giảm tối đa</th>
                                 <th>Số lượng</th>
                                 <th>Số tiền tối thiểu</th>
-                                <th>Thời hạn</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày kết thúc</th>
                                 <th>Trạng thái</th>
-                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -253,6 +255,9 @@
                                         </td>
                                         <td>
                                             @item.MinimumOrder
+                                        </td>
+                                        <td>
+                                            @item.CreateDate
                                         </td>
                                         <td>
                                             @item.ExpirationDate
@@ -410,6 +415,7 @@
             $("#DiscountForm").val(data.discountForm);
             $("#NumberOfVouchers").val(data.numberOfVouchers);
             $("#MinimumOrder").val(data.minimumOrder);
+            $("#CreateDate").val(data.createDate);
             $("#ExpirationDate").val(data.expirationDate);
             $("#MaximumDiscount").val(data.maximumDiscount);
             $("#Status").val(data.status);
@@ -453,8 +459,16 @@
             return false;
         }
         if ($('#ExpirationDate').val() == '') {
-            sweetAlert("Thông báo", "Thông tin thời hạn không được để trống", "error");
+            sweetAlert("Thông báo", "Thông tin ngày kết thúc không được để trống", "error");
             return false;
+        }
+        if ($('#CreateDate').val() == '') {
+            sweetAlert("Thông báo", "Thông tin ngày bắt đầu không được để trống", "error");
+            return false;
+        }
+        if (new Date($('#ExpirationDate').val()) < new Date($('#CreateDate').val())){
+            sweetAlert("Thông báo", "Ngày bắt đầu không được lớn hơn ngày kết thúc", "error");
+            return 
         }
         return true;
     }
@@ -465,6 +479,7 @@
         $("#DiscountForm").val('');
         $("#NumberOfVouchers").val(0);
         $("#MinimumOrder").val(0);
+        $("#CreateDate").val('');
         $("#ExpirationDate").val('');
         $("#Status").val(1);
         $("#Id").val('');
