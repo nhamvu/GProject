@@ -601,8 +601,7 @@
         $('#OrderModal').modal('hide');
     }
 
-    function ShippingFee(district_id, ward_code) {
-        debugger
+    function ShippingFee(district_id, ward_code) {      
         $.ajax({
             url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
             type: "GET",
