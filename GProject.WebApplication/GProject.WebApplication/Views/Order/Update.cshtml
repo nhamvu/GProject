@@ -252,6 +252,14 @@
                                                 class="form-control" />
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label><strong>Tỉnh/Thành phố:</strong></label>
+                                        <div class="col-sm-12">
+                                            <select id="selectProvince" class="form-select">
+                                                <option></option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -261,6 +269,13 @@
                                         <div class="col-sm-12">
                                             <input type="text" asp-for="ShippingDistrict" readonly placeholder=""
                                                 class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label><strong>Quận/Huyện:</strong></label>
+                                        <div class="col-sm-12">
+                                            <select id="selectDistrict" class="form-select">
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -274,6 +289,13 @@
                                                 class="form-control" />
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <label><strong>Phường/Xã:</strong></label>
+                                        <div class="col-sm-12">
+                                            <select id="selectWards" class="form-select">
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
@@ -281,14 +303,14 @@
                                             Địa chỉ chi tiết:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingAddress" readonly placeholder=""
+                                            <input type="text" onclick="ClickShip()" asp-for="ShippingAddress" readonly placeholder=""
                                                 class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-outline-success col-md-3" onclick="ChangeAddress()"><i
-                                    class="fas fa-check-double" style="margin-right:10px;"></i>Thay đổi địa chỉ</button>
+                            <button type="button" class="btn btn-outline-success col-md-3" onclick="SaveChangeAddress()">
+                                <i class="fas fa-check-double" style="margin-right:10px;"></i>Thay đổi địa chỉ</button>
                         </div>
                     </div>
                     <br />
@@ -400,7 +422,7 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="showDataDeliveryAddress" tabindex="-1" aria-labelledby="exampleModalLabel"
+@*<div class="modal fade" id="showDataDeliveryAddress" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" style=" background-color:white; max-width:900px">
         <div class="modal-content">
@@ -466,14 +488,14 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 <script>
     $(document).ready(function () {
         LoadProvince();
         LoadDataTable();
         LoadDistrict();
         LoadWard();
-        loadMoney();
+        
 
         $("input.quantity").change(function () {
             if (checkQuantityInstock($(this))) {
@@ -484,6 +506,7 @@
                 ChangeQuantity($(this));
             }
         });
+
 
         $('input.quantity').keyup(function () {
             let regex = /^[0-9]+$/;
@@ -523,6 +546,11 @@
             swal("Không thành công", messerror, "error");
         }
     });
+
+    function ClickShip(){
+        debugger
+        ShippingFee($("#selectDistrict").val(), $("#selectWards").val());
+    }
 
     function RemoveProduct(id, prodId) {
         var countProducts = $('.tableprod tbody tr').length;
@@ -574,6 +602,7 @@
     }
 
     function ShippingFee(district_id, ward_code) {
+        debugger
         $.ajax({
             url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
             type: "GET",
