@@ -514,13 +514,29 @@ Lưu
 
 
         $("input.quantity").change(function () {
-            if (checkQuantityInstock($(this))) {
-                var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/,/g, '');
-                var _quantityVal = parseFloat($(this).val()) || 0;
-                $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
-                loadMoney();
-                ChangeQuantity($(this));
-            }
+            swal({
+                title: "Xác nhận thay đổi",
+                text: "Bạn có chắc chắn muốn thay đổi số lượng sản phẩm này?",
+                icon: "warning",
+                buttons: ["Hủy", "Xác nhận"],
+                primaryMode: true,
+            })
+                .then((willChange) => {
+                    if (willChange) {
+                        if (checkQuantityInstock($(this))) {
+                            var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/\./g, '');
+                            var _quantityVal = parseFloat($(this).val()) || 0;
+                            $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
+                            loadMoney();
+                            ChangeQuantity($(this));
+                        }
+                    }
+                    else{
+                            var _Originalquantity = parseInt($(this).parents("tr").find("input[type=text].itemOriginalQuantityInstock").val()) || 0;
+                            $(this).val(_Originalquantity);
+                    }
+                });
+            
         });
 
 
@@ -535,28 +551,43 @@ Lưu
                 var $this = $(this),
                     qty = $this.parent().find('.is-form'),
                     min = Number($this.attr('min')),
-                    max = Number($this.attr('max'))
+                    max = Number($this.attr('max'));
                 if (min == 0) {
-                    var d = 0
-                } else d = min
+                    var d = 0;
+                } else {
+                    d = min;
+                }
                 $(qty).on('click', function () {
-                    if ($(this).hasClass('minus')) {
-                        if ($this.val() > 1)
-                            $this.val(Number($this.val()) - 1);
-                    } else if ($(this).hasClass('plus')) {
-                        $this.val(Number($this.val()) + 1);
-                    }
-                    //$this.attr('value', d).val(d);
-                    var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/\./g, '');
-                    var _quantityVal = parseFloat($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
-                    $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
-    
-                    loadMoney();
-                    ChangeQuantity($(this));
-                })
+                    var confirmChange = true;
+                    swal({
+                        title: "Xác nhận thay đổi",
+                        text: "Bạn có chắc chắn muốn thay đổi số lượng sản phẩm này?",
+                        icon: "warning",
+                        buttons: ["Hủy", "Xác nhận"],
+                        primaryMode: true,
+                    })
+                        .then((willChange) => {
+                            if (willChange) {
+                                if ($(this).hasClass('minus')) {
+                                    if ($this.val() > 1) {
+                                        $this.val(Number($this.val()) - 1);
+                                    }
+                                } else if ($(this).hasClass('plus')) {
+                                    $this.val(Number($this.val()) + 1);
+                                }
+                                var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/\./g, '');
+                                var _quantityVal = parseFloat($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
+                                $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
+                                loadMoney();
+                                ChangeQuantity($(this));
+                            } else {
+                                confirmChange = false;
+                            }
+                        });
+                });
             }
-
         });
+
 
         var messerror = document.getElementById('messerror')
         if (messerror != null) {
@@ -641,7 +672,7 @@ Lưu
 
         function commasThousands(nStr) {
             nStr += '';
-            nStr = nStr.replace(/,/g, '');
+            nStr = nStr.replace(/\./g, '');
             x = nStr.split('.');
             x1 = x[0];
             x2 = x.length > 1 ? '.' + x[1] : '';

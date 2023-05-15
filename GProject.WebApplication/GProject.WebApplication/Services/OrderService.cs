@@ -20,11 +20,7 @@ namespace GProject.WebApplication.Services
 
             string strUrl = "";
             Guid order_id = Guid.NewGuid();
-            DateTime? order_date = null;
-            if(PaymentType == 1)
-            {
-                order_date = DateTime.Now;
-            }
+            
 
             //Order
             Order order = new Order();
@@ -48,8 +44,10 @@ namespace GProject.WebApplication.Services
             order.Status = GProject.Data.Enums.OrderStatus.InProgress;
             order.VoucherId = selectVoucher;
             order.DiscountRate = Convert.ToSingle(cGiamGia);
-            order.PaymentDate = order_date;
-
+            if (PaymentType == 1)
+            {
+                order.PaymentDate = DateTime.Now;
+            }
             strUrl = String.Concat(Commons.mylocalhost, "Order/add-Order");
             if (!await Commons.Add_or_UpdateAsync(order, strUrl))
                 return false;

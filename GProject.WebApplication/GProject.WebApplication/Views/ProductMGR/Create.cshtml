@@ -251,7 +251,7 @@
                                         </label>
                                         <div class="col-sm-12">
                                             <input type="text" asp-for="ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock" class="form-control quantityInstock" placeholder="0">
-                                            @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
+                                            <input type="text" asp-for="ProductVariationViewModel[i].SizeAndStock[j].Id" hidden="hidden" class="form-control quantityInstock" placeholder="0">
                                         </div>
                                     </div>
                                 }

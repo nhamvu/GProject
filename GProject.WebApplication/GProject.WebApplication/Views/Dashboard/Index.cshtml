@@ -30,7 +30,7 @@
                     <div class="form-group row">
                         <label >Từ</label>
                         <div class="col-md-12">
-                            <input type="date" id="fromDate" name="fromDate" style="margin-top: -5px;" value="@ViewData["fromDate"]" class="form-control" />
+                            <input type="date" id="fromDate" name="fromDate" style="margin-top: -5px; background-color: white; text-align: center;" value="@ViewData["fromDate"]" class="form-control" />
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <div class="form-group row">
                         <label >Đến</label>
                         <div class="col-md-12">
-                            <input type="date" id="toDate" name="toDate" style="margin-top: -5px;" value="@ViewData["toDate"]" class="form-control col-12" />
+                            <input type="date" id="toDate" name="toDate" style="margin-top: -5px; background-color: white; text-align: center;" value="@ViewData["toDate"]" class="form-control col-12" />
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,12 @@
                                     style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                         </div>
                     </li>
-                    <li class="ms-auto"><span class="counter text-success">@(ViewBag.CountOrder) <i class="fa fa-shopping-bag"></i></span></li>
+                    <li class="ms-auto">
+                        <span class="counter text-secondary" title="@(ViewBag.CountOrderInProgress) đơn chờ xác nhận">@(ViewBag.CountOrderInProgress) <i class="fa fa-shopping-bag"></i></span>
+                        <span class="counter text-info" title="@(ViewBag.CountOrderDelivery) đơn đang giao">@(ViewBag.CountOrderDelivery) <i class="fa fa-shopping-bag"></i></span>
+                        <span class="counter text-success" title="@(ViewBag.CountOrderComplete) đơn hoàn thành">@(ViewBag.CountOrderComplete) <i class="fa fa-shopping-bag"></i></span>
+                        <span class="counter text-danger" title="@(ViewBag.CountOrderCanceled) đơn bị hủy">@(ViewBag.CountOrderCanceled) <i class="fa fa-shopping-bag"></i></span>
+                        </li>
                 </ul>
             </div>
         </div>
@@ -92,13 +97,13 @@
                 <h5 class=""><i class="fa fa-users" style="margin-right: 10px;"></i>Số khách hàng</h5>
                 <ul class="list-inline two-part d-flex align-items-center mb-0">
                     <li>
-                        <div id="sparklinedash5">
+                        <div id="sparklinedash3">
                             <canvas width="67" height="30"
                                     style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                         </div>
                     </li>
                     <li class="ms-auto">
-                        <span class="counter text-info">@(ViewBag.CountCustomer) <i class="fa fa-users"></i></span>
+                        <span class="counter text-info" title="@(ViewBag.CountCustomer) khách hàng">@(ViewBag.CountCustomer) <i class="fa fa-users"></i></span>
                     </li>
                 </ul>
             </div>
@@ -114,7 +119,9 @@
                         </div>
                     </li>
                     <li class="ms-auto">
-                        <span class="counter text-info"> @(ViewBag.CountEvaluate) <i class="fa fa-comments" aria-hidden="true"></i> @(ViewBag.CountView) <i class="fa fa-eye" aria-hidden="true"></i> @(ViewBag.CountLike) <i class="fa fa-thumbs-up"></i></span>
+                        <span class="counter text-info" title="@(ViewBag.CountEvaluate) lượt bình luận, đánh giá"> @(ViewBag.CountEvaluate) <i class="fa fa-comments" aria-hidden="true"></i></span>
+                        <span class="counter text-info" title="@(ViewBag.CountView) lượt xem"> @(ViewBag.CountView) <i class="fa fa-eye" aria-hidden="true"></i></span>
+                        <span class="counter text-info" title="@(ViewBag.CountLike) lượt thích"> @(ViewBag.CountLike) <i class="fa fa-thumbs-up"></i></span>
                     </li>
                 </ul>
             </div>
@@ -247,11 +254,12 @@
                     display: true
                 },
                 datalabels: {
+                    display: 'auto',
                     color: '#fff',
                     anchor: 'center',
                     align: 'center',
                     formatter: function (value, context) {
-                        return value.toLocaleString(); // định dạng lại giá trị hiển thị
+                        return value.toLocaleString();
                     }
                 }
             },
@@ -262,6 +270,7 @@
             }
         }
     });
+
 
 
 
