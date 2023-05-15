@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "weOeVC6f9rR3qY4JOPKOMNrIZwYY9TKSQNwUH+2Wo7dVjUcQ1Ef2AxU1s8Hi3xqHx+D8Ttyt0lAcKA2au8Tg1g==",
+  "dgSpecHash": "nDAykZPtt3FS0B/I78U9V+C1ZqKOXqcGlW3bMbjpwAzzi7Rsz8qasuobDnkTt9Jirl6qugBxtif3lZMTFZ5cNw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\Documents\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
+  "projectFilePath": "D:\\GProject\\GProject.WebApplication\\GProject.WebApplication\\GProject.WebApplication.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\easynetq\\7.5.0\\easynetq.7.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
@@ -233,8 +233,8 @@
     "C:\\Users\\Admin\\.nuget\\packages\\twilio.aspnet.core\\5.37.2\\twilio.aspnet.core.5.37.2.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\x.pagedlist\\8.4.7\\x.pagedlist.8.4.7.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\x.pagedlist.mvc.core\\8.4.7\\x.pagedlist.mvc.core.8.4.7.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.16\\microsoft.netcore.app.ref.6.0.16.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.16\\microsoft.windowsdesktop.app.ref.6.0.16.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.16\\microsoft.netcore.app.ref.6.0.16.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.16\\microsoft.aspnetcore.app.ref.6.0.16.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.16\\microsoft.netcore.app.host.win-x64.6.0.16.nupkg.sha512"
   ],
