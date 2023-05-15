@@ -9,7 +9,7 @@ namespace GProject.WebApplication.Controllers
 {
     public class VoucherController : Controller
     {
-        public async Task<IActionResult> Index(string? ten, int? trangthai, float? giamgia_tu, float? giamgia_den, string? hinhthuc)
+        public async Task<IActionResult> Index(string? ma, string? ten, int? trangthai, float? giamgia_tu, float? giamgia_den, string? hinhthuc)
         {
             try
             {
@@ -18,6 +18,7 @@ namespace GProject.WebApplication.Controllers
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
                 ViewData["Ten"] = ten;
+                ViewData["Ma"] = ma;
                 ViewData["trangthai"] = trangthai;
                 ViewData["hinhthuc"] = hinhthuc;
                 ViewData["giamgia_tu"] = giamgia_tu;
@@ -25,8 +26,11 @@ namespace GProject.WebApplication.Controllers
 
                 if (!string.IsNullOrEmpty(ten))
                 {
-                    lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(ten.ToLower())).ToList();
-                    
+                    lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(ten.ToLower())).ToList();                    
+                }
+                if (!string.IsNullOrEmpty(ma))
+                {
+                    lstObjs = lstObjs.Where(c => c.VoucherId.ToLower().Contains(ma.ToLower())).ToList();                    
                 }
                 if (trangthai.HasValue)
                 {

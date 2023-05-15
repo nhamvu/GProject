@@ -547,9 +547,10 @@ Lưu
                         $this.val(Number($this.val()) + 1);
                     }
                     //$this.attr('value', d).val(d);
-                    var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/,/g, '');
+                    var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/\./g, '');
                     var _quantityVal = parseFloat($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
                     $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
+    
                     loadMoney();
                     ChangeQuantity($(this));
                 })
@@ -646,7 +647,7 @@ Lưu
             x2 = x.length > 1 ? '.' + x[1] : '';
             var rgx = /(\d+)(\d{3})/;
             while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                x1 = x1.replace(rgx, '$1' + '.' + '$2');
             }
             return x1 + x2;
         }

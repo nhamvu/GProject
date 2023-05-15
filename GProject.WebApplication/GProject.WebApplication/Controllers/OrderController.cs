@@ -384,6 +384,13 @@ namespace GProject.WebApplication.Controllers
                         
                     }
 
+                    // Commons.setObjectAsJson(HttpContext.Session, "userNotLogin", new Customer()
+                    //     {
+                    //         Name = ShippingFullName,
+                    //         Email = ShippingEmail,
+                    //         Id = _customerId,
+                    //     });
+
                     _ShippingFullName = ShippingFullName;
                     _ShippingPhone = ShippingPhone;
                     _ShippingAddress = ShippingAddress;

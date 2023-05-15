@@ -143,20 +143,17 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Tên mã giảm giá:</label>
+                                    <label class="col-md-3 control-label">Mã giảm giá:</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <input type="text" id="ten" name="ten" value="@ViewData["Ten"]"
+                                        <input type="text" id="ma" name="ma" value="@ViewData["Ma"]"
                                             class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">Trạng thái:</label>
+                                    <label class="col-md-3 control-label">Tên mã giảm giá:</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <select name="trangthai" value="@ViewData["trangthai"]" id="trangthai"
-                                            class="form-select">
-                                            <option value="1">Hoạt động</option>
-                                            <option value="0">Không hoạt động</option>
-                                        </select>
+                                        <input type="text" id="ten" name="ten" value="@ViewData["Ten"]"
+                                            class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -184,8 +181,21 @@
                                     <div class="col-md-9 col-xs-12">
                                         <select value="@ViewData["hinhthuc"]" name="hinhthuc" id="hinhthuc"
                                             class="form-select">
+                                            <option value="">None</option>
                                             <option value="Vnd">Vnd</option>
                                             <option value="%">%</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">Trạng thái:</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <select name="trangthai" value="@ViewData["trangthai"]" id="trangthai"
+                                            class="form-select">
+                                            <option value="">None</option>
+                                            <option value="1">Tất cả</option>
+                                            <option value="2">Giới hạn</option>
+                                            <option value="0">Không sử dụng</option>
                                         </select>
                                     </div>
                                 </div>
