@@ -220,7 +220,7 @@
                                         </div>
                                         <div class="col-sm-2" style="color: red;">
                                             <p>
-                                                @orderDetails.OrderDetail.TotalMoney đ
+                                                @orderDetails.OrderDetail.TotalMoney.ToString("#,##0.##") đ
                                             </p>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@
                                                 <label>Phí ship:</label>
                                             </div>
                                             <div class="col-6">
-                                                <label> @item.ShippingFee đ</label>
+                                                <label> @item.ShippingFee.ToString("#,##0.##") đ</label>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -269,7 +269,7 @@
                                                 <label>Giảm giá:</label>
                                             </div>
                                             <div class="col-6">
-                                                <label> - @item.DiscountRate đ</label>
+                                                <label> - @string.Format("{0:#,##0}",  @item.DiscountRate) đ</label>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -277,7 +277,7 @@
                                                 <h5>Thành tiền:</h5>
                                             </div>
                                             <div class="col-6">
-                                                <h5 style="color: red"> @item.TotalMoney đ</h5>
+                                                <h5 style="color: red"> @item.TotalMoney.ToString("#,##0.##") đ</h5>
                                             </div>
                                         </div>
 

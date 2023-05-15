@@ -34,7 +34,7 @@ namespace GProject.WebApplication.Controllers
                 var data = new SizeDTO() { SizeList = lstObjs };
                 if (page == null) page = 1;
                 var pageNumber = page ?? 1;
-                var pageSize = 5;
+                var pageSize = 8;
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sCode))

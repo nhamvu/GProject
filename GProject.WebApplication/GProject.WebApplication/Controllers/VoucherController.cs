@@ -9,7 +9,7 @@ namespace GProject.WebApplication.Controllers
 {
     public class VoucherController : Controller
     {
-        public async Task<IActionResult> Index(string? ma, string? ten, int? trangthai, float? giamgia_tu, float? giamgia_den, string? hinhthuc)
+        public async Task<IActionResult> Index(string? ma, string? ten, int? trangthai, float? giamgia_tu, float? giamgia_den, string? hinhthuc, int pg = 1)
         {
             try
             {
@@ -52,6 +52,17 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => c.DiscountRate <= giamgia_den && c.DiscountForm == hinhthuc).ToList();
                    
                 }
+
+                const int pageSize = 5;
+                if (pg < 1)
+                    pg = 1;
+                var pager = new Pager(lstObjs.Count(), pg, pageSize);
+                this.ViewBag.Pager = pager;
+                ViewData["pg"] = pg;
+
+                var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
+
+
                 var data = new VoucherDto() { VoucherList = lstObjs.OrderByDescending(x => x.ExpirationDate).ToList() };
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))

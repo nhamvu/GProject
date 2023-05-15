@@ -52,6 +52,7 @@ namespace GProject.WebApplication.Controllers
                 var pager = new Pager(lstObjs.Count(), pg, pageSize);
                 var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
                 this.ViewBag.Pager = pager;
+                ViewData["pg"] = pg;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
