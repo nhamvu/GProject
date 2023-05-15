@@ -13,6 +13,10 @@
     var lstVoucher = await Commons.GetAll<Voucher>(String.Concat(Commons.mylocalhost, "Voucher/get-all"));
     var myVoucher = lstVoucher.FirstOrDefault(c => c.Id == Model.VoucherId);
     string strVoucherId = myVoucher != null ? myVoucher.VoucherId.NullToString() : string.Empty.NullToString();
+
+    string provice = Model.ShippingCity;
+    string district = Model.ShippingDistrict;
+    string ward = Model.ShippingTown;
 }
 <style>
     label {
@@ -50,7 +54,9 @@
         border-left-style: hidden;
         border-bottom-style: hidden;
     }
-    .form-control:disabled, .form-control[readonly] {
+
+    .form-control:disabled,
+    .form-control[readonly] {
         background-color: white;
     }
 </style>
@@ -169,6 +175,10 @@
                     <input asp-for="ShippingFee" hidden="hidden" />
                     <input asp-for="TotalMoney" hidden="hidden" />
 
+                    <input asp-for="ShippingCity" hidden="hidden" />
+                    <input asp-for="ShippingDistrict" hidden="hidden" />
+                    <input asp-for="ShippingTown" hidden="hidden" />
+
                     <!-- Thông tin chúng-->
                     <div class="modal-content justify-content-center" style="border-width:1px;">
                         <div class="panel-heading">
@@ -243,56 +253,59 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>
-                                            Thành phố:<span style="color: red">(*)</span>
-                                        </label>
-                                        <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingCity" readonly placeholder=""
-                                                class="form-control" />
-                                        </div>
+                                    @* <div class="form-group">
+                                    <label>
+                                    Thành phố:<span style="color: red">(*)</span>
+                                    </label>
+                                    <div class="col-sm-12">
+                                    <input type="text" asp-for="ShippingCity" readonly placeholder=""
+                                    class="form-control" />
                                     </div>
+                                    </div> *@
                                     <div class="form-group">
-                                        <label><strong>Tỉnh/Thành phố:</strong></label>
+                                        <label>Tỉnh/Thành phố:</label>
                                         <div class="col-sm-12">
                                             <select id="selectProvince" class="form-select">
-                                                <option></option>
+                                                <option value="">@Model.ShippingCity</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>
-                                            Quận, Huyện:<span style="color: red">(*)</span>
-                                        </label>
-                                        <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingDistrict" readonly placeholder=""
-                                                class="form-control" />
-                                        </div>
+                                    @* <div class="form-group">
+                                    <label>
+                                    Quận, Huyện:<span style="color: red">(*)</span>
+                                    </label>
+                                    <div class="col-sm-12">
+                                    <input type="text" asp-for="ShippingDistrict" readonly placeholder=""
+                                    class="form-control" />
                                     </div>
+                                    </div> *@
                                     <div class="form-group">
-                                        <label><strong>Quận/Huyện:</strong></label>
+                                        <label>Quận/Huyện:</label>
                                         <div class="col-sm-12">
-                                            <select id="selectDistrict" class="form-select">
+                                            <select id="selectDistrict"  class="form-select">
+                                                <option value="">@Model.ShippingDistrict</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>
-                                            Phường, Xã:<span style="color: red">(*)</span>
-                                        </label>
-                                        <div class="col-sm-12">
-                                            <input type="text" asp-for="ShippingTown" readonly placeholder=""
-                                                class="form-control" />
-                                        </div>
+                                    @* <div class="form-group">
+                                    <label>
+                                    Phường, Xã:<span style="color: red">(*)</span>
+                                    </label>
+                                    <div class="col-sm-12">
+                                    <input type="text" asp-for="ShippingTown" readonly placeholder=""
+                                    class="form-control" />
                                     </div>
+                                    </div> *@
                                     <div class="form-group">
-                                        <label><strong>Phường/Xã:</strong></label>
+                                        <label>Phường/Xã:</label>
                                         <div class="col-sm-12">
-                                            <select id="selectWards" class="form-select">
+                                            <select onchange="CheckShip()" id="selectWards"
+                                                class="form-select">
+                                                <option>@Model.ShippingTown</option>
                                             </select>
                                         </div>
                                     </div>
@@ -303,13 +316,14 @@
                                             Địa chỉ chi tiết:<span style="color: red">(*)</span>
                                         </label>
                                         <div class="col-sm-12">
-                                            <input type="text" onclick="ClickShip()" asp-for="ShippingAddress" readonly placeholder=""
+                                            <input id="ShippingAddress" style="margin-top: -2px;" asp-for="ShippingAddress" placeholder=""
                                                 class="form-control" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-outline-success col-md-3" onclick="SaveChangeAddress()">
+                            <button type="button" class="btn btn-outline-success col-md-3"
+                                onclick="SaveChangeAddress()">
                                 <i class="fas fa-check-double" style="margin-right:10px;"></i>Thay đổi địa chỉ</button>
                         </div>
                     </div>
@@ -423,71 +437,71 @@
     </div>
 </div>
 @*<div class="modal fade" id="showDataDeliveryAddress" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" style=" background-color:white; max-width:900px">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Địa Chỉ Đặt Hàng</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div style="margin-left: 15px">
-                    <form id="formdata" class="form" enctype="multipart/form-data" style="margin-top: -20px">
-                        <input id="txtId" value="0" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
-                        <div class="row mt-5">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label><strong>Tỉnh/Thành phố:</strong></label>
-                                    <div class="col-sm-12">
-                                        <select id="selectProvince" class="form-select">
-                                            <option></option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label><strong>Quận/Huyện:</strong></label>
-                                    <div class="col-sm-12">
-                                        <select id="selectDistrict" class="form-select">
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label><strong>Phường/Xã:</strong></label>
-                                    <div class="col-sm-12">
-                                        <select id="selectWards" class="form-select">
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label><strong>Địa chỉ chi tiết:<span style="color: red">(*)</span></strong></label>
-                                    <div class="col-sm-12">
-                                        <input type="text" id="ShippingAddressChange" name="ShippingAddressChange"
-                                            value="" class="form-control" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <strong><label></label></strong>
-                                <div class="form-input">
-                                    <a class="btn btn-success" onclick="SaveChangeAddress()"
-                                        style="height:40px;width:110px;">
-                                        <i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>
-                                        Lưu
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+aria-hidden="true">
+<div class="modal-dialog" style=" background-color:white; max-width:900px">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">Địa Chỉ Đặt Hàng</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<div style="margin-left: 15px">
+<form id="formdata" class="form" enctype="multipart/form-data" style="margin-top: -20px">
+<input id="txtId" value="0" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+<div class="row mt-5">
+<div class="col-md-6">
+<div class="form-group">
+<label>Tỉnh/Thành phố:</label>
+<div class="col-sm-12">
+<select id="selectProvince" class="form-select">
+<option></option>
+</select>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Quận/Huyện:</label>
+<div class="col-sm-12">
+<select id="selectDistrict" class="form-select">
+</select>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Phường/Xã:</label>
+<div class="col-sm-12">
+<select id="selectWards" class="form-select">
+</select>
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label>Địa chỉ chi tiết:<span style="color: red">(*)</span></label>
+<div class="col-sm-12">
+<input type="text" id="ShippingAddressChange" name="ShippingAddressChange"
+value="" class="form-control" />
+</div>
+</div>
+</div>
+<div class="col-md-2">
+<label></label>
+<div class="form-input">
+<a class="btn btn-success" onclick="SaveChangeAddress()"
+style="height:40px;width:110px;">
+<i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>
+Lưu
+</a>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
 </div>*@
 <script>
     $(document).ready(function () {
@@ -495,7 +509,9 @@
         LoadDataTable();
         LoadDistrict();
         LoadWard();
+
         
+
 
         $("input.quantity").change(function () {
             if (checkQuantityInstock($(this))) {
@@ -547,9 +563,18 @@
         }
     });
 
-    function ClickShip(){
-        debugger
-        ShippingFee($("#selectDistrict").val(), $("#selectWards").val());
+    function CheckShip() {
+        var district_id = $("#selectDistrict").val();
+        var ward_code = $("#selectWards").val();
+        $.ajax({
+            url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
+            type: "GET",
+            success: function (result) {
+                $('#ShippingFee').val(result);
+                $('#cShippingFee').val(commasThousands(result));
+                loadMoney();
+            }
+        })
     }
 
     function RemoveProduct(id, prodId) {
@@ -581,15 +606,13 @@
         var _discountRate = parseFloat($('#DiscountRate').val() || 0);
         var _shippingFee = parseFloat($('#ShippingFee').val() || 0);
         $('table tbody tr .totalMoneyItem').each((index, item) => {
-            var _item = ($(item).parents("tr").find("input[type=text].totalMoneyItem").val() || '').replace(/,/g, '');
+            var _item = ($(item).parents("tr").find("input[type=text].totalMoneyItem").val() || '').replace(/\./g, '');
             _totalPaymentMoney = _totalPaymentMoney + parseFloat(_item);
         });
         $('#totalMoneyProd').val(commasThousands(_totalPaymentMoney));
         var _totalPayment = _totalPaymentMoney + _shippingFee - _discountRate;
         $('#cTotalMoney').val(commasThousands(_totalPayment));
         $('#TotalMoney').val(_totalPayment);
-
-
     }
     function ConvertDate(time) {
         var date = new Date(time);
@@ -601,32 +624,32 @@
         $('#OrderModal').modal('hide');
     }
 
-    function ShippingFee(district_id, ward_code) {      
+    @* function ShippingFee(district_id, ward_code) {
         $.ajax({
-            url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
-            type: "GET",
-            success: function (result) {
-                $('#ShippingFee').val(result);
-                $('#cShippingFee').val(commasThousands(result));
-                loadMoney();
-                $('#buyFormData').submit();
-            }
-        })
-    }
-
-
-    function commasThousands(nStr) {
-        nStr += '';
-        nStr = nStr.replace(/,/g, '');
-        x = nStr.split('.');
-        x1 = x[0];
-        x2 = x.length > 1 ? '.' + x[1] : '';
-        var rgx = /(\d+)(\d{3})/;
-        while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        url: "/Product/ShippingFee?district_id=" + district_id + "&ward_code=" + ward_code,
+        type: "GET",
+        success: function (result) {
+        $('#ShippingFee').val(result);
+        $('#cShippingFee').val(commasThousands(result));
+        loadMoney();
+        $('#buyFormData').submit();
         }
-        return x1 + x2;
-    }
+        })
+        } *@
+
+
+        function commasThousands(nStr) {
+            nStr += '';
+            nStr = nStr.replace(/,/g, '');
+            x = nStr.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
 
     function checkValidateData() {
         if ($('#cQuantity').val() == '' || $('#cQuantity').val() == '0') {
@@ -674,12 +697,11 @@
                 buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
             }).then(function (isConfirm) {
                 if (isConfirm) {
-                    ShippingFee($("#selectDistrict").val(), $("#selectWards").val());
-                    $('#showDataDeliveryAddress').modal('hide');
                     $('#ShippingCity').val($("[id='selectProvince'] option:selected").text());
                     $('#ShippingDistrict').val($("[id='selectDistrict'] option:selected").text());
                     $('#ShippingTown').val($("[id='selectWards'] option:selected").text());
-                    $('#ShippingAddress').val($("#ShippingAddressChange").val());
+
+                    $('#buyFormData').submit();
                     loadMoney();
 
                 } else {
