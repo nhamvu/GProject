@@ -321,7 +321,7 @@ namespace GProject.WebApplication.Controllers
                 if (string.IsNullOrEmpty(promotionid))
                 {
                     tableData = lstProduct.Where(a => !lstPromotion.Select(b => b.ProductId).Contains(a.Id)).ToList();
-                    if (!string.IsNullOrEmpty(id) && int.Parse(id) != -1)
+                    if (!string.IsNullOrEmpty(id) && id != "-1")
                     {
                         tableData = tableData.Where(c => c.CategoryId == new Guid(id)).ToList();
                     }
