@@ -636,7 +636,7 @@
                     $this.val(Number($this.val()) + 1);
                 }
                 //$this.attr('value', d).val(d);
-                var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/\./g, '');
+                var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/./g, '');
                 var _quantityVal = parseFloat($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
                 $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
                 loadMoney();
@@ -802,7 +802,7 @@
     function loadMoney() {
         var _totalPaymentMoney = 0;
         $('table tbody tr .totalMoneyItem').each((index, item) => {
-            var _price = ($(item).parents("tr").find("input[type=text].price").val() || 0).replace(/\./g, '');
+            var _price = ($(item).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
             var _quantity = parseInt($(item).parents("tr").find("input[type=text].quantity").val()) || 0;
             var ckecedItem = $(item).parents("tr").find("input[type=checkbox].ckbProdItem");
             if (ckecedItem.is(':checked')) {
