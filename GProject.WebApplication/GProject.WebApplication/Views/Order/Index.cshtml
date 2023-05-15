@@ -141,36 +141,7 @@
         </div>
     </div>
 </form>
-@* <div class="row" style="margin-top: 25px;margin-bottom: 15px;">
-    <div class="col-md-2"></div>
-    <div class="col-md-10">
-        <a class="btn btn-outline-primary totalStatus" style="margin-left:10px" asp-action="Index"
-            asp-route-sortOrder="@ViewData["InProgress"]" value="@ViewData["totalInPro"]">
-            Chờ xác nhận
-        </a>
-                <a class="btn btn-outline-secondary totalStatus" style="margin-left:10px" asp-action="Index"
-            asp-route-sortOrder="@ViewData["XacNhan"]" value="@ViewData["totalXacNhan"]">
-            Đã xác nhận
-        </a>
-        <a class="btn btn-outline-secondary totalStatus" style="margin-left:10px" asp-action="Index"
-            asp-route-sortOrder="@ViewData["Confirmed"]" value="@ViewData["totalConfi"]">
-            Đang vận chuyển
-        </a>
-        <a class="btn btn-outline-warning totalStatus" style="margin-left:10px" asp-action="Index"
-            asp-route-sortOrder="@ViewData["Delivery"]" value="@ViewData["totalDelivery"]">
-            Đang giao hàng
-        </a>
-        <a class="btn btn-outline-success totalStatus" style="margin-left:10px" asp-action="Index"
-            asp-route-sortOrder="@ViewData["Accomplished"]" value="@ViewData["totalAcc"]">
-            Hoàn thành
-        </a>
-        <a class="btn btn-outline-danger totalStatus" style="margin-left:10px" asp-action="Index"
-            asp-route-sortOrder="@ViewData["Canceled"]" value="@ViewData["totalXCan"]">
-            Đã hủy
-        </a>
-        <a class="btn btn-outline-info" style="margin-left:10px" asp-action="Index"><i class="fas fa-undo-alt"></i></a>
-    </div>
-</div> *@
+
 <hr style="color:red;" />
 <div class="row">
     <div class="panel panel-default">
@@ -240,10 +211,7 @@
                                         }
                                     </td>
                                     <td>
-                                        <button class="btn btn-info"
-                                            onclick="location.href='@Url.Action("Detail", "Order",new { id = Model[i].Id})'" />
-                                        <i class="fas fa-pen-square"></i>
-                                        @if ((int)Model[i].Status == 0)
+                                        @if ((int)Model[i].Status == 0 && (int)Model[i].PaymentType ==0)
                                         {
                                             <button class="btn btn-outline-warning border-0" onclick="location.href='@Url.Action("Update", "Order",new { id = Model[i].Id})'" />
                                             <i class="fas fa-pen-square"></i>

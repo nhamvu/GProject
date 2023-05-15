@@ -114,7 +114,7 @@ namespace GProject.WebApplication.Controllers
                     lstEvaluate = lstEvaluate.Where(c => c.CreateDate >= DateTime.Parse(fromDate)).ToList();
                     lstProducts = lstProducts.Where(c => c.CreateDate >= DateTime.Parse(fromDate)).ToList();
                     lstCustomer = lstCustomer.Where(c => c.CreateDate >= DateTime.Parse(fromDate)).ToList();
-                    top5Product = top5Product.Where(c => c.CreateDate >= DateTime.Parse(toDate).Month).ToList();
+                    top5Product = top5Product.Where(c => c.CreateDate >= DateTime.Parse(fromDate).Month).ToList();
                 }
                 if (!string.IsNullOrEmpty(toDate))
                 {
@@ -125,7 +125,14 @@ namespace GProject.WebApplication.Controllers
                     lstCustomer = lstCustomer.Where(c => c.CreateDate <= DateTime.Parse(toDate)).ToList();
                     top5Product = top5Product.Where(c => c.CreateDate <= DateTime.Parse(toDate).Month).ToList();
                 }
-                ViewBag.CountOrder = OrderDataStatical.Select(c => c.Order).ToList().Count();
+                if (string.IsNullOrEmpty(fromDate) && string.IsNullOrEmpty(toDate))
+                {
+                    top5Product = top5Product.Where(c => c.CreateDate == DateTime.Now.Month).ToList();
+                }
+                ViewBag.CountOrderComplete = OrderDataStatical.Select(c => c.Order).Where(c => c.Status == Data.Enums.OrderStatus.Accomplished).ToList().Count();
+                ViewBag.CountOrderDelivery = OrderDataStatical.Select(c => c.Order).Where(c => c.Status == Data.Enums.OrderStatus.Delivery).ToList().Count();
+                ViewBag.CountOrderInProgress = OrderDataStatical.Select(c => c.Order).Where(c => c.Status == Data.Enums.OrderStatus.InProgress).ToList().Count();
+                ViewBag.CountOrderCanceled = OrderDataStatical.Select(c => c.Order).Where(c => c.Status == Data.Enums.OrderStatus.Canceled).ToList().Count();
                 ViewBag.CountProduct = OrderDataStatical.Sum(c => c.OrderDetail.Quantity);
                 ViewBag.CountEvaluate = lstEvaluate.Count();
                 ViewBag.CountLike = lstProducts.Sum(c => c.LikeCount);

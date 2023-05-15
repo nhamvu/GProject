@@ -31,3 +31,17 @@ input[type=date] {
     width: 100%;
     margin: 8px 0;
 }
+input[type=number] {
+    width: 100%;
+    margin: 8px 0;
+}
+select {
+    background-color: white !important;
+}
+
+textarea {
+    background-color: white !important;
+}
+input {
+    background-color: white !important;
+}

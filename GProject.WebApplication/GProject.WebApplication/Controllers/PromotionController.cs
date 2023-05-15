@@ -302,5 +302,46 @@ namespace GProject.WebApplication.Controllers
                 return RedirectToAction("AccessDenied", "Account");
             }
         }
+
+        public async Task<ActionResult> searchByProductName(string prodName, string? id, string? price, string? promotionid)
+        {
+            try
+            {
+                var lstPromotion1 = _IPromotionRepository.GetAll();
+                var lstPromotionDEtail = _IPromotionDetailRepository.GetAll();
+                var lstPromotion = (from x in lstPromotion1 join y in lstPromotionDEtail on x.Id equals y.PromotionId where x.Status == Data.Enums.PromotionStatus.Happenning select y).ToList();
+                var lstProduct = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
+                List<Product> tableData = new List<Product>();
+
+                if (!string.IsNullOrEmpty(prodName))
+                {
+                    lstProduct = lstProduct.Where(c => c.Name.ToLower().Contains(prodName.ToLower())).ToList();
+                }
+                //-- Lấy danh sách sản phẩm chưa đc giảm giá
+                if (string.IsNullOrEmpty(promotionid))
+                {
+                    tableData = lstProduct.Where(a => !lstPromotion.Select(b => b.ProductId).Contains(a.Id)).ToList();
+                    if (!string.IsNullOrEmpty(id) && int.Parse(id) != -1)
+                    {
+                        tableData = tableData.Where(c => c.CategoryId == new Guid(id)).ToList();
+                    }
+                    if (!string.IsNullOrEmpty(price))
+                    {
+                        tableData = tableData.Where(c => c.Price > decimal.Parse(price)).ToList();
+                    }
+                }
+                else
+                {
+                    var lstPromotionDetail = lstPromotion.Where(c => c.PromotionId == new Guid(promotionid)).ToList();
+                    tableData = lstProduct.Join(lstPromotionDetail, x => x.Id, y => y.ProductId, (x, y) => x).ToList();
+                }
+                return PartialView("_ProductTable", tableData);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                throw;
+            }
+        }
     }
 }

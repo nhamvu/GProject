@@ -192,7 +192,7 @@
                                                     <td>@item.Brand.Name</td>
                                                     <td>Màu: @(item.Color.Name) <br /> Size: @(item.Size.Code)</td>
                                                     <td>
-                                                        <input type="text" class="price align-right textr inputOrder" readonly maxlength="18" value="@(item.CartDetail.Price.ToString("0.##"))" />
+                                                            <input type="text" class="price align-right textr inputOrder" readonly maxlength="18" value="@(item.CartDetail.Price.ToString("#,##0.##"))" />
                                                     </td>
                                                     <td class="col-1">
                                                         <div class="buttons_added ">
@@ -202,7 +202,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <input class="totalMoneyItem inputOrder" readonly type="text" value="@(item.CartDetail.ToatlMoney)">
+                                                        <input class="totalMoneyItem inputOrder" readonly type="text" value="@(item.CartDetail.ToatlMoney.ToString("#,##0.##"))">
                                                     </td>
                                                     <td class="text-center">
                                                         <input name="cbid" id="cbid" type="checkbox" class="ckbProdItem" onclick="changeSelectedProd(this)" value="">
@@ -490,9 +490,9 @@
         });
 
         $("input.quantity").change(function(){
-            var _priceVal = parseFloat($(this).parents("tr").find("input[type=text].price").val()) || 0;
+            var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
             var _quantityVal = parseFloat($(this).val()) || 0;
-            $(this).parents("tr").find("input[type=text].totalMoneyItem").val(_priceVal * _quantityVal);
+            $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
             loadMoney();
         });
 
@@ -636,9 +636,9 @@
                     $this.val(Number($this.val()) + 1);
                 }
                 //$this.attr('value', d).val(d);
-                var _priceVal = parseFloat($(this).parents("tr").find("input[type=text].price").val()) || 0;
+                var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
                 var _quantityVal = parseFloat($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
-                $(this).parents("tr").find("input[type=text].totalMoneyItem").val(_priceVal * _quantityVal);
+                $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
                 loadMoney();
             })
         });
@@ -697,9 +697,9 @@
                 _product.cartId = $(this).parents("tr").find("input[type=text].cartId").val();
                 _product.prodVariationId = $(this).parents("tr").find("input[type=text].prodVariationId").val();
                 _product.size = $(this).parents("tr").find("select.size").val();
-                _product.price = parseFloat($(this).parents("tr").find("input[type=text].price").val()) || 0;
+                _product.price = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
                 _product.quantity = _quantity;
-                _product.totalMoneyItem = parseFloat($(this).parents("tr").find("input[type=text].totalMoneyItem").val()) || 0;
+                _product.totalMoneyItem = ($(this).parents("tr").find("input[type=text].totalMoneyItem").val() || 0).replace(/,/g, '');
                 products.push(_product);
             });
             if (products.length == 0) {
@@ -802,16 +802,16 @@
     function loadMoney() {
         var _totalPaymentMoney = 0;
         $('table tbody tr .totalMoneyItem').each((index, item) => {
-            var _price = parseFloat($(item).parents("tr").find("input[type=text].price").val()) || 0;
+            var _price = ($(item).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
             var _quantity = parseInt($(item).parents("tr").find("input[type=text].quantity").val()) || 0;
             var ckecedItem = $(item).parents("tr").find("input[type=checkbox].ckbProdItem");
             if (ckecedItem.is(':checked')) {
-                $(item).val(_price * _quantity);
-                _totalPaymentMoney += parseFloat($(item).val());
+                $(item).val(commasThousands(_price * _quantity));
+                _totalPaymentMoney += parseFloat(_price * _quantity);
             }
             
         });
-        $('#totalPayment').val(_totalPaymentMoney);
+        $('#totalPayment').val(commasThousands(_totalPaymentMoney));
         //$('#cTotalMoney').val(_totalPaymentMoney);
         $('#txtTotalProduct').text(commasThousands(_totalPaymentMoney));
     }
@@ -823,17 +823,18 @@
 
 
     function changeSelectedProd(param) {
-        var totalItem = parseFloat($(param).parents("tr").find("input[type=text].totalMoneyItem").val()) || 0;
+        var totalItem = ($(param).parents("tr").find("input[type=text].totalMoneyItem").val() || 0).replace(/,/g, '');
         var _totalPayment = parseFloat($('#totalPayment').val()) || 0;
         var selectedCount = parseInt($('#selected-invs').text()) || 0;
         if (param.checked) {
             $('#selected-invs').text(selectedCount + 1);
-            $('#totalPayment').val(_totalPayment + totalItem);
+            $('#totalPayment').val(commasThousands(_totalPayment + totalItem));
         } else {
-            $('#totalPayment').val(_totalPayment - totalItem);
+            $('#totalPayment').val(commasThousands(_totalPayment - totalItem));
             $('#selected-invs').text(selectedCount - 1);
         }
         loadMoney();
+        
     }
 
     function commasThousands(nStr) {
@@ -913,9 +914,10 @@
             _product.cartId = $(this).parents("tr").find("input[type=text].cartId").val();
             _product.prodVariationId = $(this).parents("tr").find("input[type=text].prodVariationId").val();
             _product.size = $(this).parents("tr").find("select.size").val();
-            _product.price = parseFloat($(this).parents("tr").find("input[type=text].price").val()) || 0;
+
+            _product.price = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
             _product.quantity = parseInt($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
-            _product.totalMoneyItem = parseFloat($(this).parents("tr").find("input[type=text].totalMoneyItem").val()) || 0;
+            _product.totalMoneyItem = ($(this).parents("tr").find("input[type=text].totalMoneyItem").val() || 0).replace(/,/g, '');
             products.push(_product);
         });
         if (products.length == 0) {
