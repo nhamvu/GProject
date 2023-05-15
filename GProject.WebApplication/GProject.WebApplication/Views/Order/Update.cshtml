@@ -507,7 +507,6 @@
                     } else if ($(this).hasClass('plus')) {
                         $this.val(Number($this.val()) + 1);
                     }
-                    //$this.attr('value', d).val(d);
                     var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || '').replace(/,/g, '');
                     var _quantityVal = parseFloat($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
                     $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
@@ -516,7 +515,6 @@
                 })
             }
 
-        });
 
         var messerror = document.getElementById('messerror')
         if (messerror != null) {
