@@ -33,7 +33,7 @@ namespace GProject.WebApplication.Services
                    Brand = i.ab.b,
                    Category = i.c,
                    ProductVariations = lstProductvariation.Where(c => c.ProductId == i.ab.a.Id).ToList()
-               }).Where(x => x.Brand.Status == 1 && x.Category.Status == 1);
+               }).Where(x => x.Brand.Status == 1 && x.Category.Status == 1 && x.Product.Status == 0);
             return Commons.ConverObject<List<ProductDTO>>(data);
         }
 

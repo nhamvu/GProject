@@ -113,156 +113,192 @@
 </style>
 
 <div class="container">
-    
-@if (@ViewData["Mess"] != null)
-{
+
+    @if (@ViewData["Mess"] != null)
+    {
         <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
-}
+    }
 
-<form id="formdata" asp-action="Update" class="form-horizontal d-block" enctype="multipart/form-data">
-    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
-    <input asp-for="ViewCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
-    <input asp-for="LikeCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-sm-5">Tên sản phầm:<span style="color: red">(*)</span></label>
-                <div class="col-sm-9">
-                    <input asp-for="Name" class="form-control" placeholder="Product name" maxlength="200" />
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-sm-5">Tên nhãn hiệu:<span style="color: red">(*)</span></label>
-                <div class="col-sm-9">
-                    @Html.DropDownList("BrandId", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-sm-3">Giá nhập:<span style="color: red">(*)</span></label>
-                <div class="col-sm-9">
-                    @Html.TextBox("ImportPrice", decimal.Parse(Model.ImportPrice.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-sm-3">Giá bán:<span style="color: red">(*)</span></label>
-                <div class="col-sm-9">
-                    @Html.TextBox("Price", decimal.Parse(Model.Price.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-sm-5">Loại danh mục:<span style="color: red">(*)</span></label>
-                <div class="col-sm-6">
-                    @Html.DropDownList("CategoryId", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-sm-3">Loại :<span style="color: red">(*)</span></label>
-                <div class="col-md-6">
-                    @Html.DropDownList("ProductType", new[]
-                    {
-                    new SelectListItem{Text="Sản phẩm thông thường", Value="0", Selected = (Model.ProductType != null ? (Model.ProductType == "0") : true)},
-                    new SelectListItem{Text="Sản phẩm mới", Value="1",  Selected = (Model.ProductType != null ? (Model.ProductType == "1") : true)},
-                    new SelectListItem{Text="Sản phẩm nổi bật", Value="2", Selected = (Model.ProductType != null ? (Model.ProductType == "2") : true)},
-                    new SelectListItem{Text="Sản phẩm được yêu thích", Value="3",  Selected = (Model.ProductType != null ? (Model.ProductType == "3") : true)},
-                    new SelectListItem{Text="Sản phẩm khuyến mại", Value="4", Selected = (Model.ProductType != null ? (Model.ProductType == "4") : true)}
-                    }, new { @class = "form-control iscompany" })
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label col-sm-3">Trạng thái:<span style="color: red">(*)</span></label>
+    <form id="formdata" asp-action="Update" class="form-horizontal d-block" enctype="multipart/form-data">
+        <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+        <input asp-for="ViewCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+        <input asp-for="LikeCount" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
+        <div class="row">
             <div class="col-md-6">
-                @Html.DropDownList("Status", new[]
-                {
-                new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : true)}
-                }, new { @class = "form-control iscompany" })
-            </div>                
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Tên sản phầm:<span style="color: red">(*)</span></label>
+                    <div class="col-sm-9">
+                        <input asp-for="Name" class="form-control" placeholder="Product name" maxlength="200" />
+                    </div>
+                </div>
             </div>
-
-        </div>
-        <div class="col-md-6">
-
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="control-label col-sm-3">Mô tả:</label>
-        <div class="col-sm-12">
-            <textarea class="form-control" asp-for="Description" cols="50" rows="5" style="border:double 4px orange;"></textarea>
-        </div>
-    </div>
-
-    <h3>Thông tin sản phẩm chi tiết</h3>
-    <div class="col-md-12">
-        <div class="form-group">
-            <div class="row">
-                <div class="form-check">
-                    <input type="checkbox" id="ckbAll" class="form-check-input" />
-                    <h5 class="form-check-label">Chọn tất cả</h5><span style="color: red">Lưu ý(*): Chỉ lưu thông tin những sản phẩm có đánh dấu</span>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Tên nhãn hiệu:<span style="color: red">(*)</span></label>
+                    <div class="col-sm-9">
+                        @Html.DropDownList("BrandId", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="row" style="height: 500px; overflow-y: scroll; border: solid 1px;">
-                @if (Model != null && Model.ProductVariationViewModel.Count >= 0 && Model.ProductVariationViewModel != null && Model.SizeList.Count >= 0 && Model.SizeList != null)
-                {
-                    @for (int i = 0; i < Model.ProductVariationViewModel.Count; i++)
-                    {
-                        @Html.HiddenFor(m => m.ProductVariationViewModel[i].Id)
-                        @Html.HiddenFor(m => m.ProductVariationViewModel[i].VariationId)
-                        @Html.HiddenFor(m => m.ProductVariationViewModel[i].ProductId)
-                        <div class="form-check col-md-12 m-2">
-                            <input type="checkbox" asp-for="ProductVariationViewModel[i].IsChecked" class="form-check-input-variation-item">
-                            <label class="form-check-label">
-                                (@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name <img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
-                            </label>
-                        </div>
-                        <div class="campic col-md-3">
-                            <img id="@("upimg" + i)" src="https://cdn3.iconfinder.com/data/icons/web-document-icons/512/Upload_Document-512.png" onclick="uploadImage(@i)" width="50">
-                            <input type="file" asp-for="ProductVariationViewModel[i].Image_Upload" class="@("picImg" + i)" style="display: none;" />
-                        </div>
-                        <div class="col-md-9 row">
-                            @for (int j = 0; j < Model.SizeList.Count; j++)
-                            {
-                                <div class="form-group col-md-3">
-                                    <label class="col-sm-4" style="text-align: left;">
-                                        (@Model.SizeList[j].Code)
-                                    </label>
-                                    <div class="col-sm-12">
-                                        <input type="text" asp-for="ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock" class="form-control quantityInstock">
-                                        @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    }
-                }
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Giá nhập:<span style="color: red">(*)</span></label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("ImportPrice", decimal.Parse(Model.ImportPrice.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Giá bán:<span style="color: red">(*)</span></label>
+                    <div class="col-sm-9">
+                        @Html.TextBox("Price", decimal.Parse(Model.Price.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"><i class="fa fa-check" aria-hidden="true"></i> Lưu thông tin</button>
-    <button type="button" class="btn btn-sm btn-dark btn-dimiss-modal" onclick="document.location = '/ProductMGR/index'">
-        <i class="fa fa-times"></i> Quay lại
-    </button>
-</form>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Loại danh mục:<span style="color: red">(*)</span></label>
+                    <div class="col-sm-6">
+                        @Html.DropDownList("CategoryId", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Loại :<span style="color: red">(*)</span></label>
+                    <div class="col-md-6">
+                        @Html.DropDownList("ProductType", new[]
+                        {
+                        new SelectListItem{Text="Sản phẩm thông thường", Value="0", Selected = (Model.ProductType != null ? (Model.ProductType == "0") : true)},
+                        new SelectListItem{Text="Sản phẩm mới", Value="1",  Selected = (Model.ProductType != null ? (Model.ProductType == "1") : true)},
+                        new SelectListItem{Text="Sản phẩm nổi bật", Value="2", Selected = (Model.ProductType != null ? (Model.ProductType == "2") : true)},
+                        new SelectListItem{Text="Sản phẩm được yêu thích", Value="3",  Selected = (Model.ProductType != null ? (Model.ProductType == "3") : true)},
+                        new SelectListItem{Text="Sản phẩm khuyến mại", Value="4", Selected = (Model.ProductType != null ? (Model.ProductType == "4") : true)}
+                        }, new { @class = "form-control iscompany" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-3">Trạng thái:<span style="color: red">(*)</span></label>
+                    <div class="col-md-6">
+                        @Html.DropDownList("Status", new[]
+                        {
+                        new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
+                        new SelectListItem{Text="Ngừng bán", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : true)}
+                        }, new { @class = "form-control iscompany" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Mô tả:</label>
+            <div class="col-sm-12">
+                <textarea class="form-control" asp-for="Description" cols="50" rows="5" style="border:double 4px orange;"></textarea>
+            </div>
+        </div>
+
+        <h3>Thông tin sản phẩm chi tiết</h3>
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="row">
+                    <div class="form-check">
+                        <input type="checkbox" id="ckbAll" class="form-check-input" />
+                        <h5 class="form-check-label">Chọn tất cả</h5><span style="color: red">Lưu ý(*): Chỉ lưu thông tin những sản phẩm có đánh dấu</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row" style="height: 500px; overflow-y: scroll; border: solid 1px;">
+                    @if (Model != null && Model.ProductVariationViewModel.Count >= 0 && Model.ProductVariationViewModel != null && Model.SizeList.Count >= 0 && Model.SizeList != null)
+                    {
+                        @for (int i = 0; i < Model.ProductVariationViewModel.Count; i++)
+                        {
+                            @Html.HiddenFor(m => m.ProductVariationViewModel[i].Id)
+                            @Html.HiddenFor(m => m.ProductVariationViewModel[i].VariationId)
+                            @Html.HiddenFor(m => m.ProductVariationViewModel[i].ProductId)
+                            <div class="form-check col-md-12 m-2">
+                                <input type="checkbox" asp-for="ProductVariationViewModel[i].IsChecked" class="form-check-input-variation-item">
+                                <label class="form-check-label">
+                                    (@Model.ProductVariationViewModel[i].HEXCode) - @Model.ProductVariationViewModel[i].Name <img style="width:120px;height:30px; border;1px solid; margin-left:10px;border:1px black solid;" src="~/images/@Model.ProductVariationViewModel[i].Image" />
+                                </label>
+                            </div>
+                            <div class="campic col-md-3">
+                                @{
+                                    string strImage = Model.ProductVariationViewModel[i].ImageProduct.NullToString();
+                                }
+                                @if (!string.IsNullOrEmpty(strImage))
+                                {
+                                    <span class="pip-file">
+                                        <img id="@("upimg" + i)" src="@("/images/" + strImage)" onclick="uploadImage(@i)" style="width: 180px;height: 150px;" class="picThumb">
+                                        <span class="remove-img"><img src='http://www.elahmad.com/images/icon_close_16px.gif'></span>
+                                    </span>
+
+                                }
+                                else
+                                {
+                                    <span class="pip-file">
+                                        <img id="@("upimg" + i)" src="https://cdn3.iconfinder.com/data/icons/web-document-icons/512/Upload_Document-512.png" onclick="uploadImage(@i)" style="width: 180px;height: 150px;" class="picThumb">
+                                        @*<span class="remove-img"><img src='http://www.elahmad.com/images/icon_close_16px.gif'></span>*@
+                                    </span>
+                                }
+                                <input type="file" asp-for="ProductVariationViewModel[i].Image_Upload" class="@("picImg" + i)" accept=".jpg, .png" style="display: none;" />
+                            </div>
+                            <div class="col-md-9 row">
+                                @if (Model.ProductVariationViewModel[i].SizeAndStock != null && Model.ProductVariationViewModel[i].SizeAndStock.Count() > 0)
+                                {
+                                    Model.ProductVariationViewModel[i].SizeAndStock = Model.ProductVariationViewModel[i].SizeAndStock.OrderBy(c => c.Id).ToList();
+                                    @for (int j = 0; j < Model.ProductVariationViewModel[i].SizeAndStock.Count(); j++)
+                                    {
+                                        <div class="form-group col-md-3">
+                                            <label class="col-sm-4" style="text-align: left;">
+                                                (@Model.ProductVariationViewModel[i].SizeAndStock[j].Code)
+                                            </label>
+                                            <div class="col-sm-12">
+                                                <input type="text" asp-for="ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock" class="form-control quantityInstock" placeholder="0">
+                                                @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    Model.ProductVariationViewModel[i].SizeAndStock = Model.SizeList.OrderBy(c => c.Id).ToList();
+                                    @for (int j = 0; j < Model.ProductVariationViewModel[i].SizeAndStock.Count; j++)
+                                    {
+                                        <div class="form-group col-md-3">
+                                            <label class="col-sm-4" style="text-align: left;">
+                                                (@Model.ProductVariationViewModel[i].SizeAndStock[j].Code)
+                                            </label>
+                                            <div class="col-sm-12">
+                                                <input type="text" asp-for="ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock" class="form-control quantityInstock" placeholder="0">
+                                                @Html.HiddenFor(m => m.ProductVariationViewModel[i].SizeAndStock[j].Id)
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-sm btn-success" id="cpCopyBtn"><i class="fa fa-check" aria-hidden="true"></i> Lưu thông tin</button>
+        <button type="button" class="btn btn-sm btn-dark btn-dimiss-modal" onclick="document.location = '/ProductMGR/index'">
+            <i class="fa fa-times"></i> Quay lại
+        </button>
+    </form>
 </div>
 
 <script type="text/javascript">
@@ -335,7 +371,11 @@
                 $('.form-check-input-productType').prop('checked', false);
             }
         });
-
+        $(".remove-img").click(function () {
+            $(this).parents(".pip-file").find(".picThumb").attr('src', 'https://cdn3.iconfinder.com/data/icons/web-document-icons/512/Upload_Document-512.png');
+            $(this).parents(".pip-file").find(".file").val('');
+            $(this).remove();
+        });
     });
 
     document.querySelector('#formdata').addEventListener('submit', function (e) {

@@ -125,7 +125,7 @@
                             <th>Ngày đặt hàng</th>
                             <th>Tổng tiền</th>
                             <th>Trạng thái</th>
-                            <th>Xem chi tiết</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -146,7 +146,7 @@
                                     <td>@Model[i].CreateDate</td>
                                     <td>@string.Format("{0:0,0} VNĐ", Model[i].TotalMoney)</td>
                                     <td>
-                                        <button type="button" class="btn btn-success">Đã hoàn thành</button>
+                                        <span class="label label-success">Đã hoàn thành</span>
                                     </td>
                                     <td>
                                         <button class="btn btn-info"

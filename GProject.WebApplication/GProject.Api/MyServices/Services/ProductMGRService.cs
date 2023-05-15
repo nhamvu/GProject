@@ -62,5 +62,21 @@ namespace GProject.Api.MyServices.Services
             }
             return false;
         }
+
+        public bool UpdateStatus(Guid id)
+        {
+            if (id == null) return false;
+            var temp = _iProductRepository.GetAll().FirstOrDefault(c => c.Id == id);
+            
+            if(temp.Status == 0)
+            {
+                temp.Status = 1;
+            }
+            else{
+                temp.Status = 0;
+            }
+            temp.UpdateDate = DateTime.Now;
+            return false;
+        }
     }
 }

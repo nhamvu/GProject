@@ -38,7 +38,7 @@ namespace GProject.WebApplication.Models
         public string Name { get; set; }
         public string HEXCode { get; set; }
         public bool IsChecked { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
         public string ImageProduct { get; set; }
         public IFormFile Image_Upload { get; set; }
         public int Status { get; set; }

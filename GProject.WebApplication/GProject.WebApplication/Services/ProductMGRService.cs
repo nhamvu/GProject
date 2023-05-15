@@ -1,4 +1,5 @@
 ﻿using GProject.Data.DomainClass;
+using GProject.Data.MyRepositories.IRepositories;
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -12,9 +13,14 @@ namespace GProject.WebApplication.Services
 {
     public class ProductMGRService
     {
-		public static HttpContext _httpContext => new HttpContextAccessor().HttpContext;
+        private IProductVariationRepository _iProductVariationRepository;
+        public static HttpContext _httpContext => new HttpContextAccessor().HttpContext;
 		private IWebHostEnvironment _hostEnviroment => (IWebHostEnvironment)_httpContext.RequestServices.GetService(typeof(IWebHostEnvironment));
 
+        public ProductMGRService()
+        {
+            _iProductVariationRepository = new ProductVariationRepository();
+        }
 		/// <summary>
 		/// Hàm Lưu sản phâm
 		/// </summary>
@@ -56,28 +62,43 @@ namespace GProject.WebApplication.Services
                     foreach (var sizeVariation in colorVariation.SizeAndStock)
                     {
                         string image = UploadFile(colorVariation);
+                        var ProductVariationInfo = new ProductVariation();
+                        ProductVariationInfo.Id = colorVariation.VariationId;
+                        ProductVariationInfo.ProductId = productInfo.Id;
+                        ProductVariationInfo.ColorId = colorVariation.Id;
+                        ProductVariationInfo.SizeId = sizeVariation.Id;
+                        if (!string.IsNullOrEmpty(image))
+                            ProductVariationInfo.Image = image;
+                        ProductVariationInfo.CreateDate = DateTime.Now;
+                        ProductVariationInfo.UpdateDate = DateTime.Now;
+                        ProductVariationInfo.QuantityInStock = sizeVariation.QuantityInstock.NullToInt();
 
-                        var ProductVariationInfo = new ProductVariation()
+                        if (ProductVariationInfo.Id == Guid.Empty || ProductVariationInfo.Id == null)
                         {
-                            Id = colorVariation.VariationId,
-                            ProductId = productInfo.Id,
-                            ColorId = colorVariation.Id,
-                            SizeId = sizeVariation.Id,
-                            Image = image,
-                            CreateDate = DateTime.Now,
-                            UpdateDate = DateTime.Now,
-                            QuantityInStock = sizeVariation.QuantityInstock.NullToInt(),
-                        };
-
-                        string saveProductVariationUrl = (ProductVariationInfo.Id == Guid.Empty || ProductVariationInfo.Id == null) ? Commons.mylocalhost + "ProductVariation/add-ProductVariation" : Commons.mylocalhost + "ProductVariation/update-ProductVariation";
-                        bool resultSaveProductVariation = await Commons.Add_or_UpdateAsync(ProductVariationInfo, saveProductVariationUrl);
-                        saveProductVariationUrl = Commons.mylocalhost;
+                            _iProductVariationRepository.Add(ProductVariationInfo);
+                        }
+                        else
+                        {
+                            var temp = _iProductVariationRepository.GetAll().FirstOrDefault(c => c.ProductId == ProductVariationInfo.ProductId && c.ColorId == ProductVariationInfo.ColorId && c.SizeId == ProductVariationInfo.SizeId);
+                            if (temp != null)
+                            {
+                                temp.QuantityInStock = ProductVariationInfo.QuantityInStock;
+                                if (!string.IsNullOrEmpty(ProductVariationInfo.Image))
+                                {
+                                    temp.Image = ProductVariationInfo.Image;
+                                }
+                                _iProductVariationRepository.Update(temp);
+                            }
+                        }
+                        //string saveProductVariationUrl = (ProductVariationInfo.Id == Guid.Empty || ProductVariationInfo.Id == null) ? Commons.mylocalhost + "ProductVariation/add-ProductVariation" : Commons.mylocalhost + "ProductVariation/update-ProductVariation";
+                        //bool resultSaveProductVariation = await Commons.Add_or_UpdateAsync(ProductVariationInfo, saveProductVariationUrl);
+                        //saveProductVariationUrl = Commons.mylocalhost;
                     }
                 }
 
                 return resultSaveProduct;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }

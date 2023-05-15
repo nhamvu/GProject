@@ -15,6 +15,7 @@
         pageNo = pager.CurrentPage;
     }
 
+    int checkPg = int.Parse(Html.Encode(ViewData["pg"]));
 }
 <style>
     label {
@@ -259,7 +260,7 @@
                                 <th>CMT/CCCD</th>
                                 <th>Giới tính</th>
                                 <th>Trạng thái</th>
-                                <th>Chi tiết</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -316,22 +317,38 @@
                         <ul class="pagination justify-content-end">
                             @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
                             {
-                                <li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
+                                @if (pge < pager.TotalPages )
+						        {
+							        <li class="page-item">
+								        <a class="page-link" asp-controller="Employee" asp-action="Index"
+									        asp-route-pg="@(pager.CurrentPage - 1)">
+									        Prev
+								        </a>
+							        </li>
+						        }
+                                if(pge == checkPg){
+                                    <li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
+                                    <a class="page-link" asp-controller="Employee" asp-action="Index" style="color: white; background-color: #206af1;"
+                                        asp-route-pg="@pge">@pge</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
                                     <a class="page-link" asp-controller="Employee" asp-action="Index"
                                         asp-route-pg="@pge">@pge</a>
-                                </li>
+                                    </li>
+                                }
                             }
 
                             @if (pager.CurrentPage < pager.TotalPages)
                             {
                                 <li class="page-item">
-                                    <a class="page-link" asp-controller="Employee" asp-action="Index"
-                                        asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" asp-controller="Employee" asp-action="Index"
-                                        asp-route-pg="@(pager.TotalPages)">Last</a>
-                                </li>
+							        <a class="page-link" asp-controller="Employee" asp-action="Index"
+								    asp-route-pg="@(pager.CurrentPage + 1)">
+								Next
+							        </a>
+						        </li>
                             }
                         </ul>
                     }
