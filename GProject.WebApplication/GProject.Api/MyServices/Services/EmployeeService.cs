@@ -65,6 +65,7 @@ namespace GProject.Api.MyServices.Services
             temp.Password = cv.Password;
             temp.PersonalId = cv.PersonalId;
             temp.DateOfBirth = cv.DateOfBirth;
+            temp.DateOfJoin = cv.DateOfJoin;
             temp.Sex = cv.Sex;
             temp.PhoneNumber = cv.PhoneNumber;
             temp.Address = cv.Address;

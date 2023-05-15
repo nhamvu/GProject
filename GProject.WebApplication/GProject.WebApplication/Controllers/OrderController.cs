@@ -50,7 +50,7 @@ namespace GProject.WebApplication.Controllers
             sizeRepository = new SizeRepository();
         }
 
-        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int? page)
+        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int? page, int? history)
         {
             try
             {
@@ -114,6 +114,11 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => c.ShippingPhone.ToLower().Contains(sPhone.ToLower())).ToList();
                 if (valsPaymentType != -1)
                     lstObjs = lstObjs.Where(c => (int)c.PaymentType == sPaymentType).ToList();
+                if(history == 1)
+                    lstObjs = lstObjs.Where(c => c.HistoryLogChange != null).ToList();
+                if(history == 0)
+                    lstObjs = lstObjs.Where(c => c.HistoryLogChange == null).ToList();
+   
                 lstObjs = lstObjs.OrderBy(c => c.Status).ThenByDescending(c => c.CreateDate).ToList();
 
                 // const int pageSize = 2;
@@ -124,7 +129,7 @@ namespace GProject.WebApplication.Controllers
                 if (page == null) page = 1;
                 var pageNumber = page ?? 1;
                 var pageSize = 5;
-                var data = new OrderDto() { Orders = lstObjs };
+                var data = new OrderDto() { Orders = lstObjs.ToList() };
 
                 //this.ViewBag.Pager = pager;
                 this.ViewData[nameof(sName)] = (object)sName;

@@ -92,6 +92,7 @@ namespace GProject.WebApplication.Controllers
                 emp.CreateDate = DateTime.Now;
                 emp.UpdateDate = DateTime.Now;
                 emp.DateOfBirth = Employee.DateOfBirth;
+                emp.DateOfJoin = Employee.DateOfJoin;
                 emp.PhoneNumber = Employee.PhoneNumber;
                 emp.Sex = Employee.Sex;
                 emp.Address = Employee.Address;
