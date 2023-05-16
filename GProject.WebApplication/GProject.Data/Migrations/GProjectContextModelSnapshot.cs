@@ -175,6 +175,9 @@ namespace GProject.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<DateTime?>("TimeOut")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("ToatlMoney")
                         .HasColumnType("decimal(20,0)");
 

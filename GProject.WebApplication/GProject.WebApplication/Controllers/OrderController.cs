@@ -352,6 +352,34 @@ namespace GProject.WebApplication.Controllers
                 var lstCartDetail = await Commons.GetAll<CartDetail>(String.Concat(Commons.mylocalhost, "Cart/get-all-cart-detail"));
                 var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
                 var getAllCustomer = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
+
+                if (customer != null)
+                {
+                    foreach (var item in prodOrders)
+                    {
+                        var cartDetail = lstCartDetail.FirstOrDefault(x => x.CartId == new Guid(item.cartId));
+                        if (cartDetail != null)
+                        {
+                            if (cartDetail.Quantity != item.quantity && cartDetail.Quantity > item.quantity)
+                            {
+                                var quantity = cartDetail.Quantity - item.quantity;
+
+                                ProductVariation productVariation = lstProductvariation.FirstOrDefault(c => c.Id == new Guid(item.prodVariationId));
+                                productVariation.QuantityInStock = productVariation.QuantityInStock + quantity;
+                                await Commons.Add_or_UpdateAsync(productVariation, String.Concat(Commons.mylocalhost, "ProductVariation/update-ProductVariation"));
+                            }
+                            if (cartDetail.Quantity != item.quantity && cartDetail.Quantity < item.quantity)
+                            {
+                                var quantity = item.quantity - cartDetail.Quantity;
+
+                                ProductVariation productVariation = lstProductvariation.FirstOrDefault(c => c.Id == new Guid(item.prodVariationId));
+                                productVariation.QuantityInStock = productVariation.QuantityInStock - quantity;
+                                await Commons.Add_or_UpdateAsync(productVariation, String.Concat(Commons.mylocalhost, "ProductVariation/update-ProductVariation"));
+                            }
+                        }
+                    }
+                }
 
 
                 if (customer == null)

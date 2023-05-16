@@ -124,9 +124,9 @@
                     <div style="margin-top:10px;">
                         @Html.DropDownList("Status", new[]
                         {
-                        new SelectListItem{Text="Tất cả", Value="1", Selected = (Model.Status != null ? (Model.Status ==
+                        new SelectListItem{Text="Hiển thị danh sách chọn", Value="1", Selected = (Model.Status != null ? (Model.Status ==
                         1) : false)},
-                        new SelectListItem{Text="Giới hạn", Value="2", Selected = (Model.Status != null ? (Model.Status
+                        new SelectListItem{Text="Nhập mã giảm giá", Value="2", Selected = (Model.Status != null ? (Model.Status
                         == 2) : false)},
                         new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ?
                         (Model.Status == 0) : false)},
@@ -204,8 +204,8 @@
                                         <select name="trangthai" value="@ViewData["trangthai"]" id="trangthai"
                                             class="form-select">
                                             <option value="">None</option>
-                                            <option value="1">Tất cả</option>
-                                            <option value="2">Giới hạn</option>
+                                            <option value="1">Hiển thị danh sách chọn</option>
+                                            <option value="2">Nhập mã giảm giá</option>
                                             <option value="0">Không sử dụng</option>
                                         </select>
                                     </div>
@@ -284,7 +284,7 @@
                                             @item.ExpirationDate
                                         </td>
                                         <td>
-                                            @(item.Status == 1 ? "Tất cả" : item.Status == 2 ? "Giới hạn" : "Không sử dụng")
+                                            @(item.Status == 1 ? "Hiển thị danh sách chọn" : item.Status == 2 ? "Nhập mã giảm giá" : "Không sử dụng")
                                         </td>
                                         <td>
                                             <button class="btn btn-info" onclick="ViewDetailDataVoucher(@item.Id)">
