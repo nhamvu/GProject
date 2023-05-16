@@ -94,7 +94,7 @@ namespace GProject.WebApplication.Controllers
                     return Json(new { success = false });
 
                 var lstObjs = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
-                var existName = lstObjs.Any(x => x.Name == Name && (!Id.HasValue || x.Id != Id.Value));
+                var existName = lstObjs.Any(x => x.Name.ToLower() == Name.ToLower() && (!Id.HasValue || x.Id != Id.Value));
                 return Json(new { success = !existName });
             }
             catch (Exception)
