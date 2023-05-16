@@ -19,6 +19,7 @@ namespace GProject.Data.DomainClass
         [Column(TypeName = "decimal(20, 0)")]
         public decimal ToatlMoney { get; set; }
         public DateTime CreateDate { get; set; }
+        public DateTime? TimeOut { get; set; }
         public CartDetailStatus Status { get; set; }
         public string Description { get; set; }
         public Cart? CartId_Navigation { get; set; }

@@ -178,7 +178,7 @@
     $("#CategoryApply").change(function () {
         $('#ProductTable').load("/Promotion/ReloadTable?id=" + $(this).val() + "&price=" + $('#DiscountRate').val());
     });
-    $("#searchByProductName").change(function () {
+    $("#searchByProductName").keyup(function () {
         $('#ProductTable').load("/Promotion/searchByProductName?prodName=" + $(this).val() + "&id=" + $('#CategoryApply').val() + "&price=" + $('#DiscountRate').val());
     });
     document.querySelector('#formdata').addEventListener('submit', function (e) {

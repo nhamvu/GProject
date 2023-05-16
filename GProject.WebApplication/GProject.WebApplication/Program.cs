@@ -19,10 +19,14 @@ namespace YourNamespace
 {
     public class Program
     {
+        private static QuartzService _quartzService;
+
         public static void Main(string[] args)
         {
+            _quartzService = new QuartzService();
+            _quartzService.Start();
             var host = CreateHostBuilder(args).Build();
-            host.Run();
+            host.Run();           
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

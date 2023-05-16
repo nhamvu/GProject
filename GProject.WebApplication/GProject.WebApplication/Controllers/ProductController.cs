@@ -223,14 +223,14 @@ namespace GProject.WebApplication.Controllers
         public async Task<ActionResult> RemoveToCart(string products)
         {
             var customer = HttpContext.Session.GetObjectFromJson<Customer>("userLogin");
-
+            var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             List<ProdOrder> lstProdOrders = JsonConvert.DeserializeObject<List<ProdOrder>>(products);
 
             if (customer == null)
             {
                 List<CartDetail> cart_Details = HttpContext.Session.GetObjectFromJson<List<CartDetail>>("add_cart_details");
                 foreach (var item in lstProdOrders)
-                {
+                {                
                     var delete_cart_Details = cart_Details.FirstOrDefault(x => x.ProductVariationId.ToString() == item.prodVariationId);
                     if (delete_cart_Details != null)
                         cart_Details.Remove(delete_cart_Details);
@@ -241,9 +241,12 @@ namespace GProject.WebApplication.Controllers
                 //return RedirectToAction("AccessDenied", "Account");
             }
             
-            var lstProductvariation = await Commons.GetAll<ProductVariation>(String.Concat(Commons.mylocalhost, "ProductVariation/get-all-ProductVariation"));
             foreach (var item in lstProdOrders)
             {
+                ProductVariation productVariation = lstProductvariation.FirstOrDefault(c => c.Id == new Guid(item.prodVariationId));
+                productVariation.QuantityInStock = productVariation.QuantityInStock + item.quantity;
+                await Commons.Add_or_UpdateAsync(productVariation, String.Concat(Commons.mylocalhost, "ProductVariation/update-ProductVariation"));
+
                 string urlRemoveCartDetail = string.Concat(Commons.mylocalhost, "Cart/delete-cart-detail?id=", new Guid(item.cartId), "&productVariation_id=", new Guid(item.prodVariationId));
                 var RestRemoveCartDetail = new RestSharpHelper(urlRemoveCartDetail);
                 var resRemoveCartDetail = await RestRemoveCartDetail.RequestBaseAsync(urlRemoveCartDetail, RestSharp.Method.Delete);
