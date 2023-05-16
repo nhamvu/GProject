@@ -632,7 +632,7 @@ Lưu
                                 } else if ($(this).hasClass('plus')) {
                                     $this.val(Number($this.val()) + 1);
                                 }
-                                var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
+                                var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/\./g, '');
                                 var _quantityVal = parseFloat($(this).parents("tr").find("input[type=text].quantity").val()) || 0;
                                 $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
                                 loadMoney();
