@@ -56,6 +56,9 @@
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
          data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
         <header class="topbar" data-navbarbg="skin5">
+            <div class="logo_container d-flex">
+                <a href="/dashboard/index"><span style="color: white;">Dream</span><span>Fashions</span></a>
+            </div>
             <nav class="navbar top-navbar navbar-expand-md navbar-dark">
                 <div class="navbar-collapse collapse" id="navbarSupportedContent" style="margin-top: -43px;" data-navbarbg="skin5">
                     <ul class="navbar-nav ms-auto d-flex align-items-center">
@@ -63,7 +66,7 @@
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     @{
-                                        string imgAvata = "avatar.jpg";
+                                        string imgAvata = "admin.png";
                                         if (user != null)
                                         {
                                             if (!string.IsNullOrEmpty(user.Image))
