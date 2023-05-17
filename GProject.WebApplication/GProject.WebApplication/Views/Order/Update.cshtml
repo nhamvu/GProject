@@ -67,15 +67,25 @@
 }
 @Html.Hidden("_order_status", (int)Model.Status)
 @Html.Hidden("_order_paymentType", (int)Model.PaymentType)
+
+
+<div class="container">
+    <div>
+    <button type="button" onclick="document.location = '/Order/Index'"
+        class="btn btn-outline-dark col-md-1 m-1"><i class="fa fa-backward"
+        style="margin-right:10px;"></i>Quay lại
+    </button>
+</div>
+
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
             <!-- Thông tin thanh toán -->
             <div class="modal-content justify-content-center" style="border-width:1px;">
                 <div class="panel-heading">
-                    <h4 class="panel-title text-center"
+                    <h5 class="panel-title text-center"
                         style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
-                        Thông tin thanh toán</h4>
+                        Thông tin thanh toán</h5>
                 </div>
                 <div class="modal-body">
 
@@ -188,8 +198,45 @@
                 </div>
             </div>
             <br />
-
         </div>
+        <div class="panel-heading">
+            <!-- Thông tin trạng thái -->
+            <div class="modal-content justify-content-center" style="border-width:1px;">
+                <div class="panel-heading">
+                    <h5 class="panel-title text-center"
+                        style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
+                       Cập nhập trạng thái hóa đơn</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+    @if ((int)OrderData.Status != 6 && (int)OrderData.Status != 3 && (int)OrderData.Status != 1 && (int)OrderData.Status != 2 )
+    {
+        <button type="button" onclick="ConfirmOrder()" class="btn btn-outline-warning col-md-2 m-1"><i class="fas fa-check-square" style="margin-right:10px;"></i>Xác nhận đơn hàng</button>
+    }
+    @if ((int)OrderData.Status != 1 && (int)OrderData.Status != 3 && (int)OrderData.Status != 2)
+    {
+        <button type="button" onclick="DeliveryOrder()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang vận chuyển</button>
+    }
+    @if ((int)OrderData.Status != 2 && (int)OrderData.Status != 3)
+    {
+        <button type="button" onclick="DangGiaoHang()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang giao hàng</button>
+    }
+    @if ((int)OrderData.Status != 3)
+    {
+        <button type="button" onclick="CompleteOrder()" class="btn btn-outline-success col-md-2 m-1"><i class="fas fa-check-double" style="margin-right:10px;"></i>Hoàn thành đơn hàng</button>
+    }
+    @if ((int)OrderData.Status != 5 && (int)OrderData.Status != 3 && (int)OrderData.Status == 0)
+    {
+        <button type="button" onclick="CancelOrder()" class="btn btn-outline-danger col-md-2 m-1"><i class="fas fa-window-close" style="margin-right:10px;"></i>Hủy đơn hàng</button>
+    }
+</div>
+                </div>
+            </div>
+            <br />
+        </div>
+
+        
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
                 <form id="buyFormData" asp-controller="Order" asp-action="ChangeInfoOrder" method="post"
@@ -216,9 +263,9 @@
                     <!-- Thông tin chúng-->
                     <div class="modal-content justify-content-center" style="border-width:1px;">
                         <div class="panel-heading">
-                            <h4 class="panel-title text-center"
+                            <h5 class="panel-title text-center"
                                 style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
-                                Thông tin người đặt</h4>
+                                Thông tin người đặt</h5>
                         </div>
                         <div class="modal-body">
 
@@ -280,22 +327,13 @@
                     <!-- Tông tin địa chỉ-->
                     <div class="modal-content justify-content-center" id="modalAddress" style="border-width:1px;">
                         <div class="panel-heading">
-                            <h4 class="panel-title text-center"
+                            <h5 class="panel-title text-center"
                                 style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
-                                Thông tin địa chỉ</h4>
+                                Thông tin địa chỉ</h5>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-3">
-                                    @* <div class="form-group">
-                                    <label>
-                                    Thành phố:<span style="color: red">(*)</span>
-                                    </label>
-                                    <div class="col-sm-12">
-                                    <input type="text" asp-for="ShippingCity" readonly placeholder=""
-                                    class="form-control" />
-                                    </div>
-                                    </div> *@
                                     <div class="form-group">
                                         <label>Tỉnh/Thành phố:</label>
                                         <div class="col-sm-12">
@@ -306,15 +344,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    @* <div class="form-group">
-                                    <label>
-                                    Quận, Huyện:<span style="color: red">(*)</span>
-                                    </label>
-                                    <div class="col-sm-12">
-                                    <input type="text" asp-for="ShippingDistrict" readonly placeholder=""
-                                    class="form-control" />
-                                    </div>
-                                    </div> *@
                                     <div class="form-group">
                                         <label>Quận/Huyện:</label>
                                         <div class="col-sm-12">
@@ -325,15 +354,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    @* <div class="form-group">
-                                    <label>
-                                    Phường, Xã:<span style="color: red">(*)</span>
-                                    </label>
-                                    <div class="col-sm-12">
-                                    <input type="text" asp-for="ShippingTown" readonly placeholder=""
-                                    class="form-control" />
-                                    </div>
-                                    </div> *@
                                     <div class="form-group">
                                         <label>Phường/Xã:</label>
                                         <div class="col-sm-12">
@@ -365,9 +385,9 @@
                     <!-- Danh sách sản phẩm-->
                     <div class="modal-content justify-content-center" style="border-width:1px;">
                         <div class="panel-heading">
-                            <h4 class="panel-title text-center"
+                            <h5 class="panel-title text-center"
                                 style="background-color:#E5E5E5; text-align:left; height:40px; padding:10px 10px 10px 10px;">
-                                Danh sách sản phẩm</h4>
+                                Danh sách sản phẩm</h5>
                         </div>
                         <div class="modal-body">
                             <div class="panel panel-default">
@@ -378,6 +398,7 @@
                                                 <tr>
                                                     <th>STT</th>
                                                     <th>Hình ảnh</th>
+                                                    <th>Mã sản phẩm</th>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Màu sắc</th>
                                                     <th>Size</th>
@@ -412,6 +433,7 @@
                                                             <td><img style="width:70px;height:70px;"
                                                                     src="~/images/@item.ProductVariation.Image.NullToString()" />
                                                             </td>
+                                                            <td>@item.Product.ProductCode</td>
                                                             <td>@item.Product.Name</td>
                                                             <td>@item.Color.Name</td>
                                                             <td>@item.Size.Code</td>
@@ -459,109 +481,11 @@
                         </div>
                     </div>
                     <br />
-                    <hr style="color:red;" />
-                    <div class="row d-flex justify-content-center">
-                        <button type="button" onclick="document.location = '/Order/Index'"
-                            class="btn btn-outline-dark col-md-2 m-1"><i class="fa fa-backward"
-                                style="margin-right:10px;"></i>Quay lại</button>
-                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-@*<div class="modal fade" id="showDataDeliveryAddress" tabindex="-1" aria-labelledby="exampleModalLabel"
-aria-hidden="true">
-<div class="modal-dialog" style=" background-color:white; max-width:900px">
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="exampleModalLabel">Địa Chỉ Đặt Hàng</h5>
-<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-</div>
-<div class="modal-body">
-<div style="margin-left: 15px">
-<form id="formdata" class="form" enctype="multipart/form-data" style="margin-top: -20px">
-<input id="txtId" value="0" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
-<div class="row mt-5">
-<div class="col-md-6">
-<div class="form-group">
-<label>Tỉnh/Thành phố:</label>
-<div class="col-sm-12">
-<select id="selectProvince" class="form-select">
-<option></option>
-</select>
-</div>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label>Quận/Huyện:</label>
-<div class="col-sm-12">
-<select id="selectDistrict" class="form-select">
-</select>
-</div>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label>Phường/Xã:</label>
-<div class="col-sm-12">
-<select id="selectWards" class="form-select">
-</select>
-</div>
-</div>
-</div>
-<div class="col-md-6">
-<div class="form-group">
-<label>Địa chỉ chi tiết:<span style="color: red">(*)</span></label>
-<div class="col-sm-12">
-<input type="text" id="ShippingAddressChange" name="ShippingAddressChange"
-value="" class="form-control" />
-</div>
-</div>
-</div>
-<div class="col-md-2">
-<label></label>
-<div class="form-input">
-<a class="btn btn-success" onclick="SaveChangeAddress()"
-style="height:40px;width:110px;">
-<i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>
-Lưu
-</a>
-</div>
-</div>
-</div>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>*@
-<div class="row">
-    @if ((int)OrderData.Status != 0 && (int)OrderData.Status != 3)
-    {
-        <button type="button" onclick="WaitOrder()" class="btn btn-outline-secondary col-md-2 m-1"><i class="fa fa-clock-o" style="margin-right:10px;"></i>Chờ xác nhận</button>
-    }
-    @if ((int)OrderData.Status != 6 && (int)OrderData.Status != 3)
-    {
-        <button type="button" onclick="ConfirmOrder()" class="btn btn-outline-warning col-md-2 m-1"><i class="fas fa-check-square" style="margin-right:10px;"></i>Xác nhận đơn hàng</button>
-    }
-    @if ((int)OrderData.Status != 1 && (int)OrderData.Status != 3)
-    {
-        <button type="button" onclick="DeliveryOrder()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang vận chuyển</button>
-    }
-    @if ((int)OrderData.Status != 2 && (int)OrderData.Status != 3)
-    {
-        <button type="button" onclick="DangGiaoHang()" class="btn btn-outline-info col-md-2 m-1"><i class="fa fa-truck" style="margin-right:10px;"></i>Đang giao hàng</button>
-    }
-    @if ((int)OrderData.Status != 3)
-    {
-        <button type="button" onclick="CompleteOrder()" class="btn btn-outline-success col-md-2 m-1"><i class="fas fa-check-double" style="margin-right:10px;"></i>Hoàn thành đơn hàng</button>
-    }
-    @if ((int)OrderData.Status != 5 && (int)OrderData.Status != 3)
-    {
-        <button type="button" onclick="CancelOrder()" class="btn btn-outline-danger col-md-2 m-1"><i class="fas fa-window-close" style="margin-right:10px;"></i>Hủy đơn hàng</button>
-    }
 </div>
 <script>
     $(document).ready(function () {

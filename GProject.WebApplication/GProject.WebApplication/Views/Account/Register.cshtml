@@ -83,7 +83,7 @@
         </div>
 
         <div class="col-md-4">
-            <label class="col-md-5">Hình ảnh:<span style="color: red">(*)</span></label>
+            <label class="col-md-5">Hình ảnh:</label>
             <input asp-for="Image_Upload" type="file" class="form-control" />
         </div>
         </div>
@@ -138,6 +138,22 @@
 
 
     function checkValidateData() {
+        if ($('#Name').val() == '') {
+            sweetAlert("Thông báo", "Thông tin tên khách hàng không được để trống", "error");
+            return false;
+        }
+        if ($('#Email').val() == '') {
+            sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
+            return false;
+        }
+        if ($('#Password').val() == '') {
+            sweetAlert("Thông báo", "Thông tin mật khẩu không được để trống", "error");
+            return false;
+        }
+        if ($('#DateOfBirth').val() == '') {
+            sweetAlert("Thông báo", "Thông tin ngày sinh không được để trống", "error");
+            return false;
+        }
         if ($('#PhoneNumber').val() == '') {
             sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
             return false;
@@ -146,14 +162,7 @@
             sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
             return false;
         }
-        if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
-            return false;
-        }
-        if ($('#Email').val() == '') {
-            sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
-            return false;
-        }
+
         if ($('#Address').val() == '') {
             sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
             return false;

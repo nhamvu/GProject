@@ -146,6 +146,7 @@
                         <tr>
                             <th>STT</th>
                             <th>Hình ảnh</th>
+                            <th>Mã sản phẩm</th>
                             <th>Tên sản phẩm</th>
                             <th>Màu sắc</th>
                             <th>Size</th>
@@ -164,6 +165,7 @@
                                 <tr>
                                     <td>@(index)</td>
                                     <td><img style="width:70px;height:70px;" src="~/images/@item.ProductVariation.Image.NullToString()" /></td>
+                                    <td>@item.Product.ProductCode</td>
                                     <td>@item.Product.Name</td>
                                     <td>@item.Color.Name</td>
                                     <td>@item.Size.Code</td>

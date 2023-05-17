@@ -1238,10 +1238,11 @@ namespace GProject.WebApplication.Controllers
                             product_name = pvcs.prd.Name,
                             color_name = pvcs.cl.Name,
                             size_code = pvcs.sz.Code,
+                            product_code = pvcs.prd.ProductCode
                         })
                         .FirstOrDefault();
             
-            return result != null ? $" (Tên sản phẩm: {result.product_name.NullToString()}, Màu sắc: {result.color_name.NullToString()}, Size: {result.size_code.NullToString()})" : "";
+            return result != null ? $" (Mã sản phẩm: {result.product_code.NullToString()}, Tên sản phẩm: {result.product_name.NullToString()}, Màu sắc: {result.color_name.NullToString()}, Size: {result.size_code.NullToString()})" : "";
         }
     }
 }
