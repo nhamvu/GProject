@@ -63,7 +63,7 @@
                             <img src="/images/imageLogo.PNG" style="width:80%;height:80%;" />
                         </div>
                         <h3 class="text-center">Đăng nhập</h3>
-                    <form action="/Account/login" method="post">
+                    <form id="formdata" asp-action="Login" class="form" onsubmit="return validateLoginForm();">
                         <input type="text" name="returnUrl" id="returnUrl" hidden value="@ViewBag.returnUrl" />
                         
 
@@ -133,6 +133,20 @@
             type: 'GET'
         });
     });
+    function validateLoginForm() {
+        var email = document.getElementById('form3Example3').value;
+        var password = document.getElementById('form3Example4').value;
+
+        if (email.trim() === '') {
+            sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
+            return false;
+        }
+        if (password.trim() === '') {
+            sweetAlert("Thông báo", "Thông tin mật khẩu không được để trống", "error");
+            return false;
+        }
+        return true;
+    }
     document.querySelector('.img__btn').addEventListener('click', function () {
         document.querySelector('.cont').classList.toggle('s--signup');
     });
