@@ -1,4 +1,4 @@
-﻿@model GProject.WebApplication.Models.PromotionDTO
+﻿@model X.PagedList.IPagedList<GProject.Data.DomainClass.Promotion>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Data.Enums;
@@ -41,168 +41,154 @@
 
 <div class="container">
     @if (@ViewData["Mess"] != null)
-{
-    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
-}
-<button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Promotion")'" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</button>
-<hr style="color:red;" />
-<form id="searchForm" name="searchForm" method="post" class="form-horizontal" action="/Promotion/Index">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-4 row">
-                            <label class="col-md-4 control-label">Tên</label>
-                            <div class="col-md-8 col-xs-12">
-                                <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+    {
+        <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+    }
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Promotion")'" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</button>
+    <hr style="color:red;" />
+    <form id="searchForm" name="searchForm" method="post" class="form-horizontal" action="/Promotion/Index">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4 row">
+                                <label class="col-md-4 control-label">Tên</label>
+                                <div class="col-md-8 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 row">
-                            <label class="col-md-4 control-label">Giảm giá theo</label>
-                            <div class="col-md-8">
-                                @{
-                                    int percent = int.Parse(Html.Encode(ViewData["sPercent"]));
-                                }
-                                @Html.DropDownList("sPercent",new[]
-                                {
-                                new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (percent== -1)},
-                                new SelectListItem{Text="Theo VNĐ", Value="0", Selected= (percent== 0)},
-                                new SelectListItem{Text="Theo %", Value="1", Selected=  (percent == 1)}
-                                }, new { @name = "sPercent", @class="searchText form-control select"})
+                            <div class="col-md-4 row">
+                                <label class="col-md-4 control-label">Giảm giá theo</label>
+                                <div class="col-md-8">
+                                    @{
+                                        int percent = int.Parse(Html.Encode(ViewData["sPercent"]));
+                                    }
+                                    @Html.DropDownList("sPercent",new[]
+                                    {
+                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (percent== -1)},
+                                    new SelectListItem{Text="Theo VNĐ", Value="0", Selected= (percent== 0)},
+                                    new SelectListItem{Text="Theo %", Value="1", Selected=  (percent == 1)}
+                                    }, new { @name = "sPercent", @class="searchText form-control select"})
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 row">
-                            <label class="col-md-4 control-label">Trạng thái</label>
-                            <div class="col-md-8">
-                                @{
-                                    int status = int.Parse(Html.Encode(ViewData["sStatus"]));
-                                }
-                                @Html.DropDownList("sStatus",new[]
-                                {
-                                new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
-                                new SelectListItem{Text="Chưa diễn ra", Value="0", Selected= (status== 0)},
-                                new SelectListItem{Text="Đáng diễn ra", Value="1", Selected=  (status == 1)},
-                                new SelectListItem{Text="Đã kết thúc", Value="1", Selected=  (status == 2)}
-                                }, new { @name = "sStatus", @class="searchText form-control select"})
+                            <div class="col-md-4 row">
+                                <label class="col-md-4 control-label">Trạng thái</label>
+                                <div class="col-md-8">
+                                    @{
+                                        int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                    }
+                                    @Html.DropDownList("sStatus",new[]
+                                    {
+                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                    new SelectListItem{Text="Chưa diễn ra", Value="0", Selected= (status== 0)},
+                                    new SelectListItem{Text="Đang diễn ra", Value="1", Selected=  (status == 1)},
+                                    new SelectListItem{Text="Đã kết thúc", Value="1", Selected=  (status == 2)}
+                                    }, new { @name = "sStatus", @class="searchText form-control select"})
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 row">
-                            <label class="col-md-4 control-label">Giảm giá từ:</label>
-                            <div class="col-md-8 col-xs-12">
-                                <input type="text" id="sfromDiscountRate" maxlength="10" name="sPhone" value="@ViewData["sfromDiscountRate"]" class="form-control" />
+                            <div class="col-md-4 row">
+                                <label class="col-md-4 control-label">Giảm giá từ:</label>
+                                <div class="col-md-8 col-xs-12">
+                                    <input type="text" id="sfromDiscountRate" maxlength="10" name="sPhone" value="@ViewData["sfromDiscountRate"]" class="form-control" />
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-4 row">
-                            <label class="col-md-4 control-label">đến:</label>
-                            <div class="col-md-8 col-xs-12">
-                                <input type="text" id="stoDiscountRate" maxlength="10" name="sPhone" value="@ViewData["stoDiscountRate"]" class="form-control" />
+                            <div class="col-md-4 row">
+                                <label class="col-md-4 control-label">đến:</label>
+                                <div class="col-md-8 col-xs-12">
+                                    <input type="text" id="stoDiscountRate" maxlength="10" name="sPhone" value="@ViewData["stoDiscountRate"]" class="form-control" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel-footer text-center">
-                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i></button>
-                    <a class="btn btn-outline-info" asp-action="Index">
-                        <i class="fas fa-undo-alt"></i>
-                    </a>
+                    <div class="panel-footer text-center">
+                        <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i></button>
+                        <a class="btn btn-outline-info" asp-action="Index">
+                            <i class="fas fa-undo-alt"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
-<div class="row" style="margin-top: 10px;">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title" style=" text-align:center; height:50px; padding:10px 10px 10px 10px;">Danh sách giảm giá</h3>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
-                <table class="table table-bordered table-hover sticky-table">
-                    <thead class="sticky-header">
-                        <tr>
-                            <th>Hình ảnh</th>
-                            <th>Mã</th>
-                            <th>Tên</th>
-                            <th>Đơn vị</th>
-                            <th>Mức giảm giá</th>
-                            <th>Ngày bắt đầu</th>
-                            <th>Ngày kết thúc</th>
-                            <th>Trạng thái</th>
-                            <th>Sửa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Promotions != null)
-                        {
-                            @foreach (var item in Model.Promotions)
+    <div class="row" style="margin-top: 10px;">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title" style=" text-align:center; height:50px; padding:10px 10px 10px 10px;">Danh sách giảm giá</h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                    <table class="table table-bordered table-hover sticky-table">
+                        <thead class="sticky-header">
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Mã</th>
+                                <th>Tên</th>
+                                <th>Đơn vị</th>
+                                <th>Mức giảm giá</th>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày kết thúc</th>
+                                <th>Trạng thái</th>
+                                <th>Sửa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
                             {
-                                <tr>
-                                    <td>
-                                        <img style="width:120px;height:50px; border;1px solid;" src="~/images/@item.Image" />
-                                    </td>
-                                    <td>
-                                        @item.PromotionId
-                                    </td>
-                                    <td>
-                                        @item.PromotionName
-                                    </td>
-                                    <td>
-                                        @(item.DiscountPercent == 0 ? "đ" : "%")
-                                    </td>
-                                    <td>
-                                        @string.Format("{0:0,0}", item.DiscountRate)
-                                    </td>
-                                    <td>
-                                        @item.StartDate
-                                    </td>
-                                    <td>
-                                        @item.EndDate
-                                    </td>
-                                    <td>
-                                        @Commons.GetEnumDescription(item.Status)
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-info" onclick="location.href='@Url.Action("Update", "Promotion",new { id = item.Id})'" />
-                                        <i class="fas fa-pen-square"></i>
-                                    </td>
-                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            <img style="width:120px;height:50px; border;1px solid;" src="~/images/@item.Image" />
+                                        </td>
+                                        <td>
+                                            @item.PromotionId
+                                        </td>
+                                        <td>
+                                            @item.PromotionName
+                                        </td>
+                                        <td>
+                                            @(item.DiscountPercent == 0 ? "VNĐ" : "%")
+                                        </td>
+                                        <td>
+                                            @string.Format("{0:0,0}", item.DiscountRate)
+                                        </td>
+                                        <td>
+                                            @item.StartDate
+                                        </td>
+                                        <td>
+                                            @item.EndDate
+                                        </td>
+                                        <td>
+                                            @Commons.GetEnumDescription(item.Status)
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info" onclick="location.href='@Url.Action("Update", "Promotion",new { id = item.Id})'" />
+                                            <i class="fas fa-pen-square"></i>
+                                        </td>
+                                    </tr>
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-    @if (pager.TotalPages > 0)
-    {
-        <ul class="pagination justify-content-end">
-            <li class="page-item">
-                <a class="page-link" asp-controller="Promotion" asp-action="Index" asp-route-pg="1">First</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" asp-controller="Promotion" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
-            </li>
-
-            @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
+    <div class="container">
+        <div style="float: right">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new
+            X.PagedList.Web.Common.PagedListRenderOptions()
             {
-                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                    <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@pge"> @pge</a>
-                </li>
-            }
-
-            <li class="page-item">
-                <a class="page-link" asp-controller="Promotion" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" asp-controller="Promotion" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
-            </li>
-        </ul>
-    }
-</div>
+            ActiveLiElementClass = "active",
+            PageClasses = new[]{ "page-link"},
+            LiElementClasses=new[] { "page-item" },
+            LinkToNextPageFormat = "Next",
+            LinkToPreviousPageFormat = "Prev",
+            })
+        </div>
+    </div>
 </div>
 
 
