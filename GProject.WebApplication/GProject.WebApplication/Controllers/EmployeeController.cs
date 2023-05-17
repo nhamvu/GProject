@@ -9,6 +9,7 @@ using System.Net;
 using System.Reflection.Metadata;
 using static System.Net.Mime.MediaTypeNames;
 using System.Xml.Linq;
+using X.PagedList;
 
 namespace GProject.WebApplication.Controllers
 {
@@ -21,7 +22,7 @@ namespace GProject.WebApplication.Controllers
             iEmployeeService = new EmployeeService();
         }
 
-        public async Task<ActionResult> Index(string sId, string sName, string sEmail, string sPhone, int? sGender, int? sStatus, int pg = 1)
+        public async Task<ActionResult> Index(string sId, string sName, string sEmail, string sPhone, int? sGender, int? sStatus, int? page)
         {
             try
             {
@@ -46,26 +47,22 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => c.Sex == valsGender).ToList();
                 if (valsStatus != -1)
                     lstObjs = lstObjs.Where(c => c.Status == valsStatus).ToList();
-                const int pageSize = 5;
-                if (pg < 1)
-                    pg = 1;
-                var pager = new Pager(lstObjs.Count(), pg, pageSize);
-                var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
-                this.ViewBag.Pager = pager;
-                ViewData["pg"] = pg;
+                if (page == null) page = 1;
+                var pageNumber = page ?? 1;
+                var pageSize = 5;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
                 this.ViewData[nameof(sId)] = (object)sId;
                 this.ViewData[nameof(sGender)] = (object)valsGender;
                 this.ViewData[nameof(sStatus)] = (object)valsStatus;
-                var data = new EmployeeDTO() { EmployeeList = lstData };
+                //var data = new EmployeeDTO() { EmployeeList = lstData };
 
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
-                return View(data);
+                return View(lstObjs.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception)
             {
@@ -117,10 +114,7 @@ namespace GProject.WebApplication.Controllers
 
                 //-- Gửi request cho api sử lí
                 bool result = await Commons.Add_or_UpdateAsync(emp, url);
-                if (!result) 
-                    HttpContext.Session.SetString("mess", "Failed");
-                else 
-                    HttpContext.Session.SetString("mess", "Success");
+               
                 return RedirectToAction("Index");
             }
             catch (Exception)
@@ -128,6 +122,74 @@ namespace GProject.WebApplication.Controllers
                 return RedirectToAction("AccessDenied", "Account");
             }
 
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckPhone(string PhoneNumber, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var lstObjs = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var existName = lstObjs.Any(x => x.PhoneNumber == PhoneNumber && (!Id.HasValue || x.Id != Id.Value));
+                return Json(new { success = !existName });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckEmail(string Email, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var lstObjs = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var existName = lstObjs.Any(x => x.Email.ToLower() == Email.ToLower() && (!Id.HasValue || x.Id != Id.Value));
+                return Json(new { success = !existName });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckPersonalId(string PersonalId, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var lstObjs = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var existName = lstObjs.Any(x => x.PersonalId == PersonalId && (!Id.HasValue || x.Id != Id.Value));
+                return Json(new { success = !existName });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckEmployeeId(string EmployeeId, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var lstObjs = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var existName = lstObjs.Any(x => x.EmployeeId == EmployeeId && (!Id.HasValue || x.Id != Id.Value));
+                return Json(new { success = !existName });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
         }
 
         public async Task<JsonResult> Detail(Guid id)

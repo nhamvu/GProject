@@ -90,7 +90,7 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
                     return Json(new { success = false });
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
-                var existName = lstObjs.Any(x => x.Email == Email && (!Id.HasValue || x.Id != Id.Value));
+                var existName = lstObjs.Any(x => x.Email.ToLower() == Email.ToLower() && (!Id.HasValue || x.Id != Id.Value));
                 return Json(new { success = !existName });
             }
             catch (Exception)

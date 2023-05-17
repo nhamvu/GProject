@@ -93,7 +93,7 @@ namespace GProject.WebApplication.Controllers
                     return Json(new { success = false });
 
                 var lstObjs = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
-                var existName = lstObjs.Any(x => x.Name == Name && (!Id.HasValue || x.Id != Id.Value));
+                var existName = lstObjs.Any(x => x.Name.ToLower() == Name.ToLower() && (!Id.HasValue || x.Id != Id.Value));
                 return Json(new { success = !existName });
             }
             catch (Exception)
@@ -110,7 +110,7 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
                     return Json(new { success = false });
                 var lstObjs = await Commons.GetAll<Size>(String.Concat(Commons.mylocalhost, "Size/get-all-Size"));
-                var existName = lstObjs.Any(x => x.Code == Code && (!Id.HasValue || x.Id != Id.Value));
+                var existName = lstObjs.Any(x => x.Code.ToLower() == Code.ToLower() && (!Id.HasValue || x.Id != Id.Value));
                 return Json(new { success = !existName });
             }
             catch (Exception)

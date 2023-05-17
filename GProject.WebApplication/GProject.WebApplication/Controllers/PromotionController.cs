@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Reflection.Metadata;
+using X.PagedList;
 using static IdentityServer4.Models.IdentityResources;
 
 namespace GProject.WebApplication.Controllers
@@ -25,7 +27,7 @@ namespace GProject.WebApplication.Controllers
             _IPromotionDetailRepository = new PromotionDetailRepository();
         }
 
-        public async Task<ActionResult> Index(string sName, int? sPercent, int? sStatus, string sfromDiscountRate, string stoDiscountRate, int pg = 1)
+        public async Task<ActionResult> Index(string sName, int? sPercent, int? sStatus, string sfromDiscountRate, string stoDiscountRate, int? page)
         {
             try
             {
@@ -47,13 +49,15 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.DiscountRate <= decimal.Parse(stoDiscountRate)).ToList();
 
-                const int pageSize = 10;
-                if (pg < 1)
-                    pg = 1;
-                var pager = new Pager(lstObjs.Count(), pg, pageSize);
-                var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
-
-                var data = new PromotionDTO() { Promotions = lstObjs };
+                //const int pageSize = 10;
+                //if (pg < 1)
+                //    pg = 1;
+                //var pager = new Pager(lstObjs.Count(), pg, pageSize);
+                //var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
+                //var data = new PromotionDTO() { Promotions = lstObjs };
+                if (page == null) page = 1;
+                var pageNumber = page ?? 1;
+                var pageSize = 5;
 
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
@@ -65,7 +69,7 @@ namespace GProject.WebApplication.Controllers
                 this.ViewData[nameof(sStatus)] = (object)valsStatus;
                 this.ViewData[nameof(sfromDiscountRate)] = (object)sfromDiscountRate;
                 this.ViewData[nameof(stoDiscountRate)] = (object)stoDiscountRate;
-                return View(data);
+                return View(lstObjs.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception ex)
             {
