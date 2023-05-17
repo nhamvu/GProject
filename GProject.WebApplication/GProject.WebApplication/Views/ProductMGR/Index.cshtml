@@ -218,10 +218,10 @@
                                         @(lstBrand.Where(c => c.Id == item.BrandId).Select(c => c.Name).FirstOrDefault())
                                     </td>
                                     <td>
-                                        @(item.ImportPrice.ToString("0.##"))
+                                        @(item.ImportPrice.ToString("#,##0##")) đ
                                     </td>
                                     <td>
-                                        @(item.Price.ToString("0.##"))
+                                        @(item.Price.ToString("#,##0##")) đ
                                     </td>
                                     <td>
                                         @(item.ViewCount) <i class="fa fa-heart" aria-hidden="true"></i>

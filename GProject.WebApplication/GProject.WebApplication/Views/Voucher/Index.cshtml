@@ -237,7 +237,6 @@
                                 <th>Mã giảm giá</th>
                                 <th>Tên</th>
                                 <th>Mức giảm giá</th>
-                                <th>Hình thức</th>
                                 <th>Giảm tối đa</th>
                                 <th>Số lượng</th>
                                 <th>Số tiền tối thiểu</th>
@@ -260,22 +259,25 @@
                                             @item.Name
                                         </td>
                                         <td>
-                                            @item.DiscountRate
-                                        </td>
-                                        <td>
-                                            @item.DiscountForm
+                                            @if (item.DiscountForm == "%")
+                                            {                                             
+                                                <a> @item.DiscountRate %</a>
+                                            }
+                                            else{
+                                                <a>@item.DiscountRate.ToString("#,##0##") đ</a>
+                                            }
                                         </td>
                                         <td>
                                             @if (item.DiscountForm == "%")
                                             {
-                                                <a>@item.MaximumDiscount đ</a>
+                                                <a>@string.Format("{0:#,##0}",  @item.MaximumDiscount) đ</a>
                                             }
                                         </td>
                                         <td>
                                             @item.NumberOfVouchers
                                         </td>
                                         <td>
-                                            @item.MinimumOrder
+                                            @string.Format("{0:#,##0}",  @item.MinimumOrder) đ
                                         </td>
                                         <td>
                                             @item.CreateDate

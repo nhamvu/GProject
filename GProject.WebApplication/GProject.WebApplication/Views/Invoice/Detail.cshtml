@@ -88,7 +88,7 @@
                     </tr>
                     <tr>
                         <th>Phí ship</th>
-                        <td><label>@string.Format("{0:0,0} VNĐ", OrderData.ShippingFee)</label></td>
+                        <td><label>@string.Format("{0:0,0} đ", OrderData.ShippingFee)</label></td>
                     </tr>
                     <tr>
                         <th>Trạng thái</th>
@@ -168,8 +168,8 @@
                                     <td>@item.Color.Name</td>
                                     <td>@item.Size.Code</td>
                                     <td>@item.OrderDetail.Quantity</td>
-                                    <td>@string.Format("{0:0,0} VNĐ", item.OrderDetail.Price)</td>
-                                    <td>@string.Format("{0:0,0} VNĐ", item.OrderDetail.TotalMoney)</td>
+                                    <td>@string.Format("{0:0,0} đ", item.OrderDetail.Price)</td>
+                                    <td>@string.Format("{0:0,0} đ", item.OrderDetail.TotalMoney)</td>
 
                                 </tr>
                             }
