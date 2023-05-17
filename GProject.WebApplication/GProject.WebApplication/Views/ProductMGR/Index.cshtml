@@ -186,8 +186,8 @@
                     <thead class="sticky-header">
                         <tr>
                             <th style ="width:100px;">Hình ảnh</th>
-                            <th style="width:220px;">Tên sản phẩm</th>
                             <th>Mã sản phẩm</th>
+                            <th style="width:220px;">Tên sản phẩm</th>                           
                             <th>Nhãn hiệu</th>
                             <th>Giá nhập</th>
                             <th>Giá bán</th>
@@ -209,11 +209,11 @@
                                         <img style="width:120px;height:130px;" src="~/images/@img" />
                                     </td>
                                     <td>
-                                        @item.Name
-                                    </td>
-                                    <td>
                                         @item.ProductCode
                                     </td>
+                                    <td>
+                                        @item.Name
+                                    </td>                                    
                                     <td>
                                         @(lstBrand.Where(c => c.Id == item.BrandId).Select(c => c.Name).FirstOrDefault())
                                     </td>

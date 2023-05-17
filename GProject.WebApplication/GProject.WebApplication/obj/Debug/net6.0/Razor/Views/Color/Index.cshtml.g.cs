@@ -13,28 +13,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
@@ -86,7 +86,7 @@ using GProject.Api.MyServices.Services;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 6 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 6 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
   
     ViewBag.Title = "Quản lý màu sắc";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -118,7 +118,7 @@ using GProject.Api.MyServices.Services;
 <div class=""container"">
 ");
 #nullable restore
-#line 32 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 32 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
      if (@ViewData["Mess"] != null)
     {
 
@@ -127,7 +127,7 @@ using GProject.Api.MyServices.Services;
 #nullable disable
             WriteLiteral("        <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 34 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 34 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                                              Write(ViewData["Mess"]);
 
 #line default
@@ -135,7 +135,7 @@ using GProject.Api.MyServices.Services;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 35 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 35 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
     }
 
 #line default
@@ -160,7 +160,7 @@ using GProject.Api.MyServices.Services;
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "66c8b4dbc0acf400feeeb986c75b3f2a5fb540f110939", async() => {
                 WriteLiteral("\r\n                        ");
 #nullable restore
-#line 52 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 52 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                    Write(Html.AntiForgeryToken());
 
 #line default
@@ -380,7 +380,7 @@ WriteAttributeValue("", 5073, ViewData["sName"], 5073, 18, false);
 ");
             WriteLiteral("                        <tbody>\r\n");
 #nullable restore
-#line 165 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 165 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                              if (Model != null)
                             {
                                 
@@ -389,7 +389,7 @@ WriteAttributeValue("", 5073, ViewData["sName"], 5073, 18, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 167 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 167 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                                  foreach (var item in Model)
                                 {
 
@@ -398,7 +398,7 @@ WriteAttributeValue("", 5073, ViewData["sName"], 5073, 18, false);
 #nullable disable
             WriteLiteral("                                    <tr>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 171 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 171 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                                        Write(item.HEXCode);
 
 #line default
@@ -406,7 +406,7 @@ WriteAttributeValue("", 5073, ViewData["sName"], 5073, 18, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 174 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 174 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                                        Write(item.Name);
 
 #line default
@@ -438,7 +438,7 @@ AddHtmlAttributeValue("", 8204, item.Image, 8204, 11, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 181 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 181 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                                         Write(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng");
 
 #line default
@@ -470,14 +470,14 @@ WriteAttributeValue("", 8829, item.Id, 8829, 8, false);
             EndWriteAttribute();
             WriteLiteral(">\r\n                                                <i class=\"fas fa-trash-alt\"></i>\r\n                                            </button>\r\n                                        </td>\r\n                                    </tr>\r\n");
 #nullable restore
-#line 191 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 191 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                                 }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 191 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 191 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                                  
                             }
 
@@ -486,7 +486,7 @@ WriteAttributeValue("", 8829, item.Id, 8829, 8, false);
 #nullable disable
             WriteLiteral("                        </tbody>\r\n                    </table>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-footer\">\r\n                <div style=\"float: right\">\r\n                    ");
 #nullable restore
-#line 200 "C:\Users\Admin\Documents\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
+#line 200 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Color\Index.cshtml"
                Write(Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new
                     X.PagedList.Web.Common.PagedListRenderOptions()
                     {
@@ -645,8 +645,7 @@ WriteAttributeValue("", 8829, item.Id, 8829, 8, false);
             if ($('#Name').val() == '') {
                 sweetAlert(""Thông báo"", ""Thông tin tên màu không được để trống"", ""error"");
                 return false;
-            }
-");
+            }");
             WriteLiteral(@"
             if ($('#Image_Upload').val() == '') {
             sweetAlert(""Thông báo"", ""Thông tin hình ảnh không được để trống"", ""error"");
@@ -655,7 +654,8 @@ WriteAttributeValue("", 8829, item.Id, 8829, 8, false);
             var id = $(""#Id"").val();
             var hexcode = $(""#HEXCode"").val();
             var name = $(""#Name"").val();
-            var status = $(""#Status"").val();            var image = $(""#Image_Upload"").get(0).files[0];
+            var status = $(""#Status"").val();
+            var image = $(""#Image_Upload"").get(0).files[0];
             var data = new FormData();
             data.append('Id', id);
             data.append('HEXCode', hexcode);
