@@ -175,6 +175,9 @@ namespace GProject.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValueSql("((0))");
 
+                    b.Property<DateTime?>("TimeOut")
+                        .HasColumnType("datetime2");
+
                     b.Property<decimal>("ToatlMoney")
                         .HasColumnType("decimal(20,0)");
 
@@ -957,6 +960,11 @@ namespace GProject.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("decimal(20,0)")
                         .HasDefaultValueSql("((0))");
+
+                    b.Property<string>("ProductCode")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("nvarchar(120)");
 
                     b.Property<string>("ProductType")
                         .IsRequired()

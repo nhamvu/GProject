@@ -185,6 +185,8 @@ namespace GProject.WebApplication.Services
                                         && c.ProductVariationId == productVariation.Id
                                         && c.Price == decimal.Parse(cPrice));
 
+            DateTime timeout = DateTime.Now;
+
             if (cartdetail_data == null)
             {
                 cartdetail_data = new CartDetail();
@@ -196,6 +198,7 @@ namespace GProject.WebApplication.Services
                 cartdetail_data.ToatlMoney = decimal.Parse(cTotalMoney);
                 cartdetail_data.Status = Data.Enums.CartDetailStatus.Ready;
                 cartdetail_data.Description = cDescription.NullToString();
+                cartdetail_data.TimeOut = timeout.AddMinutes(15);
                 strUrl = String.Concat(Commons.mylocalhost, "Cart/add-cart-detail");
                 cartDetailRepository.Add(cartdetail_data);
             }
@@ -204,10 +207,16 @@ namespace GProject.WebApplication.Services
                 cartdetail_data.Quantity = cartdetail_data.Quantity + cQuantity.NullToInt();
                 cartdetail_data.ToatlMoney = cartdetail_data.ToatlMoney + cTotalMoney.NullToDecimal();
                 cartdetail_data.Description = cDescription.NullToString();
+                cartdetail_data.TimeOut = timeout.AddMinutes(15);
                 strUrl = String.Concat(Commons.mylocalhost, "Cart/update-cart-detail");
                 cartDetailRepository.Update(cartdetail_data);
             }
-            
+
+            //-- Giảm số lượng còn lại của ProductVariation
+            productVariation.QuantityInStock = productVariation.QuantityInStock - int.Parse(cQuantity);
+            if (!await Commons.Add_or_UpdateAsync(productVariation, String.Concat(Commons.mylocalhost, "ProductVariation/update-ProductVariation")))
+                return false;
+
             //if (!await Commons.Add_or_UpdateAsync(cartdetail_data, strUrl))
             //    return false;
 

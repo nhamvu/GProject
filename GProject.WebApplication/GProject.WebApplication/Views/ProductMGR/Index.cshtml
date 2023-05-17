@@ -187,12 +187,14 @@
                         <tr>
                             <th style ="width:100px;">Hình ảnh</th>
                             <th style="width:220px;">Tên sản phẩm</th>
+                            <th>Mã sản phẩm</th>
                             <th>Nhãn hiệu</th>
                             <th>Giá nhập</th>
                             <th>Giá bán</th>
                             <th style="width:120px;">Lượt tim <i class="fa fa-heart" aria-hidden="true"></i></th>
                             <th style="width:120px;">Lượt thích <i class="fa fa-thumbs-up" aria-hidden="true"></i></th>                           
                             <th>Mô tả</th>
+                            <th>Trạng thái</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -208,6 +210,9 @@
                                     </td>
                                     <td>
                                         @item.Name
+                                    </td>
+                                    <td>
+                                        @item.ProductCode
                                     </td>
                                     <td>
                                         @(lstBrand.Where(c => c.Id == item.BrandId).Select(c => c.Name).FirstOrDefault())
@@ -238,6 +243,8 @@
                                                 <button type="button" class="btn btn-outline-danger"  onclick="ChangeStatus('@item.Id')"><i class="fas fa-toggle-off"></i></button>
                                             }
                                         }
+                                    </td>
+                                    <td>                                        
                                         <button class="btn btn-info" onclick="location.href='@Url.Action("Update", "ProductMGR",new { id = item.Id})'" />
                                         <i class="fas fa-pen-square"></i>
                                     </td>

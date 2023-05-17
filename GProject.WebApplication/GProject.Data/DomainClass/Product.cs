@@ -12,6 +12,7 @@ namespace GProject.Data.DomainClass
     public class Product
     {
         public Guid? Id { get; set; }
+        public string ProductCode { get; set; }
         public Guid? CategoryId { get; set; }
         public int BrandId { get; set; }
         public string Name { get; set; }

@@ -68,7 +68,7 @@
                         <div class="form-group">
                             <label class="col-md-5">Hình ảnh:</label>
                             <div class="form-input">
-                                <input id="Image_Upload" name="Image_Upload" type="file" multiple
+                                <input id="Image_Upload" value="" name="Image_Upload" type="file" multiple
                                     class="form-control" />
                             </div>
                         </div>
@@ -326,6 +326,10 @@
             sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
             return false;
         }
+        if ($('#Image_Upload').val() == '') {
+            sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
+            return false;
+        }
         return true;
     }
 
@@ -343,6 +347,10 @@
                 sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
                 return false;
             }
+            if ($('#Image_Upload').val() == '') {
+            sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
+            return false;
+        }
             var id = $("#Id").val();
             var hexcode = $("#HEXCode").val();
             var name = $("#Name").val();

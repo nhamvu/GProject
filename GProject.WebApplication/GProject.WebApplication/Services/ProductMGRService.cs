@@ -37,6 +37,7 @@ namespace GProject.WebApplication.Services
                 //-- Set Product
                 var productInfo = new Product();
                 productInfo.Id = (Product.Id == Guid.Empty || Product.Id == null) ? uuid : Product.Id;
+                productInfo.ProductCode = RandomString(10).ToString();
                 productInfo.BrandId = Product.BrandId;
                 productInfo.Name = Product.Name;
                 productInfo.CategoryId = Product.CategoryId;
@@ -243,5 +244,13 @@ namespace GProject.WebApplication.Services
 			}
 			return uniqueFileName;
 		}
-	}
+
+        public string RandomString(int number)
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, number)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+    }
 }

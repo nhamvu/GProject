@@ -17,6 +17,7 @@ namespace GProject.Data.Configurations
             builder.HasKey(c => c.Id);
             builder.Property(e => e.Id).HasDefaultValueSql("(newid())");
             builder.Property(e => e.BrandId).HasMaxLength(15);
+            builder.Property(e => e.ProductCode).HasMaxLength(120);
             builder.Property(e => e.Name).HasMaxLength(200);
             builder.Property(e => e.ViewCount).HasDefaultValueSql("((0))");
             builder.Property(e => e.LikeCount).HasDefaultValueSql("((0))");

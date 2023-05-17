@@ -180,5 +180,23 @@ namespace GProject.WebApplication.Controllers
                 HttpContext.Session.SetString("mess", "Success");
             return Json(result);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckName(string Name, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+
+                var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
+                var existName = lstObjs.Any(x => x.Name.ToLower() == Name.ToLower() && (!Id.HasValue || x.Id != Id.Value));
+                return Json (existName);
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
     }
 }

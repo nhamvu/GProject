@@ -68,14 +68,8 @@ namespace GProject.WebApplication.Services
 
                 //-- Add vào OrderDetail
                 if (!await Commons.Add_or_UpdateAsync(orderDetail, String.Concat(Commons.mylocalhost, "Order/add-Order-detail")))
-                    return false;
+                    return false;               
 
-                //-- Giảm số lượng còn lại của ProductVariation
-                ProductVariation productVariation = lstProductvariation.FirstOrDefault(c => c.Id == new Guid(item.prodVariationId));
-                if (productVariation == null) return false;
-                productVariation.QuantityInStock = productVariation.QuantityInStock - item.quantity;
-                if (!await Commons.Add_or_UpdateAsync(productVariation, String.Concat(Commons.mylocalhost, "ProductVariation/update-ProductVariation")))
-                    return false;
 
                 var result = lstCartDetail.FirstOrDefault(x => x.CartId.ToString() == item.cartId && x.ProductVariationId.ToString() == item.prodVariationId);
 
@@ -86,6 +80,15 @@ namespace GProject.WebApplication.Services
                     var RestRemoveCartDetail = new RestSharpHelper(urlRemoveCartDetail);
                     var resRemoveCartDetail = await RestRemoveCartDetail.RequestBaseAsync(urlRemoveCartDetail, RestSharp.Method.Delete);
                     if (!resRemoveCartDetail.IsSuccessful)
+                        return false;
+                }
+                else
+                {
+                    //-- Giảm số lượng còn lại của ProductVariation
+                    ProductVariation productVariation = lstProductvariation.FirstOrDefault(c => c.Id == new Guid(item.prodVariationId));
+                    if (productVariation == null) return false;
+                    productVariation.QuantityInStock = productVariation.QuantityInStock - item.quantity;
+                    if (!await Commons.Add_or_UpdateAsync(productVariation, String.Concat(Commons.mylocalhost, "ProductVariation/update-ProductVariation")))
                         return false;
                 }
             }

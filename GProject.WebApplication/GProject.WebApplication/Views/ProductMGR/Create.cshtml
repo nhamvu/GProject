@@ -361,13 +361,9 @@
             return false;
         }
         if (parseFloat($('#BrandId').val()) == -1) {
-            sweetAlert("Thông báo", "Thông tin tên sản phẩm không được để trống", "error");
+            sweetAlert("Thông báo", "Thông tin nhãn hiệu sản phẩm không được để trống", "error");
             return false;
-        }
-        if (parseFloat($('#CategoryId').val()) == -1) {
-            sweetAlert("Thông báo", "Vui lòng chọn loại danh mục sản phẩm", "error");
-            return false;
-        }
+        }      
         if ($('#ImportPrice').val() == '') {
             sweetAlert("", "Thông tin giá nhập không được để trống", "error");
             return false;
@@ -388,12 +384,21 @@
             sweetAlert("", "Thông tin giá bán chỉ bao gồm kí tự số", "error");
             return false;
         }
-        if (parseFloat($('#Price').val() || 0) < 0 || parseFloat($('#ImportPrice').val() || 0) === 0) {
+        if (parseFloat($('#Price').val() || 0) < 0 || parseFloat($('#Price').val() || 0) === 0) {
             sweetAlert("", "Thông tin giá bán phải có giá trị lớn hơn 0", "error");
             return false;
         }
+        if (parseFloat($('#Price').val()) < parseFloat($('#ImportPrice').val())) {
+            sweetAlert("", "Thông tin giá bán phải có giá trị lớn hơn giá nhập", "error");
+            return false;
+        }   
+        if (parseFloat($('#CategoryId').val()) == -1) {
+            sweetAlert("Thông báo", "Vui lòng chọn loại danh mục sản phẩm", "error");
+            return false;
+        }     
         return true;
     }
+
 
     $('#changeform').on('click', function () {
         $('#formDataModal').modal('show');
