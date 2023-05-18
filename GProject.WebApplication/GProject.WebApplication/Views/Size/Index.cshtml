@@ -146,6 +146,7 @@
                     <table class="table table-bordered table-hover sticky-table">
                         <thead class="sticky-header">
                             <tr>
+                                <th style="width: 35px;">STT</th>
                                 <th>Mã Size</th>
                                 <th>Tên Size</th>
                                 <th>Trạng thái</th>
@@ -155,9 +156,11 @@
                         <tbody>
                             @if (Model != null)
                             {
+                                int i = 1;
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                        <td class="text-center">@i</td>
                                         <td>
                                             @item.Code
                                         </td>
@@ -176,6 +179,7 @@
                                             </button>
                                         </td>
                                     </tr>
+                                    i++;
                                 }
                             }
                         </tbody>

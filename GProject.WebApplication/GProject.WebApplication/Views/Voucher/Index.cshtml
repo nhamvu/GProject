@@ -234,6 +234,7 @@
                     <table class="table table-bordered table-hover sticky-table">
                         <thead class="sticky-header">
                             <tr>
+                                <th style="width: 35px;">STT</th>
                                 <th>Mã giảm giá</th>
                                 <th>Tên</th>
                                 <th>Mức giảm giá</th>
@@ -249,9 +250,11 @@
                         <tbody>
                             @if (Model.VoucherList != null)
                             {
+                                int i = 1;
                                 @foreach (var item in Model.VoucherList)
                                 {
                                     <tr>
+                                        <td class="text-center">@i</td>
                                         <td>
                                             @item.VoucherId
                                         </td>
@@ -307,6 +310,7 @@
                                 }
                                 </td> *@
                                     </tr>
+                                    i++;
                                 }
                             }
                         </tbody>

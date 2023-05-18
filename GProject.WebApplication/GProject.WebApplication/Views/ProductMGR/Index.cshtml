@@ -185,6 +185,7 @@
                 <table class="table table-bordered table-hover sticky-table">
                     <thead class="sticky-header">
                         <tr>
+                            <th style="width: 35px;">STT</th>
                             <th style ="width:100px;">Hình ảnh</th>
                             <th>Mã sản phẩm</th>
                             <th style="width:220px;">Tên sản phẩm</th>                           
@@ -201,10 +202,12 @@
                     <tbody>
                         @if (Model.ProductList != null)
                         {
+                            int i = 1;
                             @foreach (var item in Model.ProductList)
                             {
                                 string img = Model.ProductVariationList.Where(c => c.ProductId == item.Id).Select(c => c.Image).FirstOrDefault().NullToString();
                                 <tr>
+                                    <td class="text-center">@i</td>
                                     <td>
                                         <img style="width:120px;height:130px;" src="~/images/@img" />
                                     </td>
@@ -249,6 +252,7 @@
                                         <i class="fas fa-pen-square"></i>
                                     </td>
                                 </tr>
+                                i++;
                             }
                         }
                     </tbody>

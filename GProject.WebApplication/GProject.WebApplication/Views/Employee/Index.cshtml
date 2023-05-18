@@ -249,6 +249,7 @@
                     <table class="table table-bordered table-hover sticky-table">
                         <thead class="sticky-header">
                             <tr>
+                                <th style="width: 35px;">STT</th>
                                 <th>Hình ảnh</th>
                                 <th>Mã nhân viên</th>
                                 <th>Tên nhân viên</th>
@@ -263,10 +264,12 @@
                         </thead>
                         <tbody>
                             @if (Model.EmployeeList != null)
-                            {
+                            { 
+                                int i = 1;
                                 @foreach (var item in Model.EmployeeList)
                                 {
                                     <tr>
+                                        <td class="text-center">@i</td>
                                         <td>
                                             <img style="width:120px;height:50px; border;1px solid;"
                                                 src="~/images/@item.Image" />
@@ -301,6 +304,7 @@
                                             </button>                                            
                                         </td>
                                     </tr>
+                                    i++;
                                 }
                             }
                         </tbody>
@@ -565,6 +569,10 @@
         }
         if ($('#Address').val() == '') {
             sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
+            return false;
+        }
+        if ($('#Image_Upload').val() == '') {
+            sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
             return false;
         }
         return true;

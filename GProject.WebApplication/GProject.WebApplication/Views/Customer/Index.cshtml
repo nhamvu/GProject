@@ -217,6 +217,7 @@
                     <table class="table table-bordered table-hover sticky-table">
                         <thead class="sticky-header">
                             <tr>
+                                <th style="width: 35px;">STT</th>
                                 <th>Hình ảnh</th>
                                 <th>Mã khách hàng</th>
                                 <th>Tên khách hàng</th>
@@ -230,9 +231,11 @@
                         <tbody>
                             @if (Model != null)
                             {
+                                int i = 1;
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                        <td class="text-center">@i</td>
                                         <td>
                                             <img style="width:120px;height:90px; border;1px solid;"
                                                 src="~/images/@item.Image" />
@@ -261,6 +264,7 @@
                                             </button>
                                         </td>
                                     </tr>
+                                    i++;
                                 }
                             }
                         </tbody>
@@ -323,19 +327,11 @@
         if ($("#changeform").text() == "Thêm mới") {
             $('#formdata').show();
             $("#changeform").text("Hủy thay đổi");
-        } else if ($("#changeform").text() == "Hủy thay đổi") {
-            $("#Id").val('');
-            $("#Name").val('');
-            $("#Email").val('');
-            $("#Password").val('');
-            $("#DateOfBirth").val('');
-            $("#PhoneNumber").val('');
-            $("#Sex").val(0);
-            $("#Address").val('');
-            $("#Description").val('');
-            $("#Status").val(0);
+        } 
+        else if ($("#changeform").text() == "Hủy thay đổi") {            
             $('#formdata').hide();
             $("#changeform").text("Thêm mới");
+            Clear()
         }
     }
     function validatePhoneNumber(code) {
@@ -408,7 +404,26 @@
             sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
             return false;
         }
+        if ($('#Image_Upload').val() == '') {
+            sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
+            return false;
+        }
         return true;
+    }
+
+    function Clear()
+    {
+        $("#Id").val('');
+        $("#Name").val('');
+        $("#Email").val('');
+        $("#Password").val('');
+        $("#DateOfBirth").val('');
+        $("#PhoneNumber").val('');
+        $("#Sex").val(0);
+        $("#Address").val('');
+        $("#Description").val('');
+        $("#Status").val(0);
+        $("#Image_Upload").val('');
     }
 
     $(document).ready(function () {
@@ -436,6 +451,10 @@
             if ($('#Address').val() == '') {
                 sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
                 return false;
+            }
+            if ($('#Image_Upload').val() == '') {
+            sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
+            return false;
             }
             var id = $("#Id").val();
             var name = $("#Name").val();

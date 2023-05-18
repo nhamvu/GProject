@@ -141,6 +141,7 @@
                     <table class="table table-bordered table-hover sticky-table">
                         <thead class="sticky-header">
                             <tr>
+                                <th style="width: 35px;">STT</th>
                                 <th>Hình ảnh</th>
                                 <th>Mã</th>
                                 <th>Tên</th>
@@ -155,9 +156,11 @@
                         <tbody>
                             @if (Model != null)
                             {
+                                int i = 1;
                                 @foreach (var item in Model)
                                 {
                                     <tr>
+                                        <td class="text-center">@i</td>
                                         <td>
                                             <img style="width:120px;height:50px; border;1px solid;"
                                                 src="~/images/@item.Image" />
@@ -189,6 +192,7 @@
                                             <i class="fas fa-pen-square"></i>
                                         </td>
                                     </tr>
+                                    i++;
                                 }
                             }
                         </tbody>

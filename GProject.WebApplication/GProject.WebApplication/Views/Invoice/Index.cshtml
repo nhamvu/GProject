@@ -41,11 +41,13 @@
     }
 </style>
 
-@if (@ViewData["Mess"] != null)
+<div class="container">
+    @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
-<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Invoice/Index">
+<button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+<form id="Searchform" name="searchForm" method="post" class="form-horizontal" style="margin-top: 15px;" action="/Invoice/Index">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -186,8 +188,32 @@
         </div>
     </div>
 </div>
+</div>
 
 <script>
+    $(document).ready(function () {
+        if ($("#sId").val() != '' ||
+            $("#sName").val() != '' ||
+            $("#sEmail").val() != '' ||
+            $("#sPhone").val() != '') 
+        {
+            $('#Searchform').show();
+        }
+        else{
+            $('#Searchform').hide();
+        }
+    })
+
+    function ChangeSearch() {
+        if ($("#changeformsearch").text() == "Tìm kiếm") {
+            $('#Searchform').show();
+            //$("#ExpirationDate").val(new Date().toJSON().slice(0,19));
+            $("#changeformsearch").text("Hủy tìm kiếm");
+        } else if ($("#changeformsearch").text() == "Hủy tìm kiếm") {
+            $('#Searchform').hide();
+            $("#changeformsearch").text("Tìm kiếm");
+        }
+    }
     function checkphone(){
         let regex = /^[0-9]+$/;
             if (!regex.test($("#sPhone").val()))

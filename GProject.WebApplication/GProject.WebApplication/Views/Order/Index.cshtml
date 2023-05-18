@@ -64,7 +64,8 @@
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
 
-<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Order/Index">
+<button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+<form id="Searchform" name="SearchForm" method="post" class="form-horizontal" style="margin-top: 15px;" action="/Order/Index">
     <div class="row">
         <div class="col-md-12">
             <div class="panel panel-default">
@@ -290,6 +291,19 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
+        if ($("#sId").val() != '' ||
+            $("#sName").val() != '' ||
+            $("#sEmail").val() != '' ||
+            $("#sPhone").val() != '') 
+        {
+            $('#Searchform').show();
+        }
+        else{
+            $('#Searchform').hide();
+        }
+
+        
         var er = document.getElementById('error')
         if (er != null) {
             if ($('#error').text() == 'Failed')
@@ -299,6 +313,17 @@
         }
     });
 
+
+    function ChangeSearch() {
+        if ($("#changeformsearch").text() == "Tìm kiếm") {
+            $('#Searchform').show();
+            //$("#ExpirationDate").val(new Date().toJSON().slice(0,19));
+            $("#changeformsearch").text("Hủy tìm kiếm");
+        } else if ($("#changeformsearch").text() == "Hủy tìm kiếm") {
+            $('#Searchform').hide();
+            $("#changeformsearch").text("Tìm kiếm");
+        }
+    }
 
     function ViewOrderDetailData(ID) {
         $.getJSON("/Order/GetLog?id=" + ID)
