@@ -181,7 +181,7 @@ namespace GProject.WebApplication.Controllers
             return Json(result);
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<ActionResult> CheckName(string Name, Guid? Id)
         {
             try
@@ -191,7 +191,7 @@ namespace GProject.WebApplication.Controllers
 
                 var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
                 var existName = lstObjs.Any(x => x.Name.ToLower() == Name.ToLower() && (!Id.HasValue || x.Id != Id.Value));
-                return Json (existName);
+                return Json(new { success = !existName });
             }
             catch (Exception)
             {

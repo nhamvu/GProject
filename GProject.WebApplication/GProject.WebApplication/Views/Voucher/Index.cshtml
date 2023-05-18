@@ -128,7 +128,7 @@
                         1) : false)},
                         new SelectListItem{Text="Nhập mã giảm giá", Value="2", Selected = (Model.Status != null ? (Model.Status
                         == 2) : false)},
-                        new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ?
+                        new SelectListItem{Text="Không hoạt động", Value="0", Selected = (Model.Status != null ?
                         (Model.Status == 0) : false)},
                         }, new { @class = "form-control iscompany" })
                     </div>
@@ -172,7 +172,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Mức giảm giá từ: </label>
                                     <div class="col-md-9 col-xs-12">
-                                        <input value="@ViewData["giamgia_tu"]" type="number" min="0"
+                                        <input style="margin-top: 0px;" value="@ViewData["giamgia_tu"]" type="number" min="0"
                                             oninput="this.value = Math.abs(this.value)" id="giamgia_tu"
                                             name="giamgia_tu" class="form-control" />
                                     </div>
@@ -180,7 +180,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">Đến:</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <input value="@ViewData["giamgia_den"]" type="number" min="0"
+                                        <input style="margin-top: 0px;" value="@ViewData["giamgia_den"]" type="number" min="0"
                                             oninput="this.value = Math.abs(this.value)" id="giamgia_den"
                                             name="giamgia_den" class="form-control" />
                                     </div>
@@ -192,7 +192,7 @@
                                     <div class="col-md-9 col-xs-12">
                                         <select value="@ViewData["hinhthuc"]" name="hinhthuc" id="hinhthuc"
                                             class="form-select">
-                                            <option value="">None</option>
+                                            <option value="">-- Tất cả --</option>
                                             <option value="Vnd">Vnd</option>
                                             <option value="%">%</option>
                                         </select>
@@ -203,10 +203,10 @@
                                     <div class="col-md-9 col-xs-12">
                                         <select name="trangthai" value="@ViewData["trangthai"]" id="trangthai"
                                             class="form-select">
-                                            <option value="">None</option>
+                                            <option value="">-- Tất cả --</option>
                                             <option value="1">Hiển thị danh sách chọn</option>
                                             <option value="2">Nhập mã giảm giá</option>
-                                            <option value="0">Không sử dụng</option>
+                                            <option value="0">Không hoạt động</option>
                                         </select>
                                     </div>
                                 </div>
@@ -286,7 +286,7 @@
                                             @item.ExpirationDate
                                         </td>
                                         <td>
-                                            @(item.Status == 1 ? "Hiển thị danh sách chọn" : item.Status == 2 ? "Nhập mã giảm giá" : "Không sử dụng")
+                                            @(item.Status == 1 ? "Hiển thị danh sách chọn" : item.Status == 2 ? "Nhập mã giảm giá" : "Không hoạt động")
                                         </td>
                                         <td>
                                             <button class="btn btn-info" onclick="ViewDetailDataVoucher(@item.Id)">
@@ -488,9 +488,6 @@
             $("#MaximumDiscount").val(data.maximumDiscount);
             $("#Status").val(data.status);
             $("#Id").val(data.id);
-            document.getElementById('namee').innerText = data.name;
-            document.getElementById('code').innerText = data.hexCode;
-            document.getElementById('status').innerText = data.status == 1 ? "Đang sử dụng" : "Không sử dụng";
 
             ChangePanel()
 

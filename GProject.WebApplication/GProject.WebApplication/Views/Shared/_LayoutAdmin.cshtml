@@ -108,7 +108,7 @@
                         <li class="sidebar-item pt-2">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Invoice/Index"
                                aria-expanded="false">
-                                <i style="color: white" class="fa fa-building"></i>
+                                <i style="color: white" class="fas fa-receipt"></i>
                                 <span style=" color: white" class="hide-menu">Danh sách hóa đơn</span>
                             </a>
                         </li>
@@ -117,11 +117,39 @@
                             <li class="sidebar-item pt-2">
                                 <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Promotion/Index"
                                aria-expanded="false">
-                                    <i style="color: white" class="fas fa-atom"></i>
+                                    <i class="fas fa-percent" style="color: white"></i>
                                     <span style=" color: white" class="hide-menu">Giảm giá</span>
                                 </a>
                             </li>
+                            <li class="sidebar-item dropdown">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Voucher/Index"
+                               aria-expanded="false">
+                                    <i class="fas fa-tags" style="color: white"></i>
+                                    <span style=" color: white" class="hide-menu">Mã khuyến mại</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item dropdown">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Employee/Index"
+                               aria-expanded="false">
+                                    <i class="fas fa-user-nurse" style="color: white"></i>
+                                    <span style=" color: white" class="hide-menu">Nhân viên</span>
+                                </a>
+                            </li>
                         }
+                        <li class="sidebar-item dropdown">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Customer/Index"
+                               aria-expanded="false">
+                                <i class="fas fa-users" style="color: white"></i>
+                                <span style=" color: white" class="hide-menu">Khách hàng</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item dropdown">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/ProductMGR/Index"
+                               aria-expanded="false">
+                                <i class="fas fa-cubes" style="color: white"></i>
+                                <span style=" color: white" class="hide-menu">Thông tin sản phẩm</span>
+                            </a>
+                        </li>
                         <li class="sidebar-item dropdown">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Category/Index"
                                aria-expanded="false">
@@ -149,48 +177,14 @@
                                 <i class="fab fa-bandcamp" style="color: white"></i>
                                 <span style=" color: white" class="hide-menu">Nhãn hiệu</span>
                             </a>
-                        </li>
-                        <li class="sidebar-item dropdown">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/ProductMGR/Index"
-                               aria-expanded="false">
-                                <i class="fas fa-cubes" style="color: white"></i>
-                                <span style=" color: white" class="hide-menu">Thông tin sản phẩm</span>
-                            </a>
-                        </li>
+                        </li>                        
                         <li class="sidebar-item dropdown">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Evaluate/index"
                                aria-expanded="false">
                                 <i class="fas fa-comment-dots" style="color: white"></i>
                                 <span style=" color: white" class="hide-menu">Bình luận đánh giá</span>
                             </a>
-                        </li>
-                        @if (user.Position == GProject.Data.Enums.EmployeePosition.Manager)
-                        {
-                            <li class="sidebar-item dropdown">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Employee/Index"
-                               aria-expanded="false">
-                                    <i class="fas fa-user-nurse" style="color: white"></i>
-                                    <span style=" color: white" class="hide-menu">Nhân viên</span>
-                                </a>
-                            </li>
-                        }
-                        <li class="sidebar-item dropdown">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Customer/Index"
-                               aria-expanded="false">
-                                <i class="fas fa-users" style="color: white"></i>
-                                <span style=" color: white" class="hide-menu">Khách hàng</span>
-                            </a>
-                        </li>
-                        @if (user.Position == GProject.Data.Enums.EmployeePosition.Manager)
-                        {
-                            <li class="sidebar-item dropdown">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/Voucher/Index"
-                               aria-expanded="false">
-                                    <i class="fas fa-tags" style="color: white"></i>
-                                    <span style=" color: white" class="hide-menu">Mã khuyến mại</span>
-                                </a>
-                            </li>
-                        }
+                        </li>                                                
                     </ul>
 
                 </nav>

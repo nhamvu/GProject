@@ -382,32 +382,47 @@
         var form = this;
 
         e.preventDefault();
-        if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+        var name = $('#Name').val();
+        var id = $('#Id').val();
+
+        if ($('#Name').val() == '') {
+            sweetAlert("Thông báo", "Thông tin tên sản phẩm không được để trống", "error");
+            return false;
+        }
+        else {
+            $.ajax({
+                url: "/ProductMGR/CheckName?Name=" + name + "&Id=" + id,
+                type: "GET",
+                success: function (result) {
+                    if (result.success) {
+                        if (checkValidateData()) {
+                            swal("Bạn chắc chắn lưu những thay đổi này?", {
+                                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                                icon: 'info',
+                                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                            }).then(function (isConfirm) {
+                                if (isConfirm) {
+                                    form.submit();
+                                } else {
+                                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                                }
+                            });
+                        }
+                    } else {
+                        swal("Xin lỗi", "Tên đã được sử dụng.", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Lỗi, hiển thị thông báo lỗi
+                    alert(error);
                 }
             });
         }
     });
 
     function checkValidateData() {
-        if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên sản phẩm không được để trống", "error");
-            return false;
-        }
         if (parseFloat($('#BrandId').val()) == -1) {
-            sweetAlert("Thông báo", "Thông tin tên sản phẩm không được để trống", "error");
-            return false;
-        }
-        if (parseFloat($('#CategoryId').val()) == -1) {
-            sweetAlert("Thông báo", "Vui lòng chọn loại danh mục sản phẩm", "error");
+            sweetAlert("Thông báo", "Thông tin nhãn hiệu sản phẩm không được để trống", "error");
             return false;
         }
         if ($('#ImportPrice').val() == '') {
@@ -430,8 +445,16 @@
             sweetAlert("", "Thông tin giá bán chỉ bao gồm kí tự số", "error");
             return false;
         }
-        if (parseFloat($('#Price').val() || 0) < 0 || parseFloat($('#ImportPrice').val() || 0) === 0) {
+        if (parseFloat($('#Price').val() || 0) < 0 || parseFloat($('#Price').val() || 0) === 0) {
             sweetAlert("", "Thông tin giá bán phải có giá trị lớn hơn 0", "error");
+            return false;
+        }
+        if (parseFloat($('#Price').val()) < parseFloat($('#ImportPrice').val())) {
+            sweetAlert("", "Thông tin giá bán phải có giá trị lớn hơn giá nhập", "error");
+            return false;
+        }
+        if (parseFloat($('#CategoryId').val()) == -1) {
+            sweetAlert("Thông báo", "Vui lòng chọn loại danh mục sản phẩm", "error");
             return false;
         }
         return true;

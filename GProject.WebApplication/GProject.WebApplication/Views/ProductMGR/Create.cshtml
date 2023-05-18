@@ -340,26 +340,44 @@
         var form = this;
 
         e.preventDefault();
-        if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
-        }
-    });
+        var name = $('#Name').val();
 
-    function checkValidateData() {
         if ($('#Name').val() == '') {
             sweetAlert("Thông báo", "Thông tin tên sản phẩm không được để trống", "error");
             return false;
         }
+        else{
+            $.ajax({
+                url: "/ProductMGR/CheckName?Name=" + name,
+                type: "GET",
+                success: function (result) {
+                    if (result.success) {
+                        if (checkValidateData()) {
+                            swal("Bạn chắc chắn lưu những thay đổi này?", {
+                                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                                icon: 'info',
+                                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                            }).then(function (isConfirm) {
+                                if (isConfirm) {
+                                    form.submit();
+                                } else {
+                                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                                }
+                            });
+                        }
+                    } else {
+                        swal("Xin lỗi", "Tên đã được sử dụng.", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    // Lỗi, hiển thị thông báo lỗi
+                    alert(error);
+                }
+            });
+        }              
+    });
+
+    function checkValidateData() {        
         if (parseFloat($('#BrandId').val()) == -1) {
             sweetAlert("Thông báo", "Thông tin nhãn hiệu sản phẩm không được để trống", "error");
             return false;

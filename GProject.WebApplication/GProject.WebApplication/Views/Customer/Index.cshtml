@@ -70,12 +70,12 @@
             <div class="row">
                 <div class="col-md-4">
                     <label class="col-md-5">Ngày sinh:<span style="color: red">(*)</span></label>
-                    <input id="DateOfBirth" name="DateOfBirth" type="datetime-local" value="<?php echo date('Y-m-d'); ?>"
-                        maxlength="200" class="form-control" />
+                    <input id="DateOfBirth" name="DateOfBirth" type="datetime-local"
+                        value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
                     <label class="col-md-5">Số điện thoại:<span style="color: red">(*)</span></label>
-                    <input id="PhoneNumber" name="PhoneNumber" type="text" placeholder="(+84) ..." maxlength="200"
+                    <input id="PhoneNumber" name="PhoneNumber" type="text" placeholder="(+84) ..." maxlength="15"
                         class="form-control" />
                 </div>
                 <div class="col-md-4">
@@ -133,14 +133,14 @@
                             <div class="col-md-4">
 
                                 <div class="form-group">
-                                    <label >Tên khách hàng</label>
+                                    <label>Tên khách hàng</label>
                                     <div class="col-md-9 col-xs-12">
                                         <input type="text" id="sName" name="sName" value="@ViewData["sName"]"
                                             class="form-control" />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label >Email</label>
+                                    <label>Email</label>
                                     <div class="col-md-9 col-xs-12">
                                         <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
                                             class="form-control" />
@@ -150,7 +150,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label >Trạng thái</label>
+                                    <label>Trạng thái</label>
                                     <div class="col-md-9">
                                         @{
                                             int status = int.Parse(Html.Encode(ViewData["sStatus"]));
@@ -164,9 +164,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label >Số điện thoại</label>
+                                    <label>Số điện thoại</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <input type="text" id="sPhone" maxlength="10" name="sPhone"
+                                        <input type="text" id="sPhone" maxlength="15" name="sPhone"
                                             value="@ViewData["sPhone"]" class="form-control" />
                                     </div>
                                 </div>
@@ -174,7 +174,7 @@
 
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label >Giới tính</label>
+                                    <label>Giới tính</label>
                                     <div class="col-md-9">
                                         @{
                                             int gender = int.Parse(Html.Encode(ViewData["sGender"]));
@@ -214,6 +214,7 @@
                         <thead class="sticky-header">
                             <tr>
                                 <th>Hình ảnh</th>
+                                <th>Mã khách hàng</th>
                                 <th>Tên khách hàng</th>
                                 <th>Email</th>
                                 <th>Số điện thoại</th>
@@ -231,6 +232,9 @@
                                         <td>
                                             <img style="width:120px;height:90px; border;1px solid;"
                                                 src="~/images/@item.Image" />
+                                        </td>
+                                        <td>
+                                            @item.CustomerId
                                         </td>
                                         <td>
                                             @item.Name
@@ -281,11 +285,10 @@
 
         if ($("#sName").val() != '' ||
             $("#sEmail").val() != '' ||
-            $("#sPhone").val() != '') 
-        {
+            $("#sPhone").val() != '') {
             $('#Searchform').show();
         }
-        else{
+        else {
             $('#Searchform').hide();
         }
 
@@ -299,6 +302,12 @@
         }
 
         $('#sPhone').keyup(function () {
+            let regex = /^[0-9]+$/;
+            if (!regex.test($(this).val()))
+                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
+        });
+
+        $('#PhoneNumber').keyup(function () {
             let regex = /^[0-9]+$/;
             if (!regex.test($(this).val()))
                 $(this).val($(this).val().replace(/[^0-9.]/g, ""));
@@ -446,6 +455,7 @@
             data.append('Description', description);
             data.append('Status', status);
             data.append('Image_Upload', image);
+
             $.ajax({
                 url: "/Customer/CheckEmail",
                 type: "POST",
@@ -458,29 +468,41 @@
                             data: { PhoneNumber: phoneNumber, Id: id },
                             success: function (result) {
                                 if (result.success) {
-                                    $.ajax({
-                                        url: "/Customer/Save",
-                                        type: "POST",
-                                        data: data,
-                                        contentType: false,
-                                        processData: false,
-                                        success: function (result) {
-                                            if (result.success) {
-                                                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
-                                                setTimeout(function () {
-                                                    location.reload();
-                                                }, 2000);
-                                            } else {
-                                                swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
-                                                setTimeout(function () {
-                                                    location.reload();
-                                                }, 2000);
-                                            }
-                                        },
-                                        error: function (xhr, status, error) {
-                                            alert(error);
+
+                                    swal("Bạn chắc chắn lưu những thay đổi này?", {
+                                        title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                                        icon: 'info',
+                                        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                                    }).then(function (isConfirm) {
+                                        if (isConfirm) {
+                                            $.ajax({
+                                                url: "/Customer/Save",
+                                                type: "POST",
+                                                data: data,
+                                                contentType: false,
+                                                processData: false,
+                                                success: function (result) {
+                                                    if (result.success) {
+                                                        swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                        setTimeout(function () {
+                                                            location.reload();
+                                                        }, 1000);
+                                                    } else {
+                                                        swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                        setTimeout(function () {
+                                                            location.reload();
+                                                        }, 1000);
+                                                    }
+                                                },
+                                                error: function (xhr, status, error) {
+                                                    alert(error);
+                                                }
+                                            });
+                                        } else {
+                                            swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
                                         }
                                     });
+
                                 } else {
                                     swal("Lỗi", "Số điện thoại đã được đăng ký, vui lòng nhập số khác", "error");
                                 }

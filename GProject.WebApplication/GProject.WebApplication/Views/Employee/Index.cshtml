@@ -51,10 +51,6 @@
         <div class="row mt-5">
             <div class="row">
                 <div class="col-md-4">
-                    <label>Mã nhân viên:<span style="color: red">(*)</span></label>
-                    <input asp-for="EmployeeId" placeholder="Employee Id" maxlength="200" class="form-control" />
-                </div>
-                <div class="col-md-4">
                     <label>Tên nhân viên:<span style="color: red">(*)</span></label>
                     <input asp-for="Name" placeholder="Name" maxlength="200" class="form-control" />
                 </div>
@@ -62,6 +58,10 @@
                     <label>Email:<span style="color: red">(*)</span></label>
                     <input asp-for="Email" type="email" placeholder="name@example.com" maxlength="200"
                         class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Số điện thoại:<span style="color: red">(*)</span></label>
+                    <input asp-for="PhoneNumber" placeholder="(+84) ..." maxlength="200" class="form-control" />
                 </div>
             </div>
 
@@ -87,11 +87,7 @@
                     <label class="col-md-5">Ngày gia nhập:<span style="color: red">(*)</span></label>
                     <input asp-for="DateOfJoin" value="<?php echo date('Y-m-d'); ?>" maxlength="200"
                         class="form-control" />
-                </div>
-                <div class="col-md-4">
-                    <label class="col-md-5">Số điện thoại:<span style="color: red">(*)</span></label>
-                    <input asp-for="PhoneNumber" placeholder="(+84) ..." maxlength="200" class="form-control" />
-                </div>
+                </div>                
                 <div class="col-md-4">
                     <label>Giới tính:</label><span style="color: red">(*)</span>
                     <div style="margin-top:10px;">
@@ -104,13 +100,13 @@
                         }, new { @class = "form-control iscompany" })
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-4">
                     <label class="col-md-5">Địa chỉ:<span style="color: red">(*)</span></label>
                     <input asp-for="Address" placeholder="Address" maxlength="200" class="form-control" />
                 </div>
+            </div>
+
+            <div class="row">                
                 <div class="col-md-4">
                     <label class="col-md-5">Mô tả:</label>
                     <input asp-for="Description" placeholder="Description" maxlength="200" class="form-control" />
@@ -129,9 +125,6 @@
                         }, new { @class = "form-control iscompany" })
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-4">
                     <label>Trạng thái</label><span style="color: red">(*)</span>
                     <div style="margin-top:10px;">
@@ -144,6 +137,9 @@
                         }, new { @class = "form-control iscompany" })
                     </div>
                 </div>
+            </div>
+
+            <div class="row">                
                 <div class="col-md-4">
                     <label class="col-md-5">Hình ảnh:<span style="color: red">(*)</span></label>
                     <input asp-for="Image_Upload" type="file" class="form-control" />
@@ -206,7 +202,7 @@
                                 <div class="form-group">
                                     <label class="">Số điện thoại</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <input id="sPhone" maxlength="10" name="sPhone" value="@ViewData["sPhone"]"
+                                        <input id="sPhone" maxlength="15" name="sPhone" value="@ViewData["sPhone"]"
                                             class="form-control" />
                                     </div>
                                 </div>
@@ -414,6 +410,12 @@
         $('.datefield').datepicker({
             format: 'dd/mm/yyyy'
         });
+
+        $('#sPhone').keyup(function () {
+            let regex = /^[0-9]+$/;
+            if (!regex.test($(this).val()))
+                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
+        });
     });
 
     function ChangePanel() {
@@ -460,18 +462,49 @@
         var form = this;
 
         e.preventDefault();
+
+        var id = $("#Id").val();
+        var email = $("#Email").val();
+        var phoneNumber = $("#PhoneNumber").val();
+
         if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+            $.ajax({
+                url: "/Employee/CheckEmail",
+                type: "POST",
+                data: { Email: email, Id: id },
+                success: function (result) {
+                    if (result.success) {
+                        $.ajax({
+                            url: "/Employee/CheckPhone",
+                            type: "POST",
+                            data: { PhoneNumber: phoneNumber, Id: id },
+                            success: function (result) {
+                                if (result.success) {
+                                    swal("Bạn chắc chắn lưu những thay đổi này?", {
+                                        title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                                        icon: 'info',
+                                        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                                    }).then(function (isConfirm) {
+                                        if (isConfirm) {
+                                            form.submit();
+                                        } else {
+                                            swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                                        }
+                                    });
+                                } else {
+                                    swal("Lỗi", "Số điện thoại đã được đăng ký, vui lòng nhập số khác", "error");
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        swal("Lỗi", "Email đã được đăng ký, vui lòng nhập email khác", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(error);
                 }
-            });
+            });            
         }
     });
     function ViewEmployeeDetail(id) {
@@ -521,14 +554,11 @@
             sweetAlert("Thông báo", "Thông tin số CMT/CCCD không được để trống", "error");
             return false;
         }
-        //if (!validatePhoneNumber($('#PhoneNumber').val())) {
-        //    sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
-        //    return false;
-        //}
         if ($('#Address').val() == '') {
             sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
             return false;
         }
         return true;
     }
+
 </script>

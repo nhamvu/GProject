@@ -88,7 +88,7 @@ namespace GProject.WebApplication.Controllers
                 emp.Email = Employee.Email;
                 emp.Position = Employee.Position;
                 emp.PersonalId = Employee.PersonalId;
-                emp.EmployeeId = Employee.EmployeeId;
+                emp.EmployeeId = Commons.RandomString(10);
                 if (!string.IsNullOrEmpty(Employee.Password)) emp.Password = Employee.Password;
                 emp.CreateDate = DateTime.Now;
                 emp.UpdateDate = DateTime.Now;
@@ -135,6 +135,51 @@ namespace GProject.WebApplication.Controllers
             var lstObjs = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
             var data = lstObjs.FirstOrDefault(c => c.Id == id);
             return Json(data);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckPhone(string PhoneNumber, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+
+                var existNameEmployee = employees.Any(x => x.PhoneNumber == PhoneNumber && (!Id.HasValue || x.Id != Id.Value));
+                var existNameCustomer = lstObjs.Any(x => x.PhoneNumber == PhoneNumber);
+                if(!existNameCustomer && !existNameEmployee)
+                    return Json(new { success = true });
+                else
+                    return Json(new { success = false });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> CheckEmail(string Email, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var existNameCustomer = lstObjs.Any(x => x.Email == Email);
+                var existNameEmployee = employees.Any(x => x.Email == Email && (!Id.HasValue || x.Id != Id.Value));
+
+                if(!existNameCustomer && !existNameEmployee)
+                    return Json(new { success = true });
+                else
+                    return Json(new { success = false });        
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
         }
     }
 }

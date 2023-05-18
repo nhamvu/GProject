@@ -74,8 +74,16 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
                     return Json(new { success = false });
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
-                var existName = lstObjs.Any(x => x.PhoneNumber == PhoneNumber && (!Id.HasValue || x.Id != Id.Value));
-                return Json(new { success = !existName });
+                var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+
+                var existNameCustomer = lstObjs.Any(x => x.PhoneNumber == PhoneNumber && (!Id.HasValue || x.Id != Id.Value));
+                var existNameEmployee = employees.Any(x => x.PhoneNumber == PhoneNumber);
+
+                if(!existNameCustomer && !existNameEmployee)
+                    return Json(new { success = true });
+                else
+                    return Json(new { success = false });  
+                    
             }
             catch (Exception)
             {
@@ -90,8 +98,14 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
                     return Json(new { success = false });
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
-                var existName = lstObjs.Any(x => x.Email == Email && (!Id.HasValue || x.Id != Id.Value));
-                return Json(new { success = !existName });
+                var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var existNameCustomer = lstObjs.Any(x => x.Email == Email && (!Id.HasValue || x.Id != Id.Value));
+                var existNameEmployee = employees.Any(x => x.Email == Email);
+
+                if(!existNameCustomer && !existNameEmployee)
+                    return Json(new { success = true });
+                else
+                    return Json(new { success = false });              
             }
             catch (Exception)
             {
