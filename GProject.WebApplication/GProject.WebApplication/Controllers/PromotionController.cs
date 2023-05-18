@@ -26,7 +26,7 @@ namespace GProject.WebApplication.Controllers
             _IPromotionDetailRepository = new PromotionDetailRepository();
         }
 
-        public async Task<ActionResult> Index(string sName, int? sPercent, int? sStatus, string sfromDiscountRate, string stoDiscountRate, int? page)
+        public async Task<ActionResult> Index(string sId, string sName, int? sPercent, int? sStatus, string sfromDiscountRate, string stoDiscountRate, int? page)
         {
             try
             {
@@ -37,6 +37,8 @@ namespace GProject.WebApplication.Controllers
                 //-- Lấy danh sách từ api
                 var lstObjs = _IPromotionRepository.GetAll();
 
+                if (!string.IsNullOrEmpty(sId))
+                    lstObjs = lstObjs.Where(c => c.PromotionId.ToLower().Contains(sId.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.PromotionName.ToLower().Contains(sName.ToLower())).ToList();
                 if (valsPercent != -1)
@@ -45,7 +47,7 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => (int)c.Status == valsStatus).ToList();
                 if (!string.IsNullOrEmpty(sfromDiscountRate))
                     lstObjs = lstObjs.Where(c => c.DiscountRate >= decimal.Parse(sfromDiscountRate)).ToList();
-                if (!string.IsNullOrEmpty(sName))
+                if (!string.IsNullOrEmpty(stoDiscountRate))
                     lstObjs = lstObjs.Where(c => c.DiscountRate <= decimal.Parse(stoDiscountRate)).ToList();
 
                 if (page == null) page = 1;
@@ -57,6 +59,7 @@ namespace GProject.WebApplication.Controllers
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
 
+                this.ViewData[nameof(sId)] = (object)sId;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sPercent)] = (object)valsPercent;
                 this.ViewData[nameof(sStatus)] = (object)valsStatus;

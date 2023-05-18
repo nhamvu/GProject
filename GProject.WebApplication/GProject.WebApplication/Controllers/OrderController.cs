@@ -50,7 +50,7 @@ namespace GProject.WebApplication.Controllers
             sizeRepository = new SizeRepository();
         }
 
-        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int? page, int? history)
+        public async Task<ActionResult> Index(string sId, string sName, string sEmail, string sPhone, int? sPaymentType, string? sortOrder, int? page, int? history)
         {
             try
             {
@@ -105,7 +105,8 @@ namespace GProject.WebApplication.Controllers
                     default: break;
                 }
 
-
+                if (!string.IsNullOrEmpty(sId))
+                    lstObjs = lstObjs.Where(c => c.OrderId.ToLower().Contains(sId.ToLower())).ToList();                
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.ShippingFullName.ToLower().Contains(sName.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sEmail))
@@ -132,6 +133,7 @@ namespace GProject.WebApplication.Controllers
                 var data = new OrderDto() { Orders = lstObjs.ToList() };
 
                 //this.ViewBag.Pager = pager;
+                this.ViewData[nameof(sId)] = (object)sId;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
@@ -837,15 +839,13 @@ namespace GProject.WebApplication.Controllers
 
                 if (customer == null && (orderId != null || phone != null))
                 {
-                    
-
                     return View(new OrderDTO() { OrderList = lstOrder.OrderByDescending(x => x.CreateDate).ToList(), ShowOrderDtoList = lstProductvariation });
                 }
 
                 if (customer == null)
-                    {
-                        return View(new OrderDTO() { OrderList = new List<Order>(), ShowOrderDtoList = new List<ShowOrderDto>() });
-                    }
+                {
+                    return View(new OrderDTO() { OrderList = new List<Order>(), ShowOrderDtoList = new List<ShowOrderDto>() });
+                }
 
                 var data = new OrderDTO() { OrderList = lstOrder.Where(x => x.CustomerId == customer.Id).OrderByDescending(x => x.CreateDate).ToList(), ShowOrderDtoList = lstProductvariation };
 

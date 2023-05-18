@@ -131,7 +131,12 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-md-4">
-
+                                <div class="form-group">
+                                    <label class="">Mã khách hàng</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input id="sId" name="sId" value="@ViewData["sId"]" class="form-control" />
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label>Tên khách hàng</label>
                                     <div class="col-md-9 col-xs-12">
@@ -139,30 +144,15 @@
                                             class="form-control" />
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Email</label>
                                     <div class="col-md-9 col-xs-12">
                                         <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
                                             class="form-control" />
                                     </div>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <label>Trạng thái</label>
-                                    <div class="col-md-9">
-                                        @{
-                                            int status = int.Parse(Html.Encode(ViewData["sStatus"]));
-                                        }
-                                        @Html.DropDownList("sStatus",new[]
-                                        {
-                                        new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
-                                        new SelectListItem{Text="Không hoạt động", Value="0", Selected= (status== 0)},
-                                        new SelectListItem{Text="Hoạt động", Value="1", Selected= (status == 1)}
-                                        }, new { @name = "sStatus", @class="searchText form-control select"})
-                                    </div>
-                                </div>
+                                </div>                                
                                 <div class="form-group">
                                     <label>Số điện thoại</label>
                                     <div class="col-md-9 col-xs-12">
@@ -185,6 +175,20 @@
                                         new SelectListItem{Text="Nam", Value="0", Selected= (gender== 0)},
                                         new SelectListItem{Text="Nữ", Value="1", Selected= (gender == 1)}
                                         }, new { @name = "sGender", @class="searchText form-control select"})
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Trạng thái</label>
+                                    <div class="col-md-9">
+                                        @{
+                                            int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                        }
+                                        @Html.DropDownList("sStatus",new[]
+                                        {
+                                        new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                        new SelectListItem{Text="Không hoạt động", Value="0", Selected= (status== 0)},
+                                        new SelectListItem{Text="Hoạt động", Value="1", Selected= (status == 1)}
+                                        }, new { @name = "sStatus", @class="searchText form-control select"})
                                     </div>
                                 </div>
                             </div>
@@ -283,7 +287,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        if ($("#sName").val() != '' ||
+        if ($("#sId").val() != '' ||
+            $("#sName").val() != '' ||
             $("#sEmail").val() != '' ||
             $("#sPhone").val() != '') {
             $('#Searchform').show();

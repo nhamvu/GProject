@@ -423,7 +423,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                                 <div class="form-group">
                                     <label class="control-label col-sm-5">Số điện thoại:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
+                                        <input type="text" id="ShippingPhone" onkeyup="checkphone()" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -788,7 +788,11 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
         }
     });
 
-
+    function checkphone(){
+        let regex = /^[0-9]+$/;
+        if (!regex.test($("#ShippingPhone").val()))
+            $("#ShippingPhone").val($("#ShippingPhone").val().replace(/[^0-9.]/g, ""));
+    }
 
     function CheckDiscountCode() {
         $("#selectVoucher").val(0)

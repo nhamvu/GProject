@@ -22,7 +22,7 @@ namespace GProject.WebApplication.Controllers
             orderDetailRepository = new OrderDetailRepository();
         }
 
-        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sPaymentType, int? page)
+        public async Task<ActionResult> Index(string sId, string sName, string sEmail, string sPhone, int? sPaymentType, int? page)
         {
             try
             {
@@ -31,6 +31,8 @@ namespace GProject.WebApplication.Controllers
                 int valsPaymentType = sPaymentType.HasValue ? sPaymentType.Value : -1;
                 var lstObjs = orderRepository.GetAll().Where(c => c.Status == Data.Enums.OrderStatus.Accomplished).ToList();
 
+                if (!string.IsNullOrEmpty(sId))
+                    lstObjs = lstObjs.Where(c => c.OrderId.ToLower().Contains(sId.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.ShippingFullName.ToLower().Contains(sName.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sEmail))
@@ -51,6 +53,7 @@ namespace GProject.WebApplication.Controllers
                 var pageSize = 5;
 
                 //this.ViewBag.Pager = pager;
+                this.ViewData[nameof(sId)] = (object)sId;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;

@@ -141,7 +141,7 @@
                                         <p class="text-success">Thời gian đặt hàng: @item.CreateDate.ToString("dd/MM/yyyy HH:mm")</p>
                                     </div>
                                     <div class="col-md-4">
-                                        <p class="text-success">Mã hóa đơn: @item.OrderId</p>
+                                        <p style="float: right;" class="text-success">Mã hóa đơn: @item.OrderId</p>
                                     </div>
                                 </div>
                                 <div class="row d-flex align-items-center">
@@ -207,8 +207,11 @@
                                      class="img-fluid" alt="">
                                         </div>
                                         <div class="col-md-8">
-                                            <p>
+                                            <p style="color: #444343; font-size: 18px;">
                                                 @orderDetails.Product.Name
+                                            </p>
+                                            <p style="color: gray;">
+                                                Mức giá: @orderDetails.OrderDetail.Price.ToString("#,##0.##")
                                             </p>
                                             <p style="color: gray;">
                                                 Loại hàng: @orderDetails.Color.Name, @orderDetails.Size.Name
@@ -218,8 +221,8 @@
                                             </p>
 
                                         </div>
-                                        <div class="col-sm-2" style="color: red;">
-                                            <p>
+                                        <div class="col-sm-2">
+                                            <p style="color: red; margin-top: 50%; margin-bottom: 50%;">
                                                 @orderDetails.OrderDetail.TotalMoney.ToString("#,##0.##") đ
                                             </p>
                                         </div>
@@ -251,7 +254,7 @@
                                                     }
                                                     else if (item.Status == OrderStatus.Accomplished || item.PaymentDate != null)
                                                     {
-                                                        <h5 class="text-primary">Đã thanh toán</h5>
+                                                        <h5 class="text-success">Đã thanh toán</h5>
                                                     }
                                                 }
                                             </div>
@@ -298,7 +301,7 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="col-md-8"></div>
                                         <div class="col-md-4">
-                                            <a du_lieu_id="@item.Id" du_lieu_pay="@((int)item.PaymentType)" style="color: white" class="btn btn-danger col-10 CanceledOrder">Hủy đơn</a>
+                                            <a onclick="CanceledOrder('@item.Id', '@((int)item.PaymentType)')" style="color: white" class="btn btn-danger col-10">Hủy đơn</a>
                                         </div>
                                     </div>
                                 }
@@ -362,9 +365,14 @@
 
 <script asp-append-version="true">
     $(document).ready(function () {
-        $(".CanceledOrder").click(function () {
-            var payType = $(this).attr("du_lieu_pay");
-            var _id = $(this).attr('du_lieu_id');
+        @* $(".CanceledOrder").click(function () {
+            
+        }); *@
+    });
+
+    function CanceledOrder(id, payType)
+    {
+            var _id = id;
             if (payType == "1") {
                 swal("Thông báo", "Đơn hàng không thể hủy do bạn đã thanh toán, bạn cần liên hệ với shop!", "error");
             }
@@ -393,6 +401,5 @@
                     }
                 });
             }
-        });
-    });
+    }
 </script>

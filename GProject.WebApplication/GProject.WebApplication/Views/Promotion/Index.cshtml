@@ -44,7 +44,9 @@
     {
         <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
     }
-    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Promotion")'" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</button>
+    <button class="btn btn-success" onclick="location.href='@Url.Action("Create", "Promotion")'" type="button"><i
+            class="fa fa-plus" aria-hidden="true"></i>Thêm mới</button>
+    <button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
     <hr style="color:red;" />
     <form id="searchForm" name="searchForm" method="post" class="form-horizontal" action="/Promotion/Index">
         <div class="row">
@@ -52,57 +54,73 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-4 row">
-                                <label class="col-md-4 control-label">Tên</label>
-                                <div class="col-md-8 col-xs-12">
-                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label class="">Mã giảm giá</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input id="sId" name="sId" value="@ViewData["sId"]" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên</label>
+                                    <div class="col-md-9">
+                                        <input type="text" id="sName" name="sName" value="@ViewData["sName"]"
+                                            class="form-control" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 row">
-                                <label class="col-md-4 control-label">Giảm giá theo</label>
-                                <div class="col-md-8">
-                                    @{
-                                        int percent = int.Parse(Html.Encode(ViewData["sPercent"]));
-                                    }
-                                    @Html.DropDownList("sPercent",new[]
-                                    {
-                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (percent== -1)},
-                                    new SelectListItem{Text="Theo VNĐ", Value="0", Selected= (percent== 0)},
-                                    new SelectListItem{Text="Theo %", Value="1", Selected=  (percent == 1)}
-                                    }, new { @name = "sPercent", @class="searchText form-control select"})
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>Giảm giá từ:</label>
+                                    <div class="col-9">
+                                        <input type="text" id="sfromDiscountRate" maxlength="10" name="sPhone"
+                                            value="@ViewData["sfromDiscountRate"]" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Trạng thái</label>
+                                    <div class="col-md-9">
+                                        @{
+                                            int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                        }
+                                        @Html.DropDownList("sStatus",new[]
+                                        {
+                                        new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                        new SelectListItem{Text="Chưa diễn ra", Value="0", Selected= (status== 0)},
+                                        new SelectListItem{Text="Đang diễn ra", Value="1", Selected= (status == 1)},
+                                        new SelectListItem{Text="Đã kết thúc", Value="1", Selected= (status == 2)}
+                                        }, new { @name = "sStatus", @class="searchText form-control select"})
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-4 row">
-                                <label class="col-md-4 control-label">Trạng thái</label>
-                                <div class="col-md-8">
-                                    @{
-                                        int status = int.Parse(Html.Encode(ViewData["sStatus"]));
-                                    }
-                                    @Html.DropDownList("sStatus",new[]
-                                    {
-                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
-                                    new SelectListItem{Text="Chưa diễn ra", Value="0", Selected= (status== 0)},
-                                    new SelectListItem{Text="Đang diễn ra", Value="1", Selected=  (status == 1)},
-                                    new SelectListItem{Text="Đã kết thúc", Value="1", Selected=  (status == 2)}
-                                    }, new { @name = "sStatus", @class="searchText form-control select"})
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label>đến:</label>
+                                    <div class="col-9">
+                                        <input type="text" id="stoDiscountRate" maxlength="10" name="sPhone"
+                                            value="@ViewData["stoDiscountRate"]" class="form-control" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4 row">
-                                <label class="col-md-4 control-label">Giảm giá từ:</label>
-                                <div class="col-md-8 col-xs-12">
-                                    <input type="text" id="sfromDiscountRate" maxlength="10" name="sPhone" value="@ViewData["sfromDiscountRate"]" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="col-md-4 row">
-                                <label class="col-md-4 control-label">đến:</label>
-                                <div class="col-md-8 col-xs-12">
-                                    <input type="text" id="stoDiscountRate" maxlength="10" name="sPhone" value="@ViewData["stoDiscountRate"]" class="form-control" />
+                                <div class="form-group">
+                                    <label>Giảm giá theo</label>
+                                    <div class="col-9">
+                                        @{
+                                            int percent = int.Parse(Html.Encode(ViewData["sPercent"]));
+                                        }
+                                        @Html.DropDownList("sPercent",new[]
+                                        {
+                                        new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (percent== -1)},
+                                        new SelectListItem{Text="Theo VNĐ", Value="0", Selected= (percent== 0)},
+                                        new SelectListItem{Text="Theo %", Value="1", Selected= (percent == 1)}
+                                        }, new { @name = "sPercent", @class="searchText form-control select"})
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="panel-footer text-center">
-                        <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i></button>
+                        <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')"
+                            type="submit"><i class="fa fa-search"></i></button>
                         <a class="btn btn-outline-info" asp-action="Index">
                             <i class="fas fa-undo-alt"></i>
                         </a>
@@ -115,7 +133,8 @@
     <div class="row" style="margin-top: 10px;">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title" style=" text-align:center; height:50px; padding:10px 10px 10px 10px;">Danh sách giảm giá</h3>
+                <h3 class="panel-title" style=" text-align:center; height:50px; padding:10px 10px 10px 10px;">Danh sách
+                    giảm giá</h3>
             </div>
             <div class="panel-body">
                 <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
@@ -140,7 +159,8 @@
                                 {
                                     <tr>
                                         <td>
-                                            <img style="width:120px;height:50px; border;1px solid;" src="~/images/@item.Image" />
+                                            <img style="width:120px;height:50px; border;1px solid;"
+                                                src="~/images/@item.Image" />
                                         </td>
                                         <td>
                                             @item.PromotionId
@@ -164,7 +184,8 @@
                                             @Commons.GetEnumDescription(item.Status)
                                         </td>
                                         <td>
-                                            <button class="btn btn-info" onclick="location.href='@Url.Action("Update", "Promotion",new { id = item.Id})'" />
+                                            <button class="btn btn-info"
+                                                onclick="location.href='@Url.Action("Update", "Promotion",new { id = item.Id})'" />
                                             <i class="fas fa-pen-square"></i>
                                         </td>
                                     </tr>
@@ -174,19 +195,19 @@
                     </table>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div style="float: right">
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new
-            X.PagedList.Web.Common.PagedListRenderOptions()
-            {
-            ActiveLiElementClass = "active",
-            PageClasses = new[]{ "page-link"},
-            LiElementClasses=new[] { "page-item" },
-            LinkToNextPageFormat = "Next",
-            LinkToPreviousPageFormat = "Prev",
-            })
+            <div class="panel-footer">
+                <div style="float: right">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new
+                    X.PagedList.Web.Common.PagedListRenderOptions()
+                    {
+                    ActiveLiElementClass = "active",
+                    PageClasses = new[]{ "page-link"},
+                    LiElementClasses=new[] { "page-item" },
+                    LinkToNextPageFormat = "Next",
+                    LinkToPreviousPageFormat = "Prev",
+                    })
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -194,6 +215,19 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        
+    
+        if( $("#sId").val() != '' ||
+            $("#sName").val() != '' ||
+            $("#sfromDiscountRate").val() != ''||
+            $("#stoDiscountRate").val() != ''
+        )
+        {
+            $('#searchForm').show();
+        }
+        else{
+            $('#searchForm').hide();
+        }
         var er = document.getElementById('error')
         if (er != null) {
             if ($('#error').text() == 'Failed')
@@ -208,4 +242,15 @@
                 $(this).val($(this).val().replace(/[^0-9.]/g, ""));
         });
     });
+
+    function ChangeSearch() {
+        if ($("#changeformsearch").text() == "Tìm kiếm") {
+            $('#searchForm').show();
+            //$("#ExpirationDate").val(new Date().toJSON().slice(0,19));
+            $("#changeformsearch").text("Hủy tìm kiếm");
+        } else if ($("#changeformsearch").text() == "Hủy tìm kiếm") {
+            $('#searchForm').hide();
+            $("#changeformsearch").text("Tìm kiếm");
+        }
+    }
 </script>

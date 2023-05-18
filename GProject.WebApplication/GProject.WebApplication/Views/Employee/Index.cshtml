@@ -38,6 +38,8 @@
     }
 </style>
 
+<link href="/AdminContent/css/InputCss.css" rel="stylesheet">
+
 <div class="container">
     @if (@ViewData["Mess"] != null)
     {
@@ -61,7 +63,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="col-md-5">Số điện thoại:<span style="color: red">(*)</span></label>
-                    <input asp-for="PhoneNumber" placeholder="(+84) ..." maxlength="200" class="form-control" />
+                    <input asp-for="PhoneNumber" onkeyup="checkphoneNumber()" placeholder="(+84) ..." maxlength="15" class="form-control" />
                 </div>
             </div>
 
@@ -193,7 +195,7 @@
                                 <div class="form-group">
                                     <label class="">Email</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
+                                        <input  style="margin-top: 0px;" type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
                                             class="form-control" />
                                     </div>
                                 </div>
@@ -202,7 +204,7 @@
                                 <div class="form-group">
                                     <label class="">Số điện thoại</label>
                                     <div class="col-md-9 col-xs-12">
-                                        <input id="sPhone" maxlength="15" name="sPhone" value="@ViewData["sPhone"]"
+                                        <input id="sPhone" type="text" onkeyup="checkphone()" maxlength="15" name="sPhone" value="@ViewData["sPhone"]"
                                             class="form-control" />
                                     </div>
                                 </div>
@@ -411,12 +413,19 @@
             format: 'dd/mm/yyyy'
         });
 
-        $('#sPhone').keyup(function () {
-            let regex = /^[0-9]+$/;
-            if (!regex.test($(this).val()))
-                $(this).val($(this).val().replace(/[^0-9.]/g, ""));
-        });
     });
+
+    function checkphone(){
+        let regex = /^[0-9]+$/;
+            if (!regex.test($("#sPhone").val()))
+                $("#sPhone").val($("#sPhone").val().replace(/[^0-9.]/g, ""));
+    }
+
+    function checkphoneNumber(){
+        let regex = /^[0-9]+$/;
+            if (!regex.test($("#PhoneNumber").val()))
+                $("#PhoneNumber").val($("#PhoneNumber").val().replace(/[^0-9.]/g, ""));
+    }
 
     function ChangePanel() {
         if ($("#changeform").text() == "Thêm mới") {

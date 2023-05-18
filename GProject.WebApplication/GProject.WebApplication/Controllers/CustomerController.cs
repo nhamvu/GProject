@@ -22,7 +22,7 @@ namespace GProject.WebApplication.Controllers
             iCustomerService = new CustomerService();
         }
 
-        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sGender, int? sStatus, int? page)
+        public async Task<ActionResult> Index(string sId, string sName, string sEmail, string sPhone, int? sGender, int? sStatus, int? page)
         {
             try
             {
@@ -32,6 +32,8 @@ namespace GProject.WebApplication.Controllers
                 int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
 
+                if (!string.IsNullOrEmpty(sId))
+                    lstObjs = lstObjs.Where(c => c.CustomerId.ToLower().Contains(sId.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sEmail))
@@ -48,6 +50,7 @@ namespace GProject.WebApplication.Controllers
                 var pageSize = 5;
 
                 //this.ViewBag.Pager = pager;
+                this.ViewData[nameof(sId)] = (object)sId;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;

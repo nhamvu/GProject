@@ -283,7 +283,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-sm-5">Số điện thoại:<span style="color: red">(*)</span></label>
                                     <div class="col-sm-12">
-                                        <input type="text" id="ShippingPhone" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
+                                        <input type="text" id="ShippingPhone" onkeyup="checkphone()" name="ShippingPhone" value="" placeholder="+84" class="form-control" />
                                     </div>
                                 </div>
                             </div>
@@ -475,7 +475,9 @@
                 $('#District').val( $("#selectDistrict :selected").text() );
                 $('#Wards').val( $("#selectWards :selected").text() );
 
-                swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
+                if(checkOrderData())
+                {
+                    swal("Bạn chắc chắn muốn đặt đơn hàng này?", {
                     title: 'Bạn chắc chắn muốn đặt đơn hàng này?',
                     icon: 'info',
                     buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
@@ -486,11 +488,12 @@
                         swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
                     }
                 });
+                }              
             }
         });
 
         $("input.quantity").change(function(){
-            var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
+            var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/\./g, '');
             var _quantityVal = parseFloat($(this).val()) || 0;
             $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
             loadMoney();
@@ -697,7 +700,7 @@
                 _product.cartId = $(this).parents("tr").find("input[type=text].cartId").val();
                 _product.prodVariationId = $(this).parents("tr").find("input[type=text].prodVariationId").val();
                 _product.size = $(this).parents("tr").find("select.size").val();
-                _product.price = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
+                _product.price = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/\./g, '');
                 _product.quantity = _quantity;
                 _product.totalMoneyItem = ($(this).parents("tr").find("input[type=text].totalMoneyItem").val() || 0).replace(/,/g, '');
                 products.push(_product);
@@ -752,6 +755,11 @@
         return thanhtien
     }
 
+    function checkphone(){
+        let regex = /^[0-9]+$/;
+        if (!regex.test($("#ShippingPhone").val()))
+            $("#ShippingPhone").val($("#ShippingPhone").val().replace(/[^0-9.]/g, ""));
+    }
 
 
     function CheckDiscountCode() {

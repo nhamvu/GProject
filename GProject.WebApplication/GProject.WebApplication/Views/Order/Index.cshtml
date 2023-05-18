@@ -72,15 +72,21 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="">Tên khách hàng</label>
-                                <div class="col-12">
-                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]"
-                                        class="form-control" />
-                                </div>
+                                    <label class="">Mã hóa đơn</label>
+                                    <div class="col-md-9 col-xs-12">
+                                        <input id="sId" name="sId" value="@ViewData["sId"]" class="form-control" />
+                                    </div>
                             </div>
                             <div class="form-group">
+                                <label class="">Email</label>
+                                <div class="col-9">
+                                    <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
+                                        class="form-control" />
+                                </div>
+                            </div> 
+                            <div class="form-group">
                                 <label>Trạng thái</label>
-                                <div class="col-12">
+                                <div class="col-9">
                                     <select name="sortOrder" id="sortOrder" class="form-select">
                                         <option value="">-- Tất cả --</option>
                                         <option value="@ViewData["InProgress"]">Chờ xác nhận</option>
@@ -95,15 +101,15 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label class="">Số điện thoại</label>
-                                <div class="col-12">
-                                    <input type="text" id="sPhone" maxlength="10" name="sPhone"
-                                        value="@ViewData["sPhone"]" class="form-control" />
+                                <label class="">Tên khách hàng</label>
+                                <div class="col-9">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]"
+                                        class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="">Hình thức thanh toán</label>
-                                <div class="col-md-12">
+                                <div class="col-md-9">
                                     @{
                                         int gender = int.Parse(Html.Encode(ViewData["sPaymentType"]));
                                     }
@@ -120,15 +126,15 @@
                         </div>
                         <div class="col-4">
                             <div class="form-group">
-                                <label class="">Email</label>
-                                <div class="col-12">
-                                    <input type="email" id="sEmail" name="sEmail" value="@ViewData["sEmail"]"
-                                        class="form-control" />
+                                <label class="">Số điện thoại</label>
+                                <div class="col-9">
+                                    <input type="text" id="sPhone" onkeyup="checkphone()" maxlength="10" name="sPhone"
+                                        value="@ViewData["sPhone"]" class="form-control" />
                                 </div>
-                            </div>    
+                            </div> 
                             <div class="form-group">
                                 <label class="">Thay đổi thông tin đơn hàng</label>
-                                <div class="col-12">
+                                <div class="col-9">
                                     <select name="history" id="history" class="form-select">
                                         <option value="3">-- Tất cả --</option>
                                         <option value="1">Đơn hàng đã sửa</option>
@@ -167,6 +173,7 @@
                     <thead class="sticky-header">
                         <tr>
                             <th>STT</th>
+                            <th>Mã hóa đơn</th>
                             <th>Tên khách hàng</th>
                             <th>Email</th>
                             <th>Số điện thoại</th>
@@ -180,6 +187,7 @@
                     <tbody>
                         @if (Model != null)
                         {
+                            int stt = 1;
                             @for (int i = 0; i < Model.Count(); i++)
                             {
                                 int statusSel = (int)Model[i].Status;
@@ -188,7 +196,8 @@
                                             value="@(Model[i].Id.ToString())"></td>
                                     <td hidden><input class="customerId" disabled hidden="hidden" type="text"
                                             value="@(Model[i].CustomerId.ToString())"></td>
-                                    <td>@(i)</td>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model[i].OrderId</td>
                                     <td>@Model[i].ShippingFullName</td>
                                     <td>@Model[i].ShippingEmail</td>
                                     <td>@Model[i].ShippingPhone</td>
@@ -310,6 +319,12 @@
     }
     function btnClose() {
         $('#ViewDetail').modal('hide');
+    }
+
+    function checkphone(){
+        let regex = /^[0-9]+$/;
+            if (!regex.test($("#sPhone").val()))
+                $("#sPhone").val($("#sPhone").val().replace(/[^0-9.]/g, ""));
     }
 
 </script>
