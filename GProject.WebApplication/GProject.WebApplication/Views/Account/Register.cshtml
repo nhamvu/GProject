@@ -119,18 +119,45 @@
     }
     document.querySelector('#formdata').addEventListener('submit', function (e) {
         var form = this;
-
         e.preventDefault();
+        var phoneNumber = $("#PhoneNumber").val();
+        var email = $("#Email").val();
+
         if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+             $.ajax({
+                url: "/Customer/CheckEmail?Email=" + email,
+                type: "POST",
+                success: function (result) {
+                    if (result.success) {
+                        $.ajax({
+                            url: "/Customer/CheckPhone?PhoneNumber=" + phoneNumber,
+                            type: "POST",
+                            success: function (result) {
+                                if (result.success) {
+                                    swal("Bạn chắc chắn lưu những thay đổi này?", {
+                                        title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                                        icon: 'info',
+                                        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                                    }).then(function (isConfirm) {
+                                        if (isConfirm) {
+                                            form.submit();
+                                        } else {
+                                            swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                                        }
+                                    });
+
+                                } else {
+                                    swal("Lỗi", "Số điện thoại đã được đăng ký, vui lòng nhập số khác", "error");
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        swal("Lỗi", "Email đã được đăng ký, vui lòng nhập email khác", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(error);
                 }
             });
         }
@@ -146,8 +173,8 @@
             sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
             return false;
         }
-        if ($('#Password').val() == '') {
-            sweetAlert("Thông báo", "Thông tin mật khẩu không được để trống", "error");
+        if ($('#Password').val() > 6) {
+            sweetAlert("Thông báo", "Thông tin mật khẩu không hợp lệ", "error");
             return false;
         }
         if ($('#DateOfBirth').val() == '') {
@@ -167,6 +194,10 @@
             sweetAlert("Thông báo", "Thông tin địa chỉ không được để trống", "error");
             return false;
         }
+        if ($('#Image_Upload').val() == '') {
+            sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
+            return false;
+            }
         return true;
     }
 </script>
