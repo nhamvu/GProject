@@ -19,7 +19,7 @@ namespace GProject.Data.Configurations
             builder.Property(e => e.QuantityInStock).HasDefaultValueSql("((0))");
             builder.HasOne(d => d.ProductId_Navigation).WithMany(p => p.ProductVariations).HasForeignKey(d => d.ProductId);
             builder.HasOne(d => d.ColorId_Navigation).WithMany(p => p.Variations).HasForeignKey(d => d.ColorId);
-            builder.HasOne(d => d.SizeId_Navigation).WithMany(p => p.Variations).HasForeignKey(d => d.ColorId);
+            builder.HasOne(d => d.SizeId_Navigation).WithMany(p => p.Variations).HasForeignKey(d => d.SizeId);
         }
     }
 }

@@ -15,6 +15,7 @@ namespace GProject.Data.MyRepositories.IRepositories
         {
             _context = new GProjectContext();
         }
+
         public bool Add(Customer obj)
         {
             if (obj == null) return false;
@@ -41,7 +42,7 @@ namespace GProject.Data.MyRepositories.IRepositories
 
         public List<Customer> GetAll()
         {
-            return _context.Customers.ToList();
+            return _context.Customers.OrderByDescending(c =>c.UpdateDate).ToList();
         }
     }
 }

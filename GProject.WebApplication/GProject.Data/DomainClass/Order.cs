@@ -18,7 +18,7 @@ namespace GProject.Data.DomainClass
         public string OrderId { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public DateTime? PaymentDate { get; set; }
         public PaymentType PaymentType { get; set; }
         public string ShippingFullName { get; set; }
         public string ShippingCountry { get; set; }
@@ -28,12 +28,17 @@ namespace GProject.Data.DomainClass
         public string ShippingAddress { get; set; }
         public string ShippingPhone { get; set; }
         public string ShippingEmail { get; set; }
+        public int? VoucherId { get; set; }
+        public float? DiscountRate { get; set; }
+
         [Column(TypeName = "decimal(20, 0)")]
         public decimal ShippingFee { get; set; }
         [Column(TypeName = "decimal(20, 0)")]
         public decimal TotalMoney { get; set; }
         public OrderStatus Status { get; set; }
         public string? Description { get; set; }
+        public string? ReasonForChange { get; set; }
+        public string? HistoryLogChange { get; set; }
         public Employee? EmployeeId_Nagavition { get; set; }
         public Customer? CustomerId_Nagavition { get; set; }
         public Deliver? DeliverId_Nagavition { get; set; }

@@ -68,6 +68,7 @@ namespace GProject.Api.MyServices.Services
             temp.Description = cv.Description;
             temp.Address = cv.Address;
             temp.Image = cv.Image;
+            temp.Status = cv.Status;
             if (_iCustomerRepository.Update(temp))
             {
                 return true;

@@ -17,6 +17,7 @@ namespace GProject.Data.Configurations
             builder.HasKey(c => c.Id);
             builder.Property(e => e.Id).HasDefaultValueSql("(newid())");
             builder.Property(e => e.BrandId).HasMaxLength(15);
+            builder.Property(e => e.ProductCode).HasMaxLength(120);
             builder.Property(e => e.Name).HasMaxLength(200);
             builder.Property(e => e.ViewCount).HasDefaultValueSql("((0))");
             builder.Property(e => e.LikeCount).HasDefaultValueSql("((0))");
@@ -24,6 +25,7 @@ namespace GProject.Data.Configurations
             builder.Property(e => e.ImportPrice).HasDefaultValueSql("((0))");
             builder.Property(e => e.Status).HasDefaultValueSql("((0))");
             builder.HasOne(d => d.BrandId_Navigation).WithMany(p => p.Products).HasForeignKey(d => d.BrandId);
+            builder.HasOne(d => d.CategoryId_Navigation).WithMany(p => p.Products).HasForeignKey(d => d.CategoryId);
         }
     }
 }

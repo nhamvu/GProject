@@ -9,10 +9,11 @@ using System;
 using System.Net;
 using System.Reflection.Metadata;
 using System.Xml.Linq;
+using X.PagedList;
 
 namespace GProject.WebApplication.Controllers
 {
-    [Authorize(Roles = "manager, employee")]
+    [GProject.WebApplication.Services.Authorize]
     public class CustomerController : Controller
     {
         private ICustomerService iCustomerService;
@@ -21,14 +22,18 @@ namespace GProject.WebApplication.Controllers
             iCustomerService = new CustomerService();
         }
 
-        public async Task<ActionResult> Index(string sName, string sEmail, string sPhone, int? sGender, int? sStatus, int pg = 1)
+        public async Task<ActionResult> Index(string sId, string sName, string sEmail, string sPhone, int? sGender, int? sStatus, int? page)
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 int valsGender = sGender.HasValue ? sGender.Value : -1;
                 int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
 
+                if (!string.IsNullOrEmpty(sId))
+                    lstObjs = lstObjs.Where(c => c.CustomerId.ToLower().Contains(sId.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sName))
                     lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
                 if (!string.IsNullOrEmpty(sEmail))
@@ -40,14 +45,12 @@ namespace GProject.WebApplication.Controllers
                 if (valsStatus != -1)
                     lstObjs = lstObjs.Where(c => c.Status == valsStatus).ToList();
 
-                const int pageSize = 5;
-                if (pg < 1)
-                    pg = 1;
-                var pager = new Pager(lstObjs.Count(), pg, pageSize);
-                var lstData = lstObjs.Skip((pg - 1) * pageSize).Take(pageSize).ToList();
-                var data = new CustomerDTO() { CustomerList = lstData };
+                if (page == null) page = 1;
+                var pageNumber = page ?? 1;
+                var pageSize = 5;
 
-                this.ViewBag.Pager = pager;
+                //this.ViewBag.Pager = pager;
+                this.ViewData[nameof(sId)] = (object)sId;
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sEmail)] = (object)sEmail;
                 this.ViewData[nameof(sPhone)] = (object)sPhone;
@@ -57,12 +60,59 @@ namespace GProject.WebApplication.Controllers
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");
-                return View(data);
+                return View(lstObjs.ToPagedList(pageNumber, pageSize));
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                throw;
+                return RedirectToAction("AccessDenied", "Account");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CheckPhone(string PhoneNumber, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+
+                var existNameCustomer = lstObjs.Any(x => x.PhoneNumber == PhoneNumber && (!Id.HasValue || x.Id != Id.Value));
+                var existNameEmployee = employees.Any(x => x.PhoneNumber == PhoneNumber);
+
+                if(!existNameCustomer && !existNameEmployee)
+                    return Json(new { success = true });
+                else
+                    return Json(new { success = false });  
+                    
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult> CheckEmail(string Email, Guid? Id)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
+                var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var existNameCustomer = lstObjs.Any(x => x.Email == Email && (!Id.HasValue || x.Id != Id.Value));
+                var existNameEmployee = employees.Any(x => x.Email == Email);
+
+                if(!existNameCustomer && !existNameEmployee)
+                    return Json(new { success = true });
+                else
+                    return Json(new { success = false });              
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
             }
         }
 
@@ -71,6 +121,8 @@ namespace GProject.WebApplication.Controllers
         {
             try
             {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return RedirectToAction("AccessDenied", "Account");
                 //-- Parse lại dữ liệu từ ViewModel
                 var cusdata = new Customer();
                 cusdata.Id = Customer.Id;
@@ -106,15 +158,12 @@ namespace GProject.WebApplication.Controllers
 
                 //-- Gửi request cho api sử lí
                 bool result = await Commons.Add_or_UpdateAsync(cusdata, url);
-                if (!result) 
-                    HttpContext.Session.SetString("mess", "Failed");
-                else 
-                    HttpContext.Session.SetString("mess", "Success");
+               
                 return RedirectToAction("Index");
             }
             catch (Exception)
             {
-                return BadRequest();
+                return RedirectToAction("AccessDenied", "Account");
             }
 
         }

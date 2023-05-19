@@ -99,126 +99,219 @@
 </style>
 
 
-@if (@ViewData["Mess"] != null)
+<div class="container">
+    @if (@ViewData["Mess"] != null)
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
-<button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "ProductMGR")'" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Thêm mới</button>
+
+<button class="btn btn-success" onclick="location.href='@Url.Action("Create", "ProductMGR")'" type="button">Thêm mới</button>
+<button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
 <hr style="color:red;" />
+
+<form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/ProductMGR/Index">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="">Tên sản phẩm</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="">Giá nhập</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="number" id="sImportPrice" name="sImportPrice" min="0" oninput="this.value = Math.abs(this.value)" value="@ViewData["sImportPrice"]" class="form-control" />
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="">Nhãn hiệu</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sBrand" maxlength="10" name="sBrand" value="@ViewData["sBrand"]" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="">Giá bán</label>
+                                <div class="col-md-9">
+                                    <input type="number" id="sPrice" name="sPrice" min="0" oninput="this.value = Math.abs(this.value)" value="@ViewData["sPrice"]" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="">Trạng thái</label>
+                                <div class="col-md-9">
+                                    @{
+                                        int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                    }
+                                    @Html.DropDownList("sStatus",new[]
+                                    {
+                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                    new SelectListItem{Text="Đang bán", Value="0", Selected= (status== 0)},
+                                    new SelectListItem{Text="Ngừng bán", Value="1", Selected=  (status == 1)}
+                                    }, new { @name = "sStatus", @class="searchText form-control select"})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-center">
+                    <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit"><i class="fa fa-search"></i></button>
+                    <a class="btn btn-outline-info" asp-action="Index">
+                            <i class="fas fa-undo-alt"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-cubes" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH SẢN PHẨM</h3>
+            <h3 class="panel-title" style="text-align:center; height:50px; padding:10px 10px 10px 10px;">Danh sách sản phẩm</h3>
         </div>
         <div class="panel-body">
             <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
                 <table class="table table-bordered table-hover sticky-table">
                     <thead class="sticky-header">
                         <tr>
+                            <th style="width: 35px;">STT</th>
                             <th style ="width:100px;">Hình ảnh</th>
-                            <th style="width:220px;">Tên sản phẩm</th>
+                            <th>Mã sản phẩm</th>
+                            <th style="width:220px;">Tên sản phẩm</th>                           
                             <th>Nhãn hiệu</th>
                             <th>Giá nhập</th>
                             <th>Giá bán</th>
                             <th style="width:120px;">Lượt tim <i class="fa fa-heart" aria-hidden="true"></i></th>
-                            <th style="width:120px;">Lượt thích <i class="fa fa-thumbs-up" aria-hidden="true"></i></th>
-                            <th style="width:120px;">Trạng thái</th>
+                            <th style="width:120px;">Lượt thích <i class="fa fa-thumbs-up" aria-hidden="true"></i></th>                           
                             <th>Mô tả</th>
-                            <th>Sửa</th>
-                            <th>Xem</th>
+                            <th>Trạng thái</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (Model.ProductList != null)
                         {
+                            int i = 1;
                             @foreach (var item in Model.ProductList)
                             {
                                 string img = Model.ProductVariationList.Where(c => c.ProductId == item.Id).Select(c => c.Image).FirstOrDefault().NullToString();
                                 <tr>
+                                    <td class="text-center">@i</td>
                                     <td>
-                                        <img style="width:120px;height:50px;" src="~/images/@img" />
+                                        <img style="width:120px;height:130px;" src="~/images/@img" />
+                                    </td>
+                                    <td>
+                                        @item.ProductCode
                                     </td>
                                     <td>
                                         @item.Name
-                                    </td>
+                                    </td>                                    
                                     <td>
                                         @(lstBrand.Where(c => c.Id == item.BrandId).Select(c => c.Name).FirstOrDefault())
                                     </td>
                                     <td>
-                                        @(item.ImportPrice.ToString("0.##"))
+                                        @(item.ImportPrice.ToString("#,##0##")) đ
                                     </td>
                                     <td>
-                                        @(item.Price.ToString("0.##"))
+                                        @(item.Price.ToString("#,##0##")) đ
                                     </td>
                                     <td>
                                         @(item.ViewCount) <i class="fa fa-heart" aria-hidden="true"></i>
                                     </td>
                                     <td>
                                         @(item.LikeCount) <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                                    </td>                                    
+                                    <td>
+                                        @item.Description
                                     </td>
                                     <td>
                                         @{
                                             if (item.Status == 0)
                                             {
-                                                <button type="button" class="btn btn-info" onclick="ChangeStatus('@item.Id')">Đang bán</button>
+                                                <button type="button" class="btn btn-outline-success" onclick="ChangeStatus('@item.Id')"><i class="fas fa-toggle-on"></i></button>
                                             }
                                             else
                                             {
-                                                <button type="button" class="btn btn-danger"  onclick="ChangeStatus('@item.Id')">Ngừng bán</button>
+                                                <button type="button" class="btn btn-outline-danger"  onclick="ChangeStatus('@item.Id')"><i class="fas fa-toggle-off"></i></button>
                                             }
                                         }
                                     </td>
-                                    <td>
-                                        @item.Description
-                                    </td>
-                                    <td>
+                                    <td>                                        
                                         <button class="btn btn-info" onclick="location.href='@Url.Action("Update", "ProductMGR",new { id = item.Id})'" />
                                         <i class="fas fa-pen-square"></i>
                                     </td>
-                                    <td>
-                                        <button class="btn btn-info" onclick="ViewDetailData('@item.Id')" />
-                                        <i class="fas fa-eye"></i>
-                                    </td>
                                 </tr>
+                                i++;
                             }
                         }
                     </tbody>
                 </table>
             </div>
         </div>
+        <div class="form-footer" >
+			<div style="float: right">
+                @if (pager.TotalPages > 0)
+			{
+				<ul class="pagination justify-content-end">
+					@if (pager.CurrentPage < pager.TotalPages)
+					{
+						<li class="page-item">
+							<a class="page-link" asp-controller="ProductMGR" asp-action="Index"
+						asp-route-pg="@(pager.TotalPages)">Prev</a>
+						</li>
+					}
+					@for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+					{
+						<li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
+							<a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@pge">@pge</a>
+						</li>
+					}
+
+
+					@if (pager.CurrentPage < pager.TotalPages)
+					{
+						<li class="page-item">
+							<a class="page-link" asp-controller="ProductMGR" asp-action="Index"
+						asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
+						</li>
+
+					}
+				</ul>
+			}
+            </div>
+		</div>
     </div>
 </div>
-<div class="container">
-    @if (pager.TotalPages > 0)
-    {
-        <ul class="pagination justify-content-end">
-            <li class="page-item">
-                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="1">First</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage - 1)">Previous</a>
-            </li>
-
-            @for (int pge = pager.StartPage; pge < pager.EndPage; pge++)
-            {
-                <li class="page-item @(pge == pager.CurrentPage ? "active" : "")">
-                    <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@pge"> @pge</a>
-                </li>
-            }
-
-            <li class="page-item">
-                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.CurrentPage + 1)">Next</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" asp-controller="ProductMGR" asp-action="Index" asp-route-pg="@(pager.TotalPages)">Last</a>
-            </li>
-        </ul>
-    }
 </div>
+
 
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        if ($("#sName").val() != '' ||
+            $("#sBrand").val() != '' ||
+            $("#sImportPrice").val() != '' ||
+            $("#sPrice").val() != ''
+        ) 
+        {
+            $('#Searchform').show();
+        }
+        else{
+            $('#Searchform').hide();
+        }
+
         $('#formdata').hide();
         var er = document.getElementById('error')
         if (er != null) {
@@ -239,12 +332,17 @@
         });
     }
 
-    function ViewDetailData(id) {
-        $.getJSON("/ProductMGR/ViewDetail?id=" + id, function (data) {
-            console.log(data);
-            $('#ViewDetailModal').modal('show');
-        });
+    function ChangeSearch() {
+        if ($("#changeformsearch").text() == "Tìm kiếm") {
+            $('#Searchform').show();
+            //$("#ExpirationDate").val(new Date().toJSON().slice(0,19));
+            $("#changeformsearch").text("Hủy tìm kiếm");
+        } else if ($("#changeformsearch").text() == "Hủy tìm kiếm") {
+            $('#Searchform').hide();
+            $("#changeformsearch").text("Tìm kiếm");
+        }
     }
+
     function btnClose() {
         $('#ViewDetail').modal('hide');
     }

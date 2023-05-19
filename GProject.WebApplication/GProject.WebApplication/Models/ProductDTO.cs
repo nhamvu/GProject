@@ -54,6 +54,8 @@ namespace GProject.WebApplication.Models
         public Customer? CustomerId_Nagavition { get; set; }
         public Deliver? DeliverId_Nagavition { get; set; }
         public List<OrderDetail>? OrderDetails { get; set; }
+        public List<Order>? OrderList { get; set; }
+        public List<ShowOrderDto>? ShowOrderDtoList { get; set; }
     }
     public class ProdOrder
     {

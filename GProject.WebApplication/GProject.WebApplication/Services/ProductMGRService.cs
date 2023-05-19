@@ -1,8 +1,11 @@
 ﻿using GProject.Data.DomainClass;
+using GProject.Data.MyRepositories.IRepositories;
 using GProject.WebApplication.Helpers;
 using GProject.WebApplication.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System.Xml.Linq;
 
@@ -10,13 +13,21 @@ namespace GProject.WebApplication.Services
 {
     public class ProductMGRService
     {
-        /// <summary>
-        /// Hàm Lưu sản phâm
-        /// </summary>
-        /// <param name="Product"></param>
-        /// <param name="CreateBy"></param>
-        /// <returns></returns>
-        public async Task<bool> Save(ProductMGRDTO Product, string CreateBy)
+        private IProductVariationRepository _iProductVariationRepository;
+        public static HttpContext _httpContext => new HttpContextAccessor().HttpContext;
+		private IWebHostEnvironment _hostEnviroment => (IWebHostEnvironment)_httpContext.RequestServices.GetService(typeof(IWebHostEnvironment));
+
+        public ProductMGRService()
+        {
+            _iProductVariationRepository = new ProductVariationRepository();
+        }
+		/// <summary>
+		/// Hàm Lưu sản phâm
+		/// </summary>
+		/// <param name="Product"></param>
+		/// <param name="CreateBy"></param>
+		/// <returns></returns>
+		public async Task<bool> Save(ProductMGRDTO Product, string CreateBy)
         {
             try
             {
@@ -26,8 +37,10 @@ namespace GProject.WebApplication.Services
                 //-- Set Product
                 var productInfo = new Product();
                 productInfo.Id = (Product.Id == Guid.Empty || Product.Id == null) ? uuid : Product.Id;
+                productInfo.ProductCode = Commons.RandomString(10);
                 productInfo.BrandId = Product.BrandId;
                 productInfo.Name = Product.Name;
+                productInfo.CategoryId = Product.CategoryId;
                 productInfo.CreateDate = DateTime.Now;
                 productInfo.UpdateDate = DateTime.Now;
                 productInfo.CreateBy = CreateBy;
@@ -49,35 +62,44 @@ namespace GProject.WebApplication.Services
                 {
                     foreach (var sizeVariation in colorVariation.SizeAndStock)
                     {
-                        string image = "";
-                        if (colorVariation.Image_Upload != null)
-                        {
-                            string full_path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", colorVariation.Image_Upload.FileName);
-                            using (var file = new FileStream(full_path, FileMode.Create))
-                            {
-                                colorVariation.Image_Upload.CopyTo(file);
-                            }
-                            image = colorVariation.Image_Upload.FileName;
-                        }
-                        var ProductVariationInfo = new ProductVariation()
-                        {
-                            Id = colorVariation.VariationId,
-                            ProductId = productInfo.Id,
-                            ColorId = colorVariation.Id,
-                            SizeId = sizeVariation.Id,
-                            Image = image,
-                            QuantityInStock = sizeVariation.QuantityInstock.NullToInt(),
-                        };
+                        string image = UploadFile(colorVariation);
+                        var ProductVariationInfo = new ProductVariation();
+                        ProductVariationInfo.Id = colorVariation.VariationId;
+                        ProductVariationInfo.ProductId = productInfo.Id;
+                        ProductVariationInfo.ColorId = colorVariation.Id;
+                        ProductVariationInfo.SizeId = sizeVariation.Id;
+                        if (!string.IsNullOrEmpty(image))
+                            ProductVariationInfo.Image = image;
+                        ProductVariationInfo.CreateDate = DateTime.Now;
+                        ProductVariationInfo.UpdateDate = DateTime.Now;
+                        ProductVariationInfo.QuantityInStock = sizeVariation.QuantityInstock.NullToInt();
 
-                        string saveProductVariationUrl = (ProductVariationInfo.Id == Guid.Empty || ProductVariationInfo.Id == null) ? Commons.mylocalhost + "ProductVariation/add-ProductVariation" : Commons.mylocalhost + "ProductVariation/update-ProductVariation";
-                        bool resultSaveProductVariation = await Commons.Add_or_UpdateAsync(ProductVariationInfo, saveProductVariationUrl);
-                        saveProductVariationUrl = Commons.mylocalhost;
+                        if (ProductVariationInfo.Id == Guid.Empty || ProductVariationInfo.Id == null)
+                        {
+                            _iProductVariationRepository.Add(ProductVariationInfo);
+                        }
+                        else
+                        {
+                            var temp = _iProductVariationRepository.GetAll().FirstOrDefault(c => c.ProductId == ProductVariationInfo.ProductId && c.ColorId == ProductVariationInfo.ColorId && c.SizeId == ProductVariationInfo.SizeId);
+                            if (temp != null)
+                            {
+                                temp.QuantityInStock = ProductVariationInfo.QuantityInStock;
+                                if (!string.IsNullOrEmpty(ProductVariationInfo.Image))
+                                {
+                                    temp.Image = ProductVariationInfo.Image;
+                                }
+                                _iProductVariationRepository.Update(temp);
+                            }
+                        }
+                        //string saveProductVariationUrl = (ProductVariationInfo.Id == Guid.Empty || ProductVariationInfo.Id == null) ? Commons.mylocalhost + "ProductVariation/add-ProductVariation" : Commons.mylocalhost + "ProductVariation/update-ProductVariation";
+                        //bool resultSaveProductVariation = await Commons.Add_or_UpdateAsync(ProductVariationInfo, saveProductVariationUrl);
+                        //saveProductVariationUrl = Commons.mylocalhost;
                     }
                 }
 
                 return resultSaveProduct;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -116,6 +138,7 @@ namespace GProject.WebApplication.Services
                 ProductMGRDTO productData = new ProductMGRDTO();
                 var product = lstProduct.FirstOrDefault(c => c.Id == id);
                 productData.Id = id;
+                productData.CategoryId = product.CategoryId;
                 productData.Name = product.Name;
                 productData.BrandId = product.BrandId;
                 productData.CreateBy = product.CreateBy;
@@ -202,6 +225,32 @@ namespace GProject.WebApplication.Services
                 Console.WriteLine(ex);
                 throw;
             }
+        }
+
+
+		//upload image
+		private string UploadFile(ProductVariationDTO model)
+		{
+			string uniqueFileName = null;
+            if (model.Image_Upload != null)
+            {
+				string uploadsFolder = Path.Combine(_hostEnviroment.WebRootPath, "images");
+				uniqueFileName = model.Image_Upload.FileName;
+				string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+				using (var fileStream = new FileStream(filePath, FileMode.Create))
+				{
+					model.Image_Upload.CopyTo(fileStream);
+				}
+			}
+			return uniqueFileName;
+		}
+
+        public string RandomString(int number)
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, number)
+                .Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

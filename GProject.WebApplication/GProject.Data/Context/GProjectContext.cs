@@ -12,13 +12,22 @@ using Microsoft.Extensions.Logging;
 
 namespace GProject.Data.Context
 {
-    public class GProjectContext : DbContext
+    public class GProjectContext : IdentityDbContext<Customer>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATNChuan;Integrated Security=True"
-            //@"Data Source=LAPTOP-2GTIBL55\SQLEXPRESS;Initial Catalog=GProject_Database;Integrated Security=True"
-            optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-VVGQQLR;Initial Catalog=DB_DATNChuan;Integrated Security=True");
+            //@"Data Source=LAPTOP-2GTIBL55\SQLEXPRESS;Initial Catalog=ABC;Integrated Security=True"
+
+
+            optionsBuilder.UseSqlServer(@"Data Source=.;Initial Catalog=ABCD;Integrated Security=True");
+
+
+
+            //DB_Du_An
+
+            //DESKTOP-M2OGLAO    DB_DATN
+            //D-SDC6-HUYLQ   ABC
         }
         public DbSet<AppUsers> AppUsers { get; set; }
         public DbSet<AppRoles> AppRoles { get; set; }
@@ -26,7 +35,6 @@ namespace GProject.Data.Context
         public DbSet<Cart> Carts { get; set; }
         public DbSet<CartDetail> CartDetails { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CategoryProduct> CategoryProducts { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -46,6 +54,8 @@ namespace GProject.Data.Context
         public DbSet<Slide> Slides { get; set; }
         public DbSet<ViewHistory> ViewHistories { get; set; }
         public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
+        public DbSet<DeliveryAddress>  DeliveryAddresses { get; set; }
+        public DbSet<Voucher> Vouchers { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure using Fluent API
@@ -54,7 +64,6 @@ namespace GProject.Data.Context
             modelBuilder.ApplyConfiguration(new Brand_Configuration());
             modelBuilder.ApplyConfiguration(new Cart_Configuration());
             modelBuilder.ApplyConfiguration(new CartDetail_Configuration());
-            modelBuilder.ApplyConfiguration(new CategoryProduct_Configuration());
             modelBuilder.ApplyConfiguration(new Category_Configuration());
             modelBuilder.ApplyConfiguration(new Color_Configuration());
             modelBuilder.ApplyConfiguration(new Contact_Configuration());
@@ -74,13 +83,12 @@ namespace GProject.Data.Context
             modelBuilder.ApplyConfiguration(new Slide_Configuration());
             modelBuilder.ApplyConfiguration(new ViewHistory_Configuration());
             modelBuilder.ApplyConfiguration(new FavoriteProduct_Configuration());
+            modelBuilder.ApplyConfiguration(new DeliveryAddress_Configuration());
+            modelBuilder.ApplyConfiguration(new Voucher_Configuration());
 
-            modelBuilder.Entity<IdentityUserClaim<Guid>>().ToTable("AppUserClaims");
-            modelBuilder.Entity<IdentityUserRole<Guid>>().ToTable("AppUserRoles").HasKey(x => new { x.UserId, x.RoleId });
-            modelBuilder.Entity<IdentityUserLogin<Guid>>().ToTable("AppUserLogins").HasKey(x => x.UserId);
-
-            modelBuilder.Entity<IdentityRoleClaim<Guid>>().ToTable("AppRoleClaims");
-            modelBuilder.Entity<IdentityUserToken<Guid>>().ToTable("AppUserTokens").HasKey(x => x.UserId);
+            modelBuilder.Entity<IdentityUserRole<string>>().HasNoKey();
+            modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
+            modelBuilder.Entity<IdentityUserToken<string>>().HasNoKey();
         }
     }
 }

@@ -9,22 +9,25 @@ namespace GProject.Data.Enums
 {
     public enum OrderStatus
     {
-        [Description("Đang xử lí")]
+        [Description("Chờ xác nhận")]
         InProgress = 0,
 
-        [Description("Đã bàn giao")]
+        [Description("Đang vận chuyển")]
         Confirmed = 1,
 
         [Description("Đang giao hàng")]
         Delivery = 2,
 
-        [Description("Đã hoàn thành")]
+        [Description("Hoàn thành")]
         Accomplished = 3,
 
-        [Description("Đã trả hàng")]
+        [Description("Trả hàng")]
         Returned = 4,
 
         [Description("Đã hủy")]
-        Canceled = 5
+        Canceled = 5,
+
+        [Description("Đã xác nhận")]
+        DaXacNhan = 6,
     }
 }

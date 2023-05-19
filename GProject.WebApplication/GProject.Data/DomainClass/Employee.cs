@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GProject.Data.DomainClass
 {
-    public class Employee
+    public class Employee : IdentityUser<Guid>
     {
         public Guid? Id { get; set; }
         public string EmployeeId { get; set; }
@@ -27,7 +27,7 @@ namespace GProject.Data.DomainClass
         public string PhoneNumber { get; set; }
         public int Sex { get; set; } // 0:Nam || 1: Nữ
         public string Address { get; set; }
-        public int Status { get; set; } = 1; // 0: đang làm việc || 1:đã nghỉ việc
+        public int Status { get; set; } // 0: đang làm việc || 1:đã nghỉ việc
         public EmployeePosition Position { get; set; }
         public string? Description { get; set; }
         public string Image { get; set; }

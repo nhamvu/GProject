@@ -1,4 +1,5 @@
-﻿@model GProject.WebApplication.Models.SizeDTO
+﻿@*@model GProject.WebApplication.Models.SizeDTO*@
+@model X.PagedList.IPagedList<GProject.Data.DomainClass.Size>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using GProject.WebApplication.Models
 @using GProject.Api.MyServices.Services;
@@ -28,112 +29,233 @@
 </style>
 
 
-@if (@ViewData["Mess"] != null)
-{
-    <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
-}
-<button class="btn btn-primary" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-<form id="formdata" asp-action="Save" class="form">
-    <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
-    <div class="row mt-5">
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Mã:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <span class="icon"><i class="fa fa-id-card" aria-hidden="true"></i></span>
-                <input asp-for="Code" placeholder="Size code (XL)" maxlength="15" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <label class="col-md-5"><strong>Tên:<span style="color: red">(*)</span></strong></label>
-            <div class="form-input">
-                <span class="icon"><i class="fa-solid fa-signature" aria-hidden="true"></i></span>
-                <input asp-for="Name" placeholder="Size name" maxlength="200" />
-            </div>
-        </div>
-        <div class="col-md-4">
-            <strong><label>Trạng thái</label><span style="color: red">(*)</span></strong>
-            <div style="margin-top:10px;">
-                @Html.DropDownList("Status", new[]
-                {
-                new SelectListItem{Text="Không sử dụng", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
-                new SelectListItem{Text="Sử dụng", Value="1",  Selected = (Model.Status != null ? (Model.Status == 1) : false)}
-                }, new { @class = "form-control iscompany" })
-            </div>
-        </div>
-        <div class="col-md-2">
-            <strong><label></label></strong>
-            <div class="form-input">
-                <button class="btn btn-success" type="submit" style="height:40px;width:110px;"><i class="fa fa-plus" aria-hidden="true" style="margin-right:4px;"></i>Lưu</button>
+<div class="container">
+    @if (@ViewData["Mess"] != null)
+    {
+        <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
+    }
+    <div>
+        <button type="button" class="btn btn-success" onclick="ShowModal()">Thêm mới</button>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Kích cỡ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="Clear()"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formdata" class="form" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <input id="Id" name="Id" hidden="hidden" />
+                        <div class="form-group">
+                            <label class="col-md-5">Mã:</label>
+                            <div class="form-input">
+                                <input id="Code" name="Code" placeholder="Size code (XL)" maxlength="15"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-5">Tên:</label>
+                            <div class="form-input">
+
+                                <input id="Name" name="Name" placeholder="Size name" maxlength="200"
+                                    class="form-control" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Trạng thái</label>
+                            <div>
+                                <select id="Status" name="Status" class="form-control">
+                                    <option value="1">Sử dụng</option>
+                                    <option value="0">Không sử dụng</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" onclick="Clear()"
+                                data-bs-dismiss="modal">Close</button>
+                            <button id="btnSave" class="btn btn-success" type="submit">Lưu</button>
+                        </div>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</form>
-<hr style="color:red;" />
-<div class="row">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title" style="background-color:#E5E5E5; text-align:center; height:50px; padding:10px 10px 10px 10px;"><i class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>DANH SÁCH KÍCH THƯỚC</h3>
+    <hr style="color:red;" />
+
+    <form id="Searchform" name="searchForm" method="post" class="form-horizontal" action="/Size/Index">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <div class="col-12 col-xs-12">
+                                        <input id="sCode" placeholder="Tìm kiếm theo mã kích thước..." name="sCode" value="@ViewData["sCode"]"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="col-12 col-xs-12">
+                                       <input id="sName"  placeholder="Tìm kiếm theo tên..." name="sName" value="@ViewData["sName"]"
+                                            class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <button class="btn btn-success" onclick="$('.searchText').removeAttr('disabled')" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div> 
+                                        <div class="col-4">
+                                            <a class="btn btn-outline-info" asp-action="Index">
+                                                <i class="fas fa-undo-alt"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="panel-body">
-            <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
-                <table class="table table-bordered table-hover sticky-table">
-                    <thead class="sticky-header">
-                        <tr>
-                            <th>Mã Size</th>
-                            <th>Tên Size</th>
-                            <th>Trạng thái</th>
-                            <th>Chi tiết</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.SizeList != null)
-                        {
-                            @foreach (var item in Model.SizeList)
+    </form>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"
+                    style=" text-align:center; height:50px; padding:10px 10px 10px 10px;"><i
+                        class="fa fa-tachometer" aria-hidden="true" style="margin-right:10px;"></i>Danh sách kích thước
+                </h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive" style="overflow-y: auto; max-height: 700px;">
+                    <table class="table table-bordered table-hover sticky-table">
+                        <thead class="sticky-header">
+                            <tr>
+                                <th style="width: 35px;">STT</th>
+                                <th>Mã Size</th>
+                                <th>Tên Size</th>
+                                <th>Trạng thái</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
                             {
-                                <tr>
-                                    <td>
-                                        @item.Code
-                                    </td>
-                                    <td>
-                                        @item.Name
-                                    </td>
-                                    <td>
-                                        @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-info" onclick="ViewDetailData(@item.Id)" />
-                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                    </td>
-                                </tr>
+                                int i = 1;
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center">@i</td>
+                                        <td>
+                                            @item.Code
+                                        </td>
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td>
+                                            @(item.Status == 1 ? "Đang sử dụng" : "Không sử dụng")
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info" onclick="ViewDetailDataSize(@item.Id)">
+                                                <i class="fas fa-pen-square" aria-hidden="true"></i>
+                                            </button>
+                                            <button class="btn btn-danger delete" onclick="deleteObject('@item.Id')">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
                             }
-                        }
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div id="ViewDetail" class="modal modal-default in">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header" style="padding: 5px 15px;">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
-                <h3 class="modal-title text-left">Thông tin Size</h3>
-            </div>
-            <div class="modal-body">
-                <h5>Tên:<strong id="namee"></strong></h5>
-                <h5>Mã:<strong id="code"></strong></h5>
-                <h5>Trạng thái:<strong id="status"></strong></h5>
-            </div>
-            <div class="modal-footer" style="position:relative;clear:both;z-index:1000000" id="transport-footer">
-                <button type="button" class="btn btn-default pull-left btn-sm" data-dismiss="modal" onclick="btnClose()"><i class="fa fa-times"></i>Đóng</button>
+
+            <div class="form-footer">
+                <div style="float: right">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new
+                    X.PagedList.Web.Common.PagedListRenderOptions()
+                    {
+                     ActiveLiElementClass = "active",
+                    PageClasses = new[]{ "page-link"},
+                    LiElementClasses=new[] { "page-item" },
+                    LinkToNextPageFormat = "Next",
+                    LinkToPreviousPageFormat = "Prev", 
+                    })
+                </div>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
+    function deleteObject(id) {
+        $.ajax({
+            url: "/Size/CheckExistId",
+            data: { "Id": id },
+            type: "POST",
+            success: function (result) {
+                if (result.success) {
+
+                    swal("Bạn có muốn xóa thông tin kích cỡ này không?", {
+                        title: 'Thông Báo!',
+                        icon: 'info',
+                        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                    }).then(function (isConfirm) {
+                        if (isConfirm) {
+                            $.ajax({
+                        url: "/Size/Delete",
+                        data: { "Id": id },
+                        type: "POST",
+                        success: function (result) {
+                            if (result.success) {
+                                swal("Thành công", "Bạn đã xóa thành công", "success");
+
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            } else {
+                                swal("Thành công!", "Bạn đã xóa thành công", "success");
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 2000);
+                                Clear()
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert(error);
+                        }
+                    });
+                        } else {
+                            swal("Đã hủy", "Xóa không thành công!", "error");
+                        }
+                    });                   
+                } else {
+                    swal("Xin lỗi", "Kích cỡ này đã được sử dụng.", "error");
+                }
+            },
+            error: function (xhr, status, error) {
+                alert(error);
+            }
+        });
+    }
     $(document).ready(function () {
-        $('#formdata').hide();
         var er = document.getElementById('error')
         if (er != null) {
             if ($('#error').text() == 'Failed')
@@ -143,18 +265,11 @@
         }
     });
 
-    function ChangePanel() {
-        if ($("#changeform").text() == "Thêm mới") {
-            $('#formdata').show();
-            $("#changeform").text("Hủy thay đổi");
-        } else if ($("#changeform").text() == "Hủy thay đổi") {
-            $("#Name").val('');
-            $("#Code").val('');
-            $("#Status").val(0);
-            $('#formdata').hide();
-            $("#changeform").text("Thêm mới");
-        }
+    function ShowModal() {
+        $("#exampleModal").modal('show');
     }
+
+
     function validateCode(code) {
         var regex = /^[a-zA-Z0-9]+$/;
         return regex.test(code);
@@ -164,50 +279,124 @@
 
         e.preventDefault();
         if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
+            //swal("Bạn chắc chắn lưu những thay đổi này?", {
+            //    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+            //    icon: 'info',
+            //    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+            //}).then(function (isConfirm) {
+            //    if (isConfirm) {
+            //        form.submit();
+            //    } else {
+            //        swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+            //    }
+            //});
         }
     });
-    function ViewDetailData(id) {
-        $.getJSON("/Color/Detail?id=" + id, function (data) {
+    function ViewDetailDataSize(id) {
+        $("#exampleModal").modal('show');
+        $.getJSON("/Size/Detail?id=" + id, function (data) {
             $("#Name").val(data.name);
-            $("#Code").val(data.Code);
-            $("#Status").val(data.status);
+            $("#Code").val(data.code);
             $("#Id").val(data.id);
+            $("#Status").val(data.status);
             document.getElementById('namee').innerText = data.name;
             document.getElementById('code').innerText = data.code;
-            document.getElementById('status').innerText = data.status ? "Đang sử dụng" : "Không sử dụng";
-            $("#changeform").text("Thêm mới");
-            ChangePanel()
-            $('#ViewDetail').modal('show');
         });
     }
-    function btnClose() {
-        $('#ViewDetail').modal('hide');
+
+    function Clear()
+    {
+        $("#Name").val('');
+        $("#Code").val('');
+        $("#Id").val('');
+        $("#Status").val('');
     }
 
     function checkValidateData() {
         if ($('#Code').val() == '') {
-            sweetAlert("Thông báo", "Thông tin mã màu không được để trống", "error");
+            sweetAlert("Thông báo", "Thông tin mã size không được để trống", "error");
             return false;
         }
         if (!validateCode($('#Code').val())) {
-            sweetAlert("Thông báo", "Thông tin mã màu không đúng định dạng", "error");
+            sweetAlert("Thông báo", "Thông tin mã size không đúng định dạng", "error");
             return false;
         }
         if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
+            sweetAlert("Thông báo", "Thông tin tên size không được để trống", "error");
             return false;
         }
         return true;
     }
+
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            if ($('#Code').val() == '') {
+                sweetAlert("Thông báo", "Thông tin mã size không được để trống", "error");
+                return false;
+            }
+            if (!validateCode($('#Code').val())) {
+                sweetAlert("Thông báo", "Thông tin mã size không đúng định dạng", "error");
+                return false;
+            }
+            if ($('#Name').val() == '') {
+                sweetAlert("Thông báo", "Thông tin tên size không được để trống", "error");
+                return false;
+            }
+
+            var status = $("#Status").val();
+            var id = $("#Id").val();
+            var code = $("#Code").val();
+            var name = $("#Name").val();
+            $.ajax({
+                url: "/Size/CheckCode",
+                type: "POST",
+                data: { Code: code, Id: id },
+                success: function (result) {
+                    if (result.success) {
+                        $.ajax({
+                            url: "/Size/CheckName",
+                            type: "POST",
+                            data: { Name: name, Id: id },
+                            success: function (result) {
+                                if (result.success) {
+                                    var data = { Id: id, Code: code, Name: name, Status: status };
+                                    $.ajax({
+                                        url: "/Size/Save",
+                                        type: "POST",
+                                        data: data,
+                                        success: function (result) {
+                                            if (result.success) {
+                                                swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 2000);
+                                                Clear()
+                                            } else {
+                                                swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                setTimeout(function () {
+                                                    location.reload();
+                                                }, 2000);
+                                                Clear()
+                                            }
+                                        },
+                                        error: function (xhr, status, error) {
+                                            alert(error);
+                                        }
+                                    });
+                                } else {
+                                    swal("Lỗi", "Tên đã được sử dụng, vui lòng nhập tên khác", "error");
+                                }
+                            }
+                        });
+                    }
+                    else {
+                        swal("Lỗi", "Mã đã được sử dụng, vui lòng nhập mã khác", "error");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(error);
+                }
+            });
+        });
+    });
 </script>

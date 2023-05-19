@@ -26,6 +26,8 @@ namespace GProject.Data.Configurations
             builder.Property(e => e.ShippingEmail).HasMaxLength(200);
             builder.Property(e => e.Status).HasDefaultValueSql("((0))");
             builder.Property(e => e.ShippingFee).HasDefaultValueSql("((0))");
+            builder.Property(e => e.VoucherId).HasDefaultValueSql("((0))");
+            builder.Property(e => e.DiscountRate).HasDefaultValueSql("((0))");
             builder.HasOne(d => d.CustomerId_Nagavition).WithMany(p => p.Orders).HasForeignKey(d => d.CustomerId);
             //builder.HasOne(d => d.EmployeeId_Nagavition).WithMany(p => p.Orders).HasForeignKey(d => d.EmployeeId);
             //builder.HasOne(d => d.DeliverId_Nagavition).WithMany(p => p.Orders).HasForeignKey(d => d.DeliverId);

@@ -41,6 +41,27 @@ namespace GProject.Api.Controllers
             return iOrderService.Update(Order);
         }
 
+        [HttpGet]
+        [Route("order-canceled")]
+        public bool OrderCanceled(Guid id)
+        {
+            var order = iOrderService.GetAll().FirstOrDefault(x => x.Id == id);
+            order.Status = Data.Enums.OrderStatus.Canceled;
+            order.UpdateDate = DateTime.Now;
+            return iOrderService.Update(order);
+        }
+
+        [HttpGet]
+        [Route("order-accomplished")]
+        public bool OrderAccomplished(Guid id)
+        {
+            var order = iOrderService.GetAll().FirstOrDefault(x => x.Id == id);
+            order.Status = Data.Enums.OrderStatus.Accomplished;
+            order.UpdateDate = DateTime.Now;
+            order.PaymentDate = DateTime.Now;
+            return iOrderService.Update(order);
+        }
+
         [HttpDelete]
         [Route("delete-Order")]
         public bool DeleteOrder(Guid id)

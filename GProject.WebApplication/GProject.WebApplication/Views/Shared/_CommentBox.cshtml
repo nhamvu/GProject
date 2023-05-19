@@ -1,7 +1,47 @@
 ﻿@model Tuple<GProject.Data.DomainClass.Product, List<GProject.Data.DomainClass.ProductVariation>, GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, GProject.Data.DomainClass.Customer>
+<link href="/AdminContent/css/style.min.css" rel="stylesheet">
+<link href="/AdminContent/css/InputCss.css" rel="stylesheet">
+<style>
+
+    .commentBox {
+        background-color: #efefef;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .starFade {
+        background-image: url("/images/saotrang.jpg");
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .starFadeN {
+        background-image: url("/images/saotrang.jpg");
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+    }
+
+    .starGlow {
+        background-image: url("/images/sao_vang.jpg");
+        min-width: 30px;
+        min-height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .starGlowN {
+        background-image: url("/images/sao_vang.jpg");
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+    }
+</style>
 <div class="dl-horizontal">
     <dt>
-        Comment
+        Bình luận
     </dt>
     <dd>
         <div class="commentBox">
@@ -10,9 +50,21 @@
                 @Html.AntiForgeryToken();
                 <div class="form-horizontal">
                     <div class="form-group">
-                        <label class="col-md-4 control-label">
-                            Your rating <span style="font-weight:normal;">(1 Star is Bad, 5 Star is Good)</span>
-                        </label>
+                        <strong style="font-weight:normal;">Hãy giúp chúng tôi cải thiện sản phẩm bằng cách đánh giá và chia sẻ ý kiến của bạn.</strong>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1 d-flex justify-content-between">
+                            @{
+                                if (string.IsNullOrEmpty(Model.Item7.Image))
+                                {
+                                    <img src="~/images/avatar.jpg" style="border-radius:50%; width:35px; border:2px solid black;">
+                                }
+                                else
+                                {
+                                    <img src="~/images/@Model.Item7.Image" style="border-radius:50%; width:35px; border:2px solid black;">
+                                }
+                            }
+                        </div>
                         <div class="col-md-7">
                             <div onmouseout="CRateSelected()">
                                 <span class="starFade" id="Rate1" onclick="CRate(1)" onmouseover="CRateOver(1)"></span>
@@ -23,17 +75,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <textarea id="Comment" name="Comment" rows="5" required style="width:100%; border:double 4px orange;" class="form-control" value="@Model.Item4.Comment"></textarea>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <input type="text" id="Comment" name="Comment" required class="form-control" placeholder="Thêm nhận xét" value="@Model.Item4.Comment"></input>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="hidden" id="Id" name="Id" value="@Model.Item4.Id"/>
-                            <input type="hidden" id="ProductId" name="ProductId" value="@Model.Item4.ProductId"/>
-                            <input type="hidden" id="Rating" name="Rating" />
-                            <input type="submit" id="btnRegister" name="btnRegister" value="Submit Comment" class="btn btn-primary"/>
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                <input type="hidden" id="Id" name="Id" value="@Model.Item4.Id"/>
+                                <input type="hidden" id="ProductId" name="ProductId" value="@Model.Item4.ProductId"/>
+                                <input type="hidden" id="Rating" name="Rating" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,56 +131,3 @@
         }
     }
 </script>
-<style>
-
-    /* Set padding to keep content from hitting the edges */
-
-    .body-content {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-
-    /* Override the default bootstrap behavior where horizontal description lists
-        will truncate terms that are too long to fit in the left column
-    */
-
-    .dl-horizontal dt {
-        white-space: normal;
-    }
-
-    .commentBox {
-        background-color: #efefef;
-        padding: 10px;
-        border-radius: 10px;
-    }
-
-    .starFade {
-        background-image: url("/images/sao_trang.png");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .starFadeN {
-        background-image: url("/images/sao_trang.png");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-    }
-
-    .starGlow {
-        background-image: url("/images/sao_vang.jpg");
-        min-width: 30px;
-        min-height: 30px;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .starGlowN {
-        background-image: url("/images/sao_vang.jpg");
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-    }
-</style>

@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +15,9 @@ namespace GProject.WebApplication.Helpers
         /// <summary>
         /// Tghoong tin người dùng khi đăng nhập vào,nếu chưa đăng nhập thì mặc định là ""
         /// </summary>
-        public static string mylocalhost = string.Empty;
+        public static string mylocalhost = "https://localhost:7009/api/";
+        public static string email = "nhamvdph18699@fpt.edu.vn";
+        public static string passemail = "14082002";
         public static Guid id = Guid.Empty;
 
         public static T? ConverObject<T>(object obj)
@@ -218,6 +222,19 @@ namespace GProject.WebApplication.Helpers
 
                 throw;
             }
+        }
+
+        public static string GetEnumDescription<T>(T value)
+        {
+            FieldInfo fi = value.GetType().GetField(value.ToString());
+
+            DescriptionAttribute[] attributes = fi.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
+
+            if (attributes != null && attributes.Any())
+            {
+                return attributes.First().Description;
+            }
+            return value.ToString();
         }
     }
 }

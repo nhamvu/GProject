@@ -2,7 +2,46 @@
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
-    box-sizing: border-box;
-    border: none;
-    border-bottom: 2px solid black;
+}
+
+input[type=datetime-local] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+}
+
+input[type=file] {
+    width: 100%;
+    margin: 8px 0;
+}
+
+input[type=date] {
+    width: 100%;
+    margin: 8px 0;
+}
+input[type=number] {
+    width: 100%;
+    margin: 8px 0;
+}
+select {
+    background-color: white !important;
+}
+
+textarea {
+    background-color: white !important;
+}
+input {
+    background-color: white !important;
 }
