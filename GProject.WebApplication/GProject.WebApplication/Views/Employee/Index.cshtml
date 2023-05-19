@@ -547,6 +547,10 @@
     }
 
     function checkValidateData() {
+        if ($('#Password').val() > 6) {
+            sweetAlert("Thông báo", "Thông tin mật khẩu không hợp lệ", "error");
+            return false;
+        }
         if ($('#PhoneNumber').val() == '') {
             sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
             return false;
@@ -573,6 +577,10 @@
         }
         if ($('#Image_Upload').val() == '') {
             sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
+            return false;
+        }
+        if ($('#Password').val() > 6) {
+            sweetAlert("Thông báo", "Thông tin mật khẩu không hợp lệ", "error");
             return false;
         }
         return true;

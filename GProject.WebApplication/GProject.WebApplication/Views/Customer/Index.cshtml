@@ -456,6 +456,10 @@
             sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
             return false;
             }
+            if ($('#Password').val() > 6) {
+                sweetAlert("Thông báo", "Thông tin mật khẩu không hợp lệ", "error");
+                return false;
+            }
             var id = $("#Id").val();
             var name = $("#Name").val();
             var email = $("#Email").val();
