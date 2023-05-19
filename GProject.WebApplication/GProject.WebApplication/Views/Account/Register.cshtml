@@ -122,20 +122,16 @@
         e.preventDefault();
         var phoneNumber = $("#PhoneNumber").val();
         var email = $("#Email").val();
-        var id = $("#Id").val();
-
 
         if (checkValidateData()) {
              $.ajax({
-                url: "/Customer/CheckEmail",
+                url: "/Customer/CheckEmail?Email=" + email,
                 type: "POST",
-                data: { Email: email, Id: id }
                 success: function (result) {
                     if (result.success) {
                         $.ajax({
-                            url: "/Customer/CheckPhone",
+                            url: "/Customer/CheckPhone?PhoneNumber=" + phoneNumber,
                             type: "POST",
-                            data: { PhoneNumber: phoneNumber, Id: id }
                             success: function (result) {
                                 if (result.success) {
                                     swal("Bạn chắc chắn lưu những thay đổi này?", {
