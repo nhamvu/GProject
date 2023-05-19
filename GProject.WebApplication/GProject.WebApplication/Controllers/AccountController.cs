@@ -285,7 +285,7 @@ namespace GProject.WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CheckPhone(string PhoneNumber, Guid? Id)
+        public async Task<ActionResult> CheckPhone(string PhoneNumber)
         {
             try
             {
@@ -294,7 +294,7 @@ namespace GProject.WebApplication.Controllers
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
                 var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
 
-                var existNameCustomer = lstObjs.Any(x => x.PhoneNumber == PhoneNumber && (!Id.HasValue || x.Id != Id.Value));
+                var existNameCustomer = lstObjs.Any(x => x.PhoneNumber == PhoneNumber );
                 var existNameEmployee = employees.Any(x => x.PhoneNumber == PhoneNumber);
 
                 if (!existNameCustomer && !existNameEmployee)
@@ -309,7 +309,7 @@ namespace GProject.WebApplication.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult> CheckEmail(string Email, Guid? Id)
+        public async Task<ActionResult> CheckEmail(string Email)
         {
             try
             {
@@ -317,7 +317,7 @@ namespace GProject.WebApplication.Controllers
                     return Json(new { success = false });
                 var lstObjs = await Commons.GetAll<Customer>(String.Concat(Commons.mylocalhost, "Customer/get-all-Customer"));
                 var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
-                var existNameCustomer = lstObjs.Any(x => x.Email.ToLower() == Email.ToLower() && (!Id.HasValue || x.Id != Id.Value));
+                var existNameCustomer = lstObjs.Any(x => x.Email.ToLower() == Email.ToLower());
                 var existNameEmployee = employees.Any(x => x.Email.ToLower() == Email.ToLower());
 
                 if (!existNameCustomer && !existNameEmployee)

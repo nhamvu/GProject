@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {}
+    "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {}
   },
   "projects": {
-    "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
+    "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+        "projectUniqueName": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
         "projectName": "GProject.Api",
-        "projectPath": "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
-        "packagesPath": "C:\\Users\\jinbi\\.nuget\\packages\\",
-        "outputPath": "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Api\\obj\\",
+        "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\GProject.Api.csproj",
+        "packagesPath": "C:\\Users\\huy.luu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Api\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jinbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\huy.luu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -27,14 +26,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
-                "projectPath": "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
+              "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+                "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj"
               }
             }
           }
@@ -101,25 +101,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
+    "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "projectUniqueName": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
         "projectName": "GProject.Data",
-        "projectPath": "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
-        "packagesPath": "C:\\Users\\jinbi\\.nuget\\packages\\",
-        "outputPath": "D:\\Du_An_Tot_Nghiep\\GProject.WebApplication\\GProject.Data\\obj\\",
+        "projectPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\GProject.Data.csproj",
+        "packagesPath": "C:\\Users\\huy.luu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\huy.luu\\Downloads\\GProject111\\GProject\\GProject.WebApplication\\GProject.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jinbi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\huy.luu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -128,6 +127,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -195,7 +195,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.103\\RuntimeIdentifierGraph.json"
         }
       }
     }

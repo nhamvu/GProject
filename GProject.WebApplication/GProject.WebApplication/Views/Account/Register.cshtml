@@ -120,18 +120,20 @@
     document.querySelector('#formdata').addEventListener('submit', function (e) {
         var form = this;
         e.preventDefault();
-        var phoneNumber = $("#PhoneNumber").val();
         var email = $("#Email").val();
+        var phoneNumber = $("#PhoneNumber").val();
 
         if (checkValidateData()) {
-             $.ajax({
-                url: "/Customer/CheckEmail?Email=" + email,
+            $.ajax({
+                url: "/Account/CheckEmail",
                 type: "POST",
+                data: { Email: email },
                 success: function (result) {
                     if (result.success) {
                         $.ajax({
-                            url: "/Customer/CheckPhone?PhoneNumber=" + phoneNumber,
+                            url: "/Account/CheckPhone",
                             type: "POST",
+                            data: { PhoneNumber: phoneNumber },
                             success: function (result) {
                                 if (result.success) {
                                     swal("Bạn chắc chắn lưu những thay đổi này?", {
@@ -165,6 +167,7 @@
 
 
     function checkValidateData() {
+        var regexPass = /^(?=.*[A-Z])(?=.*\d).{6,50}$/;
         if ($('#Name').val() == '') {
             sweetAlert("Thông báo", "Thông tin tên khách hàng không được để trống", "error");
             return false;
@@ -173,7 +176,7 @@
             sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
             return false;
         }
-        if ($('#Password').val() > 6) {
+        if (!regexPass.test($('#Password').val())) {
             sweetAlert("Thông báo", "Thông tin mật khẩu không hợp lệ", "error");
             return false;
         }

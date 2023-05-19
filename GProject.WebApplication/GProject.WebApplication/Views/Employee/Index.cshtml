@@ -547,8 +547,13 @@
     }
 
     function checkValidateData() {
-        if ($('#Password').val() == '') {
-            sweetAlert("Thông báo", "Thông tin mật khẩu không được để trống", "error");
+        var regexPass = /^(?=.*[A-Z])(?=.*\d).{6,50}$/;
+        if ($('#Name').val() == '') {
+            sweetAlert("Thông báo", "Thông tin tên không được để trống", "error");
+            return false;
+        }
+        if ($('#Email').val() == '') {
+            sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
             return false;
         }
         if ($('#PhoneNumber').val() == '') {
@@ -559,16 +564,20 @@
             sweetAlert("Thông báo", "Số điện thoại không đúng định dạng", "error");
             return false;
         }
-        if ($('#Name').val() == '') {
-            sweetAlert("Thông báo", "Thông tin tên màu không được để trống", "error");
-            return false;
-        }
-        if ($('#Email').val() == '') {
-            sweetAlert("Thông báo", "Thông tin email không được để trống", "error");
+        if (!regexPass.test($('#Password').val())) {
+            sweetAlert("Thông báo", "Thông tin mật khẩu không hợp lệ", "error");
             return false;
         }
         if ($('#PersonalId').val() == '') {
             sweetAlert("Thông báo", "Thông tin số CMT/CCCD không được để trống", "error");
+            return false;
+        }
+        if ($('#DateOfBirth').val() == '') {
+            sweetAlert("Thông báo", "Thông ngày sinh không được để trống", "error");
+            return false;
+        }
+        if ($('#DateOfJoin').val() == '') {
+            sweetAlert("Thông báo", "Thông ngày gia nhập không được để trống", "error");
             return false;
         }
         if ($('#Address').val() == '') {
@@ -577,10 +586,6 @@
         }
         if ($('#Image_Upload').val() == '') {
             sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
-            return false;
-        }
-        if ($('#Password').val() > 6) {
-            sweetAlert("Thông báo", "Thông tin mật khẩu không hợp lệ", "error");
             return false;
         }
         return true;
