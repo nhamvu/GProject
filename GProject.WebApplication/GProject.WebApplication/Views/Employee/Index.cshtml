@@ -547,8 +547,8 @@
     }
 
     function checkValidateData() {
-        if ($('#Password').val() > 6) {
-            sweetAlert("Thông báo", "Thông tin mật khẩu không hợp lệ", "error");
+        if ($('#Password').val() == '') {
+            sweetAlert("Thông báo", "Thông tin mật khẩu không được để trống", "error");
             return false;
         }
         if ($('#PhoneNumber').val() == '') {
