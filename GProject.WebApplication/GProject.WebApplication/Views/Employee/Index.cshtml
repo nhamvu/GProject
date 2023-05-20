@@ -481,18 +481,6 @@
         var phoneNumber = $("#PhoneNumber").val();
 
         if (checkValidateData()) {
-            $.ajax({
-                url: "/Employee/CheckEmail",
-                type: "POST",
-                data: { Email: email, Id: id },
-                success: function (result) {
-                    if (result.success) {
-                        $.ajax({
-                            url: "/Employee/CheckPhone",
-                            type: "POST",
-                            data: { PhoneNumber: phoneNumber, Id: id },
-                            success: function (result) {
-                                if (result.success) {
                                     swal("Bạn chắc chắn lưu những thay đổi này?", {
                                         title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
                                         icon: 'info',
@@ -500,26 +488,10 @@
                                     }).then(function (isConfirm) {
                                         if (isConfirm) {
                                             form.submit();
-                                        } else {
-                                            swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
                                         }
                                     });
-                                } else {
-                                    swal("Lỗi", "Số điện thoại đã được đăng ký, vui lòng nhập số khác", "error");
                                 }
-                            }
                         });
-                    }
-                    else {
-                        swal("Lỗi", "Email đã được đăng ký, vui lòng nhập email khác", "error");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    alert(error);
-                }
-            });            
-        }
-    });
     function ViewEmployeeDetail(id) {
         $.getJSON("/Employee/Detail?id=" + id, function (data) {
             console.log(data);
