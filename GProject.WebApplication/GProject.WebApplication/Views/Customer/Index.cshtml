@@ -70,7 +70,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <label class="col-md-5">Ngày sinh:<span style="color: red">(*)</span></label>
-                    <input id="DateOfBirth" name="DateOfBirth" type="datetime-local"
+                    <input id="DateOfBirth" name="DateOfBirth" type="date"
                         value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
@@ -372,7 +372,7 @@
             $("#Email").val(data.email);
             $("#Status").val(data.status);
             $("#Id").val(data.id);
-            $("#DateOfBirth").val(data.dateOfBirth);
+            $("#DateOfBirth").val(data.dateOfBirth.split('T')[0]);
             $("#PhoneNumber").val(data.phoneNumber);
             $("#Sex").val(data.sex);
             $("#Address").val(data.address);
@@ -450,6 +450,13 @@
                 sweetAlert("Thông báo", "Thông ngày sinh không được để trống", "error");
                 return false;
             }
+            var selectedDate = new Date($('#DateOfBirth').val());
+            var currentDate = new Date();
+
+            if (selectedDate >= currentDate) {
+                sweetAlert("Thông báo", "Thông ngày sinh không được lớn hơn ngày hiện tại", "error");
+                return false;
+            }
             if ($('#PhoneNumber').val() == '') {
                 sweetAlert("Thông báo", "Thông tin số điện thoại không được để trống", "error");
                 return false;
@@ -491,67 +498,103 @@
             data.append('Status', status);
             data.append('Image_Upload', image);
 
-            $.ajax({
-                url: "/Customer/CheckEmail",
-                type: "POST",
-                data: { Email: email, Id: id },
-                success: function (result) {
-                    if (result.success) {
+            var guidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+            if(!guidRegex.test(id)){
+                $.ajax({
+                    url: "/Customer/CheckEmail",
+                    type: "POST",
+                    data: { Email: email, Id: id },
+                    success: function (result) {
+                        if (result.success) {
+                            $.ajax({
+                                url: "/Customer/CheckPhone",
+                                type: "POST",
+                                data: { PhoneNumber: phoneNumber, Id: id },
+                                success: function (result) {
+                                    if (result.success) {
+
+                                        swal("Bạn chắc chắn lưu những thay đổi này?", {
+                                            title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                                            icon: 'info',
+                                            buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                                        }).then(function (isConfirm) {
+                                            if (isConfirm) {
+                                                $.ajax({
+                                                    url: "/Customer/Save",
+                                                    type: "POST",
+                                                    data: data,
+                                                    contentType: false,
+                                                    processData: false,
+                                                    success: function (result) {
+                                                        if (result.success) {
+                                                            swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                            setTimeout(function () {
+                                                                location.reload();
+                                                            }, 1000);
+                                                        } else {
+                                                            swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                                            setTimeout(function () {
+                                                                location.reload();
+                                                            }, 1000);
+                                                        }
+                                                    },
+                                                    error: function (xhr, status, error) {
+                                                        alert(error);
+                                                    }
+                                                });
+                                            } else {
+                                                swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
+                                            }
+                                        });
+
+                                    } else {
+                                        swal("Lỗi", "Số điện thoại đã được đăng ký, vui lòng nhập số khác", "error");
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            swal("Lỗi", "Email đã được đăng ký, vui lòng nhập email khác", "error");
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert(error);
+                    }
+                });
+            }else{
+                swal("Bạn chắc chắn lưu những thay đổi này?", {
+                    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
                         $.ajax({
-                            url: "/Customer/CheckPhone",
+                            url: "/Customer/Save",
                             type: "POST",
-                            data: { PhoneNumber: phoneNumber, Id: id },
+                            data: data,
+                            contentType: false,
+                            processData: false,
                             success: function (result) {
                                 if (result.success) {
-
-                                    swal("Bạn chắc chắn lưu những thay đổi này?", {
-                                        title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                                        icon: 'info',
-                                        buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-                                    }).then(function (isConfirm) {
-                                        if (isConfirm) {
-                                            $.ajax({
-                                                url: "/Customer/Save",
-                                                type: "POST",
-                                                data: data,
-                                                contentType: false,
-                                                processData: false,
-                                                success: function (result) {
-                                                    if (result.success) {
-                                                        swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
-                                                        setTimeout(function () {
-                                                            location.reload();
-                                                        }, 1000);
-                                                    } else {
-                                                        swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
-                                                        setTimeout(function () {
-                                                            location.reload();
-                                                        }, 1000);
-                                                    }
-                                                },
-                                                error: function (xhr, status, error) {
-                                                    alert(error);
-                                                }
-                                            });
-                                        } else {
-                                            swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                                        }
-                                    });
-
+                                    swal("Thành công", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
                                 } else {
-                                    swal("Lỗi", "Số điện thoại đã được đăng ký, vui lòng nhập số khác", "error");
+                                    swal("Thành công!", "Bạn đã lưu thành công thông tin đã nhập", "success");
+                                    setTimeout(function () {
+                                        location.reload();
+                                    }, 1000);
                                 }
+                            },
+                            error: function (xhr, status, error) {
+                                alert(error);
                             }
                         });
                     }
-                    else {
-                        swal("Lỗi", "Email đã được đăng ký, vui lòng nhập email khác", "error");
-                    }
-                },
-                error: function (xhr, status, error) {
-                    alert(error);
-                }
-            });
+                });
+            }
+            
         });
     });
 </script>

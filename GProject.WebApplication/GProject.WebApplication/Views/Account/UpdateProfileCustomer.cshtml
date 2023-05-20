@@ -6,7 +6,7 @@
 }
 
 <div style="margin-top: 200px;">
-    <form id="formdata" asp-action="UpdateProfileCustomer" onsubmit="return validateFormData();">
+    <form id="formdata" asp-action="UpdateProfileCustomer" onsubmit="return validateFormData();" enctype="multipart/form-data">
     <div class="container-xl px-4 mt-4">
         <hr class="mt-0 mb-4">
         <div class="row">
@@ -31,7 +31,7 @@
                         <div class="row gx-3 mb-3">
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputFirstName">Email</label>
-                                <input class="form-control" type="text" placeholder="Mời nhập email" asp-for="Email">
+                                    <input class="form-control" type="text" placeholder="Mời nhập email" readonly disabled="disabled" asp-for="Email">
                             </div>
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLastName">Ngày sinh</label>
@@ -55,7 +55,7 @@
         <div class="row">
             <div class="col-xl-4"></div>
             <div class="col-xl-8">
-                <button class="btn btn-primary">Lưu thay đổi</button>
+                <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
             </div>
         </div>
     </div>

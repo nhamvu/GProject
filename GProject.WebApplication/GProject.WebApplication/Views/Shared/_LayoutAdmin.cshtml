@@ -66,7 +66,8 @@
                             <div class="dropdown">
                                 <a class="profile-pic dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                                     @{
-                                        <img src="~/images/admin.png" alt="user-img" width="36" class="img-circle">
+                                        string image = !string.IsNullOrEmpty(user.Image) ? user.Image.NullToString() : "admin.png";
+                                        <img src="~/images/@image" alt="user-img" width="36" class="img-circle">
                                     }
                                     <span class="text-white font-medium">@(user == null ? "Tài khoản" : user.Name.NullToString())</span>
                                 </a>

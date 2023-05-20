@@ -30,7 +30,7 @@ namespace GProject.Data.DomainClass
         public int Status { get; set; } // 0: đang làm việc || 1:đã nghỉ việc
         public EmployeePosition Position { get; set; }
         public string? Description { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
         public List<Order>? Orders { get; set; }
         public List<Contact>? Contacts { get; set; }
     }

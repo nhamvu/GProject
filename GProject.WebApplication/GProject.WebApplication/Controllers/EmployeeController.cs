@@ -181,5 +181,27 @@ namespace GProject.WebApplication.Controllers
                 return Json(new { success = false });
             }
         }
+
+
+        [HttpPost]
+        public async Task<ActionResult> CheckPersonalId(string personalId)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(HttpContext.Session.GetString("myRole")) && HttpContext.Session.GetString("myRole").NullToString() == "customer")
+                    return Json(new { success = false });
+                var employees = await Commons.GetAll<Employee>(String.Concat(Commons.mylocalhost, "Employee/get-all-Employee"));
+                var existNameEmployee = employees.Any(x => x.PersonalId.ToLower() == personalId.ToLower());
+
+                if (!existNameEmployee)
+                    return Json(new { success = true });
+                else
+                    return Json(new { success = false });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false });
+            }
+        }
     }
 }

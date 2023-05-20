@@ -26,7 +26,7 @@ namespace GProject.Data.DomainClass
         public string Address { get; set; }
         public int Status { get; set; }  // 0: bình thường || 1: khách hàng cần chú ý
         public string? Description { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
         public string? GoogleId { get; set; }
         public List<Cart>? Carts { get; set; }
         public List<Order>? Orders { get; set; }

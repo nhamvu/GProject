@@ -127,7 +127,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <label class="control-label col-sm-5">Trạng thái:<span style="color: red">(*)</span></label>
+            <label class="control-label col-sm-5">Hình ảnh:<span style="color: red">(*)</span></label>
             <div class="col-sm-9">
                 <input asp-for="Image_Upload" type="file" class="form-control" />
             </div>
@@ -195,20 +195,23 @@
         var form = this;
 
         e.preventDefault();
-        if (checkValidateData()) {
-            swal("Bạn chắc chắn lưu những thay đổi này?", {
-                title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
-                icon: 'info',
-                buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
-            }).then(function (isConfirm) {
-                if (isConfirm) {
-                    var products = GetPromotionDetail();
-                    $('#ProductApply').val(JSON.stringify(products));
-                    form.submit();
-                } else {
-                    swal("Đã hủy", "Bạn đã không lưu những thay đổi này!", "error");
-                }
-            });
+        var products = GetPromotionDetail();
+        if (products.length > 0) {
+            if (checkValidateData()) {
+                swal("Bạn chắc chắn lưu những thay đổi này?", {
+                    title: 'Bạn chắc chắn muốn lưu nhưng thay đổi này?',
+                    icon: 'info',
+                    buttons: ["Không, tôi cần xem lại", "Có, tôi đồng ý"],
+                }).then(function (isConfirm) {
+                    if (isConfirm) {
+
+                        $('#ProductApply').val(JSON.stringify(products));
+                        form.submit();
+                    }
+                });
+            }
+        } else {
+            swal("Thông báo", "Bạn chưa chọn sản phẩm!", "error");
         }
     });
     
@@ -247,7 +250,7 @@
                 sweetAlert("Thông báo", "Thông tin ngày kết thúc không được nhỏ hơn ngày bắt đầu", "error");
                 return false;
             }
-        if ($('#ImageURl').val() == '') {
+        if ($('#Image_Upload').val() == '') {
             sweetAlert("Thông báo", "Thông tin hình ảnh không được để trống", "error");
             return false;
         }
