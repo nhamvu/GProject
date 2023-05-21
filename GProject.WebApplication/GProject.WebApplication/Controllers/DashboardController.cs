@@ -88,8 +88,7 @@ namespace GProject.WebApplication.Controllers
                                     Brand = abcde.Brand.Name,
                                     ProdType = abcde.Product.ProductType
                                 })
-                                .OrderByDescending(g => g.Sum(c => c.OrderDetail.Quantity))
-                                .ThenByDescending(g => g.Key.Month)
+                                .OrderByDescending(g => g.Key.Month)
                                 .Take(5)
                                 .Select(g => new
                                 {
@@ -100,7 +99,7 @@ namespace GProject.WebApplication.Controllers
                                     ProdType = g.Key.ProdType,
                                     Total_Quantity = g.Sum(c => c.OrderDetail.Quantity),
                                     Total_Revenue = g.Sum(c => c.OrderDetail.Quantity * c.OrderDetail.Price),
-                                })
+                                }).OrderByDescending(g => g.Total_Revenue)
                                 .ToList();
 
                 //-- Số đơn hàng

@@ -505,7 +505,7 @@
                 .then((willChange) => {
                     if (willChange) {
                         if (checkQuantityInstock($(this))) {
-                            var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/,/g, '');
+                            var _priceVal = ($(this).parents("tr").find("input[type=text].price").val() || 0).replace(/\./g, '');
                             var _quantityVal = parseFloat($(this).val()) || 0;
                             $(this).parents("tr").find("input[type=text].totalMoneyItem").val(commasThousands(_priceVal * _quantityVal));
                             loadMoney();
@@ -631,7 +631,7 @@
         var _discountRate = parseFloat($('#DiscountRate').val() || 0);
         var _shippingFee = parseFloat($('#ShippingFee').val() || 0);
         $('table tbody tr .totalMoneyItem').each((index, item) => {
-            var _item = ($(item).parents("tr").find("input[type=text].totalMoneyItem").val() || '').replace(/,/g, '');
+            var _item = ($(item).parents("tr").find("input[type=text].totalMoneyItem").val() || '').replace(/\./g, '');
             _totalPaymentMoney = _totalPaymentMoney + parseFloat(_item);
         });
         $('#totalMoneyProd').val(commasThousands(_totalPaymentMoney));
@@ -665,13 +665,13 @@
 
         function commasThousands(nStr) {
             nStr += '';
-            nStr = nStr.replace(/,/g, '');
+            nStr = nStr.replace(/\./g, '');
             x = nStr.split('.');
             x1 = x[0];
             x2 = x.length > 1 ? '.' + x[1] : '';
             var rgx = /(\d+)(\d{3})/;
             while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                x1 = x1.replace(rgx, '$1' + '.' + '$2');
             }
             return x1 + x2;
         }

@@ -60,9 +60,9 @@
 								<li class="language">
 								</li>
 								<li class="account" style="width: 200px;">
-									<a href="#">
-										Tài khoản
-										<i class="fa fa-angle-down"></i>
+									<a href="#" style="display: flex; align-items: center;">
+										<span>@(user == null ? "Tài khoản" : user.Email)</span>
+										<i class="fa fa-angle-down" style="margin-left: 5px;"></i>
 									</a>
 									<ul class="account_selection">
                                             @{

@@ -226,9 +226,7 @@
                             <th style="width:220px;">Tên sản phẩm</th>                           
                             <th>Nhãn hiệu</th>
                             <th>Giá nhập</th>
-                            <th>Giá bán</th>
-                            <th style="width:120px;">Lượt tim <i class="fa fa-heart" aria-hidden="true"></i></th>
-                            <th style="width:120px;">Lượt thích <i class="fa fa-thumbs-up" aria-hidden="true"></i></th>                           
+                            <th>Giá bán</th>                          
                             <th>Mô tả</th>
                             <th>Trạng thái</th>
                             <th></th>
@@ -260,13 +258,7 @@
                                     </td>
                                     <td>
                                         @(item.Price.ToString("#,##0##")) đ
-                                    </td>
-                                    <td>
-                                        @(item.ViewCount) <i class="fa fa-heart" aria-hidden="true"></i>
-                                    </td>
-                                    <td>
-                                        @(item.LikeCount) <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-                                    </td>                                    
+                                    </td>                                   
                                     <td>
                                         @item.Description
                                     </td>
