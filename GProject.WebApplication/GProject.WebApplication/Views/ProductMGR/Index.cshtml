@@ -23,7 +23,7 @@
     {
         StoreItems.Add(new SelectListItem()
                 {
-                    Value = "-1",
+                    Value = "",
                     Text = "--Nhãn hiệu--",
                     Selected = "-1" == Model.BrandId.ToString(),
                 });
@@ -38,6 +38,28 @@
                     });
         }
     }
+
+    var lstCategory = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
+	IList<SelectListItem> CategoryItems = new List<SelectListItem>();
+	if (lstCategory.Count > 0)
+	{
+		CategoryItems.Add(new SelectListItem()
+				{
+					Value = "",
+					Text = "-- Danh mục --",
+					Selected = "-1" == Model.CategoryId.ToString(),
+				});
+
+		foreach (var br in lstCategory.Where(x => x.Status == 1))
+		{
+			CategoryItems.Add(new SelectListItem()
+					{
+						Value = br.Id.ToString(),
+						Text = br.Name,
+						Selected = br.Id.ToString() == Model.CategoryId.ToString(),
+					});
+		}
+	}
 }
 <style>
     label {
@@ -117,9 +139,9 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="">Tên sản phẩm</label>
+                                <label class="">Mã sản phẩm</label>
                                 <div class="col-md-9 col-xs-12">
-                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                    <input id="sId" name="sId" value="@ViewData["sId"]" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -127,27 +149,8 @@
                                 <div class="col-md-9 col-xs-12">
                                     <input type="number" id="sImportPrice" name="sImportPrice" min="0" oninput="this.value = Math.abs(this.value)" value="@ViewData["sImportPrice"]" class="form-control" />
                                 </div>
-                            </div>
-                            
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label class="">Nhãn hiệu</label>
-                                <div class="col-md-9 col-xs-12">
-                                    <input type="text" id="sBrand" maxlength="10" name="sBrand" value="@ViewData["sBrand"]" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="">Giá bán</label>
-                                <div class="col-md-9">
-                                    <input type="number" id="sPrice" name="sPrice" min="0" oninput="this.value = Math.abs(this.value)" value="@ViewData["sPrice"]" class="form-control" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-sm-4">
-                            <div class="form-group">
+                            </div>    
+                             <div class="form-group">
                                 <label class="">Trạng thái</label>
                                 <div class="col-md-9">
                                     @{
@@ -160,7 +163,39 @@
                                     new SelectListItem{Text="Ngừng bán", Value="1", Selected=  (status == 1)}
                                     }, new { @name = "sStatus", @class="searchText form-control select"})
                                 </div>
+                            </div>                   
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="">Tên sản phẩm</label>
+                                <div class="col-md-9 col-xs-12">
+                                    <input type="text" id="sName" name="sName" value="@ViewData["sName"]" class="form-control" />
+                                </div>
                             </div>
+                            <div class="form-group">
+                                <label class="">Giá bán</label>
+                                <div class="col-md-9">
+                                    <input type="number" id="sPrice" name="sPrice" min="0" oninput="this.value = Math.abs(this.value)" value="@ViewData["sPrice"]" class="form-control" />
+                                </div>
+                            </div>                                                          
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <label class="">Nhãn hiệu</label>
+                                <div class="col-md-9 col-xs-12">
+                                    @Html.DropDownList("sBrand", StoreItems, new { @maxlength = "30", @class =
+										"searchText form-control col-12", @name="sBrand" })                     
+                                </div>
+                            </div>  
+                            <div class="form-group">
+                                <label class="">Danh mục</label>
+                                <div class="col-md-9 col-xs-12">
+                                    @Html.DropDownList("category", CategoryItems, new { @maxlength = "30", @class =
+										"searchText form-control col-12", @name="category" })                    
+                                </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
@@ -301,7 +336,9 @@
     $(document).ready(function () {
 
         if ($("#sName").val() != '' ||
+            $("#sId").val() != '' ||
             $("#sBrand").val() != '' ||
+            $("#category").val() != '' ||
             $("#sImportPrice").val() != '' ||
             $("#sPrice").val() != ''
         ) 

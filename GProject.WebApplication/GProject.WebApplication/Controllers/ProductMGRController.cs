@@ -21,7 +21,7 @@ namespace GProject.WebApplication.Controllers
             iProductService = new ProductMGRService();
         }
 
-        public async Task<ActionResult> Index(string sName,decimal? sImportPrice,int? sStatus, string sBrand,decimal? sPrice, int pg = 1)
+        public async Task<ActionResult> Index(string sId, string sName,decimal? sImportPrice,int? sStatus, string? sBrand, string? category, decimal? sPrice, int pg = 1)
         {
             try
             {
@@ -34,6 +34,30 @@ namespace GProject.WebApplication.Controllers
                 //-- Lấy danh sách từ api
                 var lstObjs = await Commons.GetAll<Product>(String.Concat(Commons.mylocalhost, "ProductMGR/get-all-Product-mgr"));
 
+                int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
+
+                if (!string.IsNullOrEmpty(sId))
+                    lstObjs = lstObjs.Where(c => c.ProductCode.ToLower().Contains(sId.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(sName))
+                    lstObjs = lstObjs.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
+                if (!string.IsNullOrEmpty(sBrand))
+                    lstObjs = lstObjs.Where(c => c.BrandId == Convert.ToInt32(sBrand)).ToList();
+                if (!string.IsNullOrEmpty(category))
+                    lstObjs = lstObjs.Where(c => c.CategoryId == new Guid(category)).ToList();
+                if (!string.IsNullOrEmpty(sImportPrice.ToString()))
+                    lstObjs = (List<Product>)lstObjs.Where(c => c.ImportPrice >= sImportPrice);
+                if (!string.IsNullOrEmpty(sPrice.ToString()))
+                    lstObjs = (List<Product>)lstObjs.Where(c => c.Price <= sPrice);
+                if (valsStatus != -1)
+                    lstObjs = lstObjs.Where(c => c.Status == valsStatus).ToList();
+                
+                this.ViewData[nameof(sId)] = (object)sId;
+                this.ViewData[nameof(sName)] = (object)sName;
+                this.ViewData[nameof(sImportPrice)] = (object)sImportPrice;
+                this.ViewData[nameof(sStatus)] = (object)valsStatus;
+                this.ViewData[nameof(sBrand)] = (object)sBrand;
+                this.ViewData[nameof(sPrice)] = (object)sPrice;
+
                 const int pageSize = 5;
                 if (pg < 1)
                     pg = 1;
@@ -42,26 +66,11 @@ namespace GProject.WebApplication.Controllers
                 var pager = new Pager(recsCount, pg, pageSize);
                 int recSkip = (pg - 1) * pageSize;
                 var data = lstObjs.Skip(recSkip).Take(pageSize).ToList();
-                int valsStatus = sStatus.HasValue ? sStatus.Value : -1;
+                this.ViewBag.Pager = pager;
 
                 var result = new ProductMGRDTO() { ProductVariationList = lstProductvariation, ProductList = data, ProductVariationViewModel = lstColor.Where(c => c.Status == 1).ToList(), SizeList = lstSize };
 
-                if (!string.IsNullOrEmpty(sName))
-                    result.ProductList = result.ProductList.Where(c => c.Name.ToLower().Contains(sName.ToLower())).ToList();
-                if (!string.IsNullOrEmpty(sBrand))
-                    //result = result.Where(c => c.Brand.ToLower().Contains(sEmail.ToLower())).ToList();
-                if (!string.IsNullOrEmpty(sImportPrice.ToString()))
-                    result.ProductList = (List<Product>)result.ProductList.Where(c => c.ImportPrice >= sImportPrice);
-                if (!string.IsNullOrEmpty(sPrice.ToString()))
-                    result.ProductList = (List<Product>)result.ProductList.Where(c => c.Price <= sPrice);
-                if (valsStatus != -1)
-                    result.ProductList = result.ProductList.Where(c => c.Status == valsStatus).ToList();
-                this.ViewBag.Pager = pager;
-                this.ViewData[nameof(sName)] = (object)sName;
-                this.ViewData[nameof(sImportPrice)] = (object)sImportPrice;
-                this.ViewData[nameof(sStatus)] = (object)valsStatus;
-                this.ViewData[nameof(sBrand)] = (object)sBrand;
-                this.ViewData[nameof(sPrice)] = (object)sPrice;
+
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
                     ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 HttpContext.Session.Remove("mess");

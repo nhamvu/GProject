@@ -76,7 +76,7 @@ namespace GProject.WebApplication.Services
 
             if (customer != null)
             {
-                lstViewHistory = lstViewHistory.Where(c => c.CustomerId == customer.Id).OrderByDescending(c => c.DateView).ToList();
+                lstViewHistory = lstViewHistory.Where(c => c.CustomerId == customer.Id).OrderByDescending(c => c.DateView).Take(10).ToList();
 			}
             return (pager, new Tuple<List<ProductDTO>?, List<Color>?, List<Size>?, List<Brand>?, List<ViewHistory>?>(products, lstColor, lstSize, lstBrand, lstViewHistory));
         }

@@ -323,9 +323,7 @@
                     @if (pager.TotalPages > 0)
                     {
                         <ul class="pagination justify-content-end">
-                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                            {
-                                @if (pge < pager.TotalPages )
+                            @if (pager.CurrentPage < pager.TotalPages)
 						        {
 							        <li class="page-item">
 								        <a class="page-link" asp-controller="Voucher" asp-action="Index"
@@ -334,6 +332,8 @@
 								        </a>
 							        </li>
 						        }
+                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                            {
                                 if(pge == checkPg){
                                     <li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
                                     <a class="page-link" asp-controller="Voucher" asp-action="Index" style="color: white; background-color: #206af1;"
@@ -493,7 +493,7 @@
             $("#Status").val(data.status);
             $("#Id").val(data.id);
 
-            ChangePanel()
+            $('#formdata').show();
 
         });
     }

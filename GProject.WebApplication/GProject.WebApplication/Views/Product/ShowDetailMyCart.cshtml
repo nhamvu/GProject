@@ -188,7 +188,9 @@
                                                     <td>
                                                         <img style="width: 90px;height: 110px;" src="~/images/@item.ProductVariation.Image" />
                                                     </td>
-                                                    <td>@item.Product.Name</td>
+                                                    <td>
+                                                        <a href="/productdetail/@item.Product.Id">@item.Product.Name</a>                                                        
+                                                    </td>
                                                     <td>@item.Brand.Name</td>
                                                     <td>Màu: @(item.Color.Name) <br /> Size: @(item.Size.Code)</td>
                                                     <td>

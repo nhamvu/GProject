@@ -491,6 +491,7 @@ namespace GProject.WebApplication.Controllers
                     await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
 
                     HttpContext.Session.SetString("mess", "Success");
+                    ViewData["Mess"] = HttpContext.Session.GetString("mess");
                 }
 
                 if(customer == null)
@@ -933,7 +934,9 @@ namespace GProject.WebApplication.Controllers
                 var dataVoucher = new UpdateNumberVoucherDto() { Id = _selectVoucher };
                 await Commons.Add_or_UpdateAsync(dataVoucher, String.Concat(Commons.mylocalhost, "Voucher/update-number"));
                 HttpContext.Session.SetString("mess", "Success");
+                ViewData["Mess"] = HttpContext.Session.GetString("mess");
             }
+            
             ViewBag.Message = response;
             return RedirectToAction("ViewOrderCustomer", "Order");
         }

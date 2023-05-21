@@ -29,6 +29,10 @@
 {
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
+@if (@ViewData["message"] != null)
+{
+    <p style="visibility: hidden;" id="messerror">@ViewData["message"]</p>
+}
 
 
 <div class="super_container" style="margin-top: 200px;">
@@ -208,7 +212,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <p style="color: #444343; font-size: 18px;">
-                                                @orderDetails.Product.Name
+                                                <a href="/productdetail/@orderDetails.Product.Id">@orderDetails.Product.Name</a> 
                                             </p>
                                             <p style="color: gray;">
                                                 Mức giá: @orderDetails.OrderDetail.Price.ToString("#,##0.##")
@@ -368,6 +372,19 @@
         @* $(".CanceledOrder").click(function () {
             
         }); *@
+
+        var er = document.getElementById('error')
+        if (er != null) {
+            if ($('#error').text() == 'Failed')
+                swal("Không thành công", "Thao tác thất bại, vui lòng thực hiện lại", "error");
+            else
+                swal("Thành công", "Thao tác thành công", "success");
+        }
+
+        var messerror = document.getElementById('messerror')
+        if (messerror != null) {
+            swal("Không thành công", messerror, "error");
+        }
     });
 
     function CanceledOrder(id, payType)
