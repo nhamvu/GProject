@@ -45,23 +45,23 @@
     }
 
     <button class="btn btn-success" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-    <button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+    <button class="btn btn-outline-secondary text-dark " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
 
     <form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
         <input id="Id" name="Id" hidden="hidden" />
         <div class="row mt-5">
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Tên khách hàng:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Tên khách hàng:</label>
                     <input id="Name" type="text" name="Name" placeholder="Name" maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Email:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Email:</label>
                     <input id="Email" name="Email" type="email" placeholder="name@example.com" maxlength="200"
                         class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Mật khẩu:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Mật khẩu:</label>
                     <input id="Password" name="Password" type="password" placeholder="password" maxlength="200"
                         class="form-control" />
                 </div>
@@ -69,17 +69,17 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Ngày sinh:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Ngày sinh:</label>
                     <input id="DateOfBirth" name="DateOfBirth" type="datetime-local"
                         value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Số điện thoại:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Số điện thoại:</label>
                     <input id="PhoneNumber" name="PhoneNumber" type="text" placeholder="(+84) ..." maxlength="15"
                         class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label>Giới tính:</label><span style="color: red">(*)</span>
+                    <label>Giới tính:</label>
                     <div>
                         <select id="Sex" name="Sex" class="form-control">
                             <option value="0">Nam</option>
@@ -91,7 +91,7 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Địa chỉ:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Địa chỉ:</label>
                     <input id="Address" name="Address" type="text" placeholder="Address" maxlength="200"
                         class="form-control" />
                 </div>
@@ -101,7 +101,7 @@
                         class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label>Trạng thái</label><span style="color: red">(*)</span>
+                    <label>Trạng thái</label>
                     <div>
                         <select id="Status" name="Status" class="form-control">
                             <option value="1">Hoạt động</option>
@@ -113,7 +113,7 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Hình ảnh:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Hình ảnh:</label>
                     <input id="Image_Upload" name="Image_Upload" type="file" class="form-control" />
                 </div>
             </div>

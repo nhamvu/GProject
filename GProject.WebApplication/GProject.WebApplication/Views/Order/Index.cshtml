@@ -64,7 +64,7 @@
     <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
 }
 
-<button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+<button class="btn btn-outline-secondary text-dark " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
 <form id="Searchform" name="SearchForm" method="post" class="form-horizontal" style="margin-top: 15px;" action="/Order/Index">
     <div class="row">
         <div class="col-md-12">
@@ -180,6 +180,7 @@
                             <th>Số điện thoại</th>
                             <th>Ngày đặt hàng</th>
                             <th>Tổng tiền</th>
+                            <th>Trạng thái thanh toán</th>
                             <th>Trạng thái</th>
                             <th>Sửa</th>
                             <th>Lịch sử</th>
@@ -205,26 +206,36 @@
                                     <td>@Model[i].CreateDate</td>
                                     <td>@string.Format("{0:0,0} đ", Model[i].TotalMoney)</td>
                                     <td>
+                                        @if(Model[i].PaymentDate == null)
+                                        {
+                                            <a>Chưa thanh toán</a>
+                                        }
+                                        else    
+                                        {
+                                            <a class="text-success">Đã thanh toán</a>
+                                        }
+                                    </td>
+                                    <td>
                                         @{
                                             switch ((int)Model[i].Status)
                                             {
                                                 case 0:
-                                                    <span class="label label-secondary text-dark">Chờ xác nhận</span>
+                                                    <a class="label label-secondary text-dark">Chờ xác nhận</a>
                                                     break;
                                                 case 6:
-                                                    <span class="label label-warning">Đã xác nhận</span>
+                                                    <a class="label label-warning">Đã xác nhận</a>
                                                     break;
                                                 case 1:
-                                                    <span class="label label-info">Đang vận chuyển</span>
+                                                    <a class="label label-info">Đang vận chuyển</a>
                                                     break;
                                                 case 2:
-                                                    <span class="label label-primary">Đang giao hàng</span>
+                                                    <a class="label label-primary">Đang giao hàng</a>
                                                     break;
                                                 case 3:
-                                                    <span class="label label-success">Đã hoàn thành</span>
+                                                    <a class="label label-success">Đã hoàn thành</a>
                                                     break;
                                                 default:
-                                                    <span class="label label-danger">Đã hủy</span>
+                                                    <a class="label label-danger">Đã hủy</a>
                                                     break;
                                             }
                                         }

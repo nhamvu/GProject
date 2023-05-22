@@ -1048,7 +1048,7 @@ namespace GProject.WebApplication.Controllers
             }
         }
 
-        public async Task<ActionResult> ChangeQuantityOrder(string orderid, string prodId, string quantity)
+        public async Task<ActionResult> ChangeQuantityOrder(string orderid, string prodId, string quantity, int? colorId, int? sizeId )
         {
             try
             {

@@ -126,7 +126,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-sm-5">Tên sản phầm:<span style="color: red">(*)</span></label>
+                    <label class="control-label col-sm-5">Tên sản phầm:</label>
                     <div class="col-sm-9">
                         <input asp-for="Name" class="form-control" placeholder="Product name" maxlength="200" />
                     </div>
@@ -134,7 +134,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-sm-5">Tên nhãn hiệu:<span style="color: red">(*)</span></label>
+                    <label class="control-label col-sm-5">Tên nhãn hiệu:</label>
                     <div class="col-sm-9">
                         @Html.DropDownList("BrandId", StoreItems, new { @maxlength = "30", @class = "searchText form-control" })
                     </div>
@@ -144,7 +144,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Giá nhập:<span style="color: red">(*)</span></label>
+                    <label class="control-label col-sm-3">Giá nhập:</label>
                     <div class="col-sm-9">
                         @Html.TextBox("ImportPrice", decimal.Parse(Model.ImportPrice.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
                     </div>
@@ -152,7 +152,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Giá bán:<span style="color: red">(*)</span></label>
+                    <label class="control-label col-sm-3">Giá bán:</label>
                     <div class="col-sm-9">
                         @Html.TextBox("Price", decimal.Parse(Model.Price.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"})
                     </div>
@@ -162,7 +162,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-sm-5">Loại danh mục:<span style="color: red">(*)</span></label>
+                    <label class="control-label col-sm-5">Loại danh mục:</label>
                     <div class="col-sm-6">
                         @Html.DropDownList("CategoryId", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
                     </div>
@@ -170,7 +170,7 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Loại :<span style="color: red">(*)</span></label>
+                    <label class="control-label col-sm-3">Loại :</label>
                     <div class="col-md-6">
                         @Html.DropDownList("ProductType", new[]
                         {
@@ -187,7 +187,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="control-label col-sm-3">Trạng thái:<span style="color: red">(*)</span></label>
+                    <label class="control-label col-sm-3">Trạng thái:</label>
                     <div class="col-md-6">
                         @Html.DropDownList("Status", new[]
                         {

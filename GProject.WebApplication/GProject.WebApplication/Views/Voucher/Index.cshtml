@@ -50,27 +50,27 @@
     }
 
     <button class="btn btn-success " id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-    <button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+    <button class="btn btn-outline-secondary text-dark " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
     <form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
         <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" value="" hidden="hidden" />
         <input asp-for="VoucherId" style="width:0px;height:0px;visibility: hidden;" value="" hidden="hidden" />
         <div class="row mt-5">
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Tên:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Tên mã giảm giá:</label>
                     <div class="form-input">
                         <input asp-for="Name" id="Name" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Mức giảm giá:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Mức giảm giá:</label>
                     <div class="form-input">
                         <input asp-for="DiscountRate" min="0" oninput="this.value = Math.abs(this.value)"
                             id="DiscountRate" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Hình thức:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Hình thức:</label>
                     <div>
                         <select asp-for="DiscountForm" onclick="SetDisable()" id="DiscountForm" class="form-select">
                             <option value="Vnd">Vnd</option>
@@ -82,21 +82,21 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Giảm giá tối đa:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Giảm giá tối đa:</label>
                     <div class="form-input">
                         <input disabled asp-for="MaximumDiscount" min="0" oninput="this.value = Math.abs(this.value)"
                             id="MaximumDiscount" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Số lượng:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Số lượng:</label>
                     <div class="form-input">
                         <input type="number" type="number" min="0" oninput="this.value = Math.abs(this.value)"
                             asp-for="NumberOfVouchers" id="NumberOfVouchers" minlength="0" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Số tiền tối thiểu:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Số tiền tối thiểu:</label>
                     <div class="form-input">
                         <input asp-for="MinimumOrder" oninput="this.value = Math.abs(this.value)" min="0"
                             id="MinimumOrder" class="form-control" />
@@ -106,21 +106,21 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Ngày bắt đầu:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Ngày bắt đầu:</label>
                     <div class="form-input">
                         <input type="datetime-local" value="<?php echo date('Y-m-d'); ?>" asp-for="CreateDate"
                             id="CreateDate" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Ngày kết thúc:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Ngày kết thúc:</label>
                     <div class="form-input">
                         <input type="datetime-local" value="<?php echo date('Y-m-d'); ?>" asp-for="ExpirationDate"
                             id="ExpirationDate" class="form-control" />
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label>Trạng thái</label><span style="color: red">(*)</span>
+                    <label>Trạng thái</label>
                     <div style="margin-top:10px;">
                         @Html.DropDownList("Status", new[]
                         {

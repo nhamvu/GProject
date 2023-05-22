@@ -65,7 +65,7 @@
         @Html.Hidden("ImageURl", "")
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-sm-5">Tên chương trình:<span style="color: red">(*)</span></label>
+                <label class="control-label col-sm-5">Tên chương trình:</label>
                 <div class="col-sm-9">
                     <input asp-for="PromotionName" class="form-control" placeholder="Promotion Name" maxlength="200" />
                 </div>
@@ -73,7 +73,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-sm-5">Giảm giá theo:<span style="color: red">(*)</span></label>
+                <label class="control-label col-sm-5">Giảm giá theo:</label>
                 <div class="col-md-9">
                     @Html.DropDownList("DiscountPercent", new[]
                     {
@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-sm-5">Mức giảm giá:<span style="color: red">(*)</span></label>
+                <label class="control-label col-sm-5">Mức giảm giá:</label>
                 <div class="col-sm-9">
                     @Html.TextBox("DiscountRate", decimal.Parse(Model.DiscountRate.ToString("0.##")), new { @min="0", @type="number",@oninput="this.value = Math.abs(this.value)", @class = "required form-control"})
                 </div>
@@ -93,7 +93,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-sm-5">Ngày bắt đầu:<span style="color: red">(*)</span></label>
+                <label class="control-label col-sm-5">Ngày bắt đầu:</label>
                 <div class="col-sm-9">
                     <input asp-for="StartDate" type="datetime-local" value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
                 </div>
@@ -101,7 +101,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-sm-5">Ngày kết thúc:<span style="color: red">(*)</span></label>
+                <label class="control-label col-sm-5">Ngày kết thúc:</label>
                 <div class="col-sm-9">
                     <input asp-for="EndDate" type="datetime-local" value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
                 </div>
@@ -109,7 +109,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-sm-5">Loại danh mục:<span style="color: red">(*)</span></label>
+                <label class="control-label col-sm-5">Loại danh mục:</label>
                 <div class="col-sm-9">
                     @Html.DropDownList("CategoryApply", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" })
                 </div>
@@ -117,7 +117,7 @@
         </div>
         <div class="col-md-4">
             <div class="form-group">
-                <label class="control-label col-sm-5">Trạng thái:<span style="color: red">(*)</span></label>
+                <label class="control-label col-sm-5">Trạng thái:</label>
                 <div class="col-md-9">
                     @Html.DropDownList("Status", new[]
                     {
@@ -129,7 +129,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <label class="control-label col-sm-5">Trạng thái:<span style="color: red">(*)</span></label>
+            <label class="control-label col-sm-5">Trạng thái:</label>
             <div class="col-sm-9">
                 <input asp-for="Image_Upload" type="file" class="form-control" />
             </div>

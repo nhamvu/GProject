@@ -46,39 +46,39 @@
         <p style="visibility: hidden;" id="error">@ViewData["Mess"]</p>
     }
     <button class="btn btn-success" id="changeform" type="button" onclick="ChangePanel()">Thêm mới</button>
-    <button class="btn btn-secondary " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
+    <button class="btn btn-outline-secondary text-dark " id="changeformsearch" type="button" onclick="ChangeSearch()">Tìm kiếm</button>
 
     <form id="formdata" asp-action="Save" class="form" enctype="multipart/form-data">
         <input asp-for="Id" style="width:0px;height:0px;visibility: hidden;" hidden="hidden" />
         <div class="row mt-5">
             <div class="row">
                 <div class="col-md-4">
-                    <label>Tên nhân viên:<span style="color: red">(*)</span></label>
+                    <label>Tên nhân viên:</label>
                     <input asp-for="Name" placeholder="Name" maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label>Email:<span style="color: red">(*)</span></label>
+                    <label>Email:</label>
                     <input asp-for="Email" type="email" placeholder="name@example.com" maxlength="200"
                         class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Số điện thoại:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Số điện thoại:</label>
                     <input asp-for="PhoneNumber" onkeyup="checkphoneNumber()" placeholder="(+84) ..." maxlength="15" class="form-control" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Mật khẩu:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Mật khẩu:</label>
                     <input asp-for="Password" type="password" placeholder="password" maxlength="200"
                         class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">CMT/CCCD:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">CMT/CCCD:</label>
                     <input asp-for="PersonalId" placeholder="Personal id" maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Ngày sinh:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Ngày sinh:</label>
                     <input asp-for="DateOfBirth" value="<?php echo date('Y-m-d'); ?>" maxlength="200"
                         class="form-control" />
                 </div>
@@ -86,12 +86,12 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Ngày gia nhập:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Ngày gia nhập:</label>
                     <input asp-for="DateOfJoin" value="<?php echo date('Y-m-d'); ?>" maxlength="200"
                         class="form-control" />
                 </div>                
                 <div class="col-md-4">
-                    <label>Giới tính:</label><span style="color: red">(*)</span>
+                    <label>Giới tính:</label>
                     <div style="margin-top:10px;">
                         @Html.DropDownList("Sex", new[]
                         {
@@ -103,18 +103,14 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Địa chỉ:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Địa chỉ:</label>
                     <input asp-for="Address" placeholder="Address" maxlength="200" class="form-control" />
                 </div>
             </div>
 
             <div class="row">                
                 <div class="col-md-4">
-                    <label class="col-md-5">Mô tả:</label>
-                    <input asp-for="Description" placeholder="Description" maxlength="200" class="form-control" />
-                </div>
-                <div class="col-md-4">
-                    <label>Chức vụ</label><span style="color: red">(*)</span>
+                    <label>Chức vụ</label>
                     <div style="margin-top:10px;">
                         @Html.DropDownList("Position", new[]
                         {
@@ -128,7 +124,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label>Trạng thái</label><span style="color: red">(*)</span>
+                    <label>Trạng thái</label>
                     <div style="margin-top:10px;">
                         @Html.DropDownList("Status", new[]
                         {
@@ -139,11 +135,15 @@
                         }, new { @class = "form-control iscompany" })
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <label class="col-md-5">Mô tả:</label>
+                    <input asp-for="Description" placeholder="Description" maxlength="200" class="form-control" />
+                </div>
             </div>
 
             <div class="row">                
                 <div class="col-md-4">
-                    <label class="col-md-5">Hình ảnh:<span style="color: red">(*)</span></label>
+                    <label class="col-md-5">Hình ảnh:</label>
                     <input asp-for="Image_Upload" type="file" class="form-control" />
                 </div>
             </div>
