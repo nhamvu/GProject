@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -96,7 +96,7 @@ using GProject.WebApplication.Helpers;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 7 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
   
     ViewBag.Title = "Danh sách thông tin sản phẩm";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -116,7 +116,7 @@ using GProject.WebApplication.Helpers;
     {
         StoreItems.Add(new SelectListItem()
                 {
-                    Value = "-1",
+                    Value = "",
                     Text = "--Nhãn hiệu--",
                     Selected = "-1" == Model.BrandId.ToString(),
                 });
@@ -131,6 +131,28 @@ using GProject.WebApplication.Helpers;
                     });
         }
     }
+
+    var lstCategory = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
+	IList<SelectListItem> CategoryItems = new List<SelectListItem>();
+	if (lstCategory.Count > 0)
+	{
+		CategoryItems.Add(new SelectListItem()
+				{
+					Value = "",
+					Text = "-- Danh mục --",
+					Selected = "-1" == Model.CategoryId.ToString(),
+				});
+
+		foreach (var br in lstCategory.Where(x => x.Status == 1))
+		{
+			CategoryItems.Add(new SelectListItem()
+					{
+						Value = br.Id.ToString(),
+						Text = br.Name,
+						Selected = br.Id.ToString() == Model.CategoryId.ToString(),
+					});
+		}
+	}
 
 #line default
 #line hidden
@@ -198,7 +220,7 @@ using GProject.WebApplication.Helpers;
 <di");
             WriteLiteral("v class=\"container\">\r\n");
 #nullable restore
-#line 103 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 125 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
      if (@ViewData["Mess"] != null)
 {
 
@@ -207,7 +229,7 @@ using GProject.WebApplication.Helpers;
 #nullable disable
             WriteLiteral("    <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 105 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 127 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                          Write(ViewData["Mess"]);
 
 #line default
@@ -215,23 +237,23 @@ using GProject.WebApplication.Helpers;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 106 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 128 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 }
 
 #line default
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<button class=\"btn btn-success\"");
-            BeginWriteAttribute("onclick", " onclick=\"", 2502, "\"", 2563, 3);
-            WriteAttributeValue("", 2512, "location.href=\'", 2512, 15, true);
+            BeginWriteAttribute("onclick", " onclick=\"", 3145, "\"", 3206, 3);
+            WriteAttributeValue("", 3155, "location.href=\'", 3155, 15, true);
 #nullable restore
-#line 108 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
-WriteAttributeValue("", 2527, Url.Action("Create", "ProductMGR"), 2527, 35, false);
+#line 130 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+WriteAttributeValue("", 3170, Url.Action("Create", "ProductMGR"), 3170, 35, false);
 
 #line default
 #line hidden
 #nullable disable
-            WriteAttributeValue("", 2562, "\'", 2562, 1, true);
+            WriteAttributeValue("", 3205, "\'", 3205, 1, true);
             EndWriteAttribute();
             WriteLiteral(" type=\"button\">Thêm mới</button>\r\n<button class=\"btn btn-outline-secondary text-dark\" id=\"changeformsearch\" type=\"button\" onclick=\"ChangeSearch()\">Tìm kiếm</button>\r\n<hr style=\"color:red;\" />\r\n\r\n");
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55ab35bcc0dd1fb8db23ff0af0882801044a5b7412126", async() => {
@@ -269,10 +291,35 @@ WriteAttributeValue("", 3835, ViewData["sImportPrice"], 3835, 25, false);
 #line hidden
 #nullable disable
                 EndWriteAttribute();
-                WriteLiteral(@" class=""form-control"" />
+                WriteLiteral(" class=\"form-control\" />\r\n                                </div>\r\n                            </div>    \r\n                             <div class=\"form-group\">\r\n                                <label");
+                BeginWriteAttribute("class", " class=\"", 4667, "\"", 4675, 0);
+                EndWriteAttribute();
+                WriteLiteral(">Trạng thái</label>\r\n                                <div class=\"col-md-9\">\r\n");
+#nullable restore
+#line 156 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+                                      
+                                        int status = int.Parse(Html.Encode(ViewData["sStatus"]));
+                                    
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral("                                    ");
+#nullable restore
+#line 159 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+                               Write(Html.DropDownList("sStatus",new[]
+                                    {
+                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
+                                    new SelectListItem{Text="Đang bán", Value="0", Selected= (status== 0)},
+                                    new SelectListItem{Text="Ngừng bán", Value="1", Selected=  (status == 1)}
+                                    }, new { @name = "sStatus", @class="searchText form-control select"}));
+
+#line default
+#line hidden
+#nullable disable
+                WriteLiteral(@"
                                 </div>
-                            </div>
-                            
+                            </div>                   
                         </div>
 
                         <div class=""col-sm-4"">
@@ -305,7 +352,7 @@ WriteAttributeValue("", 4804, ViewData["sPrice"], 4804, 19, false);
                 EndWriteAttribute();
                 WriteLiteral(@" class=""form-control"" />
                                 </div>
-                            </div>
+                            </div>                                                          
                         </div>
 
                         <div class=""col-sm-4"">
@@ -313,32 +360,30 @@ WriteAttributeValue("", 4804, ViewData["sPrice"], 4804, 19, false);
                                 <label");
                 BeginWriteAttribute("class", " class=\"", 5100, "\"", 5108, 0);
                 EndWriteAttribute();
-                WriteLiteral(">Trạng thái</label>\r\n                                <div class=\"col-md-9\">\r\n");
+                WriteLiteral(">Nhãn hiệu</label>\r\n                                <div class=\"col-md-9 col-xs-12\">\r\n                                    ");
 #nullable restore
-#line 153 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
-                                      
-                                        int status = int.Parse(Html.Encode(ViewData["sStatus"]));
-                                    
+#line 188 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+                               Write(Html.DropDownList("sBrand", StoreItems, new { @maxlength = "30", @class =
+										"searchText form-control col-12", @name="sBrand" }));
 
 #line default
 #line hidden
 #nullable disable
-                WriteLiteral("                                    ");
+                WriteLiteral("                     \r\n                                </div>\r\n                            </div>  \r\n                            <div class=\"form-group\">\r\n                                <label");
+                BeginWriteAttribute("class", " class=\"", 7189, "\"", 7197, 0);
+                EndWriteAttribute();
+                WriteLiteral(">Danh mục</label>\r\n                                <div class=\"col-md-9 col-xs-12\">\r\n                                    ");
 #nullable restore
-#line 156 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
-                               Write(Html.DropDownList("sStatus",new[]
-                                    {
-                                    new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
-                                    new SelectListItem{Text="Đang bán", Value="0", Selected= (status== 0)},
-                                    new SelectListItem{Text="Ngừng bán", Value="1", Selected=  (status == 1)}
-                                    }, new { @name = "sStatus", @class="searchText form-control select"}));
+#line 195 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+                               Write(Html.DropDownList("category", CategoryItems, new { @maxlength = "30", @class =
+										"searchText form-control col-12", @name="category" }));
 
 #line default
 #line hidden
 #nullable disable
-                WriteLiteral(@"
+                WriteLiteral(@"                    
                                 </div>
-                            </div>
+                            </div>  
                         </div>
                     </div>
                 </div>
@@ -411,7 +456,7 @@ WriteAttributeValue("", 4804, ViewData["sPrice"], 4804, 19, false);
                     <tbody>
 ");
 #nullable restore
-#line 203 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 238 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                          if (Model.ProductList != null)
                         {
                             int i = 1;
@@ -421,7 +466,7 @@ WriteAttributeValue("", 4804, ViewData["sPrice"], 4804, 19, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 206 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 241 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                              foreach (var item in Model.ProductList)
                             {
                                 string img = Model.ProductVariationList.Where(c => c.ProductId == item.Id).Select(c => c.Image).FirstOrDefault().NullToString();
@@ -431,7 +476,7 @@ WriteAttributeValue("", 4804, ViewData["sPrice"], 4804, 19, false);
 #nullable disable
             WriteLiteral("                                <tr>\r\n                                    <td class=\"text-center\">");
 #nullable restore
-#line 210 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 245 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                                        Write(i);
 
 #line default
@@ -463,7 +508,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 215 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 250 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                    Write(item.ProductCode);
 
 #line default
@@ -471,7 +516,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
 #nullable disable
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 218 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 253 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                    Write(item.Name);
 
 #line default
@@ -479,7 +524,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
 #nullable disable
             WriteLiteral("\r\n                                    </td>                                    \r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 221 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 256 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(lstBrand.Where(c => c.Id == item.BrandId).Select(c => c.Name).FirstOrDefault());
 
 #line default
@@ -487,7 +532,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
 #nullable disable
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 224 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 259 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(item.ImportPrice.ToString("#,##0##"));
 
 #line default
@@ -495,7 +540,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
 #nullable disable
             WriteLiteral(" đ\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 227 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 262 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(item.Price.ToString("#,##0##"));
 
 #line default
@@ -503,7 +548,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
 #nullable disable
             WriteLiteral(" đ\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 230 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 265 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(item.ViewCount);
 
 #line default
@@ -511,7 +556,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
 #nullable disable
             WriteLiteral(" <i class=\"fa fa-heart\" aria-hidden=\"true\"></i>\r\n                                    </td>\r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 233 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 268 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                     Write(item.LikeCount);
 
 #line default
@@ -519,7 +564,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
 #nullable disable
             WriteLiteral(" <i class=\"fa fa-thumbs-up\" aria-hidden=\"true\"></i>\r\n                                    </td>                                    \r\n                                    <td>\r\n                                        ");
 #nullable restore
-#line 236 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 271 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                    Write(item.Description);
 
 #line default
@@ -527,7 +572,7 @@ AddHtmlAttributeValue("", 8590, img, 8590, 4, false);
 #nullable disable
             WriteLiteral("\r\n                                    </td>\r\n                                    <td>\r\n");
 #nullable restore
-#line 239 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 274 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                           
                                             if (item.Status == 0)
                                             {
@@ -549,7 +594,7 @@ WriteAttributeValue("", 10389, item.Id, 10389, 8, false);
             EndWriteAttribute();
             WriteLiteral("><i class=\"fas fa-toggle-on\"></i></button>\r\n");
 #nullable restore
-#line 243 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 278 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                             }
                                             else
                                             {
@@ -571,7 +616,7 @@ WriteAttributeValue("", 10713, item.Id, 10713, 8, false);
             EndWriteAttribute();
             WriteLiteral("><i class=\"fas fa-toggle-off\"></i></button>\r\n");
 #nullable restore
-#line 247 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 282 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                             }
                                         
 
@@ -592,7 +637,7 @@ WriteAttributeValue("", 11077, Url.Action("Update", "ProductMGR",new { id = item
             EndWriteAttribute();
             WriteLiteral(" />\r\n                                        <i class=\"fas fa-pen-square\"></i>\r\n                                    </td>\r\n                                </tr>\r\n");
 #nullable restore
-#line 255 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 290 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                 i++;
                             }
 
@@ -600,7 +645,7 @@ WriteAttributeValue("", 11077, Url.Action("Update", "ProductMGR",new { id = item
 #line hidden
 #nullable disable
 #nullable restore
-#line 256 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 291 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                              
                         }
 
@@ -609,7 +654,7 @@ WriteAttributeValue("", 11077, Url.Action("Update", "ProductMGR",new { id = item
 #nullable disable
             WriteLiteral("                    </tbody>\r\n                </table>\r\n            </div>\r\n        </div>\r\n        <div class=\"form-footer\" >\r\n\t\t\t<div style=\"float: right\">\r\n");
 #nullable restore
-#line 264 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 299 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                  if (pager.TotalPages > 0)
 			{
 
@@ -618,7 +663,7 @@ WriteAttributeValue("", 11077, Url.Action("Update", "ProductMGR",new { id = item
 #nullable disable
             WriteLiteral("\t\t\t\t<ul class=\"pagination justify-content-end\">\r\n");
 #nullable restore
-#line 267 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 302 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                      if (pager.CurrentPage < pager.TotalPages)
 					{
 
@@ -643,7 +688,7 @@ WriteAttributeValue("", 11077, Url.Action("Update", "ProductMGR",new { id = item
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 271 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 306 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                            WriteLiteral(pager.TotalPages);
 
 #line default
@@ -661,14 +706,14 @@ WriteAttributeValue("", 11077, Url.Action("Update", "ProductMGR",new { id = item
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t\t</li>\r\n");
 #nullable restore
-#line 273 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 308 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 					}
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 274 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 309 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                      for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
 					{
 
@@ -689,7 +734,7 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
             WriteLiteral(">\r\n\t\t\t\t\t\t\t");
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "55ab35bcc0dd1fb8db23ff0af0882801044a5b7438673", async() => {
 #nullable restore
-#line 277 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 312 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                                                                                                Write(pge);
 
 #line default
@@ -710,7 +755,7 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 277 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 312 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                                                                                                   WriteLiteral(pge);
 
 #line default
@@ -728,7 +773,7 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t\t</li>\r\n");
 #nullable restore
-#line 279 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 314 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 					}
 
 #line default
@@ -736,7 +781,7 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
 #nullable disable
             WriteLiteral("\r\n\r\n");
 #nullable restore
-#line 282 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 317 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                      if (pager.CurrentPage < pager.TotalPages)
 					{
 
@@ -761,7 +806,7 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 286 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 321 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
                            WriteLiteral(pager.CurrentPage + 1);
 
 #line default
@@ -779,7 +824,7 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t\t</li>\r\n");
 #nullable restore
-#line 288 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 323 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 
 					}
 
@@ -788,7 +833,7 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
 #nullable disable
             WriteLiteral("\t\t\t\t</ul>\r\n");
 #nullable restore
-#line 291 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
+#line 326 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Index.cshtml"
 			}
 
 #line default
@@ -806,7 +851,9 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
     $(document).ready(function () {
 
         if ($(""#sName"").val() != '' ||
+            $(""#sId"").val() != '' ||
             $(""#sBrand"").val() != '' ||
+            $(""#category"").val() != '' ||
             $(""#sImportPrice"").val() != '' ||
             $(""#sPrice"").val() != ''
         ) 
@@ -829,9 +876,9 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
 
     function ChangeStatus(id) {
         $.getJSON(""/ProductMGR/ChangeStatus?id="" + id, function (data) {
-            if(data == true)
-                swal(""Thành công"", ""Thay đổi trạng thái thành công""");
-            WriteLiteral(@", ""success"");
+            if(d");
+            WriteLiteral(@"ata == true)
+                swal(""Thành công"", ""Thay đổi trạng thái thành công"", ""success"");
             else
                 swal(""Không thành công"", ""Thay đổi trạng thái không thành công"", ""error"");
             location.reload()
@@ -858,9 +905,9 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
             sweetAlert(""Thông báo"", ""Thông tin tên sản phẩm không được để trống"", ""error"");
             return false;
         }
-        if (parseFloat($('#BrandId').val()) == -1) {
-            sweetAlert(""Thông báo"", ""Thông tin tên sản phẩm không");
-            WriteLiteral(@" được để trống"", ""error"");
+        if (parseFloat($('#BrandId').v");
+            WriteLiteral(@"al()) == -1) {
+            sweetAlert(""Thông báo"", ""Thông tin tên sản phẩm không được để trống"", ""error"");
             return false;
         }
         if ($('#ImportPrice').val() == '') {
@@ -882,9 +929,16 @@ WriteAttributeValue(" ", 11987, pge == pager.CurrentPage ? "Active" : "", 11988,
         if (isNaN($('#Price').val())) {
             sweetAlert("""", ""Thông tin giá bán chỉ bao gồm kí tự số"", ""error"");
             return false;
+       ");
+            WriteLiteral(@" }
+        if (parseFloat($('#Price').val() || 0) < 0 || parseFloat($('#ImportPrice').val() || 0) === 0) {
+            sweetAlert("""", ""Thông tin giá bán phải có giá trị lớn hơn 0"", ""error"");
+            return false;
         }
-        if (parseFloat($('#Price').val() || 0) < 0 || parseFloat($('#ImportPr");
-            WriteLiteral("ice\').val() || 0) === 0) {\r\n            sweetAlert(\"\", \"Thông tin giá bán phải có giá trị lớn hơn 0\", \"error\");\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n</script>\r\n");
+        return true;
+    }
+</script>
+");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

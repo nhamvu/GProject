@@ -78,16 +78,16 @@
                     <input asp-for="PersonalId" placeholder="Personal id" maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
-                    <label class="col-md-5">Ngày sinh:</label>
-                    <input asp-for="DateOfBirth" value="<?php echo date('Y-m-d'); ?>" maxlength="200"
+                    <label class="col-md-5">Ngày sinh:<span style="color: red">(*)</span></label>
+                    <input asp-for="DateOfBirth" value="<?php echo date('Y-m-d'); ?>" type="date" maxlength="200"
                         class="form-control" />
                 </div>
 
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Ngày gia nhập:</label>
-                    <input asp-for="DateOfJoin" value="<?php echo date('Y-m-d'); ?>" maxlength="200"
+                    <label class="col-md-5">Ngày gia nhập:<span style="color: red">(*)</span></label>
+                    <input asp-for="DateOfJoin" value="<?php echo date('Y-m-d'); ?>" type="date" maxlength="200"
                         class="form-control" />
                 </div>                
                 <div class="col-md-4">
@@ -317,9 +317,7 @@
                     @if (pager.TotalPages > 0)
                     {
                         <ul class="pagination justify-content-end">
-                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                            {
-                                @if (pge < pager.TotalPages )
+                            @if (pager.CurrentPage < pager.TotalPages)
 						        {
 							        <li class="page-item">
 								        <a class="page-link" asp-controller="Employee" asp-action="Index"
@@ -328,6 +326,8 @@
 								        </a>
 							        </li>
 						        }
+                            @for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                            {                                
                                 if(pge == checkPg){
                                     <li class="page-item @(pge == pager.CurrentPage ? "Active" : "")">
                                     <a class="page-link" asp-controller="Employee" asp-action="Index" style="color: white; background-color: #206af1;"
@@ -530,8 +530,8 @@
             $("#Position").val(data.position);
             $("#Status").val(data.status);
             $("#Id").val(data.id);
-            $("#DateOfBirth").val(data.dateOfBirth);
-            $("#DateOfJoin").val(data.dateOfJoin);
+            $("#DateOfBirth").val( data.dateOfBirth.split('T')[0] );
+            $("#DateOfJoin").val(data.dateOfJoin.split('T')[0]);
             $("#PhoneNumber").val(data.phoneNumber);
             $("#Sex").val(data.sex);
             $("#Address").val(data.address);

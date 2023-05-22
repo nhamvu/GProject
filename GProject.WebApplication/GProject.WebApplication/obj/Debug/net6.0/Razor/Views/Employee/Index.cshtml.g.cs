@@ -13,28 +13,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
@@ -58,24 +58,25 @@ using GProject.Api.MyServices.Services;
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_11 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("placeholder", new global::Microsoft.AspNetCore.Html.HtmlString("password"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_12 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("placeholder", new global::Microsoft.AspNetCore.Html.HtmlString("Personal id"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_13 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "<?php echo date(\'Y-m-d\'); ?>", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_14 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("placeholder", new global::Microsoft.AspNetCore.Html.HtmlString("Address"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_15 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("placeholder", new global::Microsoft.AspNetCore.Html.HtmlString("Description"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_16 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "file", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_17 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("formdata"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_18 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Save", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_19 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_20 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("enctype", new global::Microsoft.AspNetCore.Html.HtmlString("multipart/form-data"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_21 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-outline-info"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_22 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_23 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("Searchform"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_24 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", new global::Microsoft.AspNetCore.Html.HtmlString("searchForm"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_25 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_26 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-horizontal"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_27 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("/Employee/Index"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_28 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:120px;height:50px; border;1px solid;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_29 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("page-link"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_30 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Employee", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_31 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("color: white; background-color: #206af1;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_14 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "date", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_15 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("placeholder", new global::Microsoft.AspNetCore.Html.HtmlString("Address"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_16 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("placeholder", new global::Microsoft.AspNetCore.Html.HtmlString("Description"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_17 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "file", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_18 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("formdata"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_19 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Save", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_20 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_21 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("enctype", new global::Microsoft.AspNetCore.Html.HtmlString("multipart/form-data"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_22 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn btn-outline-info"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_23 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_24 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("Searchform"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_25 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("name", new global::Microsoft.AspNetCore.Html.HtmlString("searchForm"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_26 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_27 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("form-horizontal"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_28 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("/Employee/Index"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_29 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("width:120px;height:50px; border;1px solid;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_30 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("page-link"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_31 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Employee", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_32 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("style", new global::Microsoft.AspNetCore.Html.HtmlString("color: white; background-color: #206af1;"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         #line hidden
         #pragma warning disable 0649
         private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
@@ -105,7 +106,7 @@ using GProject.Api.MyServices.Services;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
   
     ViewBag.Title = "Quản lý Nhân Viên";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -150,7 +151,7 @@ using GProject.Api.MyServices.Services;
 <div class=""container"">
 ");
 #nullable restore
-#line 44 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 44 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
      if (@ViewData["Mess"] != null)
     {
 
@@ -159,7 +160,7 @@ using GProject.Api.MyServices.Services;
 #nullable disable
             WriteLiteral("        <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 46 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 46 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                              Write(ViewData["Mess"]);
 
 #line default
@@ -167,7 +168,7 @@ using GProject.Api.MyServices.Services;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 47 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 47 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
     }
 
 #line default
@@ -182,7 +183,7 @@ using GProject.Api.MyServices.Services;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 52 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 52 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Id);
 
 #line default
@@ -205,7 +206,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 57 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 57 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Name);
 
 #line default
@@ -229,7 +230,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 61 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 61 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Email);
 
 #line default
@@ -255,7 +256,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 66 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 66 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.PhoneNumber);
 
 #line default
@@ -280,7 +281,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 73 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 73 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Password);
 
 #line default
@@ -306,7 +307,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 78 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 78 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.PersonalId);
 
 #line default
@@ -330,7 +331,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 82 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 82 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.DateOfBirth);
 
 #line default
@@ -339,6 +340,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddTagHelperAttribute("asp-for", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value = (string)__tagHelperAttribute_13.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_13);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_14.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_14);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
                 await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
@@ -355,7 +358,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 90 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 90 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.DateOfJoin);
 
 #line default
@@ -364,6 +367,8 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddTagHelperAttribute("asp-for", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value = (string)__tagHelperAttribute_13.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_13);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_14.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_14);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
                 await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
@@ -375,7 +380,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                </div>                \r\n                <div class=\"col-md-4\">\r\n                    <label>Giới tính:</label>\r\n                    <div style=\"margin-top:10px;\">\r\n                        ");
 #nullable restore
-#line 96 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 96 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                    Write(Html.DropDownList("Sex", new[]
                         {
                         new SelectListItem{Text="Nam", Value="0", Selected = (Model.Sex != null ? (Model.Sex == 0) :
@@ -394,14 +399,14 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 107 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 107 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Address);
 
 #line default
 #line hidden
 #nullable disable
                 __tagHelperExecutionContext.AddTagHelperAttribute("asp-for", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_14);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_15);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_3);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
                 await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
@@ -472,15 +477,15 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 147 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 147 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Image_Upload);
 
 #line default
 #line hidden
 #nullable disable
                 __tagHelperExecutionContext.AddTagHelperAttribute("asp-for", __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-                __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_16.Value;
-                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_16);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_17.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_17);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_4);
                 await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
                 if (!__tagHelperExecutionContext.Output.IsContentModified)
@@ -505,11 +510,11 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
             __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_17);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Action = (string)__tagHelperAttribute_18.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_18);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_19);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_18);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Action = (string)__tagHelperAttribute_19.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_19);
             __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_20);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_21);
             await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
             if (!__tagHelperExecutionContext.Output.IsContentModified)
             {
@@ -566,7 +571,7 @@ WriteAttributeValue("", 7841, ViewData["sName"], 7841, 18, false);
                 EndWriteAttribute();
                 WriteLiteral(">Trạng thái</label>\r\n                                    <div class=\"col-md-9\">\r\n");
 #nullable restore
-#line 184 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 184 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                           
                                             int status = int.Parse(Html.Encode(ViewData["sStatus"]));
                                         
@@ -576,7 +581,7 @@ WriteAttributeValue("", 7841, ViewData["sName"], 7841, 18, false);
 #nullable disable
                 WriteLiteral("                                        ");
 #nullable restore
-#line 187 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 187 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                    Write(Html.DropDownList("sStatus",new[]
                                         {
                                         new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
@@ -625,7 +630,7 @@ WriteAttributeValue("", 10062, ViewData["sPhone"], 10062, 19, false);
                 EndWriteAttribute();
                 WriteLiteral(">Giới tính</label>\r\n                                    <div class=\"col-md-9\">\r\n");
 #nullable restore
-#line 214 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 214 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                           
                                             int gender = int.Parse(Html.Encode(ViewData["sGender"]));
                                         
@@ -635,7 +640,7 @@ WriteAttributeValue("", 10062, ViewData["sPhone"], 10062, 19, false);
 #nullable disable
                 WriteLiteral("                                        ");
 #nullable restore
-#line 217 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 217 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                    Write(Html.DropDownList("sGender",new[]
                                         {
                                         new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (gender== -1)},
@@ -663,9 +668,9 @@ WriteAttributeValue("", 10062, ViewData["sPhone"], 10062, 19, false);
                 );
                 __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_21);
-                __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_22.Value;
-                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_22);
+                __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_22);
+                __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_23.Value;
+                __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_23);
                 await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
                 if (!__tagHelperExecutionContext.Output.IsContentModified)
                 {
@@ -680,12 +685,12 @@ WriteAttributeValue("", 10062, ViewData["sPhone"], 10062, 19, false);
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper);
             __Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.RenderAtEndOfFormTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_RenderAtEndOfFormTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_23);
             __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_24);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Method = (string)__tagHelperAttribute_25.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_25);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_26);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_25);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_FormTagHelper.Method = (string)__tagHelperAttribute_26.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_26);
             __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_27);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_28);
             await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
             if (!__tagHelperExecutionContext.Output.IsContentModified)
             {
@@ -723,7 +728,7 @@ WriteAttributeValue("", 10062, ViewData["sPhone"], 10062, 19, false);
                         <tbody>
 ");
 #nullable restore
-#line 266 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 266 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                              if (Model.EmployeeList != null)
                             { 
                                 int i = 1;
@@ -733,7 +738,7 @@ WriteAttributeValue("", 10062, ViewData["sPhone"], 10062, 19, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 269 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 269 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                  foreach (var item in Model.EmployeeList)
                                 {
 
@@ -742,7 +747,7 @@ WriteAttributeValue("", 10062, ViewData["sPhone"], 10062, 19, false);
 #nullable disable
             WriteLiteral("                                    <tr>\r\n                                        <td class=\"text-center\">");
 #nullable restore
-#line 272 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 272 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                                            Write(i);
 
 #line default
@@ -754,7 +759,7 @@ WriteAttributeValue("", 10062, ViewData["sPhone"], 10062, 19, false);
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_28);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_29);
             BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "src", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
             AddHtmlAttributeValue("", 13731, "~/images/", 13731, 9, true);
 #nullable restore
@@ -774,7 +779,7 @@ AddHtmlAttributeValue("", 13740, item.Image, 13740, 11, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 278 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 278 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                        Write(item.EmployeeId);
 
 #line default
@@ -782,7 +787,7 @@ AddHtmlAttributeValue("", 13740, item.Image, 13740, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 281 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 281 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                        Write(item.Name);
 
 #line default
@@ -790,7 +795,7 @@ AddHtmlAttributeValue("", 13740, item.Image, 13740, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 284 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 284 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                         Write(item.Position == 0 ? "Nhân viên" : "Quản lý");
 
 #line default
@@ -798,7 +803,7 @@ AddHtmlAttributeValue("", 13740, item.Image, 13740, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 287 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 287 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                        Write(item.Email);
 
 #line default
@@ -806,7 +811,7 @@ AddHtmlAttributeValue("", 13740, item.Image, 13740, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 290 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 290 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                        Write(item.PhoneNumber);
 
 #line default
@@ -814,7 +819,7 @@ AddHtmlAttributeValue("", 13740, item.Image, 13740, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 293 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 293 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                        Write(item.PersonalId);
 
 #line default
@@ -822,7 +827,7 @@ AddHtmlAttributeValue("", 13740, item.Image, 13740, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 296 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 296 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                         Write(item.Sex == 0 ? "Nam" : "Nữ");
 
 #line default
@@ -830,7 +835,7 @@ AddHtmlAttributeValue("", 13740, item.Image, 13740, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 299 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 299 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                         Write(item.Status == 0 ? "Đã nghỉ việc" : "Đang làm việc");
 
 #line default
@@ -855,7 +860,7 @@ WriteAttributeValue("", 15266, item.Id, 15266, 8, false);
                                     </tr>
 ");
 #nullable restore
-#line 307 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 307 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                     i++;
                                 }
 
@@ -863,7 +868,7 @@ WriteAttributeValue("", 15266, item.Id, 15266, 8, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 308 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 308 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                  
                             }
 
@@ -872,7 +877,7 @@ WriteAttributeValue("", 15266, item.Id, 15266, 8, false);
 #nullable disable
             WriteLiteral("                        </tbody>\r\n                    </table>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-footer\">\r\n                <div style=\"float: right\">\r\n");
 #nullable restore
-#line 317 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 317 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                      if (pager.TotalPages > 0)
                     {
 
@@ -881,17 +886,8 @@ WriteAttributeValue("", 15266, item.Id, 15266, 8, false);
 #nullable disable
             WriteLiteral("                        <ul class=\"pagination justify-content-end\">\r\n");
 #nullable restore
-#line 320 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
-                             for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                            {
-                                
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 322 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
-                                 if (pge < pager.TotalPages )
+#line 320 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+                             if (pager.CurrentPage < pager.TotalPages)
 						        {
 
 #line default
@@ -904,18 +900,18 @@ WriteAttributeValue("", 15266, item.Id, 15266, 8, false);
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_29);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_30.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_30);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_22.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_22);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_30);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_31.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_31);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_23.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_23);
             if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
             {
                 throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-pg", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 326 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 324 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                                WriteLiteral(pager.CurrentPage - 1);
 
 #line default
@@ -933,15 +929,16 @@ WriteAttributeValue("", 15266, item.Id, 15266, 8, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t\t\t        </li>\r\n");
 #nullable restore
-#line 330 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 328 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
 						        }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 330 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
-                                 
+#line 329 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+                             for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                            {                                
                                 if(pge == checkPg){
 
 #line default
@@ -961,7 +958,7 @@ WriteAttributeValue(" ", 16588, pge == pager.CurrentPage ? "Active" : "", 16589,
             WriteLiteral(">\r\n                                    ");
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "80d660f04ba5b03eb8cb5405a0e2a5af8f0ebd9070997", async() => {
 #nullable restore
-#line 334 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 334 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                                        Write(pge);
 
 #line default
@@ -971,19 +968,19 @@ WriteAttributeValue(" ", 16588, pge == pager.CurrentPage ? "Active" : "", 16589,
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_29);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_30.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_30);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_22.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_22);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_31);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_30);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_31.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_31);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_23.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_23);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_32);
             if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
             {
                 throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-pg", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 334 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 334 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                           WriteLiteral(pge);
 
 #line default
@@ -1001,7 +998,7 @@ WriteAttributeValue(" ", 16588, pge == pager.CurrentPage ? "Active" : "", 16589,
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    </li>\r\n");
 #nullable restore
-#line 336 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 336 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                 }
                                 else
                                 {
@@ -1023,7 +1020,7 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
             WriteLiteral(">\r\n                                    ");
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "80d660f04ba5b03eb8cb5405a0e2a5af8f0ebd9074790", async() => {
 #nullable restore
-#line 341 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 341 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                                        Write(pge);
 
 #line default
@@ -1033,18 +1030,18 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_29);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_30.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_30);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_22.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_22);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_30);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_31.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_31);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_23.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_23);
             if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
             {
                 throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-pg", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 341 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 341 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                           WriteLiteral(pge);
 
 #line default
@@ -1062,7 +1059,7 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    </li>\r\n");
 #nullable restore
-#line 343 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 343 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                 }
                             }
 
@@ -1071,7 +1068,7 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
 #nullable disable
             WriteLiteral("\r\n");
 #nullable restore
-#line 346 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 346 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                              if (pager.CurrentPage < pager.TotalPages)
                             {
 
@@ -1085,18 +1082,18 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
             __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_29);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_30.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_30);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_22.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_22);
+            __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_30);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Controller = (string)__tagHelperAttribute_31.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_31);
+            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_23.Value;
+            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_23);
             if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
             {
                 throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-pg", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 350 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 350 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                                        WriteLiteral(pager.CurrentPage + 1);
 
 #line default
@@ -1114,7 +1111,7 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t\t        </li>\r\n");
 #nullable restore
-#line 354 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 354 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                             }
 
 #line default
@@ -1122,7 +1119,7 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
 #nullable disable
             WriteLiteral("                        </ul>\r\n");
 #nullable restore
-#line 356 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
+#line 356 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Employee\Index.cshtml"
                     }
 
 #line default
@@ -1277,8 +1274,8 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
             $(""#Position"").val(data.position);
             $(""#Status"").val(data.status);
             $(""#Id"").val(data.id);
-            $(""#DateOfBirth"").val(data.dateOfBirth);
-            $(""#DateOfJoin"").val(data.dateOfJoin);
+            $(""#DateOfBirth"").val( data.dateOfBirth.split('T')[0] );
+            $(""#DateOfJoin"").val(data.dateOfJoin.split('T')[0]);
             $(""#PhoneNumber"").val(data.phoneNumber);
             $(""#Sex"").val(data.sex);
             $(""#Address"").val(data.address);
@@ -1297,10 +1294,10 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
         var regexPass = /^(?=.*[A-Z])(?=.*\d).{6,50}$/;
         if ($('#Name').val() == '') {
             sweetAlert(""Thông báo"", ""Thông tin tên không được để trống"", ""error"");
-            return false;
+            return fal");
+            WriteLiteral(@"se;
         }
-        if ($(");
-            WriteLiteral(@"'#Email').val() == '') {
+        if ($('#Email').val() == '') {
             sweetAlert(""Thông báo"", ""Thông tin email không được để trống"", ""error"");
             return false;
         }
@@ -1322,9 +1319,9 @@ WriteAttributeValue(" ", 17065, pge == pager.CurrentPage ? "Active" : "", 17066,
         }
         if ($('#DateOfBirth').val() == '') {
             sweetAlert(""Thông báo"", ""Thông ngày sinh không được để trống"", ""error"");
-            return false;
-   ");
-            WriteLiteral(@"     }
+");
+            WriteLiteral(@"            return false;
+        }
         if ($('#DateOfJoin').val() == '') {
             sweetAlert(""Thông báo"", ""Thông ngày gia nhập không được để trống"", ""error"");
             return false;

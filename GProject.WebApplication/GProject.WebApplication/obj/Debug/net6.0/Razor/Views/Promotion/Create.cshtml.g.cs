@@ -13,35 +13,35 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
@@ -57,7 +57,7 @@ using GProject.Data.DomainClass;
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("placeholder", new global::Microsoft.AspNetCore.Html.HtmlString("Promotion Name"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_4 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("maxlength", new global::Microsoft.AspNetCore.Html.HtmlString("200"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_5 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("id", new global::Microsoft.AspNetCore.Html.HtmlString("StartDate"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_6 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "date", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
+        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_6 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "datetime-local", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_7 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("value", "<?php echo date(\'Y-m-d\'); ?>", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_8 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("type", "file", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_9 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("cols", new global::Microsoft.AspNetCore.Html.HtmlString("50"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -95,7 +95,7 @@ using GProject.Data.DomainClass;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 6 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
   
     ViewBag.Title = "Quản lí giảm giá";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -149,7 +149,7 @@ using GProject.Data.DomainClass;
 
 ");
 #nullable restore
-#line 54 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 54 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
  if (@ViewData["Mess"] != null)
 {
 
@@ -158,7 +158,7 @@ using GProject.Data.DomainClass;
 #nullable disable
             WriteLiteral("    <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 56 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 56 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
                                          Write(ViewData["Mess"]);
 
 #line default
@@ -166,7 +166,7 @@ using GProject.Data.DomainClass;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 57 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 57 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 }
 
 #line default
@@ -180,7 +180,7 @@ using GProject.Data.DomainClass;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 60 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 60 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Id);
 
 #line default
@@ -203,7 +203,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 61 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 61 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.PromotionId);
 
 #line default
@@ -221,7 +221,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n        ");
 #nullable restore
-#line 62 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 62 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
    Write(Html.Hidden("ProductApply", Model.ProductApply));
 
 #line default
@@ -229,7 +229,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 #nullable disable
                 WriteLiteral("\r\n        ");
 #nullable restore
-#line 63 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 63 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
    Write(Html.Hidden("ImageURl", ""));
 
 #line default
@@ -242,7 +242,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 68 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 68 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.PromotionName);
 
 #line default
@@ -269,7 +269,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-md-9"">
                     ");
 #nullable restore
-#line 76 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 76 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
                Write(Html.DropDownList("DiscountPercent", new[]
                     {
                     new SelectListItem{Text="VNĐ", Value="0", Selected = (Model.DiscountPercent != null ? (Model.DiscountPercent == 0) : true)},
@@ -289,7 +289,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-sm-9"">
                     ");
 #nullable restore
-#line 88 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 88 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
                Write(Html.TextBox("DiscountRate", decimal.Parse(Model.DiscountRate.ToString("0.##")), new { @min="0", @type="number", @oninput="this.value = Math.abs(this.value)", @class = "required form-control"}));
 
 #line default
@@ -310,7 +310,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 96 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 96 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.StartDate);
 
 #line default
@@ -346,7 +346,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 104 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 104 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.EndDate);
 
 #line default
@@ -376,7 +376,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-sm-9"">
                     ");
 #nullable restore
-#line 112 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 112 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
                Write(Html.DropDownList("CategoryApply", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" }));
 
 #line default
@@ -392,7 +392,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-md-9"">
                     ");
 #nullable restore
-#line 120 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 120 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
                Write(Html.DropDownList("Status", new[]
                     {
                     new SelectListItem{Text="Chưa diễn ra", Value="0", Selected = (Model.Status != null ? (Model.Status == GProject.Data.Enums.PromotionStatus.Happenning) : true)},
@@ -410,7 +410,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 132 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 132 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Image_Upload);
 
 #line default
@@ -435,7 +435,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_2);
 #nullable restore
-#line 139 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
+#line 139 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Description);
 
 #line default

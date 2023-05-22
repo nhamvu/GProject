@@ -95,7 +95,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-5">Ngày bắt đầu:</label>
                 <div class="col-sm-9">
-                    <input asp-for="StartDate" type="datetime-local" value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
+                    <input asp-for="StartDate" type="datetime-local" value="@Model.StartDate.ToString("yyyy-MM-ddTHH:mm")" maxlength="200" class="form-control" />
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
             <div class="form-group">
                 <label class="control-label col-sm-5">Ngày kết thúc:</label>
                 <div class="col-sm-9">
-                    <input asp-for="EndDate" type="datetime-local" value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
+                    <input asp-for="EndDate" type="datetime-local" value="@Model.EndDate.ToString("yyyy-MM-ddTHH:mm")" maxlength="200" class="form-control" />
                 </div>
             </div>
         </div>

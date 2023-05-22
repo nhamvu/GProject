@@ -13,28 +13,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
@@ -87,7 +87,7 @@ using GProject.Api.MyServices.Services;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 6 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
   
     ViewBag.Title = "Quản lý khách hàng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -129,7 +129,7 @@ using GProject.Api.MyServices.Services;
 <div class=""container"">
 ");
 #nullable restore
-#line 42 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 42 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
      if (@ViewData["Mess"] != null)
     {
 
@@ -138,7 +138,7 @@ using GProject.Api.MyServices.Services;
 #nullable disable
             WriteLiteral("        <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 44 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 44 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                              Write(ViewData["Mess"]);
 
 #line default
@@ -146,7 +146,7 @@ using GProject.Api.MyServices.Services;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 45 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 45 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
     }
 
 #line default
@@ -397,7 +397,7 @@ WriteAttributeValue("", 7149, ViewData["sPhone"], 7149, 19, false);
                                     <div class=""col-md-9"">
 ");
 #nullable restore
-#line 169 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 169 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                           
                                             int gender = int.Parse(Html.Encode(ViewData["sGender"]));
                                         
@@ -407,7 +407,7 @@ WriteAttributeValue("", 7149, ViewData["sPhone"], 7149, 19, false);
 #nullable disable
                 WriteLiteral("                                        ");
 #nullable restore
-#line 172 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 172 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                    Write(Html.DropDownList("sGender",new[]
                                         {
                                         new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (gender== -1)},
@@ -426,7 +426,7 @@ WriteAttributeValue("", 7149, ViewData["sPhone"], 7149, 19, false);
                                     <div class=""col-md-9"">
 ");
 #nullable restore
-#line 183 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 183 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                           
                                             int status = int.Parse(Html.Encode(ViewData["sStatus"]));
                                         
@@ -436,7 +436,7 @@ WriteAttributeValue("", 7149, ViewData["sPhone"], 7149, 19, false);
 #nullable disable
                 WriteLiteral("                                        ");
 #nullable restore
-#line 186 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 186 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                    Write(Html.DropDownList("sStatus",new[]
                                         {
                                         new SelectListItem{Text="-- Tất cả--", Value="-1", Selected= (status== -1)},
@@ -516,7 +516,7 @@ WriteAttributeValue("", 7149, ViewData["sPhone"], 7149, 19, false);
          ");
             WriteLiteral("                       <th>Trạng thái</th>\r\n                                <th>Chi tiết</th>\r\n                            </tr>\r\n                        </thead>\r\n                        <tbody>\r\n");
 #nullable restore
-#line 232 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 232 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                              if (Model != null)
                             {
                                 int i = 1;
@@ -526,7 +526,7 @@ WriteAttributeValue("", 7149, ViewData["sPhone"], 7149, 19, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 235 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 235 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                  foreach (var item in Model)
                                 {
 
@@ -535,7 +535,7 @@ WriteAttributeValue("", 7149, ViewData["sPhone"], 7149, 19, false);
 #nullable disable
             WriteLiteral("                                    <tr>\r\n                                        <td class=\"text-center\">");
 #nullable restore
-#line 238 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 238 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                                            Write(i);
 
 #line default
@@ -567,7 +567,7 @@ AddHtmlAttributeValue("", 11800, item.Image, 11800, 11, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 244 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 244 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                        Write(item.CustomerId);
 
 #line default
@@ -575,7 +575,7 @@ AddHtmlAttributeValue("", 11800, item.Image, 11800, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 247 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 247 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                        Write(item.Name);
 
 #line default
@@ -583,7 +583,7 @@ AddHtmlAttributeValue("", 11800, item.Image, 11800, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 250 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 250 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                        Write(item.Email);
 
 #line default
@@ -591,7 +591,7 @@ AddHtmlAttributeValue("", 11800, item.Image, 11800, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 253 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 253 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                        Write(item.PhoneNumber);
 
 #line default
@@ -599,7 +599,7 @@ AddHtmlAttributeValue("", 11800, item.Image, 11800, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 256 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 256 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                         Write(item.Sex == 0 ? "Nam" : "Nữ");
 
 #line default
@@ -607,7 +607,7 @@ AddHtmlAttributeValue("", 11800, item.Image, 11800, 11, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 259 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 259 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                         Write(item.Status == 1 ? "Hoạt động" : "Không hoạt động");
 
 #line default
@@ -627,7 +627,7 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
             EndWriteAttribute();
             WriteLiteral(">\r\n                                                <i class=\"fas fa-pen-square\" aria-hidden=\"true\"></i>\r\n                                            </button>\r\n                                        </td>\r\n                                    </tr>\r\n");
 #nullable restore
-#line 267 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 267 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                     i++;
                                 }
 
@@ -635,7 +635,7 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 268 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 268 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                                  
                             }
 
@@ -644,7 +644,7 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
 #nullable disable
             WriteLiteral("                        </tbody>\r\n                    </table>\r\n                </div>\r\n            </div>\r\n            <div class=\"form-footer\">\r\n                <div style=\"float: right\">\r\n                    ");
 #nullable restore
-#line 276 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
+#line 276 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Customer\Index.cshtml"
                Write(Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new
                     X.PagedList.Web.Common.PagedListRenderOptions()
                     {
@@ -752,7 +752,7 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
             WriteLiteral(@"a.email);
             $(""#Status"").val(data.status);
             $(""#Id"").val(data.id);
-            $(""#DateOfBirth"").val(data.dateOfBirth);
+            $(""#DateOfBirth"").val(data.dateOfBirth.split('T')[0]);
             $(""#PhoneNumber"").val(data.phoneNumber);
             $(""#Sex"").val(data.sex);
             $(""#Address"").val(data.address);
@@ -774,9 +774,9 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
             return false;
         }
         if (!validatePhoneNumber($('#PhoneNumber').val())) {
-            sweetAlert(""Thông báo"", ""Số điện thoại không đúng định dạng"", ""error"");
-        ");
-            WriteLiteral(@"    return false;
+            sweetAlert(""Thông báo"", ""Số điện thoại không đúng định dạng"", ""erro");
+            WriteLiteral(@"r"");
+            return false;
         }
         if ($('#Name').val() == '') {
             sweetAlert(""Thông báo"", ""Thông tin tên màu không được để trống"", ""error"");
@@ -806,8 +806,8 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
         $(""#PhoneNumber"").val('');
         $(""#Sex"").val(0);
         $(""#Address"").val('');
-        $(""#Descri");
-            WriteLiteral(@"ption"").val('');
+    ");
+            WriteLiteral(@"    $(""#Description"").val('');
         $(""#Status"").val(0);
         $(""#Image_Upload"").val('');
     }
@@ -832,8 +832,8 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
                 sweetAlert(""Thông báo"", ""Thông ngày sinh không được để trống"", ""error"");
                 return false;
             }
-            if ($('#PhoneNumber').val() == ");
-            WriteLiteral(@"'') {
+            if ($('#PhoneNumb");
+            WriteLiteral(@"er').val() == '') {
                 sweetAlert(""Thông báo"", ""Thông tin số điện thoại không được để trống"", ""error"");
                 return false;
             }
@@ -855,9 +855,9 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
             var email = $(""#Email"").val();
             var password = $(""#Password"").val();
             var dateOfBirth = $(""#DateOfBirth"").val();
-            var phoneNumber = $(""#PhoneNumber"").val();
-          ");
-            WriteLiteral(@"  var sex = $(""#Sex"").val();
+            var phoneNumber = $(""#PhoneNumber"").val(");
+            WriteLiteral(@");
+            var sex = $(""#Sex"").val();
             var address = $(""#Address"").val();
             var description = $(""#Description"").val();
             var status = $(""#Status"").val();
@@ -880,8 +880,8 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
                 type: ""POST"",
                 data: { Email: email, Id: id },
                 success: function (result) {
-                    if (result.success) {");
-            WriteLiteral(@"
+                    if (resu");
+            WriteLiteral(@"lt.success) {
                         $.ajax({
                             url: ""/Customer/CheckPhone"",
                             type: ""POST"",
@@ -898,8 +898,8 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
                                             $.ajax({
                                                 url: ""/Customer/Save"",
                                                 type: ""POST"",
-                                                data: d");
-            WriteLiteral(@"ata,
+                                         ");
+            WriteLiteral(@"       data: data,
                                                 contentType: false,
                                                 processData: false,
                                                 success: function (result) {
@@ -911,9 +911,9 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
                                                     } else {
                                                         swal(""Thành công!"", ""Bạn đã lưu thành công thông tin đã nhập"", ""success"");
                                                         setTimeout(function () {
-                                                            location.reload();
-           ");
-            WriteLiteral(@"                                             }, 1000);
+                                                            location.reload()");
+            WriteLiteral(@";
+                                                        }, 1000);
                                                     }
                                                 },
                                                 error: function (xhr, status, error) {
@@ -932,8 +932,17 @@ WriteAttributeValue("", 12984, item.Id, 12984, 8, false);
                         });
                     }
                     else {
-                        swal(""Lỗi"", ""Email đã được đăng k");
-            WriteLiteral("ý, vui lòng nhập email khác\", \"error\");\r\n                    }\r\n                },\r\n                error: function (xhr, status, error) {\r\n                    alert(error);\r\n                }\r\n            });\r\n        });\r\n    });\r\n</script>");
+                        swal(""Lỗi"", ""Email ");
+            WriteLiteral(@"đã được đăng ký, vui lòng nhập email khác"", ""error"");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    alert(error);
+                }
+            });
+        });
+    });
+</script>");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

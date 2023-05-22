@@ -69,8 +69,8 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <label class="col-md-5">Ngày sinh:</label>
-                    <input id="DateOfBirth" name="DateOfBirth" type="datetime-local"
+                    <label class="col-md-5">Ngày sinh:<span style="color: red">(*)</span></label>
+                    <input id="DateOfBirth" name="DateOfBirth" type="date"
                         value="<?php echo date('Y-m-d'); ?>" maxlength="200" class="form-control" />
                 </div>
                 <div class="col-md-4">
@@ -372,7 +372,7 @@
             $("#Email").val(data.email);
             $("#Status").val(data.status);
             $("#Id").val(data.id);
-            $("#DateOfBirth").val(data.dateOfBirth);
+            $("#DateOfBirth").val(data.dateOfBirth.split('T')[0]);
             $("#PhoneNumber").val(data.phoneNumber);
             $("#Sex").val(data.sex);
             $("#Address").val(data.address);

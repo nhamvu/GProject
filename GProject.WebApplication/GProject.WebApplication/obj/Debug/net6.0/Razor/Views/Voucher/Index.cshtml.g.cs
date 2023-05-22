@@ -13,28 +13,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
@@ -113,7 +113,7 @@ using GProject.Api.MyServices.Services;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
   
     ViewBag.Title = "Mã Giảm Giá";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -161,7 +161,7 @@ using GProject.Api.MyServices.Services;
 
 ");
 #nullable restore
-#line 47 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 47 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
      if (@ViewData["Mess"] != null)
     {
 
@@ -170,7 +170,7 @@ using GProject.Api.MyServices.Services;
 #nullable disable
             WriteLiteral("        <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 49 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 49 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                              Write(ViewData["Mess"]);
 
 #line default
@@ -178,7 +178,7 @@ using GProject.Api.MyServices.Services;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 50 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 50 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
     }
 
 #line default
@@ -193,7 +193,7 @@ using GProject.Api.MyServices.Services;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 55 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 55 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Id);
 
 #line default
@@ -218,7 +218,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 56 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 56 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.VoucherId);
 
 #line default
@@ -243,7 +243,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 62 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 62 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Name);
 
 #line default
@@ -266,7 +266,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 68 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 68 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.DiscountRate);
 
 #line default
@@ -324,7 +324,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.SelectTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper);
 #nullable restore
-#line 75 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 75 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.DiscountForm);
 
 #line default
@@ -360,7 +360,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_SelectTagHelper.For = ModelExpressionProvi
                 __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
                 __tagHelperExecutionContext.AddHtmlAttribute("disabled", Html.Raw(__tagHelperStringValueBuffer), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.Minimized);
 #nullable restore
-#line 87 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 87 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.MaximumDiscount);
 
 #line default
@@ -390,7 +390,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_5);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_6);
 #nullable restore
-#line 95 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 95 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.NumberOfVouchers);
 
 #line default
@@ -414,7 +414,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 101 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 101 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.MinimumOrder);
 
 #line default
@@ -452,7 +452,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value = (string)__tagHelperAttribute_20.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_20);
 #nullable restore
-#line 111 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 111 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.CreateDate);
 
 #line default
@@ -479,7 +479,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.Value = (string)__tagHelperAttribute_20.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_20);
 #nullable restore
-#line 118 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 118 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ExpirationDate);
 
 #line default
@@ -497,7 +497,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                    </div>\r\n                </div>\r\n                <div class=\"col-md-4\">\r\n                    <label>Trạng thái</label>\r\n                    <div style=\"margin-top:10px;\">\r\n                        ");
 #nullable restore
-#line 125 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 125 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                    Write(Html.DropDownList("Status", new[]
                         {
                         new SelectListItem{Text="Hiển thị danh sách chọn", Value="1", Selected = (Model.Status != null ? (Model.Status ==
@@ -844,7 +844,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
                         <tbody>
 ");
 #nullable restore
-#line 251 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 251 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                              if (Model.VoucherList != null)
                             {
                                 int i = 1;
@@ -854,7 +854,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 254 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 254 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                  foreach (var item in Model.VoucherList)
                                 {
 
@@ -863,7 +863,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("                                    <tr>\r\n                                        <td class=\"text-center\">");
 #nullable restore
-#line 257 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 257 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                                            Write(i);
 
 #line default
@@ -871,7 +871,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("</td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 259 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 259 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                        Write(item.VoucherId);
 
 #line default
@@ -879,7 +879,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 262 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 262 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                        Write(item.Name);
 
 #line default
@@ -887,7 +887,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n");
 #nullable restore
-#line 265 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 265 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                              if (item.DiscountForm == "%")
                                             {                                             
 
@@ -896,7 +896,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("                                                <a> ");
 #nullable restore
-#line 267 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 267 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                                Write(item.DiscountRate);
 
 #line default
@@ -904,7 +904,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral(" %</a>\r\n");
 #nullable restore
-#line 268 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 268 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                             }
                                             else{
 
@@ -913,7 +913,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("                                                <a>");
 #nullable restore
-#line 270 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 270 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                               Write(item.DiscountRate.ToString("#,##0##"));
 
 #line default
@@ -921,7 +921,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral(" đ</a>\r\n");
 #nullable restore
-#line 271 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 271 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                             }
 
 #line default
@@ -929,7 +929,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("                                        </td>\r\n                                        <td>\r\n");
 #nullable restore
-#line 274 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 274 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                              if (item.DiscountForm == "%")
                                             {
 
@@ -938,7 +938,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("                                                <a>");
 #nullable restore
-#line 276 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 276 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                               Write(string.Format("{0:#,##0}",  @item.MaximumDiscount));
 
 #line default
@@ -946,7 +946,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral(" đ</a>\r\n");
 #nullable restore
-#line 277 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 277 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                             }
 
 #line default
@@ -954,7 +954,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 280 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 280 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                        Write(item.NumberOfVouchers);
 
 #line default
@@ -962,7 +962,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 283 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 283 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                        Write(string.Format("{0:#,##0}",  @item.MinimumOrder));
 
 #line default
@@ -970,7 +970,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral(" đ\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 286 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 286 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                        Write(item.CreateDate);
 
 #line default
@@ -978,7 +978,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 289 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 289 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                        Write(item.ExpirationDate);
 
 #line default
@@ -986,7 +986,7 @@ WriteAttributeValue("", 10041, ViewData["trangthai"], 10041, 22, false);
 #nullable disable
             WriteLiteral("\r\n                                        </td>\r\n                                        <td>\r\n                                            ");
 #nullable restore
-#line 292 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 292 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                         Write(item.Status == 1 ? "Hiển thị danh sách chọn" : item.Status == 2 ? "Nhập mã giảm giá" : "Không hoạt động");
 
 #line default
@@ -1007,7 +1007,7 @@ WriteAttributeValue("", 15192, item.Id, 15192, 8, false);
             WriteLiteral(">\r\n                                                <i class=\"fas fa-pen-square\" aria-hidden=\"true\"></i>\r\n                                            </button>\r\n                                        </td>\r\n");
             WriteLiteral("                                    </tr>\r\n");
 #nullable restore
-#line 313 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 313 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                     i++;
                                 }
 
@@ -1015,7 +1015,7 @@ WriteAttributeValue("", 15192, item.Id, 15192, 8, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 314 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 314 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                  
                             }
 
@@ -1024,7 +1024,7 @@ WriteAttributeValue("", 15192, item.Id, 15192, 8, false);
 #nullable disable
             WriteLiteral("                        </tbody>\r\n                    </table>\r\n                </div>\r\n            </div>\r\n\r\n            <div class=\"form-footer\">\r\n                <div style=\"float: right\">\r\n");
 #nullable restore
-#line 323 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 323 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                      if (pager.TotalPages > 0)
                     {
 
@@ -1033,17 +1033,8 @@ WriteAttributeValue("", 15192, item.Id, 15192, 8, false);
 #nullable disable
             WriteLiteral("                        <ul class=\"pagination justify-content-end\">\r\n");
 #nullable restore
-#line 326 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
-                             for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
-                            {
-                                
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 328 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
-                                 if (pge < pager.TotalPages )
+#line 326 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+                             if (pager.CurrentPage < pager.TotalPages)
 						        {
 
 #line default
@@ -1067,7 +1058,7 @@ WriteAttributeValue("", 15192, item.Id, 15192, 8, false);
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 332 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 330 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                                WriteLiteral(pager.CurrentPage - 1);
 
 #line default
@@ -1085,15 +1076,16 @@ WriteAttributeValue("", 15192, item.Id, 15192, 8, false);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t\t\t        </li>\r\n");
 #nullable restore
-#line 336 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 334 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
 						        }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 336 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
-                                 
+#line 335 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+                             for (var pge = pager.StartPage; pge <= pager.EndPage; pge++)
+                            {
                                 if(pge == checkPg){
 
 #line default
@@ -1113,7 +1105,7 @@ WriteAttributeValue(" ", 17128, pge == pager.CurrentPage ? "Active" : "", 17129,
             WriteLiteral(">\r\n                                    ");
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "87878ad4d13dcae48fa073f481898b4152823aaf81801", async() => {
 #nullable restore
-#line 340 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 340 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                                        Write(pge);
 
 #line default
@@ -1135,7 +1127,7 @@ WriteAttributeValue(" ", 17128, pge == pager.CurrentPage ? "Active" : "", 17129,
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 340 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 340 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                           WriteLiteral(pge);
 
 #line default
@@ -1153,7 +1145,7 @@ WriteAttributeValue(" ", 17128, pge == pager.CurrentPage ? "Active" : "", 17129,
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    </li>\r\n");
 #nullable restore
-#line 342 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 342 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                 }
                                 else
                                 {
@@ -1175,7 +1167,7 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
             WriteLiteral(">\r\n                                    ");
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "87878ad4d13dcae48fa073f481898b4152823aaf85590", async() => {
 #nullable restore
-#line 347 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 347 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                                        Write(pge);
 
 #line default
@@ -1196,7 +1188,7 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 347 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 347 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                           WriteLiteral(pge);
 
 #line default
@@ -1214,7 +1206,7 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    </li>\r\n");
 #nullable restore
-#line 349 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 349 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                 }
                             }
 
@@ -1223,7 +1215,7 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
 #nullable disable
             WriteLiteral("\r\n");
 #nullable restore
-#line 352 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 352 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                              if (pager.CurrentPage < pager.TotalPages)
                             {
 
@@ -1248,7 +1240,7 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
             }
             BeginWriteTagHelperAttribute();
 #nullable restore
-#line 356 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 356 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                                        WriteLiteral(pager.CurrentPage + 1);
 
 #line default
@@ -1266,7 +1258,7 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n\t\t\t\t\t\t        </li>\r\n");
 #nullable restore
-#line 360 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 360 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                             }
 
 #line default
@@ -1274,7 +1266,7 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
 #nullable disable
             WriteLiteral("                        </ul>\r\n");
 #nullable restore
-#line 362 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
+#line 362 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Voucher\Index.cshtml"
                     }
 
 #line default
@@ -1417,7 +1409,7 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
             $(""#Status"").val(data.status);
             $(""#Id"").val(data.id);
 
-            ChangePanel()
+            $('#formdata').show();
 
         });
     }
@@ -1428,8 +1420,8 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
             return false;
         }
         if ($('#DiscountRate').val() == 0) {
-            sweetAlert(""Thô");
-            WriteLiteral(@"ng báo"", ""Thông tin mức giảm giá không hợp lệ"", ""error"");
+            sweetA");
+            WriteLiteral(@"lert(""Thông báo"", ""Thông tin mức giảm giá không hợp lệ"", ""error"");
             return false;
         }
         if ($('#DiscountForm').val() == '%' && $('#DiscountRate').val() > 100) {
@@ -1450,8 +1442,8 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
         }
         if ($('#MinimumOrder').val() == '') {
             sweetAlert(""Thông báo"", ""Thông tin số tiền tối thiểu không hợp lệ"", ""error"");
-            return fals");
-            WriteLiteral(@"e;
+            re");
+            WriteLiteral(@"turn false;
         }
         if ($('#ExpirationDate').val() == '') {
             sweetAlert(""Thông báo"", ""Thông tin ngày kết thúc không được để trống"", ""error"");
@@ -1479,8 +1471,8 @@ WriteAttributeValue(" ", 17604, pge == pager.CurrentPage ? "Active" : "", 17605,
         $(""#Status"").val(1);
         $(""#Id"").val('');
         $(""#MaximumDiscount"").val('');
-        $(""#VoucherId""");
-            WriteLiteral(").val(\'\');\r\n    }\r\n</script>");
+        $(""#V");
+            WriteLiteral("oucherId\").val(\'\');\r\n    }\r\n</script>");
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]

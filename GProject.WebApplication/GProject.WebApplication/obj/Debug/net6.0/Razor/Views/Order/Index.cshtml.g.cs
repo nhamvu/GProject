@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 8 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 9 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
@@ -98,7 +98,7 @@ using X.PagedList.Mvc.Core;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 10 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 10 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
   
     ViewBag.Title = "Quản lý đơn hàng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -156,7 +156,7 @@ using X.PagedList.Mvc.Core;
     
 ");
 #nullable restore
-#line 62 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 62 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
  if (@ViewData["Mess"] != null)
 {
 
@@ -165,7 +165,7 @@ using X.PagedList.Mvc.Core;
 #nullable disable
             WriteLiteral("    <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 64 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 64 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                          Write(ViewData["Mess"]);
 
 #line default
@@ -173,7 +173,7 @@ using X.PagedList.Mvc.Core;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 65 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 65 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
 }
 
 #line default
@@ -248,7 +248,7 @@ WriteAttributeValue("", 2711, ViewData["sEmail"], 2711, 19, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 93 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 93 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                            WriteLiteral(ViewData["InProgress"]);
 
 #line default
@@ -273,7 +273,7 @@ WriteAttributeValue("", 2711, ViewData["sEmail"], 2711, 19, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 94 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 94 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                            WriteLiteral(ViewData["XacNhan"]);
 
 #line default
@@ -298,7 +298,7 @@ WriteAttributeValue("", 2711, ViewData["sEmail"], 2711, 19, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 95 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 95 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                            WriteLiteral(ViewData["Confirmed"]);
 
 #line default
@@ -323,7 +323,7 @@ WriteAttributeValue("", 2711, ViewData["sEmail"], 2711, 19, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 96 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 96 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                            WriteLiteral(ViewData["Delivery"]);
 
 #line default
@@ -348,7 +348,7 @@ WriteAttributeValue("", 2711, ViewData["sEmail"], 2711, 19, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 97 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 97 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                            WriteLiteral(ViewData["Accomplished"]);
 
 #line default
@@ -373,7 +373,7 @@ WriteAttributeValue("", 2711, ViewData["sEmail"], 2711, 19, false);
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_OptionTagHelper);
                 BeginWriteTagHelperAttribute();
 #nullable restore
-#line 98 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 98 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                            WriteLiteral(ViewData["Canceled"]);
 
 #line default
@@ -414,7 +414,7 @@ WriteAttributeValue("", 4314, ViewData["sName"], 4314, 18, false);
                 EndWriteAttribute();
                 WriteLiteral(">Hình thức thanh toán</label>\r\n                                <div class=\"col-md-9\">\r\n");
 #nullable restore
-#line 114 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 114 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                       
                                         int gender = int.Parse(Html.Encode(ViewData["sPaymentType"]));
                                     
@@ -424,7 +424,7 @@ WriteAttributeValue("", 4314, ViewData["sName"], 4314, 18, false);
 #nullable disable
                 WriteLiteral("                                    ");
 #nullable restore
-#line 117 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
+#line 117 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Index.cshtml"
                                Write(Html.DropDownList("sPaymentType",new[]
                                     {
                                     new SelectListItem{Text="-- Tất cả --", Value="-1", Selected= (gender== -1)},

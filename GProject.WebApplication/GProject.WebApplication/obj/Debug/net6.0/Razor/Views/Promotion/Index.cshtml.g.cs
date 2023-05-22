@@ -13,35 +13,35 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
 using GProject.Data.Enums;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -87,7 +87,7 @@ using GProject.WebApplication.Helpers;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 6 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
   
     ViewBag.Title = "Quản lý giảm giá";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -130,7 +130,7 @@ using GProject.WebApplication.Helpers;
 <div class=""container"">
 ");
 #nullable restore
-#line 43 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
+#line 43 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
      if (@ViewData["Mess"] != null)
     {
 
@@ -139,7 +139,7 @@ using GProject.WebApplication.Helpers;
 #nullable disable
             WriteLiteral("        <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 45 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
+#line 45 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
                                              Write(ViewData["Mess"]);
 
 #line default
@@ -147,7 +147,7 @@ using GProject.WebApplication.Helpers;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 46 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
+#line 46 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
     }
 
 #line default
@@ -157,7 +157,7 @@ using GProject.WebApplication.Helpers;
             BeginWriteAttribute("onclick", " onclick=\"", 1037, "\"", 1097, 3);
             WriteAttributeValue("", 1047, "location.href=\'", 1047, 15, true);
 #nullable restore
-#line 47 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
+#line 47 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Promotion\Index.cshtml"
 WriteAttributeValue("", 1062, Url.Action("Create", "Promotion"), 1062, 34, false);
 
 #line default

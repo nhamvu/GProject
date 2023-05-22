@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
@@ -102,7 +102,7 @@ using GProject.Data.DomainClass;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 7 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
   
     ViewBag.Title = "Thay đổi thông tin đơn hàng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -165,7 +165,7 @@ using GProject.Data.DomainClass;
 
 ");
 #nullable restore
-#line 64 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 64 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
  if (@ViewData["Mess"] != null)
 {
 
@@ -174,7 +174,7 @@ using GProject.Data.DomainClass;
 #nullable disable
             WriteLiteral("    <p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 66 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 66 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                          Write(ViewData["Mess"]);
 
 #line default
@@ -182,14 +182,14 @@ using GProject.Data.DomainClass;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 67 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 67 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 68 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 68 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 Write(Html.Hidden("_order_status", (int)Model.Status));
 
 #line default
@@ -197,7 +197,7 @@ Write(Html.Hidden("_order_status", (int)Model.Status));
 #nullable disable
             WriteLiteral("\r\n");
 #nullable restore
-#line 69 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 69 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 Write(Html.Hidden("_order_paymentType", (int)Model.PaymentType));
 
 #line default
@@ -239,7 +239,7 @@ Write(Html.Hidden("_order_paymentType", (int)Model.PaymentType));
                                     <input style=""font-weight: bold"" readonly type=""text"" id=""totalMoneyProd""");
             BeginWriteAttribute("value", "\r\n                                        value=\"", 3606, "\"", 3732, 1);
 #nullable restore
-#line 102 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 102 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 3655, data.Sum(c => c.OrderDetail.TotalMoney).NullToDecimal().ToString("#,##0.##"), 3655, 77, false);
 
 #line default
@@ -263,7 +263,7 @@ WriteAttributeValue("", 3655, data.Sum(c => c.OrderDetail.TotalMoney).NullToDeci
                                     <input style=""font-weight: bold"" readonly type=""text""");
             BeginWriteAttribute("value", " value=\"", 4539, "\"", 4560, 1);
 #nullable restore
-#line 115 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 115 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 4547, strVoucherId, 4547, 13, false);
 
 #line default
@@ -288,7 +288,7 @@ WriteAttributeValue("", 4547, strVoucherId, 4547, 13, false);
                                         name=""cDiscountRate""");
             BeginWriteAttribute("value", "\r\n                                        value=\"", 5449, "\"", 5554, 1);
 #nullable restore
-#line 130 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 130 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 5498, Model.DiscountRate.NullToDecimal().ToString("#,##0.##"), 5498, 56, false);
 
 #line default
@@ -314,7 +314,7 @@ WriteAttributeValue("", 5498, Model.DiscountRate.NullToDecimal().ToString("#,##0
                                         name=""cShippingFee""");
             BeginWriteAttribute("value", "\r\n                                        value=\"", 6442, "\"", 6546, 1);
 #nullable restore
-#line 145 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 145 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 6491, Model.ShippingFee.NullToDecimal().ToString("#,##0.##"), 6491, 55, false);
 
 #line default
@@ -339,7 +339,7 @@ WriteAttributeValue("", 6491, Model.ShippingFee.NullToDecimal().ToString("#,##0.
                                     <input style=""font-weight: bold; color: red; font-size:17px;"" type=""text"" readonly id=""cTotalMoney"" name=""cTotalMoney""");
             BeginWriteAttribute("value", "\r\n                                           value=\"", 7428, "\"", 7534, 1);
 #nullable restore
-#line 159 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 159 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.##"), 7480, 54, false);
 
 #line default
@@ -362,7 +362,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
                                 <div class=""col-sm-12 d-flex justify-content-right"">
 ");
 #nullable restore
-#line 171 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 171 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                       
                                         switch ((int)OrderData.Status)
                                         {
@@ -373,7 +373,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("                                                <button type=\"button\" class=\"btn btn-secondary\">Chờ xác nhận</button>\r\n");
 #nullable restore
-#line 176 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 176 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                 break;
                                             case 6:
 
@@ -382,7 +382,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("                                                <button type=\"button\" class=\"btn btn-warning\">Đã xác nhận</button>\r\n");
 #nullable restore
-#line 179 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 179 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                 break;
                                             case 1:
 
@@ -391,7 +391,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("                                                <button type=\"button\" class=\"btn btn-info\">Đang vận chuyển</button>\r\n");
 #nullable restore
-#line 182 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 182 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                 break;
                                             case 2:
 
@@ -400,7 +400,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("                                                <button type=\"button\" class=\"btn btn-primary\">Đang giao hàng</button>\r\n");
 #nullable restore
-#line 185 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 185 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                 break;
                                             case 3:
 
@@ -409,7 +409,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("                                                <button type=\"button\" class=\"btn btn-success\">Đã hoàn thành</button>\r\n");
 #nullable restore
-#line 188 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 188 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                 break;
                                             default:
 
@@ -418,7 +418,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("                                                <button type=\"button\" class=\"btn btn-danger\">Đã hủy</button>\r\n");
 #nullable restore
-#line 191 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 191 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                 break;
                                         }
                                     
@@ -447,7 +447,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 
 ");
 #nullable restore
-#line 213 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 213 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
      if ((int)OrderData.Status != 6 && (int)OrderData.Status != 3 && (int)OrderData.Status != 1 && (int)OrderData.Status != 2 )
     {
 
@@ -456,14 +456,14 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("        <button type=\"button\" onclick=\"ConfirmOrder()\" class=\"btn btn-outline-warning col-md-2 m-1\"><i class=\"fas fa-check-square\" style=\"margin-right:10px;\"></i>Xác nhận đơn hàng</button>\r\n");
 #nullable restore
-#line 216 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 216 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
     }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 217 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 217 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
      if ((int)OrderData.Status != 1 && (int)OrderData.Status != 3 && (int)OrderData.Status != 2)
     {
 
@@ -472,14 +472,14 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("        <button type=\"button\" onclick=\"DeliveryOrder()\" class=\"btn btn-outline-info col-md-2 m-1\"><i class=\"fa fa-truck\" style=\"margin-right:10px;\"></i>Đang vận chuyển</button>\r\n");
 #nullable restore
-#line 220 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 220 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
     }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 221 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 221 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
      if ((int)OrderData.Status != 2 && (int)OrderData.Status != 3)
     {
 
@@ -488,14 +488,14 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("        <button type=\"button\" onclick=\"DangGiaoHang()\" class=\"btn btn-outline-info col-md-2 m-1\"><i class=\"fa fa-truck\" style=\"margin-right:10px;\"></i>Đang giao hàng</button>\r\n");
 #nullable restore
-#line 224 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 224 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
     }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 225 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 225 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
      if ((int)OrderData.Status != 3)
     {
 
@@ -504,14 +504,14 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("        <button type=\"button\" onclick=\"CompleteOrder()\" class=\"btn btn-outline-success col-md-2 m-1\"><i class=\"fas fa-check-double\" style=\"margin-right:10px;\"></i>Hoàn thành đơn hàng</button>\r\n");
 #nullable restore
-#line 228 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 228 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
     }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 229 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 229 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
      if ((int)OrderData.Status != 5 && (int)OrderData.Status != 3 && (int)OrderData.Status == 0)
     {
 
@@ -520,7 +520,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
 #nullable disable
             WriteLiteral("        <button type=\"button\" onclick=\"CancelOrder()\" class=\"btn btn-outline-danger col-md-2 m-1\"><i class=\"fas fa-window-close\" style=\"margin-right:10px;\"></i>Hủy đơn hàng</button>\r\n");
 #nullable restore
-#line 232 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 232 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
     }
 
 #line default
@@ -535,7 +535,7 @@ WriteAttributeValue("", 7480, Model.TotalMoney.NullToDecimal().ToString("#,##0.#
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 244 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 244 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Id);
 
 #line default
@@ -557,7 +557,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 245 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 245 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.CustomerId);
 
 #line default
@@ -579,7 +579,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 246 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 246 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.EmployeeId);
 
 #line default
@@ -601,7 +601,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 247 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 247 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.DeliverId);
 
 #line default
@@ -623,7 +623,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 248 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 248 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.OrderId);
 
 #line default
@@ -645,7 +645,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 249 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 249 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.CreateDate);
 
 #line default
@@ -667,7 +667,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 250 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 250 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.PaymentDate);
 
 #line default
@@ -689,7 +689,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 251 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 251 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.OrderDetailJson);
 
 #line default
@@ -711,7 +711,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 252 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 252 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.VoucherId);
 
 #line default
@@ -733,7 +733,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 253 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 253 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingCountry);
 
 #line default
@@ -755,7 +755,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 255 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 255 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.DiscountRate);
 
 #line default
@@ -777,7 +777,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 256 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 256 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingFee);
 
 #line default
@@ -799,7 +799,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 257 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 257 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.TotalMoney);
 
 #line default
@@ -821,7 +821,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 259 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 259 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingCity);
 
 #line default
@@ -843,7 +843,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 260 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 260 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingDistrict);
 
 #line default
@@ -865,7 +865,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 261 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 261 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingTown);
 
 #line default
@@ -914,7 +914,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_1.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
 #nullable restore
-#line 282 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 282 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingFullName);
 
 #line default
@@ -949,7 +949,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_1.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
 #nullable restore
-#line 293 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 293 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingEmail);
 
 #line default
@@ -984,7 +984,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_1.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
 #nullable restore
-#line 304 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 304 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingPhone);
 
 #line default
@@ -1017,7 +1017,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 315 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 315 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.CreateDate);
 
 #line default
@@ -1064,7 +1064,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                                                 ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fbb01970ba69a390243ca51b9f87d3a6ff1094cc68965", async() => {
 #nullable restore
-#line 341 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 341 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                             Write(Model.ShippingCity);
 
 #line default
@@ -1096,7 +1096,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                                                 ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fbb01970ba69a390243ca51b9f87d3a6ff1094cc71039", async() => {
 #nullable restore
-#line 351 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 351 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                             Write(Model.ShippingDistrict);
 
 #line default
@@ -1129,7 +1129,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                                                 ");
                 __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fbb01970ba69a390243ca51b9f87d3a6ff1094cc73190", async() => {
 #nullable restore
-#line 362 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 362 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                    Write(Model.ShippingTown);
 
 #line default
@@ -1166,7 +1166,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_7);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_8);
 #nullable restore
-#line 373 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 373 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ShippingAddress);
 
 #line default
@@ -1224,7 +1224,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                                             <tbody>
 ");
 #nullable restore
-#line 412 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 412 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                  if (Model != null)
                                                 {
                                                     int index = 0;
@@ -1240,7 +1240,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                                                                     type=""text""");
                 BeginWriteAttribute("value", "\r\n                                                                    value=\"", 23794, "\"", 23911, 1);
 #nullable restore
-#line 421 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 421 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 23871, item.OrderDetail.OrderId.NullToString(), 23871, 40, false);
 
 #line default
@@ -1250,7 +1250,7 @@ WriteAttributeValue("", 23871, item.OrderDetail.OrderId.NullToString(), 23871, 4
                 WriteLiteral("></td>\r\n                                                            <td hidden><input class=\"itemProdID\" disabled hidden=\"hidden\"\r\n                                                                    type=\"text\"");
                 BeginWriteAttribute("value", "\r\n                                                                    value=\"", 24122, "\"", 24250, 1);
 #nullable restore
-#line 424 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 424 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 24199, item.OrderDetail.ProductVariationId.NullToString(), 24199, 51, false);
 
 #line default
@@ -1263,7 +1263,7 @@ WriteAttributeValue("", 24199, item.OrderDetail.ProductVariationId.NullToString(
                                                                     hidden=""hidden"" type=""text""");
                 BeginWriteAttribute("value", "\r\n                                                                    value=\"", 24532, "\"", 24649, 1);
 #nullable restore
-#line 428 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 428 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 24609, item.ProductVariation.QuantityInStock, 24609, 40, false);
 
 #line default
@@ -1273,7 +1273,7 @@ WriteAttributeValue("", 24609, item.ProductVariation.QuantityInStock, 24609, 40,
                 WriteLiteral("></td>\r\n                                                            <td hidden><input class=\"itemOriginalQuantityInstock\" disabled\r\n                                                                    hidden=\"hidden\" type=\"text\"");
                 BeginWriteAttribute("value", "\r\n                                                                    value=\"", 24877, "\"", 24980, 1);
 #nullable restore
-#line 431 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 431 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 WriteAttributeValue("", 24954, item.OrderDetail.Quantity, 24954, 26, false);
 
 #line default
@@ -1282,7 +1282,7 @@ WriteAttributeValue("", 24954, item.OrderDetail.Quantity, 24954, 26, false);
                 EndWriteAttribute();
                 WriteLiteral("></td>\r\n                                                            <td>");
 #nullable restore
-#line 432 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 432 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                             Write(index);
 
 #line default
@@ -1298,7 +1298,7 @@ WriteAttributeValue("", 24954, item.OrderDetail.Quantity, 24954, 26, false);
                 BeginAddHtmlAttributeValues(__tagHelperExecutionContext, "src", 2, global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
                 AddHtmlAttributeValue("", 25243, "~/images/", 25243, 9, true);
 #nullable restore
-#line 434 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 434 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
 AddHtmlAttributeValue("", 25252, item.ProductVariation.Image.NullToString(), 25252, 43, false);
 
 #line default
@@ -1314,7 +1314,7 @@ AddHtmlAttributeValue("", 25252, item.ProductVariation.Image.NullToString(), 252
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                                            </td>\r\n                                                            <td>");
 #nullable restore
-#line 436 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 436 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                            Write(item.Product.ProductCode);
 
 #line default
@@ -1322,7 +1322,7 @@ AddHtmlAttributeValue("", 25252, item.ProductVariation.Image.NullToString(), 252
 #nullable disable
                 WriteLiteral("</td>\r\n                                                            <td>");
 #nullable restore
-#line 437 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
+#line 437 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Order\Update.cshtml"
                                                            Write(item.Product.Name);
 
 #line default
@@ -1575,10 +1575,10 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
                 .then((willChange) => {
                     if (willChange) {
                         if (checkQuantityInstock($(this))) {
-                            var _priceVal = ($(this).parents(""tr"").find(""input[type=text].price"").val() || 0).replace(/,/g, '');
+                            var _priceVal = ($(this).parents(""tr"").find(""input[type=text].price"").val() || 0).replace(/\./g, '');
                             var _quantityVal = parseFloat($(this).val()) || 0;
-                            $(this).parents(""tr"").find(""input[type=text].totalMoneyItem"").val(commasThousands(_priceVal * _quantityV");
-            WriteLiteral(@"al));
+                            $(this).parents(""tr"").find(""input[type=text].totalMoneyItem"").val(commasThousands(_priceVal * _quantity");
+            WriteLiteral(@"Val));
                             loadMoney();
                             ChangeQuantity($(this));
                         }
@@ -1605,8 +1605,8 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
                     min = Number($this.attr('min')),
                     max = Number($this.attr('max'));
                 if (min == 0) {
-       ");
-            WriteLiteral(@"             var d = 0;
+      ");
+            WriteLiteral(@"              var d = 0;
                 } else {
                     d = min;
                 }
@@ -1627,8 +1627,8 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
                                     }
                                 } else if ($(this).hasClass('plus')) {
                                     $this.val(Number($this.val()) + 1);
-          ");
-            WriteLiteral(@"                      }
+         ");
+            WriteLiteral(@"                       }
                                 var _priceVal = ($(this).parents(""tr"").find(""input[type=text].price"").val() || 0).replace(/\./g, '');
                                 var _quantityVal = parseFloat($(this).parents(""tr"").find(""input[type=text].quantity"").val()) || 0;
                                 $(this).parents(""tr"").find(""input[type=text].totalMoneyItem"").val(commasThousands(_priceVal * _quantityVal));
@@ -1721,7 +1721,7 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
         var _discountRate = parseFloat($('#DiscountRate').val() || 0);
         var _shippingFee = parseFloat($('#ShippingFee').val() || 0);
         $('table tbody tr .totalMoneyItem').each((index, item) => {
-            var _item = ($(item).parents(""tr"").find(""input[type=text].totalMoneyItem"").val() || '').replace(/,/g, '');
+            var _item = ($(item).parents(""tr"").find(""input[type=text].totalMoneyItem"").val() || '').replace(/\./g, '');
             _totalPaymentMoney = _totalPaymentMoney + parseFloat(_item);
         });
         $('#totalMoneyProd').val(commasThousands(_totalPaymentMoney));
@@ -1732,19 +1732,19 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
     function ConvertDate(time) {
         var date = new Date(time);
         var dateConvert = (((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + date.getFullYear())
-        return dateC");
-            WriteLiteral("onvert\r\n    }\r\n\r\n    function OpenDeliveryAddress() {\r\n        $(\'#OrderModal\').modal(\'hide\');\r\n    }\r\n\r\n");
+        return date");
+            WriteLiteral("Convert\r\n    }\r\n\r\n    function OpenDeliveryAddress() {\r\n        $(\'#OrderModal\').modal(\'hide\');\r\n    }\r\n\r\n");
             WriteLiteral(@"
 
         function commasThousands(nStr) {
             nStr += '';
-            nStr = nStr.replace(/,/g, '');
+            nStr = nStr.replace(/\./g, '');
             x = nStr.split('.');
             x1 = x[0];
             x2 = x.length > 1 ? '.' + x[1] : '';
             var rgx = /(\d+)(\d{3})/;
             while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+                x1 = x1.replace(rgx, '$1' + '.' + '$2');
             }
             return x1 + x2;
         }
@@ -1760,8 +1760,8 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
         }
         if ($('#cSize').val() == '') {
             sweetAlert("""", ""Vui lòng chọn kích cỡ"", ""error"");
-    ");
-            WriteLiteral(@"        return false;
+   ");
+            WriteLiteral(@"         return false;
         }
         if ($('#cColor').val() == '') {
             sweetAlert("""", ""Vui lòng chọn màu sắc"", ""error"");
@@ -1794,8 +1794,8 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
                 title: 'Thông Báo!',
                 icon: 'info',
                 buttons: [""Không, tôi cần xem lại"", ""Có, tôi đồng ý""],
-            }).then(func");
-            WriteLiteral(@"tion (isConfirm) {
+            }).then(fun");
+            WriteLiteral(@"ction (isConfirm) {
                 if (isConfirm) {
                     $('#ShippingCity').val($(""[id='selectProvince'] option:selected"").text());
                     $('#ShippingDistrict').val($(""[id='selectDistrict'] option:selected"").text());
@@ -1813,7 +1813,7 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
         var _quantity = parseInt(e.parents(""tr"").find(""input[type=text].quantity"").val()) || 0;
         var _Originalquantity = parseInt(e.parents(""tr"").find(""input[type=text].itemOriginalQuantityInstock"").val()) || 0;
         if (_quantity > itemQuantityInstock) {
-            sweetAlert('Số lượng còn lại của sản phẩm này không đáp ứng được số lượng bạn đặt!', '', 'warning');");
+            sweetAlert('Số lượng còn lại của sản phẩm này không đáp ứng được số lượng bạn đặt!', '', 'warning');");
             WriteLiteral(@"
             e.val(_Originalquantity);
             return false;
@@ -1842,8 +1842,8 @@ WriteAttributeValue("", 30545, Model.Id, 30545, 9, false);
     }
 
     function AddProdToOrder(id) {
-        swa");
-            WriteLiteral(@"l("""", {
+        sw");
+            WriteLiteral(@"al("""", {
             title: 'Thêm sản phẩm vào đơn hàng sẽ dẫn đến thay đổi thành tiền, bạn vẫn muốn thay đổi chứ?',
             icon: 'warning',
             buttons: [""Không, tôi cần xem lại"", ""Có, tôi đồng ý""],
