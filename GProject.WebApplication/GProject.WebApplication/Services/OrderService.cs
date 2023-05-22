@@ -142,7 +142,7 @@ namespace GProject.WebApplication.Services
             order.Status = GProject.Data.Enums.OrderStatus.InProgress;
             order.VoucherId = selectVoucher;
             order.DiscountRate = Convert.ToSingle(cGiamGia);
-            order.PaymentDate = DateTime.Now;
+            order.PaymentDate = order_date;
 
             strUrl = String.Concat(Commons.mylocalhost, "Order/add-Order");
             if (!await Commons.Add_or_UpdateAsync(order, strUrl))

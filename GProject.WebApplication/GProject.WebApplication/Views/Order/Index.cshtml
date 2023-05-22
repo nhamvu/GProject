@@ -212,34 +212,44 @@
                                         }
                                         else    
                                         {
-                                            <a class="text-success">Đã thanh toán</a>
+                                            <a class="text-info">Đã thanh toán</a>
                                         }
                                     </td>
-                                    <td>
-                                        @{
+                                    @{
                                             switch ((int)Model[i].Status)
                                             {
                                                 case 0:
-                                                    <a class="label label-secondary text-dark">Chờ xác nhận</a>
+                                                    <td>
+                                                        <a class="text-dark">Chờ xác nhận</a>
+                                                    </td>
                                                     break;
                                                 case 6:
-                                                    <a class="label label-warning">Đã xác nhận</a>
+                                                    <td>
+                                                        <a class="text-white bg-warning">Đã xác nhận</a>
+                                                    </td>
                                                     break;
                                                 case 1:
-                                                    <a class="label label-info">Đang vận chuyển</a>
+                                                    <td>
+                                                        <a class="text-white bg-info">Đang vận chuyển</a>
+                                                    </td>
                                                     break;
                                                 case 2:
-                                                    <a class="label label-primary">Đang giao hàng</a>
+                                                    <td>
+                                                        <a class="text-white bg-primary">Đang giao hàng</a>
+                                                    </td>
                                                     break;
                                                 case 3:
-                                                    <a class="label label-success">Đã hoàn thành</a>
+                                                    <td> 
+                                                        <a class="text-white bg-success">Đã hoàn thành</a>
+                                                    </td>
                                                     break;
                                                 default:
-                                                    <a class="label label-danger">Đã hủy</a>
+                                                    <td>
+                                                        <a class="text-white bg-danger">Đã hủy</a>
+                                                    </td>
                                                     break;
                                             }
                                         }
-                                    </td>
                                     <td>
                                             <button class="btn btn-outline-warning border-0" onclick="location.href='@Url.Action("Update", "Order",new { id = Model[i].Id})'" />
                                             <i class="fas fa-pen-square"></i>

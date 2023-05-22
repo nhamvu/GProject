@@ -57,13 +57,23 @@ namespace GProject.WebApplication.Controllers
                                 .ToList();
 
                 //-- Thống kê theo danh mục sản phẩm
-                var resultsCategoryStatical = lstOrders
-                            .Join(lstOrderDetail, b => b.Id, bhct => bhct.OrderId, (b, bhct) => new { Order = b, OrderDetail = bhct })
+                var lstOrderForcategoryStatical = lstOrders;
+                if (!string.IsNullOrEmpty(fromDate))
+                {
+					lstOrderForcategoryStatical = lstOrderForcategoryStatical.Where(c => c.PaymentDate != null && c.PaymentDate >= DateTime.Parse(fromDate) && c.Status == Data.Enums.OrderStatus.Accomplished).ToList();
+				}
+				if (!string.IsNullOrEmpty(toDate))
+				{
+					lstOrderForcategoryStatical = lstOrderForcategoryStatical.Where(c => c.PaymentDate != null && c.PaymentDate <= DateTime.Parse(toDate) && c.Status == Data.Enums.OrderStatus.Accomplished).ToList();
+				}
+				//-- Thống kê theo danh mục sản phẩm
+				var resultsCategoryStatical = lstOrderForcategoryStatical
+							.Join(lstOrderDetail, b => b.Id, bhct => bhct.OrderId, (b, bhct) => new { Order = b, OrderDetail = bhct })
                             .Join(lstProductvariation, ab => ab.OrderDetail.ProductVariationId, s => s.Id, (ab, s) => new { ab.Order, ab.OrderDetail, Productvariation = s })
                             .Join(lstProducts, abs => abs.Productvariation.ProductId, p => p.Id, (abs, p) => new { abs.Order, abs.OrderDetail, abs.Productvariation, Product = p })
                             .Where(absp => absp.Order.PaymentDate != null && absp.Productvariation.Id == absp.OrderDetail.ProductVariationId)
                             .Where(absp => absp.Order.Status == Data.Enums.OrderStatus.Accomplished)
-                            .OrderBy(absp => absp.Order.CreateDate)
+                            .OrderBy(absp => absp.Order.PaymentDate)
                             .GroupBy(absp => new { absp.Product.CategoryId })
                             .Select(g => new
                             {

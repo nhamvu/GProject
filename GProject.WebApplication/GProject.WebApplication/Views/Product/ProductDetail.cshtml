@@ -661,7 +661,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         $("#idDeliveryAddress").val(result.id)
                     }
                     else {
-                        var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''))
+                        var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/\./g, '')) - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/\./g, ''))
                         if (total < 0) {
                             total = 0;
                         }
@@ -695,7 +695,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                 url: "/Product/GetVoucher?id=" + _id,
                 type: "GET",
                 success: function (result) {
-                    let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                    let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/\./g, ''));
                     let discount = 0;
                     var total = 0;
                     if (result != null) {
@@ -708,7 +708,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                             discount = result.discountRate
                         }
                         $("#txtGiamGia").text(commasThousands(discount))
-                        total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/\./g, ''));
                     
                          swal("Áp dụng thành công mã giảm giá: " + result.name, "Bạn được giảm: " + commasThousands(discount) + " đ", "success");
                     }
@@ -716,7 +716,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
                         $("#txtGiamGia").text(0)
                         $("#txtDiscountForm").text("đ")
-                        total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                        total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/\./g, ''));
                     }
 
                     if (total < 0) {
@@ -802,7 +802,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
             url: "/Product/GetVoucher?discountCode=" + _discountCode,
             type: "GET",
             success: function (result) {
-                let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, ''));
+                let totalProduct = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/\./g, ''));
                 let discount = 0;
                 var total = 0;
                 if (result != null) {
@@ -815,7 +815,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                         discount = result.discountRate
                     }
                     $("#txtGiamGia").text(commasThousands(discount))
-                    total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    total = totalProduct - discount + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/\./g, ''));
                 
                     swal("Áp dụng thành công mã giảm giá: " + _discountCode, "Bạn được giảm: " + commasThousands(discount) + " đ ", "success");
                 }
@@ -823,7 +823,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
                     swal("Thông báo!", "Mã giảm giá không được áp dụng!", "error");
                     $("#txtGiamGia").text(0)
                     $("#txtDiscountForm").text("đ")
-                    total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/,/g, ''));
+                    total = totalProduct + parseFloat(document.querySelector('#txtPhiShip').innerText.replace(/\./g, ''));
                 }
 
                 if (total < 0) {
@@ -861,7 +861,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
             type: "GET",
             success: function (result) {
                 var total = 0;
-                var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/,/g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/,/g, ''));
+                var total = parseFloat(document.querySelector('#txtTotalProduct').innerText.replace(/\./g, '')) + result - parseFloat(document.querySelector('#txtGiamGia').innerText.replace(/\./g, ''));
                 if (total < 0) {
                     total = 0;
                 }
@@ -936,7 +936,7 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
     }
 
     function sumTotal() {
-        let mQuantity = parseInt($('#quantity').val().replace(/,/g, '') || 0) || 0;
+        let mQuantity = parseInt($('#quantity').val().replace(/\./g, '') || 0) || 0;
         let mPrice = parseFloat(@price) || 0;
         $('#cQuantity').val(mQuantity);
         $('#cPrice').val(mPrice);
@@ -948,13 +948,13 @@ GProject.Data.DomainClass.Brand, EvaluateCommentDTO, decimal, int, Customer>
 
     function commasThousands(nStr) {
         nStr += '';
-        nStr = nStr.replace(/,/g, '');
+        nStr = nStr.replace(/\./g, '');
         x = nStr.split('.');
         x1 = x[0];
         x2 = x.length > 1 ? '.' + x[1] : '';
         var rgx = /(\d+)(\d{3})/;
         while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
         }
         return x1 + x2;
     }
