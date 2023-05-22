@@ -58,7 +58,7 @@ namespace GProject.WebApplication.Controllers
                 this.ViewData[nameof(sBrand)] = (object)sBrand;
                 this.ViewData[nameof(sPrice)] = (object)sPrice;
 
-                const int pageSize = 5;
+                const int pageSize = 10;
                 if (pg < 1)
                     pg = 1;
 

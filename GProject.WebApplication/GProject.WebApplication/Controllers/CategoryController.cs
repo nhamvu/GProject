@@ -41,7 +41,7 @@ namespace GProject.WebApplication.Controllers
                 var data = new CategoryDTO() { CategoryList = lstObjs };
                 if (page == null) page = 1;
                 var pageNumber = page ?? 1;
-                var pageSize = 5;
+                var pageSize = 10;
 
                 this.ViewData[nameof(sName)] = (object)sName;
                 this.ViewData[nameof(sStatus)] = (object)valsStatus;

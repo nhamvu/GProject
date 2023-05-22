@@ -13,42 +13,42 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 4 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 using GProject.Api.MyServices.Services;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 5 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 using GProject.Data.DomainClass;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 6 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 using GProject.WebApplication.Helpers;
 
 #line default
@@ -107,7 +107,7 @@ using GProject.WebApplication.Helpers;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 7 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 7 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
   
     ViewBag.Title = "Tạo mới thông tin sản phẩm";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -116,7 +116,7 @@ using GProject.WebApplication.Helpers;
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 11 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
   
     var lstBrand = await Commons.GetAll<Brand>(String.Concat(Commons.mylocalhost, "Brand/get-all-Brand"));
     var lstCategory = await Commons.GetAll<Category>(String.Concat(Commons.mylocalhost, "Category/get-all-Category"));
@@ -227,7 +227,7 @@ using GProject.WebApplication.Helpers;
 <div ");
             WriteLiteral("class=\"container\">\r\n    \r\n");
 #nullable restore
-#line 117 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 117 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
  if (@ViewData["Mess"] != null)
 {
 
@@ -236,7 +236,7 @@ using GProject.WebApplication.Helpers;
 #nullable disable
             WriteLiteral("<p style=\"visibility: hidden;\" id=\"error\">");
 #nullable restore
-#line 118 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 118 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                                       Write(ViewData["Mess"]);
 
 #line default
@@ -244,7 +244,7 @@ using GProject.WebApplication.Helpers;
 #nullable disable
             WriteLiteral("</p>\r\n");
 #nullable restore
-#line 119 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 119 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 }
 
 #line default
@@ -259,7 +259,7 @@ using GProject.WebApplication.Helpers;
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 122 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 122 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Id);
 
 #line default
@@ -282,7 +282,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 123 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 123 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ViewCount);
 
 #line default
@@ -305,7 +305,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 124 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 124 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.LikeCount);
 
 #line default
@@ -328,7 +328,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.InputTagHelper>();
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper);
 #nullable restore
-#line 130 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 130 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Name);
 
 #line default
@@ -355,7 +355,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-sm-9"">
                     ");
 #nullable restore
-#line 138 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 138 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                Write(Html.DropDownList("BrandId", StoreItems, new { @maxlength = "30", @class = "searchText form-control" }));
 
 #line default
@@ -374,7 +374,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-sm-9"">
                     ");
 #nullable restore
-#line 149 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 149 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                Write(Html.TextBox("ImportPrice", decimal.Parse(Model.ImportPrice.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"}));
 
 #line default
@@ -390,7 +390,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-sm-9"">
                     ");
 #nullable restore
-#line 157 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 157 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                Write(Html.TextBox("Price", decimal.Parse(Model.Price.ToString("0.##")), new { @maxlength = "10", @class = "required form-control"}));
 
 #line default
@@ -408,7 +408,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                     <div class=""col-sm-6"">
                         ");
 #nullable restore
-#line 167 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 167 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                    Write(Html.DropDownList("CategoryId", CategoryItems, new { @maxlength = "30", @class = "searchText form-control" }));
 
 #line default
@@ -424,7 +424,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-md-6"">
                     ");
 #nullable restore
-#line 175 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 175 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                Write(Html.DropDownList("ProductType", new[]
                     {
                     new SelectListItem{Text="Sản phẩm thông thường", Value="0", Selected = (Model.ProductType != null ? (Model.ProductType == "0") : true)},
@@ -449,7 +449,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 <div class=""col-md-6"">
                     ");
 #nullable restore
-#line 192 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 192 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                Write(Html.DropDownList("Status", new[]
                     {
                     new SelectListItem{Text="Đang bán", Value="0", Selected = (Model.Status != null ? (Model.Status == 0) : true)},
@@ -477,7 +477,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper);
                 __tagHelperExecutionContext.AddHtmlAttribute(__tagHelperAttribute_2);
 #nullable restore
-#line 206 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 206 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.Description);
 
 #line default
@@ -514,7 +514,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 <div class=""row"" style=""height: 500px; overflow-y: scroll; border: solid 1px;"">
 ");
 #nullable restore
-#line 224 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 224 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                      if (Model != null && Model.ProductVariationViewModel.Count >= 0 && Model.ProductVariationViewModel != null && Model.SizeList.Count >= 0 && Model.SizeList != null)
 
                     {
@@ -524,7 +524,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
 #line hidden
 #nullable disable
 #nullable restore
-#line 227 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 227 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                          for (int i = 0; i < Model.ProductVariationViewModel.Count; i++)
                         {
                             
@@ -533,21 +533,21 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
 #line hidden
 #nullable disable
 #nullable restore
-#line 229 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 229 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                        Write(Html.HiddenFor(m => m.ProductVariationViewModel[i].Id));
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 230 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 230 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                        Write(Html.HiddenFor(m => m.ProductVariationViewModel[i].VariationId));
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 231 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 231 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                        Write(Html.HiddenFor(m => m.ProductVariationViewModel[i].ProductId));
 
 #line default
@@ -562,7 +562,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_TextAreaTagHelper.For = ModelExpressionPro
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_8.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_8);
 #nullable restore
-#line 233 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 233 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ProductVariationViewModel[i].IsChecked);
 
 #line default
@@ -579,7 +579,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                <label class=\"form-check-label\">\r\n                                    (");
 #nullable restore
-#line 235 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 235 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                                 Write(Model.ProductVariationViewModel[i].HEXCode);
 
 #line default
@@ -587,7 +587,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 #nullable disable
                 WriteLiteral(") - ");
 #nullable restore
-#line 235 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 235 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                                                                                Write(Model.ProductVariationViewModel[i].Name);
 
 #line default
@@ -648,7 +648,7 @@ WriteAttributeValue("", 9918, i, 9918, 2, false);
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_11.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_11);
 #nullable restore
-#line 240 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 240 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ProductVariationViewModel[i].Image_Upload);
 
 #line default
@@ -674,7 +674,7 @@ AddHtmlAttributeValue("", 10046, "picImg" + i, 10046, 15, false);
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                            </div>\r\n                            <div class=\"col-md-9 row\">\r\n");
 #nullable restore
-#line 243 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 243 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                                   
                                     Model.ProductVariationViewModel[i].SizeAndStock = @Model.SizeList;
                                 
@@ -683,7 +683,7 @@ AddHtmlAttributeValue("", 10046, "picImg" + i, 10046, 15, false);
 #line hidden
 #nullable disable
 #nullable restore
-#line 246 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 246 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                                  for (int j = 0; j < Model.SizeList.Count; j++)
                                 {
 
@@ -692,7 +692,7 @@ AddHtmlAttributeValue("", 10046, "picImg" + i, 10046, 15, false);
 #nullable disable
                 WriteLiteral("                                    <div class=\"form-group col-md-3\">\r\n                                        <label class=\"col-sm-4\" style=\"text-align: left;\">\r\n                                            (");
 #nullable restore
-#line 250 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 250 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                                         Write(Model.SizeList[j].Code);
 
 #line default
@@ -707,7 +707,7 @@ AddHtmlAttributeValue("", 10046, "picImg" + i, 10046, 15, false);
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_13.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_13);
 #nullable restore
-#line 253 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 253 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ProductVariationViewModel[i].SizeAndStock[j].QuantityInstock);
 
 #line default
@@ -732,7 +732,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.InputTypeName = (string)__tagHelperAttribute_13.Value;
                 __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_13);
 #nullable restore
-#line 254 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 254 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
 __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvider.CreateModelExpression(ViewData, __model => __model.ProductVariationViewModel[i].SizeAndStock[j].Id);
 
 #line default
@@ -751,7 +751,7 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
                 __tagHelperExecutionContext = __tagHelperScopeManager.End();
                 WriteLiteral("\r\n                                        </div>\r\n                                    </div>\r\n");
 #nullable restore
-#line 257 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 257 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                                 }
 
 #line default
@@ -759,14 +759,14 @@ __Microsoft_AspNetCore_Mvc_TagHelpers_InputTagHelper.For = ModelExpressionProvid
 #nullable disable
                 WriteLiteral("                            </div>\r\n");
 #nullable restore
-#line 259 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 259 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                         }
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 259 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
+#line 259 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\ProductMGR\Create.cshtml"
                          
                     }
 

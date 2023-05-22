@@ -46,7 +46,7 @@ namespace GProject.WebApplication.Controllers
                     lstObjs = lstObjs.Where(c => c.Sex == valsGender).ToList();
                 if (valsStatus != -1)
                     lstObjs = lstObjs.Where(c => c.Status == valsStatus).ToList();
-                const int pageSize = 5;
+                const int pageSize = 10;
                 if (pg < 1)
                     pg = 1;
                 var pager = new Pager(lstObjs.Count(), pg, pageSize);

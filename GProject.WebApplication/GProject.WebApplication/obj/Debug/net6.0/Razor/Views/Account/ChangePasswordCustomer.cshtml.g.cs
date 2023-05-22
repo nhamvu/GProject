@@ -13,21 +13,21 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using GProject.WebApplication.Models;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\_ViewImports.cshtml"
 using X.PagedList.Mvc.Core;
 
 #line default
@@ -67,7 +67,7 @@ using X.PagedList.Mvc.Core;
         {
             WriteLiteral("\r\n");
 #nullable restore
-#line 3 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Account\ChangePasswordCustomer.cshtml"
+#line 3 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Account\ChangePasswordCustomer.cshtml"
   
     ViewBag.Title = "Thay đổi mật khẩu";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -88,7 +88,7 @@ using X.PagedList.Mvc.Core;
                         <input class=""form-control"" type=""password"" id=""currentPassword"" name=""CurrentPassword"">
                         <span class=""text-danger"">");
 #nullable restore
-#line 18 "D:\GProject\GProject.WebApplication\GProject.WebApplication\Views\Account\ChangePasswordCustomer.cshtml"
+#line 18 "C:\Users\huy.luu\Downloads\GProject111\GProject\GProject.WebApplication\GProject.WebApplication\Views\Account\ChangePasswordCustomer.cshtml"
                                              Write(ViewBag.checkCurrentPass);
 
 #line default

@@ -50,7 +50,7 @@ namespace GProject.WebApplication.Controllers
                 //var data = new OrderDto() { Orders = lstData };
                 if (page == null) page = 1;
                 var pageNumber = page ?? 1;
-                var pageSize = 5;
+                var pageSize = 10;
 
                 //this.ViewBag.Pager = pager;
                 this.ViewData[nameof(sId)] = (object)sId;

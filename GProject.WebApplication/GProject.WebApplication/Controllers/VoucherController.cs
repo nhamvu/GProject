@@ -53,7 +53,7 @@ namespace GProject.WebApplication.Controllers
                    
                 }
 
-                const int pageSize = 5;
+                const int pageSize = 10;
                 if (pg < 1)
                     pg = 1;
                 var pager = new Pager(lstObjs.Count(), pg, pageSize);

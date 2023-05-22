@@ -52,7 +52,7 @@ namespace GProject.WebApplication.Controllers
 
                 if (page == null) page = 1;
                 var pageNumber = page ?? 1;
-                var pageSize = 2;
+                var pageSize = 10;
 
                 //-- truyền vào message nếu có thông báo
                 if (!string.IsNullOrEmpty(HttpContext.Session.GetString("mess")))
