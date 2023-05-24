@@ -71,7 +71,6 @@ namespace GProject.WebApplication.Controllers
                                 TotalRevenue = g.Sum(c => c.OrderDetail.Quantity * c.OrderDetail.Price)
                             })
                             .ToList();
-
                 //--Top 5 sản phẩm bán chạy
                 var top5Product = lstOrders
                                 .Join(lstOrderDetail, a => a.Id, b => b.OrderId, (a, b) => new { Order = a, OrderDetail = b })
