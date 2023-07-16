@@ -198,7 +198,7 @@ namespace GProject.WebApplication.Services
                 cartdetail_data.ToatlMoney = decimal.Parse(cTotalMoney);
                 cartdetail_data.Status = Data.Enums.CartDetailStatus.Ready;
                 cartdetail_data.Description = cDescription.NullToString();
-                cartdetail_data.TimeOut = timeout.AddMinutes(15);
+                cartdetail_data.TimeOut = timeout.AddMinutes(1);
                 strUrl = String.Concat(Commons.mylocalhost, "Cart/add-cart-detail");
                 cartDetailRepository.Add(cartdetail_data);
             }
@@ -207,7 +207,7 @@ namespace GProject.WebApplication.Services
                 cartdetail_data.Quantity = cartdetail_data.Quantity + cQuantity.NullToInt();
                 cartdetail_data.ToatlMoney = cartdetail_data.ToatlMoney + cTotalMoney.NullToDecimal();
                 cartdetail_data.Description = cDescription.NullToString();
-                cartdetail_data.TimeOut = timeout.AddMinutes(15);
+                cartdetail_data.TimeOut = timeout.AddMinutes(1);
                 strUrl = String.Concat(Commons.mylocalhost, "Cart/update-cart-detail");
                 cartDetailRepository.Update(cartdetail_data);
             }
